@@ -9,16 +9,59 @@ from urllib.parse import urljoin
 import httpx
 from tqdm import tqdm
 
+
+async def load_domain_item(domain_item: str, client: httpx.AsyncClient) -> list[str]:
+    """
+    Try to load a domain item. If domain_item is a local file or a URL returning a JSON array,
+    then filter for objects where "status" is true and return their "url" properties.
+    Otherwise, treat domain_item as a plain domain string.
+    """
+    if os.path.exists(domain_item):
+        try:
+            with open(domain_item, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            if isinstance(data, list):
+                return [item["url"] for item in data if item.get("status") is True]
+        except Exception:
+            pass
+        return [domain_item]
+    else:
+        try:
+            r = await client.get(domain_item, timeout=10)
+            r.raise_for_status()
+            data = r.json()
+            if isinstance(data, list):
+                return [item["url"] for item in data if item.get("status") is True]
+        except Exception:
+            pass
+        return [domain_item]
+
+
+async def load_domains(domain_inputs: list[str]) -> list[str]:
+    """
+    Process a list of domain inputs. Each input can be a plain string
+    or a JSON file path/URL. Returns a combined list of domain strings.
+    """
+    domains = []
+    async with httpx.AsyncClient(timeout=10) as client:
+        for d in domain_inputs:
+            loaded = await load_domain_item(d, client)
+            domains.extend(loaded)
+    return domains
+
+
 async def check_route(route, client, normalized_domains, verbose, timeout, semaphore):
     """
     Check if the route is online.
-
+    
     - If 'example' is missing, return (route, False).
     - If 'example' is absolute, use it.
-    - If relative, pick one random domain from normalized_domains
-      and build the full URL.
+    - If relative, pick one random domain from normalized_domains to build the full URL.
+    - After a 200 status, also check if the response is XML by examining the Content-Type header
+      or if the response text starts with "<?xml".
     
-    Returns a tuple (route, online) where online is True if the HTTP GET returns status 200.
+    Returns a tuple (route, online) where online is True if the HTTP GET returns status 200
+    and the content is XML.
     """
     async with semaphore:
         example_url = route.get('example')
@@ -35,7 +78,15 @@ async def check_route(route, client, normalized_domains, verbose, timeout, semap
 
         try:
             response = await client.get(full_url, timeout=timeout)
-            online = response.status_code == 200
+            if response.status_code == 200:
+                content_type = response.headers.get("Content-Type", "").lower()
+                # Check if the Content-Type contains "xml" or if the text starts with an XML declaration.
+                if "xml" in content_type or response.text.lstrip().startswith("<?xml"):
+                    online = True
+                else:
+                    online = False
+            else:
+                online = False
         except Exception:
             online = False
 
@@ -44,6 +95,7 @@ async def check_route(route, client, normalized_domains, verbose, timeout, semap
         if online or verbose:
             tqdm.write(line)
         return route, online
+
 
 async def process_routes(data, client, normalized_domains, verbose, timeout, concurrency):
     semaphore = asyncio.Semaphore(concurrency)
@@ -63,14 +115,17 @@ async def process_routes(data, client, normalized_domains, verbose, timeout, con
     pbar.close()
     return data
 
-async def main_async(source, output, rss_output, domain_pool, verbose, timeout, concurrency):
-    # Default to ["rsshub.app"] if no domains provided.
-    if not domain_pool:
-        domain_pool = ["rsshub.app"]
-    normalized_domains = [
-        d if (d.startswith("http://") or d.startswith("https://")) else "https://" + d
-        for d in domain_pool
-    ]
+
+async def main_async(source, output, rss_output, domain_inputs, verbose, timeout, concurrency):
+    # Load domains from inputs.
+    domain_list = await load_domains(domain_inputs)
+    if not domain_list:
+        domain_list = ["https://rsshub.app"]
+    else:
+        domain_list = [
+            d if (d.startswith("http://") or d.startswith("https://")) else "https://" + d
+            for d in domain_list
+        ]
     headers = {
         "User-Agent": "Mozilla/5.0 (compatible; RSSHubChecker/1.0; +https://github.com/DIYgod/RSSHub)"
     }
@@ -92,7 +147,7 @@ async def main_async(source, output, rss_output, domain_pool, verbose, timeout, 
                 print(f"Error reading JSON file: {e}")
                 sys.exit(1)
 
-        data = await process_routes(data, client, normalized_domains, verbose, timeout, concurrency)
+        data = await process_routes(data, client, domain_list, verbose, timeout, concurrency)
 
         # Count working example URLs.
         working_count = sum(
@@ -132,6 +187,7 @@ async def main_async(source, output, rss_output, domain_pool, verbose, timeout, 
             print(f"Error writing RSS endpoints to file: {e}")
             sys.exit(1)
 
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Check if a route is online based on its 'example' URL and create a JSON file for all online RSS endpoints."
@@ -157,9 +213,11 @@ def parse_args():
     parser.add_argument(
         "-d", "--domain",
         action="append",
-        default=[],
-        help=("Base URL for constructing absolute URLs from relative 'example' paths. "
-              "Can be provided multiple times to form a pool. Defaults to 'rsshub.app' if not provided.")
+        default=["https://raw.githubusercontent.com/yuxiaoli/rsshub-monitor/refs/heads/main/data/servers.json"],
+        help=("Either a plain domain string or a path/URL to a JSON file containing an array of server objects "
+              "with schema: { 'url': <str>, 'location': <str>, 'maintainer': <str>, 'maintainerUrl': <str>, 'status': <bool> }. "
+              "Only servers with 'status': true are used. Defaults to "
+              "'https://raw.githubusercontent.com/yuxiaoli/rsshub-monitor/refs/heads/main/data/servers.json'.")
     )
     parser.add_argument(
         "-v", "--verbose",
@@ -173,7 +231,7 @@ def parse_args():
         default=5,
         help="Timeout for HTTP requests in seconds. Defaults to 5."
     )
-    # If --concurrent is provided without a number, use os.cpu_count(); default is 1.
+    # --concurrent accepts an optional number; if provided without a number, uses os.cpu_count(), default is 1.
     parser.add_argument(
         "--concurrent",
         nargs="?",
@@ -184,9 +242,11 @@ def parse_args():
     )
     return parser.parse_args()
 
+
 def main():
     args = parse_args()
     asyncio.run(main_async(args.source, args.output, args.rss_output, args.domain, args.verbose, args.timeout, args.concurrent))
+
 
 if __name__ == "__main__":
     main()

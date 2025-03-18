@@ -6,6 +6,7 @@ import httpx
 import subprocess
 import platform
 from urllib.parse import urlparse
+from datetime import datetime
 
 def fetch_content(path):
     """Fetch content from a URL or read from a local file."""
@@ -61,7 +62,6 @@ def check_instance(url):
     2. Sending an HTTP GET request to {url}/test/hi.
     Returns a tuple (ping_success, http_success).
     """
-    # Extract the host from the URL.
     parsed = urlparse(url)
     host = parsed.netloc
 
@@ -123,7 +123,7 @@ def main():
         print(f"  Maintainer URL: {instance.get('maintainerUrl')}")
         
         ping_status, http_status = check_instance(url)
-        overall_status = ping_status and http_status
+        online = ping_status and http_status
 
         ping_symbol = "✅" if ping_status else "❌"
         http_symbol = "✅" if http_status else "❌"
@@ -131,13 +131,14 @@ def main():
         print(f"  Ping: {'Success' if ping_status else 'Failed'} {ping_symbol}")
         print(f"  GET {url.rstrip('/') + '/test/hi'}: {'Success' if http_status else 'Failed'} {http_symbol}\n")
 
-        # Build result entry matching the JSON schema.
+        # Build result entry matching the updated JSON schema.
         result = {
             "url": instance.get("url"),
             "location": instance.get("location"),
             "maintainer": instance.get("maintainer"),
             "maintainerUrl": instance.get("maintainerUrl"),
-            "status": overall_status
+            "online": online,
+            "lastChecked": datetime.utcnow().isoformat() + "Z"
         }
         results.append(result)
 
