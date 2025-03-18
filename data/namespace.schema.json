@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "patternProperties": {
+    "^[0-9]+$": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "type": "object",
+          "patternProperties": {
+            "^/[^/]+(/[^/]+)*$": {
+              "type": "object",
+              "properties": {
+                "path": { "type": "string" },
+                "name": { "type": "string" },
+                "url": { "type": "string" },
+                "maintainers": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "example": { "type": "string" },
+                "parameters": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                },
+                "description": { "type": "string" },
+                "categories": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "features": {
+                  "type": "object",
+                  "properties": {
+                    "requireConfig": {
+                      "oneOf": [
+                        { "type": "boolean" },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": { "type": "string" },
+                              "optional": { "type": "boolean" },
+                              "description": { "type": "string" }
+                            },
+                            "required": ["name", "optional", "description"],
+                            "additionalProperties": false
+                          }
+                        }
+                      ]
+                    },
+                    "requirePuppeteer": { "type": "boolean" },
+                    "antiCrawler": { "type": "boolean" },
+                    "supportRadar": { "type": "boolean" },
+                    "supportBT": { "type": "boolean" },
+                    "supportPodcast": { "type": "boolean" },
+                    "supportScihub": { "type": "boolean" }
+                  },
+                  "additionalProperties": false
+                },
+                "radar": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "source": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      },
+                      "target": { "type": "string" }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "location": { "type": "string" },
+                "online": { "type": "boolean" }
+              },
+              "required": ["path", "name", "categories", "features", "location", "online"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "name": { "type": "string" },
+        "url": { "type": "string" },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "description": { "type": "string" },
+        "lang": { "type": "string" }
+      },
+      "required": ["name", "url", "categories", "lang"],
+      "additionalProperties": false
+    }
+  }
+}

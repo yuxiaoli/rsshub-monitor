@@ -1,0 +1,5302 @@
+[
+  {
+    "provider_id": "81",
+    "provider_name": "中国军网",
+    "route_key": "/81rc/:category{.+}?",
+    "route": {
+      "path": "/81rc/:category{.+}?",
+      "name": "中国人民解放军专业技术人才网",
+      "url": "81rc.81.cn",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/81/81rc/sy/gzdt_210283",
+      "parameters": {
+        "category": "分类，默认为 `sy/gzdt_210283`，即工作动态，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [工作动态](https://81rc.81.cn/sy/gzdt_210283)，网址为 `https://81rc.81.cn/sy/gzdt_210283`。截取 `https://81rc.81.cn/` 到末尾的部分 `sy/gzdt_210283` 作为参数填入，此时路由为 [`/81/81rc/sy/gzdt_210283`](https://rsshub.app/81/81rc/sy/gzdt_210283)。\n:::\n  ",
+      "categories": [
+        "government"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "81rc.81.cn/:category"
+          ]
+        }
+      ],
+      "location": "81rc/index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/ds/:id",
+    "route": {
+      "path": "/ds/:id",
+      "categories": [
+        "game"
+      ],
+      "example": "/163/ds/63dfbaf4117741daaf73404601165843",
+      "parameters": {
+        "id": "用户ID"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "ds.163.com/user/:id"
+          ]
+        }
+      ],
+      "name": "用户发帖",
+      "maintainers": [
+        "luyuhuang"
+      ],
+      "location": "ds.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/dy2/:id",
+    "route": {
+      "path": "/dy2/:id",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/163/dy2/T1555591616739",
+      "parameters": {
+        "id": "id，该网易号主页网址最后一项 html 的文件名"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "网易号（通用）",
+      "maintainers": [
+        "mjysci",
+        "lyqluis"
+      ],
+      "description": "优先使用方法一，若是网易号搜索页面搜不到的小众网易号（文章页面不含`data-wemediaid`）则可使用此法。\n触发反爬会只抓取到标题，建议自建。",
+      "location": "dy2.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/exclusive/:id?",
+    "route": {
+      "path": "/exclusive/:id?",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/163/exclusive/qsyk",
+      "parameters": {
+        "id": "栏目, 默认为首页"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "3g.163.com/touch/exclusive/sub/:id"
+          ]
+        }
+      ],
+      "name": "栏目",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| 分类     | 编号 |\n| -------- | ---- |\n| 首页     |      |\n| 轻松一刻 | qsyk |\n| 槽值     | cz   |\n| 人间     | rj   |\n| 大国小民 | dgxm |\n| 三三有梗 | ssyg |\n| 数读     | sd   |\n| 看客     | kk   |\n| 下划线   | xhx  |\n| 谈心社   | txs  |\n| 哒哒     | dd   |\n| 胖编怪聊 | pbgl |\n| 曲一刀   | qyd  |\n| 今日之声 | jrzs |\n| 浪潮     | lc   |\n| 沸点     | fd   |",
+      "location": "exclusive.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/renjian/:category?",
+    "route": {
+      "path": "/renjian/:category?",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/163/renjian/texie",
+      "parameters": {
+        "category": "分类，见下表，默认为特写"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "renjian.163.com/:category",
+            "renjian.163.com/"
+          ]
+        }
+      ],
+      "name": "人间",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| 特写  | 记事  | 大写  | 好读  | 看客  |\n| ----- | ----- | ----- | ----- | ----- |\n| texie | jishi | daxie | haodu | kanke |",
+      "location": "renjian.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/music/artist/songs/:id",
+    "route": {
+      "path": "/music/artist/songs/:id",
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/163/music/artist/songs/2116",
+      "parameters": {
+        "id": "歌手 id, 可在歌手详情页 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "歌手歌曲",
+      "maintainers": [
+        "ZhongMingKun"
+      ],
+      "location": "music/artist-songs.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/music/djradio/:id/:info?",
+    "route": {
+      "path": "/music/djradio/:id/:info?",
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/163/music/djradio/347317067",
+      "parameters": {
+        "id": "节目 id, 可在电台节目页 URL 中找到",
+        "info": "默认在正文尾部显示节目相关信息，任意值为不显示"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": true,
+        "supportScihub": false
+      },
+      "name": "电台节目",
+      "maintainers": [
+        "magic-akari"
+      ],
+      "location": "music/djradio.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/music/playlist/:id",
+    "route": {
+      "path": "/music/playlist/:id",
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/163/music/playlist/35798529",
+      "parameters": {
+        "id": "歌单 id, 可在歌单页 URL 中找到"
+      },
+      "features": {
+        "requireConfig": [
+          {
+            "name": "NCM_COOKIES",
+            "optional": true,
+            "description": "网易云音乐登陆后的 cookie 值，可在浏览器控制台通过`document.cookie`获取。"
+          }
+        ],
+        "requirePuppeteer": false,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "歌单歌曲",
+      "maintainers": [
+        "DIYgod"
+      ],
+      "location": "music/playlist.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "2048",
+    "provider_name": "2048 核基地",
+    "route_key": "/:id?",
+    "route": {
+      "path": "/:id?",
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/2048/2",
+      "parameters": {
+        "id": "板块 ID, 见下表，默认为最新合集，即 `3`，亦可在 URL 中找到, 例如, `thread.php?fid-3.html`中, 板块 ID 为`3`"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": true,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "论坛",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| 最新合集 | 亞洲無碼 | 日本騎兵 | 歐美新片 | 國內原創 | 中字原創 | 三級寫真 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| 3        | 4        | 5        | 13       | 15       | 16       | 18       |\n\n| 有碼.HD | 亞洲 SM.HD | 日韓 VR/3D | 歐美 VR/3D | S-cute / Mywife / G-area |\n| ------- | ---------- | ---------- | ---------- | ------------------------ |\n| 116     | 114        | 96         | 97         | 119                      |\n\n| 網友自拍 | 亞洲激情 | 歐美激情 | 露出偷窺 | 高跟絲襪 | 卡通漫畫 | 原創达人 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| 23       | 24       | 25       | 26       | 27       | 28       | 135      |\n\n| 唯美清純 | 网络正妹 | 亞洲正妹 | 素人正妹 | COSPLAY | 女优情报 | Gif 动图 |\n| -------- | -------- | -------- | -------- | ------- | -------- | -------- |\n| 21       | 274      | 276      | 277      | 278     | 29       |          |\n\n| 獨家拍攝 | 稀有首發 | 网络见闻 | 主播實錄 | 珍稀套圖 | 名站同步 | 实用漫画 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| 213      | 94       | 283      | 111      | 88       | 131      | 180      |\n\n| 网盘二区 | 网盘三区 | 分享福利 | 国产精选 | 高清福利 | 高清首发 | 多挂原创 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| 72       | 272      | 195      | 280      | 79       | 216      | 76       |\n\n| 磁链迅雷 | 正片大片 | H-GAME | 有声小说 | 在线视频 | 在线快播影院 |\n| -------- | -------- | ------ | -------- | -------- | ------------ |\n| 43       | 67       | 66     | 55       | 78       | 279          |\n\n| 综合小说 | 人妻意淫 | 乱伦迷情 | 长篇连载 | 文学作者 | TXT 小说打包 |\n| -------- | -------- | -------- | -------- | -------- | ------------ |\n| 48       | 103      | 50       | 54       | 100      | 109          |\n\n| 聚友客栈 | 坛友自售 |\n| -------- | -------- |\n| 57       | 136      |",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "0818tuan",
+    "provider_name": "0818 团",
+    "route_key": "/:listId?",
+    "route": {
+      "path": "/:listId?",
+      "categories": [
+        "shopping"
+      ],
+      "example": "/0818tuan",
+      "parameters": {
+        "listId": "活动分类，见下表，默认为 `1`"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "分类",
+      "maintainers": [
+        "TonyRL"
+      ],
+      "description": "| 最新线报 | 实测活动 | 优惠券 |\n| -------- | -------- | ------ |\n| 1        | 2        | 3      |",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "0x80",
+    "provider_name": "Wojciech Muła",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "categories": [
+        "blog"
+      ],
+      "example": "/0x80/blog",
+      "url": "0x80.pl/notesen.html",
+      "name": "Articles",
+      "maintainers": [
+        "xnum"
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "1lou",
+    "provider_name": "BT 之家 1LOU 站",
+    "route_key": "/:params{.+}?",
+    "route": {
+      "path": "/:params{.+}?",
+      "name": "通用",
+      "url": "1lou.me",
+      "maintainers": [
+        "falling",
+        "nczitzk"
+      ],
+      "example": "/1lou/forum-2-1",
+      "parameters": {
+        "params": "路径参数，可以在对应页面的 URL 中找到"
+      },
+      "description": "::: tip\n  `1lou.me/` 后的内容填入 params 参数，以下是几个例子：\n\n  若订阅 [大陆电视剧](https://www.1lou.me/forum-2-1.htm?tagids=0_97_0_0)，网址为 `https://www.1lou.me/forum-2-1.htm?tagids=0_97_0_0`。截取 `https://www.1lou.me/` 到末尾 `.htm` 的部分 `forum-2-1` 作为参数，并补充 `tagids`，此时路由为 [`/1lou/forum-2-1?tagids=0_97_0_0`](https://rsshub.app/1lou/forum-2-1?tagids=0_97_0_0)。\n  \n  若订阅 [最新发帖电视剧](https://www.1lou.me/forum-2-1.htm?orderby=tid&digest=0)，网址为 `https://www.1lou.me/forum-2-1.htm?orderby=tid&digest=0`。截取 `https://www.1lou.me/` 到末尾 `.htm` 的部分 `forum-2-1` 作为参数，并补充 `orderby`，此时路由为 [`/1lou/forum-2-1?orderby=tid`](https://rsshub.app/1lou/forum-2-1?orderby=tid)。\n  \n  若订阅 [搜素繁花主题贴](https://www.1lou.me/search-_E7_B9_81_E8_8A_B1-1.htm)，网址为 `https://www.1lou.me/search-_E7_B9_81_E8_8A_B1-1.htm`。截取 `https://www.1lou.me/` 到末尾 `.htm` 的部分 `search-_E7_B9_81_E8_8A_B1-1` 作为参数，此时路由为 [`/1lou/search-_E7_B9_81_E8_8A_B1-1`](https://rsshub.app/1lou/search-_E7_B9_81_E8_8A_B1-1)。\n:::",
+      "categories": [
+        "multimedia"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "1lou.me/:params"
+          ]
+        }
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/blog/:category?",
+    "route": {
+      "path": "/blog/:category?",
+      "categories": [
+        "bbs"
+      ],
+      "example": "/1point3acres/blog",
+      "parameters": {
+        "category": "分类，见下表，可在对应分类页 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "blog.1point3acres.com/:category"
+          ]
+        }
+      ],
+      "name": "博客",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| 留学申请   | 找工求职 | 生活攻略  | 投资理财 | 签证移民 | 时政要闻 |\n| ---------- | -------- | --------- | -------- | -------- | -------- |\n| studyinusa | career   | lifestyle | invest   | visa     | news     |",
+      "location": "blog.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/category/:id?/:type?/:order?",
+    "route": {
+      "path": "/category/:id?/:type?/:order?",
+      "categories": [
+        "bbs"
+      ],
+      "example": "/1point3acres/category/h1b",
+      "parameters": {
+        "id": "标签 id，默认为全部",
+        "type": "帖子分类, 见下表，默认为 hot，即热门帖子",
+        "order": "排序方式，见下表，默认为空，即最新回复"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "instant.1point3acres.com/section/:id",
+            "instant.1point3acres.com/"
+          ]
+        }
+      ],
+      "name": "标签",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "::: tip\n  更多标签可以在 [标签列表](https://instant.1point3acres.com/tags) 中找到。\n:::\n\n  分类\n\n| 热门帖子 | 最新帖子 |\n| -------- | -------- |\n| hot      | new      |\n\n  排序方式\n\n| 最新回复 | 最新发布 |\n| -------- | -------- |\n|          | post     |",
+      "location": "category.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/offer/:year?/:major?/:school?",
+    "route": {
+      "path": "/offer/:year?/:major?/:school?",
+      "categories": [
+        "bbs"
+      ],
+      "example": "/1point3acres/offer/12/null/CMU",
+      "parameters": {
+        "year": "录取年份  id，空为null",
+        "major": "录取专业 id，空为null",
+        "school": "录取学校 id，空为null"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "offer.1point3acres.com/"
+          ],
+          "target": "/offer"
+        }
+      ],
+      "name": "录取结果",
+      "maintainers": [
+        "EthanWng97"
+      ],
+      "url": "offer.1point3acres.com/",
+      "description": "::: tip 三个 id 获取方式\n  1.  打开 [https://offer.1point3acres.com](https://offer.1point3acres.com)\n  2.  打开控制台\n  3.  切换到 Network 面板\n  4.  点击 搜索 按钮\n  5.  点击 results?ps=15&pg=1 POST 请求\n  6.  找到 Request Payload 请求参数，例如 `filters: {planyr: \"13\", planmajor: \"1\", outname_w: \"ACADIAU\"}` ，则三个 id 分别为: 13,1,ACADIAU\n:::",
+      "location": "offer.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "1x",
+    "provider_name": "1x.com",
+    "route_key": "/:category{.+}?",
+    "route": {
+      "path": "/:category{.+}?",
+      "name": "Gallery",
+      "url": "1x.com",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/1x/latest/awarded",
+      "parameters": {
+        "category": "Category, Latest Awarded by default"
+      },
+      "description": "::: tip\nFill in the field in the path with the part of the corresponding page URL after `https://1x.com/gallery/` or `https://1x.com/photo/`. Here are the examples:\n\nIf you subscribe to [Abstract Awarded](https://1x.com/gallery/abstract/awarded), you should fill in the path with the part `abstract/awarded` from the page URL `https://1x.com/gallery/abstract/awarded`. In this case, the route will be [`/1x/abstract/awarded`](https://rsshub.app/1x/abstract/awarded).\n    \nIf you subscribe to [Wildlife Published](https://1x.com/gallery/wildlife/published), you should fill in the path with the part `wildlife/published` from the page URL `https://1x.com/gallery/wildlife/published`. In this case, the route will be [`/1x/wildlife/published`](https://rsshub.app/1x/wildlife/published).\n:::",
+      "categories": [
+        "design",
+        "picture"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "/gallery/:category*",
+            "/photos/:category*"
+          ],
+          "target": "/1x/:category"
+        }
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "2023game",
+    "provider_name": "游戏星辰",
+    "route_key": "/:category?/:tab?",
+    "route": {
+      "path": "/:category?/:tab?",
+      "categories": [
+        "game"
+      ],
+      "example": "/2023game/sgame/topicList",
+      "parameters": {
+        "category": "分类，见下表",
+        "tab": "标签, 所有:all;最新:topicList;热门:jhcpb"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "游戏星辰",
+      "maintainers": [
+        "xzzpig"
+      ],
+      "url": "www.2023game.com/",
+      "description": "分类\n\n| PS4游戏 | switch游戏 | 3DS游戏 | PSV游戏 | Xbox360 | PS3游戏 | 世嘉MD/SS | PSP游戏 | PC周边 | 怀旧掌机 | 怀旧主机 | PS4教程 | PS4金手指 | switch金手指 | switch教程 | switch补丁 | switch主题 | switch存档 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| ps4 | sgame | 3ds | psv | jiaocheng | ps3yx | zhuji.md | zhangji.psp | pcgame | zhangji | zhuji | ps4.psjc | ps41.ps4pkg | nsaita.cundang | nsaita.pojie | nsaita.buding | nsaita.zhutie | nsaita.zhuti |",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "423down",
+    "provider_name": "423Down",
+    "route_key": "/:category{.+}?",
+    "route": {
+      "path": "/:category{.+}?",
+      "name": "423Down",
+      "url": "423down.com",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/423down",
+      "parameters": {
+        "category": "分类，默认为首页，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [Android - 423Down](https://www.423down.com/apk)，网址为 `https://www.423down.com/apk`。截取 `https://www.423down.com/` 到末尾的部分 `apk` 作为参数填入，此时路由为 [`/423down/apk`](https://rsshub.app/423down/apk)。\n:::\n\n#### [安卓软件](https://www.423down.com/apk)\n\n| [安卓软件](https://www.423down.com/apk) |\n| --------------------------------------- |\n| [apk](https://rsshub.app/423down/apk)   |\n  \n#### 电脑软件\n  \n| [原创软件](https://www.423down.com/zd423) | [媒体播放](https://www.423down.com/multimedia)      | [网页浏览](https://www.423down.com/browser)   | [图形图像](https://www.423down.com/image) | [聊天软件](https://www.423down.com/im) |\n| ----------------------------------------- | --------------------------------------------------- | --------------------------------------------- | ----------------------------------------- | -------------------------------------- |\n| [zd423](https://rsshub.app/423down/zd423) | [multimedia](https://rsshub.app/423down/multimedia) | [browser](https://rsshub.app/423down/browser) | [image](https://rsshub.app/423down/image) | [im](https://rsshub.app/423down/im)    |\n  \n| [办公软件](https://www.423down.com/work) | [上传下载](https://www.423down.com/down) | [实用软件](https://www.423down.com/softtool)    | [系统辅助](https://www.423down.com/systemsoft)      | [系统必备](https://www.423down.com/systemplus)      |\n| ---------------------------------------- | ---------------------------------------- | ----------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |\n| [work](https://rsshub.app/423down/work)  | [down](https://rsshub.app/423down/down)  | [softtool](https://rsshub.app/423down/softtool) | [systemsoft](https://rsshub.app/423down/systemsoft) | [systemplus](https://rsshub.app/423down/systemplus) |\n  \n| [安全软件](https://www.423down.com/security)    | [补丁相关](https://www.423down.com/patch) | [硬件相关](https://www.423down.com/hardware)    |\n| ----------------------------------------------- | ----------------------------------------- | ----------------------------------------------- |\n| [security](https://rsshub.app/423down/security) | [patch](https://rsshub.app/423down/patch) | [hardware](https://rsshub.app/423down/hardware) |\n  \n#### 操作系统\n  \n| [Windows 11](https://www.423down.com/win11) | [Windows 10](https://www.423down.com/win10) | [Windows 7](https://www.423down.com/win7) | [Windows XP](https://www.423down.com/win7/winxp)    | [WinPE](https://www.423down.com/pe-system)        |\n| ------------------------------------------- | ------------------------------------------- | ----------------------------------------- | --------------------------------------------------- | ------------------------------------------------- |\n| [win11](https://rsshub.app/423down/win11)   | [win10](https://rsshub.app/423down/win10)   | [win7](https://rsshub.app/423down/win7)   | [win7/winxp](https://rsshub.app/423down/win7/winxp) | [pe-system](https://rsshub.app/423down/pe-system) |\n  ",
+      "categories": [
+        "program-update"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "423down.com/:category",
+            "423down.com"
+          ]
+        },
+        {
+          "title": "首页",
+          "source": [
+            "www.423down.com"
+          ],
+          "target": "/"
+        },
+        {
+          "title": "安卓软件",
+          "source": [
+            "www.423down.com/apk"
+          ],
+          "target": "/apk"
+        },
+        {
+          "title": "电脑软件 - 原创软件",
+          "source": [
+            "www.423down.com/zd423"
+          ],
+          "target": "/zd423"
+        },
+        {
+          "title": "电脑软件 - 媒体播放",
+          "source": [
+            "www.423down.com/multimedia"
+          ],
+          "target": "/multimedia"
+        },
+        {
+          "title": "电脑软件 - 网页浏览",
+          "source": [
+            "www.423down.com/browser"
+          ],
+          "target": "/browser"
+        },
+        {
+          "title": "电脑软件 - 图形图像",
+          "source": [
+            "www.423down.com/image"
+          ],
+          "target": "/image"
+        },
+        {
+          "title": "电脑软件 - 聊天软件",
+          "source": [
+            "www.423down.com/im"
+          ],
+          "target": "/im"
+        },
+        {
+          "title": "电脑软件 - 办公软件",
+          "source": [
+            "www.423down.com/work"
+          ],
+          "target": "/work"
+        },
+        {
+          "title": "电脑软件 - 上传下载",
+          "source": [
+            "www.423down.com/down"
+          ],
+          "target": "/down"
+        },
+        {
+          "title": "电脑软件 - 实用软件",
+          "source": [
+            "www.423down.com/softtool"
+          ],
+          "target": "/softtool"
+        },
+        {
+          "title": "电脑软件 - 系统辅助",
+          "source": [
+            "www.423down.com/systemsoft"
+          ],
+          "target": "/systemsoft"
+        },
+        {
+          "title": "电脑软件 - 系统必备",
+          "source": [
+            "www.423down.com/systemplus"
+          ],
+          "target": "/systemplus"
+        },
+        {
+          "title": "电脑软件 - 安全软件",
+          "source": [
+            "www.423down.com/security"
+          ],
+          "target": "/security"
+        },
+        {
+          "title": "电脑软件 - 补丁相关",
+          "source": [
+            "www.423down.com/patch"
+          ],
+          "target": "/patch"
+        },
+        {
+          "title": "电脑软件 - 硬件相关",
+          "source": [
+            "www.423down.com/hardware"
+          ],
+          "target": "/hardware"
+        },
+        {
+          "title": "操作系统 - Windows 11",
+          "source": [
+            "www.423down.com/win11"
+          ],
+          "target": "/win11"
+        },
+        {
+          "title": "操作系统 - Windows 10",
+          "source": [
+            "www.423down.com/win10"
+          ],
+          "target": "/win10"
+        },
+        {
+          "title": "操作系统 - Windows 7",
+          "source": [
+            "www.423down.com/win7"
+          ],
+          "target": "/win7"
+        },
+        {
+          "title": "操作系统 - Windows XP",
+          "source": [
+            "www.423down.com/win7/winxp"
+          ],
+          "target": "/win7/winxp"
+        },
+        {
+          "title": "操作系统 - WinPE",
+          "source": [
+            "www.423down.com/pe-system"
+          ],
+          "target": "/pe-system"
+        }
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "56kog",
+    "provider_name": "明月中文网",
+    "route_key": "/class/:category?",
+    "route": {
+      "path": "/class/:category?",
+      "categories": [
+        "reading"
+      ],
+      "example": "/56kog/class/1_1",
+      "parameters": {
+        "category": "分类，见下表，默认为玄幻魔法"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "分类",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| [玄幻魔法](https://www.56kog.com/class/1_1.html) | [武侠修真](https://www.56kog.com/class/2_1.html) | [历史军事](https://www.56kog.com/class/4_1.html) | [侦探推理](https://www.56kog.com/class/5_1.html) | [网游动漫](https://www.56kog.com/class/6_1.html) |\n| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |\n| 1_1                                             | 2_1                                             | 4_1                                             | 5_1                                             | 6_1                                             |\n\n| [恐怖灵异](https://www.56kog.com/class/8_1.html) | [都市言情](https://www.56kog.com/class/3_1.html) | [科幻](https://www.56kog.com/class/7_1.html) | [女生小说](https://www.56kog.com/class/9_1.html) | [其他](https://www.56kog.com/class/10_1.html) |\n| ------------------------------------------------ | ------------------------------------------------ | -------------------------------------------- | ------------------------------------------------ | --------------------------------------------- |\n| 8_1                                             | 3_1                                             | 7_1                                         | 9_1                                             | 10_1                                         |",
+      "location": "class.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "56kog",
+    "provider_name": "明月中文网",
+    "route_key": "/top/:category?",
+    "route": {
+      "path": "/top/:category?",
+      "categories": [
+        "reading"
+      ],
+      "example": "/56kog/top/weekvisit",
+      "parameters": {
+        "category": "分类，见下表，默认为周点击榜"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "榜单",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| [周点击榜](https://www.56kog.com/top/weekvisit.html) | [总收藏榜](https://www.56kog.com/top/goodnum.html) | [最新 入库](https://www.56kog.com/top/postdate.html) |\n| ---------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------- |\n| weekvisit                                            | goodnum                                            | postdate                                             |",
+      "location": "top.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "69shu",
+    "provider_name": "69书吧",
+    "route_key": "/article/:id",
+    "route": {
+      "path": "/article/:id",
+      "name": "章节",
+      "url": "www.69shuba.cx",
+      "maintainers": [
+        "eternasuno"
+      ],
+      "example": "/69shu/article/47117",
+      "parameters": {
+        "id": "小说 id, 可在对应小说页 URL 中找到"
+      },
+      "categories": [
+        "reading"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.69shuba.cx/book/:id.htm"
+          ],
+          "target": "/article/:id"
+        }
+      ],
+      "location": "article.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "6v123",
+    "provider_name": "6v 电影",
+    "route_key": "/latestMovies",
+    "route": {
+      "path": "/latestMovies",
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/6v123/latestMovies",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": true,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "hao6v.com/",
+            "hao6v.com/gvod/zx.html"
+          ]
+        }
+      ],
+      "name": "最新电影",
+      "maintainers": [
+        "tc9011"
+      ],
+      "url": "hao6v.com/",
+      "location": "latest-movies.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "78dm",
+    "provider_name": "78 动漫",
+    "route_key": "/:category{.+}?",
+    "route": {
+      "path": "/:category{.+}?",
+      "name": "分类",
+      "url": "78dm.net",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/78dm/news",
+      "parameters": {
+        "category": "分类，默认为 `news`，即新品速递，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [新品速递](https://www.78dm.net/news)，网址为 `https://www.78dm.net/news`。截取 `https://www.78dm.net/` 到末尾的部分 `news` 作为参数填入，此时路由为 [`/78dm/news`](https://rsshub.app/78dm/news)。\n\n  若订阅 [精彩评测 - 变形金刚](https://www.78dm.net/eval_list/109/0/0/1.html)，网址为 `https://www.78dm.net/eval_list/109/0/0/1.html`。截取 `https://www.78dm.net/` 到末尾 `.html` 的部分 `eval_list/109/0/0/1` 作为参数填入，此时路由为 [`/78dm/eval_list/109/0/0/1`](https://rsshub.app/78dm/eval_list/109/0/0/1)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### [新品速递](https://www.78dm.net/news)\n\n| 分类                                                           | ID                                                                     |\n| -------------------------------------------------------------- | ---------------------------------------------------------------------- |\n| [全部](https://www.78dm.net/news/0/0/0/0/0/0/0/1.html)         | [news/0/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/0/0/0/0/0/0/1)   |\n| [变形金刚](https://www.78dm.net/news/3/0/0/0/0/0/0/1.html)     | [news/3/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/3/0/0/0/0/0/0/1)   |\n| [高达](https://www.78dm.net/news/4/0/0/0/0/0/0/1.html)         | [news/4/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/4/0/0/0/0/0/0/1)   |\n| [圣斗士](https://www.78dm.net/news/2/0/0/0/0/0/0/1.html)       | [news/2/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/2/0/0/0/0/0/0/1)   |\n| [海贼王](https://www.78dm.net/news/8/0/0/0/0/0/0/1.html)       | [news/8/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/8/0/0/0/0/0/0/1)   |\n| [PVC 手办](https://www.78dm.net/news/0/5/0/0/0/0/0/1.html)     | [news/0/5/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/5/0/0/0/0/0/1)   |\n| [拼装模型](https://www.78dm.net/news/0/1/0/0/0/0/0/1.html)     | [news/0/1/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/1/0/0/0/0/0/1)   |\n| [机甲成品](https://www.78dm.net/news/0/2/0/0/0/0/0/1.html)     | [news/0/2/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/2/0/0/0/0/0/1)   |\n| [特摄](https://www.78dm.net/news/0/3/0/0/0/0/0/1.html)         | [news/0/3/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/3/0/0/0/0/0/1)   |\n| [美系](https://www.78dm.net/news/0/4/0/0/0/0/0/1.html)         | [news/0/4/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/4/0/0/0/0/0/1)   |\n| [GK](https://www.78dm.net/news/0/6/0/0/0/0/0/1.html)           | [news/0/6/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/6/0/0/0/0/0/1)   |\n| [扭蛋盒蛋食玩](https://www.78dm.net/news/0/7/0/0/0/0/0/1.html) | [news/0/7/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/7/0/0/0/0/0/1)   |\n| [其他](https://www.78dm.net/news/0/8/0/0/0/0/0/1.html)         | [news/0/8/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/8/0/0/0/0/0/1)   |\n| [综合](https://www.78dm.net/news/0/9/0/0/0/0/0/1.html)         | [news/0/9/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/9/0/0/0/0/0/1)   |\n| [军模](https://www.78dm.net/news/0/10/0/0/0/0/0/1.html)        | [news/0/10/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/10/0/0/0/0/0/1) |\n| [民用](https://www.78dm.net/news/0/11/0/0/0/0/0/1.html)        | [news/0/11/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/11/0/0/0/0/0/1) |\n| [配件](https://www.78dm.net/news/0/12/0/0/0/0/0/1.html)        | [news/0/12/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/12/0/0/0/0/0/1) |\n| [工具](https://www.78dm.net/news/0/13/0/0/0/0/0/1.html)        | [news/0/13/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/13/0/0/0/0/0/1) |\n\n#### [精彩评测](https://www.78dm.net/eval_list)\n\n| 分类                                                      | ID                                                                 |\n| --------------------------------------------------------- | ------------------------------------------------------------------ |\n| [全部](https://www.78dm.net/eval_list/0/0/0/1.html)       | [eval_list/0/0/0/1](https://rsshub.app/78dm/eval_list/0/0/0/1)     |\n| [变形金刚](https://www.78dm.net/eval_list/109/0/0/1.html) | [eval_list/109/0/0/1](https://rsshub.app/78dm/eval_list/109/0/0/1) |\n| [高达](https://www.78dm.net/eval_list/110/0/0/1.html)     | [eval_list/110/0/0/1](https://rsshub.app/78dm/eval_list/110/0/0/1) |\n| [圣斗士](https://www.78dm.net/eval_list/111/0/0/1.html)   | [eval_list/111/0/0/1](https://rsshub.app/78dm/eval_list/111/0/0/1) |\n| [海贼王](https://www.78dm.net/eval_list/112/0/0/1.html)   | [eval_list/112/0/0/1](https://rsshub.app/78dm/eval_list/112/0/0/1) |\n| [PVC 手办](https://www.78dm.net/eval_list/115/0/0/1.html) | [eval_list/115/0/0/1](https://rsshub.app/78dm/eval_list/115/0/0/1) |\n| [拼装模型](https://www.78dm.net/eval_list/113/0/0/1.html) | [eval_list/113/0/0/1](https://rsshub.app/78dm/eval_list/113/0/0/1) |\n| [机甲成品](https://www.78dm.net/eval_list/114/0/0/1.html) | [eval_list/114/0/0/1](https://rsshub.app/78dm/eval_list/114/0/0/1) |\n| [特摄](https://www.78dm.net/eval_list/116/0/0/1.html)     | [eval_list/116/0/0/1](https://rsshub.app/78dm/eval_list/116/0/0/1) |\n| [美系](https://www.78dm.net/eval_list/117/0/0/1.html)     | [eval_list/117/0/0/1](https://rsshub.app/78dm/eval_list/117/0/0/1) |\n| [GK](https://www.78dm.net/eval_list/118/0/0/1.html)       | [eval_list/118/0/0/1](https://rsshub.app/78dm/eval_list/118/0/0/1) |\n| [综合](https://www.78dm.net/eval_list/120/0/0/1.html)     | [eval_list/120/0/0/1](https://rsshub.app/78dm/eval_list/120/0/0/1) |\n\n#### [好贴推荐](https://www.78dm.net/ht_list)\n\n| 分类                                                    | ID                                                             |\n| ------------------------------------------------------- | -------------------------------------------------------------- |\n| [全部](https://www.78dm.net/ht_list/0/0/0/1.html)       | [ht_list/0/0/0/1](https://rsshub.app/78dm/ht_list/0/0/0/1)     |\n| [变形金刚](https://www.78dm.net/ht_list/95/0/0/1.html)  | [ht_list/95/0/0/1](https://rsshub.app/78dm/ht_list/95/0/0/1)   |\n| [高达](https://www.78dm.net/ht_list/96/0/0/1.html)      | [ht_list/96/0/0/1](https://rsshub.app/78dm/ht_list/96/0/0/1)   |\n| [圣斗士](https://www.78dm.net/ht_list/98/0/0/1.html)    | [ht_list/98/0/0/1](https://rsshub.app/78dm/ht_list/98/0/0/1)   |\n| [海贼王](https://www.78dm.net/ht_list/99/0/0/1.html)    | [ht_list/99/0/0/1](https://rsshub.app/78dm/ht_list/99/0/0/1)   |\n| [PVC 手办](https://www.78dm.net/ht_list/100/0/0/1.html) | [ht_list/100/0/0/1](https://rsshub.app/78dm/ht_list/100/0/0/1) |\n| [拼装模型](https://www.78dm.net/ht_list/101/0/0/1.html) | [ht_list/101/0/0/1](https://rsshub.app/78dm/ht_list/101/0/0/1) |\n| [机甲成品](https://www.78dm.net/ht_list/102/0/0/1.html) | [ht_list/102/0/0/1](https://rsshub.app/78dm/ht_list/102/0/0/1) |\n| [特摄](https://www.78dm.net/ht_list/103/0/0/1.html)     | [ht_list/103/0/0/1](https://rsshub.app/78dm/ht_list/103/0/0/1) |\n| [美系](https://www.78dm.net/ht_list/104/0/0/1.html)     | [ht_list/104/0/0/1](https://rsshub.app/78dm/ht_list/104/0/0/1) |\n| [GK](https://www.78dm.net/ht_list/105/0/0/1.html)       | [ht_list/105/0/0/1](https://rsshub.app/78dm/ht_list/105/0/0/1) |\n| [综合](https://www.78dm.net/ht_list/107/0/0/1.html)     | [ht_list/107/0/0/1](https://rsshub.app/78dm/ht_list/107/0/0/1) |\n| [装甲战车](https://www.78dm.net/ht_list/131/0/0/1.html) | [ht_list/131/0/0/1](https://rsshub.app/78dm/ht_list/131/0/0/1) |\n| [舰船模型](https://www.78dm.net/ht_list/132/0/0/1.html) | [ht_list/132/0/0/1](https://rsshub.app/78dm/ht_list/132/0/0/1) |\n| [飞机模型](https://www.78dm.net/ht_list/133/0/0/1.html) | [ht_list/133/0/0/1](https://rsshub.app/78dm/ht_list/133/0/0/1) |\n| [民用模型](https://www.78dm.net/ht_list/134/0/0/1.html) | [ht_list/134/0/0/1](https://rsshub.app/78dm/ht_list/134/0/0/1) |\n| [兵人模型](https://www.78dm.net/ht_list/135/0/0/1.html) | [ht_list/135/0/0/1](https://rsshub.app/78dm/ht_list/135/0/0/1) |\n</details>\n  ",
+      "categories": [
+        "new-media"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.78dm.net/:category?"
+          ]
+        },
+        {
+          "title": "新品速递 - 全部",
+          "source": [
+            "www.78dm.net/news/0/0/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/0/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 变形金刚",
+          "source": [
+            "www.78dm.net/news/3/0/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/3/0/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 高达",
+          "source": [
+            "www.78dm.net/news/4/0/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/4/0/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 圣斗士",
+          "source": [
+            "www.78dm.net/news/2/0/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/2/0/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 海贼王",
+          "source": [
+            "www.78dm.net/news/8/0/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/8/0/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - PVC手办",
+          "source": [
+            "www.78dm.net/news/0/5/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/5/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 拼装模型",
+          "source": [
+            "www.78dm.net/news/0/1/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/1/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 机甲成品",
+          "source": [
+            "www.78dm.net/news/0/2/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/2/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 特摄",
+          "source": [
+            "www.78dm.net/news/0/3/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/3/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 美系",
+          "source": [
+            "www.78dm.net/news/0/4/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/4/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - GK",
+          "source": [
+            "www.78dm.net/news/0/6/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/6/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 扭蛋盒蛋食玩",
+          "source": [
+            "www.78dm.net/news/0/7/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/7/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 其他",
+          "source": [
+            "www.78dm.net/news/0/8/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/8/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 综合",
+          "source": [
+            "www.78dm.net/news/0/9/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/9/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 军模",
+          "source": [
+            "www.78dm.net/news/0/10/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/10/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 民用",
+          "source": [
+            "www.78dm.net/news/0/11/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/11/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 配件",
+          "source": [
+            "www.78dm.net/news/0/12/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/12/0/0/0/0/0/1"
+        },
+        {
+          "title": "新品速递 - 工具",
+          "source": [
+            "www.78dm.net/news/0/13/0/0/0/0/0/1.html"
+          ],
+          "target": "/news/0/13/0/0/0/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 全部",
+          "source": [
+            "www.78dm.net/eval_list/0/0/0/1.html"
+          ],
+          "target": "/eval_list/0/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 变形金刚",
+          "source": [
+            "www.78dm.net/eval_list/109/0/0/1.html"
+          ],
+          "target": "/eval_list/109/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 高达",
+          "source": [
+            "www.78dm.net/eval_list/110/0/0/1.html"
+          ],
+          "target": "/eval_list/110/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 圣斗士",
+          "source": [
+            "www.78dm.net/eval_list/111/0/0/1.html"
+          ],
+          "target": "/eval_list/111/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 海贼王",
+          "source": [
+            "www.78dm.net/eval_list/112/0/0/1.html"
+          ],
+          "target": "/eval_list/112/0/0/1"
+        },
+        {
+          "title": "精彩评测 - PVC手办",
+          "source": [
+            "www.78dm.net/eval_list/115/0/0/1.html"
+          ],
+          "target": "/eval_list/115/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 拼装模型",
+          "source": [
+            "www.78dm.net/eval_list/113/0/0/1.html"
+          ],
+          "target": "/eval_list/113/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 机甲成品",
+          "source": [
+            "www.78dm.net/eval_list/114/0/0/1.html"
+          ],
+          "target": "/eval_list/114/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 特摄",
+          "source": [
+            "www.78dm.net/eval_list/116/0/0/1.html"
+          ],
+          "target": "/eval_list/116/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 美系",
+          "source": [
+            "www.78dm.net/eval_list/117/0/0/1.html"
+          ],
+          "target": "/eval_list/117/0/0/1"
+        },
+        {
+          "title": "精彩评测 - GK",
+          "source": [
+            "www.78dm.net/eval_list/118/0/0/1.html"
+          ],
+          "target": "/eval_list/118/0/0/1"
+        },
+        {
+          "title": "精彩评测 - 综合",
+          "source": [
+            "www.78dm.net/eval_list/120/0/0/1.html"
+          ],
+          "target": "/eval_list/120/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 全部",
+          "source": [
+            "www.78dm.net/ht_list/0/0/0/1.html"
+          ],
+          "target": "/ht_list/0/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 变形金刚",
+          "source": [
+            "www.78dm.net/ht_list/95/0/0/1.html"
+          ],
+          "target": "/ht_list/95/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 高达",
+          "source": [
+            "www.78dm.net/ht_list/96/0/0/1.html"
+          ],
+          "target": "/ht_list/96/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 圣斗士",
+          "source": [
+            "www.78dm.net/ht_list/98/0/0/1.html"
+          ],
+          "target": "/ht_list/98/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 海贼王",
+          "source": [
+            "www.78dm.net/ht_list/99/0/0/1.html"
+          ],
+          "target": "/ht_list/99/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - PVC手办",
+          "source": [
+            "www.78dm.net/ht_list/100/0/0/1.html"
+          ],
+          "target": "/ht_list/100/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 拼装模型",
+          "source": [
+            "www.78dm.net/ht_list/101/0/0/1.html"
+          ],
+          "target": "/ht_list/101/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 机甲成品",
+          "source": [
+            "www.78dm.net/ht_list/102/0/0/1.html"
+          ],
+          "target": "/ht_list/102/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 特摄",
+          "source": [
+            "www.78dm.net/ht_list/103/0/0/1.html"
+          ],
+          "target": "/ht_list/103/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 美系",
+          "source": [
+            "www.78dm.net/ht_list/104/0/0/1.html"
+          ],
+          "target": "/ht_list/104/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - GK",
+          "source": [
+            "www.78dm.net/ht_list/105/0/0/1.html"
+          ],
+          "target": "/ht_list/105/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 综合",
+          "source": [
+            "www.78dm.net/ht_list/107/0/0/1.html"
+          ],
+          "target": "/ht_list/107/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 装甲战车",
+          "source": [
+            "www.78dm.net/ht_list/131/0/0/1.html"
+          ],
+          "target": "/ht_list/131/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 舰船模型",
+          "source": [
+            "www.78dm.net/ht_list/132/0/0/1.html"
+          ],
+          "target": "/ht_list/132/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 飞机模型",
+          "source": [
+            "www.78dm.net/ht_list/133/0/0/1.html"
+          ],
+          "target": "/ht_list/133/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 民用模型",
+          "source": [
+            "www.78dm.net/ht_list/134/0/0/1.html"
+          ],
+          "target": "/ht_list/134/0/0/1"
+        },
+        {
+          "title": "好贴推荐 - 兵人模型",
+          "source": [
+            "www.78dm.net/ht_list/135/0/0/1.html"
+          ],
+          "target": "/ht_list/135/0/0/1"
+        }
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "7mmtv",
+    "provider_name": "7mmtv",
+    "route_key": "/:language?/:category?/:type?",
+    "route": {
+      "path": "/:language?/:category?/:type?",
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/7mmtv/zh/censored_list/all",
+      "parameters": {
+        "language": "Language, see below, `en` as English by default",
+        "category": "Category, see below, `censored_list` as Censored by default",
+        "type": "Server, see below, all server by default"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "Category",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "**Language**\n\n| English | 日本語 | 한국의 | 中文 |\n| ------- | ------ | ------ | ---- |\n| en      | ja     | ko     | zh   |\n\n  **Category**\n\n| Chinese subtitles AV | Censored       | Amateur          | Uncensored       | Asian self-timer | H comics     |\n| -------------------- | -------------- | ---------------- | ---------------- | ---------------- | ------------ |\n| chinese_list        | censored_list | amateurjav_list | uncensored_list | amateur_list    | hcomic_list |\n\n| Chinese subtitles AV random | Censored random  | Amateur random     | Uncensored random  | Asian self-timer random | H comics random |\n| --------------------------- | ---------------- | ------------------ | ------------------ | ----------------------- | --------------- |\n| chinese_random             | censored_random | amateurjav_random | uncensored_random | amateur_random         | hcomic_random  |\n\n  **Server**\n\n| All Server | fembed(Full DL) | streamsb(Full DL) | doodstream | streamtape(Full DL) | avgle | embedgram | videovard(Full DL) |\n| ---------- | --------------- | ----------------- | ---------- | ------------------- | ----- | --------- | ------------------ |\n| all        | 21              | 30                | 28         | 29                  | 17    | 34        | 33                 |",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "abmedia",
+    "provider_name": "链新闻 ABMedia",
+    "route_key": "/index",
+    "route": {
+      "path": "/index",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/abmedia/index",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.abmedia.io/"
+          ]
+        }
+      ],
+      "name": "首页最新新闻",
+      "maintainers": [],
+      "url": "www.abmedia.io/",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "acfun",
+    "provider_name": "AcFun",
+    "route_key": "/user/video/:uid",
+    "route": {
+      "path": "/user/video/:uid",
+      "radar": [
+        {
+          "source": [
+            "www.acfun.cn/u/:id"
+          ],
+          "target": "/user/video/:id"
+        }
+      ],
+      "name": "用户投稿",
+      "parameters": {
+        "uid": "用户 UID"
+      },
+      "categories": [
+        "anime",
+        "popular"
+      ],
+      "example": "/acfun/user/video/6102",
+      "view": 3,
+      "maintainers": [
+        "wdssmq"
+      ],
+      "location": "video.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "acpaa",
+    "provider_name": "中华全国专利代理师协会",
+    "route_key": "/:id?/:name?",
+    "route": {
+      "path": "/:id?/:name?",
+      "categories": [
+        "other"
+      ],
+      "example": "/acpaa",
+      "parameters": {
+        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
+        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "标签",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "aeaweb",
+    "provider_name": "American Economic Association",
+    "route_key": "/:id",
+    "route": {
+      "path": "/:id",
+      "categories": [
+        "journal"
+      ],
+      "example": "/aeaweb/aer",
+      "parameters": {
+        "id": "Journal id, can be found in URL"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": true
+      },
+      "radar": [
+        {
+          "source": [
+            "aeaweb.org/journals/:id",
+            "aeaweb.org/"
+          ]
+        }
+      ],
+      "name": "Journal",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "The URL of the journal [American Economic Review](https://www.aeaweb.org/journals/aer) is `https://www.aeaweb.org/journals/aer`, where `aer` is the id of the journal, so the route for this journal is `/aeaweb/aer`.\n\n::: tip\n  More jounals can be found in [AEA Journals](https://www.aeaweb.org/journals).\n:::",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/dynamic/:uid?",
+    "route": {
+      "path": "/dynamic/:uid?",
+      "categories": [
+        "other"
+      ],
+      "example": "/afdian/dynamic/@afdian",
+      "parameters": {
+        "uid": "用户id，用户动态页面url里可找到"
+      },
+      "name": "用户动态",
+      "maintainers": [
+        "sanmmm"
+      ],
+      "location": "dynamic.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/explore/:type/:category?",
+    "route": {
+      "path": "/explore/:type/:category?",
+      "categories": [
+        "other"
+      ],
+      "example": "/afdian/explore/hot/所有",
+      "parameters": {
+        "type": "分类",
+        "category": "目录类型，默认为 `所有`"
+      },
+      "name": "发现用户",
+      "maintainers": [
+        "sanmmm"
+      ],
+      "description": "分类\n\n| 推荐 | 最热 |\n| ---- | ---- |\n| rec  | hot  |\n\n  目录类型\n\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |",
+      "location": "explore.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "afr",
+    "provider_name": "The Australian Financial Review",
+    "route_key": "/navigation/:path{.+}",
+    "route": {
+      "path": "/navigation/:path{.+}",
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/afr/navigation/markets",
+      "parameters": {
+        "path": "Navigation path, can be found in the URL of the page"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.afr.com/path*"
+          ]
+        }
+      ],
+      "name": "Navigation",
+      "maintainers": [
+        "TonyRL"
+      ],
+      "url": "www.afr.com",
+      "location": "navigation.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "agefans",
+    "provider_name": "AGE 动漫",
+    "route_key": "/detail/:id",
+    "route": {
+      "path": "/detail/:id",
+      "categories": [
+        "anime"
+      ],
+      "example": "/agefans/detail/20200035",
+      "parameters": {
+        "id": "番剧 id，对应详情 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "agemys.org/detail/:id"
+          ]
+        }
+      ],
+      "name": "番剧详情",
+      "maintainers": [
+        "s2marine"
+      ],
+      "location": "detail.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "agirls",
+    "provider_name": "电獭少女",
+    "route_key": "/topic_list",
+    "route": {
+      "path": "/topic_list",
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "example": "/agirls/topic_list",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "agirls.aotter.net/",
+            "agirls.aotter.net/topic"
+          ]
+        }
+      ],
+      "name": "当前精选主题列表",
+      "maintainers": [
+        "TonyRL"
+      ],
+      "url": "agirls.aotter.net/",
+      "location": "topic-list.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "agirls",
+    "provider_name": "电獭少女",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "example": "/agirls/app",
+      "parameters": {
+        "category": "分类，默认为最新文章，可在对应主题页的 URL 中找到，下表仅列出部分"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "agirls.aotter.net/posts/:category"
+          ],
+          "target": "/:category"
+        }
+      ],
+      "name": "分类",
+      "maintainers": [
+        "TonyRL"
+      ],
+      "description": "| App 评测 | 手机开箱 | 笔电开箱 | 3C 周边     | 教学小技巧 | 科技情报 |\n| -------- | -------- | -------- | ----------- | ---------- | -------- |\n| app      | phone    | computer | accessories | tutorial   | techlife |",
+      "location": "z-index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "agora0",
+    "provider_name": "AG⓪RA",
+    "route_key": "/pen0",
+    "route": {
+      "path": "/pen0",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/agora0/pen0",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "agorahub.github.io/pen0"
+          ]
+        }
+      ],
+      "name": "共和報",
+      "maintainers": [
+        "TonyRL"
+      ],
+      "url": "agorahub.github.io/pen0",
+      "location": "pen0.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "agri",
+    "provider_name": "中国农业农村信息网",
+    "route_key": "/:category{.+}?",
+    "route": {
+      "path": "/:category{.+}?",
+      "name": "分类",
+      "url": "www.agri.cn",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/agri/zx/zxfb",
+      "parameters": {
+        "category": "分类，默认为 `zx/zxfb`，即最新发布，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [最新发布](http://www.agri.cn/zx/zxfb/)，网址为 `http://www.agri.cn/zx/zxfb/`。截取 `https://www.agri.cn/` 到末尾的部分 `zx/zxfb` 作为参数填入，此时路由为 [`/agri/zx/zxfb`](https://rsshub.app/agri/zx/zxfb)。\n:::\n\n#### [机构](http://www.agri.cn/jg/)\n\n| 分类                                    | ID                                         |\n| --------------------------------------- | ------------------------------------------ |\n| [成果展示](http://www.agri.cn/jg/cgzs/) | [jg/cgzs](https://rsshub.app/agri/jg/cgzs) |\n\n#### [资讯](http://www.agri.cn/zx/)\n\n| 分类                                        | ID                                         |\n| ------------------------------------------- | ------------------------------------------ |\n| [最新发布](http://www.agri.cn/zx/zxfb/)     | [zx/zxfb](https://rsshub.app/agri/zx/zxfb) |\n| [农业要闻](http://www.agri.cn/zx/nyyw/)     | [zx/nyyw](https://rsshub.app/agri/zx/nyyw) |\n| [中心动态](http://www.agri.cn/zx/zxdt/)     | [zx/zxdt](https://rsshub.app/agri/zx/zxdt) |\n| [通知公告](http://www.agri.cn/zx/hxgg/)     | [zx/hxgg](https://rsshub.app/agri/zx/hxgg) |\n| [全国信息联播](http://www.agri.cn/zx/xxlb/) | [zx/xxlb](https://rsshub.app/agri/zx/xxlb) |\n\n#### [生产](http://www.agri.cn/sc/)\n\n| 分类                                    | ID                                         |\n| --------------------------------------- | ------------------------------------------ |\n| [生产动态](http://www.agri.cn/sc/scdt/) | [sc/scdt](https://rsshub.app/agri/sc/scdt) |\n| [农业品种](http://www.agri.cn/sc/nypz/) | [sc/nypz](https://rsshub.app/agri/sc/nypz) |\n| [农事指导](http://www.agri.cn/sc/nszd/) | [sc/nszd](https://rsshub.app/agri/sc/nszd) |\n| [农业气象](http://www.agri.cn/sc/nyqx/) | [sc/nyqx](https://rsshub.app/agri/sc/nyqx) |\n| [专项监测](http://www.agri.cn/sc/zxjc/) | [sc/zxjc](https://rsshub.app/agri/sc/zxjc) |\n\n#### [数据](http://www.agri.cn/sj/)\n\n| 分类                                    | ID                                         |\n| --------------------------------------- | ------------------------------------------ |\n| [市场动态](http://www.agri.cn/sj/scdt/) | [sj/scdt](https://rsshub.app/agri/sj/scdt) |\n| [供需形势](http://www.agri.cn/sj/gxxs/) | [sj/gxxs](https://rsshub.app/agri/sj/gxxs) |\n| [监测预警](http://www.agri.cn/sj/jcyj/) | [sj/jcyj](https://rsshub.app/agri/sj/jcyj) |\n\n#### [信息化](http://www.agri.cn/xxh/)\n\n| 分类                                           | ID                                               |\n| ---------------------------------------------- | ------------------------------------------------ |\n| [智慧农业](http://www.agri.cn/xxh/zhny/)       | [xxh/zhny](https://rsshub.app/agri/xxh/zhny)     |\n| [信息化标准](http://www.agri.cn/xxh/xxhbz/)    | [xxh/xxhbz](https://rsshub.app/agri/xxh/xxhbz)   |\n| [中国乡村资讯](http://www.agri.cn/xxh/zgxczx/) | [xxh/zgxczx](https://rsshub.app/agri/xxh/zgxczx) |\n\n#### [视频](http://www.agri.cn/video/)\n\n| 分类                                               | ID                                                               |\n| -------------------------------------------------- | ---------------------------------------------------------------- |\n| [新闻资讯](http://www.agri.cn/video/xwzx/nyxw/)    | [video/xwzx/nyxw](https://rsshub.app/agri/video/xwzx/nyxw)       |\n| [致富天地](http://www.agri.cn/video/zftd/)         | [video/zftd](https://rsshub.app/agri/video/zftd)                 |\n| [地方农业](http://www.agri.cn/video/dfny/beijing/) | [video/dfny/beijing](https://rsshub.app/agri/video/dfny/beijing) |\n| [气象农业](http://www.agri.cn/video/qxny/)         | [video/qxny](https://rsshub.app/agri/video/qxny)                 |\n| [讲座培训](http://www.agri.cn/video/jzpx/)         | [video/jzpx](https://rsshub.app/agri/video/jzpx)                 |\n| [文化生活](http://www.agri.cn/video/whsh/)         | [video/whsh](https://rsshub.app/agri/video/whsh)                 |\n  ",
+      "categories": [
+        "new-media"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.agri.cn/:category?"
+          ]
+        },
+        {
+          "title": "机构 - 成果展示",
+          "source": [
+            "www.agri.cn/jg/cgzs/"
+          ],
+          "target": "/jg/cgzs"
+        },
+        {
+          "title": "资讯 - 最新发布",
+          "source": [
+            "www.agri.cn/zx/zxfb/"
+          ],
+          "target": "/zx/zxfb"
+        },
+        {
+          "title": "资讯 - 农业要闻",
+          "source": [
+            "www.agri.cn/zx/nyyw/"
+          ],
+          "target": "/zx/nyyw"
+        },
+        {
+          "title": "资讯 - 中心动态",
+          "source": [
+            "www.agri.cn/zx/zxdt/"
+          ],
+          "target": "/zx/zxdt"
+        },
+        {
+          "title": "资讯 - 通知公告",
+          "source": [
+            "www.agri.cn/zx/hxgg/"
+          ],
+          "target": "/zx/hxgg"
+        },
+        {
+          "title": "资讯 - 全国信息联播",
+          "source": [
+            "www.agri.cn/zx/xxlb/"
+          ],
+          "target": "/zx/xxlb"
+        },
+        {
+          "title": "生产 - 生产动态",
+          "source": [
+            "www.agri.cn/sc/scdt/"
+          ],
+          "target": "/sc/scdt"
+        },
+        {
+          "title": "生产 - 农业品种",
+          "source": [
+            "www.agri.cn/sc/nypz/"
+          ],
+          "target": "/sc/nypz"
+        },
+        {
+          "title": "生产 - 农事指导",
+          "source": [
+            "www.agri.cn/sc/nszd/"
+          ],
+          "target": "/sc/nszd"
+        },
+        {
+          "title": "生产 - 农业气象",
+          "source": [
+            "www.agri.cn/sc/nyqx/"
+          ],
+          "target": "/sc/nyqx"
+        },
+        {
+          "title": "生产 - 专项监测",
+          "source": [
+            "www.agri.cn/sc/zxjc/"
+          ],
+          "target": "/sc/zxjc"
+        },
+        {
+          "title": "数据 - 市场动态",
+          "source": [
+            "www.agri.cn/sj/scdt/"
+          ],
+          "target": "/sj/scdt"
+        },
+        {
+          "title": "数据 - 供需形势",
+          "source": [
+            "www.agri.cn/sj/gxxs/"
+          ],
+          "target": "/sj/gxxs"
+        },
+        {
+          "title": "数据 - 监测预警",
+          "source": [
+            "www.agri.cn/sj/jcyj/"
+          ],
+          "target": "/sj/jcyj"
+        },
+        {
+          "title": "信息化 - 智慧农业",
+          "source": [
+            "www.agri.cn/xxh/zhny/"
+          ],
+          "target": "/xxh/zhny"
+        },
+        {
+          "title": "信息化 - 信息化标准",
+          "source": [
+            "www.agri.cn/xxh/xxhbz/"
+          ],
+          "target": "/xxh/xxhbz"
+        },
+        {
+          "title": "信息化 - 中国乡村资讯",
+          "source": [
+            "www.agri.cn/xxh/zgxczx/"
+          ],
+          "target": "/xxh/zgxczx"
+        },
+        {
+          "title": "视频 - 新闻资讯",
+          "source": [
+            "www.agri.cn/video/xwzx/nyxw/"
+          ],
+          "target": "/video/xwzx/nyxw"
+        },
+        {
+          "title": "视频 - 致富天地",
+          "source": [
+            "www.agri.cn/video/zftd/"
+          ],
+          "target": "/video/zftd"
+        },
+        {
+          "title": "视频 - 地方农业",
+          "source": [
+            "www.agri.cn/video/dfny/beijing/"
+          ],
+          "target": "/video/dfny/beijing"
+        },
+        {
+          "title": "视频 - 气象农业",
+          "source": [
+            "www.agri.cn/video/qxny/"
+          ],
+          "target": "/video/qxny"
+        },
+        {
+          "title": "视频 - 讲座培训",
+          "source": [
+            "www.agri.cn/video/jzpx/"
+          ],
+          "target": "/video/jzpx"
+        },
+        {
+          "title": "视频 - 文化生活",
+          "source": [
+            "www.agri.cn/video/whsh/"
+          ],
+          "target": "/video/whsh"
+        }
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "aibase",
+    "provider_name": "AIbase",
+    "route_key": "/discover/:id?",
+    "route": {
+      "path": "/discover/:id?",
+      "name": "发现",
+      "url": "top.aibase.com",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/aibase/discover",
+      "parameters": {
+        "id": "发现分类，默认为空，即全部产品，可在对应发现分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [图片背景移除](https://top.aibase.com/discover/37-49)，网址为 `https://top.aibase.com/discover/37-49`。截取 `https://top.aibase.com/discover/` 到末尾的部分 `37-49` 作为参数填入，此时路由为 [`/aibase/discover/37-49`](https://rsshub.app/aibase/discover/37-49)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### 图像处理\n\n| 分类                                                  | ID                                                |\n| ----------------------------------------------------- | ------------------------------------------------- |\n| [图片背景移除](https://top.aibase.com/discover/37-49) | [37-49](https://rsshub.app/aibase/discover/37-49) |\n| [图片无损放大](https://top.aibase.com/discover/37-50) | [37-50](https://rsshub.app/aibase/discover/37-50) |\n| [图片AI修复](https://top.aibase.com/discover/37-51)   | [37-51](https://rsshub.app/aibase/discover/37-51) |\n| [图像生成](https://top.aibase.com/discover/37-52)     | [37-52](https://rsshub.app/aibase/discover/37-52) |\n| [Ai图片拓展](https://top.aibase.com/discover/37-53)   | [37-53](https://rsshub.app/aibase/discover/37-53) |\n| [Ai漫画生成](https://top.aibase.com/discover/37-54)   | [37-54](https://rsshub.app/aibase/discover/37-54) |\n| [Ai生成写真](https://top.aibase.com/discover/37-55)   | [37-55](https://rsshub.app/aibase/discover/37-55) |\n| [电商图片制作](https://top.aibase.com/discover/37-83) | [37-83](https://rsshub.app/aibase/discover/37-83) |\n| [Ai图像转视频](https://top.aibase.com/discover/37-86) | [37-86](https://rsshub.app/aibase/discover/37-86) |\n\n#### 视频创作\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [视频剪辑](https://top.aibase.com/discover/38-56)   | [38-56](https://rsshub.app/aibase/discover/38-56) |\n| [生成视频](https://top.aibase.com/discover/38-57)   | [38-57](https://rsshub.app/aibase/discover/38-57) |\n| [Ai动画制作](https://top.aibase.com/discover/38-58) | [38-58](https://rsshub.app/aibase/discover/38-58) |\n| [字幕生成](https://top.aibase.com/discover/38-84)   | [38-84](https://rsshub.app/aibase/discover/38-84) |\n\n#### 效率助手\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [AI文档工具](https://top.aibase.com/discover/39-59) | [39-59](https://rsshub.app/aibase/discover/39-59) |\n| [PPT](https://top.aibase.com/discover/39-60)        | [39-60](https://rsshub.app/aibase/discover/39-60) |\n| [思维导图](https://top.aibase.com/discover/39-61)   | [39-61](https://rsshub.app/aibase/discover/39-61) |\n| [表格处理](https://top.aibase.com/discover/39-62)   | [39-62](https://rsshub.app/aibase/discover/39-62) |\n| [Ai办公助手](https://top.aibase.com/discover/39-63) | [39-63](https://rsshub.app/aibase/discover/39-63) |\n\n#### 写作灵感\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [文案写作](https://top.aibase.com/discover/40-64) | [40-64](https://rsshub.app/aibase/discover/40-64) |\n| [论文写作](https://top.aibase.com/discover/40-88) | [40-88](https://rsshub.app/aibase/discover/40-88) |\n\n#### 艺术灵感\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [音乐创作](https://top.aibase.com/discover/41-65)   | [41-65](https://rsshub.app/aibase/discover/41-65) |\n| [设计创作](https://top.aibase.com/discover/41-66)   | [41-66](https://rsshub.app/aibase/discover/41-66) |\n| [Ai图标生成](https://top.aibase.com/discover/41-67) | [41-67](https://rsshub.app/aibase/discover/41-67) |\n\n#### 趣味\n\n| 分类                                                  | ID                                                |\n| ----------------------------------------------------- | ------------------------------------------------- |\n| [Ai名字生成器](https://top.aibase.com/discover/42-68) | [42-68](https://rsshub.app/aibase/discover/42-68) |\n| [游戏娱乐](https://top.aibase.com/discover/42-71)     | [42-71](https://rsshub.app/aibase/discover/42-71) |\n| [其他](https://top.aibase.com/discover/42-72)         | [42-72](https://rsshub.app/aibase/discover/42-72) |\n\n#### 开发编程\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [开发编程](https://top.aibase.com/discover/43-73)   | [43-73](https://rsshub.app/aibase/discover/43-73) |\n| [Ai开放平台](https://top.aibase.com/discover/43-74) | [43-74](https://rsshub.app/aibase/discover/43-74) |\n| [Ai算力平台](https://top.aibase.com/discover/43-75) | [43-75](https://rsshub.app/aibase/discover/43-75) |\n\n#### 聊天机器人\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [智能聊天](https://top.aibase.com/discover/44-76) | [44-76](https://rsshub.app/aibase/discover/44-76) |\n| [智能客服](https://top.aibase.com/discover/44-77) | [44-77](https://rsshub.app/aibase/discover/44-77) |\n\n#### 翻译\n\n| 分类                                          | ID                                                |\n| --------------------------------------------- | ------------------------------------------------- |\n| [翻译](https://top.aibase.com/discover/46-79) | [46-79](https://rsshub.app/aibase/discover/46-79) |\n\n#### 教育学习\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [教育学习](https://top.aibase.com/discover/47-80) | [47-80](https://rsshub.app/aibase/discover/47-80) |\n\n#### 智能营销\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [智能营销](https://top.aibase.com/discover/48-81) | [48-81](https://rsshub.app/aibase/discover/48-81) |\n\n#### 法律\n\n| 分类                                            | ID                                                    |\n| ----------------------------------------------- | ----------------------------------------------------- |\n| [法律](https://top.aibase.com/discover/138-139) | [138-139](https://rsshub.app/aibase/discover/138-139) |\n</details>\n    ",
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "top.aibase.com/discover/:id"
+          ]
+        },
+        {
+          "title": "图像处理 - 图片背景移除",
+          "source": [
+            "top.aibase.com/discover/37-49"
+          ],
+          "target": "/discover/37-49"
+        },
+        {
+          "title": "图像处理 - 图片无损放大",
+          "source": [
+            "top.aibase.com/discover/37-50"
+          ],
+          "target": "/discover/37-50"
+        },
+        {
+          "title": "图像处理 - 图片AI修复",
+          "source": [
+            "top.aibase.com/discover/37-51"
+          ],
+          "target": "/discover/37-51"
+        },
+        {
+          "title": "图像处理 - 图像生成",
+          "source": [
+            "top.aibase.com/discover/37-52"
+          ],
+          "target": "/discover/37-52"
+        },
+        {
+          "title": "图像处理 - Ai图片拓展",
+          "source": [
+            "top.aibase.com/discover/37-53"
+          ],
+          "target": "/discover/37-53"
+        },
+        {
+          "title": "图像处理 - Ai漫画生成",
+          "source": [
+            "top.aibase.com/discover/37-54"
+          ],
+          "target": "/discover/37-54"
+        },
+        {
+          "title": "图像处理 - Ai生成写真",
+          "source": [
+            "top.aibase.com/discover/37-55"
+          ],
+          "target": "/discover/37-55"
+        },
+        {
+          "title": "图像处理 - 电商图片制作",
+          "source": [
+            "top.aibase.com/discover/37-83"
+          ],
+          "target": "/discover/37-83"
+        },
+        {
+          "title": "图像处理 - Ai图像转视频",
+          "source": [
+            "top.aibase.com/discover/37-86"
+          ],
+          "target": "/discover/37-86"
+        },
+        {
+          "title": "视频创作 - 视频剪辑",
+          "source": [
+            "top.aibase.com/discover/38-56"
+          ],
+          "target": "/discover/38-56"
+        },
+        {
+          "title": "视频创作 - 生成视频",
+          "source": [
+            "top.aibase.com/discover/38-57"
+          ],
+          "target": "/discover/38-57"
+        },
+        {
+          "title": "视频创作 - Ai动画制作",
+          "source": [
+            "top.aibase.com/discover/38-58"
+          ],
+          "target": "/discover/38-58"
+        },
+        {
+          "title": "视频创作 - 字幕生成",
+          "source": [
+            "top.aibase.com/discover/38-84"
+          ],
+          "target": "/discover/38-84"
+        },
+        {
+          "title": "效率助手 - AI文档工具",
+          "source": [
+            "top.aibase.com/discover/39-59"
+          ],
+          "target": "/discover/39-59"
+        },
+        {
+          "title": "效率助手 - PPT",
+          "source": [
+            "top.aibase.com/discover/39-60"
+          ],
+          "target": "/discover/39-60"
+        },
+        {
+          "title": "效率助手 - 思维导图",
+          "source": [
+            "top.aibase.com/discover/39-61"
+          ],
+          "target": "/discover/39-61"
+        },
+        {
+          "title": "效率助手 - 表格处理",
+          "source": [
+            "top.aibase.com/discover/39-62"
+          ],
+          "target": "/discover/39-62"
+        },
+        {
+          "title": "效率助手 - Ai办公助手",
+          "source": [
+            "top.aibase.com/discover/39-63"
+          ],
+          "target": "/discover/39-63"
+        },
+        {
+          "title": "写作灵感 - 文案写作",
+          "source": [
+            "top.aibase.com/discover/40-64"
+          ],
+          "target": "/discover/40-64"
+        },
+        {
+          "title": "写作灵感 - 论文写作",
+          "source": [
+            "top.aibase.com/discover/40-88"
+          ],
+          "target": "/discover/40-88"
+        },
+        {
+          "title": "艺术灵感 - 音乐创作",
+          "source": [
+            "top.aibase.com/discover/41-65"
+          ],
+          "target": "/discover/41-65"
+        },
+        {
+          "title": "艺术灵感 - 设计创作",
+          "source": [
+            "top.aibase.com/discover/41-66"
+          ],
+          "target": "/discover/41-66"
+        },
+        {
+          "title": "艺术灵感 - Ai图标生成",
+          "source": [
+            "top.aibase.com/discover/41-67"
+          ],
+          "target": "/discover/41-67"
+        },
+        {
+          "title": "趣味 - Ai名字生成器",
+          "source": [
+            "top.aibase.com/discover/42-68"
+          ],
+          "target": "/discover/42-68"
+        },
+        {
+          "title": "趣味 - 游戏娱乐",
+          "source": [
+            "top.aibase.com/discover/42-71"
+          ],
+          "target": "/discover/42-71"
+        },
+        {
+          "title": "趣味 - 其他",
+          "source": [
+            "top.aibase.com/discover/42-72"
+          ],
+          "target": "/discover/42-72"
+        },
+        {
+          "title": "开发编程 - 开发编程",
+          "source": [
+            "top.aibase.com/discover/43-73"
+          ],
+          "target": "/discover/43-73"
+        },
+        {
+          "title": "开发编程 - Ai开放平台",
+          "source": [
+            "top.aibase.com/discover/43-74"
+          ],
+          "target": "/discover/43-74"
+        },
+        {
+          "title": "开发编程 - Ai算力平台",
+          "source": [
+            "top.aibase.com/discover/43-75"
+          ],
+          "target": "/discover/43-75"
+        },
+        {
+          "title": "聊天机器人 - 智能聊天",
+          "source": [
+            "top.aibase.com/discover/44-76"
+          ],
+          "target": "/discover/44-76"
+        },
+        {
+          "title": "聊天机器人 - 智能客服",
+          "source": [
+            "top.aibase.com/discover/44-77"
+          ],
+          "target": "/discover/44-77"
+        },
+        {
+          "title": "翻译 - 翻译",
+          "source": [
+            "top.aibase.com/discover/46-79"
+          ],
+          "target": "/discover/46-79"
+        },
+        {
+          "title": "教育学习 - 教育学习",
+          "source": [
+            "top.aibase.com/discover/47-80"
+          ],
+          "target": "/discover/47-80"
+        },
+        {
+          "title": "智能营销 - 智能营销",
+          "source": [
+            "top.aibase.com/discover/48-81"
+          ],
+          "target": "/discover/48-81"
+        },
+        {
+          "title": "法律 - 法律",
+          "source": [
+            "top.aibase.com/discover/138-139"
+          ],
+          "target": "/discover/138-139"
+        }
+      ],
+      "location": "discover.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "aisixiang",
+    "provider_name": "爱思想",
+    "route_key": "/column/:id",
+    "route": {
+      "path": "/column/:id",
+      "categories": [
+        "reading"
+      ],
+      "example": "/aisixiang/column/722",
+      "parameters": {
+        "id": "栏目 ID, 可在对应栏目 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "栏目",
+      "maintainers": [
+        "HenryQW",
+        "nczitzk"
+      ],
+      "location": "column.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "aisixiang",
+    "provider_name": "爱思想",
+    "route_key": "/thinktank/:id/:type?",
+    "route": {
+      "path": "/thinktank/:id/:type?",
+      "categories": [
+        "reading"
+      ],
+      "example": "/aisixiang/thinktank/WuQine/论文",
+      "parameters": {
+        "id": "专栏 ID，一般为作者拼音，可在URL中找到",
+        "type": "栏目类型，参考下表，默认为全部"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "思想库（专栏）",
+      "maintainers": [
+        "hoilc",
+        "nczitzk"
+      ],
+      "description": "| 论文 | 时评 | 随笔 | 演讲 | 访谈 | 著作 | 读书 | 史论 | 译作 | 诗歌 | 书信 | 科学 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |",
+      "location": "thinktank.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "aisixiang",
+    "provider_name": "爱思想",
+    "route_key": "/zhuanti/:id",
+    "route": {
+      "path": "/zhuanti/:id",
+      "categories": [
+        "reading"
+      ],
+      "example": "/aisixiang/zhuanti/211",
+      "parameters": {
+        "id": "专题 ID, 可在对应专题 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "专题",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "::: tip\n  更多专题请见 [关键词](http://www.aisixiang.com/zhuanti/)\n:::",
+      "location": "zhuanti.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "ajmide",
+    "provider_name": "阿基米德 FM",
+    "route_key": "/:id",
+    "route": {
+      "path": "/:id",
+      "categories": [
+        "multimedia",
+        "popular"
+      ],
+      "view": 4,
+      "example": "/ajmide/10603594",
+      "parameters": {
+        "id": "播客 id，可以从播客页面 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "播客",
+      "maintainers": [
+        "Fatpandac"
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "ali213",
+    "provider_name": "游侠网",
+    "route_key": "/news/:category?",
+    "route": {
+      "path": "/news/:category?",
+      "name": "资讯",
+      "url": "www.ali213.net",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/ali213/news/new",
+      "parameters": {
+        "category": "分类，默认为 `new`，即最新资讯，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n若订阅 [游戏资讯](https://www.ali213.net/news/game/)，网址为 `https://www.ali213.net/news/game/`，请截取 `https://www.ali213.net/news/` 到末尾 `/` 的部分 `game` 作为 `category` 参数填入，此时目标路由为 [`/ali213/news/game`](https://rsshub.app/ali213/news/game)。\n:::\n\n| 分类名称 | 分类 ID |\n| -------- | ------- |\n| 最新资讯 | new     |\n| 评测     | pingce  |\n| 游戏     | game    |\n| 动漫     | comic   |\n| 影视     | movie   |\n| 科技     | tech    |\n| 电竞     | esports |\n| 娱乐     | amuse   |\n| 手游     | mobile  |\n",
+      "categories": [
+        "game"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.ali213.net/news/:category"
+          ]
+        },
+        {
+          "title": "最新资讯",
+          "source": [
+            "www.ali213.net/news/new"
+          ],
+          "target": "/news/new"
+        },
+        {
+          "title": "评测",
+          "source": [
+            "www.ali213.net/news/pingce"
+          ],
+          "target": "/news/pingce"
+        },
+        {
+          "title": "游戏",
+          "source": [
+            "www.ali213.net/news/game"
+          ],
+          "target": "/news/game"
+        },
+        {
+          "title": "动漫",
+          "source": [
+            "www.ali213.net/news/comic"
+          ],
+          "target": "/news/comic"
+        },
+        {
+          "title": "影视",
+          "source": [
+            "www.ali213.net/news/movie"
+          ],
+          "target": "/news/movie"
+        },
+        {
+          "title": "科技",
+          "source": [
+            "www.ali213.net/news/tech"
+          ],
+          "target": "/news/tech"
+        },
+        {
+          "title": "电竞",
+          "source": [
+            "www.ali213.net/news/esports"
+          ],
+          "target": "/news/esports"
+        },
+        {
+          "title": "娱乐",
+          "source": [
+            "www.ali213.net/news/amuse"
+          ],
+          "target": "/news/amuse"
+        },
+        {
+          "title": "手游",
+          "source": [
+            "www.ali213.net/news/mobile"
+          ],
+          "target": "/news/mobile"
+        }
+      ],
+      "view": 0,
+      "location": "news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "ali213",
+    "provider_name": "游侠网",
+    "route_key": "/zl/:category?",
+    "route": {
+      "path": "/zl/:category?",
+      "name": "大侠号",
+      "url": "www.ali213.net",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/ali213/zl",
+      "parameters": {
+        "category": "分类，默认为首页，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n若订阅 [游戏](https://www.ali213.net/news/zl/game/)，网址为 `https://www.ali213.net/news/zl/game/`，请截取 `https://www.ali213.net/news/zl/` 到末尾 `/` 的部分 `game` 作为 `category` 参数填入，此时目标路由为 [`/ali213/zl/game`](https://rsshub.app/ali213/zl/game)。\n:::\n\n| 首页                                     | 游戏                                         | 动漫                                           | 影视                                           | 娱乐                                           |\n| ---------------------------------------- | -------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |\n| [index](https://www.ali213.net/news/zl/) | [game](https://www.ali213.net/news/zl/game/) | [comic](https://www.ali213.net/news/zl/comic/) | [movie](https://www.ali213.net/news/zl/movie/) | [amuse](https://www.ali213.net/news/zl/amuse/) |\n",
+      "categories": [
+        "game"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.ali213.net/news/zl/:category"
+          ]
+        },
+        {
+          "title": "首页",
+          "source": [
+            "www.ali213.net/news/zl/"
+          ],
+          "target": "/zl"
+        },
+        {
+          "title": "游戏",
+          "source": [
+            "www.ali213.net/news/zl/game/"
+          ],
+          "target": "/zl/game"
+        },
+        {
+          "title": "动漫",
+          "source": [
+            "www.ali213.net/news/zl/comic/"
+          ],
+          "target": "/zl/comic"
+        },
+        {
+          "title": "影视",
+          "source": [
+            "www.ali213.net/news/zl/movie/"
+          ],
+          "target": "/zl/movie"
+        },
+        {
+          "title": "娱乐",
+          "source": [
+            "www.ali213.net/news/zl/amuse/"
+          ],
+          "target": "/zl/amuse"
+        }
+      ],
+      "view": 0,
+      "location": "zl.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "aliresearch",
+    "provider_name": "阿里研究院",
+    "route_key": "/information/:type?",
+    "route": {
+      "path": "/information/:type?",
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "example": "/aliresearch/information",
+      "parameters": {
+        "type": "类型，见下表，默认为新闻"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "aliresearch.com/cn/information",
+            "aliresearch.com/"
+          ],
+          "target": "/information"
+        }
+      ],
+      "name": "资讯",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "url": "aliresearch.com/cn/information",
+      "description": "| 新闻 | 观点 | 案例 |\n| ---- | ---- | ---- |",
+      "location": "information.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "alistapart",
+    "provider_name": "A List Apart",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "categories": [
+        "programming"
+      ],
+      "radar": [
+        {
+          "source": [
+            "alistapart.com/articles/"
+          ],
+          "target": "/"
+        }
+      ],
+      "name": "Home Feed",
+      "maintainers": [
+        "Rjnishant530"
+      ],
+      "url": "alistapart.com/articles/",
+      "example": "/alistapart",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "alistapart",
+    "provider_name": "A List Apart",
+    "route_key": "/:topic",
+    "route": {
+      "path": "/:topic",
+      "categories": [
+        "programming"
+      ],
+      "example": "/alistapart/application-development",
+      "parameters": {
+        "topic": "Any Topic or from the table below. Defaults to All Articles"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "alistapart.com/blog/topic/:topic"
+          ],
+          "target": "/:topic"
+        }
+      ],
+      "name": "Topics",
+      "maintainers": [
+        "Rjnishant530"
+      ],
+      "url": "alistapart.com/articles/",
+      "description": "You have the option to utilize the main heading or use individual categories as topics for the path.\n\n| **Code**                    | *code*                    |\n| --------------------------- | ------------------------- |\n| **Application Development** | *application-development* |\n| **Browsers**                | *browsers*                |\n| **CSS**                     | *css*                     |\n| **HTML**                    | *html*                    |\n| **JavaScript**              | *javascript*              |\n| **The Server Side**         | *the-server-side*         |\n\n| **Content**          | *content*          |\n| -------------------- | ------------------ |\n| **Community**        | *community*        |\n| **Content Strategy** | *content-strategy* |\n| **Writing**          | *writing*          |\n\n| **Design**                 | *design*               |\n| -------------------------- | ---------------------- |\n| **Brand Identity**         | *brand-identity*       |\n| **Graphic Design**         | *graphic-design*       |\n| **Layout & Grids**         | *layout-grids*         |\n| **Mobile/Multidevice**     | *mobile-multidevice*   |\n| **Responsive Design**      | *responsive-design*    |\n| **Typography & Web Fonts** | *typography-web-fonts* |\n\n| **Industry & Business** | *industry-business* |\n| ----------------------- | ------------------- |\n| **Business**            | *business*          |\n| **Career**              | *career*            |\n| **Industry**            | *industry*          |\n| **State of the Web**    | *state-of-the-web*  |\n\n| **Process**            | *process*            |\n| ---------------------- | -------------------- |\n| **Creativity**         | *creativity*         |\n| **Project Management** | *project-management* |\n| **Web Strategy**       | *web-strategy*       |\n| **Workflow & Tools**   | *workflow-tools*     |\n\n| **User Experience**          | *user-experience*          |\n| ---------------------------- | -------------------------- |\n| **Accessibility**            | *accessibility*            |\n| **Information Architecture** | *information-architecture* |\n| **Interaction Design**       | *interaction-design*       |\n| **Usability**                | *usability*                |\n| **User Research**            | *user-research*            |",
+      "location": "topic.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "alpinelinux",
+    "provider_name": "Alpine Linux",
+    "route_key": "/pkgs/:name/:routeParams?",
+    "route": {
+      "name": "Packages",
+      "categories": [
+        "program-update"
+      ],
+      "maintainers": [
+        "CaoMeiYouRen"
+      ],
+      "path": "/pkgs/:name/:routeParams?",
+      "parameters": {
+        "name": "Packages name",
+        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
+      },
+      "example": "/alpinelinux/pkgs/nodejs",
+      "description": "Alpine Linux packages update",
+      "radar": [
+        {
+          "source": [
+            "https://pkgs.alpinelinux.org/packages"
+          ]
+        }
+      ],
+      "zh": {
+        "name": "软件包",
+        "description": "Alpine Linux 软件包更新"
+      },
+      "location": "pkgs.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "anime1",
+    "provider_name": "Anime1",
+    "route_key": "search/:keyword",
+    "route": {
+      "path": "search/:keyword",
+      "name": "Search",
+      "url": "anime1.me",
+      "maintainers": [
+        "cxheng315"
+      ],
+      "example": "/anime1/search/神之塔",
+      "categories": [
+        "anime"
+      ],
+      "parameters": {
+        "keyword": "Anime1 Search Keyword"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "location": "search.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "anquanke",
+    "provider_name": "安全客",
+    "route_key": "/:category/:fulltext?",
+    "route": {
+      "path": "/:category/:fulltext?",
+      "categories": [
+        "programming"
+      ],
+      "example": "/anquanke/week",
+      "parameters": {
+        "category": "分类订阅",
+        "fulltext": "是否获取全文，如需获取全文参数传入 `quanwen` 或 `fulltext`"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "分类订阅",
+      "maintainers": [
+        "qwertyuiop6"
+      ],
+      "description": "| 360 网络安全周报 | 活动     | 知识      | 资讯 | 招聘 | 工具 |\n| ---------------- | -------- | --------- | ---- | ---- | ---- |\n| week             | activity | knowledge | news | job  | tool |",
+      "location": "category.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "apache",
+    "provider_name": "Apache",
+    "route_key": "/apisix/blog",
+    "route": {
+      "path": "/apisix/blog",
+      "categories": [
+        "blog"
+      ],
+      "example": "/apache/apisix/blog",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "APISIX 博客",
+      "maintainers": [
+        "aneasystone"
+      ],
+      "location": "apisix/blog.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "apiseven",
+    "provider_name": "支流科技",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "categories": [
+        "blog"
+      ],
+      "example": "/apiseven/blog",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "博客",
+      "maintainers": [
+        "aneasystone"
+      ],
+      "location": "blog.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "apnews",
+    "provider_name": "AP News",
+    "route_key": "/nav/:nav{.*}?",
+    "route": {
+      "path": [
+        "/topics/:topic?",
+        "/nav/:nav{.*}?"
+      ],
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/apnews/topics/apf-topnews",
+      "view": 0,
+      "parameters": {
+        "topic": {
+          "description": "Topic name, can be found in URL. For example: the topic name of AP Top News [https://apnews.com/apf-topnews](https://apnews.com/apf-topnews) is `apf-topnews`",
+          "default": "trending-news"
+        }
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "apnews.com/hub/:topic"
+          ],
+          "target": "/topics/:topic"
+        }
+      ],
+      "name": "Topics",
+      "maintainers": [
+        "zoenglinghou",
+        "mjysci",
+        "TonyRL"
+      ],
+      "location": "topics.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "apple",
+    "provider_name": "Apple",
+    "route_key": "/exchange_repair/:country?",
+    "route": {
+      "path": "/exchange_repair/:country?",
+      "categories": [
+        "other"
+      ],
+      "example": "/apple/exchange_repair",
+      "parameters": {
+        "country": "country code in apple.com URL (exception: for `United States` please use `us`), default to China `cn`"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "support.apple.com/:country/service-programs"
+          ],
+          "target": "/exchange_repair/:country"
+        }
+      ],
+      "name": "Exchange and Repair Extension Programs",
+      "maintainers": [
+        "metowolf",
+        "HenryQW",
+        "kt286"
+      ],
+      "location": "exchange-repair.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "appstore",
+    "provider_name": "App Store/Mac App Store",
+    "route_key": "/price/:country/:type/:id",
+    "route": {
+      "path": "/price/:country/:type/:id",
+      "categories": [
+        "program-update"
+      ],
+      "example": "/appstore/price/us/mac/id1152443474",
+      "parameters": {
+        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
+        "type": "App type，either `iOS` or `mac`",
+        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "apps.apple.com/"
+          ]
+        }
+      ],
+      "name": "Price Drop",
+      "maintainers": [
+        "HenryQW"
+      ],
+      "url": "apps.apple.com/",
+      "location": "price.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "appstore",
+    "provider_name": "App Store/Mac App Store",
+    "route_key": "/xianmian",
+    "route": {
+      "path": "/xianmian",
+      "categories": [
+        "program-update"
+      ],
+      "example": "/appstore/xianmian",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "app.so/xianmian"
+          ]
+        }
+      ],
+      "name": "每日精品限免 / 促销应用（鲜面连线 by AppSo）",
+      "maintainers": [
+        "Andiedie"
+      ],
+      "url": "app.so/xianmian",
+      "location": "xianmian.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "atptour",
+    "provider_name": "ATP Tour",
+    "route_key": "/news/:lang?",
+    "route": {
+      "path": "/news/:lang?",
+      "categories": [
+        "other"
+      ],
+      "example": "/atptour/news/en",
+      "parameters": {
+        "lang": "en or es."
+      },
+      "radar": [
+        {
+          "source": [
+            "atptour.com"
+          ]
+        }
+      ],
+      "name": "News",
+      "maintainers": [
+        "LM1207"
+      ],
+      "location": "news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/gushitong/index",
+    "route": {
+      "path": "/gushitong/index",
+      "categories": [
+        "finance",
+        "popular"
+      ],
+      "view": 5,
+      "example": "/baidu/gushitong/index",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "gushitong.baidu.com/"
+          ]
+        }
+      ],
+      "name": "首页指数",
+      "maintainers": [
+        "CaoMeiYouRen"
+      ],
+      "url": "gushitong.baidu.com/",
+      "location": "gushitong/index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/tieba/forum/:kw/:sortBy?",
+    "route": {
+      "path": [
+        "/tieba/forum/good/:kw/:cid?/:sortBy?",
+        "/tieba/forum/:kw/:sortBy?"
+      ],
+      "categories": [
+        "bbs"
+      ],
+      "example": "/baidu/tieba/forum/good/女图",
+      "parameters": {
+        "kw": "吧名",
+        "cid": "精品分类，默认为 `0`（全部分类），如果不传 `cid` 则获取全部分类",
+        "sortBy": "排序方式：`created`, `replied`。默认为 `created`"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "精品帖子",
+      "maintainers": [
+        "u3u"
+      ],
+      "location": "tieba/forum.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "baijing",
+    "provider_name": "白鲸出海",
+    "route_key": "/article",
+    "route": {
+      "path": "/article",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/baijing/article",
+      "url": "www.baijing.cn/article/",
+      "name": "资讯",
+      "maintainers": [
+        "p3psi-boo"
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bangumi.tv",
+    "provider_name": "Bangumi 番组计划",
+    "route_key": "/topic/:id",
+    "route": {
+      "path": "/topic/:id",
+      "categories": [
+        "anime"
+      ],
+      "example": "/bangumi.tv/topic/367032",
+      "parameters": {
+        "id": "话题 id, 在话题页面地址栏查看"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "bgm.tv/group/topic/:id"
+          ]
+        }
+      ],
+      "name": "小组话题的新回复",
+      "maintainers": [
+        "ylc395"
+      ],
+      "location": "group/reply.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "behance",
+    "provider_name": "Behance",
+    "route_key": "/:user/:type?",
+    "route": {
+      "path": "/:user/:type?",
+      "categories": [
+        "design",
+        "popular"
+      ],
+      "view": 2,
+      "example": "/behance/mishapetrick",
+      "parameters": {
+        "user": "username",
+        "type": {
+          "description": "type",
+          "options": [
+            {
+              "value": "projects",
+              "label": "projects"
+            },
+            {
+              "value": "appreciated",
+              "label": "appreciated"
+            }
+          ],
+          "default": "projects"
+        }
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "User Works",
+      "maintainers": [
+        "MisteryMonster"
+      ],
+      "description": "Behance user's profile URL, like [https://www.behance.net/mishapetrick](https://www.behance.net/mishapetrick) the username will be `mishapetrick`。",
+      "location": "user.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/app/:id?",
+    "route": {
+      "path": "/app/:id?",
+      "categories": [
+        "program-update"
+      ],
+      "example": "/bilibili/app/android",
+      "parameters": {
+        "id": "客户端 id，见下表，默认为安卓版"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "更新情报",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |",
+      "location": "app.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/coin/:uid/:embed?",
+    "route": {
+      "path": "/user/coin/:uid/:embed?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/bilibili/user/coin/208259",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "space.bilibili.com/:uid"
+          ],
+          "target": "/user/coin/:uid"
+        }
+      ],
+      "name": "UP 主投币视频",
+      "maintainers": [
+        "DIYgod"
+      ],
+      "location": "coin.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/fav/:uid/:fid/:embed?",
+    "route": {
+      "path": "/fav/:uid/:fid/:embed?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/bilibili/fav/756508/50948568",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "fid": "收藏夹 ID, 可在收藏夹的 URL 中找到, 默认收藏夹建议使用 UP 主默认收藏夹功能",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "UP 主非默认收藏夹",
+      "maintainers": [
+        "Qixingchen"
+      ],
+      "location": "fav.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/live/room/:roomID",
+    "route": {
+      "path": "/live/room/:roomID",
+      "categories": [
+        "live"
+      ],
+      "example": "/bilibili/live/room/3",
+      "parameters": {
+        "roomID": "房间号, 可在直播间 URL 中找到, 长短号均可"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "live.bilibili.com/:roomID"
+          ]
+        }
+      ],
+      "name": "直播开播",
+      "maintainers": [
+        "Qixingchen"
+      ],
+      "location": "live-room.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/video/page/:bvid/:embed?",
+    "route": {
+      "path": "/video/page/:bvid/:embed?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/bilibili/video/page/BV1i7411M7N9",
+      "parameters": {
+        "bvid": "可在视频页 URL 中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "视频选集列表",
+      "maintainers": [
+        "sxzz"
+      ],
+      "location": "page.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/partion/:tid/:embed?",
+    "route": {
+      "path": "/partion/:tid/:embed?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/bilibili/partion/33",
+      "parameters": {
+        "tid": "分区 id",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "分区视频",
+      "maintainers": [
+        "DIYgod"
+      ],
+      "description": "动画\n\n| MAD·AMV | MMD·3D | 短片・手书・配音 | 特摄 | 综合 |\n| ------- | ------ | ---------------- | ---- | ---- |\n| 24      | 25     | 47               | 86   | 27   |\n\n  番剧\n\n| 连载动画 | 完结动画 | 资讯 | 官方延伸 |\n| -------- | -------- | ---- | -------- |\n| 33       | 32       | 51   | 152      |\n\n  国创\n\n| 国产动画 | 国产原创相关 | 布袋戏 | 动态漫・广播剧 | 资讯 |\n| -------- | ------------ | ------ | -------------- | ---- |\n| 153      | 168          | 169    | 195            | 170  |\n\n  音乐\n\n| 原创音乐 | 翻唱 | VOCALOID·UTAU | 电音 | 演奏 | MV  | 音乐现场 | 音乐综合 | ~~OP/ED/OST~~ |\n| -------- | ---- | ------------- | ---- | ---- | --- | -------- | -------- | ------------- |\n| 28       | 31   | 30            | 194  | 59   | 193 | 29       | 130      | 54            |\n\n  舞蹈\n\n| 宅舞 | 街舞 | 明星舞蹈 | 中国舞 | 舞蹈综合 | 舞蹈教程 |\n| ---- | ---- | -------- | ------ | -------- | -------- |\n| 20   | 198  | 199      | 200    | 154      | 156      |\n\n  游戏\n\n| 单机游戏 | 电子竞技 | 手机游戏 | 网络游戏 | 桌游棋牌 | GMV | 音游 | Mugen |\n| -------- | -------- | -------- | -------- | -------- | --- | ---- | ----- |\n| 17       | 171      | 172      | 65       | 173      | 121 | 136  | 19    |\n\n  知识\n\n| 科学科普 | 社科人文 | 财经 | 校园学习 | 职业职场 | 野生技术协会 |\n| -------- | -------- | ---- | -------- | -------- | ------------ |\n| 201      | 124      | 207  | 208      | 209      | 122          |\n\n  ~~科技~~\n\n| ~~演讲・公开课~~ | ~~星海~~ | ~~机械~~ | ~~汽车~~ |\n| ---------------- | -------- | -------- | -------- |\n| 39               | 96       | 98       | 176      |\n\n  数码\n\n| 手机平板 | 电脑装机 | 摄影摄像 | 影音智能 |\n| -------- | -------- | -------- | -------- |\n| 95       | 189      | 190      | 191      |\n\n  生活\n\n| 搞笑 | 日常 | 美食圈 | 动物圈 | 手工 | 绘画 | 运动 | 汽车 | 其他 | ~~ASMR~~ |\n| ---- | ---- | ------ | ------ | ---- | ---- | ---- | ---- | ---- | -------- |\n| 138  | 21   | 76     | 75     | 161  | 162  | 163  | 176  | 174  | 175      |\n\n  鬼畜\n\n| 鬼畜调教 | 音 MAD | 人力 VOCALOID | 教程演示 |\n| -------- | ------ | ------------- | -------- |\n| 22       | 26     | 126           | 127      |\n\n  时尚\n\n| 美妆 | 服饰 | 健身 | T 台 | 风向标 |\n| ---- | ---- | ---- | ---- | ------ |\n| 157  | 158  | 164  | 159  | 192    |\n\n  ~~广告~~\n\n| ~~广告~~ |\n| -------- |\n| 166      |\n\n  资讯\n\n| 热点 | 环球 | 社会 | 综合 |\n| ---- | ---- | ---- | ---- |\n| 203  | 204  | 205  | 206  |\n\n  娱乐\n\n| 综艺 | 明星 | Korea 相关 |\n| ---- | ---- | ---------- |\n| 71   | 137  | 131        |\n\n  影视\n\n| 影视杂谈 | 影视剪辑 | 短片 | 预告・资讯 |\n| -------- | -------- | ---- | ---------- |\n| 182      | 183      | 85   | 184        |\n\n  纪录片\n\n| 全部 | 人文・历史 | 科学・探索・自然 | 军事 | 社会・美食・旅行 |\n| ---- | ---------- | ---------------- | ---- | ---------------- |\n| 177  | 37         | 178              | 179  | 180              |\n\n  电影\n\n| 全部 | 华语电影 | 欧美电影 | 日本电影 | 其他国家 |\n| ---- | -------- | -------- | -------- | -------- |\n| 23   | 147      | 145      | 146      | 83       |\n\n  电视剧\n\n| 全部 | 国产剧 | 海外剧 |\n| ---- | ------ | ------ |\n| 11   | 185    | 187    |",
+      "location": "partion.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/bangumi/:uid/:type?",
+    "route": {
+      "path": "/user/bangumi/:uid/:type?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/bilibili/user/bangumi/208259",
+      "parameters": {
+        "uid": "用户 id",
+        "type": "1为番，2为剧，留空为1"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "space.bilibili.com/:uid"
+          ],
+          "target": "/user/bangumi/:uid"
+        }
+      ],
+      "name": "用户追番列表",
+      "maintainers": [
+        "wdssmq"
+      ],
+      "location": "user-bangumi.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/collection/:uid/:sid/:embed?/:sortReverse?/:page?",
+    "route": {
+      "path": "/user/collection/:uid/:sid/:embed?/:sortReverse?/:page?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/bilibili/user/collection/245645656/529166",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "sid": "合集 id, 可在合集页面的 URL 中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭",
+        "sortReverse": "默认:默认排序 1:升序排序",
+        "page": "页码, 默认1"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "UP 主频道的合集",
+      "maintainers": [
+        "shininome",
+        "cscnk52"
+      ],
+      "location": "user-collection.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/video/:uid/:embed?",
+    "route": {
+      "path": "/user/video/:uid/:embed?",
+      "categories": [
+        "social-media",
+        "popular"
+      ],
+      "view": 3,
+      "example": "/bilibili/user/video/2267573",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "space.bilibili.com/:uid"
+          ],
+          "target": "/user/video/:uid"
+        }
+      ],
+      "name": "UP 主投稿",
+      "maintainers": [
+        "DIYgod",
+        "Konano",
+        "pseudoyu"
+      ],
+      "location": "video.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/weekly/:embed?",
+    "route": {
+      "path": "/weekly/:embed?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/bilibili/weekly",
+      "parameters": {
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "B 站每周必看",
+      "maintainers": [
+        "ttttmr"
+      ],
+      "location": "weekly-recommend.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bing",
+    "provider_name": "Bing",
+    "route_key": "/search/:keyword",
+    "route": {
+      "path": "/search/:keyword",
+      "categories": [
+        "other"
+      ],
+      "example": "/bing/search/rss",
+      "parameters": {
+        "keyword": "搜索关键词"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "cn.bing.com/"
+          ],
+          "target": ""
+        }
+      ],
+      "name": "搜索",
+      "maintainers": [
+        "CaoMeiYouRen"
+      ],
+      "url": "cn.bing.com/",
+      "location": "search.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bitbucket",
+    "provider_name": "Bitbucket",
+    "route_key": "/commits/:workspace/:repo_slug",
+    "route": {
+      "path": "/commits/:workspace/:repo_slug",
+      "categories": [
+        "programming"
+      ],
+      "example": "/bitbucket/commits/blaze-lib/blaze",
+      "parameters": {
+        "workspace": "Workspace",
+        "repo_slug": "Repository"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "bitbucket.com/commits/:workspace/:repo_slug"
+          ]
+        }
+      ],
+      "name": "Commits",
+      "maintainers": [
+        "AuroraDysis"
+      ],
+      "location": "commits.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bjfu",
+    "provider_name": "北京林业大学",
+    "route_key": "/jwc/:type",
+    "route": {
+      "path": "/jwc/:type",
+      "categories": [
+        "university"
+      ],
+      "example": "/bjfu/jwc/jwkx",
+      "parameters": {
+        "type": "通知类别"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "jwc.bjfu.edu.cn/:type/index.html"
+          ]
+        }
+      ],
+      "name": "教务处通知公告",
+      "maintainers": [
+        "markmingjie"
+      ],
+      "description": "| 教务快讯 | 考试信息 | 课程信息 | 教改动态 | 图片新闻 |\n| -------- | -------- | -------- | -------- | -------- |\n| jwkx     | ksxx     | kcxx     | jgdt     | tpxw     |",
+      "location": "jwc/index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bjx",
+    "provider_name": "北极星电力网",
+    "route_key": "/fd/:type",
+    "route": {
+      "path": "/fd/:type",
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/bjx/fd/yw",
+      "parameters": {
+        "type": "文章分类，详见下表"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "风电",
+      "maintainers": [
+        "hualiong"
+      ],
+      "description": "`:type` 类型可选如下\n\n| 要闻 | 政策 | 数据 | 市场 | 企业 | 招标 | 技术 | 报道 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| yw   | zc   | sj   | sc   | mq   | zb   | js   | bd   |",
+      "location": "fd.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "blogread",
+    "provider_name": "技术头条",
+    "route_key": "/newest",
+    "route": {
+      "path": "/newest",
+      "categories": [
+        "programming"
+      ],
+      "example": "/blogread/newest",
+      "radar": [
+        {
+          "source": [
+            "blogread.cn/news/newest.php"
+          ]
+        }
+      ],
+      "name": "最新文章",
+      "maintainers": [
+        "fashioncj"
+      ],
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bugzilla",
+    "provider_name": "Bugzilla",
+    "route_key": "/bug/:site/:bugId",
+    "route": {
+      "path": "/bug/:site/:bugId",
+      "name": "bugs",
+      "maintainers": [
+        "FranklinYu"
+      ],
+      "example": "/bugzilla/bug/webkit/251528",
+      "parameters": {
+        "site": "site identifier",
+        "bugId": "numeric identifier of the bug in the site"
+      },
+      "description": "Supported site identifiers: [`apache`](https://bz.apache.org/bugzilla), [`apache.ooo`](https://bz.apache.org/ooo), [`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin), [`kernel`](https://bugzilla.kernel.org), [`mozilla`](https://bugzilla.mozilla.org), [`webkit`](https://bugs.webkit.org).",
+      "categories": [
+        "programming"
+      ],
+      "zh": {
+        "name": "bugs",
+        "description": "支持的站点标识符：[`apache`](https://bz.apache.org/bugzilla)、[`apache.ooo`](https://bz.apache.org/ooo)、[`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin)、[`kernel`](https://bugzilla.kernel.org)、[`mozilla`](https://bugzilla.mozilla.org)、[`webkit`](https://bugs.webkit.org)。"
+      },
+      "location": "bug.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "bulianglin",
+    "provider_name": "不良林",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "categories": [
+        "blog"
+      ],
+      "example": "/bulianglin",
+      "radar": [
+        {
+          "source": [
+            "bulianglin.com/"
+          ]
+        }
+      ],
+      "name": "全部文章",
+      "maintainers": [
+        "cnkmmk"
+      ],
+      "url": "bulianglin.com/",
+      "location": "rss.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "caixin",
+    "provider_name": "财新博客",
+    "route_key": "/k",
+    "route": {
+      "path": "/k",
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/caixin/k",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": true,
+        "supportScihub": false
+      },
+      "name": "财新一线",
+      "maintainers": [
+        "boypt"
+      ],
+      "location": "k.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "cctv",
+    "provider_name": "央视新闻",
+    "route_key": "/:category",
+    "route": {
+      "path": "/:category",
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/cctv/world",
+      "parameters": {
+        "category": "分类名"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "news.cctv.com/:category"
+          ]
+        }
+      ],
+      "name": "专题",
+      "maintainers": [
+        "idealclover",
+        "xyqfer"
+      ],
+      "description": "| 新闻 | 国内  | 国际  | 社会    | 法治 | 文娱 | 科技 | 生活 | 教育 | 每周质量报告 | 新闻 1+1  |\n| ---- | ----- | ----- | ------- | ---- | ---- | ---- | ---- | ---- | ------------ | --------- |\n| news | china | world | society | law  | ent  | tech | life | edu  | mzzlbg       | xinwen1j1 |",
+      "location": "category.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "china",
+    "provider_name": "China.com 中华网",
+    "route_key": "/finance/:category?",
+    "route": {
+      "path": "/finance/:category?",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/china/finance",
+      "parameters": {
+        "category": "Category of news. See the form below for details, default is suggest news."
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "finance.china.com/:category"
+          ]
+        }
+      ],
+      "name": "Finance News 财经 - 财经新闻",
+      "maintainers": [
+        "KingJem"
+      ],
+      "description": "| 推荐    | TMT | 金融    | 地产   | 消费    | 医药  | 酒业 | IPO 观察 |\n| ------- | --- | ------- | ------ | ------- | ----- | ---- | -------- |\n| tuijian | TMT | jinrong | dichan | xiaofei | yiyao | wine | IPO      |\n\n  > Note: The default news num is `30`.\n\n  > 注意：默认新闻条数是 `30`。",
+      "location": "finance/finance.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "china",
+    "provider_name": "China.com 中华网",
+    "route_key": "/news/:category?",
+    "route": {
+      "path": "/news/:category?",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/china/news",
+      "parameters": {
+        "category": "Category of news. See the form below for details, default is china news."
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "news.china.com/:category"
+          ]
+        }
+      ],
+      "name": "News and current affairs 时事新闻",
+      "maintainers": [
+        "jiaaoMario"
+      ],
+      "description": "Category of news\n\n| China News | International News | Social News | Breaking News |\n| ---------- | ------------------ | ----------- | ------------- |\n| domestic   | international      | social      | news100       |",
+      "location": "news/highlights/news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "civitai",
+    "provider_name": "Civitai",
+    "route_key": "/models",
+    "route": {
+      "path": "/models",
+      "categories": [
+        "program-update"
+      ],
+      "example": "/civitai/models",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "civitai.com/"
+          ]
+        }
+      ],
+      "name": "Latest models",
+      "maintainers": [
+        "DIYgod"
+      ],
+      "url": "civitai.com/",
+      "location": "models.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "digitalcameraworld",
+    "provider_name": "Digital Camera World",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "example": "/digitalcameraworld/news",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "digitalcameraworld.com/"
+          ]
+        }
+      ],
+      "name": "News",
+      "maintainers": [
+        "EthanWng97"
+      ],
+      "location": "news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/bookstore",
+    "route": {
+      "path": "/bookstore",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/douban/bookstore",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "豆瓣书店",
+      "maintainers": [
+        "xyqfer"
+      ],
+      "location": "other/bookstore.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/list/:type?/:routeParams?",
+    "route": {
+      "path": "/list/:type?/:routeParams?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/douban/list/subject_real_time_hotest",
+      "parameters": {
+        "type": "榜单类型，见下表。默认为实时热门书影音",
+        "routeParams": "额外参数；请参阅以下说明和表格"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.douban.com/subject_collection/:type"
+          ],
+          "target": "/list/:type"
+        }
+      ],
+      "name": "豆瓣榜单与集合",
+      "maintainers": [
+        "5upernova-heng",
+        "honue"
+      ],
+      "description": "| 榜单 / 集合        | 路由                          |\n| ------------------ | ----------------------------- |\n| 实时热门书影音     | subject_real_time_hotest   |\n| 影院热映           | movie_showing                |\n| 实时热门电影       | movie_real_time_hotest     |\n| 实时热门电视       | tv_real_time_hotest        |\n| 一周口碑电影榜     | movie_weekly_best           |\n| 华语口碑剧集榜     | tv_chinese_best_weekly     |\n| 全球口碑剧集榜     | tv_global_best_weekly      |\n| 国内口碑综艺榜     | show_chinese_best_weekly   |\n| 国外口碑综艺榜     | show_global_best_weekly    |\n| 热播新剧国产剧     | tv_domestic                  |\n| 热播新剧欧美剧     | tv_american                  |\n| 热播新剧日剧       | tv_japanese                  |\n| 热播新剧韩剧       | tv_korean                    |\n| 热播新剧动画       | tv_animation                 |\n| 虚构类小说热门榜   | book_fiction_hot_weekly    |\n| 非虚构类小说热门榜 | book_nonfiction_hot_weekly |\n| 热门单曲榜         | music_single                 |\n| 华语新碟榜         | music_chinese                |\n| ...                | ...                           |\n\n| 额外参数 | 含义                   | 接受的值 | 默认值 |\n| -------- | ---------------------- | -------- | ------ |\n| playable | 仅看有可播放片源的影片 | 0/1      | 0      |\n| score    | 筛选评分               | 0-10     | 0      |\n\n  用例：`/douban/list/tv_korean/playable=1&score=8`\n\n  > 上面的榜单 / 集合并没有列举完整。\n  >\n  > 如何找到榜单对应的路由参数：\n  > 在豆瓣手机 APP 中，对应地榜单页面右上角，点击分享链接。链接路径 `subject_collection` 后的路径就是路由参数 `type`。\n  > 如：小说热门榜的分享链接为：`https://m.douban.com/subject_collection/ECDIHUN4A`，其对应本 RSS 路由的 `type` 为 `ECDIHUN4A`，对应的订阅链接路由：[`/douban/list/ECDIHUN4A`](https://rsshub.app/douban/list/ECDIHUN4A)",
+      "location": "other/list.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "douyin",
+    "provider_name": "抖音直播",
+    "route_key": "/live/:rid",
+    "route": {
+      "path": "/live/:rid",
+      "categories": [
+        "live"
+      ],
+      "example": "/douyin/live/685317364746",
+      "parameters": {
+        "rid": "直播间 id, 可在主播直播间页 URL 中找到"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": true,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "live.douyin.com/:rid"
+          ]
+        }
+      ],
+      "name": "直播间开播",
+      "maintainers": [
+        "TonyRL"
+      ],
+      "location": "live.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "duozhuayu",
+    "provider_name": "多抓鱼",
+    "route_key": "/search/:wd",
+    "route": {
+      "path": "/search/:wd",
+      "categories": [
+        "shopping"
+      ],
+      "example": "/duozhuayu/search/JavaScript",
+      "parameters": {
+        "wd": "搜索关键词"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "duozhuayu.com/search/book/:wd"
+          ]
+        }
+      ],
+      "name": "搜索结果",
+      "maintainers": [
+        "fengkx"
+      ],
+      "location": "search.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "ff14",
+    "provider_name": "FINAL FANTASY XIV",
+    "route_key": "/global/:lang/:type?",
+    "route": {
+      "path": [
+        "/global/:lang/:type?",
+        "/ff14_global/:lang/:type?"
+      ],
+      "categories": [
+        "game"
+      ],
+      "example": "/ff14/global/na/all",
+      "parameters": {
+        "lang": "Region",
+        "type": "Category, `all` by default"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "FINAL FANTASY XIV (The Lodestone)",
+      "maintainers": [
+        "chengyuhui"
+      ],
+      "description": "Region\n\n| North Ameria | Europe | France | Germany | Japan |\n| ------------ | ------ | ------ | ------- | ----- |\n| na           | eu     | fr     | de      | jp    |\n\n  Category\n\n| all | topics | notices | maintenance | updates | status | developers |\n| --- | ------ | ------- | ----------- | ------- | ------ | ---------- |",
+      "location": "ff14-global.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "gamebase",
+    "provider_name": "遊戲基地 Gamebase",
+    "route_key": "/news/:type?/:category?",
+    "route": {
+      "path": "/news/:type?/:category?",
+      "name": "新聞",
+      "url": "news.gamebase.com.tw",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "example": "/gamebase/news",
+      "parameters": {
+        "type": "類型，見下表，預設為 newslist",
+        "category": "分類，預設為 `all`，即全部，可在對應分類頁 URL 中找到"
+      },
+      "description": ":::tip\n若訂閱 [手機遊戲新聞](https://news.gamebase.com.tw/news/newslist?type=mobile)，網址為 `https://news.gamebase.com.tw/news/newslist?type=mobile`，請截取 `https://news.gamebase.com.tw/news/` 到末尾的部分 `newslist` 作為 `type` 參數填入，`mobile` 作為 `category` 參數填入，此時目標路由為 [`/gamebase/news/newslist/mobile`](https://rsshub.app/gamebase/news/newslist/mobile)。\n:::\n\n| newslist | r18list |\n| -------- | ------- |\n",
+      "categories": [
+        "game"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "news.gamebase.com.tw/news",
+            "news.gamebase.com.tw/news/:type"
+          ]
+        }
+      ],
+      "view": 0,
+      "zh": {
+        "path": "/news/:type?/:category?",
+        "name": "新闻",
+        "url": "news.gamebase.com.tw",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/gamebase/news",
+        "parameters": {
+          "type": "类型，见下表，默认为 newslist",
+          "category": "分类，默认为 `all`，即全部，可在对应分类页 URL 中找到"
+        },
+        "description": ":::tip\n若订阅 [手机游戏新闻](https://news.gamebase.com.tw/news/newslist?type=mobile)，网址为 `https://news.gamebase.com.tw/news/newslist?type=mobile`，请截取 `https://news.gamebase.com.tw/news/` 到末尾的部分 `newslist` 作为 `type` 参数填入，`mobile` 作为 `category` 参数填入，此时目标路由为 [`/gamebase/news/newslist/mobile`](https://rsshub.app/gamebase/news/newslist/mobile)。\n:::\n\n| newslist | r18list |\n| -------- | ------- |\n"
+      },
+      "location": "news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/safe/complaint/:site?",
+    "route": {
+      "path": "/safe/complaint/:site?",
+      "categories": [
+        "government"
+      ],
+      "example": "/gov/safe/complaint/beijing",
+      "parameters": {
+        "site": "站点，见上表，默认为 beijing"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "投诉建议",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "location": "safe/complaint.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "guancha",
+    "provider_name": "观察者网",
+    "route_key": "/headline",
+    "route": {
+      "path": "/headline",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/guancha/headline",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "guancha.cn/GuanChaZheTouTiao",
+            "guancha.cn/"
+          ]
+        }
+      ],
+      "name": "头条",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "url": "guancha.cn/GuanChaZheTouTiao",
+      "location": "headline.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "hackernews",
+    "provider_name": "Hacker News",
+    "route_key": "/:section?/:type?/:user?",
+    "route": {
+      "path": "/:section?/:type?/:user?",
+      "categories": [
+        "programming",
+        "popular"
+      ],
+      "view": 0,
+      "example": "/hackernews/threads/comments_list/dang",
+      "parameters": {
+        "section": {
+          "description": "Content section, default to `index`"
+        },
+        "type": {
+          "description": "Link type, default to `sources`"
+        },
+        "user": {
+          "description": "Set user, only valid in `threads` and `submitted` sections"
+        }
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "news.ycombinator.com/:section",
+            "news.ycombinator.com/"
+          ]
+        }
+      ],
+      "name": "User",
+      "maintainers": [
+        "nczitzk",
+        "xie-dongping"
+      ],
+      "description": "Subscribe to the content of a specific user",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "huxiu",
+    "provider_name": "虎嗅",
+    "route_key": "/channel/:id?",
+    "route": {
+      "path": [
+        "/article",
+        "/channel/:id?"
+      ],
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "example": "/huxiu/article",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": true,
+        "supportPodcast": true,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "huxiu.com/article"
+          ]
+        }
+      ],
+      "name": "资讯",
+      "maintainers": [
+        "HenryQW",
+        "nczitzk"
+      ],
+      "description": "| 视频 | 车与出行 | 年轻一代 | 十亿消费者 | 前沿科技 |\n| ---- | -------- | -------- | ---------- | -------- |\n| 10   | 21       | 106      | 103        | 105      |\n\n| 财经 | 娱乐淘金 | 医疗健康 | 文化教育 | 出海 |\n| ---- | -------- | -------- | -------- | ---- |\n| 115  | 22       | 111      | 113      | 114  |\n\n| 金融地产 | 企业服务 | 创业维艰 | 社交通讯 | 全球热点 | 生活腔调 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n| 102      | 110      | 2        | 112      | 107      | 4        |",
+      "url": "huxiu.com/article",
+      "location": "channel.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "huxiu",
+    "provider_name": "虎嗅",
+    "route_key": "/moment",
+    "route": {
+      "path": "/moment",
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "example": "/huxiu/moment",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": true,
+        "supportPodcast": true,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "huxiu.com/moment"
+          ]
+        }
+      ],
+      "name": "24 小时",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "url": "huxiu.com/moment",
+      "location": "moment.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/rss/:user/:tag",
+    "route": {
+      "path": "/rss/:user/:tag",
+      "categories": [
+        "reading",
+        "popular"
+      ],
+      "view": 0,
+      "example": "/inoreader/rss/1005137674/user-favorites",
+      "parameters": {
+        "user": "user id, the interger after user/ in the example URL",
+        "tag": "tag, the string after tag/ in the example URL"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "RSS",
+      "maintainers": [
+        "EthanWng97"
+      ],
+      "location": "rss.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/video_codes/:code/:filter?",
+    "route": {
+      "path": "/video_codes/:code/:filter?",
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/javdb/video_codes/SIVR",
+      "parameters": {
+        "id": "番号前缀",
+        "filter": "过滤，见下表，默认为 `全部`"
+      },
+      "features": {
+        "requireConfig": [
+          {
+            "name": "JAVDB_SESSION",
+            "description": "JavDB登陆后的session值，可在控制台的cookie下查找 `_jdb_session` 的值，即可获取",
+            "optional": true
+          }
+        ],
+        "requirePuppeteer": false,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "javdb.com/"
+          ],
+          "target": ""
+        }
+      ],
+      "name": "番号",
+      "maintainers": [
+        "sgpublic"
+      ],
+      "url": "javdb.com/",
+      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |",
+      "location": "videocodes.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "jornada",
+    "provider_name": "La Jornada",
+    "route_key": "/:date?/:category?",
+    "route": {
+      "path": "/:date?/:category?",
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/jornada/2022-10-12/capital",
+      "parameters": {
+        "date": "Date string, must be in format of `YYYY-MM-DD`. You can get today's news using `today`",
+        "category": "Category, refer to the table below"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "News",
+      "maintainers": [
+        "Thealf154"
+      ],
+      "description": "Provides a way to get an specific rss feed by date and category over the official one.\n\n| Category             | `:category` |\n| -------------------- | ----------- |\n| Capital              | capital     |\n| Cartones             | cartones    |\n| Ciencia y Tecnología | ciencia     |\n| Cultura              | cultura     |\n| Deportes             | deportes    |\n| Economía             | economia    |\n| Estados              | estados     |\n| Mundo                | mundo       |\n| Opinión              | opinion     |\n| Política             | politica    |\n| Sociedad             | sociedad    |",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "kbs",
+    "provider_name": "KBS",
+    "route_key": "/news/:category?/:language?",
+    "route": {
+      "path": "/news/:category?/:language?",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/kbs/news",
+      "parameters": {
+        "category": "Category, can be found in Url as `id`, all by default",
+        "language": "Language, see below, e as English by default"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "world.kbs.co.kr/"
+          ],
+          "target": "/news"
+        }
+      ],
+      "name": "News",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "url": "world.kbs.co.kr/",
+      "description": "| 한국어 | عربي | 中国语 | English | Français | Deutsch | Bahasa Indonesia | 日本語 | Русский | Español | Tiếng Việt |\n| ------ | ---- | ------ | ------- | -------- | ------- | ---------------- | ------ | ------- | ------- | ---------- |\n| k      | a    | c      | e       | f        | g       | i                | j      | r       | s       | v          |",
+      "location": "news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "lala",
+    "provider_name": "荒岛",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "categories": [
+        "blog"
+      ],
+      "example": "/lala",
+      "radar": [
+        {
+          "source": [
+            "lala.im/"
+          ]
+        }
+      ],
+      "name": "最新发布",
+      "maintainers": [
+        "cnkmmk"
+      ],
+      "url": "lala.im/",
+      "location": "rss.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "m-78",
+    "provider_name": "円谷ステーション",
+    "route_key": "/news/:category?",
+    "route": {
+      "name": "ニュース",
+      "categories": [
+        "anime"
+      ],
+      "path": "/news/:category?",
+      "example": "/m-78/news",
+      "radar": [
+        {
+          "source": [
+            "m-78.jp/news"
+          ],
+          "target": "/news"
+        },
+        {
+          "source": [
+            "m-78.jp/news/category/:category"
+          ],
+          "target": "/news/:category"
+        }
+      ],
+      "parameters": {
+        "category": {
+          "description": "news category",
+          "default": "news",
+          "options": [
+            {
+              "value": "news",
+              "label": "ニュース"
+            },
+            {
+              "value": "streaming",
+              "label": "動画配信"
+            },
+            {
+              "value": "event",
+              "label": "イベント"
+            },
+            {
+              "value": "onair",
+              "label": "放送"
+            },
+            {
+              "value": "broadcast",
+              "label": "放送/配信"
+            },
+            {
+              "value": "goods",
+              "label": "グッズ"
+            },
+            {
+              "value": "ultraman-cardgame",
+              "label": "ウルトラマン カードゲーム"
+            },
+            {
+              "value": "shop",
+              "label": "ショップ"
+            },
+            {
+              "value": "blu-ray_dvd",
+              "label": "Blu-ray・DVD"
+            },
+            {
+              "value": "digital",
+              "label": "デジタル"
+            }
+          ]
+        }
+      },
+      "maintainers": [
+        "KarasuShin"
+      ],
+      "features": {
+        "supportRadar": true
+      },
+      "view": 0,
+      "location": "news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "meituan",
+    "provider_name": "美团",
+    "route_key": "/tech",
+    "route": {
+      "path": "/tech",
+      "categories": [
+        "programming"
+      ],
+      "example": "/meituan/tech",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false,
+        "supportRadar": true
+      },
+      "radar": [
+        {
+          "source": [
+            "tech.meituan.com"
+          ]
+        }
+      ],
+      "name": "技术团队博客",
+      "url": "tech.meituan.com",
+      "maintainers": [
+        "ktKongTong",
+        "cscnk52"
+      ],
+      "location": "tech.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "misskey",
+    "provider_name": "Misskey",
+    "route_key": "/users/notes/:username/:routeParams?",
+    "route": {
+      "path": "/users/notes/:username/:routeParams?",
+      "categories": [
+        "social-media",
+        "popular"
+      ],
+      "view": 1,
+      "example": "/misskey/users/notes/support@misskey.io",
+      "parameters": {
+        "username": "Misskey username in the format of username@instance.domain",
+        "routeParams": "\n| Key               | Description                             | Accepted Values | Default |\n| ----------------- | --------------------------------------- | --------------- | ------- |\n| withRenotes       | Include renotes in the timeline         | 0/1/true/false  | false   |\n| mediaOnly         | Only return posts containing media      | 0/1/true/false  | false   |\n| simplifyAuthor    | Simplify author field in feed items     | 0/1/true/false  | false   |\n\nNote: `withRenotes` and `mediaOnly` are mutually exclusive and cannot both be set to true.\n\nExamples:\n- /misskey/users/notes/mttb2ccp@misskey.io/withRenotes=true\n- /misskey/users/notes/mttb2ccp@misskey.io/mediaOnly=true"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "User timeline",
+      "maintainers": [
+        "siygle",
+        "SnowAgar25",
+        "HanaokaYuzu"
+      ],
+      "location": "user-timeline.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "neatdownloadmanager",
+    "provider_name": "Neat Download Manager",
+    "route_key": "/download/:os?",
+    "route": {
+      "path": "/download/:os?",
+      "categories": [
+        "program-update"
+      ],
+      "example": "/neatdownloadmanager/download",
+      "parameters": {
+        "os": "Operating system, windows or macos, all by default"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "neatdownloadmanager.com/index.php",
+            "neatdownloadmanager.com/"
+          ]
+        }
+      ],
+      "name": "Download",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "url": "neatdownloadmanager.com/index.php",
+      "location": "download.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "nju",
+    "provider_name": "南京大学",
+    "route_key": "/itsc",
+    "route": {
+      "path": "/itsc",
+      "categories": [
+        "university"
+      ],
+      "example": "/nju/itsc",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "itsc.nju.edu.cn/tzgg/list.htm"
+          ]
+        }
+      ],
+      "name": "ITSC 信息中心",
+      "maintainers": [
+        "ret-1"
+      ],
+      "url": "itsc.nju.edu.cn/tzgg/list.htm",
+      "location": "itsc.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "nyaa",
+    "provider_name": "Nyaa",
+    "route_key": "/user/:username/search/:query?",
+    "route": {
+      "path": [
+        "/search/:query?",
+        "/user/:username?",
+        "/user/:username/search/:query?",
+        "/sukebei/search/:query?",
+        "/sukebei/user/:username?",
+        "/sukebei/user/:username/search/:query?"
+      ],
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/nyaa/search/psycho-pass",
+      "parameters": {
+        "query": "Search keyword"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": true,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "Search Result",
+      "maintainers": [
+        "Lava-Swimmer",
+        "noname1776",
+        "camera-2018"
+      ],
+      "location": "main.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "nyaa",
+    "provider_name": "Nyaa",
+    "route_key": "/sukebei/user/:username?",
+    "route": {
+      "path": [
+        "/search/:query?",
+        "/user/:username?",
+        "/user/:username/search/:query?",
+        "/sukebei/search/:query?",
+        "/sukebei/user/:username?",
+        "/sukebei/user/:username/search/:query?"
+      ],
+      "categories": [
+        "multimedia"
+      ],
+      "example": "/nyaa/search/psycho-pass",
+      "parameters": {
+        "query": "Search keyword"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": true,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "Search Result",
+      "maintainers": [
+        "Lava-Swimmer",
+        "noname1776",
+        "camera-2018"
+      ],
+      "location": "main.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/:lang?",
+    "route": {
+      "path": "/:lang?",
+      "categories": [
+        "traditional-media",
+        "popular"
+      ],
+      "view": 0,
+      "example": "/nytimes/dual",
+      "parameters": {
+        "lang": {
+          "description": "language, default to Chinese",
+          "options": [
+            {
+              "value": "dual",
+              "label": "Chinese-English"
+            },
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "traditionalchinese",
+              "label": "Traditional Chinese"
+            },
+            {
+              "value": "dual-traditionalchinese",
+              "label": "Chinese-English (Traditional Chinese)"
+            }
+          ]
+        }
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "nytimes.com/"
+          ],
+          "target": ""
+        }
+      ],
+      "name": "News",
+      "maintainers": [
+        "HenryQW",
+        "pseudoyu"
+      ],
+      "url": "nytimes.com/",
+      "description": "By extracting the full text of articles, we provide a better reading experience (full text articles) over the official one.",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "openrice",
+    "provider_name": "Openrice開飯喇",
+    "route_key": "/:lang/hongkong/voting/top/:categoryKey",
+    "route": {
+      "path": "/:lang/hongkong/voting/top/:categoryKey",
+      "maintainers": [
+        "after9"
+      ],
+      "categories": [
+        "shopping"
+      ],
+      "example": "/openrice/zh/hongkong/voting/top/chinese",
+      "parameters": {
+        "lang": "语言，缺省为 zh",
+        "categoryKey": "类别，缺省为 chinese"
+      },
+      "name": "OpenRice 開飯熱店 - 年度餐廳投票",
+      "description": "\n  lang: 语言，见下方列表\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n\n  categoryKey: 部分类别，见下方列表 (更多的类别可以在页面的link中对照获取)\n| 中菜館 | 上海菜 | 粵菜 | 川菜 | 港式 | 粥粉麵店 | 廚師發辦 | 韓國菜 | 泰國菜 | 越南菜 |\n| -------- | -------- | -------- |  -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| chinese | shanghainese | guangdong | sichuan | hkstyle | congee_noodles | omakase | korean | thai | vietnamese |\n  ",
+      "location": "voting.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "papers",
+    "provider_name": "Cool Papers",
+    "route_key": "/query/:keyword{.+}?",
+    "route": {
+      "path": "/query/:keyword{.+}?",
+      "name": "Topic",
+      "url": "papers.cool",
+      "maintainers": [
+        "Muyun99"
+      ],
+      "example": "/papers/query/Detection",
+      "parameters": {
+        "keyword": "Keyword to search for papers, e.g., Detection, Segmentation, etc."
+      },
+      "description": "::: tip\n  If you subscibe to [arXiv Paper queryed by Detection](https://papers.cool/arxiv/search?highlight=1&query=Detection), where the URL is `https://papers.cool/arxiv/search?highlight=1&query=Detection`, extract the part `https://papers.cool/` to the end, and use it as the parameter to fill in. Therefore, the route will be [`/papers/query/Detection`](https://rsshub.app/papers/query/Detection).\n:::\n\n| Category                                              | id                  |\n| ----------------------------------------------------- | ------------------- |\n| arXiv Paper queryed by Detection                      | query/Detection     |\n| arXiv Paper queryed by Segmentation                   | query/Segmentation  |\n  ",
+      "categories": [
+        "journal"
+      ],
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportRadar": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": true
+      },
+      "radar": [
+        {
+          "title": "arXiv Paper queryed by Keyword",
+          "source": [
+            "papers.cool/arxiv/search?highlight=1&query=*&sort=0"
+          ],
+          "target": "/papers/query/:keyword"
+        }
+      ],
+      "location": "query.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "pincong",
+    "provider_name": "品葱",
+    "route_key": "/category/:category?/:sort?",
+    "route": {
+      "path": "/category/:category?/:sort?",
+      "categories": [
+        "bbs"
+      ],
+      "example": "/pincong/category/1/new",
+      "parameters": {
+        "category": "分类，与官网分类 URL `category-` 后的数字对应，默认为全部",
+        "sort": "排序方式，参数可见下表，默认为推荐"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": true,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "发现",
+      "maintainers": [
+        "zphw"
+      ],
+      "description": "| 最新 | 推荐      | 热门 |\n| ---- | --------- | ---- |\n| new  | recommend | hot  |",
+      "location": "index.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "qbitai",
+    "provider_name": "量子位",
+    "route_key": "/tag/:tag",
+    "route": {
+      "path": "/tag/:tag",
+      "categories": [
+        "new-media",
+        "popular"
+      ],
+      "example": "/qbitai/tag/大语言模型",
+      "parameters": {
+        "tag": "标签名"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "qbitai.com/tag/:tag"
+          ]
+        }
+      ],
+      "name": "标签",
+      "maintainers": [
+        "FuryMartin"
+      ],
+      "location": "tag.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "science",
+    "provider_name": "Science Magazine",
+    "route_key": "/blogs/:name?",
+    "route": {
+      "path": "/blogs/:name?",
+      "categories": [
+        "journal"
+      ],
+      "example": "/science/blogs/pipeline",
+      "parameters": {
+        "name": "Short name for the blog, get this from the url. Defaults to pipeline"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": true,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "science.org/blogs/:name"
+          ],
+          "target": "/blogs/:name"
+        }
+      ],
+      "name": "Blogs",
+      "maintainers": [
+        "TomHodson"
+      ],
+      "description": "To subscribe to [IN THE PIPELINE by Derek Lowe’s](https://science.org/blogs/pipeline) or the [science editor's blog](https://science.org/blogs/editors-blog), use the name parameter `pipeline` or `editors-blog`.",
+      "location": "blogs.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "substack",
+    "provider_name": "Substack",
+    "route_key": "/subscribe/:user",
+    "route": {
+      "path": "/subscribe/:user",
+      "categories": [
+        "blog"
+      ],
+      "view": 1,
+      "example": "/substack/subscribe/mangoread",
+      "parameters": {
+        "user": "Username of the Substack"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "Substack Subscription",
+      "maintainers": [
+        "pseudoyu"
+      ],
+      "location": "subscribe.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "uptimerobot",
+    "provider_name": "Uptime Robot",
+    "route_key": "/rss/:id/:routeParams?",
+    "route": {
+      "path": "/rss/:id/:routeParams?",
+      "categories": [
+        "forecast"
+      ],
+      "example": "/uptimerobot/rss/u358785-e4323652448755805d668f1a66506f2f",
+      "parameters": {
+        "id": "the last part of your RSS URL (e.g. `u358785-e4323652448755805d668f1a66506f2f` for `https://rss.uptimerobot.com/u358785-e4323652448755805d668f1a66506f2f`)",
+        "routeParams": "extra parameters, see the table below"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "rss.uptimerobot.com/:id"
+          ],
+          "target": "/rss/:id"
+        }
+      ],
+      "name": "RSS",
+      "maintainers": [
+        "Rongronggg9"
+      ],
+      "description": "| Key    | Description                                                              | Accepts        | Defaults to |\n| ------ | ------------------------------------------------------------------------ | -------------- | ----------- |\n| showID | Show monitor ID (disabling it will also disable link for each RSS entry) | 0/1/true/false | true        |",
+      "location": "rss.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "ustb",
+    "provider_name": "北京科技大学",
+    "route_key": "/yjsy/news/:type",
+    "route": {
+      "path": "/yjsy/news/:type",
+      "categories": [
+        "university"
+      ],
+      "example": "/ustb/yjsy/news/all",
+      "parameters": {
+        "type": "文章类别"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "gs.ustb.edu.cn/:type"
+          ]
+        }
+      ],
+      "name": "研究生院",
+      "maintainers": [
+        "DA1Y1"
+      ],
+      "description": "| 北京科技大学研究生院 | 土木与资源工程学院 | 能源与环境工程学院 | 冶金与生态工程学院 | 材料科学与工程学院 | 机械工程学院 | 自动化学院 | 计算机与通信工程学院 | 数理学院 | 化学与生物工程学院 | 经济管理学院 | 文法学院 | 马克思主义学院 | 外国语学院 | 国家材料服役安全科学中心 | 新金属材料国家重点实验室 | 工程技术研究院 | 钢铁共性技术协同创新中心 | 钢铁冶金新技术国家重点实验室 | 新材料技术研究院 | 科技史与文化遗产研究院 | 顺德研究生院 |\n| -------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------ | ---------- | -------------------- | -------- | ------------------ | ------------ | -------- | -------------- | ---------- | ------------------------ | ------------------------ | -------------- | ------------------------ | ---------------------------- | ---------------- | ---------------------- | ------------ |\n| all                  | cres               | seee               | metall             | mse                | me           | saee       | scce                 | shuli    | huasheng           | sem          | wenfa    | marx           | sfs        | ncms                     | skl                      | iet            | cicst                    | slam                         | adma             | ihmm                   | sd           |",
+      "location": "yjsy/news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "wellcee",
+    "provider_name": "Wellcee 唯心所寓",
+    "route_key": "/rent/:city/:district?",
+    "route": {
+      "path": "/rent/:city/:district?",
+      "example": "/wellcee/rent/北京",
+      "parameters": {
+        "city": "城市",
+        "district": "地区"
+      },
+      "name": "租房信息",
+      "maintainers": [
+        "TonyRL"
+      ],
+      "url": "www.wellcee.com",
+      "description": "支持的城市可以通过 [/wellcee/support-city](https://rsshub.app/wellcee/support-city) 获取",
+      "location": "rent.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "woshipm",
+    "provider_name": "人人都是产品经理",
+    "route_key": "/wen",
+    "route": {
+      "path": "/wen",
+      "categories": [
+        "new-media"
+      ],
+      "example": "/woshipm/wen",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "wen.woshipm.com/"
+          ]
+        }
+      ],
+      "name": "天天问",
+      "maintainers": [
+        "WenryXu"
+      ],
+      "url": "wen.woshipm.com/",
+      "location": "wen.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "yicai",
+    "provider_name": "第一财经",
+    "route_key": "/news/:id?",
+    "route": {
+      "path": "/news/:id?",
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/yicai/news",
+      "parameters": {
+        "id": "分类 id，见下表，可在对应分类页中找到，默认为新闻"
+      },
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "yicai.com/news/:id",
+            "yicai.com/news"
+          ],
+          "target": "/news/:id"
+        }
+      ],
+      "name": "新闻",
+      "maintainers": [
+        "nczitzk"
+      ],
+      "description": "| Id                       | 名称       |\n| ------------------------ | ---------- |\n| gushi                    | A 股       |\n| kechuangban              | 科创板     |\n| hongguan                 | 大政       |\n| jinrong                  | 金融       |\n| quanqiushichang          | 海外市场   |\n| gongsi                   | 产经       |\n| shijie                   | 全球       |\n| kechuang                 | 科技       |\n| quyu                     | 区域       |\n| comment                  | 评论       |\n| dafengwenhua             | 商业人文   |\n| books                    | 阅读周刊   |\n| loushi                   | 地产       |\n| automobile               | 汽车       |\n| china_financial_herald | 对话陆家嘴 |\n| fashion                  | 时尚       |\n| ad                       | 商业资讯   |\n| info                     | 资讯       |\n| jzfxb                    | 价值风向标 |\n| shuducaijing             | 数读财经   |\n| shujujiepan              | 数据解盘   |\n| shudushenghuo            | 数读生活   |\n| cbndata                  | CBNData    |\n| dtcj                     | DT 财经    |\n| xfsz                     | 消费数知   |",
+      "location": "news.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "youtube",
+    "provider_name": "YouTube",
+    "route_key": "/channel/:id/:embed?",
+    "route": {
+      "path": "/channel/:id/:embed?",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/youtube/channel/UCDwDMPOZfxVV0x_dz0eQ8KQ",
+      "parameters": {
+        "id": "YouTube channel id",
+        "embed": "Default to embed the video, set to any value to disable embedding"
+      },
+      "features": {
+        "requireConfig": [
+          {
+            "name": "YOUTUBE_KEY",
+            "description": " YouTube API Key, support multiple keys, split them with `,`, [API Key application](https://console.developers.google.com/)"
+          }
+        ],
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "www.youtube.com/channel/:id"
+          ],
+          "target": "/channel/:id"
+        }
+      ],
+      "name": "Channel with id",
+      "maintainers": [
+        "DIYgod"
+      ],
+      "description": "::: tip\nYouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).\n:::",
+      "location": "channel.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "youtube",
+    "provider_name": "YouTube",
+    "route_key": "/playlist/:id/:embed?",
+    "route": {
+      "path": "/playlist/:id/:embed?",
+      "categories": [
+        "social-media",
+        "popular"
+      ],
+      "view": 3,
+      "example": "/youtube/playlist/PLqQ1RwlxOgeLTJ1f3fNMSwhjVgaWKo_9Z",
+      "parameters": {
+        "id": "YouTube playlist id",
+        "embed": "Default to embed the video, set to any value to disable embedding"
+      },
+      "features": {
+        "requireConfig": [
+          {
+            "name": "YOUTUBE_KEY",
+            "description": " YouTube API Key, support multiple keys, split them with `,`, [API Key application](https://console.developers.google.com/)"
+          }
+        ],
+        "requirePuppeteer": false,
+        "antiCrawler": false,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "name": "Playlist",
+      "maintainers": [
+        "HenryQW"
+      ],
+      "location": "playlist.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "zaobao",
+    "provider_name": "联合早报",
+    "route_key": "/realtime/:section?",
+    "route": {
+      "path": "/realtime/:section?",
+      "categories": [
+        "traditional-media"
+      ],
+      "example": "/zaobao/realtime/china",
+      "parameters": {
+        "section": "分类，缺省为 china"
+      },
+      "name": "即时新闻",
+      "maintainers": [
+        "shunf4"
+      ],
+      "description": "| 中国  | 新加坡    | 国际  | 财经     |\n| ----- | --------- | ----- | -------- |\n| china | singapore | world | zfinance |",
+      "location": "realtime.ts",
+      "online": true
+    }
+  },
+  {
+    "provider_id": "zhihu",
+    "provider_name": "知乎",
+    "route_key": "/daily",
+    "route": {
+      "path": "/daily",
+      "categories": [
+        "social-media"
+      ],
+      "example": "/zhihu/daily",
+      "parameters": {},
+      "features": {
+        "requireConfig": false,
+        "requirePuppeteer": false,
+        "antiCrawler": true,
+        "supportBT": false,
+        "supportPodcast": false,
+        "supportScihub": false
+      },
+      "radar": [
+        {
+          "source": [
+            "daily.zhihu.com/*"
+          ]
+        }
+      ],
+      "name": "知乎日报",
+      "maintainers": [
+        "DHPO",
+        "pseudoyu"
+      ],
+      "url": "daily.zhihu.com/*",
+      "location": "daily.ts",
+      "online": true
+    }
+  }
+]
