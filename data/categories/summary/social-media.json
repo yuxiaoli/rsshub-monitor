@@ -332,6 +332,21 @@
   {
     "provider_id": "bilibili",
     "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/fav/:uid/:embed?",
+    "route": {
+      "name": "UP 主默认收藏夹",
+      "path": "/user/fav/:uid/:embed?",
+      "example": "/bilibili/user/fav/2267573",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
     "route_key": "/vsearch/:kw/:order?/:embed?/:tid?",
     "route": {
       "name": "视频搜索",
@@ -495,6 +510,20 @@
     }
   },
   {
+    "provider_id": "coolapk",
+    "provider_name": "酷安",
+    "route_key": "/user/:uid/dynamic",
+    "route": {
+      "name": "用户",
+      "path": "/user/:uid/dynamic",
+      "example": "/coolapk/user/3177668/dynamic",
+      "parameters": {
+        "uid": "在个人界面右上分享-复制链接获取"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "curius",
     "provider_name": "Curius",
     "route_key": "/links/:name",
@@ -520,6 +549,21 @@
         "type": "图书类型，默认合并列表"
       },
       "description": "| 全部 | 虚构    | 非虚构     |\n| ---- | ------- | ---------- |\n|      | fiction | nonfiction |"
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/channel/:id/subject/:nav",
+    "route": {
+      "name": "频道书影音",
+      "path": "/channel/:id/subject/:nav",
+      "example": "/douban/channel/30168934/subject/0",
+      "parameters": {
+        "id": "频道id",
+        "nav": "书影音分类"
+      },
+      "description": "| 电影 | 电视剧 | 图书 | 唱片 |\n| ---- | ------ | ---- | ---- |\n| 0    | 1      | 2    | 3    |"
     }
   },
   {
@@ -609,6 +653,21 @@
     }
   },
   {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/people/:userid/status/:routeParams?",
+    "route": {
+      "name": "用户广播",
+      "path": "/people/:userid/status/:routeParams?",
+      "example": "/douban/people/75118396/status",
+      "parameters": {
+        "userid": "整数型用户 id",
+        "routeParams": "额外参数；见下"
+      },
+      "description": "\n::: tip\n-   **目前只支持整数型 id**\n-   字母型的 id，可以通过头像图片链接来找到其整数型 id，图片命名规则`ul[userid]-*.jpg`或`u[userid]-*.jpg`，即取文件名中间的数字\n-   例如：用户 id: `MovieL`他的头像图片链接：`https://img1.doubanio.com/icon/ul1128221-98.jpg`他的整数型 id: `1128221`\n:::\n\n对于豆瓣用户广播内容，在 `routeParams` 参数中以 query string 格式设置如下选项可以控制输出的样式\n\n| 键                         | 含义                                                           | 接受的值       | 默认值 |\n| -------------------------- | -------------------------------------------------------------- | -------------- | ------ |\n| readable                   | 是否开启细节排版可读性优化                                     | 0/1/true/false | false  |\n| authorNameBold             | 是否加粗作者名字                                               | 0/1/true/false | false  |\n| showAuthorInTitle          | 是否在标题处显示作者                                           | 0/1/true/false | true   |\n| showAuthorInDesc           | 是否在正文处显示作者                                           | 0/1/true/false | false  |\n| showAuthorAvatarInDesc     | 是否在正文处显示作者头像（若阅读器会提取正文图片，不建议开启） | 0/1/true/false | false  |\n| showEmojiForRetweet        | 显示 “🔁” 取代 “Fw”（转发）                                    | 0/1/true/false | false  |\n| showRetweetTextInTitle     | 在标题出显示转发评论（置为 false 则在标题只显示被转发的广播）  | 0/1/true/false | false  |\n| addLinkForPics             | 为图片添加可点击的链接                                         | 0/1/true/false | false  |\n| showTimestampInDescription | 在正文处显示广播的时间戳                                       | 0/1/true/false | false  |\n| showComments               | 在正文处显示评论                                               | 0/1/true/false | false  |\n| widthOfPics                | 广播配图宽（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| heightOfPics               | 广播配图高（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| sizeOfAuthorAvatar         | 作者头像大小                                                   | 数字           | 48     |\n\n  指定更多与默认值不同的参数选项可以改善 RSS 的可读性，如\n\n  [https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100](https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100)\n\n  的效果为\n\n  <img loading=\"lazy\" src=\"/img/readable-douban.png\" alt=\"豆瓣读书的可读豆瓣广播 RSS\" />"
+    }
+  },
+  {
     "provider_id": "fansly",
     "provider_name": "Fansly",
     "route_key": "/tag/:tag",
@@ -647,6 +706,20 @@
       "parameters": {
         "category": "Category, default value is artwork, options are artwork, writing, music, crafts",
         "mode": "R18 content toggle, default value is sfw, options are sfw, nsfw"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "furaffinity",
+    "provider_name": "Furaffinity",
+    "route_key": "/journals/:username",
+    "route": {
+      "name": "Journals",
+      "path": "/journals/:username",
+      "example": "/furaffinity/journals/fender",
+      "parameters": {
+        "username": "Username, can find in userpage"
       },
       "description": ""
     }
@@ -757,6 +830,20 @@
     }
   },
   {
+    "provider_id": "keep",
+    "provider_name": "Keep",
+    "route_key": "/user/:id",
+    "route": {
+      "name": "运动日记",
+      "path": "/user/:id",
+      "example": "/keep/user/556b02c1ab59390afea671ea",
+      "parameters": {
+        "id": "Keep 用户 id"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "lemmy",
     "provider_name": "Lemmy",
     "route_key": "/:community/:sort?",
@@ -848,6 +935,20 @@
           ],
           "default": "Active"
         }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "lofter",
+    "provider_name": "Lofter",
+    "route_key": "/collection/:collectionID",
+    "route": {
+      "name": "Collection",
+      "path": "/collection/:collectionID",
+      "example": "/lofter/collection/552041",
+      "parameters": {
+        "collectionID": "Lofter collection ID, can be found in the share URL"
       },
       "description": ""
     }
@@ -1064,6 +1165,20 @@
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
+    "route_key": "/topic/:topic",
+    "route": {
+      "name": "Topic",
+      "path": "/topic/:topic",
+      "example": "/plurk/topic/standwithukraine",
+      "parameters": {
+        "topic": "Topic ID, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
     "route_key": "/user/:user",
     "route": {
       "name": "User",
@@ -1101,6 +1216,122 @@
         "userId": "用户 ID, 可在对应页面的 URL 中找到"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "rss3",
+    "provider_name": "RSS3",
+    "route_key": "/:account/:network?/:tag?",
+    "route": {
+      "name": "Account Activities",
+      "path": "/:account/:network?/:tag?",
+      "example": "/rss3/vitalik.eth",
+      "parameters": {
+        "account": {
+          "description": "Retrieve activities from the specified account. This account is a unique identifier within the decentralized system."
+        },
+        "network": {
+          "description": "Retrieve activities from the specified network.",
+          "default": "all",
+          "options": [
+            {
+              "value": "all",
+              "label": "All"
+            },
+            {
+              "value": "arbitrum",
+              "label": "Arbitrum"
+            },
+            {
+              "value": "arweave",
+              "label": "Arweave"
+            },
+            {
+              "value": "avax",
+              "label": "Avax"
+            },
+            {
+              "value": "base",
+              "label": "Base"
+            },
+            {
+              "value": "binance-smart-chain",
+              "label": "Binance Smart Chain"
+            },
+            {
+              "value": "crossbell",
+              "label": "Crossbell"
+            },
+            {
+              "value": "ethereum",
+              "label": "Ethereum"
+            },
+            {
+              "value": "farcaster",
+              "label": "Farcaster"
+            },
+            {
+              "value": "gnosis",
+              "label": "Gnosis"
+            },
+            {
+              "value": "linea",
+              "label": "Linea"
+            },
+            {
+              "value": "optimism",
+              "label": "Optimism"
+            },
+            {
+              "value": "polygon",
+              "label": "Polygon"
+            },
+            {
+              "value": "vsl",
+              "label": "VSL"
+            }
+          ]
+        },
+        "tag": {
+          "description": "Retrieve activities from the specified tag.",
+          "default": "all",
+          "options": [
+            {
+              "value": "all",
+              "label": "All"
+            },
+            {
+              "value": "collectible",
+              "label": "collectible"
+            },
+            {
+              "value": "exchange",
+              "label": "exchange"
+            },
+            {
+              "value": "metaverse",
+              "label": "metaverse"
+            },
+            {
+              "value": "rss",
+              "label": "rss"
+            },
+            {
+              "value": "social",
+              "label": "social"
+            },
+            {
+              "value": "transaction",
+              "label": "transaction"
+            },
+            {
+              "value": "unknown",
+              "label": "unknown"
+            }
+          ]
+        }
+      },
+      "description": "Retrieve the activities associated with a specified account in the decentralized system."
     }
   },
   {
@@ -1210,6 +1441,20 @@
   {
     "provider_id": "weibo",
     "provider_name": "微博",
+    "route_key": "/oasis/user/:userid",
+    "route": {
+      "name": "绿洲用户",
+      "path": "/oasis/user/:userid",
+      "example": "/weibo/oasis/user/1990895721",
+      "parameters": {
+        "userid": "用户 id, 可在用户主页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "weibo",
+    "provider_name": "微博",
     "route_key": "/search/hot/:fulltext?",
     "route": {
       "name": "热搜榜",
@@ -1258,6 +1503,35 @@
   {
     "provider_id": "youtube",
     "provider_name": "YouTube",
+    "route_key": "/channel/:id/:embed?",
+    "route": {
+      "name": "Channel with id",
+      "path": "/channel/:id/:embed?",
+      "example": "/youtube/channel/UCDwDMPOZfxVV0x_dz0eQ8KQ",
+      "parameters": {
+        "id": "YouTube channel id",
+        "embed": "Default to embed the video, set to any value to disable embedding"
+      },
+      "description": "::: tip\nYouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).\n:::"
+    }
+  },
+  {
+    "provider_id": "youtube",
+    "provider_name": "YouTube",
+    "route_key": "/community/:handle",
+    "route": {
+      "name": "Community",
+      "path": "/community/:handle",
+      "example": "/youtube/community/@JFlaMusic",
+      "parameters": {
+        "handle": "YouTube handles or channel id"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "youtube",
+    "provider_name": "YouTube",
     "route_key": "/playlist/:id/:embed?",
     "route": {
       "name": "Playlist",
@@ -1265,6 +1539,21 @@
       "example": "/youtube/playlist/PLqQ1RwlxOgeLTJ1f3fNMSwhjVgaWKo_9Z",
       "parameters": {
         "id": "YouTube playlist id",
+        "embed": "Default to embed the video, set to any value to disable embedding"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "youtube",
+    "provider_name": "YouTube",
+    "route_key": "/user/:username/:embed?",
+    "route": {
+      "name": "Channel with user handle",
+      "path": "/user/:username/:embed?",
+      "example": "/youtube/user/@JFlaMusic",
+      "parameters": {
+        "username": "YouTuber handle with @",
         "embed": "Default to embed the video, set to any value to disable embedding"
       },
       "description": ""

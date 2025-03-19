@@ -784,6 +784,34 @@
   {
     "provider_id": "dongqiudi",
     "provider_name": "懂球帝",
+    "route_key": "/result/:team",
+    "route": {
+      "name": "足球赛果",
+      "path": "/result/:team",
+      "example": "/dongqiudi/result/50001755",
+      "parameters": {
+        "team": "球队 id, 可在[懂球帝数据](https://www.dongqiudi.com/data)中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "dongqiudi",
+    "provider_name": "懂球帝",
+    "route_key": "/team_news/:team",
+    "route": {
+      "name": "球队新闻",
+      "path": "/team_news/:team",
+      "example": "/dongqiudi/team_news/50001755",
+      "parameters": {
+        "team": "球队 id, 可在[懂球帝数据](https://www.dongqiudi.com/data)中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "dongqiudi",
+    "provider_name": "懂球帝",
     "route_key": "/top_news/:id?",
     "route": {
       "name": "新闻",
@@ -793,6 +821,21 @@
         "id": "类别 id，不填默认头条新闻"
       },
       "description": "| 头条 | 深度 | 闲情 | D 站 | 中超 | 国际 | 英超 | 西甲 | 意甲 | 德甲 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 1    | 55   | 37   | 219  | 56   | 120  | 3    | 5    | 4    | 6    |"
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/people/:userid/status/:routeParams?",
+    "route": {
+      "name": "用户广播",
+      "path": "/people/:userid/status/:routeParams?",
+      "example": "/douban/people/75118396/status",
+      "parameters": {
+        "userid": "整数型用户 id",
+        "routeParams": "额外参数；见下"
+      },
+      "description": "\n::: tip\n-   **目前只支持整数型 id**\n-   字母型的 id，可以通过头像图片链接来找到其整数型 id，图片命名规则`ul[userid]-*.jpg`或`u[userid]-*.jpg`，即取文件名中间的数字\n-   例如：用户 id: `MovieL`他的头像图片链接：`https://img1.doubanio.com/icon/ul1128221-98.jpg`他的整数型 id: `1128221`\n:::\n\n对于豆瓣用户广播内容，在 `routeParams` 参数中以 query string 格式设置如下选项可以控制输出的样式\n\n| 键                         | 含义                                                           | 接受的值       | 默认值 |\n| -------------------------- | -------------------------------------------------------------- | -------------- | ------ |\n| readable                   | 是否开启细节排版可读性优化                                     | 0/1/true/false | false  |\n| authorNameBold             | 是否加粗作者名字                                               | 0/1/true/false | false  |\n| showAuthorInTitle          | 是否在标题处显示作者                                           | 0/1/true/false | true   |\n| showAuthorInDesc           | 是否在正文处显示作者                                           | 0/1/true/false | false  |\n| showAuthorAvatarInDesc     | 是否在正文处显示作者头像（若阅读器会提取正文图片，不建议开启） | 0/1/true/false | false  |\n| showEmojiForRetweet        | 显示 “🔁” 取代 “Fw”（转发）                                    | 0/1/true/false | false  |\n| showRetweetTextInTitle     | 在标题出显示转发评论（置为 false 则在标题只显示被转发的广播）  | 0/1/true/false | false  |\n| addLinkForPics             | 为图片添加可点击的链接                                         | 0/1/true/false | false  |\n| showTimestampInDescription | 在正文处显示广播的时间戳                                       | 0/1/true/false | false  |\n| showComments               | 在正文处显示评论                                               | 0/1/true/false | false  |\n| widthOfPics                | 广播配图宽（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| heightOfPics               | 广播配图高（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| sizeOfAuthorAvatar         | 作者头像大小                                                   | 数字           | 48     |\n\n  指定更多与默认值不同的参数选项可以改善 RSS 的可读性，如\n\n  [https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100](https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100)\n\n  的效果为\n\n  <img loading=\"lazy\" src=\"/img/readable-douban.png\" alt=\"豆瓣读书的可读豆瓣广播 RSS\" />"
     }
   },
   {
@@ -819,6 +862,21 @@
       "path": "/espresso",
       "example": "/economist/espresso",
       "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "eventernote",
+    "provider_name": "Eventernote",
+    "route_key": "/actors/:name/:id",
+    "route": {
+      "name": "声优活动及演唱会",
+      "path": "/actors/:name/:id",
+      "example": "/eventernote/actors/三森すずこ/2634",
+      "parameters": {
+        "name": "声优姓名",
+        "id": "声优 ID"
+      },
       "description": ""
     }
   },
@@ -1189,6 +1247,20 @@
     }
   },
   {
+    "provider_id": "furaffinity",
+    "provider_name": "Furaffinity",
+    "route_key": "/journals/:username",
+    "route": {
+      "name": "Journals",
+      "path": "/journals/:username",
+      "example": "/furaffinity/journals/fender",
+      "parameters": {
+        "username": "Username, can find in userpage"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "gamer",
     "provider_name": "巴哈姆特電玩資訊站",
     "route_key": "/ani/anime/:sn",
@@ -1297,6 +1369,40 @@
     }
   },
   {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/issue/:user/:repo/:state?/:labels?",
+    "route": {
+      "name": "Repo Issues",
+      "path": "/issue/:user/:repo/:state?/:labels?",
+      "example": "/github/issue/DIYgod/RSSHub/open",
+      "parameters": {
+        "user": "GitHub username",
+        "repo": "GitHub repo name",
+        "state": {
+          "description": "the state of the issues.",
+          "default": "open",
+          "options": [
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Closed",
+              "value": "closed"
+            },
+            {
+              "label": "All",
+              "value": "all"
+            }
+          ]
+        },
+        "labels": "a list of comma separated label names"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "google",
     "provider_name": "Google",
     "route_key": "/citations/:id",
@@ -1320,6 +1426,21 @@
       "example": "/google/doodles/zh-CN",
       "parameters": {
         "language": "Language, default to `zh-CN`, for other language values, you can get it from [Google Doodles official website](https://www.google.com/doodles)"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/news/:category/:locale",
+    "route": {
+      "name": "News",
+      "path": "/news/:category/:locale",
+      "example": "/google/news/Top stories/hl=en-US&gl=US&ceid=US:en",
+      "parameters": {
+        "category": "Category Title",
+        "locale": "locales, could be found behind `?`, including `hl`, `gl`, and `ceid` as parameters"
       },
       "description": ""
     }
@@ -1365,6 +1486,18 @@
     }
   },
   {
+    "provider_id": "guokr",
+    "provider_name": "果壳网",
+    "route_key": "/scientific",
+    "route": {
+      "name": "科学人",
+      "path": "/scientific",
+      "example": "/guokr/scientific",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "hellobtc",
     "provider_name": "白话区块链",
     "route_key": "/kepu/:channel?",
@@ -1388,6 +1521,20 @@
       "example": "/hellobtc/news",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "hkepc",
+    "provider_name": "HKEPC",
+    "route_key": "/:category?",
+    "route": {
+      "name": "HKEPC 电脑领域",
+      "path": "/:category?",
+      "example": "/hkepc/news",
+      "parameters": {
+        "category": "分类，见下表，默认为最新消息"
+      },
+      "description": "| 专题报导   | 新闻中心 | 新品快递 | 超频领域 | 流动数码 | 生活娱乐      | 会员消息 | 脑场新闻 | 业界资讯 | 最新消息 |\n| ---------- | -------- | -------- | -------- | -------- | ------------- | -------- | -------- | -------- | -------- |\n| coverStory | news     | review   | ocLab    | digital  | entertainment | member   | price    | press    | latest   |"
     }
   },
   {
@@ -1512,6 +1659,18 @@
   {
     "provider_id": "huxiu",
     "provider_name": "虎嗅",
+    "route_key": "/moment",
+    "route": {
+      "name": "24 小时",
+      "path": "/moment",
+      "example": "/huxiu/moment",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "huxiu",
+    "provider_name": "虎嗅",
     "route_key": "/search/:keyword",
     "route": {
       "name": "搜索",
@@ -1619,6 +1778,22 @@
       "parameters": {
         "user": "user id, the interger after user/ in the example URL",
         "tag": "tag, the string after tag/ in the example URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "javbus",
+    "provider_name": "JavBus",
+    "route_key": "/:path{.+}?",
+    "route": {
+      "name": "Works",
+      "path": "/:path{.+}?",
+      "example": "/javbus/star/rwt",
+      "parameters": {
+        "path": {
+          "description": "Any path of list page on javbus"
+        }
       },
       "description": ""
     }
@@ -1845,6 +2020,20 @@
     }
   },
   {
+    "provider_id": "keep",
+    "provider_name": "Keep",
+    "route_key": "/user/:id",
+    "route": {
+      "name": "运动日记",
+      "path": "/user/:id",
+      "example": "/keep/user/556b02c1ab59390afea671ea",
+      "parameters": {
+        "id": "Keep 用户 id"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "konachan",
     "provider_name": "Konachan.com Anime Wallpapers",
     "route_key": "/post/popular_recent/:period?",
@@ -1889,283 +2078,6 @@
       "example": "/laohu8/personal/3527667596890271",
       "parameters": {
         "id": "用户 ID，见网址链接"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "lemmy",
-    "provider_name": "Lemmy",
-    "route_key": "/:community/:sort?",
-    "route": {
-      "name": "Community",
-      "path": "/:community/:sort?",
-      "example": "/lemmy/technology@lemmy.world/Hot",
-      "parameters": {
-        "community": "Lemmmy community, for example technology@lemmy.world",
-        "sort": {
-          "description": "Sort by",
-          "options": [
-            {
-              "value": "Active",
-              "label": "Active"
-            },
-            {
-              "value": "Hot",
-              "label": "Hot"
-            },
-            {
-              "value": "New",
-              "label": "New"
-            },
-            {
-              "value": "Old",
-              "label": "Old"
-            },
-            {
-              "value": "TopDay",
-              "label": "TopDay"
-            },
-            {
-              "value": "TopWeek",
-              "label": "TopWeek"
-            },
-            {
-              "value": "TopMonth",
-              "label": "TopMonth"
-            },
-            {
-              "value": "TopYear",
-              "label": "TopYear"
-            },
-            {
-              "value": "TopAll",
-              "label": "TopAll"
-            },
-            {
-              "value": "MostComments",
-              "label": "MostComments"
-            },
-            {
-              "value": "NewComments",
-              "label": "NewComments"
-            },
-            {
-              "value": "TopHour",
-              "label": "TopHour"
-            },
-            {
-              "value": "TopSixHour",
-              "label": "TopSixHour"
-            },
-            {
-              "value": "TopTwelveHour",
-              "label": "TopTwelveHour"
-            },
-            {
-              "value": "TopThreeMonths",
-              "label": "TopThreeMonths"
-            },
-            {
-              "value": "TopSixMonths",
-              "label": "TopSixMonths"
-            },
-            {
-              "value": "TopNineMonths",
-              "label": "TopNineMonths"
-            },
-            {
-              "value": "Controversial",
-              "label": "Controversial"
-            },
-            {
-              "value": "Scaled",
-              "label": "Scaled"
-            }
-          ],
-          "default": "Active"
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "line",
-    "provider_name": "LINE",
-    "route_key": "/today/:edition?/:tab?",
-    "route": {
-      "name": "TODAY",
-      "path": "/today/:edition?/:tab?",
-      "example": "/line/today",
-      "parameters": {
-        "edition": "Edition, see below, Taiwan by default",
-        "tab": "Tag, can be found in URL, `top` by default"
-      },
-      "description": "Edition\n\n| Taiwan | Thailand | Hong Kong |\n| ------ | -------- | --------- |\n| tw     | th       | hk        |"
-    }
-  },
-  {
-    "provider_id": "liveuamap",
-    "provider_name": "Live Universal Awareness Map",
-    "route_key": "/:region?",
-    "route": {
-      "name": "实时消息",
-      "path": "/:region?",
-      "example": "/liveuamap",
-      "parameters": {
-        "region": "region 热点地区，默认为`ukraine`，其他选项见liveuamap.com的三级域名"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "lofter",
-    "provider_name": "Lofter",
-    "route_key": "/tag/:name?/:type?",
-    "route": {
-      "name": "Tag",
-      "path": "/tag/:name?/:type?",
-      "example": "/lofter/tag/cosplay/date",
-      "parameters": {
-        "name": "tag name, such as `名侦探柯南`, `摄影` by default",
-        "type": "ranking type, see below, new by default"
-      },
-      "description": "| new  | date | week | month | total |\n| ---- | ---- | ---- | ----- | ----- |\n| 最新 | 日榜 | 周榜 | 月榜  | 总榜  |"
-    }
-  },
-  {
-    "provider_id": "lofter",
-    "provider_name": "Lofter",
-    "route_key": "/user/:name?",
-    "route": {
-      "name": "User",
-      "path": "/user/:name?",
-      "example": "/lofter/user/i",
-      "parameters": {
-        "name": "Lofter user name, can be found in the URL"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "macfilos",
-    "provider_name": "Macfilos",
-    "route_key": "/blog",
-    "route": {
-      "name": "Blog",
-      "path": "/blog",
-      "example": "/macfilos/blog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "magnumphotos",
-    "provider_name": "Magnum Photos",
-    "route_key": "/magazine",
-    "route": {
-      "name": "Magazine",
-      "path": "/magazine",
-      "example": "/magnumphotos/magazine",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "mastodon",
-    "provider_name": "Mastodon",
-    "route_key": "/acct/:acct/statuses/:only_media?",
-    "route": {
-      "name": "User timeline",
-      "path": "/acct/:acct/statuses/:only_media?",
-      "example": "/mastodon/acct/Mastodon@mastodon.social/statuses",
-      "parameters": {
-        "acct": "Webfinger account URI, like `user@host`",
-        "only_media": {
-          "description": "whether only display media content, default to false, any value to true",
-          "options": [
-            {
-              "value": "true",
-              "label": "true"
-            },
-            {
-              "value": "false",
-              "label": "false"
-            }
-          ],
-          "default": "false"
-        }
-      },
-      "description": "Started from Mastodon v4.0.0, the use of the `search` API in the route no longer requires a user token.\nIf the domain of your Webfinger account URI is the same as the API host of the instance (i.e., no delegation called in some other protocols), then no configuration is required and the route is available out of the box.\nHowever, you can still specify these route-specific configurations if you need to override them."
-    }
-  },
-  {
-    "provider_id": "mastodon",
-    "provider_name": "Mastodon",
-    "route_key": "/timeline/:site/:only_media?",
-    "route": {
-      "name": "Instance timeline (local)",
-      "path": "/timeline/:site/:only_media?",
-      "example": "/mastodon/timeline/pawoo.net/true",
-      "parameters": {
-        "site": "instance address, only domain, no `http://` or `https://` protocol header",
-        "only_media": {
-          "description": "whether only display media content, default to false, any value to true",
-          "options": [
-            {
-              "value": "true",
-              "label": "true"
-            },
-            {
-              "value": "false",
-              "label": "false"
-            }
-          ],
-          "default": "false"
-        }
-      },
-      "description": "If the instance address is not `mastodon.social` or `pawoo.net`, then the route requires `ALLOW_USER_SUPPLY_UNSAFE_DOMAIN` to be `true`."
-    }
-  },
-  {
-    "provider_id": "mirror",
-    "provider_name": "Mirror",
-    "route_key": "/:id",
-    "route": {
-      "name": "User",
-      "path": "/:id",
-      "example": "/mirror/tingfei.eth",
-      "parameters": {
-        "id": "user id"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "misskey",
-    "provider_name": "Misskey",
-    "route_key": "/notes/featured/:site",
-    "route": {
-      "name": "Featured Notes",
-      "path": "/notes/featured/:site",
-      "example": "/misskey/notes/featured/misskey.io",
-      "parameters": {
-        "site": "instance address, domain only, without `http://` or `https://` protocol header"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "misskey",
-    "provider_name": "Misskey",
-    "route_key": "/users/notes/:username/:routeParams?",
-    "route": {
-      "name": "User timeline",
-      "path": "/users/notes/:username/:routeParams?",
-      "example": "/misskey/users/notes/support@misskey.io",
-      "parameters": {
-        "username": "Misskey username in the format of username@instance.domain",
-        "routeParams": "\n| Key               | Description                             | Accepted Values | Default |\n| ----------------- | --------------------------------------- | --------------- | ------- |\n| withRenotes       | Include renotes in the timeline         | 0/1/true/false  | false   |\n| mediaOnly         | Only return posts containing media      | 0/1/true/false  | false   |\n| simplifyAuthor    | Simplify author field in feed items     | 0/1/true/false  | false   |\n\nNote: `withRenotes` and `mediaOnly` are mutually exclusive and cannot both be set to true.\n\nExamples:\n- /misskey/users/notes/mttb2ccp@misskey.io/withRenotes=true\n- /misskey/users/notes/mttb2ccp@misskey.io/mediaOnly=true"
       },
       "description": ""
     }

@@ -127,6 +127,22 @@
     }
   },
   {
+    "provider_id": "dol",
+    "provider_name": "Thailand Department of Lands",
+    "route_key": "/announce/:owner?/:province?/:office?",
+    "route": {
+      "name": "e-LandsAnnouncement",
+      "path": "/announce/:owner?/:province?/:office?",
+      "example": "/dol/announce",
+      "parameters": {
+        "owner": "Requester/former land owner",
+        "province": "Province which the land is belongs to",
+        "office": "DOL office name which the land is belongs to (สำนักงานที่ดิน(กรุงเทพมหานคร|จังหวัด*) [สาขา*])"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "go",
     "provider_name": "JapanGov",
     "route_key": "/mhlw/pdf/:category{.+}?",
@@ -287,6 +303,20 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
+    "route_key": "/moa/suburl/:suburl{.+}",
+    "route": {
+      "name": "中华人民共和国农业农村部 - 新闻",
+      "path": "/moa/suburl/:suburl{.+}",
+      "example": "/gov/moa/suburl/gk/zcjd/",
+      "parameters": {
+        "suburl": "下级目录，请使用最下级的目录"
+      },
+      "description": "更多例子：\n  -   `农业农村部动态`的网页链接是`http://www.moa.gov.cn/xw/zwdt/`, 对应的`suburl`是`xw/zwdt`\n  -   `财务公开`的网页链接是`http://www.moa.gov.cn/gk/cwgk_1/`, 对应的`suburl`是`gk/cwgk_1`\n  -   像[政策法规](http://www.moa.gov.cn/gk/zcfg/)这种页面(`http://www.moa.gov.cn/gk/zcfg/`), 它**不是**一个合法的分类目录，它是`法律`, `行政法规`, `部门规章`等一堆栏目的集合，这时候请点开对应栏目的`更多 >>`进入栏目的最下级目录，再根据上面的规则提取`suburl`\n  -   特别地，`图片新闻`对应的`suburl`为`xw/tpxw/`, `最新公开`对应的`suburl`为`govpublic`, `数据>最新发布`对应的`suburl`为`sj/zxfb`"
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
     "route_key": "/moa/szcpxx",
     "route": {
       "name": "中华人民共和国农业农村部生猪专题重要政策",
@@ -294,6 +324,20 @@
       "example": "/gov/moa/szcpxx",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/moa/zdscxx/:category{.+}?",
+    "route": {
+      "name": "中华人民共和国农业农村部数据",
+      "path": "/moa/zdscxx/:category{.+}?",
+      "example": "/gov/moa/zdscxx",
+      "parameters": {
+        "category": "分类，默认为全部，见下表"
+      },
+      "description": "::: tip\n  若订阅 [中华人民共和国农业农村部数据](http://zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp) 的 `价格指数` 报告主题。此时路由为 [`/gov/moa/zdscxx/价格指数`](https://rsshub.app/gov/moa/zdscxx/价格指数)。\n  \n  若订阅 `央视网` 报告来源 的 `蔬菜生产` 报告主题。此时路由为 [`/gov/moa/zdscxx/央视网/蔬菜生产`](https://rsshub.app/gov/moa/zdscxx/央视网/蔬菜生产)。\n:::\n\n| 价格指数 | 供需形势 | 分析报告周报 | 分析报告日报 | 日历信息 | 蔬菜生产 |\n| -------- | -------- | ------------ | ------------ | -------- | -------- |\n    "
     }
   },
   {
@@ -348,6 +392,34 @@
         "category": "分类，见下表，默认为新闻发布"
       },
       "description": "| 新闻发布 | 通知通告 | 委领导动态 | 司局动态 | 地方动态 |\n| -------- | -------- | ---------- | -------- | -------- |\n| xwfb     | tzgg     | wlddt      | sjdt     | dfdt     |"
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/npc/:caty",
+    "route": {
+      "name": "通用",
+      "path": "/npc/:caty",
+      "example": "/gov/npc/c183",
+      "parameters": {
+        "caty": "分类名，支持形如 `http://www.npc.gov.cn/npc/c2/*/` 的网站，传入 npc 之后的参数"
+      },
+      "description": "| 立法 | 监督 | 代表 | 理论 | 权威发布 | 滚动新闻 |\n| ---- | ---- | ---- | ---- | -------- | -------- |\n| c183 | c184 | c185 | c189 | c12435   | c10134   |"
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/safe/business/:site?",
+    "route": {
+      "name": "业务咨询",
+      "path": "/safe/business/:site?",
+      "example": "/gov/safe/business/beijing",
+      "parameters": {
+        "site": "站点，见上表，默认为 beijing"
+      },
+      "description": ""
     }
   },
   {
@@ -416,6 +488,37 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
+    "route_key": "/sh/wgj/:page?",
+    "route": {
+      "name": "上海市文旅局审批公告",
+      "path": [
+        "/sh/wgj/:page?",
+        "/shanghai/wgj/:page?"
+      ],
+      "example": "/gov/sh/wgj",
+      "parameters": {
+        "page": "页数，默认第 1 页"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/shenzhen/zjj/xxgk/:caty",
+    "route": {
+      "name": "深圳市住房和建设局",
+      "path": "/shenzhen/zjj/xxgk/:caty",
+      "example": "/gov/shenzhen/zjj/xxgk/tzgg",
+      "parameters": {
+        "caty": "信息类别"
+      },
+      "description": "| 通知公告 |\n| :------: |\n|   tzgg   |"
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
     "route_key": "/suzhou/news/:uid",
     "route": {
       "name": "政府新闻",
@@ -451,6 +554,20 @@
       "example": "/gov/wuhan/sy/whyw",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/xuzhou/hrss/:category?",
+    "route": {
+      "name": "徐州市人力资源和社会保障局",
+      "path": "/xuzhou/hrss/:category?",
+      "example": "/gov/xuzhou/hrss",
+      "parameters": {
+        "category": "分类，见下表，默认为通知公告"
+      },
+      "description": "| 通知公告 | 要闻动态 | 县区动态 | 事业招聘 | 企业招聘 | 政声传递 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n|          | 001001   | 001002   | 001004   | 001005   | 001006   |"
     }
   },
   {
@@ -526,6 +643,20 @@
     }
   },
   {
+    "provider_id": "parliament",
+    "provider_name": "Thailand Parliament",
+    "route_key": "/section77/:type?",
+    "route": {
+      "name": "Thailand Parliament Draft of Law's public hearing system",
+      "path": "/section77/:type?",
+      "example": "/parliament/section77",
+      "parameters": {
+        "type": "Type of hearing status, see below"
+      },
+      "description": "| Presented by MP *       | Presented by People * | Hearing Ongoing     | Hearing ended   | Hearing result reported  | Waiting for PM approval | Assigned into the session | Processed  | PM Rejected   |\n| ------------------------ | ---------------------- | ------------------- | --------------- | ------------------------ | ----------------------- | ------------------------- | ---------- | ------------- |\n| presentbymp              | presentbyperson        | openwsu             | closewsu        | reportwsu                | substatus1              | substatus2                | substatus3 | closewsubypm  |\n| เสนอโดยสมาชิกสภาผู้แทนราษฏร | เสนอโดยประชาชน         | กำลังเปิดรับฟังความคิดเห็น | ปิดรับฟังความคิดเห็น | รายงานผลการรับฟังความคิดเห็น | รอคำรับรองจากนายกรัฐมนตรี   | บรรจุเข้าระเบียบวาระ         | พิจารณาแล้ว  | นายกฯ ไม่รับรอง |\n\n  *Note:* For `presentbymp` and `presentbyperson`, it can also add:\n\n  -   `-m` for the draft which Speaker of Parliament considered as a monetary draft (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า เป็นร่างการเงิน), or\n  -   `-nm` for non-monetary one (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า ไม่เป็นร่างการเงิน)."
+    }
+  },
+  {
     "provider_id": "parliament.uk",
     "provider_name": "UK Parliament",
     "route_key": "/commonslibrary/type/:topic?",
@@ -565,6 +696,20 @@
         "type": "dynamic | announcement | industry"
       },
       "description": "| 协会动态 | 通知公告 |行业动态 |\n| -------- | ------------ | -------- |\n| dynamic | announcement | industry |"
+    }
+  },
+  {
+    "provider_id": "whitehouse",
+    "provider_name": "The White House",
+    "route_key": "/news/:category?",
+    "route": {
+      "name": "News",
+      "path": "/news/:category?",
+      "example": "/whitehouse/news",
+      "parameters": {
+        "category": "Category, see below, all by default"
+      },
+      "description": "| All | Articles | Briefings and Statements | Presidential Actions | Remarks |\n| --- | -------- | ------------------------ | -------------------- | ------- |\n|     | articles | briefings-statements     | presidential-actions | remarks |"
     }
   },
   {

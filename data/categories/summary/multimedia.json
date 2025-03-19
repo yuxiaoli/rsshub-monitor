@@ -97,6 +97,18 @@
     }
   },
   {
+    "provider_id": "6v123",
+    "provider_name": "6v 电影",
+    "route_key": "/latestTVSeries",
+    "route": {
+      "name": "最新电视剧",
+      "path": "/latestTVSeries",
+      "example": "/6v123/latestTVSeries",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "ajmide",
     "provider_name": "阿基米德 FM",
     "route_key": "/:id",
@@ -189,6 +201,20 @@
     }
   },
   {
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/tag/:keyword",
+    "route": {
+      "name": "Tag",
+      "path": "/tag/:keyword",
+      "example": "/chikubi/tag/ドリームチケット",
+      "parameters": {
+        "keyword": "Keyword"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "cntv",
     "provider_name": "CNTV",
     "route_key": "/:column",
@@ -214,6 +240,18 @@
         "id": "从剧集详情页 URL 处获取，如：`https://www.mp4kan.com/html/LBTANI22222I.html`，取 `.html` 前面部分"
       },
       "description": "::: tip\n由于大部分详情页是 `/html/xxx.html`，还有部分是 `/detail/123.html`，所以此处做了兼容，id 取 `xxx` 或者 `123` 都可以。\n\n新增 `second` 参数，用于选择下载地址二（地址二不可用或者不填都默认地址一），用法: `/domp4/detail/LBTANI22222I?second=1`。\n:::"
+    }
+  },
+  {
+    "provider_id": "domp4",
+    "provider_name": "DoMP4 影视",
+    "route_key": "/latest_movie_bt",
+    "route": {
+      "name": "最近更新的电源BT列表",
+      "path": "/latest_movie_bt",
+      "example": "/domp4/latest_movie_bt",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -280,6 +318,22 @@
     }
   },
   {
+    "provider_id": "javbus",
+    "provider_name": "JavBus",
+    "route_key": "/:path{.+}?",
+    "route": {
+      "name": "Works",
+      "path": "/:path{.+}?",
+      "example": "/javbus/star/rwt",
+      "parameters": {
+        "path": {
+          "description": "Any path of list page on javbus"
+        }
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "javdb",
     "provider_name": "JavDB",
     "route_key": "/actors/:id/:filter?",
@@ -307,6 +361,66 @@
         "filter": "过滤，见下表，默认为 `全部`"
       },
       "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有片商编号参见 [片商庫](https://javdb.com/makers)"
+    }
+  },
+  {
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/search/:keyword?/:filter?/:sort?",
+    "route": {
+      "name": "搜索",
+      "path": "/search/:keyword?/:filter?/:sort?",
+      "example": "/javdb/search/巨乳",
+      "parameters": {
+        "keyword": "关键字，默认为空",
+        "filter": "过滤，见下表，默认为 `可播放`",
+        "sort": "排序，见下表，默认为 `按相关度排序`"
+      },
+      "description": "过滤\n\n| 全部 | 占位 | 可播放   | 單體作品 | 演員  | 片商  | 導演     | 系列   | 番號 | 可下載   | 字幕  | 預覽圖  |\n| ---- | ---- | -------- | -------- | ----- | ----- | -------- | ------ | ---- | -------- | ----- | ------- |\n|      | none | playable | single   | actor | maker | director | series | code | download | cnsub | preview |\n\n  排序\n\n| 按相关度排序 | 按发布时间排序 |\n| ------------ | -------------- |\n| 0            | 1              |"
+    }
+  },
+  {
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/series/:id/:filter?",
+    "route": {
+      "name": "系列",
+      "path": "/series/:id/:filter?",
+      "example": "/javdb/series/1NW",
+      "parameters": {
+        "id": "编号，可在系列页 URL 中找到",
+        "filter": "过滤，见下表，默认为 `全部`"
+      },
+      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有系列编号参见 [系列庫](https://javdb.com/series)"
+    }
+  },
+  {
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/video_codes/:code/:filter?",
+    "route": {
+      "name": "番号",
+      "path": "/video_codes/:code/:filter?",
+      "example": "/javdb/video_codes/SIVR",
+      "parameters": {
+        "id": "番号前缀",
+        "filter": "过滤，见下表，默认为 `全部`"
+      },
+      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |"
+    }
+  },
+  {
+    "provider_id": "javtiful",
+    "provider_name": "Javtiful",
+    "route_key": "/actress/:id",
+    "route": {
+      "name": "Actress",
+      "path": "/actress/:id",
+      "example": "/javtiful/actress/akari-tsumugi",
+      "parameters": {
+        "id": "Actress name"
+      },
+      "description": ""
     }
   },
   {
@@ -510,6 +624,20 @@
   {
     "provider_id": "pornhub",
     "provider_name": "PornHub",
+    "route_key": "/category/:caty",
+    "route": {
+      "name": "Category",
+      "path": "/category/:caty",
+      "example": "/pornhub/category/popular-with-women",
+      "parameters": {
+        "caty": "category, see [categories](https://www.pornhub.com/webmasters/categories)"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "pornhub",
+    "provider_name": "PornHub",
     "route_key": "/pornstar/:username/:language?/:sort?",
     "route": {
       "name": "Pornstar",
@@ -656,6 +784,20 @@
     }
   },
   {
+    "provider_id": "soundon",
+    "provider_name": "SoundOn",
+    "route_key": "/p/:id",
+    "route": {
+      "name": "Podcast",
+      "path": "/p/:id",
+      "example": "/soundon/p/33a68cdc-18ad-4192-84cc-22bd7fdc6a31",
+      "parameters": {
+        "id": "Podcast ID"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "storyfm",
     "provider_name": "故事 FM",
     "route_key": "/episodes",
@@ -679,6 +821,21 @@
         "tid": "帖子 id, 可在帖子 URL 中找到"
       },
       "description": "::: tip\n  帖子 id 查找办法:\n\n  打开想跟踪的帖子，比如：`https://t66y.com/htm_data/20/1811/3286088.html` 其中 `3286088` 就是帖子 id。\n:::"
+    }
+  },
+  {
+    "provider_id": "themoviedb",
+    "provider_name": "The Movie Database",
+    "route_key": "/collection/:id/:lang?",
+    "route": {
+      "name": "Collection",
+      "path": "/collection/:id/:lang?",
+      "example": "/themoviedb/collection/131292/en-US",
+      "parameters": {
+        "id": "Collection ID",
+        "lang": "Language"
+      },
+      "description": ""
     }
   },
   {
@@ -763,6 +920,24 @@
     }
   },
   {
+    "provider_id": "u3c3",
+    "provider_name": "U3C3",
+    "route_key": "/:type?/:preview?",
+    "route": {
+      "name": "Search",
+      "path": [
+        "/search/:keyword/:preview?",
+        "/:type?/:preview?"
+      ],
+      "example": "/u3c3/search/新片速递",
+      "parameters": {
+        "keyword": "Search keyword",
+        "preview": "Show image preview, off by default, non empty value means on"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "youku",
     "provider_name": "优酷",
     "route_key": "/channel/:channelId/:embed?",
@@ -775,6 +950,53 @@
         "embed": "默认为开启内嵌视频, 任意值为关闭"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "yyets",
+    "provider_name": "人人影视",
+    "route_key": "/article/:type?",
+    "route": {
+      "name": "影视资讯",
+      "path": "/article/:type?",
+      "example": "/yyets/article",
+      "parameters": {
+        "type": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "news",
+              "label": "影视资讯"
+            },
+            {
+              "value": "report",
+              "label": "收视快报"
+            },
+            {
+              "value": "m_review",
+              "label": "人人影评"
+            },
+            {
+              "value": "t_review",
+              "label": "人人剧评"
+            },
+            {
+              "value": "new_review",
+              "label": "新剧评测"
+            },
+            {
+              "value": "recom",
+              "label": "片单推荐"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |"
     }
   },
   {

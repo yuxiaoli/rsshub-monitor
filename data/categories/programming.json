@@ -106,6 +106,24 @@
     }
   },
   {
+    "provider_id": "baai",
+    "provider_name": "北京智源人工智能研究院",
+    "route_key": "/hub/:tagId?/:sort?/:range?",
+    "route": {
+      "path": [
+        "/hub/:tagId?/:sort?/:range?"
+      ],
+      "example": "/baai/hub",
+      "parameters": {
+        "tagId": "社群 ID，可在 [社群页](https://hub.baai.ac.cn/taglist) 或 URL 中找到",
+        "sort": "排序，见下表，默认为 `new`",
+        "range": "时间跨度，仅在排序 `readCnt` 时有效"
+      },
+      "description": "排序\n\n| 最新 | 最热    |\n| ---- | ------- |\n| new  | readCnt |\n\n时间跨度\n\n| 3 天 | 本周 | 本月 |\n| ---- | ---- | ---- |\n| 3    | 7    | 30   |",
+      "name": "智源社区"
+    }
+  },
+  {
     "provider_id": "bestblogs",
     "provider_name": "bestblogs.dev",
     "route_key": "/feeds/:category?",
@@ -130,6 +148,20 @@
         "repo_slug": "Repository"
       },
       "name": "Commits"
+    }
+  },
+  {
+    "provider_id": "bitbucket",
+    "provider_name": "Bitbucket",
+    "route_key": "/tags/:workspace/:repo_slug",
+    "route": {
+      "path": "/tags/:workspace/:repo_slug",
+      "example": "/bitbucket/tags/blaze-lib/blaze",
+      "parameters": {
+        "workspace": "Workspace",
+        "repo_slug": "Repository"
+      },
+      "name": "Tags"
     }
   },
   {
@@ -286,6 +318,16 @@
     }
   },
   {
+    "provider_id": "deepseek",
+    "provider_name": "Deepseek",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/deepseek/news",
+      "name": "新闻"
+    }
+  },
+  {
     "provider_id": "devtrium",
     "provider_name": "Devtrium",
     "route_key": "/",
@@ -382,6 +424,22 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
+    "route_key": "/contributors/:user/:repo/:order?/:anon?",
+    "route": {
+      "path": "/contributors/:user/:repo/:order?/:anon?",
+      "example": "/github/contributors/DIYgod/RSSHub",
+      "parameters": {
+        "user": "User name",
+        "repo": "Repo name",
+        "order": "Sort order by commit numbers, desc and asc (descending by default)",
+        "anon": "Show anonymous users. Defaults to no, use any values for yes."
+      },
+      "name": "Repo Contributors"
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
     "route_key": "/gist/:gistId",
     "route": {
       "path": "/gist/:gistId",
@@ -390,6 +448,40 @@
         "gistId": "Gist ID"
       },
       "name": "Gist Commits"
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/issue/:user/:repo/:state?/:labels?",
+    "route": {
+      "path": "/issue/:user/:repo/:state?/:labels?",
+      "view": 5,
+      "example": "/github/issue/DIYgod/RSSHub/open",
+      "parameters": {
+        "user": "GitHub username",
+        "repo": "GitHub repo name",
+        "state": {
+          "description": "the state of the issues.",
+          "default": "open",
+          "options": [
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Closed",
+              "value": "closed"
+            },
+            {
+              "label": "All",
+              "value": "all"
+            }
+          ]
+        },
+        "labels": "a list of comma separated label names"
+      },
+      "name": "Repo Issues"
     }
   },
   {
@@ -495,6 +587,19 @@
     }
   },
   {
+    "provider_id": "hackmd",
+    "provider_name": "HackMD",
+    "route_key": "/profile/:path",
+    "route": {
+      "path": "/profile/:path",
+      "example": "/hackmd/profile/hackmd",
+      "parameters": {
+        "path": "userpath or teampath"
+      },
+      "name": "Profile"
+    }
+  },
+  {
     "provider_id": "hellogithub",
     "provider_name": "HelloGitHub",
     "route_key": "/article/:sort?",
@@ -533,6 +638,20 @@
       "parameters": {},
       "name": "Hex-Rays News",
       "url": "hex-rays.com/"
+    }
+  },
+  {
+    "provider_id": "hitcon",
+    "provider_name": "HITCON",
+    "route_key": "/zeroday/vulnerability/:status?",
+    "route": {
+      "name": "漏洞",
+      "path": "/zeroday/vulnerability/:status?",
+      "example": "/hitcon/zeroday/vulnerability",
+      "parameters": {
+        "status": "漏洞状态，见下表"
+      },
+      "description": "| 缺省   | all  | closed | disclosed | patching |\n| ------ | ---- | ------ | --------- | -------- |\n| 活動中 | 全部 | 關閉   | 公開      | 修補中   |"
     }
   },
   {
@@ -615,6 +734,20 @@
   {
     "provider_id": "juejin",
     "provider_name": "掘金",
+    "route_key": "/category/:category",
+    "route": {
+      "path": "/category/:category",
+      "example": "/juejin/category/frontend",
+      "parameters": {
+        "category": "分类名"
+      },
+      "name": "分类",
+      "description": "| 后端    | 前端     | Android | iOS | 人工智能 | 开发工具 | 代码人生 | 阅读    |\n| ------- | -------- | ------- | --- | -------- | -------- | -------- | ------- |\n| backend | frontend | android | ios | ai       | freebie  | career   | article |"
+    }
+  },
+  {
+    "provider_id": "juejin",
+    "provider_name": "掘金",
     "route_key": "/collections/:userId",
     "route": {
       "path": "/collections/:userId",
@@ -663,6 +796,19 @@
         "id": "用户 id, 可在用户页 URL 中找到"
       },
       "name": "用户文章"
+    }
+  },
+  {
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/tag/:tag",
+    "route": {
+      "path": "/tag/:tag",
+      "example": "/juejin/tag/JavaScript",
+      "parameters": {
+        "tag": "标签名，可在标签 URL 中找到"
+      },
+      "name": "标签"
     }
   },
   {
@@ -731,6 +877,19 @@
       "parameters": {},
       "name": "技术团队博客",
       "url": "tech.meituan.com"
+    }
+  },
+  {
+    "provider_id": "modb",
+    "provider_name": "墨天轮",
+    "route_key": "/topic/:id",
+    "route": {
+      "path": "/topic/:id",
+      "example": "/modb/topic/44158",
+      "parameters": {
+        "id": "合辑序号"
+      },
+      "name": "合辑"
     }
   },
   {
@@ -886,6 +1045,16 @@
         "categoryId": "categoryId from page url"
       },
       "name": "腾讯云开发者社区专栏"
+    }
+  },
+  {
+    "provider_id": "thoughtworks",
+    "provider_name": "ThoughtWorks",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "example": "/thoughtworks/blog",
+      "name": "Inside Blog"
     }
   },
   {

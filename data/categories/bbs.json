@@ -101,6 +101,22 @@
   {
     "provider_id": "baidu",
     "provider_name": "百度",
+    "route_key": "/tieba/post/lz/:id",
+    "route": {
+      "path": [
+        "/tieba/post/:id",
+        "/tieba/post/lz/:id"
+      ],
+      "example": "/baidu/tieba/post/686961453",
+      "parameters": {
+        "id": "帖子 ID"
+      },
+      "name": "帖子动态"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
     "route_key": "/tieba/search/:qw/:routeParams?",
     "route": {
       "path": "/tieba/search/:qw/:routeParams?",
@@ -207,6 +223,21 @@
       },
       "name": "分类文章",
       "description": "| id | 分类     |\n| -- | -------- |\n| 0  | 全部     |\n| 1  | 讨论     |\n| 2  | 分享     |\n| 3  | 露个脸   |\n| 4  | 访谈故事 |\n| 5  | 招聘     |\n| 10 | 海外移民 |\n| 12 | 英语     |\n| 14 | 电鸭官方 |\n| 15 | 独立产品 |\n| 17 | 闲话开源 |\n| 19 | Web3     |\n| 21 | 设计     |\n| 22 | 人才库   |\n| 23 | Upwork   |\n| 24 | 经验课   |"
+    }
+  },
+  {
+    "provider_id": "flyert",
+    "provider_name": "飞客茶馆",
+    "route_key": "/forum/:params{.+}?",
+    "route": {
+      "path": "/forum/:params{.+}?",
+      "name": "会员说",
+      "url": "www.flyert.com.cn",
+      "example": "/flyert/forum",
+      "parameters": {
+        "params": "参数，默认为空，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [酒店集团优惠](https://www.flyert.com.cn/forum.php?mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19)，网址为 `https://www.flyert.com.cn/forum.php?mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19`。截取 `https://www.flyert.com.cn/forum.php?` 到末尾的部分 `mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19` **进行 UrlEncode 编码** 后作为参数填入，此时路由为 [`/flyert/forum/mod%3Dforumdisplay%26sum%3Dall%26fid%3Dall%26catid%3D322%26filter%3Dsortid%26sortid%3D144%26searchsort%3D1%26youhui_type%3D226`](https://rsshub.app/flyert/forum/mod%3Dforumdisplay%26sum%3Dall%26fid%3Dall%26catid%3D322%26filter%3Dsortid%26sortid%3D144%26searchsort%3D1%26youhui_type%3D226)。\n:::\n    "
     }
   },
   {
@@ -409,6 +440,20 @@
       "example": "/v2ex/xna",
       "parameters": {},
       "name": "XNA"
+    }
+  },
+  {
+    "provider_id": "yamibo",
+    "provider_name": "百合会",
+    "route_key": "/bbs/thread/:tid",
+    "route": {
+      "name": "BBS - 讨论串",
+      "path": "/bbs/thread/:tid",
+      "example": "/yamibo/bbs/thread/541914",
+      "parameters": {
+        "tid": "讨论串 id，可从URL中提取。https://bbs.yamibo.com/forum.php?mod=viewthread&tid=xxxx中的xxx或https://bbs.yamibo.com/thread-aaa-b-c.html中的aaa部分即为tid值"
+      },
+      "description": "::: warning\n百合会BBS访问部分讨论串需要用户登录认证，请参考配置说明\n:::"
     }
   },
   {

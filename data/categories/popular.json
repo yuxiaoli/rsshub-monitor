@@ -790,6 +790,32 @@
   {
     "provider_id": "dongqiudi",
     "provider_name": "懂球帝",
+    "route_key": "/result/:team",
+    "route": {
+      "path": "/result/:team",
+      "example": "/dongqiudi/result/50001755",
+      "parameters": {
+        "team": "球队 id, 可在[懂球帝数据](https://www.dongqiudi.com/data)中找到"
+      },
+      "name": "足球赛果"
+    }
+  },
+  {
+    "provider_id": "dongqiudi",
+    "provider_name": "懂球帝",
+    "route_key": "/team_news/:team",
+    "route": {
+      "path": "/team_news/:team",
+      "example": "/dongqiudi/team_news/50001755",
+      "parameters": {
+        "team": "球队 id, 可在[懂球帝数据](https://www.dongqiudi.com/data)中找到"
+      },
+      "name": "球队新闻"
+    }
+  },
+  {
+    "provider_id": "dongqiudi",
+    "provider_name": "懂球帝",
     "route_key": "/top_news/:id?",
     "route": {
       "path": "/top_news/:id?",
@@ -799,6 +825,22 @@
       },
       "name": "新闻",
       "description": "| 头条 | 深度 | 闲情 | D 站 | 中超 | 国际 | 英超 | 西甲 | 意甲 | 德甲 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 1    | 55   | 37   | 219  | 56   | 120  | 3    | 5    | 4    | 6    |"
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/people/:userid/status/:routeParams?",
+    "route": {
+      "path": "/people/:userid/status/:routeParams?",
+      "view": 1,
+      "example": "/douban/people/75118396/status",
+      "parameters": {
+        "userid": "整数型用户 id",
+        "routeParams": "额外参数；见下"
+      },
+      "name": "用户广播",
+      "description": "\n::: tip\n-   **目前只支持整数型 id**\n-   字母型的 id，可以通过头像图片链接来找到其整数型 id，图片命名规则`ul[userid]-*.jpg`或`u[userid]-*.jpg`，即取文件名中间的数字\n-   例如：用户 id: `MovieL`他的头像图片链接：`https://img1.doubanio.com/icon/ul1128221-98.jpg`他的整数型 id: `1128221`\n:::\n\n对于豆瓣用户广播内容，在 `routeParams` 参数中以 query string 格式设置如下选项可以控制输出的样式\n\n| 键                         | 含义                                                           | 接受的值       | 默认值 |\n| -------------------------- | -------------------------------------------------------------- | -------------- | ------ |\n| readable                   | 是否开启细节排版可读性优化                                     | 0/1/true/false | false  |\n| authorNameBold             | 是否加粗作者名字                                               | 0/1/true/false | false  |\n| showAuthorInTitle          | 是否在标题处显示作者                                           | 0/1/true/false | true   |\n| showAuthorInDesc           | 是否在正文处显示作者                                           | 0/1/true/false | false  |\n| showAuthorAvatarInDesc     | 是否在正文处显示作者头像（若阅读器会提取正文图片，不建议开启） | 0/1/true/false | false  |\n| showEmojiForRetweet        | 显示 “🔁” 取代 “Fw”（转发）                                    | 0/1/true/false | false  |\n| showRetweetTextInTitle     | 在标题出显示转发评论（置为 false 则在标题只显示被转发的广播）  | 0/1/true/false | false  |\n| addLinkForPics             | 为图片添加可点击的链接                                         | 0/1/true/false | false  |\n| showTimestampInDescription | 在正文处显示广播的时间戳                                       | 0/1/true/false | false  |\n| showComments               | 在正文处显示评论                                               | 0/1/true/false | false  |\n| widthOfPics                | 广播配图宽（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| heightOfPics               | 广播配图高（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| sizeOfAuthorAvatar         | 作者头像大小                                                   | 数字           | 48     |\n\n  指定更多与默认值不同的参数选项可以改善 RSS 的可读性，如\n\n  [https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100](https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100)\n\n  的效果为\n\n  <img loading=\"lazy\" src=\"/img/readable-douban.png\" alt=\"豆瓣读书的可读豆瓣广播 RSS\" />"
     }
   },
   {
@@ -827,6 +869,21 @@
       "parameters": {},
       "name": "Espresso",
       "url": "economist.com/the-world-in-brief"
+    }
+  },
+  {
+    "provider_id": "eventernote",
+    "provider_name": "Eventernote",
+    "route_key": "/actors/:name/:id",
+    "route": {
+      "path": "/actors/:name/:id",
+      "view": 3,
+      "example": "/eventernote/actors/三森すずこ/2634",
+      "parameters": {
+        "name": "声优姓名",
+        "id": "声优 ID"
+      },
+      "name": "声优活动及演唱会"
     }
   },
   {
@@ -1199,6 +1256,20 @@
     }
   },
   {
+    "provider_id": "furaffinity",
+    "provider_name": "Furaffinity",
+    "route_key": "/journals/:username",
+    "route": {
+      "path": "/journals/:username",
+      "name": "Journals",
+      "url": "furaffinity.net",
+      "example": "/furaffinity/journals/fender",
+      "parameters": {
+        "username": "Username, can find in userpage"
+      }
+    }
+  },
+  {
     "provider_id": "gamer",
     "provider_name": "巴哈姆特電玩資訊站",
     "route_key": "/ani/anime/:sn",
@@ -1310,6 +1381,40 @@
     }
   },
   {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/issue/:user/:repo/:state?/:labels?",
+    "route": {
+      "path": "/issue/:user/:repo/:state?/:labels?",
+      "view": 5,
+      "example": "/github/issue/DIYgod/RSSHub/open",
+      "parameters": {
+        "user": "GitHub username",
+        "repo": "GitHub repo name",
+        "state": {
+          "description": "the state of the issues.",
+          "default": "open",
+          "options": [
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Closed",
+              "value": "closed"
+            },
+            {
+              "label": "All",
+              "value": "all"
+            }
+          ]
+        },
+        "labels": "a list of comma separated label names"
+      },
+      "name": "Repo Issues"
+    }
+  },
+  {
     "provider_id": "google",
     "provider_name": "Google",
     "route_key": "/citations/:id",
@@ -1335,6 +1440,20 @@
         "language": "Language, default to `zh-CN`, for other language values, you can get it from [Google Doodles official website](https://www.google.com/doodles)"
       },
       "name": "Update"
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/news/:category/:locale",
+    "route": {
+      "path": "/news/:category/:locale",
+      "example": "/google/news/Top stories/hl=en-US&gl=US&ceid=US:en",
+      "parameters": {
+        "category": "Category Title",
+        "locale": "locales, could be found behind `?`, including `hl`, `gl`, and `ceid` as parameters"
+      },
+      "name": "News"
     }
   },
   {
@@ -1380,6 +1499,17 @@
     }
   },
   {
+    "provider_id": "guokr",
+    "provider_name": "果壳网",
+    "route_key": "/scientific",
+    "route": {
+      "path": "/scientific",
+      "example": "/guokr/scientific",
+      "name": "科学人",
+      "url": "guokr.com/scientific"
+    }
+  },
+  {
     "provider_id": "hellobtc",
     "provider_name": "白话区块链",
     "route_key": "/kepu/:channel?",
@@ -1403,6 +1533,21 @@
       "parameters": {},
       "name": "快讯",
       "url": "hellobtc.com/news"
+    }
+  },
+  {
+    "provider_id": "hkepc",
+    "provider_name": "HKEPC",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "example": "/hkepc/news",
+      "parameters": {
+        "category": "分类，见下表，默认为最新消息"
+      },
+      "name": "HKEPC 电脑领域",
+      "url": "hkepc.com/",
+      "description": "| 专题报导   | 新闻中心 | 新品快递 | 超频领域 | 流动数码 | 生活娱乐      | 会员消息 | 脑场新闻 | 业界资讯 | 最新消息 |\n| ---------- | -------- | -------- | -------- | -------- | ------------- | -------- | -------- | -------- | -------- |\n| coverStory | news     | review   | ocLab    | digital  | entertainment | member   | price    | press    | latest   |"
     }
   },
   {
@@ -1529,6 +1674,18 @@
   {
     "provider_id": "huxiu",
     "provider_name": "虎嗅",
+    "route_key": "/moment",
+    "route": {
+      "path": "/moment",
+      "example": "/huxiu/moment",
+      "parameters": {},
+      "name": "24 小时",
+      "url": "huxiu.com/moment"
+    }
+  },
+  {
+    "provider_id": "huxiu",
+    "provider_name": "虎嗅",
     "route_key": "/search/:keyword",
     "route": {
       "path": "/search/:keyword",
@@ -1641,6 +1798,23 @@
         "tag": "tag, the string after tag/ in the example URL"
       },
       "name": "RSS"
+    }
+  },
+  {
+    "provider_id": "javbus",
+    "provider_name": "JavBus",
+    "route_key": "/:path{.+}?",
+    "route": {
+      "path": "/:path{.+}?",
+      "name": "Works",
+      "view": 3,
+      "url": "www.javbus.com",
+      "example": "/javbus/star/rwt",
+      "parameters": {
+        "path": {
+          "description": "Any path of list page on javbus"
+        }
+      }
     }
   },
   {
@@ -1868,6 +2042,19 @@
     }
   },
   {
+    "provider_id": "keep",
+    "provider_name": "Keep",
+    "route_key": "/user/:id",
+    "route": {
+      "path": "/user/:id",
+      "example": "/keep/user/556b02c1ab59390afea671ea",
+      "parameters": {
+        "id": "Keep 用户 id"
+      },
+      "name": "运动日记"
+    }
+  },
+  {
     "provider_id": "konachan",
     "provider_name": "Konachan.com Anime Wallpapers",
     "route_key": "/post/popular_recent/:period?",
@@ -2039,6 +2226,19 @@
         "region": "region 热点地区，默认为`ukraine`，其他选项见liveuamap.com的三级域名"
       },
       "name": "实时消息"
+    }
+  },
+  {
+    "provider_id": "lofter",
+    "provider_name": "Lofter",
+    "route_key": "/collection/:collectionID",
+    "route": {
+      "path": "/collection/:collectionID",
+      "example": "/lofter/collection/552041",
+      "parameters": {
+        "collectionID": "Lofter collection ID, can be found in the share URL"
+      },
+      "name": "Collection"
     }
   },
   {
@@ -2221,6 +2421,20 @@
       },
       "name": "Topics",
       "description": "This route provides a flexible plan with full text content to subscribe specific topic(s) on the Nautilus. Please visit [nautil.us](https://nautil.us) and click `Topics` to acquire whole topic list."
+    }
+  },
+  {
+    "provider_id": "newyorker",
+    "provider_name": "New Yorker",
+    "route_key": "/:category",
+    "route": {
+      "path": "/:category",
+      "view": 0,
+      "example": "/newyorker/latest",
+      "parameters": {
+        "category": "tab name. can be found at url"
+      },
+      "name": "Articles"
     }
   },
   {
@@ -2442,6 +2656,24 @@
     }
   },
   {
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/rss/:cat?",
+    "route": {
+      "path": "/rss/:cat?",
+      "view": 0,
+      "example": "/nytimes/rss/HomePage",
+      "parameters": {
+        "cat": {
+          "description": "Category name, corresponding to the last segment of [official feed's](https://www.nytimes.com/rss) url."
+        }
+      },
+      "name": "News",
+      "url": "nytimes.com/",
+      "description": "Enhance the official EN RSS feed"
+    }
+  },
+  {
     "provider_id": "odaily",
     "provider_name": "Odaily 星球日报",
     "route_key": "/activity",
@@ -2527,6 +2759,22 @@
     }
   },
   {
+    "provider_id": "pingwest",
+    "provider_name": "品玩",
+    "route_key": "/user/:uid/:type?/:option?",
+    "route": {
+      "path": "/user/:uid/:type?/:option?",
+      "example": "/pingwest/user/7781550877/article",
+      "parameters": {
+        "uid": "用户id, 可从用户主页中得到",
+        "type": "内容类型, 默认为`article`",
+        "option": "参数"
+      },
+      "name": "用户",
+      "description": "内容类型\n\n| 文章    | 动态  |\n| ------- | ----- |\n| article | state |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/user/7781550877/article/fulltext`"
+    }
+  },
+  {
     "provider_id": "plurk",
     "provider_name": "Plurk",
     "route_key": "/anonymous",
@@ -2596,6 +2844,20 @@
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
+    "route_key": "/topic/:topic",
+    "route": {
+      "path": "/topic/:topic",
+      "view": 1,
+      "example": "/plurk/topic/standwithukraine",
+      "parameters": {
+        "topic": "Topic ID, can be found in URL"
+      },
+      "name": "Topic"
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
     "route_key": "/user/:user",
     "route": {
       "path": "/user/:user",
@@ -2605,6 +2867,20 @@
         "user": "User ID, can be found in URL"
       },
       "name": "User"
+    }
+  },
+  {
+    "provider_id": "pornhub",
+    "provider_name": "PornHub",
+    "route_key": "/category/:caty",
+    "route": {
+      "path": "/category/:caty",
+      "view": 3,
+      "example": "/pornhub/category/popular-with-women",
+      "parameters": {
+        "caty": "category, see [categories](https://www.pornhub.com/webmasters/categories)"
+      },
+      "name": "Category"
     }
   },
   {
@@ -3020,6 +3296,19 @@
   {
     "provider_id": "sspai",
     "provider_name": "少数派 sspai",
+    "route_key": "/topic/:id",
+    "route": {
+      "path": "/topic/:id",
+      "example": "/sspai/topic/250",
+      "parameters": {
+        "id": "专题 id，可在专题主页URL中找到"
+      },
+      "name": "专题内文章更新"
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
     "route_key": "/topics",
     "route": {
       "path": "/topics",
@@ -3264,6 +3553,17 @@
     }
   },
   {
+    "provider_id": "vertikal",
+    "provider_name": "Vertikal.net",
+    "route_key": "/latest",
+    "route": {
+      "path": "/latest",
+      "example": "/vertikal/latest",
+      "name": "News Archive",
+      "url": "vertikal.net/en/news"
+    }
+  },
+  {
     "provider_id": "vimeo",
     "provider_name": "Vimeo",
     "route_key": "/user/:username/:cat?",
@@ -3421,6 +3721,69 @@
         "embed": "Default to embed the video, set to any value to disable embedding"
       },
       "name": "Playlist"
+    }
+  },
+  {
+    "provider_id": "youtube",
+    "provider_name": "YouTube",
+    "route_key": "/user/:username/:embed?",
+    "route": {
+      "path": "/user/:username/:embed?",
+      "view": 3,
+      "example": "/youtube/user/@JFlaMusic",
+      "parameters": {
+        "username": "YouTuber handle with @",
+        "embed": "Default to embed the video, set to any value to disable embedding"
+      },
+      "name": "Channel with user handle"
+    }
+  },
+  {
+    "provider_id": "yyets",
+    "provider_name": "人人影视",
+    "route_key": "/article/:type?",
+    "route": {
+      "path": "/article/:type?",
+      "view": 0,
+      "example": "/yyets/article",
+      "parameters": {
+        "type": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "news",
+              "label": "影视资讯"
+            },
+            {
+              "value": "report",
+              "label": "收视快报"
+            },
+            {
+              "value": "m_review",
+              "label": "人人影评"
+            },
+            {
+              "value": "t_review",
+              "label": "人人剧评"
+            },
+            {
+              "value": "new_review",
+              "label": "新剧评测"
+            },
+            {
+              "value": "recom",
+              "label": "片单推荐"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "name": "影视资讯",
+      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |"
     }
   },
   {

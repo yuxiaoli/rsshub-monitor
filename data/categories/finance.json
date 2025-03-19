@@ -445,6 +445,22 @@
     }
   },
   {
+    "provider_id": "jisilu",
+    "provider_name": "集思录",
+    "route_key": "/category/:id",
+    "route": {
+      "path": "/category/:id",
+      "name": "分类",
+      "url": "www.jisilu.cn",
+      "example": "/jisilu/category/4",
+      "parameters": {
+        "id": "分类 id，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n若订阅 [债券/可转债](https://www.jisilu.cn/category/4)，网址为 `https://www.jisilu.cn/category/4`，请截取 `https://www.jisilu.cn/category/` 到末尾的部分 `4` 作为 `id` 参数填入，此时目标路由为 [`/jisilu/category/4`](https://rsshub.app/jisilu/category/4)。\n:::\n\n| 新股 | 债券/可转债 | 套利 | 其他 | 基金 | 股票 |\n| ---- | ----------- | ---- | ---- | ---- | ---- |\n| 3    | 4           | 5    | 6    | 7    | 8    |\n",
+      "view": 0
+    }
+  },
+  {
     "provider_id": "jiuyangongshe",
     "provider_name": "韭研公社",
     "route_key": "/community",
@@ -699,6 +715,19 @@
   {
     "provider_id": "sse",
     "provider_name": "上海证券交易所",
+    "route_key": "/convert/:query?",
+    "route": {
+      "path": "/convert/:query?",
+      "example": "/sse/convert/beginDate=2018-08-18&endDate=2019-08-18&companyCode=603283&title=股份",
+      "parameters": {
+        "query": "筛选条件，见示例"
+      },
+      "name": "可转换公司债券公告"
+    }
+  },
+  {
+    "provider_id": "sse",
+    "provider_name": "上海证券交易所",
     "route_key": "/disclosure/:query?",
     "route": {
       "path": "/disclosure/:query?",
@@ -835,6 +864,18 @@
     }
   },
   {
+    "provider_id": "ulapia",
+    "provider_name": "乌拉邦",
+    "route_key": "/research/latest",
+    "route": {
+      "path": "/research/latest",
+      "example": "/ulapia/research/latest",
+      "parameters": {},
+      "name": "最新研报",
+      "url": "www.ulapia.com/"
+    }
+  },
+  {
     "provider_id": "wallstreetcn",
     "provider_name": "华尔街见闻",
     "route_key": "/calendar/:section?",
@@ -846,6 +887,20 @@
       },
       "name": "财经日历",
       "url": "wallstreetcn.com/calendar"
+    }
+  },
+  {
+    "provider_id": "wallstreetcn",
+    "provider_name": "华尔街见闻",
+    "route_key": "/hot/:period?",
+    "route": {
+      "path": "/hot/:period?",
+      "example": "/wallstreetcn/hot",
+      "parameters": {
+        "period": "时期，可选 `day` 即 当日 或 `week` 即 当周，默认为当日"
+      },
+      "name": "最热文章",
+      "url": "wallstreetcn.com/"
     }
   },
   {
@@ -864,6 +919,17 @@
     }
   },
   {
+    "provider_id": "wallstreetcn",
+    "provider_name": "华尔街见闻",
+    "route_key": "/news/:category?",
+    "route": {
+      "path": "/news/:category?",
+      "example": "/wallstreetcn/news",
+      "name": "资讯",
+      "description": "| id           | 分类 |\n| ------------ | ---- |\n| global       | 最新 |\n| shares       | 股市 |\n| bonds        | 债市 |\n| commodities  | 商品 |\n| forex        | 外汇 |\n| enterprise   | 公司 |\n| asset-manage | 资管 |\n| tmt          | 科技 |\n| estate       | 地产 |\n| car          | 汽车 |\n| medicine     | 医药 |"
+    }
+  },
+  {
     "provider_id": "xueqiu",
     "provider_name": "雪球",
     "route_key": "/fund/:id",
@@ -874,6 +940,18 @@
         "id": "基金代码, 可在基金主页 URL 中找到. 此路由的数据为场外基金 (`F`开头)"
       },
       "name": "蛋卷基金净值更新"
+    }
+  },
+  {
+    "provider_id": "xueqiu",
+    "provider_name": "雪球",
+    "route_key": "/hots",
+    "route": {
+      "path": "/hots",
+      "example": "/xueqiu/hots",
+      "parameters": {},
+      "name": "热帖",
+      "url": "xueqiu.com/"
     }
   }
 ]

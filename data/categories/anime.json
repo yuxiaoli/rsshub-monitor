@@ -343,6 +343,19 @@
   {
     "provider_id": "collabo-cafe",
     "provider_name": "コラボカフェ",
+    "route_key": "/category/:category",
+    "route": {
+      "path": "/category/:category",
+      "example": "/collabo-cafe/category/cafe",
+      "parameters": {
+        "category": "Category, refer to the original website (ジャンル別)"
+      },
+      "name": "分类"
+    }
+  },
+  {
+    "provider_id": "collabo-cafe",
+    "provider_name": "コラボカフェ",
     "route_key": "/tag/:tag",
     "route": {
       "path": "/tag/:tag",
@@ -351,6 +364,21 @@
         "tag": "Tag, refer to the original website (開催地域別)"
       },
       "name": "标签"
+    }
+  },
+  {
+    "provider_id": "creative-comic",
+    "provider_name": "CCC 創作集",
+    "route_key": "/book/:id/:coverOnly?/:quality?",
+    "route": {
+      "path": "/book/:id/:coverOnly?/:quality?",
+      "example": "/creative-comic/book/117",
+      "parameters": {
+        "id": "漫畫 ID，可在 URL 中找到",
+        "coverOnly": "僅獲取封面，非 `true` 時將獲取**全部**頁面，預設 `true`",
+        "quality": "閱讀品質，標準畫質 `1`，高畫質 `2`，預設 `1`"
+      },
+      "name": "漫畫"
     }
   },
   {
@@ -477,6 +505,21 @@
     }
   },
   {
+    "provider_id": "eventernote",
+    "provider_name": "Eventernote",
+    "route_key": "/actors/:name/:id",
+    "route": {
+      "path": "/actors/:name/:id",
+      "view": 3,
+      "example": "/eventernote/actors/三森すずこ/2634",
+      "parameters": {
+        "name": "声优姓名",
+        "id": "声优 ID"
+      },
+      "name": "声优活动及演唱会"
+    }
+  },
+  {
     "provider_id": "gamer",
     "provider_name": "巴哈姆特電玩資訊站",
     "route_key": "/ani/anime/:sn",
@@ -569,6 +612,47 @@
       "parameters": {},
       "name": "热门推荐",
       "url": "www.hpoi.net/bannerItem/list"
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/user/:user_id/:caty",
+    "route": {
+      "path": "/user/:user_id/:caty",
+      "example": "/hpoi/user/116297/buy",
+      "parameters": {
+        "user_id": {
+          "description": "用户ID"
+        },
+        "caty": {
+          "description": "类别",
+          "options": [
+            {
+              "value": "want",
+              "label": "想买"
+            },
+            {
+              "value": "preorder",
+              "label": "预定"
+            },
+            {
+              "value": "buy",
+              "label": "已入"
+            },
+            {
+              "value": "care",
+              "label": "关注"
+            },
+            {
+              "value": "resell",
+              "label": "有过"
+            }
+          ],
+          "default": "buy"
+        }
+      },
+      "name": "用户动态"
     }
   },
   {
@@ -695,6 +779,20 @@
   {
     "provider_id": "qoo-app",
     "provider_name": "QooApp",
+    "route_key": "/news/:lang?",
+    "route": {
+      "path": "/news/:lang?",
+      "example": "/qoo-app/news/en",
+      "parameters": {
+        "lang": "Language, see the table below, empty means `中文`"
+      },
+      "name": "News",
+      "description": "| 中文 | English |\n| ---- | ------- |\n|      | en      |"
+    }
+  },
+  {
+    "provider_id": "qoo-app",
+    "provider_name": "QooApp",
     "route_key": "/apps/:lang?/card/:id",
     "route": {
       "path": "/apps/:lang?/card/:id",
@@ -747,6 +845,20 @@
         "id": "Game ID, can be found in URL"
       },
       "name": "Game Store - Article"
+    }
+  },
+  {
+    "provider_id": "skebetter",
+    "provider_name": "Skebetter",
+    "route_key": "/:type",
+    "route": {
+      "path": "/:type",
+      "example": "/skebetter/hot",
+      "parameters": {
+        "type": "Type, see below"
+      },
+      "name": "Hot",
+      "description": "\n| 急上昇 | 週間 | 月間 | 新着 |\n| ----- | ---- | ---- | ---- |\n| hot | week | month| latest |"
     }
   },
   {

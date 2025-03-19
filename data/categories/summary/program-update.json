@@ -1,5 +1,20 @@
 [
   {
+    "provider_id": "alpinelinux",
+    "provider_name": "Alpine Linux",
+    "route_key": "/pkgs/:name/:routeParams?",
+    "route": {
+      "name": "Packages",
+      "path": "/pkgs/:name/:routeParams?",
+      "example": "/alpinelinux/pkgs/nodejs",
+      "parameters": {
+        "name": "Packages name",
+        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
+      },
+      "description": "Alpine Linux packages update"
+    }
+  },
+  {
     "provider_id": "amazon",
     "provider_name": "Amazon",
     "route_key": "/kindle/software-updates",
@@ -285,7 +300,39 @@
   {
     "provider_id": "greasyfork",
     "provider_name": "Greasy Fork",
+    "route_key": "/scripts/:script/feedback",
+    "route": {
+      "name": "Script Feedback",
+      "path": "/scripts/:script/feedback",
+      "example": "/greasyfork/scripts/431691-bypass-all-shortlinks/feedback",
+      "parameters": {
+        "script": "Script id, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "greasyfork",
+    "provider_name": "Greasy Fork",
     "route_key": "/:language/:domain?",
+    "route": {
+      "name": "Script Update",
+      "path": [
+        "/:language/:domain?",
+        "/scripts/sort/:sort/:language?"
+      ],
+      "example": "/greasyfork/en/google.com",
+      "parameters": {
+        "language": "language, located on the top right corner of Greasy Fork's search page, set to `all` for including all languages",
+        "domain": "the script's target domain"
+      },
+      "description": "| Sort            | Description    |\n| --------------- | -------------- |\n| today           | Daily installs |\n| total_installs | Total installs |\n| ratings         | Ratings        |\n| created         | Created date   |\n| updated         | Updated date   |\n| name            | Name           |"
+    }
+  },
+  {
+    "provider_id": "greasyfork",
+    "provider_name": "Greasy Fork",
+    "route_key": "/scripts/sort/:sort/:language?",
     "route": {
       "name": "Script Update",
       "path": [
@@ -422,6 +469,18 @@
     }
   },
   {
+    "provider_id": "notateslaapp",
+    "provider_name": "Not a Tesla App",
+    "route_key": "/ota",
+    "route": {
+      "name": "Tesla Software Updates",
+      "path": "/ota",
+      "example": "/notateslaapp/ota",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "putty",
     "provider_name": "PuTTY",
     "route_key": "/changes",
@@ -441,6 +500,18 @@
       "name": "Changelog",
       "path": "/changelog",
       "example": "/raycast/changelog",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "remnote",
+    "provider_name": "RemNote",
+    "route_key": "/changelog",
+    "route": {
+      "name": "Changelog",
+      "path": "/changelog",
+      "example": "/remnote/changelog",
       "parameters": {},
       "description": ""
     }
