@@ -65,10 +65,12 @@ def split_by_category(input_file: str, output_dir: str, create_summary: bool = F
         
         for category, routes in category_routes.items():
             summary_file = summary_dir / f"{category}.json"
-            summary_routes = [get_route_summary(route) for route in routes]
+            # Limit to 100 items for summary
+            routes_to_summarize = routes[:100] if len(routes) > 100 else routes
+            summary_routes = [get_route_summary(route) for route in routes_to_summarize]
             with open(summary_file, 'w', encoding='utf-8') as f:
                 json.dump(summary_routes, f, ensure_ascii=False, indent=2)
-            print(f"Created summary {summary_file} with {len(summary_routes)} routes")
+            print(f"Created summary {summary_file} with {len(summary_routes)} routes (limited to 100)")
 
 def main():
     parser = argparse.ArgumentParser(description='Split RSSHub routes by category')
