@@ -1,4 +1,4 @@
-# RSShub Monitor
+# RSSHub Monitor
 
 A Python tool for monitoring and managing RSSHub routes and servers. This project works with [RSSHub](https://github.com/DIYgod/RSSHub), an open source RSS feed aggregator that generates RSS feeds from various websites.
 
