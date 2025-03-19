@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>iOS SDK 历史变更</title><link>https://wiki.connect.qq.com/ios_sdk历史变更</link><atom:link href="http://rsshub.thzu.xyz/tencent/qq/sdk/changelog/iOS" rel="self" type="application/rss+xml"></atom:link><description>iOS SDK 历史变更 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Wed, 19 Mar 2025 23:13:19 GMT</lastBuildDate><ttl>5</ttl><item><title>V3.5.17更新</title><description>1.修复部分已知问题。
+2.适配iOS 18系统。</description><link/><guid isPermaLink="false">V3.5.17更新</guid></item><item><title>V3.5.16更新</title><description>1.修复部分已知问题。
+2.苹果隐私清单。
+3.SDK支持XCFramework格式。
+4.iOS此版本需关注增加query scheme配置：mqqOpensdkSSoLogin，详细query scheme配置参考接入指南。</description><link/><guid isPermaLink="false">V3.5.16更新</guid></item><item><title>V3.5.15更新</title><description>1.修复部分已知问题。
+2.优化了已知的安全问题和合规问题，推荐开发者尽快升级。</description><link/><guid isPermaLink="false">V3.5.15更新</guid></item><item><title>V3.5.14更新</title><description>1.修复部分已知问题。</description><link/><guid isPermaLink="false">V3.5.14更新</guid></item><item><title>V3.5.12更新</title><description>1.【重大更新适配】iOS16的适配，优化并减少读写剪切板场景
+2.【问题修复优化】</description><link/><guid isPermaLink="false">V3.5.12更新</guid></item><item><title>V3.5.7更新</title><description>1.开发者需通过接口通知QQ&amp;nbsp;SDK，用户是否已进行隐私协议授权，而后QQ互联相关功能才能正常工作。
+2.设备型号成功获取后，不会再重复获取。
+3.建议开发者在App内提供QQ&amp;nbsp;SDK回撤入口，回撤后开发者应通过接口通知QQ&amp;nbsp;SDK。</description><link/><guid isPermaLink="false">V3.5.7更新</guid></item><item><title>V3.5.5更新</title><description>1.修复某些系统下的剪贴板接口引起的分享的crash
+2.提升了sdk的安全能力</description><link/><guid isPermaLink="false">V3.5.5更新</guid></item><item><title>V3.5.3优化</title><description>1.修复了一些已知问题
+2.提升了SDK安全性</description><link/><guid isPermaLink="false">V3.5.3优化</guid></item><item><title>V3.5.1更新</title><description>1.支持moudles,兼容OC和swift
+2.SDK和Demo均支持Xcode12编译
+3.SDK最低支持版本调整为7.0
+4.「登录」和「分享新闻」场景去掉使用剪贴板传递数据（iOS14使用剪贴板会有系统提示）（需要手Q版本&amp;gt;8.4.17）</description><link/><guid isPermaLink="false">V3.5.1更新</guid></item><item><title>V3.5.1优化</title><description>1.删除TencentOAuth.h中的过期函数
+　1）判断用户手机上的手机TIM是否支持SSO登录
+　+(BOOL)iphoneTIMSupportSSOLogin __attribute__((deprecated(&quot;TIM版本均支持SSO登录。该接口已过期, 建议删除调用&quot;)));
+　2）判断用户手机上的手机QQ是否支持SSO登录
+　+(BOOL)iphoneQQ
+　SupportSSOLogin __attribute__((deprecated(&quot;QQ版本均支持SSO登录。该接口已过期, 建议删除调用&quot;)));
+　3）用来获得当前手机qq的版本号
+　+(int)iphoneQQVersion __attribute__((deprecated(&quot;已过期, 建议删除调用&quot;)));
+　4）用来获得当前手机TIM的版本号
+　+(int)iphoneTIMVersion __attribute__((deprecated(&quot;已过期, 建议删除调用&quot;)));
+2.更改TencentOAuth.h中部分参数无效的函数
+　1）登录函数入参inSafari已确认无用，将以下函数的inSafari参数去掉。
+　- (BOOL)authorize:(NSArray *)permissions inSafari:(BOOL)bInSafari;
+　- (BOOL)authorize:(NSArray *)permissions localAppId:(NSString *)localAppId inSafari:(BOOL)bInSafari;
+3.标记过期接口，以下接口经检查已无效，先设置过期，后续会将接口删除，请不要再使用。
+[TencentLoginDelegate getAuthorizedPermissions:withExtraParams:]
+4.完善一些系统兼容性问题
+　（ -- @available 调用处兼容处理）
+5.修复扫码登录webweb页面，点击「下载新版客户端」无反应的问题，现在可以正常跳转到Appstore
+6.修复无效函数isCachedTokenValid和getCachedExpirationDate，原来的逻辑错误导致每次拿到的时间都是从当前往后推90天，现在修正为拿到token的时间往后推90天</description><link/><guid isPermaLink="false">V3.5.1优化</guid></item><item><title>V3.3.9更新</title><description>1.支持解析手Q小程序打开第三方透传的数据</description><link/><guid isPermaLink="false">V3.3.9更新</guid></item><item><title>V3.3.8更新</title><description>1.新增打印日志接口，第三方可主动调用将日志信息打印到第三方的日志中，供日后定位问题使用。
+2.新增支持设置opensdk只使用UniversalLink模式与手机QQ交互（系统要求大于等于iOS9）。</description><link/><guid isPermaLink="false">V3.3.8更新</guid></item><item><title>V3.3.8优化</title><description>1.尝试用子线程访问剪贴板，来规避偶现opensdk初始化访问剪贴板时间过长，而被看门狗杀死的问题
+2.对于iOS8.0及以上系统版本，UIAlertView升级为UIAlertController
+3.唤起小程序允许不填写miniPath，不填唤起默认小程序首页。
+4.修复登录过程会清空剪贴板数据的bug（QQ版本需要升级到8.3.3）</description><link/><guid isPermaLink="false">V3.3.8优化</guid></item><item><title>V3.3.7更新</title><description>1.新增功能，支持第三方直接唤起手Q小程序。（Demo入口-&amp;gt;QQ支持能力）
+2.新增功能，支持第三方直接唤起并使用手Q的IM能力，如聊天会话、语音通话、视频通话等。（Demo入口-&amp;gt;QQ支持能力）
+3.新增功能，支持同一个AppID的场景下（iPhone版本和iPadHD版本），区分多个UniversalLink的处理能力。</description><link/><guid isPermaLink="false">V3.3.7更新</guid></item><item><title>V3.3.7优化</title><description>1.修复分享小程序消息的mini_path=www.aaa.com/a=1&amp;amp;b=2，只能读取第一个参数a=1，&amp;amp;之后的都被裁掉了（原因是&amp;amp;被当做了分隔符）。
+2.修复iOS13版本下的体验问题。
+3.SDK内部域名支持ipv6</description><link/><guid isPermaLink="false">V3.3.7优化</guid></item><item><title>V3.3.6更新</title><description>1. 新增功能，针对iOS9及以上的系统，支持处理应用的Universal Links拉起能力。</description><link/><guid isPermaLink="false">V3.3.6更新</guid></item><item><title>V3.3.5更新</title><description>1.更新新增功能，支持设置QQ动态头像和静态头像
+2.新增功能，支持设置表情到QQ的“收藏表情”中
+3.标记过期接口，以下接口经检查已无效，先设置过期，后续会将接口删除，请不要再使用。[OpenApi qqVersion]、[OpenApi timVersion]、[QQApi isTIMSupportApi]、[TencentOAuth iphoneQQSupportSSOLogin]、[TencentOAuth iphoneTIMSupportSSOLogin]、[TencentOAuth iphoneTIMVersion]、[TencentOAuth iphoneQQVersion]、[QQApiInterfaceObject isTIMSupportApi]
+4.删除下架很久的申请授权keykOPEN_PERMISSION_ADD_ONE_BLOG 和 kOPEN_PERMISSION_ADD_SHARE
+5.新增功能，支持分享小程序消息到手Q和空间
+6.支持直接唤起扫描登录能力。</description><link/><guid isPermaLink="false">V3.3.5更新</guid></item><item><title>V3.3.5优化</title><description>1.内部使用的UIWebview替换为WKWebview
+2.修复扫描二维码登录，code模式登录失败的问题
+3.优化分享视频到空间体验</description><link/><guid isPermaLink="false">V3.3.5优化</guid></item><item><title>V3.3.3更新</title><description>1.未安装手Q的场景下，支持扫码登录
+2.修改遗留bug，增强稳定性</description><link/><guid isPermaLink="false">V3.3.3更新</guid></item><item><title>V2.0.1</title><description>1.增加全新的分享到QZone的接口</description><link/><guid isPermaLink="false">V2.0.1</guid></item><item><title>V2.0</title><description>1.新增API判断手机QQ版本2.新增WPA临时会话3.支持分享音频消息4.Demo 实现简单调整5.分享消息结构化改造6.新增系统库Security.framework</description><link/><guid isPermaLink="false">V2.0</guid></item></channel></rss>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>子方有料</title><link>https://www.ippa.top</link><atom:link href="http://rsshub.henry.wang/ippa" rel="self" type="application/rss+xml"></atom:link><description>子方有料 - 最新文章 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Wed, 19 Mar 2025 23:06:58 GMT</lastBuildDate><ttl>14</ttl><item><title>pve8-lxc音画直通HDMI VGA输出系列：登录后dbus报错</title><description>&lt;h2&gt;提示内容&lt;/h2&gt;
+&lt;p&gt;unable to contact setting service failed to execute child process dbus-launch no such file or directory&lt;/p&gt;
+&lt;h2&gt;解决问题&lt;/h2&gt;
+&lt;p&gt;这个错误通常是因为 dbus 或 dbus-x11 没有安装，导致桌面环境无法正确启动。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt update
+apt install dbus dbus-x11 -y
+systemctl restart dbus
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1264.html</link><guid isPermaLink="false">https://www.ippa.top/1264.html</guid><pubDate>Tue, 18 Mar 2025 18:30:33 GMT</pubDate></item><item><title>pve8-lxc音画直通HDMI VGA输出系列：显示篇</title><description>&lt;h2&gt;环境准备&lt;/h2&gt;
+&lt;p&gt;图形界面一般默认配置在tty7，但这不是必须的。web控制管理台最多添加到tty6，需要更高的需要在配置文件中修改。&lt;/p&gt;
+&lt;p&gt;所以LXC conf配置中添加&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;tty: 7
+&lt;/pre&gt;
+&lt;h2&gt;显卡查询&lt;/h2&gt;
+&lt;p&gt;宿主机查询显卡情况，发现设备的用户是root，归属于video、render组&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@pve:~# ls -l /dev/dri/
+total 0
+drwxr-xr-x 2 root root         80 Mar  3 06:58 by-path
+crw-rw---- 1 root video  226,   1 Mar  3 06:58 card1
+crw-rw---- 1 root render 226, 128 Mar  3 06:58 renderD128
+&lt;/pre&gt;
+&lt;h2&gt;在LXC中查询对应组GID&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;l@CT101:~$ getent group render
+render:x:104:
+l@CT101:~$ getent group video
+video:x:44:
+&lt;/pre&gt;
+&lt;h2&gt;LXC配置添加&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;dev0: /dev/dri/card1,gid=44
+dev1: /dev/dri/renderD128,gid=104
+&lt;/pre&gt;
+&lt;h2&gt;LXC中验证&lt;/h2&gt;
+&lt;p&gt;权限归属与宿主机一致，无问题。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;l@CT101:~$ ls -l /dev/dri/
+total 0
+crw-rw---- 1 root video  226,   1 Mar  2 23:58 card1
+crw-rw---- 1 root render 226, 128 Mar  2 23:58 renderD128
+&lt;/pre&gt;
+&lt;h2&gt;安装桌面环境&lt;/h2&gt;
+&lt;p&gt;常规是xfce4 xfce4-goodies就可以了，但是在lxc中还需要安装dbus dbus-x11&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt install dbus dbus-x11 -y
+apt install xfce4 xfce4-goodies -y
+&lt;/pre&gt;
+&lt;h2&gt;信息补充&lt;/h2&gt;
+&lt;p&gt;Xorg、Wayland（如 xfce、chromium）使用 DRI/KMS (/dev/dri/card0, /dev/dri/renderD128)。&lt;/p&gt;
+&lt;p&gt;/dev/fb0 是 Linux 帧缓冲设备（Framebuffer），用于 无 X Server 图形输出。在LXC 需要直接访问主机的图形输出（无 Xorg）。LXC 运行无 X Server 图形程序（如 fbi 查看图片、mplayer -vo fbdev 播放视频）时会用得上。在测试过程也直通了。有必要再加上&lt;br&gt;
+dev6: /dev/fb0,gid=44&lt;/p&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1261.html</link><guid isPermaLink="false">https://www.ippa.top/1261.html</guid><pubDate>Mon, 17 Mar 2025 18:16:30 GMT</pubDate></item><item><title>nextcloud系列：memories暨PVE LXC硬件加速配置</title><description>&lt;p&gt;继上一篇，把显卡直通到LXC之后，我们来进一步配置硬件加速&lt;/p&gt;
+&lt;h2&gt;软件与权限配置&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;#安装必要软件
+apt-get install -y intel-media-va-driver-non-free ffmpeg
+
+#把www-data添加到video,render两个用户组
+usermod -aG video,render www-data
+&lt;/pre&gt;
+&lt;h2&gt;转码测试&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;cd /home/wwwroot/nextcloud/
+警告⚠：务必进入一个www-data具有权限的目录！例如我这个文件夹，归属www-data，这样才可以完成下面的读写测试。因为我们使用www-data来运行加速
+
+wget https://github.com/pulsejet/memories-assets/raw/main/sample.mp4
+chown www-data:www-data sample.mp4
+
+sudo -u www-data \
+  ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi \
+  -i &#39;sample.mp4&#39; -vcodec h264_vaapi \
+  output-www-data.mp4
+
+下面是正常测试的结果
+Output #0, mp4, to &#39;output-www-data.mp4&#39;:
+Metadata:
+major_brand : isom
+minor_version : 512
+compatible_brands: isomiso2avc1mp41
+encoder : Lavf59.27.100
+Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), vaapi(progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 60 fps, 15360 tbn (default)
+Metadata:
+handler_name : VideoHandler
+vendor_id : [0][0][0][0]
+encoder : Lavc59.37.100 h264_vaapi
+frame= 600 fps=129 q=-0.0 Lsize= 12378kB time=00:00:09.96 bitrate=10173.9kbits/s speed=2.14x
+video:12371kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.053069%&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1258.html</link><guid isPermaLink="false">https://www.ippa.top/1258.html</guid><pubDate>Mon, 17 Mar 2025 02:31:17 GMT</pubDate></item><item><title>Nextcloud/ownCloud上传大于512MB的文件的相关配置</title><description>&lt;p&gt;转载，暂不做验证，备用。&lt;/p&gt;
+&lt;p&gt;在正常情况下，Nextcloud的默认的最大上传限制为512MB，在你的的文件系统和操作系统允许的前提下，你可以提升这一限制。换一种说法，能上传的最大文件的大小还取决于你的浏览器和操作系统：&lt;/p&gt;
+&lt;p&gt;[ssbluelist]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;32位系统可上传小于2GB的文件&lt;/li&gt;
+&lt;li&gt;IE6~IE8可上传小于2GB的文件&lt;/li&gt;
+&lt;li&gt;IE9~IE11可上传小于4GB的文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[/ssbluelist]&lt;/p&gt;
+&lt;p&gt;在64位系统中允许上传更大的文件，具体能上传多大仍然取决于你的操作系统的版本。&lt;/p&gt;
+&lt;p&gt;[infobox]使用Nextcloud sync 客户端可以无视这个上传限制，因为这个客户端会将文件切分后上传。[/infobox]&lt;/p&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;系统设置&lt;/h2&gt;
+&lt;p&gt;[ssbluelist]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;确保所安装的PHP的版本在5.6.6以上，推荐使用最新版本的PHP&lt;/li&gt;
+&lt;li&gt;禁用用户配额：将所有用户的配额设置为“无限制”&lt;/li&gt;
+&lt;li&gt;对服务器的要求：临时文件空间（/tmp目录）和分区必须足够大以承载多个用户的多个并行上传，如果最大上传的限制为10GB，而约有100个用户（一般达不到这个数量）同时上传文件，那么至少要有100×10GB的空间来容纳临时文件（这儿牵涉到Linux的临时文件的分区）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[/ssbluelist]&lt;/p&gt;
+&lt;h2&gt;配置你的网站服务器&lt;/h2&gt;
+&lt;p&gt;[infobox]Nextcloud利用其程序根目录下的的.htaccess文件来控制上传限制。因为php-fpm无法读取.htaccess文件，所以相关的PHP设置必须要设置在&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;nextcloud/.user.ini&lt;/pre&gt;
+&lt;p&gt;中。[/infobox]&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;在.htaccess文件中中设置以下参数，可将上传文件大小限制设置为16GB：&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:true&quot; title=&quot;.htaccess&quot;&gt;php_value upload_max_filesize = 16G
+php_value post_max_size = 16G&lt;/pre&gt;
+&lt;p&gt;当然，具体要设置为多少取决于你的需求。&lt;/p&gt;
+&lt;p&gt;而另一个限制了大文件的上传的因素是PHP的超时（timeout），如果你在日志中看到超时的记录，可以将PHP的超时的数值调得大一些：&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:true&quot; title=&quot;.htaccess&quot;&gt;php_value max_input_time 3600
+php_value max_execution_time 3600&lt;/pre&gt;
+&lt;p&gt;说到timeout，不仅PHP会有timeout，HTTP服务器也会有。例如Apache的&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;mod_reqtimeout&lt;/pre&gt;
+&lt;p&gt;模块，它也可能会导致大文件上传的失败。如果你在使用这个模块并且遇到了超时的问题，那么可以考虑在Apache配置中禁用它：&lt;/p&gt;
+&lt;p&gt;使用命令禁用：&lt;/p&gt;
+&lt;pre class=&quot;lang:sh decode:true&quot; lang=&quot;bash&quot; title=&quot;禁用mod_reqtimeout&quot;&gt;a2dismod reqtimeout
+service apache2 restart&lt;/pre&gt;
+&lt;p&gt;或者直接删除该模块的配置文件：&lt;/p&gt;
+&lt;pre class=&quot;lang:sh decode:true&quot; lang=&quot;bash&quot; title=&quot;禁用mod_reqtimeout&quot;&gt;rm /etc/apache2/mods-enabled/reqtimeout.*
+service apache2 restart
+&lt;/pre&gt;
+&lt;p&gt;（实际环境中Apache的安装方式可能有所不同，禁用该模块方式也可能不同）&lt;/p&gt;
+&lt;h3&gt;其它限制&lt;/h3&gt;
+&lt;p&gt;除了上文所述的会限制到大文件上传的地方，一些HTTP服务器的配置也会影响到大文件的上传：&lt;/p&gt;
+&lt;h4&gt;Apache&lt;/h4&gt;
+&lt;p&gt;[ssbluelist]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LimitRequestBody（请求实体限制）&lt;/li&gt;
+&lt;li&gt;SSLRenegBufferSize（缓冲区大小）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[/ssbluelist]&lt;/p&gt;
+&lt;p&gt;1.LimitRequestBody：这项配置一般在Apache做反响代理服务器用到，具体用法是在Apache配置文件中加上这样一句（后面所跟的数值的单位为K）：&lt;/p&gt;
+&lt;pre class=&quot;lang:apache decode:true&quot; title=&quot;请求实体大小&quot;&gt;LimitRequestBody 102400   #允许上传最大为100k的文件&lt;/pre&gt;
+&lt;p&gt;2.SSLRenegBufferSize：在进行SSL握手之前，Apache会将请求先存放到缓冲区中，这项配置决定了缓冲区的大小：&lt;/p&gt;
+&lt;pre class=&quot;lang:apache decode:true prettyprint lang-config prettyprinted&quot; title=&quot;缓冲区大小&quot;&gt;SSLRenegBufferSize 262144  #缓冲区大小为262144Bytes&lt;/pre&gt;
+&lt;h4&gt;Apache with mod_fcgid&lt;/h4&gt;
+&lt;p&gt;[ssbluelist]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://httpd.apache.org/mod_fcgid/mod/mod_fcgid.html#fcgidmaxrequestinmem&quot; rel=&quot;nofollow&quot;&gt;FcgidMaxRequestInMem&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://httpd.apache.org/mod_fcgid/mod/mod_fcgid.html#fcgidmaxrequestlen&quot; rel=&quot;nofollow&quot;&gt;FcgidMaxRequestLen&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[/ssbluelist]&lt;/p&gt;
+&lt;h3&gt;Nginx&lt;/h3&gt;
+&lt;p&gt;Nginx中有这样几个影响上传文件的配置选项：&lt;/p&gt;
+&lt;p&gt;[ssbluelist]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;client_max_body_size（最大请求实体）示例：
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;client_max_body_size 512M; #最大请求实体为512M&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;crayon-h&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;crayon-v&quot;&gt;astcgi&lt;/span&gt;&lt;span class=&quot;crayon-sy&quot;&gt;_&lt;/span&gt;buffers（指定本地需要用多少和多大的缓冲区来缓冲FastCGI的应答）示例：
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;fastcgi_buffers 64 4K; #为小于256k的PHP页面分配64个4k缓冲区&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;fastcgi_read_timeout（FastCGI服务器的响应超时时间）示例：
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;fastcgi_read_timeout 60 #超时时间为1分钟&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;client_body_temp_path（指定POST上传的文件地址）示例：
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;client_body_temp_path /spool/nginx/client_temp 3 2; #请求实体临时路径 3、2为存放临时文件的目录名的数字位数&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;fastcgi_request_buffering（这个是1.7.11版本的一个新的配置选项）一般予以关闭：
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;fastcgi_request_buffering off;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[/ssbluelist]&lt;/p&gt;
+&lt;p&gt;[infobox]确保client_body_temp_path指向具有足够空间的上传文件大小的分区，并且与upload_tmp_dir或temp目录（见下文）为相同的分区。为了获得最佳性能，最好将它们放在专用于交换和临时存储的单独的硬盘驱动器上。[/infobox]&lt;/p&gt;
+&lt;p&gt;如果Nginx作为反向代理服务器，那么还会有这样两项配置与之有关：&lt;/p&gt;
+&lt;p&gt;[ssbluelist]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;proxy_buffering&lt;/li&gt;
+&lt;li&gt;proxy_max_temp_file_size&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[/ssbluelist]&lt;/p&gt;
+&lt;h2&gt;PHP的配置&lt;/h2&gt;
+&lt;p&gt;如果你不想使用Nextcloud的.htaccess或.user.ini文件，也可以直接去修改PHP的配置，如果要这样做，确保注释掉.htaccess中的与文件上传有关的那几行。如果您在32位系统上运行Nextcloud，则您的php.ini文件中的任何open_basedir指令都需要注释掉。&lt;/p&gt;
+&lt;p&gt;在php.ini中设置下面的两个参数，以修改最大文件上传限制为16G（或其他数值）：&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:true &quot; title=&quot;php.ini&quot;&gt;upload_max_filesize = 16G
+post_max_size = 16G&lt;/pre&gt;
+&lt;p&gt;为PHP设置你想使用的临时目录的位置，例如：&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:true&quot; title=&quot;php.ini&quot;&gt;upload_tmp_dir = /var/big_temp_file/&lt;/pre&gt;
+&lt;p&gt;输出缓冲必须在.htaccess或.user.ini或php.ini中关闭，否则返回与内存相关的错误：&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;output_buffering = 0&lt;/pre&gt;
+&lt;h2&gt;Nextcloud配置&lt;/h2&gt;
+&lt;p&gt;如果你无法修改php.ini，那么你也可以在config.php中指定&lt;/p&gt;
+&lt;pre class=&quot;lang:default decode:1 inline:1 &quot;&gt;upload_tmp_dir&lt;/pre&gt;
+&lt;p&gt;的值，例如在文件中加入这样一行：&lt;/p&gt;
+&lt;pre class=&quot;lang:php decode:true&quot; title=&quot;config.php&quot;&gt;&#39;tempdirectory&#39; =&amp;gt; &#39;/var/big_temp_file/&#39;,&lt;/pre&gt;
+&lt;p&gt;详细的内容可以参见官方文档中关于config.php的介绍。&lt;/p&gt;
+&lt;p&gt;如果在config.php（参见Config.php参数）文件中配置了session_lifetime设置，那么请确保它不是太低。此设置需要至少配置为最长上传时间（以秒为单位）。如果不确定，就从配置中完全删除它，将其重置为config.sample.php中显示的默认值。&lt;/p&gt;
+&lt;h3&gt;在管理页面中配置上传大小限制&lt;/h3&gt;
+&lt;p&gt;说了这么多，最简单的方法还是在管理页面中直接修改上传大小（这个途径受制上文中所有内容）：&lt;/p&gt;
+&lt;p&gt;前提是.htaccess文件正常工作。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;额，你可能遇到这样的尴尬的情况：&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;将.htaccess文件的用户设置为www-data就可以了:&lt;/p&gt;
+&lt;pre class=&quot;lang:sh decode:true &quot; title=&quot;设置.htaccess文件&quot;&gt;chown www-data .htaccess&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1256.html</link><guid isPermaLink="false">https://www.ippa.top/1256.html</guid><pubDate>Sun, 16 Mar 2025 01:24:27 GMT</pubDate></item><item><title>nextcloud系列：在Debian12上安装nextcloud搭配nginx</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;在 Nextcloud 部署中，Apache2 和 Nginx 各有优缺点。&lt;/p&gt;
+&lt;p&gt;Apache2受Nextcloud 官方默认支持，安装后即可使用，无需额外配置。使用 .htaccess 来管理 URL 重写和访问控制，便于管理。&lt;/p&gt;
+&lt;p&gt;Nginx需要手动配置 PHP-FPM 和 FastCGI，适合高并发、大流量、优化性能，需要手动配置 nginx.conf 并搭配 PHP-FPM，但性能更好。&lt;/p&gt;
+&lt;p&gt;在第一次安装时，使用了Apache，确实没有什么报错，而使用 Nginx，即使你使用了官方文档提到了nginx配置文件，也还是有不少坑要自己去填。&lt;/p&gt;
+&lt;p&gt;老规矩：CT/LXC -Debian12 on PVE8&lt;/p&gt;
+&lt;h2&gt;LEMP环境搭建&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt install -y nginx
+apt install mariadb-server php-gd php-mysql php-curl php-mbstring php-intl php-gmp php-bcmath php-xml php-imagick php-zip php-fpm
+
+#你可以像我一样，还需要php-redis、php-apcu、libmagickcore-6.q16-6-extra等模块
+&lt;/pre&gt;
+&lt;h2&gt;数据库创建&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;mysql
+ 
+CREATE USER &#39;username&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;password&#39;;
+CREATE DATABASE IF NOT EXISTS nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL PRIVILEGES ON nextcloud.* TO &#39;username&#39;@&#39;localhost&#39;;
+FLUSH PRIVILEGES;
+ 
+quit;
+ 
+#后续会用到，这里用户名username，数据库名nextcloud，密码password
+&lt;/pre&gt;
+&lt;h2&gt;程序安装&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt install -y unzip ffmpeg  sudo
+wget https://download.nextcloud.com/server/releases/latest.zip
+unzip latest.zip
+mkdir -p  /home/wwwroot/  #我使用了其它目录，你可以根据自己需要调整
+cp -r nextcloud /home/wwwroot
+chown -R www-data:www-data /home/wwwroot/nextcloud
+&lt;/pre&gt;
+&lt;h2&gt;自签署SSL证书&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;mkdir -p /etc/nginx/ssl/
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048   -keyout /etc/nginx/ssl/nextcloud.key   -out /etc/nginx/ssl/nextcloud.crt   -subj &quot;/C=CN/ST=Guangdong/L=Guangzhou/O=nextcloud/OU=IT/CN=192.168.2.8&quot;
+&lt;/pre&gt;
+&lt;h2&gt;nginx站点文件配置&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;nano /etc/nginx/sites-available/nextcloud.conf
+
+# Version 2024-07-17
+
+upstream php-handler {
+    #server 127.0.0.1:9000;
+    server unix:/run/php/php8.2-fpm.sock;
+}
+
+# Set the `immutable` cache control options only for assets with a cache busting `v` argument
+map $arg_v $asset_immutable {
+    &quot;&quot; &quot;&quot;;
+    default &quot;, immutable&quot;;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name 192.168.2.8;
+
+    # Prevent nginx HTTP Server Detection
+    server_tokens off;
+
+    # Enforce HTTPS
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    # With NGinx &amp;gt;= 1.25.1 you should use this instead:
+    # listen 443      ssl;
+    # listen [::]:443 ssl;
+    # http2 on;
+    server_name 192.168.2.8;
+
+    # Path to the root of your installation
+    root /home/wwwroot/nextcloud;
+
+    # Use Mozilla&#39;s guidelines for SSL/TLS settings
+    # https://mozilla.github.io/server-side-tls/ssl-config-generator/
+    ssl_certificate     /etc/nginx/ssl/nextcloud.crt;
+    ssl_certificate_key /etc/nginx/ssl/nextcloud.key;
+
+    # Prevent nginx HTTP Server Detection
+    server_tokens off;
+
+    # HSTS settings
+    # WARNING: Only add the preload option once you read about
+    # the consequences in https://hstspreload.org/. This option
+    # will add the domain to a hardcoded list that is shipped
+    # in all major browsers and getting removed from this list
+    # could take several months.
+    add_header Strict-Transport-Security &quot;max-age=15768000; includeSubDomains&quot; always;
+
+    # set max upload size and increase upload timeout:
+    client_max_body_size 512M;
+    client_body_timeout 300s;
+    fastcgi_buffers 64 4K;
+
+    # Enable gzip but do not remove ETag headers
+    gzip on;
+    gzip_vary on;
+    gzip_comp_level 4;
+    gzip_min_length 256;
+    gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
+    gzip_types application/atom+xml text/javascript application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/wasm application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+
+    # Pagespeed is not supported by Nextcloud, so if your server is built
+    # with the `ngx_pagespeed` module, uncomment this line to disable it.
+    #pagespeed off;
+
+    # The settings allows you to optimize the HTTP2 bandwidth.
+    # See https://blog.cloudflare.com/delivering-http-2-upload-speed-improvements/
+    # for tuning hints
+    client_body_buffer_size 512k;
+
+    # HTTP response headers borrowed from Nextcloud `.htaccess`
+    add_header Referrer-Policy                   &quot;no-referrer&quot;       always;
+    add_header X-Content-Type-Options            &quot;nosniff&quot;           always;
+    add_header X-Frame-Options                   &quot;SAMEORIGIN&quot;        always;
+    add_header X-Permitted-Cross-Domain-Policies &quot;none&quot;              always;
+    add_header X-Robots-Tag                      &quot;noindex, nofollow&quot; always;
+    add_header X-XSS-Protection                  &quot;1; mode=block&quot;     always;
+
+    # Remove X-Powered-By, which is an information leak
+    fastcgi_hide_header X-Powered-By;
+
+    # Set .mjs and .wasm MIME types
+    # Either include it in the default mime.types list
+    # and include that list explicitly or add the file extension
+    # only for Nextcloud like below:
+    include mime.types;
+    types {
+        text/javascript mjs;
+application/wasm wasm;
+    }
+
+    # Specify how to handle directories -- specifying `/index.php$request_uri`
+    # here as the fallback means that Nginx always exhibits the desired behaviour
+    # when a client requests a path that corresponds to a directory that exists
+    # on the server. In particular, if that directory contains an index.php file,
+    # that file is correctly served; if it doesn&#39;t, then the request is passed to
+    # the front-end controller. This consistent behaviour means that we don&#39;t need
+    # to specify custom rules for certain paths (e.g. images and other assets,
+    # `/updater`, `/ocs-provider`), and thus
+    # `try_files $uri $uri/ /index.php$request_uri`
+    # always provides the desired behaviour.
+    index index.php index.html /index.php$request_uri;
+
+    # Rule borrowed from `.htaccess` to handle Microsoft DAV clients
+    location = / {
+        if ( $http_user_agent ~ ^DavClnt ) {
+            return 302 /remote.php/webdav/$is_args$args;
+        }
+    }
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    # Make a regex exception for `/.well-known` so that clients can still
+    # access it despite the existence of the regex rule
+    # `location ~ /(\.|autotest|...)` which would otherwise handle requests
+    # for `/.well-known`.
+    location ^~ /.well-known {
+        # The rules in this block are an adaptation of the rules
+        # in `.htaccess` that concern `/.well-known`.
+
+        location = /.well-known/carddav { return 301 /remote.php/dav/; }
+        location = /.well-known/caldav  { return 301 /remote.php/dav/; }
+
+        location /.well-known/acme-challenge    { try_files $uri $uri/ =404; }
+        location /.well-known/pki-validation    { try_files $uri $uri/ =404; }
+
+        # Let Nextcloud&#39;s API for `/.well-known` URIs handle all other
+        # requests by passing them to the front-end controller.
+        return 301 /index.php$request_uri;
+    }
+
+    # Rules borrowed from `.htaccess` to hide certain paths from clients
+    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
+    location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)                { return 404; }
+
+    # Ensure this block, which passes PHP files to the PHP process, is above the blocks
+    # which handle static assets (as seen below). If this block is not declared first,
+    # then Nginx will encounter an infinite rewriting loop when it prepends `/index.php`
+    # to the URI, resulting in a HTTP 500 error response.
+    location ~ \.php(?:$|/) {
+        # Required for legacy support
+        rewrite ^/(?!index|remote|public|cron|core\/ajax\/update|status|ocs\/v[12]|updater\/.+|ocs-provider\/.+|.+\/richdocumentscode(_arm64)?\/proxy) /index.php$request_uri;
+
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+        set $path_info $fastcgi_path_info;
+
+        try_files $fastcgi_script_name =404;
+
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $path_info;
+        fastcgi_param HTTPS on;
+
+        fastcgi_param modHeadersAvailable true;         # Avoid sending the security headers twice
+        fastcgi_param front_controller_active true;     # Enable pretty urls
+        fastcgi_pass php-handler;
+
+        fastcgi_intercept_errors on;
+        fastcgi_request_buffering off;
+
+        fastcgi_max_temp_file_size 0;
+    }
+
+    # Serve static files
+    location ~ \.(?:css|js|mjs|svg|gif|ico|jpg|png|webp|wasm|tflite|map|ogg|flac)$ {
+        try_files $uri /index.php$request_uri;
+        # HTTP response headers borrowed from Nextcloud `.htaccess`
+        add_header Cache-Control                     &quot;public, max-age=15778463$asset_immutable&quot;;
+        add_header Referrer-Policy                   &quot;no-referrer&quot;       always;
+        add_header X-Content-Type-Options            &quot;nosniff&quot;           always;
+        add_header X-Frame-Options                   &quot;SAMEORIGIN&quot;        always;
+        add_header X-Permitted-Cross-Domain-Policies &quot;none&quot;              always;
+        add_header X-Robots-Tag                      &quot;noindex, nofollow&quot; always;
+        add_header X-XSS-Protection                  &quot;1; mode=block&quot;     always;
+        access_log off;     # Optional: Don&#39;t log access to assets
+    }
+
+    location ~ \.(otf|woff2?)$ {
+        try_files $uri /index.php$request_uri;
+        expires 7d;         # Cache-Control policy borrowed from `.htaccess`
+        access_log off;     # Optional: Don&#39;t log access to assets
+    }
+
+    # Rule borrowed from `.htaccess`
+    location /remote {
+        return 301 /remote.php$request_uri;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.php$request_uri;
+    }
+}
+&lt;/pre&gt;
+&lt;h2&gt;站点启用&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;ln -s /etc/nginx/sites-available/nextcloud /etc/nginx/sites-enabled/
+nginx -t  # 测试配置是否正确
+systemctl restart nginx php-fpm
+
+systemctl restart nginx php8.2-fpm
+&lt;/pre&gt;
+&lt;p&gt;访问对应的IP，进入程序安装向导&lt;/p&gt;
+&lt;h2&gt;mysql_secure_installation&lt;/h2&gt;
+&lt;p&gt;MySQL 提供了一个安全设置向导 mysql_secure_installation，用于提高数据库的安全性。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@Lemp:~# mysql_secure_installation
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+You already have your root account protected, so you can safely answer &#39;n&#39;.
+Switch to unix_socket authentication [Y/n] n
+ ... skipping.
+You already have your root account protected, so you can safely answer &#39;n&#39;.
+Change the root password? [Y/n] n
+ ... skipping.
+Remove anonymous users? [Y/n] y
+ ... Success!
+Disallow root login remotely? [Y/n] y
+ ... Success!
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+Reload privilege tables now? [Y/n] y
+ ... Success!
+Cleaning up...
+
+All done! 
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1254.html</link><guid isPermaLink="false">https://www.ippa.top/1254.html</guid><pubDate>Sat, 15 Mar 2025 00:10:21 GMT</pubDate></item><item><title>Proxmox VE 8(PVE) LXC显卡直通指南</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;正是发现pve8对lxc也提供了显卡加速支持，才导致了我这一轮的各种配置环境重新搭建和升级。相比此前，几乎只能使用特权模式来提供IGPU的加速。使用GID、UID的映射，仍然存在大量的问题。&lt;/p&gt;
+&lt;h2&gt;主机环境&lt;/h2&gt;
+&lt;p&gt;如果要直通给LXC，宿主机自己要能识别。本次我计划把card1、renderD128直通到LXC中&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@pve:~# ls -l /dev/dri
+total 0
+drwxr-xr-x  2 root root         80 Feb 23 22:39 by-path
+crw-rw----+ 1 root video  226,   1 Feb 23 22:39 card1
+crw-rw----+ 1 root render 226, 128 Feb 16 16:39 renderD128
+&lt;/pre&gt;
+&lt;h2&gt;容器对应组ID查找&lt;/h2&gt;
+&lt;p&gt;进入容器，找到video 和render的组ID&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@CT111:~# getent group render
+render:x:104:
+root@CT111:~# getent group video
+video:x:44:
+&lt;/pre&gt;
+&lt;h2&gt;直通配置&lt;/h2&gt;
+&lt;p&gt;在PVE WEB管理界面，找到对应的容器——资源——添加——设备直通&lt;/p&gt;
+&lt;p&gt;设备路径：/dev/dri/card1&lt;br&gt;
+CT中的UID：0（root用户的UID是0，这里就不查了。直通其它设备就查一下，没有该用户的新建）&lt;br&gt;
+CT中的GID：44（本次直通的card1属于用户root，用户组video，上面我们在容器中查了video的组ID是44）&lt;/p&gt;
+&lt;p&gt;同理可以直通renderD128给到容器&lt;/p&gt;
+&lt;p&gt;设备路径：/dev/dri/renderD128&lt;br&gt;
+CT中的UID：0（root用户的UID是0，这里就不查了。直通其它设备就查一下，没有该用户的新建）&lt;br&gt;
+CT中的GID：104&lt;/p&gt;
+&lt;p&gt;与以前相比，就不需要手动计算映射关系了。即使计算了，也会存在问题。&lt;/p&gt;
+&lt;h2&gt;在容器中进行验证&lt;/h2&gt;
+&lt;p&gt;权限和归属一致，直通成功&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@CT111:~# ls -l /dev/dri
+total 0
+crw-rw---- 1 root video  226,   1 Feb 25 15:53 card1
+crw-rw---- 1 root render 226, 128 Feb 25 15:53 renderD128
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1253.html</link><guid isPermaLink="false">https://www.ippa.top/1253.html</guid><pubDate>Thu, 13 Mar 2025 22:53:55 GMT</pubDate></item><item><title>nextcloud系列：后台工作不通过 cron 执行暨定时任务配置</title><description>&lt;p&gt;提示内容&lt;/p&gt;
+&lt;p&gt;recognize插件报错:后台工作不通过 cron 执行。此程序要求后台作业通过 cron 执行。&lt;/p&gt;
+&lt;p&gt;解决它&lt;/p&gt;
+&lt;h3&gt;登录nextcloud页面修改配置&lt;/h3&gt;
+&lt;p&gt;右上角个人图标——管理设置——基本设置——后台任务，从AJAX 调整为Cron&lt;/p&gt;
+&lt;h3&gt;配置执行频率&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo -u www-data crontab -e
+
+添加以下。注意修改自己的网站目录
+*/5 * * * * php -f /home/wwwroot/nextcloud/cron.php
+
+验证有效性
+sudo -u www-data crontab -l
+&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1252.html</link><guid isPermaLink="false">https://www.ippa.top/1252.html</guid><pubDate>Wed, 12 Mar 2025 22:40:06 GMT</pubDate></item><item><title>Proxmox VE (PVE) LXC 容器时区设置为中国上海时间</title><description>&lt;p&gt;默认情况下，Proxmox VE (PVE) 的 LXC 容器使用 UTC 时区，需要手动更改为中国上海时区 (Asia/Shanghai)。&lt;/p&gt;
+&lt;h2&gt;对已经配置的CT/LXC容器&lt;/h2&gt;
+&lt;p&gt;我使用的是lxc，默认使用utc时区，因此还需要改一下时间，进入容器执行以下命令&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo &quot;Asia/Shanghai&quot; &amp;gt; /etc/timezone
+systemctl restart systemd-timedated
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1250.html</link><guid isPermaLink="false">https://www.ippa.top/1250.html</guid><pubDate>Tue, 11 Mar 2025 22:26:03 GMT</pubDate></item><item><title>nextcloud系列：维护时段配置</title><description>&lt;h2&gt;提示内容&lt;/h2&gt;
+&lt;p&gt;服务器没有配置维护时段开始时间。 这意味着资源密集型日常后台作业也将在您的主要使用时间执行。 我们建议将其设置为低使用率的时间，这样用户就不会受到这些繁重任务造成的负载的影响。&lt;/p&gt;
+&lt;h2&gt;处理它&lt;/h2&gt;
+&lt;p&gt;Nextcloud 需要定期运行后台任务（cron jobs），如索引文件、同步共享、清理日志等。如果未配置维护时段，这些任务会随时执行，可能会在高峰时段影响性能，导致用户体验下降。建议设置维护时段，让 Nextcloud 在 服务器低使用率时间（如深夜） 执行这些任务。&lt;/p&gt;
+&lt;p&gt;打开配置文件&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;nano /home/wwwroot/nextcloud/config/config.php
+
+&#39;maintenance_window_start&#39; =&amp;gt; 3,  // 这里的 &quot;3&quot; 表示凌晨 3:00-5:00。如果是1，则表示凌晨 1:00-5:00
+
+值设置为100，则代表不受限制&lt;/pre&gt;
+&lt;p&gt;重启服务&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;systemctl restart nginx php8.2-fpm
+&lt;/pre&gt;
+&lt;h2&gt;时区调整&lt;/h2&gt;
+&lt;p&gt;我使用的是lxc，默认使用utc时区，因此还需要改一下时间&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo &quot;Asia/Shanghai&quot; &amp;gt; /etc/timezone
+systemctl restart systemd-timedated
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1247.html</link><guid isPermaLink="false">https://www.ippa.top/1247.html</guid><pubDate>Mon, 10 Mar 2025 22:02:20 GMT</pubDate></item><item><title>nextcloud系列：Internal Server Error</title><description>&lt;h2&gt;报错内容&lt;/h2&gt;
+&lt;p&gt;Internal Server Error The server encountered an internal error and was unable to complete your request. Please contact the server administrator if this error reappears multiple times, please include the technical details below in your report. More details can be found in the server log.&lt;/p&gt;
+&lt;h2&gt;说明&lt;/h2&gt;
+&lt;p&gt;在添加了redis和apcu缓存之后，提示错误。我奇怪的是，这个是从原来nextlcoud复制过来的，而在那端是可用的。一度怀疑是redis出错，因为我重装nextcloud使用了相同的ip。&lt;/p&gt;
+&lt;p&gt;通过移除config的配置，保留redis是可用的，而出现apcu是有故障的。大概说下，如果有这个错误，基本还是和这几个缓存有关。看看自己使用的缓存，有没有安装对应的软件包，例如php-redis、php-apcu、php-memcache等&lt;/p&gt;
+&lt;h2&gt;解决它&lt;/h2&gt;
+&lt;p&gt;我本处是acpu出错，模式是安装了的。问题就出现没有在web选择正确的后台任务。详见：&lt;a href=&quot;https://www.ippa.top/1244.html&quot; rel=&quot;nofollow&quot;&gt;nextcloud系列：未配置内存缓存暨APCu安装&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;官方提到：APCu（Alternative PHP Cache）是 PHP 的内存缓存扩展，用于加速应用程序，但默认情况下，它在 CLI（命令行）模式下是禁用的。这意味着如果你运行 Nextcloud 的定时任务（Cron Jobs） 时，APCu 可能无法正确存储和读取缓存数据，导致性能下降甚至任务失败。&lt;/p&gt;
+&lt;p&gt;在 Web 请求 环境中，APCu 作用于 单个 PHP 进程，缓存数据存储在内存中，并且每个请求都能访问相同的缓存。&lt;br&gt;
+在 CLI（命令行）模式 下，每次运行 php 命令都会启动一个新的进程，缓存数据不会在进程之间共享，因此 APCu 在 CLI 模式下默认被禁用。但 Nextcloud 的 cron.php 任务会使用 APCu 进行缓存，如果 APCu 在 CLI 下禁用，可能会导致 计划任务异常。&lt;/p&gt;
+&lt;h2&gt;正确启用方式&lt;/h2&gt;
+&lt;p&gt;有两种方式启用 apc.enable_cli=1&lt;/p&gt;
+&lt;p&gt;一是全局修改 php.ini。使用&lt;span class=&quot;hljs-attr&quot;&gt;apc.enable_cli&lt;/span&gt;=&lt;span class=&quot;hljs-number&quot;&gt;1，但记得提前调整cron后台任务&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;二是只针对 Nextcloud 的 Cron 任务启用。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;php -d apc.enable_cli=1 /var/www/nextcloud/cron.php
+或者
+*/5 * * * * php -d apc.enable_cli=1 /var/www/nextcloud/cron.php
+&lt;/pre&gt;
+&lt;p&gt;重启服务&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;systemctl restart nginx php8.2-fpm
+&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;br&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1246.html</link><guid isPermaLink="false">https://www.ippa.top/1246.html</guid><pubDate>Sun, 09 Mar 2025 21:13:44 GMT</pubDate></item></channel></rss>

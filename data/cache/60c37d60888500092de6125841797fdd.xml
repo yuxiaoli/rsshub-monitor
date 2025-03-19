@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>SDK Platform Tools release notes | Android Studio | Android Developers</title><link>https://developer.android.com/studio/releases/platform-tools</link><atom:link href="http://rss.wudifeixue.com/android/platform-tools-releases" rel="self" type="application/rss+xml"></atom:link><description>SDK Platform Tools release notes | Android Studio | Android Developers - Made with love by RSSHub(https://github.com/DIYgod/RSSHub)</description><generator>RSSHub</generator><webMaster>i@diygod.me (DIYgod)</webMaster><language>en</language><lastBuildDate>Wed, 19 Mar 2025 23:00:10 GMT</lastBuildDate><ttl>5</ttl><item><title>35.0.2 (July 2024)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix openscreen mDNS backend bug bringing down server on truncated query &lt;a href=&quot;https://issuetracker.google.com/issues/294120933&quot;&gt;issue #294120933&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Make openscreen mDNS backend work on macOS.&lt;/li&gt;
+&lt;li&gt;Make openscreen mDNS backend default on all platforms.&lt;/li&gt;
+&lt;li&gt;Support to detect USB SuperSpeed+ (current and negotiated speeds) for diagnostic purposes.&lt;/li&gt;
+&lt;li&gt;Graceful shutdown: Release all USB interfaces on shutdown (all OSes).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3502_july_2024</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3502_july_2024</guid><pubDate>Sun, 30 Jun 2024 16:00:00 GMT</pubDate></item><item><title>35.0.1 (March 2024)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Switch to libusb 1.0.27&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3501_march_2024</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3501_march_2024</guid><pubDate>Thu, 29 Feb 2024 16:00:00 GMT</pubDate></item><item><title>35.0.0 (February 2024)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Switch to libusb as the default on Linux &lt;a href=&quot;https://issuetracker.google.com/issues/270205252&quot;&gt;issue #270205252&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Fix adb startup on hosts without USB.&lt;/li&gt;
+&lt;li&gt;Fix adb hangs caused by USB devices incorrectly reporting zero-length descriptors &lt;a href=&quot;https://issuetracker.google.com/issues/302212871&quot;&gt;issue #302212871&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Fix return code of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb shell&lt;/code&gt; when device disconnects &lt;a href=&quot;https://issuetracker.google.com/issues/321787891&quot;&gt;issue #321787891&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Limit the maximum size of the incoming packet queue.&lt;/li&gt;
+&lt;li&gt;Remove bottlenecks that previously limited download speeds to around 120MB/s. Now fastboot can saturate a SuperSpeed+ bus and achieve speeds up to 980MB/s, depending on the device.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3500_february_2024</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3500_february_2024</guid><pubDate>Wed, 31 Jan 2024 16:00:00 GMT</pubDate></item><item><title>34.0.5 (October 2023)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;adb now defaults to libusb on macOS to address &lt;a href=&quot;https://issuetracker.google.com/issues/270205252&quot;&gt;issue #270205252&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Previously, adb responded with a successful code when wireless pairing fails. Resolved this by returning a failure code (1) and user-facing error (&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;error: protocol fault (couldn&#39;t read status message...)&lt;/code&gt;). &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;echo $?&lt;/code&gt; now reports &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;1&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb wait-for-disconnect&lt;/code&gt; is now operational for non-USB (wireless
+debugging).&lt;/li&gt;
+&lt;li&gt;Added new DbC interface for future support of ChromeOS over adb.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed flashall on Pixel 3 devices.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3405_october_2023</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3405_october_2023</guid><pubDate>Sat, 30 Sep 2023 16:00:00 GMT</pubDate></item><item><title>34.0.4 (July 2023)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Propagate &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;-a (gListenAll)&lt;/code&gt; when adb forks an adb host server
+(previously, the flag only worked for &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb -a server nodaemon&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Faster root and unroot&lt;/li&gt;
+&lt;li&gt;Reland &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;Flag(env) guarding clear endpoint (device)
+feature for OSX usb start.&lt;/code&gt;
+(&lt;a href=&quot;https://issuetracker.google.com/issues/270205252&quot;&gt;issue #270205252&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Mac: remove retries on invalid IO iterator (flashing failure
+with LIBUSB_TRANSFER_CANCELLED)&lt;/li&gt;
+&lt;li&gt;Windows: fix &quot;Sparse file is too large or invalid&quot; when using &quot;flashall&quot;&lt;/li&gt;
+&lt;li&gt;All platforms: fix &quot;ANDROID_PRODUCT_OUT not set&quot; when using &quot;update&quot;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3404_july_2023</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3404_july_2023</guid><pubDate>Fri, 30 Jun 2023 16:00:00 GMT</pubDate></item><item><title>34.0.1 (March 2023)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;macOS: Reverted &quot;unstable connectivity (MacBook high speed cable)&quot; resolution due to adb install hang
+(&lt;a href=&quot;https://issuetracker.google.com/issues/270205252&quot;&gt;issue #270205252&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows: Fixed &quot;mke2fs: Illegal or malformed device name while trying to determine filesystem size&quot; error introduced in Platform tools 34.0.0
+(&lt;a href=&quot;https://issuetracker.google.com/issues/271039230&quot;&gt;issue #271039230&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3401_march_2023</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3401_march_2023</guid><pubDate>Tue, 28 Feb 2023 16:00:00 GMT</pubDate></item><item><title>34.0.0 RC2 (March 2023)</title><description>&lt;li&gt;Updated with the release of Android 14 Developer Preview 2 (no updates to
+adb and fastboot).&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3400_rc2_march_2023</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3400_rc2_march_2023</guid><pubDate>Tue, 28 Feb 2023 16:00:00 GMT</pubDate></item><item><title>34.0.0 (February 2023)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed zero length packet sends for macOS &lt;a href=&quot;https://issuetracker.google.com/issues/208675141&quot;&gt;(issuetracker: 208675141)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Addressed unstable connectivity (MacBook high speed cable): frequent adb disconnects.&lt;/li&gt;
+&lt;li&gt;Improved error message for adb push with insufficient number of arguments.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved flashing: &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;flashall&lt;/code&gt; will now skip reboots to userspace if it can.&lt;/li&gt;
+&lt;li&gt;Fixed zero length packet sends for macOS &lt;a href=&quot;https://issuetracker.google.com/issues/208675141&quot;&gt;(issuetracker: 208675141)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Fixed flashing recovery.img resulting in wrong AVB footer.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3400_february_2023</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3400_february_2023</guid><pubDate>Tue, 31 Jan 2023 16:00:00 GMT</pubDate></item><item><title>33.0.3 (Aug 2022)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Don&#39;t retry &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb root&lt;/code&gt; if first attempt failed.&lt;/li&gt;
+&lt;li&gt;Fix track-devices duplicate entry.&lt;/li&gt;
+&lt;li&gt;Add receive windowing (increase throughput on high-latency connections). &lt;/li&gt;
+&lt;li&gt;More specific error messages in the &quot;more than one device&quot; failure cases.&lt;/li&gt;
+&lt;li&gt;Reject unexpected reverse forward requests.&lt;/li&gt;
+&lt;li&gt;Fix install-multi-package on Windows.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove e2fsdroid as part of SDK platform-tools.&lt;/li&gt;
+&lt;li&gt;Print OemCmdHandler return message on success.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3303_aug_2022</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3303_aug_2022</guid><pubDate>Invalid Date</pubDate></item><item><title>33.0.2 (May 2022)</title><description>&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Support for the &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;vendor_kernel_boot&lt;/code&gt; partition.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3302_may_2022</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3302_may_2022</guid><pubDate>Sat, 30 Apr 2022 16:00:00 GMT</pubDate></item><item><title>33.0.1 (March 2022)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixes Windows mdns crashes. &lt;/li&gt;
+&lt;li&gt;Fixes enable-verity/disable-verity on old devices. &lt;/li&gt;
+&lt;li&gt;Fixes &quot;install multiple&quot; on old devices &lt;/li&gt;
+&lt;li&gt;Improves the help output to include all supported compression methods.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;systrace&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Removed. Use Studio Profiler/gpuinspector.dev/Perfetto instead. &lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3301_march_2022</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3301_march_2022</guid><pubDate>Mon, 28 Feb 2022 16:00:00 GMT</pubDate></item><item><title>33.0.0 (February 2022)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixes the issue introduced in 32.0.0 of crashes when run without any
+arguments.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3300_february_2022</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3300_february_2022</guid><pubDate>Mon, 31 Jan 2022 16:00:00 GMT</pubDate></item><item><title>32.0.0 (January 2022)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Universal binary for Apple M1 devices.&lt;/li&gt;
+&lt;li&gt;Known issue: this version crashes when run without any arguments.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3200_january_2022</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3200_january_2022</guid><pubDate>Fri, 31 Dec 2021 16:00:00 GMT</pubDate></item><item><title>31.0.3 (August 2021)</title><description>&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Support flashing vbmeta_vendor.img for fastboot flashall / update.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3103_august_2021</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3103_august_2021</guid><pubDate>Sat, 31 Jul 2021 16:00:00 GMT</pubDate></item><item><title>31.0.2 (April 2021)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Support forwarding to vsock on linux.&lt;/li&gt;
+&lt;li&gt;Fix bug in &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb track-devices&lt;/code&gt; where devices over wireless debugging wouldn&#39;t
+immediately receive updates.&lt;/li&gt;
+&lt;li&gt;Implement preliminary support for mDNS device discovery without a separately
+installed mDNS service. This is currently disabled by default, and can be
+enabled by setting the environment variable &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;ADB_MDNS_OPENSCREEN&lt;/code&gt; to 1 when
+starting the adb server.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Don&#39;t fail when unable to get boot partition size.&lt;/li&gt;
+&lt;li&gt;Derive device locked state from property instead of parsing the kernel
+command line.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3102_april_2021</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3102_april_2021</guid><pubDate>Wed, 31 Mar 2021 16:00:00 GMT</pubDate></item><item><title>31.0.1 (March 2021)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Reduce TCP keepalive interval.&lt;/li&gt;
+&lt;li&gt;Improve incremental installation performance.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Add support for compressed snapshot merges.&lt;/li&gt;
+&lt;li&gt;Restore legacy A/B support.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3101_march_2021</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3101_march_2021</guid><pubDate>Sun, 28 Feb 2021 16:00:00 GMT</pubDate></item><item><title>31.0.0 (February 2021)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Disable compression on pull by default.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3100_february_2021</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3100_february_2021</guid><pubDate>Sun, 31 Jan 2021 16:00:00 GMT</pubDate></item><item><title>30.0.5 (November 2020)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Improve performance of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb push&lt;/code&gt; when pushing many files over a high-latency connection.&lt;/li&gt;
+&lt;li&gt;Improve &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb push/pull&lt;/code&gt; performance on Windows.&lt;/li&gt;
+&lt;li&gt;Fix &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb push --sync&lt;/code&gt; with multiple inputs.&lt;/li&gt;
+&lt;li&gt;Improve performance of incremental apk installation.&lt;/li&gt;
+&lt;li&gt;Improve error handling for incremental apk installation.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3005_november_2020</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3005_november_2020</guid><pubDate>Sat, 31 Oct 2020 16:00:00 GMT</pubDate></item><item><title>30.0.4 (July 2020)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix fallback to non-incremental apk installation on pre-Android&amp;nbsp;11 devices.&lt;/li&gt;
+&lt;li&gt;Fix &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb install-multi-package&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fix some more crashes related to adb wireless pairing.&lt;/li&gt;
+&lt;li&gt;Improve some error messages.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Improve console output on &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;fastboot oem&lt;/code&gt; commands.&lt;/li&gt;
+&lt;li&gt;Fix &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;fastboot flashall&lt;/code&gt; on older devices such as Nexus 7.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3004_july_2020</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3004_july_2020</guid><pubDate>Tue, 30 Jun 2020 16:00:00 GMT</pubDate></item><item><title>30.0.3 (June 2020)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix installation of APKs signed with v4 signature scheme on pre-Android&amp;nbsp;11 devices.&lt;/li&gt;
+&lt;li&gt;Fix crash when authenticating without &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;ADB_VENDOR_KEYS&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fix crash when using &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb -H&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3003_june_2020</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3003_june_2020</guid><pubDate>Sun, 31 May 2020 16:00:00 GMT</pubDate></item><item><title>30.0.2 (June 2020)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Improve adb wireless pairing.&lt;/li&gt;
+&lt;li&gt;Fix hang in &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb logcat&lt;/code&gt; when run before a device is connected.&lt;/li&gt;
+&lt;li&gt;Add &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb transport-id&lt;/code&gt; to allow scripts to safely wait for a device to go away after root/unroot/reboot.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3002_june_2020</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3002_june_2020</guid><pubDate>Sun, 31 May 2020 16:00:00 GMT</pubDate></item><item><title>30.0.1 (May 2020)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Disable adb mdns auto-connection by default. This can be reenabled with the &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;ADB_MDNS_AUTO_CONNECT&lt;/code&gt;
+environment variable.&lt;/li&gt;
+&lt;li&gt;Improve performance of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb install-multi&lt;/code&gt; on Android&amp;nbsp;10 or newer devices.&lt;/li&gt;
+&lt;li&gt;Fix timeout when using &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb root/unroot&lt;/code&gt; on a device connected over TCP.&lt;/li&gt;
+&lt;li&gt;Update support for wireless pairing.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3001_may_2020</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3001_may_2020</guid><pubDate>Thu, 30 Apr 2020 16:00:00 GMT</pubDate></item><item><title>30.0.0 (April 2020)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Add initial support for &lt;a href=&quot;https://developer.android.com/about/versions/11/features#wireless-adb&quot;&gt;wireless pairing&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Add support for &lt;a href=&quot;https://developer.android.com/about/versions/11/features#incremental&quot;&gt;incremental APK installation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Implement client-side support for compression of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb {push, pull, sync}&lt;/code&gt;
+when used with an Android&amp;nbsp;11 device.&lt;/li&gt;
+&lt;li&gt;Improve performance of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb push&lt;/code&gt; on high-latency connections.&lt;/li&gt;
+&lt;li&gt;Improve push/pull performance on Windows.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#3000_april_2020</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#3000_april_2020</guid><pubDate>Tue, 31 Mar 2020 16:00:00 GMT</pubDate></item><item><title>29.0.6 (February 2020)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;64-bit size/time support for &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb ls&lt;/code&gt; when used with an
+Android&amp;nbsp;11 device.&lt;/li&gt;
+&lt;li&gt;Support listening on &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;::1&lt;/code&gt; on POSIX.&lt;/li&gt;
+&lt;li&gt;Client support for WinUSB devices that publish a WinUSB descriptor
+(required for Android&amp;nbsp;11) should no longer require a USB
+driver to be installed.&lt;/li&gt;
+&lt;li&gt;Fix hang when using &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb install&lt;/code&gt; on something that isn&#39;t actually a file.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2906_february_2020</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2906_february_2020</guid><pubDate>Fri, 31 Jan 2020 16:00:00 GMT</pubDate></item><item><title>29.0.5 (October 2019)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Slight performance improvement on Linux when using many simultaneous
+connections.&lt;/li&gt;
+&lt;li&gt;Add &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;--fastdeploy&lt;/code&gt; option to &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb install&lt;/code&gt;, for incremental updates to APKs
+while developing.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2905_october_2019</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2905_october_2019</guid><pubDate>Mon, 30 Sep 2019 16:00:00 GMT</pubDate></item><item><title>29.0.4 (September 2019)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Hotfix for native debugging timeout with LLDB
+(see &lt;a href=&quot;https://issuetracker.google.com/134613180&quot;&gt;issue #134613180&lt;/a&gt;). This also
+fixes a related bug in the Android Studio Profilers that causes an
+&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;AdbCommandRejectedException&lt;/code&gt;, which you can see in the &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;idea.log&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2904_september_2019</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2904_september_2019</guid><pubDate>Sat, 31 Aug 2019 16:00:00 GMT</pubDate></item><item><title>29.0.3 (September 2019)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb forward --list&lt;/code&gt; works with multiple devices connected.&lt;/li&gt;
+&lt;li&gt;Fix devices going offline on Windows.&lt;/li&gt;
+&lt;li&gt;Improve &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb install&lt;/code&gt; output and help text.&lt;/li&gt;
+&lt;li&gt;Restore previous behavior of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb connect &amp;lt;host&amp;gt;&lt;/code&gt; without specifying port.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2903_september_2019</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2903_september_2019</guid><pubDate>Sat, 31 Aug 2019 16:00:00 GMT</pubDate></item><item><title>29.0.2 (July 2019)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixes a Windows heap integrity crash.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Adds support for partition layout of upcoming devices.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2902_july_2019</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2902_july_2019</guid><pubDate>Sun, 30 Jun 2019 16:00:00 GMT</pubDate></item><item><title>29.0.1 (June 2019)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Hotfix for Windows crashes (https://issuetracker.google.com/134613180)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2901_june_2019</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2901_june_2019</guid><pubDate>Fri, 31 May 2019 16:00:00 GMT</pubDate></item><item><title>29.0.0 (June 2019)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb reconnect&lt;/code&gt; performs a USB reset on Linux.&lt;/li&gt;
+&lt;li&gt;On Linux, when connecting to a newer adb server, instead of killing the
+server and starting an older one, adb attempts to launch the newer
+version transparently.&lt;/li&gt;
+&lt;li&gt;&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb root&lt;/code&gt; waits for the device to reconnect after disconnecting.
+Previously, &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb root; adb wait-for-device&lt;/code&gt; could mistakenly return
+immediately if &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb wait-for-device&lt;/code&gt; started before adb noticed that the
+device had disconnected.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Disables an error message that occurred when fastboot attempted to
+open the touch bar or keyboard on macOS.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2900_june_2019</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2900_june_2019</guid><pubDate>Fri, 31 May 2019 16:00:00 GMT</pubDate></item><item><title>28.0.2 (March 2019)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixes flakiness of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb shell&lt;/code&gt; port forwarding that leads to &quot;Connection
+reset by peer&quot; error message.&lt;/li&gt;
+&lt;li&gt;Fixes authentication via &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;ADB_VENDOR_KEYS&lt;/code&gt; when reconnecting devices.&lt;/li&gt;
+&lt;li&gt;Fixes authentication—when the private key used for authentication does not
+match the public key—by calculating the public key from the private key,
+instead of assuming that they match.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Adds support for dynamic partitions.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Updated Windows requirements&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;The platform tools now depend on the Windows Universal C Runtime, which is
+usually installed by default via Windows Update. If you see errors mentioning
+missing DLLs, you may need to manually fetch and install the &lt;a href=&quot;https://support.microsoft.com/en-ca/help/2999226/update-for-universal-c-runtime-in-windows&quot;&gt;runtime
+package&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2802_march_2019</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2802_march_2019</guid><pubDate>Thu, 28 Feb 2019 16:00:00 GMT</pubDate></item><item><title>28.0.1 (September 2018)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Add support for reconnection of TCP connections. Upon disconnection, adb
+will attempt to reconnect for up to 60 seconds before abandoning a connection.&lt;/li&gt;
+&lt;li&gt;Fix Unicode console output on Windows. (Thanks to external contributor
+Spencer Low!)&lt;/li&gt;
+&lt;li&gt;Fix a file descriptor double-close that can occur, resulting in connections
+being closed when an &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb connect&lt;/code&gt; happens simultaneously.&lt;/li&gt;
+&lt;li&gt;Fix &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb forward --list&lt;/code&gt; when used with more than one device connected.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Increase command timeout to 30 seconds, to better support some slow
+bootloader commands.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2801_september_2018</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2801_september_2018</guid><pubDate>Fri, 31 Aug 2018 16:00:00 GMT</pubDate></item><item><title>28.0.0 (June 2018)</title><description>&lt;li&gt;&lt;strong&gt;adb&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Add support for checksum-less operation with devices running Android P,
+which improves throughput by up to 40%.&lt;/li&gt;
+&lt;li&gt;Sort output of &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb devices&lt;/code&gt; by connection type and device serial.&lt;/li&gt;
+&lt;li&gt;Increase the socket listen backlog to allow for more simultaneous adb
+commands.&lt;/li&gt;
+&lt;li&gt;Improve error output for &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb connect&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fastboot&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Improve output format, add a verbose output mode (&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;-v&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Clean up help output.&lt;/li&gt;
+&lt;li&gt;Add &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;product.img&lt;/code&gt; and &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;odm.img&lt;/code&gt; to the list of partitions flashed by
+&lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;fastboot flashall&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Avoid bricking new devices when using a too-old version of fastboot by
+allowing factory image packages to require support for specific partitions.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2800_june_2018</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2800_june_2018</guid><pubDate>Thu, 31 May 2018 16:00:00 GMT</pubDate></item><item><title>27.0.1 (December 2017)</title><description>&lt;li&gt;&lt;strong&gt;adb:&lt;/strong&gt; fixes an assertion failure on MacOS that
+occurred when connecting devices using USB 3.0.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fastboot:&lt;/strong&gt; On Windows, adds support for wiping devices that use F2FS
+(Flash-Friendly File System).&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2701_december_2017</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2701_december_2017</guid><pubDate>Thu, 30 Nov 2017 16:00:00 GMT</pubDate></item><item><title>27.0.0 (December 2017)</title><description>&lt;li&gt;Re-fixes the macOS 10.13 fastboot bug first fixed in 26.0.1, but
+re-introduced in 26.0.2.&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2700_december_2017</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2700_december_2017</guid><pubDate>Thu, 30 Nov 2017 16:00:00 GMT</pubDate></item><item><title>26.0.2 (October 2017)</title><description>&lt;li&gt;Add fastboot support for Pixel 2 devices.&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2602_october_2017</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2602_october_2017</guid><pubDate>Sat, 30 Sep 2017 16:00:00 GMT</pubDate></item><item><title>26.0.1 (September 2017)</title><description>&lt;li&gt;Fixed fastboot problems on macOS 10.13 High Sierra
+(&lt;a href=&quot;https://issuetracker.google.com/64292422&quot;&gt;bug 64292422&lt;/a&gt;).&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2601_september_2017</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2601_september_2017</guid><pubDate>Thu, 31 Aug 2017 16:00:00 GMT</pubDate></item><item><title>26.0.0 (June 2017)</title><description>&lt;li&gt;Updated with the release of Android O final SDK (API level 26).&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2600_june_2017</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2600_june_2017</guid><pubDate>Wed, 31 May 2017 16:00:00 GMT</pubDate></item><item><title>25.0.5 (April 24, 2017)</title><description>&lt;li&gt;&lt;p&gt;Fixed adb sideload of large updates on Windows, manifesting as
+&quot;std::bad_alloc&quot; (&lt;a href=&quot;https://issuetracker.google.com/37139736&quot;&gt;bug
+37139736&lt;/a&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fixed adb problems with some Windows firewalls, manifesting as &quot;cannot open
+transport registration socketpair&quot;
+(&lt;a href=&quot;https://issuetracker.google.com/37139725&quot;&gt;bug 37139725&lt;/a&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Both &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb --version&lt;/code&gt; and &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;fastboot --version&lt;/code&gt; now include the install path.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Changed adb to not resolve &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;localhost&lt;/code&gt; to work around misconfigured VPN.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Changed adb to no longer reset USB devices on Linux, which could affect
+other attached USB devices.&lt;/p&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2505_april_24_2017</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2505_april_24_2017</guid><pubDate>Fri, 31 Mar 2017 16:00:00 GMT</pubDate></item><item><title>25.0.4 (March 16, 2017)</title><description>&lt;li&gt;Added experimental libusb support to Linux and Mac adb&lt;/li&gt;
+To use the libusb backend, set the environment variable ADB_LIBUSB=true before
+launching a new adb server. The new &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb host-features&lt;/code&gt; command will tell you
+whether or not you&#39;re using libusb.To restart adb with libusb and check that it worked, use &lt;code translate=&quot;no&quot; dir=&quot;ltr&quot;&gt;adb kill-server;
+ADB_LIBUSB=1 adb start-server; adb host-features&lt;/code&gt;. The output should include
+&quot;libusb&quot;.In this release, the old non-libusb implementation remains the default.
+&lt;li&gt;&lt;p&gt;fastboot doesn&#39;t hang 2016 MacBook Pros anymore
+(&lt;a href=&quot;https://code.google.com/p/android/issues/detail?id=231129&quot;&gt;bug
+231129&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fixed Systrace command line capture on Mac&lt;/p&gt;&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2504_march_16_2017</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2504_march_16_2017</guid><pubDate>Tue, 28 Feb 2017 16:00:00 GMT</pubDate></item><item><title>25.0.3 (December 16, 2016)</title><description>&lt;li&gt;Fixed fastboot bug causing Android Things devices to fail to flash&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2503_december_16_2016</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2503_december_16_2016</guid><pubDate>Wed, 30 Nov 2016 16:00:00 GMT</pubDate></item><item><title>25.0.2 (December 12, 2016)</title><description>&lt;li&gt;Updated with the Android N MR1 Stable release (API 25)&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2502_december_12_2016</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2502_december_12_2016</guid><pubDate>Wed, 30 Nov 2016 16:00:00 GMT</pubDate></item><item><title>25.0.1 (November 22, 2016)</title><description>&lt;li&gt;Updated with the release of Android N MR1 Developer Preview 2 release (API 25)&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2501_november_22_2016</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2501_november_22_2016</guid><pubDate>Mon, 31 Oct 2016 16:00:00 GMT</pubDate></item><item><title>25.0.0 (October 19, 2016)</title><description>&lt;li&gt;Updated with the release of Android N MR1 Developer Preview 1 release (API 25)&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2500_october_19_2016</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2500_october_19_2016</guid><pubDate>Fri, 30 Sep 2016 16:00:00 GMT</pubDate></item><item><title>24.0.4 (October 14, 2016)</title><description>&lt;li&gt;Updated to address issues in ADB and Mac OS Sierra&lt;/li&gt;
+</description><link>https://developer.android.com/studio/releases/platform-tools#2404_october_14_2016</link><guid isPermaLink="false">https://developer.android.com/studio/releases/platform-tools#2404_october_14_2016</guid><pubDate>Fri, 30 Sep 2016 16:00:00 GMT</pubDate></item></channel></rss>

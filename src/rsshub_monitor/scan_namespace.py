@@ -16,7 +16,7 @@ from tqdm import tqdm
 DEFAULT_DOMAIN_SOURCE = "https://raw.githubusercontent.com/yuxiaoli/rsshub-monitor/refs/heads/main/data/servers.json"
 DEFAULT_NAMESPACE_SOURCE = "https://raw.githubusercontent.com/yuxiaoli/rsshub-monitor/refs/heads/main/data/namespace.json"
 DEFAULT_CACHE_DIR = "data/cache"
-DEFAULT_CATEGORY_CACHE_DIR = "data/cache/categories"
+DEFAULT_CATEGORY_CACHE_DIR = "data/cache/categories/"
 DEFAULT_CATEGORY_CACHE_LIMIT = 100
 
 def parse_iso8601(s: str) -> datetime:
@@ -68,6 +68,14 @@ async def load_domain_pool(domain_inputs: list) -> list:
             pool.append(entry)
     return pool
 
+# Add this function near the top with other utility functions
+def get_cache_path(route_path: str, cache_dir: str) -> Path:
+    """Generate consistent cache path for a route"""
+    if route_path.startswith('http://') or route_path.startswith('https://'):
+        route_path = route_path.split('/', 3)[-1] if len(route_path.split('/', 3)) > 3 else route_path
+    url_hash = hashlib.md5(route_path.encode()).hexdigest()
+    return Path(cache_dir) / f"{url_hash}.xml"
+
 async def check_route(route, client, normalized_domains, verbose, timeout, semaphore, cache_dir=None, category_cache=None):
     async with semaphore:
         now = datetime.now(timezone.utc)
@@ -85,24 +93,22 @@ async def check_route(route, client, normalized_domains, verbose, timeout, semap
 
         try:
             response = await client.get(full_url, timeout=timeout)
-            # Check status code first.
             if response.status_code != 200:
                 online = False
             else:
-                # Attempt to parse response content as XML.
                 try:
                     xml_content = response.text
                     ET.fromstring(xml_content)
                     online = True
                     # Save to regular cache if enabled
                     if cache_dir and online:
-                        url_hash = hashlib.md5(full_url.encode()).hexdigest()
-                        cache_path = Path(cache_dir) / f"{url_hash}.xml"
+                        route_path = route.get('example', '')
+                        cache_path = get_cache_path(route_path, cache_dir)
                         cache_path.parent.mkdir(parents=True, exist_ok=True)
                         cache_path.write_text(xml_content, encoding='utf-8')
                         if verbose:
                             tqdm.write(f"Cached XML to {cache_path}")
-                    
+
                     # Save to category cache if enabled
                     if category_cache and online and 'categories' in route:
                         for category in route['categories']:
@@ -118,9 +124,18 @@ async def check_route(route, client, normalized_domains, verbose, timeout, semap
                                 except ET.ParseError:
                                     entries = []
                             
-                            # Add new entry
+                            # Add new entry with route information
                             new_root = ET.fromstring(xml_content)
                             new_items = new_root.findall('.//item')
+                            
+                            # Add route metadata to each item
+                            for item in new_items:
+                                route_info = ET.SubElement(item, 'route')
+                                ET.SubElement(route_info, 'provider_id').text = route.get('provider_id', '')
+                                ET.SubElement(route_info, 'provider_name').text = route.get('provider_name', '')
+                                ET.SubElement(route_info, 'route_path').text = route.get('path', '')
+                                ET.SubElement(route_info, 'route_name').text = route.get('name', '')
+                            
                             if new_items:
                                 entries.extend(new_items)
                             
@@ -128,14 +143,17 @@ async def check_route(route, client, normalized_domains, verbose, timeout, semap
                             if len(entries) > category_cache['limit']:
                                 entries = entries[-category_cache['limit']:]
                             
-                            # Create new XML document
+                            # Create new XML document with category information
                             root = ET.Element('rss')
                             root.set('version', '2.0')
                             channel = ET.SubElement(root, 'channel')
+                            ET.SubElement(channel, 'title').text = f"RSSHub - {category}"
+                            ET.SubElement(channel, 'description').text = f"RSS feeds for {category} category"
+                            
                             for entry in entries:
                                 channel.append(entry)
                             
-                            # Save file
+                            # Save file with proper XML formatting
                             tree = ET.ElementTree(root)
                             tree.write(str(category_path), encoding='utf-8', xml_declaration=True)
                             if verbose:
@@ -159,14 +177,39 @@ async def process_routes(data, client, normalized_domains, verbose, timeout, con
     total_routes = sum(len(provider.get('routes', {})) for provider in data.values())
     pbar = tqdm(total=total_routes, desc="Checking routes")
     now = datetime.now(timezone.utc)
-    for provider in data.values():
-        for route in provider.get('routes', {}).values():
-            # For valid routes, create cache if enabled
-            if route.get("online") and route.get("lastChecked") and (cache_dir or category_cache):
+    for provider_id, provider in data.items():
+        for route_key, route in provider.get('routes', {}).items():
+            # Add provider info to route for caching
+            route['provider_id'] = provider_id
+            route['provider_name'] = provider.get('name', '')
+            route['route_key'] = route_key
+
+            # Check if route is valid and cache exists
+            if route.get("online") and route.get("lastChecked"):
                 try:
                     last_checked = parse_iso8601(route["lastChecked"])
                     diff = (now - last_checked).total_seconds() / 3600.0
                     if diff < valid_hours:
+                        # Check if cache exists
+                        cache_exists = True
+                        if cache_dir:
+                            route_path = route.get('example', '')
+                            cache_path = get_cache_path(route_path, cache_dir)
+                            if not cache_path.exists():
+                                cache_exists = False
+                        
+                        if category_cache and 'categories' in route:
+                            for category in route['categories']:
+                                category_path = Path(category_cache['dir']) / f"{category}.xml"
+                                if not category_path.exists():
+                                    cache_exists = False
+                                    break
+                        
+                        if cache_exists:
+                            pbar.update(1)
+                            continue
+                        
+                        # Create cache if needed
                         task = asyncio.create_task(
                             check_route(route, client, normalized_domains, verbose, timeout, semaphore, cache_dir, category_cache)
                         )
@@ -196,6 +239,7 @@ async def main_async(source, output, rss_output, domain_inputs, verbose, timeout
         "User-Agent": "Mozilla/5.0 (compatible; RSSHubChecker/1.0; +https://github.com/DIYgod/RSSHub)"
     }
     async with httpx.AsyncClient(headers=headers) as client:
+        # print(source)
         if source.startswith("http://") or source.startswith("https://"):
             try:
                 response = await client.get(source, timeout=10.0)
@@ -212,7 +256,8 @@ async def main_async(source, output, rss_output, domain_inputs, verbose, timeout
                 print(f"Error reading JSON file: {e}")
                 sys.exit(1)
 
-        data = await process_routes(data, client, normalized_domains, verbose, timeout, concurrency, valid_hours, cache_dir)
+        # print(data)
+        data = await process_routes(data, client, normalized_domains, verbose, timeout, concurrency, valid_hours, cache_dir, category_cache)
 
         working_count = sum(
             1 for provider in data.values() 
