@@ -1,0 +1,365 @@
+[
+  {
+    "provider_id": "acpaa",
+    "provider_name": "中华全国专利代理师协会",
+    "route_key": "/:id?/:name?",
+    "route": {
+      "path": "/:id?/:name?",
+      "example": "/acpaa",
+      "parameters": {
+        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
+        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
+      },
+      "name": "标签"
+    }
+  },
+  {
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/dynamic/:uid?",
+    "route": {
+      "path": "/dynamic/:uid?",
+      "example": "/afdian/dynamic/@afdian",
+      "parameters": {
+        "uid": "用户id，用户动态页面url里可找到"
+      },
+      "name": "用户动态"
+    }
+  },
+  {
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/explore/:type/:category?",
+    "route": {
+      "path": "/explore/:type/:category?",
+      "example": "/afdian/explore/hot/所有",
+      "parameters": {
+        "type": "分类",
+        "category": "目录类型，默认为 `所有`"
+      },
+      "name": "发现用户",
+      "description": "分类\n\n| 推荐 | 最热 |\n| ---- | ---- |\n| rec  | hot  |\n\n  目录类型\n\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |"
+    }
+  },
+  {
+    "provider_id": "apple",
+    "provider_name": "Apple",
+    "route_key": "/exchange_repair/:country?",
+    "route": {
+      "path": "/exchange_repair/:country?",
+      "example": "/apple/exchange_repair",
+      "parameters": {
+        "country": "country code in apple.com URL (exception: for `United States` please use `us`), default to China `cn`"
+      },
+      "name": "Exchange and Repair Extension Programs"
+    }
+  },
+  {
+    "provider_id": "aqicn",
+    "provider_name": "空气质量",
+    "route_key": "/:city/:pollution?",
+    "route": {
+      "path": "/:city/:pollution?",
+      "example": "/aqicn/beijing/pm25",
+      "parameters": {
+        "city": "城市拼音或地区 ID，详见[aqicn.org](http://aqicn.org/city/)",
+        "pollution": "可选择显示更详细的空气污染成分"
+      },
+      "name": "实时 AQI",
+      "url": "aqicn.org",
+      "descriptions": "\n|   参数   | 污染成分 |\n| -------- | -------- |\n|   pm25   |  PM2.5   |\n|   pm10   |  PM10    |\n|   o3     |  O3      |\n|   no2    |  NO2     |\n|   so2    |  SO2     |\n|   co     |  CO      |\n\n举例: [https://rsshub.app/aqicn/beijing/pm25,pm10](https://rsshub.app/aqicn/beijing/pm25,pm10)\n\n1. 显示单个污染成分，例如「pm25」, [https://rsshub.app/aqicn/beijing/pm25](https://rsshub.app/aqicn/beijing/pm25)\n2. 逗号分隔显示多个污染成分，例如「pm25,pm10」，[https://rsshub.app/aqicn/beijing/pm25,pm10](https://rsshub.app/aqicn/beijing/pm25,pm10)\n3. 城市子站 ID 获取方法：右键显示网页源代码，搜索 \"idx\" （带双冒号），后面的 ID 就是子站的 ID，如你给的链接 ID 是 4258，RSS 地址就是 [https://rsshub.app/aqicn/4258](https://rsshub.app/aqicn/4258)\n"
+    }
+  },
+  {
+    "provider_id": "atptour",
+    "provider_name": "ATP Tour",
+    "route_key": "/news/:lang?",
+    "route": {
+      "path": "/news/:lang?",
+      "example": "/atptour/news/en",
+      "parameters": {
+        "lang": "en or es."
+      },
+      "name": "News"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/search/:keyword",
+    "route": {
+      "path": "/search/:keyword",
+      "example": "/baidu/search/rss",
+      "parameters": {
+        "keyword": "搜索关键词"
+      },
+      "name": "搜索"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/top/:board?",
+    "route": {
+      "path": "/top/:board?",
+      "example": "/baidu/top",
+      "parameters": {
+        "board": "榜单，默认为 `realtime`"
+      },
+      "name": "热搜榜单",
+      "description": "| 热搜榜   | 小说榜 | 电影榜 | 电视剧榜 | 汽车榜 | 游戏榜 |\n| -------- | ------ | ------ | -------- | ------ | ------ |\n| realtime | novel  | movie  | teleplay | car    | game   |"
+    }
+  },
+  {
+    "provider_id": "bing",
+    "provider_name": "Bing",
+    "route_key": "/search/:keyword",
+    "route": {
+      "path": "/search/:keyword",
+      "example": "/bing/search/rss",
+      "parameters": {
+        "keyword": "搜索关键词"
+      },
+      "name": "搜索",
+      "url": "cn.bing.com/"
+    }
+  },
+  {
+    "provider_id": "boc",
+    "provider_name": "中国银行",
+    "route_key": "/whpj/:format?",
+    "route": {
+      "path": "/whpj/:format?",
+      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
+      "parameters": {
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
+      },
+      "name": "外汇牌价",
+      "url": "boc.cn/sourcedb/whpj",
+      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
+    }
+  },
+  {
+    "provider_id": "cfachina",
+    "provider_name": "中国期货业协会",
+    "route_key": "/servicesupport/analygarden/:program?",
+    "route": {
+      "path": "/servicesupport/analygarden/:program?",
+      "example": "/cfachina/servicesupport/analygarden",
+      "parameters": {
+        "program": "分类，见下表，留空为全部"
+      },
+      "name": "分析师园地",
+      "description": "| 有色金属类 | 黑色金属类 | 能源化工类 | 贵金属类 | 农产品类 | 金融类 | 指数类 |\n| ---------- | ---------- | ---------- | -------- | -------- | ------ | ------ |\n| ysjsl      | hsjsl      | nyhgl      | gjsl     | ncpl     | jrl    | zsl    |"
+    }
+  },
+  {
+    "provider_id": "clickme",
+    "provider_name": "ClickMe",
+    "route_key": "/:site/:grouping/:name",
+    "route": {
+      "path": "/:site/:grouping/:name",
+      "example": "/clickme/default/category/beauty",
+      "parameters": {
+        "site": "站点，`default`为普通站，`r18`为成人站，其它值默认为普通站",
+        "grouping": "分组方式，`category`为分类，`tag`为标签，其他值默认为分类",
+        "name": "分类名或标签名，分类名为英文，可以在分类 URL 中找到"
+      },
+      "name": "文章"
+    }
+  },
+  {
+    "provider_id": "fisher-spb",
+    "provider_name": "Fisher Spb",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/fisher-spb/news",
+      "parameters": {},
+      "name": "News",
+      "url": "fisher.spb.ru/news"
+    }
+  },
+  {
+    "provider_id": "galxe",
+    "provider_name": "Galxe",
+    "route_key": "/quest/:alias",
+    "route": {
+      "path": "/quest/:alias",
+      "name": "Quest",
+      "url": "app.galxe.com",
+      "example": "/galxe/quest/MissionWeb3"
+    }
+  },
+  {
+    "provider_id": "gdsrx",
+    "provider_name": "广东省食品药品审评认证技术协会",
+    "route_key": "/:id?",
+    "route": {
+      "path": "/:id?",
+      "example": "/gdsrx",
+      "parameters": {
+        "id": "栏目 id，可在对应栏目页 URL 中找到，见下表，默认为法规文库"
+      },
+      "name": "栏目",
+      "description": "| 栏目名称          | 栏目 id |\n| ----------------- | ------- |\n| 法规文库          | 10      |\n| 法规资讯          | 12      |\n| 专家供稿          | 13      |\n| 协会动态 会员动态 | 20      |\n| 协会动态          | 37      |\n| 协会通知公告      | 38      |\n| 会员动态          | 39      |"
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/alerts/:keyword",
+    "route": {
+      "path": "/alerts/:keyword",
+      "example": "/google/alerts/RSSHub",
+      "parameters": {
+        "keyword": "Keyword"
+      },
+      "name": "Alerts"
+    }
+  },
+  {
+    "provider_id": "hostmonit",
+    "provider_name": "全球主机监控",
+    "route_key": "/cloudflareyes/:type?",
+    "route": {
+      "path": "/cloudflareyes/:type?",
+      "example": "/hostmonit/cloudflareyes",
+      "parameters": {
+        "type": "类型，见下表，默认为 v4"
+      },
+      "name": "CloudFlareYes",
+      "description": "| v4 | v6 |\n| -- | -- |\n|    | v6 |"
+    }
+  },
+  {
+    "provider_id": "icbc",
+    "provider_name": "中国工商银行",
+    "route_key": "/whpj/:format?",
+    "route": {
+      "path": "/whpj/:format?",
+      "example": "/icbc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
+      "parameters": {
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
+      },
+      "name": "外汇牌价",
+      "url": "icbc.com.cn/column/1438058341489590354.html",
+      "description": "| 短格式 | 参考价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs     | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
+    }
+  },
+  {
+    "provider_id": "iknowwhatyoudownload",
+    "provider_name": "I Know What You Download",
+    "route_key": "/stats/daily/:country",
+    "route": {
+      "path": "/stats/daily/:country",
+      "example": "/iknowwhatyoudownload/stats/daily/CN",
+      "url": "iknowwhatyoudownload.com",
+      "name": "Daily Torrents Statistics",
+      "parameters": {
+        "country": "the country of the stats. ISO 3166-1 alpha-2 code."
+      }
+    }
+  },
+  {
+    "provider_id": "jingzhengu",
+    "provider_name": "精真估",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/jingzhengu/news",
+      "name": "资讯",
+      "url": "www.jingzhengu.com"
+    }
+  },
+  {
+    "provider_id": "piyao",
+    "provider_name": "中国互联网联合辟谣平台",
+    "route_key": "/jrpy",
+    "route": {
+      "path": "/jrpy",
+      "example": "/piyao/jrpy",
+      "parameters": {},
+      "name": "今日辟谣",
+      "url": "piyao.org.cn/jrpy/index.htm"
+    }
+  },
+  {
+    "provider_id": "qq",
+    "provider_name": "腾讯网",
+    "route_key": "/fact",
+    "route": {
+      "path": "/fact",
+      "example": "/qq/fact",
+      "parameters": {},
+      "name": "最新辟谣",
+      "url": "vp.fact.qq.com/home"
+    }
+  },
+  {
+    "provider_id": "sogou",
+    "provider_name": "搜狗",
+    "route_key": "/doodles",
+    "route": {
+      "path": "/doodles",
+      "example": "/sogou/doodles",
+      "parameters": {},
+      "name": "特色 LOGO"
+    }
+  },
+  {
+    "provider_id": "sogou",
+    "provider_name": "搜狗",
+    "route_key": "/search/:keyword",
+    "route": {
+      "path": "/search/:keyword",
+      "example": "/sogou/search/rss",
+      "parameters": {
+        "keyword": "搜索关键词"
+      },
+      "name": "搜索"
+    }
+  },
+  {
+    "provider_id": "tvtropes",
+    "provider_name": "TV Tropes",
+    "route_key": "/featured/:category?",
+    "route": {
+      "path": "/featured/:category?",
+      "example": "/tvtropes/featured/today",
+      "parameters": {
+        "category": "Category, see below, Today's Featured Trope by default"
+      },
+      "name": "Featured",
+      "description": "| Today's Featured Trope | Newest Trope |\n| ---------------------- | ------------ |\n| today                  | newest       |"
+    }
+  },
+  {
+    "provider_id": "uraaka-joshi",
+    "provider_name": "裏垢女子まとめ",
+    "route_key": "/:id",
+    "route": {
+      "path": "/:id",
+      "example": "/uraaka-joshi/_rrwq",
+      "parameters": {
+        "id": "User ID"
+      },
+      "name": "User",
+      "url": "uraaka-joshi.com/"
+    }
+  },
+  {
+    "provider_id": "usepanda",
+    "provider_name": "Panda",
+    "route_key": "/feeds/:id",
+    "route": {
+      "path": "/feeds/:id",
+      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
+      "parameters": {
+        "id": "Feed ID"
+      },
+      "name": "Feeds",
+      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |"
+    }
+  }
+]

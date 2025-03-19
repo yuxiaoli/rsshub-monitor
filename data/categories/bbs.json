@@ -1,0 +1,427 @@
+[
+  {
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/blog/:category?",
+    "route": {
+      "path": "/blog/:category?",
+      "example": "/1point3acres/blog",
+      "parameters": {
+        "category": "分类，见下表，可在对应分类页 URL 中找到"
+      },
+      "name": "博客",
+      "description": "| 留学申请   | 找工求职 | 生活攻略  | 投资理财 | 签证移民 | 时政要闻 |\n| ---------- | -------- | --------- | -------- | -------- | -------- |\n| studyinusa | career   | lifestyle | invest   | visa     | news     |"
+    }
+  },
+  {
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/category/:id?/:type?/:order?",
+    "route": {
+      "path": "/category/:id?/:type?/:order?",
+      "example": "/1point3acres/category/h1b",
+      "parameters": {
+        "id": "标签 id，默认为全部",
+        "type": "帖子分类, 见下表，默认为 hot，即热门帖子",
+        "order": "排序方式，见下表，默认为空，即最新回复"
+      },
+      "name": "标签",
+      "description": "::: tip\n  更多标签可以在 [标签列表](https://instant.1point3acres.com/tags) 中找到。\n:::\n\n  分类\n\n| 热门帖子 | 最新帖子 |\n| -------- | -------- |\n| hot      | new      |\n\n  排序方式\n\n| 最新回复 | 最新发布 |\n| -------- | -------- |\n|          | post     |"
+    }
+  },
+  {
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/offer/:year?/:major?/:school?",
+    "route": {
+      "path": "/offer/:year?/:major?/:school?",
+      "example": "/1point3acres/offer/12/null/CMU",
+      "parameters": {
+        "year": "录取年份  id，空为null",
+        "major": "录取专业 id，空为null",
+        "school": "录取学校 id，空为null"
+      },
+      "name": "录取结果",
+      "url": "offer.1point3acres.com/",
+      "description": "::: tip 三个 id 获取方式\n  1.  打开 [https://offer.1point3acres.com](https://offer.1point3acres.com)\n  2.  打开控制台\n  3.  切换到 Network 面板\n  4.  点击 搜索 按钮\n  5.  点击 results?ps=15&pg=1 POST 请求\n  6.  找到 Request Payload 请求参数，例如 `filters: {planyr: \"13\", planmajor: \"1\", outname_w: \"ACADIAU\"}` ，则三个 id 分别为: 13,1,ACADIAU\n:::"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/tieba/forum/good/:kw/:cid?/:sortBy?",
+    "route": {
+      "path": [
+        "/tieba/forum/good/:kw/:cid?/:sortBy?",
+        "/tieba/forum/:kw/:sortBy?"
+      ],
+      "example": "/baidu/tieba/forum/good/女图",
+      "parameters": {
+        "kw": "吧名",
+        "cid": "精品分类，默认为 `0`（全部分类），如果不传 `cid` 则获取全部分类",
+        "sortBy": "排序方式：`created`, `replied`。默认为 `created`"
+      },
+      "name": "精品帖子"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/tieba/forum/:kw/:sortBy?",
+    "route": {
+      "path": [
+        "/tieba/forum/good/:kw/:cid?/:sortBy?",
+        "/tieba/forum/:kw/:sortBy?"
+      ],
+      "example": "/baidu/tieba/forum/good/女图",
+      "parameters": {
+        "kw": "吧名",
+        "cid": "精品分类，默认为 `0`（全部分类），如果不传 `cid` 则获取全部分类",
+        "sortBy": "排序方式：`created`, `replied`。默认为 `created`"
+      },
+      "name": "精品帖子"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/tieba/post/:id",
+    "route": {
+      "path": [
+        "/tieba/post/:id",
+        "/tieba/post/lz/:id"
+      ],
+      "example": "/baidu/tieba/post/686961453",
+      "parameters": {
+        "id": "帖子 ID"
+      },
+      "name": "帖子动态"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/tieba/search/:qw/:routeParams?",
+    "route": {
+      "path": "/tieba/search/:qw/:routeParams?",
+      "example": "/baidu/tieba/search/neuro",
+      "parameters": {
+        "qw": "搜索关键词",
+        "routeParams": "额外参数；请参阅以下说明和表格"
+      },
+      "name": "贴吧搜索",
+      "description": "| 键           | 含义                                                       | 接受的值      | 默认值 |\n| ------------ | ---------------------------------------------------------- | ------------- | ------ |\n| kw           | 在名为 kw 的贴吧中搜索                                     | 任意名称 / 无 | 无     |\n| only_thread  | 只看主题帖，默认为 0 关闭                                  | 0/1           | 0      |\n| rn           | 返回条目的数量                                             | 1-20          | 20     |\n| sm           | 排序方式，0 为按时间顺序，1 为按时间倒序，2 为按相关性顺序 | 0/1/2         | 1      |\n\n  用例：`/baidu/tieba/search/neuro/kw=neurosama&only_thread=1&sm=2`"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/tieba/user/:uid",
+    "route": {
+      "path": "/tieba/user/:uid",
+      "example": "/baidu/tieba/user/斗鱼游戏君",
+      "parameters": {
+        "uid": "用户 ID"
+      },
+      "name": "用户帖子",
+      "description": "用户 ID 可以通过打开用户的主页后查看地址栏的 `un` 字段来获取。"
+    }
+  },
+  {
+    "provider_id": "deepin",
+    "provider_name": "Deepin",
+    "route_key": "/homepage/:user_id",
+    "route": {
+      "path": "/homepage/:user_id",
+      "example": "/deepin/homepage/78326",
+      "parameters": {
+        "user_id": "user id"
+      },
+      "name": "BBS Home Page"
+    }
+  },
+  {
+    "provider_id": "douyu",
+    "provider_name": "斗鱼直播",
+    "route_key": "/group/:id/:sort?",
+    "route": {
+      "path": "/group/:id/:sort?",
+      "example": "/douyu/group/1011",
+      "parameters": {
+        "id": "鱼吧 id，可在鱼吧页 URL 中找到",
+        "sort": "排序方式，见下表，默认为发布时间排序"
+      },
+      "name": "鱼吧帖子",
+      "description": "| 回复时间排序 | 发布时间排序 |\n| ------------ | ------------ |\n| 1            | 2            |"
+    }
+  },
+  {
+    "provider_id": "douyu",
+    "provider_name": "斗鱼直播",
+    "route_key": "/post/:id",
+    "route": {
+      "path": "/post/:id",
+      "example": "/douyu/post/631737151576473201",
+      "parameters": {
+        "id": "帖子 id，可在帖子页 URL 中找到"
+      },
+      "name": "鱼吧跟帖"
+    }
+  },
+  {
+    "provider_id": "dxy",
+    "provider_name": "丁香园",
+    "route_key": "/bbs/board/:boardId",
+    "route": {
+      "path": "/bbs/board/:boardId",
+      "example": "/dxy/bbs/board/46",
+      "parameters": {
+        "specialId": "板块 ID，可在对应板块页 URL 中找到"
+      },
+      "name": "板块"
+    }
+  },
+  {
+    "provider_id": "elasticsearch-cn",
+    "provider_name": "Elastic 中文社区",
+    "route_key": "/:params?",
+    "route": {
+      "path": "/:params?",
+      "example": "/elasticsearch-cn",
+      "parameters": {
+        "params": "分类，可在对应分类页 URL 中找到"
+      },
+      "name": "发现",
+      "description": "如 [Elasticsearch 最新](https://elasticsearch.cn/category-2) 的 URL 为 `https://elasticsearch.cn/category-2`，则分类参数处填写 `category-2`，最后得到路由地址 [`/elasticsearch-cn/category-2`](https://rsshub.app/elasticsearch-cn/category-2)。\n\n  又如 [求职招聘 30 天热门](https://elasticsearch.cn/sort_type-hot____category-12__day-30) 的 URL 为 `https://elasticsearch.cn/sort_type-hot____category-12__day-30`，则分类参数处填写 `sort_type-hot____category-12__day-30`，最后得到路由地址 [`/elasticsearch-cn/sort_type-hot____category-12__day-30`](https://rsshub.app/elasticsearch-cn/sort_type-hot____category-12__day-30)。"
+    }
+  },
+  {
+    "provider_id": "eleduck",
+    "provider_name": "电鸭社区",
+    "route_key": "/posts/:id?",
+    "route": {
+      "path": "/posts/:id?",
+      "example": "/eleduck/posts/4",
+      "parameters": {
+        "id": "分类id,可以论坛的URL找到，默认为全部"
+      },
+      "name": "分类文章",
+      "description": "| id | 分类     |\n| -- | -------- |\n| 0  | 全部     |\n| 1  | 讨论     |\n| 2  | 分享     |\n| 3  | 露个脸   |\n| 4  | 访谈故事 |\n| 5  | 招聘     |\n| 10 | 海外移民 |\n| 12 | 英语     |\n| 14 | 电鸭官方 |\n| 15 | 独立产品 |\n| 17 | 闲话开源 |\n| 19 | Web3     |\n| 21 | 设计     |\n| 22 | 人才库   |\n| 23 | Upwork   |\n| 24 | 经验课   |"
+    }
+  },
+  {
+    "provider_id": "huoxian",
+    "provider_name": "火线",
+    "route_key": "/zone",
+    "route": {
+      "path": "/zone",
+      "example": "/huoxian/zone",
+      "parameters": {},
+      "name": "Zone"
+    }
+  },
+  {
+    "provider_id": "loongarch",
+    "provider_name": "LA UOSC社区",
+    "route_key": "/post/:type?",
+    "route": {
+      "path": "/post/:type?",
+      "example": "/loongarch/post/newest",
+      "parameters": {
+        "type": "top 或 newest"
+      },
+      "name": "最热 / 最新帖子",
+      "url": "bbs.loongarch.org/"
+    }
+  },
+  {
+    "provider_id": "meteor",
+    "provider_name": "Meteor",
+    "route_key": "/boards",
+    "route": {
+      "path": "/boards",
+      "example": "/meteor/boards",
+      "parameters": {},
+      "name": "看板列表",
+      "url": "meteor.today/"
+    }
+  },
+  {
+    "provider_id": "meteor",
+    "provider_name": "Meteor",
+    "route_key": "/:board?",
+    "route": {
+      "path": "/:board?",
+      "example": "/meteor/all",
+      "parameters": {
+        "board": "看板 ID 或簡稱，可在 URL 或下方路由找到，預設為 `all`"
+      },
+      "name": "看板"
+    }
+  },
+  {
+    "provider_id": "miui",
+    "provider_name": "MIUI",
+    "route_key": "/community/user/:uid",
+    "route": {
+      "path": "/community/user/:uid",
+      "example": "/miui/community/user/1200057564",
+      "parameters": {
+        "uid": "小米用户 UID，可于网页版用户主页链接中 `uid` 项获取"
+      },
+      "name": "小米社区用户发帖"
+    }
+  },
+  {
+    "provider_id": "nowcoder",
+    "provider_name": "牛客网",
+    "route_key": "/schedule/:propertyId?/:typeId?",
+    "route": {
+      "path": "/schedule/:propertyId?/:typeId?",
+      "example": "/nowcoder/schedule",
+      "parameters": {
+        "propertyId": "行业, 在控制台中抓取接口，可获得行业id，默认0",
+        "typeId": "类别，同上"
+      },
+      "name": "校招日程",
+      "url": "nowcoder.com/"
+    }
+  },
+  {
+    "provider_id": "pincong",
+    "provider_name": "品葱",
+    "route_key": "/hot/:category?",
+    "route": {
+      "path": "/hot/:category?",
+      "example": "/pincong/hot",
+      "parameters": {
+        "category": "分类，与官网分类 URL `category-` 后的数字对应，默认为全部"
+      },
+      "name": "精选"
+    }
+  },
+  {
+    "provider_id": "pkmer",
+    "provider_name": "PKMer",
+    "route_key": "/recent",
+    "route": {
+      "path": "/recent",
+      "example": "/pkmer/recent",
+      "parameters": {},
+      "name": "最近更新",
+      "url": "pkmer.cn/page/*"
+    }
+  },
+  {
+    "provider_id": "playno1",
+    "provider_name": "PLAYNO.1 玩樂達人",
+    "route_key": "/av/:catid?",
+    "route": {
+      "path": "/av/:catid?",
+      "example": "/playno1/av",
+      "parameters": {
+        "catid": "分类，见下表，默认为全部文章"
+      },
+      "name": "AV",
+      "description": "::: warning\n目前观测到该博客可能禁止日本 IP 访问。建议部署在日本区以外的服务器上。\n:::\n\n| 全部文章 | AV 新聞 | AV 導覽 |\n| -------- | ------- | ------- |\n| 78       | 3       | 5       |"
+    }
+  },
+  {
+    "provider_id": "playno1",
+    "provider_name": "PLAYNO.1 玩樂達人",
+    "route_key": "/st/:catid?",
+    "route": {
+      "path": "/st/:catid?",
+      "example": "/playno1/st",
+      "parameters": {
+        "catid": "分类，见下表，默认为全部文章"
+      },
+      "name": "情趣",
+      "description": "| 全部文章 | 情趣體驗報告 | 情趣新聞 | 情趣研究所 |\n| -------- | ------------ | -------- | ---------- |\n| all      | experience   | news     | graduate   |"
+    }
+  },
+  {
+    "provider_id": "qq",
+    "provider_name": "腾讯网",
+    "route_key": "/pd/guild/:id/:sub?/:sort?",
+    "route": {
+      "path": [
+        "/pd/guild/:id/:sub?/:sort?"
+      ],
+      "example": "/qq/pd/guild/qrp4pkq01d/650967831/created",
+      "parameters": {
+        "id": "频道号",
+        "sub": "子频道 ID，网页端 URL `subc` 参数的值，默认为 `hot`（全部）",
+        "sort": "排序方式，`hot`（热门），`created`（最新发布），`replied`（最新回复），默认为 `created`"
+      },
+      "name": "腾讯频道",
+      "url": "pd.qq.com/"
+    }
+  },
+  {
+    "provider_id": "saraba1st",
+    "provider_name": "Saraba1st",
+    "route_key": "/digest/:tid",
+    "route": {
+      "path": "/digest/:tid",
+      "example": "/saraba1st/digest/forum-75-1",
+      "parameters": {
+        "tid": "论坛 id"
+      },
+      "name": "论坛摘要",
+      "description": "版面网址如果为 `https://bbs.saraba1st.com/2b/forum-75-1.html` 那么论坛 id 就是 `forum-75-1`。"
+    }
+  },
+  {
+    "provider_id": "sis001",
+    "provider_name": "第一会所",
+    "route_key": "/forum/:id?",
+    "route": {
+      "path": "/forum/:id?",
+      "example": "/sis001/forum/322",
+      "parameters": {
+        "id": "子版块 ID，可在子论坛 URL 找到，默认为 `Funny Jokes | 短篇笑话区`"
+      },
+      "name": "子版块"
+    }
+  },
+  {
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/tab/:tabid",
+    "route": {
+      "path": "/tab/:tabid",
+      "view": 0,
+      "example": "/v2ex/tab/hot",
+      "parameters": {
+        "tabid": "tab标签ID,在 URL 可以找到"
+      },
+      "name": "标签"
+    }
+  },
+  {
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/xna",
+    "route": {
+      "path": "/xna",
+      "view": 0,
+      "example": "/v2ex/xna",
+      "parameters": {},
+      "name": "XNA"
+    }
+  },
+  {
+    "provider_id": "zuvio",
+    "provider_name": "Zuvio",
+    "route_key": "/student5/:board?",
+    "route": {
+      "path": "/student5/:board?",
+      "example": "/zuvio/student5/34",
+      "parameters": {
+        "board": "看板 ID，空为全站文章，可在看板 URL 或下方路由找到"
+      },
+      "name": "校園話題"
+    }
+  }
+]

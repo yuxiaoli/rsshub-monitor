@@ -1,0 +1,532 @@
+[
+  {
+    "provider_id": "amazon",
+    "provider_name": "Amazon",
+    "route_key": "/kindle/software-updates",
+    "route": {
+      "path": "/kindle/software-updates",
+      "example": "/amazon/kindle/software-updates",
+      "parameters": {},
+      "name": "Kindle Software Updates"
+    }
+  },
+  {
+    "provider_id": "android",
+    "provider_name": "Android",
+    "route_key": "/platform-tools-releases",
+    "route": {
+      "path": "/platform-tools-releases",
+      "example": "/android/platform-tools-releases",
+      "parameters": {},
+      "name": "SDK Platform Tools release notes",
+      "url": "developer.android.com/studio/releases/platform-tools"
+    }
+  },
+  {
+    "provider_id": "app-center",
+    "provider_name": "App Center",
+    "route_key": "/release/:user/:app/:distribution_group",
+    "route": {
+      "path": "/release/:user/:app/:distribution_group",
+      "example": "/app-center/release/cloudflare/1.1.1.1-windows/beta",
+      "parameters": {
+        "user": "User",
+        "app": "App name",
+        "distribution_group": "Distribution group"
+      },
+      "name": "Release",
+      "description": "::: tip\n  The parameters can be extracted from the Release page URL: `https://install.appcenter.ms/users/:user/apps/:app/distribution_groups/:distribution_group`\n:::"
+    }
+  },
+  {
+    "provider_id": "apple",
+    "provider_name": "Apple",
+    "route_key": "/apps/update/:country/:id/:platform?",
+    "route": {
+      "path": "/apps/update/:country/:id/:platform?",
+      "view": 5,
+      "example": "/apple/apps/update/us/id408709785",
+      "parameters": {
+        "country": "App Store Country, obtain from the app URL, see below",
+        "id": "App id, obtain from the app URL",
+        "platform": {
+          "description": "App Platform, see below, all by default",
+          "options": [
+            {
+              "value": "All",
+              "label": "all"
+            },
+            {
+              "value": "iOS",
+              "label": "iOS"
+            },
+            {
+              "value": "macOS",
+              "label": "macOS"
+            },
+            {
+              "value": "tvOS",
+              "label": "tvOS"
+            }
+          ]
+        }
+      },
+      "name": "App Update",
+      "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::"
+    }
+  },
+  {
+    "provider_id": "appstore",
+    "provider_name": "App Store/Mac App Store",
+    "route_key": "/price/:country/:type/:id",
+    "route": {
+      "path": "/price/:country/:type/:id",
+      "example": "/appstore/price/us/mac/id1152443474",
+      "parameters": {
+        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
+        "type": "App type，either `iOS` or `mac`",
+        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
+      },
+      "name": "Price Drop",
+      "url": "apps.apple.com/"
+    }
+  },
+  {
+    "provider_id": "appstore",
+    "provider_name": "App Store/Mac App Store",
+    "route_key": "/xianmian",
+    "route": {
+      "path": "/xianmian",
+      "example": "/appstore/xianmian",
+      "parameters": {},
+      "name": "每日精品限免 / 促销应用（鲜面连线 by AppSo）",
+      "url": "app.so/xianmian"
+    }
+  },
+  {
+    "provider_id": "asus",
+    "provider_name": "ASUS",
+    "route_key": "/gpu-tweak",
+    "route": {
+      "path": "/gpu-tweak",
+      "example": "/asus/gpu-tweak",
+      "parameters": {},
+      "name": "GPU Tweak",
+      "url": "asus.com/campaign/GPU-Tweak-III/*"
+    }
+  },
+  {
+    "provider_id": "brave",
+    "provider_name": "Brave",
+    "route_key": "/latest",
+    "route": {
+      "path": "/latest",
+      "example": "/brave/latest",
+      "parameters": {},
+      "name": "Release Notes",
+      "url": "brave.com/latest"
+    }
+  },
+  {
+    "provider_id": "civitai",
+    "provider_name": "Civitai",
+    "route_key": "/models",
+    "route": {
+      "path": "/models",
+      "example": "/civitai/models",
+      "parameters": {},
+      "name": "Latest models",
+      "url": "civitai.com/"
+    }
+  },
+  {
+    "provider_id": "cpuid",
+    "provider_name": "CPUID",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/cpuid/news",
+      "parameters": {},
+      "name": "News",
+      "url": "cpuid.com/news.html"
+    }
+  },
+  {
+    "provider_id": "cursor",
+    "provider_name": "Cursor",
+    "route_key": "/changelog",
+    "route": {
+      "path": "/changelog",
+      "name": "Changelog",
+      "url": "www.cursor.com",
+      "example": "/cursor/changelog",
+      "view": 0
+    }
+  },
+  {
+    "provider_id": "dockerhub",
+    "provider_name": "Docker Hub",
+    "route_key": "/build/:owner/:image/:tag?",
+    "route": {
+      "path": "/build/:owner/:image/:tag?",
+      "view": 5,
+      "example": "/dockerhub/build/diygod/rsshub/latest",
+      "parameters": {
+        "owner": "Image owner, the owner of the official image fills in the library, for example: /dockerhub/build/library/mysql",
+        "image": "Image name",
+        "tag": {
+          "description": "Image tag",
+          "default": "latest"
+        }
+      },
+      "name": "Image New Build"
+    }
+  },
+  {
+    "provider_id": "dockerhub",
+    "provider_name": "Docker Hub",
+    "route_key": "/tag/:owner/:image/:limits?",
+    "route": {
+      "path": "/tag/:owner/:image/:limits?",
+      "example": "/dockerhub/tag/library/mariadb",
+      "parameters": {
+        "owner": "Image owner",
+        "image": "Image name",
+        "limits": "Tag count, 10 by default"
+      },
+      "name": "Image New Tag",
+      "description": "::: warning\n  Use `library` as the `owner` for official images, such as [https://rsshub.app/dockerhub/tag/library/mysql](https://rsshub.app/dockerhub/tag/library/mysql)\n:::"
+    }
+  },
+  {
+    "provider_id": "eagle",
+    "provider_name": "Eagle",
+    "route_key": "/changelog/:language?",
+    "route": {
+      "path": "/changelog/:language?",
+      "example": "/eagle/changelog/en",
+      "parameters": {
+        "language": "Language, see list, default to be `cn`"
+      },
+      "name": "Changelog",
+      "description": "Language\n\n| Simplified Chinese | Traditional Chinese | English |\n| ------------------ | ------------------- | ------- |\n| cn                 | tw                  | en      |"
+    }
+  },
+  {
+    "provider_id": "f-droid",
+    "provider_name": "F-Droid",
+    "route_key": "/apprelease/:app",
+    "route": {
+      "path": "/apprelease/:app",
+      "example": "/f-droid/apprelease/com.termux",
+      "parameters": {
+        "app": "App's package name"
+      },
+      "name": "App Update"
+    }
+  },
+  {
+    "provider_id": "firefox",
+    "provider_name": "Mozilla",
+    "route_key": "/addons/:id",
+    "route": {
+      "path": "/addons/:id",
+      "example": "/firefox/addons/rsshub-radar",
+      "parameters": {
+        "id": "Add-ons id, can be found in add-ons url"
+      },
+      "name": "Add-ons Update"
+    }
+  },
+  {
+    "provider_id": "fosshub",
+    "provider_name": "FossHub",
+    "route_key": "/:id",
+    "route": {
+      "path": "/:id",
+      "example": "/fosshub/qBittorrent",
+      "parameters": {
+        "id": "Software id, can be found in URL"
+      },
+      "name": "Software Update"
+    }
+  },
+  {
+    "provider_id": "gofans",
+    "provider_name": "GoFans",
+    "route_key": "/:kind?",
+    "route": {
+      "path": "/:kind?",
+      "example": "/gofans",
+      "parameters": {
+        "kind": "Platform, either `macos` or `ios`, empty means both (default)"
+      },
+      "name": "最新限免 / 促销应用"
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/chrome/extension/:id",
+    "route": {
+      "path": "/chrome/extension/:id",
+      "example": "/google/chrome/extension/kefjpfngnndepjbopdmoebkipbgkggaa",
+      "parameters": {
+        "id": "Extension id, can be found in extension url"
+      },
+      "name": "Extension Update"
+    }
+  },
+  {
+    "provider_id": "greasyfork",
+    "provider_name": "Greasy Fork",
+    "route_key": "/:language/:domain?",
+    "route": {
+      "path": [
+        "/:language/:domain?",
+        "/scripts/sort/:sort/:language?"
+      ],
+      "example": "/greasyfork/en/google.com",
+      "parameters": {
+        "language": "language, located on the top right corner of Greasy Fork's search page, set to `all` for including all languages",
+        "domain": "the script's target domain"
+      },
+      "name": "Script Update",
+      "description": "| Sort            | Description    |\n| --------------- | -------------- |\n| today           | Daily installs |\n| total_installs | Total installs |\n| ratings         | Ratings        |\n| created         | Created date   |\n| updated         | Updated date   |\n| name            | Name           |"
+    }
+  },
+  {
+    "provider_id": "greasyfork",
+    "provider_name": "Greasy Fork",
+    "route_key": "/scripts/:script/versions",
+    "route": {
+      "path": "/scripts/:script/versions",
+      "example": "/greasyfork/scripts/431691-bypass-all-shortlinks/versions",
+      "parameters": {
+        "script": "Script id, can be found in URL"
+      },
+      "name": "Script Version History"
+    }
+  },
+  {
+    "provider_id": "imagemagick",
+    "provider_name": "ImageMagick",
+    "route_key": "/changelog",
+    "route": {
+      "path": "/changelog",
+      "example": "/imagemagick/changelog",
+      "parameters": {},
+      "name": "Changelog",
+      "url": "imagemagick.org/script/download.php"
+    }
+  },
+  {
+    "provider_id": "ipsw.dev",
+    "provider_name": "IPSW.dev",
+    "route_key": "/index/:productID",
+    "route": {
+      "path": "/index/:productID",
+      "example": "/ipsw.dev/index/iPhone16,1",
+      "parameters": {
+        "productID": "Product ID"
+      },
+      "name": "Apple latest beta firmware"
+    }
+  },
+  {
+    "provider_id": "macupdate",
+    "provider_name": "MacUpdate",
+    "route_key": "/app/:appId/:appSlug?",
+    "route": {
+      "path": "/app/:appId/:appSlug?",
+      "example": "/macupdate/app/11942",
+      "parameters": {
+        "appId": "Application unique ID, can be found in URL",
+        "appSlug": "Application slug, can be found in URL"
+      },
+      "name": "Update"
+    }
+  },
+  {
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/golden",
+    "route": {
+      "path": "/golden",
+      "example": "/mi/golden",
+      "name": "小米应用商店金米奖"
+    }
+  },
+  {
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/edge/addon/:crxid",
+    "route": {
+      "path": "/edge/addon/:crxid",
+      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
+      "parameters": {
+        "crxid": "Addon id, can be found in addon url"
+      },
+      "name": "Addons Update"
+    }
+  },
+  {
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/mcr/product/*",
+    "route": {
+      "path": "/mcr/product/*",
+      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
+      "parameters": {
+        "product": "repository path in mcr.microsoft.com"
+      },
+      "name": "Product tags in mcr.microsoft.com"
+    }
+  },
+  {
+    "provider_id": "neatdownloadmanager",
+    "provider_name": "Neat Download Manager",
+    "route_key": "/download/:os?",
+    "route": {
+      "path": "/download/:os?",
+      "example": "/neatdownloadmanager/download",
+      "parameters": {
+        "os": "Operating system, windows or macos, all by default"
+      },
+      "name": "Download",
+      "url": "neatdownloadmanager.com/index.php"
+    }
+  },
+  {
+    "provider_id": "nextjs",
+    "provider_name": "Next.js",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "name": "Blog",
+      "example": "/nextjs/blog"
+    }
+  },
+  {
+    "provider_id": "putty",
+    "provider_name": "PuTTY",
+    "route_key": "/changes",
+    "route": {
+      "path": "/changes",
+      "example": "/putty/changes",
+      "parameters": {},
+      "name": "Change Log",
+      "url": "www.chiark.greenend.org.uk/~sgtatham/putty/changes.html"
+    }
+  },
+  {
+    "provider_id": "raycast",
+    "provider_name": "Raycast",
+    "route_key": "/changelog",
+    "route": {
+      "path": "/changelog",
+      "name": "Changelog",
+      "example": "/raycast/changelog"
+    }
+  },
+  {
+    "provider_id": "sony",
+    "provider_name": "Sony",
+    "route_key": "/downloads/:productType/:productId",
+    "route": {
+      "path": "/downloads/:productType/:productId",
+      "example": "/sony/downloads/product/nw-wm1am2",
+      "parameters": {
+        "productType": "product type",
+        "productId": "product id"
+      },
+      "name": "Software Downloads",
+      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/dev",
+    "route": {
+      "path": "/dev",
+      "example": "/syosetu/dev",
+      "name": "なろう小説 API の更新履歴",
+      "url": "dev.syosetu.com"
+    }
+  },
+  {
+    "provider_id": "tencent",
+    "provider_name": "腾讯",
+    "route_key": "/qq/sdk/changelog/:platform",
+    "route": {
+      "path": "/qq/sdk/changelog/:platform",
+      "example": "/tencent/qq/sdk/changelog/iOS",
+      "parameters": {
+        "platform": "平台，iOS / Android"
+      },
+      "name": "更新日志"
+    }
+  },
+  {
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
+    "route": {
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
+      "parameters": {},
+      "name": "Desktop releases and release notes",
+      "url": "tradingview.com/support/solutions/43000673888-tradingview-desktop-releases-and-release-notes/"
+    }
+  },
+  {
+    "provider_id": "typora",
+    "provider_name": "Typora",
+    "route_key": "/changelog/dev",
+    "route": {
+      "path": "/changelog/dev",
+      "example": "/typora/changelog/dev",
+      "parameters": {},
+      "name": "Dev Release Changelog",
+      "url": "support.typora.io/"
+    }
+  },
+  {
+    "provider_id": "unraid",
+    "provider_name": "Unraid",
+    "route_key": "/community-apps",
+    "route": {
+      "path": "/community-apps",
+      "example": "/unraid/community-apps",
+      "parameters": {},
+      "name": "Community Apps",
+      "url": "unraid.net/community/apps"
+    }
+  },
+  {
+    "provider_id": "wdc",
+    "provider_name": "Western Digital",
+    "route_key": "/download/:id?",
+    "route": {
+      "path": "/download/:id?",
+      "example": "/wdc/download/279",
+      "parameters": {
+        "id": "Software id, can be found in URL, 279 as Western Digital Dashboard by default"
+      },
+      "name": "Download"
+    }
+  },
+  {
+    "provider_id": "wizfile",
+    "provider_name": "WziFile",
+    "route_key": "/updates",
+    "route": {
+      "path": "/updates",
+      "example": "/wizfile/updates",
+      "parameters": {},
+      "name": "Version History",
+      "url": "antibody-software.com/wizfile/download"
+    }
+  }
+]
