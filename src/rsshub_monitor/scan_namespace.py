@@ -6,6 +6,8 @@ import random
 import sys
 from datetime import datetime, timezone
 from urllib.parse import urljoin
+import hashlib
+from pathlib import Path
 import xml.etree.ElementTree as ET
 
 import httpx
@@ -13,6 +15,9 @@ from tqdm import tqdm
 
 DEFAULT_DOMAIN_SOURCE = "https://raw.githubusercontent.com/yuxiaoli/rsshub-monitor/refs/heads/main/data/servers.json"
 DEFAULT_NAMESPACE_SOURCE = "https://raw.githubusercontent.com/yuxiaoli/rsshub-monitor/refs/heads/main/data/namespace.json"
+DEFAULT_CACHE_DIR = "data/cache"
+DEFAULT_CATEGORY_CACHE_DIR = "data/cache/categories"
+DEFAULT_CATEGORY_CACHE_LIMIT = 100
 
 def parse_iso8601(s: str) -> datetime:
     if s.endswith("Z"):
@@ -63,18 +68,7 @@ async def load_domain_pool(domain_inputs: list) -> list:
             pool.append(entry)
     return pool
 
-async def check_route(route, client, normalized_domains, verbose, timeout, semaphore):
-    """
-    Check if the route is online.
-
-    - If 'example' is missing, return (route, False).
-    - If 'example' is absolute, use it.
-    - If relative, pick one random domain from normalized_domains to build the full URL.
-    - Verify that the response has status 200 and is valid XML.
-    
-    Updates route["lastChecked"] to current UTC time.
-    Returns a tuple (route, online) where online is True if the check passes.
-    """
+async def check_route(route, client, normalized_domains, verbose, timeout, semaphore, cache_dir=None, category_cache=None):
     async with semaphore:
         now = datetime.now(timezone.utc)
         example_url = route.get('example')
@@ -97,8 +91,55 @@ async def check_route(route, client, normalized_domains, verbose, timeout, semap
             else:
                 # Attempt to parse response content as XML.
                 try:
-                    ET.fromstring(response.text)
+                    xml_content = response.text
+                    ET.fromstring(xml_content)
                     online = True
+                    # Save to regular cache if enabled
+                    if cache_dir and online:
+                        url_hash = hashlib.md5(full_url.encode()).hexdigest()
+                        cache_path = Path(cache_dir) / f"{url_hash}.xml"
+                        cache_path.parent.mkdir(parents=True, exist_ok=True)
+                        cache_path.write_text(xml_content, encoding='utf-8')
+                        if verbose:
+                            tqdm.write(f"Cached XML to {cache_path}")
+                    
+                    # Save to category cache if enabled
+                    if category_cache and online and 'categories' in route:
+                        for category in route['categories']:
+                            category_path = Path(category_cache['dir']) / f"{category}.xml"
+                            category_path.parent.mkdir(parents=True, exist_ok=True)
+                            
+                            # Read existing entries
+                            entries = []
+                            if category_path.exists():
+                                try:
+                                    root = ET.parse(str(category_path)).getroot()
+                                    entries = list(root.findall('.//item'))
+                                except ET.ParseError:
+                                    entries = []
+                            
+                            # Add new entry
+                            new_root = ET.fromstring(xml_content)
+                            new_items = new_root.findall('.//item')
+                            if new_items:
+                                entries.extend(new_items)
+                            
+                            # Rotate if needed
+                            if len(entries) > category_cache['limit']:
+                                entries = entries[-category_cache['limit']:]
+                            
+                            # Create new XML document
+                            root = ET.Element('rss')
+                            root.set('version', '2.0')
+                            channel = ET.SubElement(root, 'channel')
+                            for entry in entries:
+                                channel.append(entry)
+                            
+                            # Save file
+                            tree = ET.ElementTree(root)
+                            tree.write(str(category_path), encoding='utf-8', xml_declaration=True)
+                            if verbose:
+                                tqdm.write(f"Updated category cache: {category_path}")
                 except Exception:
                     online = False
         except Exception:
@@ -112,7 +153,7 @@ async def check_route(route, client, normalized_domains, verbose, timeout, semap
             tqdm.write(line)
         return route, online
 
-async def process_routes(data, client, normalized_domains, verbose, timeout, concurrency, valid_hours):
+async def process_routes(data, client, normalized_domains, verbose, timeout, concurrency, valid_hours, cache_dir=None, category_cache=None):
     semaphore = asyncio.Semaphore(concurrency)
     tasks = []
     total_routes = sum(len(provider.get('routes', {})) for provider in data.values())
@@ -120,18 +161,22 @@ async def process_routes(data, client, normalized_domains, verbose, timeout, con
     now = datetime.now(timezone.utc)
     for provider in data.values():
         for route in provider.get('routes', {}).values():
-            # Skip re-checking if route is already online and lastChecked is recent.
-            if route.get("online") and route.get("lastChecked"):
+            # For valid routes, create cache if enabled
+            if route.get("online") and route.get("lastChecked") and (cache_dir or category_cache):
                 try:
                     last_checked = parse_iso8601(route["lastChecked"])
                     diff = (now - last_checked).total_seconds() / 3600.0
                     if diff < valid_hours:
-                        pbar.update(1)
+                        task = asyncio.create_task(
+                            check_route(route, client, normalized_domains, verbose, timeout, semaphore, cache_dir, category_cache)
+                        )
+                        tasks.append(task)
                         continue
                 except Exception:
                     pass
+            
             task = asyncio.create_task(
-                check_route(route, client, normalized_domains, verbose, timeout, semaphore)
+                check_route(route, client, normalized_domains, verbose, timeout, semaphore, cache_dir, category_cache)
             )
             tasks.append(task)
     for completed in asyncio.as_completed(tasks):
@@ -141,7 +186,7 @@ async def process_routes(data, client, normalized_domains, verbose, timeout, con
     pbar.close()
     return data
 
-async def main_async(source, output, rss_output, domain_inputs, verbose, timeout, concurrency, valid_hours):
+async def main_async(source, output, rss_output, domain_inputs, verbose, timeout, concurrency, valid_hours, cache_dir, category_cache=None):
     domain_pool = await load_domain_pool(domain_inputs)
     normalized_domains = [
         d if (d.startswith("http://") or d.startswith("https://")) else "https://" + d
@@ -167,7 +212,7 @@ async def main_async(source, output, rss_output, domain_inputs, verbose, timeout
                 print(f"Error reading JSON file: {e}")
                 sys.exit(1)
 
-        data = await process_routes(data, client, normalized_domains, verbose, timeout, concurrency, valid_hours)
+        data = await process_routes(data, client, normalized_domains, verbose, timeout, concurrency, valid_hours, cache_dir)
 
         working_count = sum(
             1 for provider in data.values() 
@@ -226,8 +271,8 @@ def parse_args():
     parser.add_argument(
         "--rss-output",
         type=str,
-        default="online_rss_endpoints.json",
-        help="Path to output file to save the online RSS endpoints JSON. Defaults to 'online_rss_endpoints.json'."
+        default="data/online.json",
+        help="Path to output file to save the online RSS endpoints JSON. Defaults to 'data/online.json'."
     )
     parser.add_argument(
         "-d", "--domain",
@@ -262,11 +307,50 @@ def parse_args():
         default=24,
         help="Number of hours before lastChecked that is considered valid. Routes that are online and were checked within this many hours are skipped. Defaults to 24."
     )
+    parser.add_argument(
+        "--cache",
+        nargs="?",
+        const=DEFAULT_CACHE_DIR,
+        help=f"Enable caching of XML files. Optionally specify cache directory (default: {DEFAULT_CACHE_DIR})"
+    )
+    
+    parser.add_argument(
+        "--category-cache",
+        nargs="?",
+        const=DEFAULT_CATEGORY_CACHE_DIR,
+        help=f"Enable category-based caching of XML files (default dir: {DEFAULT_CATEGORY_CACHE_DIR})"
+    )
+    
+    parser.add_argument(
+        "--category-limit",
+        type=int,
+        default=DEFAULT_CATEGORY_CACHE_LIMIT,
+        help=f"Maximum number of entries in category cache files (default: {DEFAULT_CATEGORY_CACHE_LIMIT})"
+    )
+    
     return parser.parse_args()
 
 def main():
     args = parse_args()
-    asyncio.run(main_async(args.source, args.output, args.rss_output, args.domain, args.verbose, args.timeout, args.concurrent, args.valid_hours))
+    category_cache = None
+    if args.category_cache:
+        category_cache = {
+            'dir': args.category_cache,
+            'limit': args.category_limit
+        }
+    
+    asyncio.run(main_async(
+        args.source, 
+        args.output, 
+        args.rss_output, 
+        args.domain, 
+        args.verbose, 
+        args.timeout, 
+        args.concurrent, 
+        args.valid_hours,
+        args.cache,
+        category_cache
+    ))
 
 if __name__ == "__main__":
     main()

@@ -61,6 +61,24 @@ Options:
 - `--timeout`: Request timeout in seconds
 - `--concurrent`: Maximum concurrent requests
 - `--verbose`: Enable verbose output
+- `--cache`: Enable caching of XML files (default directory: data/cache)
+- `--category-cache`: Enable category-based caching of XML files (default directory: data/cache/categories)
+- `--category-limit`: Maximum number of entries in category cache files (default: 100)
+
+Examples:
+```bash
+# Basic scan
+python src/rsshub_monitor/scan_namespace.py
+
+# Enable XML caching
+python src/rsshub_monitor/scan_namespace.py --cache
+
+# Enable category-based caching with custom limit
+python src/rsshub_monitor/scan_namespace.py --category-cache --category-limit 50
+
+# Use both caching methods with custom directories
+python src/rsshub_monitor/scan_namespace.py --cache custom/cache --category-cache custom/categories
+```
 
 ### 3. Split Routes by Category
 
