@@ -20,7 +20,7 @@ def get_route_summary(route):
     }
     return summary
 
-def split_by_category(input_file: str, output_dir: str, create_summary: bool = False):
+def split_by_category(input_file: str, output_dir: str, create_summary: int = 0):
     # Create output directory if it doesn't exist
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -65,25 +65,27 @@ def split_by_category(input_file: str, output_dir: str, create_summary: bool = F
         
         for category, routes in category_routes.items():
             summary_file = summary_dir / f"{category}.json"
-            # Limit to 100 items for summary
-            routes_to_summarize = routes[:100] if len(routes) > 100 else routes
+            routes_to_summarize = routes[:create_summary] if len(routes) > create_summary else routes
             summary_routes = [get_route_summary(route) for route in routes_to_summarize]
             with open(summary_file, 'w', encoding='utf-8') as f:
                 json.dump(summary_routes, f, ensure_ascii=False, indent=2)
-            print(f"Created summary {summary_file} with {len(summary_routes)} routes (limited to 100)")
+            print(f"Created summary {summary_file} with {len(summary_routes)} routes (limited to {create_summary})")
 
 def main():
     parser = argparse.ArgumentParser(description='Split RSSHub routes by category')
     parser.add_argument('input_file',
-                      nargs='?',  # Makes the argument optional
+                      nargs='?',
                       default='data/online.json',
                       help='Input JSON file path (default: data/online.json)')
     parser.add_argument('--output-dir', '-o',
                       default='data/categories',
                       help='Output directory for category files (default: data/categories)')
     parser.add_argument('--create-summary', '-s',
-                      action='store_true',
-                      help='Create additional summary files with simplified route information')
+                      nargs='?',
+                      const=100,
+                      type=int,
+                      default=0,
+                      help='Create summary files with specified maximum number of items (default when flag present: 100)')
     
     args = parser.parse_args()
     

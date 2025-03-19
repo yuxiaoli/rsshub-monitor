@@ -2169,5 +2169,813 @@
       },
       "description": ""
     }
+  },
+  {
+    "provider_id": "mygopen",
+    "provider_name": "MyGoPen",
+    "route_key": "/:label?",
+    "route": {
+      "name": "分類",
+      "path": "/:label?",
+      "example": "/mygopen",
+      "parameters": {
+        "label": "分類，见下表，默认为首页"
+      },
+      "description": "| 謠言 | 詐騙 | 真實資訊 | 教學 |\n| ---- | ---- | -------- | ---- |"
+    }
+  },
+  {
+    "provider_id": "nautil",
+    "provider_name": "Nautilus",
+    "route_key": "/topic/:tid",
+    "route": {
+      "name": "Topics",
+      "path": "/topic/:tid",
+      "example": "/nautil/topic/arts",
+      "parameters": {
+        "tid": "topic"
+      },
+      "description": "This route provides a flexible plan with full text content to subscribe specific topic(s) on the Nautilus. Please visit [nautil.us](https://nautil.us) and click `Topics` to acquire whole topic list."
+    }
+  },
+  {
+    "provider_id": "notefolio",
+    "provider_name": "Notefolio",
+    "route_key": "/search/:category?/:order?/:time?/:query?",
+    "route": {
+      "name": "Works",
+      "path": "/search/:category?/:order?/:time?/:query?",
+      "example": "/notefolio/search/1/pick/all/life",
+      "parameters": {
+        "category": {
+          "description": "Category, see below",
+          "options": [
+            {
+              "value": "all",
+              "label": "All (전체)"
+            },
+            {
+              "value": "1",
+              "label": "Video / Motion Graphics (영상/모션그래픽)"
+            },
+            {
+              "value": "2",
+              "label": "Graphic Design (그래픽 디자인)"
+            },
+            {
+              "value": "3",
+              "label": "Branding / Editing (브랜딩/편집)"
+            },
+            {
+              "value": "4",
+              "label": "UI/UX (UI/UX)"
+            },
+            {
+              "value": "5",
+              "label": "Illustration (일러스트레이션)"
+            },
+            {
+              "value": "6",
+              "label": "Digital Art (디지털 아트)"
+            },
+            {
+              "value": "7",
+              "label": "Character Design (캐릭터 디자인)"
+            },
+            {
+              "value": "8",
+              "label": "Product Package Design (제품/패키지 디자인)"
+            },
+            {
+              "value": "9",
+              "label": "Photography (포토그래피)"
+            },
+            {
+              "value": "10",
+              "label": "Typography (타이포그래피)"
+            },
+            {
+              "value": "11",
+              "label": "Crafts (공예)"
+            },
+            {
+              "value": "12",
+              "label": "Fine Art (파인아트)"
+            }
+          ],
+          "default": "all"
+        },
+        "order": {
+          "description": "Order, `pick` as Notefolio Pick, `published` as Newest, `like` as like, `pick` by default",
+          "options": [
+            {
+              "value": "pick",
+              "label": "Notefolio Pick"
+            },
+            {
+              "value": "published",
+              "label": "Newest"
+            },
+            {
+              "value": "like",
+              "label": "Like"
+            }
+          ],
+          "default": "pick"
+        },
+        "time": {
+          "description": "Time",
+          "options": [
+            {
+              "value": "all",
+              "label": "All the time"
+            },
+            {
+              "value": "one-day",
+              "label": "Latest 24 hours"
+            },
+            {
+              "value": "week",
+              "label": "Latest week"
+            },
+            {
+              "value": "month",
+              "label": "Latest month"
+            },
+            {
+              "value": "three-month",
+              "label": "Latest 3 months"
+            }
+          ],
+          "default": "all"
+        },
+        "query": "Keyword, empty by default"
+      },
+      "description": "| Category | Name in Korean     | Name in English         |\n| -------- | ------------------ | ----------------------- |\n| all      | 전체               | All                     |\n| 1        | 영상/모션그래픽    | Video / Motion Graphics |\n| 2        | 그래픽 디자인      | Graphic Design          |\n| 3        | 브랜딩/편집        | Branding / Editing      |\n| 4        | UI/UX              | UI/UX                   |\n| 5        | 일러스트레이션     | Illustration            |\n| 6        | 디지털 아트        | Digital Art             |\n| 7        | 캐릭터 디자인      | Character Design        |\n| 8        | 제품/패키지 디자인 | Product Package Design  |\n| 9        | 포토그래피         | Photography             |\n| 10       | 타이포그래피       | Typography              |\n| 11       | 공예               | Crafts                  |\n| 12       | 파인아트           | Fine Art                |"
+    }
+  },
+  {
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/book/:category?",
+    "route": {
+      "name": "Best Seller Books",
+      "path": "/book/:category?",
+      "example": "/nytimes/book/combined-print-and-e-book-nonfiction",
+      "parameters": {
+        "category": {
+          "description": "Category, can be found on the [official page](https://www.nytimes.com/books/best-sellers/)",
+          "options": [
+            {
+              "value": "combined-print-and-e-book-nonfiction",
+              "label": "Combined Print & E-Book Nonfiction"
+            },
+            {
+              "value": "hardcover-nonfiction",
+              "label": "Hardcover Nonfiction"
+            },
+            {
+              "value": "paperback-nonfiction",
+              "label": "Paperback Nonfiction"
+            },
+            {
+              "value": "advice-how-to-and-miscellaneous",
+              "label": "Advice, How-To & Miscellaneous"
+            },
+            {
+              "value": "combined-print-and-e-book-fiction",
+              "label": "Combined Print & E-Book Fiction"
+            },
+            {
+              "value": "hardcover-fiction",
+              "label": "Hardcover Fiction"
+            },
+            {
+              "value": "trade-fiction-paperback",
+              "label": "Paperback Trade Fiction"
+            },
+            {
+              "value": "childrens-middle-grade-hardcover",
+              "label": "Children's Middle Grade Hardcover"
+            },
+            {
+              "value": "picture-books",
+              "label": "Picture Books"
+            },
+            {
+              "value": "series-books",
+              "label": "Series Books"
+            },
+            {
+              "value": "young-adult-hardcover",
+              "label": "Young Adult Hardcover"
+            }
+          ],
+          "default": "combined-print-and-e-book-nonfiction"
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/:lang?",
+    "route": {
+      "name": "News",
+      "path": "/:lang?",
+      "example": "/nytimes/dual",
+      "parameters": {
+        "lang": {
+          "description": "language, default to Chinese",
+          "options": [
+            {
+              "value": "dual",
+              "label": "Chinese-English"
+            },
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "traditionalchinese",
+              "label": "Traditional Chinese"
+            },
+            {
+              "value": "dual-traditionalchinese",
+              "label": "Chinese-English (Traditional Chinese)"
+            }
+          ]
+        }
+      },
+      "description": "By extracting the full text of articles, we provide a better reading experience (full text articles) over the official one."
+    }
+  },
+  {
+    "provider_id": "odaily",
+    "provider_name": "Odaily 星球日报",
+    "route_key": "/activity",
+    "route": {
+      "name": "活动",
+      "path": "/activity",
+      "example": "/odaily/activity",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "odaily",
+    "provider_name": "Odaily 星球日报",
+    "route_key": "/newsflash",
+    "route": {
+      "name": "快讯",
+      "path": "/newsflash",
+      "example": "/odaily/newsflash",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "odaily",
+    "provider_name": "Odaily 星球日报",
+    "route_key": "/search/news/:keyword",
+    "route": {
+      "name": "搜索快讯",
+      "path": "/search/news/:keyword",
+      "example": "/odaily/search/news/RSS3",
+      "parameters": {
+        "keyword": "搜索关键字"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "panewslab",
+    "provider_name": "PANews",
+    "route_key": "/column/:id",
+    "route": {
+      "name": "专栏",
+      "path": [
+        "/author/:id",
+        "/column/:id"
+      ],
+      "example": "/panewslab/author/166",
+      "parameters": {
+        "id": "专栏 id，可在地址栏 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "panewslab",
+    "provider_name": "PANews",
+    "route_key": "/profundity/:category?",
+    "route": {
+      "name": "深度",
+      "path": "/profundity/:category?",
+      "example": "/panewslab/profundity",
+      "parameters": {
+        "category": "分类，见下表，默认为精选"
+      },
+      "description": "| 精选 | 链游 | 元宇宙 | NFT | DeFi | 监管 | 央行数字货币 | 波卡 | Layer 2 | DAO | 融资 | 活动 |\n| ---- | ---- | ------ | --- | ---- | ---- | ------------ | ---- | ------- | --- | ---- | ---- |"
+    }
+  },
+  {
+    "provider_id": "pingwest",
+    "provider_name": "品玩",
+    "route_key": "/tag/:tag/:type/:option?",
+    "route": {
+      "name": "话题动态",
+      "path": "/tag/:tag/:type/:option?",
+      "example": "/pingwest/tag/ChinaJoy/1",
+      "parameters": {
+        "tag": "话题名或话题id, 可从话题页url中得到",
+        "type": "内容类型",
+        "option": "参数, 默认无"
+      },
+      "description": "内容类型\n\n| 最新 | 热门 |\n| ---- | ---- |\n| 1    | 2    |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/tag/ChinaJoy/1/fulltext`\n\n::: tip\n  该路由一次最多显示 30 条文章\n:::"
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/anonymous",
+    "route": {
+      "name": "Anonymous",
+      "path": "/anonymous",
+      "example": "/plurk/anonymous",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/hotlinks",
+    "route": {
+      "name": "Hotlinks",
+      "path": "/hotlinks",
+      "example": "/plurk/hotlinks",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/news/:lang?",
+    "route": {
+      "name": "Plurk News",
+      "path": "/news/:lang?",
+      "example": "/plurk/news/:lang?",
+      "parameters": {
+        "lang": "Language, see the table above, `en` by default"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/search/:keyword",
+    "route": {
+      "name": "Search",
+      "path": "/search/:keyword",
+      "example": "/plurk/search/FGO",
+      "parameters": {
+        "keyword": "Search keyword"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/top/:category?/:lang?",
+    "route": {
+      "name": "Top",
+      "path": "/top/:category?/:lang?",
+      "example": "/plurk/top/topReplurks",
+      "parameters": {
+        "category": "Category, see the table below, `topReplurks` by default",
+        "lang": "Language, see the table below, `en` by default"
+      },
+      "description": "| Top Replurks | Top Favorites | Top Responded |\n| ------------ | ------------- | ------------- |\n| topReplurks  | topFavorites  | topResponded  |\n\n| English | 中文（繁體） |\n| ------- | ------------ |\n| en      | zh           |"
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/user/:user",
+    "route": {
+      "name": "User",
+      "path": "/user/:user",
+      "example": "/plurk/user/plurkoffice",
+      "parameters": {
+        "user": "User ID, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "pornhub",
+    "provider_name": "PornHub",
+    "route_key": "/pornstar/:username/:language?/:sort?",
+    "route": {
+      "name": "Pornstar",
+      "path": "/pornstar/:username/:language?/:sort?",
+      "example": "/pornhub/pornstar/june-liu/www/mr",
+      "parameters": {
+        "username": {
+          "description": "username, part of the url e.g. `pornhub.com/pornstar/june-liu`"
+        },
+        "language": {
+          "description": "language",
+          "options": [
+            {
+              "value": "www",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "it",
+              "label": "Italiano"
+            },
+            {
+              "value": "ja",
+              "label": "日本語"
+            },
+            {
+              "value": "pt",
+              "label": "Português"
+            },
+            {
+              "value": "pl",
+              "label": "Polski"
+            },
+            {
+              "value": "rt",
+              "label": "Русский"
+            },
+            {
+              "value": "nl",
+              "label": "Dutch"
+            },
+            {
+              "value": "cs",
+              "label": "Czech"
+            },
+            {
+              "value": "cn",
+              "label": "中文（简体）"
+            }
+          ],
+          "default": "www"
+        },
+        "sort": {
+          "description": "sorting method, leave empty for `Best`",
+          "options": [
+            {
+              "label": "Most Recent",
+              "value": "mr"
+            },
+            {
+              "label": "Most Viewed",
+              "value": "mv"
+            },
+            {
+              "label": "Top Rated",
+              "value": "tr"
+            },
+            {
+              "label": "Longest",
+              "value": "lg"
+            }
+          ]
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "pornhub",
+    "provider_name": "PornHub",
+    "route_key": "/search/:keyword",
+    "route": {
+      "name": "Keyword Search",
+      "path": "/search/:keyword",
+      "example": "/pornhub/search/stepsister",
+      "parameters": {
+        "keyword": "keyword"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "qbitai",
+    "provider_name": "量子位",
+    "route_key": "/category/:category",
+    "route": {
+      "name": "分类",
+      "path": "/category/:category",
+      "example": "/qbitai/category/资讯",
+      "parameters": {
+        "category": "分类名，见下表"
+      },
+      "description": "| 资讯 | 数码     | 智能车 | 智库  | 活动    |\n| ---- | -------- | ------ | ----- | ------- |\n| 资讯 | ebandeng | auto   | zhiku | huodong |"
+    }
+  },
+  {
+    "provider_id": "qbitai",
+    "provider_name": "量子位",
+    "route_key": "/tag/:tag",
+    "route": {
+      "name": "标签",
+      "path": "/tag/:tag",
+      "example": "/qbitai/tag/大语言模型",
+      "parameters": {
+        "tag": "标签名"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "readhub",
+    "provider_name": "Readhub",
+    "route_key": "/daily",
+    "route": {
+      "name": "每日早报",
+      "path": "/daily",
+      "example": "/readhub/daily",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "smzdm",
+    "provider_name": "什么值得买",
+    "route_key": "/keyword/:keyword",
+    "route": {
+      "name": "关键词",
+      "path": "/keyword/:keyword",
+      "example": "/smzdm/keyword/女装",
+      "parameters": {
+        "keyword": "你想订阅的关键词"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "smzdm",
+    "provider_name": "什么值得买",
+    "route_key": "/ranking/:rank_type/:rank_id/:hour",
+    "route": {
+      "name": "排行榜",
+      "path": "/ranking/:rank_type/:rank_id/:hour",
+      "example": "/smzdm/ranking/pinlei/11/3",
+      "parameters": {
+        "rank_type": {
+          "description": "榜单类型",
+          "options": [
+            {
+              "value": "pinlei",
+              "label": "好价品类榜"
+            },
+            {
+              "value": "dianshang",
+              "label": "好价电商榜"
+            },
+            {
+              "value": "haitao",
+              "label": "海淘 TOP 榜"
+            },
+            {
+              "value": "haowen",
+              "label": "好文排行榜"
+            },
+            {
+              "value": "haowu",
+              "label": "好物排行榜"
+            }
+          ]
+        },
+        "rank_id": {
+          "description": "榜单ID",
+          "options": [
+            {
+              "label": "好价品类榜 - 全部",
+              "value": "11"
+            },
+            {
+              "label": "好价品类榜 - 食品生鲜",
+              "value": "12"
+            },
+            {
+              "label": "好价品类榜 - 电脑数码",
+              "value": "13"
+            },
+            {
+              "label": "好价品类榜 - 运动户外",
+              "value": "14"
+            },
+            {
+              "label": "好价品类榜 - 家用电器",
+              "value": "15"
+            },
+            {
+              "label": "好价品类榜 - 白菜",
+              "value": "17"
+            },
+            {
+              "label": "好价品类榜 - 服饰鞋包",
+              "value": "74"
+            },
+            {
+              "label": "好价品类榜 - 日用百货",
+              "value": "75"
+            },
+            {
+              "label": "好价电商榜 - 券活动",
+              "value": "24"
+            },
+            {
+              "label": "好价电商榜 - 京东",
+              "value": "23"
+            },
+            {
+              "label": "好价电商榜 - 天猫",
+              "value": "25"
+            },
+            {
+              "label": "好价电商榜 - 亚马逊中国",
+              "value": "26"
+            },
+            {
+              "label": "好价电商榜 - 国美在线",
+              "value": "27"
+            },
+            {
+              "label": "好价电商榜 - 苏宁易购",
+              "value": "28"
+            },
+            {
+              "label": "好价电商榜 - 网易",
+              "value": "29"
+            },
+            {
+              "label": "好价电商榜 - 西集网",
+              "value": "30"
+            },
+            {
+              "label": "好价电商榜 - 美国亚马逊",
+              "value": "31"
+            },
+            {
+              "label": "好价电商榜 - 日本亚马逊",
+              "value": "32"
+            },
+            {
+              "label": "好价电商榜 - ebay",
+              "value": "33"
+            },
+            {
+              "label": "海淘 TOP 榜 - 全部",
+              "value": "39"
+            },
+            {
+              "label": "海淘 TOP 榜 - 海外直邮",
+              "value": "34"
+            },
+            {
+              "label": "海淘 TOP 榜 - 美国榜",
+              "value": "35"
+            },
+            {
+              "label": "海淘 TOP 榜 - 欧洲榜",
+              "value": "36"
+            },
+            {
+              "label": "海淘 TOP 榜 - 澳新榜",
+              "value": "37"
+            },
+            {
+              "label": "海淘 TOP 榜 - 亚洲榜",
+              "value": "38"
+            },
+            {
+              "label": "海淘 TOP 榜 - 晒物榜",
+              "value": "hsw"
+            },
+            {
+              "label": "好文排行榜 - 原创",
+              "value": "yc"
+            },
+            {
+              "label": "好文排行榜 - 资讯",
+              "value": "zx"
+            },
+            {
+              "label": "好物排行榜 - 新晋榜",
+              "value": "hwall"
+            },
+            {
+              "label": "好物排行榜 - 消费众测",
+              "value": "zc"
+            },
+            {
+              "label": "好物排行榜 - 新锐品牌",
+              "value": "nb"
+            },
+            {
+              "label": "好物排行榜 - 好物榜单",
+              "value": "hw"
+            }
+          ]
+        },
+        "hour": {
+          "description": "时间跨度",
+          "options": [
+            {
+              "value": "3",
+              "label": "3 小时"
+            },
+            {
+              "value": "12",
+              "label": "12 小时"
+            },
+            {
+              "value": "24",
+              "label": "24 小时"
+            }
+          ]
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/activity/:slug",
+    "route": {
+      "name": "作者动态",
+      "path": "/activity/:slug",
+      "example": "/sspai/activity/urfp0d9i",
+      "parameters": {
+        "slug": "作者 slug，可在作者主页URL中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/author/:id",
+    "route": {
+      "name": "作者",
+      "path": "/author/:id",
+      "example": "/sspai/author/796518",
+      "parameters": {
+        "id": "作者 slug 或 id，slug 可在作者主页URL中找到，id 不易查找，仅作兼容"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/bookmarks/:slug",
+    "route": {
+      "name": "用户收藏",
+      "path": "/bookmarks/:slug",
+      "example": "/sspai/bookmarks/urfp0d9i",
+      "parameters": {
+        "slug": "用户 slug，可在个人主页URL中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/index",
+    "route": {
+      "name": "首页",
+      "path": "/index",
+      "example": "/sspai/index",
+      "parameters": {},
+      "description": ""
+    }
   }
 ]
