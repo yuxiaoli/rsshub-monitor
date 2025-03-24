@@ -1,0 +1,50 @@
+name: Monthly RSSHub Scan
+
+on:
+  schedule:
+    # Run on the 1st day of each month at 00:00 UTC
+    - cron: '0 0 1 * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.5.1
+          virtualenvs-create: true
+          
+      - name: Install dependencies
+        run: poetry install
+        
+      - name: Scan RSSHub servers
+        run: poetry run python src/rsshub_monitor/scan_servers.py --output data/servers.json
+        
+      - name: Scan RSSHub namespace
+        run: |
+          poetry run python src/rsshub_monitor/scan_namespace.py \
+            --output data/namespace.json \
+            --rss-output data/online.json \
+            --cache \
+            --category-cache \
+            --concurrent
+      
+      - name: Split routes by category
+        run: poetry run python src/rsshub_monitor/split_by_category.py -s
+      
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Monthly update: RSSHub servers and routes"
+          file_pattern: data/**/*
