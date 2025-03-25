@@ -1,19 +1,5 @@
 [
   {
-    "provider_id": "cma",
-    "provider_name": "中国气象局",
-    "route_key": "/channel/:id?",
-    "route": {
-      "path": "/channel/:id?",
-      "example": "/cma/channel/380",
-      "parameters": {
-        "id": "分类，见下表，可在对应频道页 URL 中找到，默认为 380，即每日天气提示"
-      },
-      "name": "天气预报频道",
-      "description": "#### 天气实况\n\n| 频道名称 | 频道 id                          |\n| -------- | -------------------------------- |\n| 卫星云图 | d3236549863e453aab0ccc4027105bad |\n| 单站雷达 | 103                              |\n| 降水量   | 18                               |\n| 气温     | 32                               |\n| 土壤水分 | 45                               |\n\n#### 气象公报\n\n| 频道名称       | 频道 id                          |\n| -------------- | -------------------------------- |\n| 每日天气提示   | 380                              |\n| 重要天气提示   | da5d55817ad5430fb9796a0780178533 |\n| 天气公报       | 3780                             |\n| 强对流天气预报 | 383                              |\n| 交通气象预报   | 423                              |\n| 森林火险预报   | 424                              |\n| 海洋天气公报   | 452                              |\n| 环境气象公报   | 467                              |\n\n::: tip\n  订阅更多细分频道，请前往对应上级频道页，使用下拉菜单选择项目后跳转到目标频道页，查看其 URL 找到对应频道 id\n:::"
-    }
-  },
-  {
     "provider_id": "cqgas",
     "provider_name": "重庆燃气",
     "route_key": "/tqtz",
@@ -22,7 +8,10 @@
       "example": "/cqgas/tqtz",
       "parameters": {},
       "name": "停气检修通知",
-      "url": "cqgas.cn/"
+      "url": "cqgas.cn/",
+      "provider_id": "cqgas",
+      "provider_name": "重庆燃气",
+      "route_key": "/tqtz"
     }
   },
   {
@@ -37,7 +26,10 @@
       },
       "name": "中国地震局",
       "url": "www.cea.gov.cn/cea/xwzx/zqsd/index.html",
-      "description": "可通过全局过滤参数订阅您感兴趣的地区."
+      "description": "可通过全局过滤参数订阅您感兴趣的地区.",
+      "provider_id": "earthquake",
+      "provider_name": "地震速报",
+      "route_key": "/:region?"
     }
   },
   {
@@ -49,18 +41,10 @@
       "example": "/gov/guangdong/tqyb/tfxtq",
       "parameters": {},
       "name": "突发性天气提示",
-      "url": "www.tqyb.com.cn/gz/weatherAlarm/suddenWeather/"
-    }
-  },
-  {
-    "provider_id": "hko",
-    "provider_name": "Hong Kong Observatory",
-    "route_key": "/earthquake",
-    "route": {
-      "path": "/earthquake",
-      "name": "全球地震資訊網",
-      "example": "/hko/earthquake",
-      "description": "来自香港天文台的全球5级以上地震记录"
+      "url": "www.tqyb.com.cn/gz/weatherAlarm/suddenWeather/",
+      "provider_id": "gov",
+      "provider_name": "上海市人民政府",
+      "route_key": "/guangdong/tqyb/tfxtq"
     }
   },
   {
@@ -71,7 +55,10 @@
       "path": "/weather",
       "name": "Current Weather Report",
       "example": "/hko/weather",
-      "url": "www.weather.gov.hk/en/wxinfo/currwx/current.htm"
+      "url": "www.weather.gov.hk/en/wxinfo/currwx/current.htm",
+      "provider_id": "hko",
+      "provider_name": "Hong Kong Observatory",
+      "route_key": "/weather"
     }
   },
   {
@@ -85,19 +72,24 @@
         "province": "省份"
       },
       "name": "全国气象预警",
-      "url": "nmc.cn/publish/alarm.html"
+      "url": "nmc.cn/publish/alarm.html",
+      "provider_id": "nmc",
+      "provider_name": "中央气象台",
+      "route_key": "/weatheralarm/:province?"
     }
   },
   {
     "provider_id": "tingshuitz",
     "provider_name": "停水通知",
-    "route_key": "/yangjiang",
+    "route_key": "/guangzhou",
     "route": {
-      "path": "/yangjiang",
-      "example": "/tingshuitz/yangjiang",
+      "path": "/guangzhou",
+      "example": "/tingshuitz/guangzhou",
       "parameters": {},
-      "name": "阳江市",
-      "url": "yjsswjt.com/zxdt_list.jsp"
+      "name": "广州市",
+      "provider_id": "tingshuitz",
+      "provider_name": "停水通知",
+      "route_key": "/guangzhou"
     }
   },
   {
@@ -112,7 +104,10 @@
         "routeParams": "extra parameters, see the table below"
       },
       "name": "RSS",
-      "description": "| Key    | Description                                                              | Accepts        | Defaults to |\n| ------ | ------------------------------------------------------------------------ | -------------- | ----------- |\n| showID | Show monitor ID (disabling it will also disable link for each RSS entry) | 0/1/true/false | true        |"
+      "description": "| Key    | Description                                                              | Accepts        | Defaults to |\n| ------ | ------------------------------------------------------------------------ | -------------- | ----------- |\n| showID | Show monitor ID (disabling it will also disable link for each RSS entry) | 0/1/true/false | true        |",
+      "provider_id": "uptimerobot",
+      "provider_name": "Uptime Robot",
+      "route_key": "/rss/:id/:routeParams?"
     }
   }
 ]

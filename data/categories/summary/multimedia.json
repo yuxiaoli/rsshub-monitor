@@ -30,21 +30,6 @@
   {
     "provider_id": "163",
     "provider_name": "网易公开课",
-    "route_key": "/music/djradio/:id/:info?",
-    "route": {
-      "name": "电台节目",
-      "path": "/music/djradio/:id/:info?",
-      "example": "/163/music/djradio/347317067",
-      "parameters": {
-        "id": "节目 id, 可在电台节目页 URL 中找到",
-        "info": "默认在正文尾部显示节目相关信息，任意值为不显示"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "163",
-    "provider_name": "网易公开课",
     "route_key": "/music/playlist/:id",
     "route": {
       "name": "歌单歌曲",
@@ -54,34 +39,6 @@
         "id": "歌单 id, 可在歌单页 URL 中找到"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "163",
-    "provider_name": "网易公开课",
-    "route_key": "/music/user/playlist/:uid",
-    "route": {
-      "name": "用户歌单",
-      "path": "/music/user/playlist/:uid",
-      "example": "/163/music/user/playlist/45441555",
-      "parameters": {
-        "uid": "用户 uid, 可在用户主页 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "1lou",
-    "provider_name": "BT 之家 1LOU 站",
-    "route_key": "/:params{.+}?",
-    "route": {
-      "name": "通用",
-      "path": "/:params{.+}?",
-      "example": "/1lou/forum-2-1",
-      "parameters": {
-        "params": "路径参数，可以在对应页面的 URL 中找到"
-      },
-      "description": "::: tip\n  `1lou.me/` 后的内容填入 params 参数，以下是几个例子：\n\n  若订阅 [大陆电视剧](https://www.1lou.me/forum-2-1.htm?tagids=0_97_0_0)，网址为 `https://www.1lou.me/forum-2-1.htm?tagids=0_97_0_0`。截取 `https://www.1lou.me/` 到末尾 `.htm` 的部分 `forum-2-1` 作为参数，并补充 `tagids`，此时路由为 [`/1lou/forum-2-1?tagids=0_97_0_0`](https://rsshub.app/1lou/forum-2-1?tagids=0_97_0_0)。\n  \n  若订阅 [最新发帖电视剧](https://www.1lou.me/forum-2-1.htm?orderby=tid&digest=0)，网址为 `https://www.1lou.me/forum-2-1.htm?orderby=tid&digest=0`。截取 `https://www.1lou.me/` 到末尾 `.htm` 的部分 `forum-2-1` 作为参数，并补充 `orderby`，此时路由为 [`/1lou/forum-2-1?orderby=tid`](https://rsshub.app/1lou/forum-2-1?orderby=tid)。\n  \n  若订阅 [搜素繁花主题贴](https://www.1lou.me/search-_E7_B9_81_E8_8A_B1-1.htm)，网址为 `https://www.1lou.me/search-_E7_B9_81_E8_8A_B1-1.htm`。截取 `https://www.1lou.me/` 到末尾 `.htm` 的部分 `search-_E7_B9_81_E8_8A_B1-1` 作为参数，此时路由为 [`/1lou/search-_E7_B9_81_E8_8A_B1-1`](https://rsshub.app/1lou/search-_E7_B9_81_E8_8A_B1-1)。\n:::"
     }
   },
   {
@@ -109,17 +66,35 @@
     }
   },
   {
-    "provider_id": "ajmide",
-    "provider_name": "阿基米德 FM",
-    "route_key": "/:id",
+    "provider_id": "7mmtv",
+    "provider_name": "7mmtv",
+    "route_key": "/:language?/:category?/:type?",
     "route": {
-      "name": "播客",
-      "path": "/:id",
-      "example": "/ajmide/10603594",
+      "name": "Category",
+      "path": "/:language?/:category?/:type?",
+      "example": "/7mmtv/zh/censored_list/all",
       "parameters": {
-        "id": "播客 id，可以从播客页面 URL 中找到"
+        "language": "Language, see below, `en` as English by default",
+        "category": "Category, see below, `censored_list` as Censored by default",
+        "type": "Server, see below, all server by default"
       },
-      "description": ""
+      "description": "**Language**\n\n| English | 日本語 | 한국의 | 中文 |\n| ------- | ------ | ------ | ---- |\n| en      | ja     | ko     | zh   |\n\n  **Category**\n\n| Chinese subtitles AV | Censored       | Amateur          | Uncensored       | Asian self-timer | H comics     |\n| -------------------- | -------------- | ---------------- | ---------------- | ---------------- | ------------ |\n| chinese_list        | censored_list | amateurjav_list | uncensored_list | amateur_list    | hcomic_list |\n\n| Chinese subtitles AV random | Censored random  | Amateur random     | Uncensored random  | Asian self-timer random | H comics random |\n| --------------------------- | ---------------- | ------------------ | ------------------ | ----------------------- | --------------- |\n| chinese_random             | censored_random | amateurjav_random | uncensored_random | amateur_random         | hcomic_random  |\n\n  **Server**\n\n| All Server | fembed(Full DL) | streamsb(Full DL) | doodstream | streamtape(Full DL) | avgle | embedgram | videovard(Full DL) |\n| ---------- | --------------- | ----------------- | ---------- | ------------------- | ----- | --------- | ------------------ |\n| all        | 21              | 30                | 28         | 29                  | 17    | 34        | 33                 |"
+    }
+  },
+  {
+    "provider_id": "asmr-200",
+    "provider_name": "ASMR Online",
+    "route_key": "/works/:order?/:subtitle?/:sort?",
+    "route": {
+      "name": "最新收录",
+      "path": "/works/:order?/:subtitle?/:sort?",
+      "example": "/asmr-200/works",
+      "parameters": {
+        "order": "排序字段，默认按照资源的收录日期来排序，详见下表",
+        "sort": "排序方式，可选 `asc` 和 `desc` ，默认倒序",
+        "subtitle": "筛选带字幕音频，可选 `0` 和 `1` ，默认关闭"
+      },
+      "description": "| 发售日期 | 收录日期 | 销量 | 价格 | 评价 | 随机 | RJ号 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| release | create_date | dl_count | price | rate_average_2dp | random | id |"
     }
   },
   {
@@ -149,41 +124,15 @@
   {
     "provider_id": "chikubi",
     "provider_name": "乳首ふぇち",
-    "route_key": "/category/:keyword",
+    "route_key": "/nipple-video-category/:keyword",
     "route": {
-      "name": "Category",
-      "path": "/category/:keyword",
-      "example": "/chikubi/category/nipple-lesbian",
+      "name": "動画カテゴリー",
+      "path": "/nipple-video-category/:keyword",
+      "example": "/chikubi/nipple-video-category/cat-nipple-video-god",
       "parameters": {
         "keyword": "Keyword"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/",
-    "route": {
-      "name": "最新記事",
-      "path": "/",
-      "example": "/chikubi",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/:keyword",
-    "route": {
-      "name": "Navigation",
-      "path": "/:keyword",
-      "example": "/chikubi",
-      "parameters": {
-        "keyword": "導覽列，見下表，默認爲最新"
-      },
-      "description": "| 殿堂 | 動畫 | VR | 漫畫 | 音聲 | CG・イラスト |\n| ---- | ----- | -- | ----- | ----- | -- |\n| best | video | vr | comic | voice | cg |"
     }
   },
   {
@@ -203,11 +152,11 @@
   {
     "provider_id": "chikubi",
     "provider_name": "乳首ふぇち",
-    "route_key": "/tag/:keyword",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "Tag",
-      "path": "/tag/:keyword",
-      "example": "/chikubi/tag/ドリームチケット",
+      "name": "Search",
+      "path": "/search/:keyword",
+      "example": "/chikubi/search/ギャップ",
       "parameters": {
         "keyword": "Keyword"
       },
@@ -229,6 +178,21 @@
     }
   },
   {
+    "provider_id": "coomer",
+    "provider_name": "Coomer",
+    "route_key": "/:source?/:id?",
+    "route": {
+      "name": "Posts",
+      "path": "/:source?/:id?",
+      "example": "/coomer",
+      "parameters": {
+        "source": "Source, see below, Posts by default",
+        "id": "User id, can be found in URL"
+      },
+      "description": "Sources\n\n| Posts | OnlyFans | Fansly | CandFans |\n| ----- | -------- | ------- | -------- |\n| posts | onlyfans | fansly   | candfans |\n\n::: tip\n  When `posts` is selected as the value of the parameter **source**, the parameter **id** does not take effect.\n  There is an optinal parameter **limit** which controls the number of posts to fetch, default value is 25.\n:::"
+    }
+  },
+  {
     "provider_id": "domp4",
     "provider_name": "DoMP4 影视",
     "route_key": "/detail/:id",
@@ -243,29 +207,73 @@
     }
   },
   {
-    "provider_id": "domp4",
-    "provider_name": "DoMP4 影视",
-    "route_key": "/latest_movie_bt",
+    "provider_id": "dytt",
+    "provider_name": "电影天堂",
+    "route_key": "/:category{.+}?",
     "route": {
-      "name": "最近更新的电源BT列表",
-      "path": "/latest_movie_bt",
-      "example": "/domp4/latest_movie_bt",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "domp4",
-    "provider_name": "DoMP4 影视",
-    "route_key": "/latest/:type?",
-    "route": {
-      "name": "最近更新",
-      "path": "/latest/:type?",
-      "example": "/domp4/latest/vod",
+      "name": "分类",
+      "path": "/:category{.+}?",
+      "example": "/dytt/gndy/dyzz",
       "parameters": {
-        "type": "`vod` 代表电影，`tv` 代表电视剧，默认 vod"
+        "category": {
+          "description": "分类，默认为 `gndy/dyzz`，即最新影片，可在对应分类页 URL 中找到",
+          "options": [
+            {
+              "label": "最新影片",
+              "value": "gndy/dyzz"
+            },
+            {
+              "label": "经典影片",
+              "value": "gndy"
+            },
+            {
+              "label": "国内电影",
+              "value": "gndy/china"
+            },
+            {
+              "label": "欧美电影",
+              "value": "gndy/oumei"
+            },
+            {
+              "label": "其它电影",
+              "value": "gndy/rihan"
+            },
+            {
+              "label": "华语电视",
+              "value": "tv/hytv"
+            },
+            {
+              "label": "欧美电视",
+              "value": "tv/oumeitv"
+            },
+            {
+              "label": "最新综艺",
+              "value": "zongyi2013"
+            },
+            {
+              "label": "旧版综艺",
+              "value": "2009zongyi"
+            },
+            {
+              "label": "动漫资源",
+              "value": "dongman"
+            },
+            {
+              "label": "旧版游戏",
+              "value": "game"
+            },
+            {
+              "label": "游戏下载",
+              "value": "newgame"
+            },
+            {
+              "label": "日韩剧集专区",
+              "value": "tv/rihantv"
+            }
+          ]
+        }
       },
-      "description": ""
+      "description": ":::tip\n若订阅 [最新影片](https://www.dydytt.net/html/gndy/dyzz)，网址为 `https://www.dydytt.net/html/gndy/dyzz`，请截取 `https://www.dydytt.net/html/` 到末尾的部分 `gndy/dyzz` 作为 `category` 参数填入，此时目标路由为 [`/dytt/gndy/dyzz`](https://rsshub.app/dytt/gndy/dyzz)。\n\n:::\n\n<details>\n<summary>更多分类</summary>\n\n| 分类                                                  | ID                                               |\n| ----------------------------------------------------- | ------------------------------------------------ |\n| [最新影片](https://www.dydytt.net/html/gndy/dyzz/index.html)      | [gndy/dyzz](https://rsshub.app/dytt/gndy/dyzz)   |\n| [经典影片](https://www.dydytt.net/html/gndy/index.html)           | [gndy](https://rsshub.app/dytt/gndy)             |\n| [国内电影](https://www.dydytt.net/html/gndy/china/index.html)     | [gndy/china](https://rsshub.app/dytt/gndy/china) |\n| [欧美电影](https://www.dydytt.net/html/gndy/oumei/index.html)     | [gndy/oumei](https://rsshub.app/dytt/gndy/oumei) |\n| [其它电影](https://www.dydytt.net/html/gndy/rihan/index.html)     | [gndy/rihan](https://rsshub.app/dytt/gndy/rihan) |\n| [华语电视](https://www.dydytt.net/html/tv/hytv/index.html)        | [tv/hytv](https://rsshub.app/dytt/tv/hytv)       |\n| [欧美电视](https://www.dydytt.net/html/tv/oumeitv/index.html)     | [tv/oumeitv](https://rsshub.app/dytt/tv/oumeitv) |\n| [最新综艺](https://www.dydytt.net/html/zongyi2013/index.html)     | [zongyi2013](https://rsshub.app/dytt/zongyi2013) |\n| [旧版综艺](https://www.dydytt.net/html/2009zongyi/index.html)     | [2009zongyi](https://rsshub.app/dytt/2009zongyi) |\n| [动漫资源](https://www.dydytt.net/html/dongman/index.html)        | [dongman](https://rsshub.app/dytt/dongman)       |\n| [旧版游戏](https://www.dydytt.net/html/game/index.html)           | [game](https://rsshub.app/dytt/game)             |\n| [游戏下载](https://www.dydytt.net/html/newgame/index.html)        | [newgame](https://rsshub.app/dytt/newgame)       |\n| [日韩剧集专区](https://www.dydytt.net/html/tv/rihantv/index.html) | [tv/rihantv](https://rsshub.app/dytt/tv/rihantv) |\n\n</details>\n"
     }
   },
   {
@@ -306,119 +314,28 @@
   {
     "provider_id": "iqiyi",
     "provider_name": "爱奇艺",
-    "route_key": "/user/video/:uid",
+    "route_key": "/album/:id",
     "route": {
-      "name": "用户视频",
-      "path": "/user/video/:uid",
-      "example": "/iqiyi/user/video/2289191062",
+      "name": "剧集",
+      "path": "/album/:id",
+      "example": "/iqiyi/album/神武天尊-2020-1b4lufwxd7h",
       "parameters": {
-        "uid": "用户名"
+        "id": "剧集 id, 可在该主页 URL 中找到"
       },
-      "description": ""
+      "description": "::: tip\n  可抓取內容根据服务器所在地区而定\n:::"
     }
   },
   {
-    "provider_id": "javbus",
-    "provider_name": "JavBus",
-    "route_key": "/:path{.+}?",
+    "provider_id": "ixigua",
+    "provider_name": "西瓜视频",
+    "route_key": "/user/video/:uid/:disableEmbed?",
     "route": {
-      "name": "Works",
-      "path": "/:path{.+}?",
-      "example": "/javbus/star/rwt",
+      "name": "用户视频投稿",
+      "path": "/user/video/:uid/:disableEmbed?",
+      "example": "/ixigua/user/video/4234740937",
       "parameters": {
-        "path": {
-          "description": "Any path of list page on javbus"
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "javdb",
-    "provider_name": "JavDB",
-    "route_key": "/actors/:id/:filter?",
-    "route": {
-      "name": "演員",
-      "path": "/actors/:id/:filter?",
-      "example": "/javdb/actors/R2Vg",
-      "parameters": {
-        "id": "编号，可在演员页 URL 中找到",
-        "filter": "过滤，见下表，默认为 `全部`"
-      },
-      "description": "| 全部 | 可播放 | 單體作品 | 可下載 | 含字幕 |\n| ---- | ------ | -------- | ------ | ------ |\n|      | p      | s        | d      | c      |\n\n  所有演员编号参见 [演員庫](https://javdb.com/actors)\n\n  可用 addon_tags 参数添加额外的过滤 tag，可从网页 url 中获取，例如 `/javdb/actors/R2Vg?addon_tags=212,18` 可筛选 `VR` 和 `中出`。"
-    }
-  },
-  {
-    "provider_id": "javdb",
-    "provider_name": "JavDB",
-    "route_key": "/makers/:id/:filter?",
-    "route": {
-      "name": "片商",
-      "path": "/makers/:id/:filter?",
-      "example": "/javdb/makers/7R",
-      "parameters": {
-        "id": "编号，可在片商页 URL 中找到",
-        "filter": "过滤，见下表，默认为 `全部`"
-      },
-      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有片商编号参见 [片商庫](https://javdb.com/makers)"
-    }
-  },
-  {
-    "provider_id": "javdb",
-    "provider_name": "JavDB",
-    "route_key": "/search/:keyword?/:filter?/:sort?",
-    "route": {
-      "name": "搜索",
-      "path": "/search/:keyword?/:filter?/:sort?",
-      "example": "/javdb/search/巨乳",
-      "parameters": {
-        "keyword": "关键字，默认为空",
-        "filter": "过滤，见下表，默认为 `可播放`",
-        "sort": "排序，见下表，默认为 `按相关度排序`"
-      },
-      "description": "过滤\n\n| 全部 | 占位 | 可播放   | 單體作品 | 演員  | 片商  | 導演     | 系列   | 番號 | 可下載   | 字幕  | 預覽圖  |\n| ---- | ---- | -------- | -------- | ----- | ----- | -------- | ------ | ---- | -------- | ----- | ------- |\n|      | none | playable | single   | actor | maker | director | series | code | download | cnsub | preview |\n\n  排序\n\n| 按相关度排序 | 按发布时间排序 |\n| ------------ | -------------- |\n| 0            | 1              |"
-    }
-  },
-  {
-    "provider_id": "javdb",
-    "provider_name": "JavDB",
-    "route_key": "/series/:id/:filter?",
-    "route": {
-      "name": "系列",
-      "path": "/series/:id/:filter?",
-      "example": "/javdb/series/1NW",
-      "parameters": {
-        "id": "编号，可在系列页 URL 中找到",
-        "filter": "过滤，见下表，默认为 `全部`"
-      },
-      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有系列编号参见 [系列庫](https://javdb.com/series)"
-    }
-  },
-  {
-    "provider_id": "javdb",
-    "provider_name": "JavDB",
-    "route_key": "/video_codes/:code/:filter?",
-    "route": {
-      "name": "番号",
-      "path": "/video_codes/:code/:filter?",
-      "example": "/javdb/video_codes/SIVR",
-      "parameters": {
-        "id": "番号前缀",
-        "filter": "过滤，见下表，默认为 `全部`"
-      },
-      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |"
-    }
-  },
-  {
-    "provider_id": "javtiful",
-    "provider_name": "Javtiful",
-    "route_key": "/actress/:id",
-    "route": {
-      "name": "Actress",
-      "path": "/actress/:id",
-      "example": "/javtiful/actress/akari-tsumugi",
-      "parameters": {
-        "id": "Actress name"
+        "uid": "用户 id, 可在用户主页中找到",
+        "disableEmbed": "默认为开启内嵌视频, 任意值为关闭"
       },
       "description": ""
     }
@@ -438,16 +355,30 @@
     }
   },
   {
-    "provider_id": "javtrailers",
-    "provider_name": "JavTrailers",
-    "route_key": "/studios/:studio",
+    "provider_id": "maccms",
+    "provider_name": "通用影视采集站视频采集接口路由",
+    "route_key": "/:domain/:type?/:size?",
     "route": {
-      "name": "Studios",
-      "path": "/studios/:studio",
-      "example": "/javtrailers/studios/s1-no-1-style",
+      "name": "最新资源",
+      "path": "/:domain/:type?/:size?",
+      "example": "/maccms/moduzy.net/2",
       "parameters": {
-        "studio": "Studio name, can be found in the URL of the studio page"
+        "domain": "采集站域名，可选值如下表",
+        "type": "类别ID，不同采集站点有不同的类别规则和ID，默认为 0，代表全部类别",
+        "size": "每次获取的数据条数，上限 100 条，默认 30 条"
       },
+      "description": "\n::: tip\n每个采集站提供的影视类别ID是不同的，即参数中的 `type` 是不同的。**可以先访问一次站点提供的采集接口，然后从返回结果中的 `class` 字段中的 `type_id`获取相应的类别ID**\n:::\n\n| 站名                | 域名                                             | 站名             | 域名                                               | 站名           | 域名                                            |\n| ------------------- | ------------------------------------------------ | ---------------- | -------------------------------------------------- | -------------- | ----------------------------------------------- |\n| 魔都资源网          | [moduzy.net](https://moduzy.net)                 | 华为吧影视资源站 | [hw8.live](https://hw8.live)                       | 360 资源站     | [360zy.com](https://360zy.com)                  |\n| jkun 爱坤联盟资源网 | [ikunzyapi.com](https://ikunzyapi.com)           | 奥斯卡资源站     | [aosikazy.com](https://aosikazy.com)               | 飞速资源采集网 | [www.feisuzyapi.com](http://www.feisuzyapi.com) |\n| 森林资源网          | [slapibf.com](https://slapibf.com)               | 天空资源采集网   | [api.tiankongapi.com](https://api.tiankongapi.com) | 百度云资源     | [api.apibdzy.com](https://api.apibdzy.com)      |\n| 红牛资源站          | [www.hongniuzy2.com](https://www.hongniuzy2.com) | 乐视资源网       | [leshiapi.com](https://leshiapi.com)               | 暴风资源       | [bfzyapi.com](https://bfzyapi.com)              |"
+    }
+  },
+  {
+    "provider_id": "missav",
+    "provider_name": "MissAV",
+    "route_key": "/new",
+    "route": {
+      "name": "最近更新",
+      "path": "/new",
+      "example": "/missav/new",
+      "parameters": {},
       "description": ""
     }
   },
@@ -481,144 +412,15 @@
     }
   },
   {
-    "provider_id": "nyaa",
-    "provider_name": "Nyaa",
-    "route_key": "/search/:query?",
+    "provider_id": "podwise",
+    "provider_name": "Podwise",
+    "route_key": "/explore",
     "route": {
-      "name": "Search Result",
-      "path": [
-        "/search/:query?",
-        "/user/:username?",
-        "/user/:username/search/:query?",
-        "/sukebei/search/:query?",
-        "/sukebei/user/:username?",
-        "/sukebei/user/:username/search/:query?"
-      ],
-      "example": "/nyaa/search/psycho-pass",
-      "parameters": {
-        "query": "Search keyword"
-      },
+      "name": "Collections",
+      "path": "/explore",
+      "example": "/podwise/explore",
+      "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "nyaa",
-    "provider_name": "Nyaa",
-    "route_key": "/user/:username?",
-    "route": {
-      "name": "Search Result",
-      "path": [
-        "/search/:query?",
-        "/user/:username?",
-        "/user/:username/search/:query?",
-        "/sukebei/search/:query?",
-        "/sukebei/user/:username?",
-        "/sukebei/user/:username/search/:query?"
-      ],
-      "example": "/nyaa/search/psycho-pass",
-      "parameters": {
-        "query": "Search keyword"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nyaa",
-    "provider_name": "Nyaa",
-    "route_key": "/user/:username/search/:query?",
-    "route": {
-      "name": "Search Result",
-      "path": [
-        "/search/:query?",
-        "/user/:username?",
-        "/user/:username/search/:query?",
-        "/sukebei/search/:query?",
-        "/sukebei/user/:username?",
-        "/sukebei/user/:username/search/:query?"
-      ],
-      "example": "/nyaa/search/psycho-pass",
-      "parameters": {
-        "query": "Search keyword"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nyaa",
-    "provider_name": "Nyaa",
-    "route_key": "/sukebei/search/:query?",
-    "route": {
-      "name": "Search Result",
-      "path": [
-        "/search/:query?",
-        "/user/:username?",
-        "/user/:username/search/:query?",
-        "/sukebei/search/:query?",
-        "/sukebei/user/:username?",
-        "/sukebei/user/:username/search/:query?"
-      ],
-      "example": "/nyaa/search/psycho-pass",
-      "parameters": {
-        "query": "Search keyword"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nyaa",
-    "provider_name": "Nyaa",
-    "route_key": "/sukebei/user/:username?",
-    "route": {
-      "name": "Search Result",
-      "path": [
-        "/search/:query?",
-        "/user/:username?",
-        "/user/:username/search/:query?",
-        "/sukebei/search/:query?",
-        "/sukebei/user/:username?",
-        "/sukebei/user/:username/search/:query?"
-      ],
-      "example": "/nyaa/search/psycho-pass",
-      "parameters": {
-        "query": "Search keyword"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nyaa",
-    "provider_name": "Nyaa",
-    "route_key": "/sukebei/user/:username/search/:query?",
-    "route": {
-      "name": "Search Result",
-      "path": [
-        "/search/:query?",
-        "/user/:username?",
-        "/user/:username/search/:query?",
-        "/sukebei/search/:query?",
-        "/sukebei/user/:username?",
-        "/sukebei/user/:username/search/:query?"
-      ],
-      "example": "/nyaa/search/psycho-pass",
-      "parameters": {
-        "query": "Search keyword"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/category_url/:url?/:language?",
-    "route": {
-      "name": "Video List",
-      "path": "/category_url/:url?/:language?",
-      "example": "/pornhub/category_url/video%3Fc%3D15%26o%3Dmv%26t%3Dw%26cc%3Djp",
-      "parameters": {
-        "language": "language, see below",
-        "url": "relative path after `pornhub.com/`, need to be URL encoded"
-      },
-      "description": "**`language`**\n\n  Refer to [Pornhub F.A.Qs](https://help.pornhub.com/hc/en-us/articles/360044327034-How-do-I-change-the-language-), English by default. For example:\n\n  -   `cn` (Chinese), for Pornhub in China [https://cn.pornhub.com](https://cn.pornhub.com)；\n\n  -   `jp` (Japanese), for Pornhub in Japan [https://jp.pornhub.com](https://jp.pornhub.com) etc."
     }
   },
   {
@@ -631,111 +433,6 @@
       "example": "/pornhub/category/popular-with-women",
       "parameters": {
         "caty": "category, see [categories](https://www.pornhub.com/webmasters/categories)"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/pornstar/:username/:language?/:sort?",
-    "route": {
-      "name": "Pornstar",
-      "path": "/pornstar/:username/:language?/:sort?",
-      "example": "/pornhub/pornstar/june-liu/www/mr",
-      "parameters": {
-        "username": {
-          "description": "username, part of the url e.g. `pornhub.com/pornstar/june-liu`"
-        },
-        "language": {
-          "description": "language",
-          "options": [
-            {
-              "value": "www",
-              "label": "English"
-            },
-            {
-              "value": "de",
-              "label": "Deutsch"
-            },
-            {
-              "value": "es",
-              "label": "Español"
-            },
-            {
-              "value": "fr",
-              "label": "Français"
-            },
-            {
-              "value": "it",
-              "label": "Italiano"
-            },
-            {
-              "value": "ja",
-              "label": "日本語"
-            },
-            {
-              "value": "pt",
-              "label": "Português"
-            },
-            {
-              "value": "pl",
-              "label": "Polski"
-            },
-            {
-              "value": "rt",
-              "label": "Русский"
-            },
-            {
-              "value": "nl",
-              "label": "Dutch"
-            },
-            {
-              "value": "cs",
-              "label": "Czech"
-            },
-            {
-              "value": "cn",
-              "label": "中文（简体）"
-            }
-          ],
-          "default": "www"
-        },
-        "sort": {
-          "description": "sorting method, leave empty for `Best`",
-          "options": [
-            {
-              "label": "Most Recent",
-              "value": "mr"
-            },
-            {
-              "label": "Most Viewed",
-              "value": "mv"
-            },
-            {
-              "label": "Top Rated",
-              "value": "tr"
-            },
-            {
-              "label": "Longest",
-              "value": "lg"
-            }
-          ]
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/search/:keyword",
-    "route": {
-      "name": "Keyword Search",
-      "path": "/search/:keyword",
-      "example": "/pornhub/search/stepsister",
-      "parameters": {
-        "keyword": "keyword"
       },
       "description": ""
     }
@@ -756,44 +453,14 @@
     }
   },
   {
-    "provider_id": "radio",
-    "provider_name": "云听",
-    "route_key": "/album/:id",
+    "provider_id": "spankbang",
+    "provider_name": "SpankBang",
+    "route_key": "/new_videos",
     "route": {
-      "name": "专辑",
-      "path": "/album/:id",
-      "example": "/radio/album/15682090498666",
-      "parameters": {
-        "id": "专辑 id，可在对应专辑页面的 URL 中找到"
-      },
-      "description": "如果订阅 [中国相声榜](https://www.radio.cn/pc-portal/sanji/detail.html?columnId=15682090498666)，其 URL 为 `https://www.radio.cn/pc-portal/sanji/detail.html?columnId=15682090498666`，可以得到 `columnId` 为 `15682090498666`\n\n  所以对应路由为 [`/radio/album/15682090498666`](https://rsshub.app/radio/album/15682090498666)\n\n::: tip\n  部分专辑不适用该路由，此时可以尝试 [节目](#yun-ting-jie-mu) 路由\n:::"
-    }
-  },
-  {
-    "provider_id": "radio",
-    "provider_name": "云听",
-    "route_key": "/zhibo/:id",
-    "route": {
-      "name": "直播",
-      "path": "/zhibo/:id",
-      "example": "/radio/zhibo/1395528",
-      "parameters": {
-        "id": "直播 id，可在对应点播页面的 URL 中找到"
-      },
-      "description": "如果订阅 [新闻和报纸摘要](http://www.radio.cn/pc-portal/sanji/zhibo_2.html?name=1395528)，其 URL 为 `http://www.radio.cn/pc-portal/sanji/zhibo_2.html?name=1395528`，可以得到 `name` 为 `1395528`\n\n  所以对应路由为 [`/radio/zhibo/1395528`](https://rsshub.app/radio/zhibo/1395528)\n\n::: tip\n  查看更多电台直播节目，可前往 [电台直播](http://www.radio.cn/pc-portal/erji/radioStation.html)\n:::"
-    }
-  },
-  {
-    "provider_id": "soundon",
-    "provider_name": "SoundOn",
-    "route_key": "/p/:id",
-    "route": {
-      "name": "Podcast",
-      "path": "/p/:id",
-      "example": "/soundon/p/33a68cdc-18ad-4192-84cc-22bd7fdc6a31",
-      "parameters": {
-        "id": "Podcast ID"
-      },
+      "name": "New Porn Videos",
+      "path": "/new_videos",
+      "example": "/spankbang/new_videos",
+      "parameters": {},
       "description": ""
     }
   },
@@ -810,20 +477,6 @@
     }
   },
   {
-    "provider_id": "t66y",
-    "provider_name": "草榴社区",
-    "route_key": "/post/:tid",
-    "route": {
-      "name": "帖子跟踪",
-      "path": "/post/:tid",
-      "example": "/t66y/post/3286088",
-      "parameters": {
-        "tid": "帖子 id, 可在帖子 URL 中找到"
-      },
-      "description": "::: tip\n  帖子 id 查找办法:\n\n  打开想跟踪的帖子，比如：`https://t66y.com/htm_data/20/1811/3286088.html` 其中 `3286088` 就是帖子 id。\n:::"
-    }
-  },
-  {
     "provider_id": "themoviedb",
     "provider_name": "The Movie Database",
     "route_key": "/collection/:id/:lang?",
@@ -833,37 +486,6 @@
       "example": "/themoviedb/collection/131292/en-US",
       "parameters": {
         "id": "Collection ID",
-        "lang": "Language"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/tv/:id/seasons/:seasonNumber/episodes/:lang?",
-    "route": {
-      "name": "TV Show Episodes",
-      "path": "/tv/:id/seasons/:seasonNumber/episodes/:lang?",
-      "example": "/themoviedb/tv/70593/seasons/1/episodes/en-US",
-      "parameters": {
-        "id": "TV show ID",
-        "seasonNumber": "Season number",
-        "lang": "Language"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/tv/:id/seasons/:lang?",
-    "route": {
-      "name": "TV Show Seasons",
-      "path": "/tv/:id/seasons/:lang?",
-      "example": "/themoviedb/tv/70593/seasons/en-US",
-      "parameters": {
-        "id": "TV show ID",
         "lang": "Language"
       },
       "description": ""
@@ -897,57 +519,6 @@
         "mediaType": "`movie` or `tv`",
         "timeWindow": "`day` or `week`",
         "lang": "Language"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "u3c3",
-    "provider_name": "U3C3",
-    "route_key": "/search/:keyword/:preview?",
-    "route": {
-      "name": "Search",
-      "path": [
-        "/search/:keyword/:preview?",
-        "/:type?/:preview?"
-      ],
-      "example": "/u3c3/search/新片速递",
-      "parameters": {
-        "keyword": "Search keyword",
-        "preview": "Show image preview, off by default, non empty value means on"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "u3c3",
-    "provider_name": "U3C3",
-    "route_key": "/:type?/:preview?",
-    "route": {
-      "name": "Search",
-      "path": [
-        "/search/:keyword/:preview?",
-        "/:type?/:preview?"
-      ],
-      "example": "/u3c3/search/新片速递",
-      "parameters": {
-        "keyword": "Search keyword",
-        "preview": "Show image preview, off by default, non empty value means on"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "youku",
-    "provider_name": "优酷",
-    "route_key": "/channel/:channelId/:embed?",
-    "route": {
-      "name": "频道",
-      "path": "/channel/:channelId/:embed?",
-      "example": "/youku/channel/UNTg3MTM3OTcy",
-      "parameters": {
-        "channelId": "频道 id",
-        "embed": "默认为开启内嵌视频, 任意值为关闭"
       },
       "description": ""
     }
@@ -997,18 +568,6 @@
         }
       },
       "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |"
-    }
-  },
-  {
-    "provider_id": "yyets",
-    "provider_name": "人人影视",
-    "route_key": "/today",
-    "route": {
-      "name": "今日播出",
-      "path": "/today",
-      "example": "/yyets/today",
-      "parameters": {},
-      "description": ""
     }
   },
   {

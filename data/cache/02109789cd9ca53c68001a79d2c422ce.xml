@@ -1,4 +1,328 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>BLOG | Samsung Research</title><link>https://research.samsung.com/blog</link><atom:link href="http://rsshub.thzu.xyz/samsung/research/blog" rel="self" type="application/rss+xml"></atom:link><description>BLOG | Samsung Research - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Wed, 19 Mar 2025 23:28:40 GMT</lastBuildDate><ttl>5</ttl><item><title>FaceMe: Robust Blind Face Restoration With Personal Identification</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1 Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>BLOG | Samsung Research</title><link>https://research.samsung.com/blog</link><atom:link href="http://rsshub.isrss.com/samsung/research/blog" rel="self" type="application/rss+xml"></atom:link><description>BLOG | Samsung Research - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 25 Mar 2025 00:44:20 GMT</lastBuildDate><ttl>5</ttl><item><title>CheapNVS: Real-Time On-Device Novel View Synthesis for Mobile Applications</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;
+&lt;b&gt;Novel View Synthesis (NVS)—&lt;/b&gt;the task of generating new perspectives of a scene from a single image—has vast potential in augmented reality (AR), robotics, and immersive media. &lt;b&gt;NVS is a notoriously ill-posed problem&lt;/b&gt;, as it is not only comprised of reverse-projecting an image onto the 3D space, but it also requires the completion of missing data in occluded regions. &lt;b&gt;Despite the recent advances&lt;/b&gt; in the literature, &lt;b&gt;NVS still suffers from several critical bottlenecks&lt;/b&gt;:
+&lt;/p&gt;
+
+&lt;p&gt;
+• &lt;b&gt;Computational Overhead&lt;/b&gt;: Traditional pipelines rely on explicit 3D reconstruction or per-scene optimization (e.g., NeRF-based methods (Mildenhall, 2021)), which makes them computationally complex, and consequently, lowers their feasibility to be deployed on-device for real-time applications. More recent multi-view diffusion model-based solutions (Bourigault, 2024), as accurate as they might be, are quite expensive to deploy as well. 
+&lt;/p&gt;
+
+&lt;p&gt;
+• &lt;b&gt;Limited Generalization&lt;/b&gt;: Many approaches only work on the specific camera baselines they are trained on (Yang Zhou, 2023), or require scene-specific training (Kerbl, 2023) (Mildenhall, 2021), which limits both scalability and practicality. Having to train a new model for each scene is not desirable, and definitely not practical in real-time scenarios.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;CheapNVS tackles these challenges by reimagining NVS as an efficient, end-to-end task&lt;/b&gt;. It leverages &lt;b&gt;lightweight modules to approximate 3D warping and performs inpainting in parallel to deliver real-time performance on mobile hardware&lt;/b&gt;, while maintaining competitive accuracy.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Novel View Synthesis – Reimagined&lt;/h2&gt;
+
+&lt;p&gt;
+Single-view Novel View Synthesis aims to synthesize a new image &lt;b&gt;ӏ&lt;sub&gt;t&lt;/sub&gt;&lt;/b&gt; from a given target camera pose &lt;b&gt;T&lt;/b&gt; by using the input image &lt;b&gt;ӏ&lt;sub&gt;s&lt;/sub&gt;&lt;/b&gt; and depth map of the input image &lt;b&gt;D&lt;/b&gt;.  Formally, it can be written as 
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsAhEKAOMAUGpw.png&quot; width=&quot;25%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+where w(⋅;θ&lt;sub&gt;w&lt;/sub&gt; ) is the function that implements image warping, &lt;b&gt;M&lt;/b&gt; is the occlusion mask indicating the areas to be inpainted in the warped image, and f(⋅;θ&lt;sub&gt;f&lt;/sub&gt; )  is the function that implements inpainting.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;The issue&lt;/b&gt; with the equation above is that f(⋅;θ&lt;sub&gt;f&lt;/sub&gt; )  requires the output of  w(⋅;θ&lt;sub&gt;w&lt;/sub&gt; ), which makes the &lt;b&gt;NVS process inherently sequential. This sequential nature of NVS creates a performance bottleneck&lt;/b&gt;, no matter how performant f(⋅;θ&lt;sub&gt;f&lt;/sub&gt; ) or w(⋅;θ&lt;sub&gt;w&lt;/sub&gt; ) might be.
+&lt;/p&gt;
+
+&lt;p&gt;
+We hypothesize that we can resolve this bottleneck by performing inpainting and warping in parallel. We then propose our “reimagined” novel view synthesis formulation, which is written as 
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsAmqKAOYAUGpw.png&quot; width=&quot;65%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+where  ϕ(⋅;θ&lt;sub&gt;ϕ&lt;/sub&gt; ) is the function that outputs the occlusion mask. &lt;b&gt;This formulation performs inpainting and warping in parallel, which alleviates the bottleneck&lt;/b&gt;. Furthermore, note that f(⋅;θ&lt;sub&gt;f&lt;/sub&gt; ), w(⋅;θ&lt;sub&gt;w&lt;/sub&gt; ) and ϕ(⋅;θ&lt;sub&gt;ϕ&lt;/sub&gt; ) take the same inputs, which can be exploited for further computational savings.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;CheapNVS&lt;/h2&gt;
+
+&lt;p&gt;
+Based on the reimagined NVS formulation, &lt;b&gt;we propose to implement&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsArpKAOkAUGpw.png&quot; width=&quot;40%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+where &lt;b&gt;S&lt;/b&gt;, &lt;b&gt;P&lt;/b&gt;, &lt;b&gt;F&lt;/b&gt; and  w ̂(⋅;&lt;b&gt;θ&lt;sub&gt;w&lt;/sub&gt; ̂ &lt;/b&gt;) are the predicted flow, inpainting, the shared embedding and the flow predictor, respectively. The novel view is then synthesized as 
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsAw36AOwAUGpw.png&quot; width=&quot;30%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+where &lt;b&gt;gs&lt;/b&gt; is the grid sampling operation that shifts each pixel by the offset values in &lt;b&gt;S&lt;/b&gt;.  We implement δ(⋅),∇(⋅),&lt;b&gt;w ̂&lt;/b&gt;(⋅),f(⋅) and ϕ(⋅) with neural networks by learning their parameters θ&lt;sub&gt;δ,ϕ,∇,f,w ̂&lt;/sub&gt;.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Architecture&lt;/h2&gt;
+
+&lt;p&gt;
+&lt;b&gt;RGBD Encoder&lt;/b&gt;: We leverage an off-the-shelf depth estimation model (Rene Ranftl, 2021) to generate &lt;b&gt;D&lt;/b&gt;, and leverage a MobileNetv2 (Sandler, 2018) as the encoder. 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Extrinsics Encoder&lt;/b&gt;: The goal of this module is to condition the warping on a target camera pose, and to generalize across different target camera poses. This encoder takes in a camera transformation matrix, and lifts it to a 256-dimensional latent vector using a lightweight, two-layer MLP.  
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsA1MaAO8AUGpw.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; CheapNVS embeds target camera pose and RGB information into a shared latent space, which is used by flow, mask and inpainting decoders to perform “learned” warping and inpainting, to produce the synthesized novel view.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+The outputs of both encoders are concatenated into the shared latent &lt;b&gt;F&lt;/b&gt;, allowing decoders to jointly reason about scene content and camera geometry.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Flow Decoder&lt;/b&gt;: Flow decoder leverages the shared latent &lt;b&gt;F&lt;/b&gt; to predict a shift-map, which contains the offset values to be applied on each pixel to perform the warping. Once the shift map is applied to the input image, we get the warped image which we then multiply with the mask &lt;b&gt;M&lt;/b&gt; to contain only the pixels coming from the source image. &lt;b&gt;Unlike traditional 3D warping&lt;/b&gt; (which projects pixels using depth and camera matrices), &lt;b&gt;this decoder learns to approximate warping directly&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Mask Decoder&lt;/b&gt;: This decoder uses the shared latent &lt;b&gt;F&lt;/b&gt; and generates the mask &lt;b&gt;M&lt;/b&gt;, with which we perform the blending between the warped input image and the generated inpainting.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Inpainting Decoder&lt;/b&gt;: Inpainting decoder leverages the shared latent &lt;b&gt;F&lt;/b&gt; to generate the inpainting output &lt;b&gt;P&lt;/b&gt;, which is then blended with the inverse of mask &lt;b&gt;M&lt;/b&gt; to produce the final synthesized view.
+&lt;/p&gt;
+
+&lt;p&gt;
+All these decoders run in parallel and share the same architecture, which is formed of several decoder blocks of bilinear sampling, convolution and ELU activations. 
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Multi-stage Training&lt;/h2&gt;
+
+&lt;p&gt;
+We train our model in &lt;b&gt;a two-stage regime&lt;/b&gt;, where &lt;b&gt;we first train all encoders, as well as flow and mask decoders&lt;/b&gt; for a few epochs, and &lt;b&gt;then activate the inpainting decoder and train the entire network&lt;/b&gt;. This phased approach helps inpainting decoder start from a point where the network has learned warping up to a degree. This stabilizes the overall training and improves the results. 
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Experimental Results &lt;/h2&gt;
+
+&lt;p&gt;
+We train our models with &lt;b&gt;a combination of several losses&lt;/b&gt;; &lt;b&gt;L1 loss for the flow decoder, cross-entropy loss for the mask decoder&lt;/b&gt; and &lt;b&gt;L1 loss for the inpainting decoder&lt;/b&gt;.  We &lt;b&gt;train CheapNVS on COCO&lt;/b&gt; (Lin, 2014) to be comparable against AdaMPI (Yuxuan Han, 2022), but also &lt;b&gt;propose to use a random 174K subset of OpenImages&lt;/b&gt; (Kuznetsova, 2020). We evaluate and compare our method using SSIM, PSNR and LPIPS metrics, and use DPT (Rene Ranftl, 2021) (COCO training/evaluation) and Marigold (Ke, 2024) (OpenImages training/evaluation) to generate depth maps.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Quantitative Results &lt;/h2&gt;
+
+&lt;p&gt;
+We compare CheapNVS against AdaMPI (Yuxuan Han, 2022), which is the leading 3D photography method. We perform comparisons using both COCO and OpenImages as the training set. 
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsA77KAPIAUGpw.png&quot; width=&quot;80%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 1.&lt;/b&gt; Results on Open Images. The first two rows are trained on OpenImages, whereas the last two are trained on COCO. † indicates training on OpenImages by us. AdaMPI performs the conventional 3D warping we use as ground-truth, so we do not report its warping results.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsBAAKAPUAUGpw.png&quot; width=&quot;80%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 2.&lt;/b&gt; Results on COCO. The first two rows are trained on OpenImages, whereas the last two are trained on COCO. † indicates training on OpenImages by us. AdaMPI performs the conventional 3D warping we use as ground-truth, so we do not report its warping results. &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Tables 1 and 2 show that &lt;b&gt;CheapNVS outperforms AdaMPI on inpainting&lt;/b&gt;, and also performs warping successfully.  Another finding is that &lt;b&gt;OpenImages training produces better models&lt;/b&gt; – based on COCO and OpenImages evaluation– which shows the value of OpenImages and its diversity. 
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Runtime performance&lt;/h2&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsBDTKAPgAUGpw.png&quot; width=&quot;80%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 3.&lt;/b&gt; Runtime analysis on a desktop GPU (RTX 3090), mobile GPU (Samsung Tab 9+) and memory consumption.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Table 3 shows the runtime and memory consumption performance of AdaMPI and CheapNVS. &lt;b&gt;CheapNVS runs 10 times faster than AdaMPI&lt;/b&gt; on a consumer GPU. Furthermore, while &lt;b&gt;AdaMPI can not be ported to mobile due to external dependencies&lt;/b&gt; (used for 3D warping) , we manage to &lt;b&gt;port CheapNVS to device&lt;/b&gt; and &lt;b&gt;achieve ~30FPS runtime&lt;/b&gt;. &lt;b&gt;We also consume slightly less memory&lt;/b&gt; during inference compared to AdaMPI, showing the value of CheapNVS.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Qualitative Results &lt;/h2&gt;
+
+&lt;p&gt;
+Figure 2 shows that &lt;b&gt;CheapNVS accurately mimics 3D warping&lt;/b&gt;, and &lt;b&gt;learns to smooth occlusion masks&lt;/b&gt;, which is necessary for better blending. &lt;b&gt;CheapNVS performs quite competitively in inpainting, even outperforming AdaMPI&lt;/b&gt; in &lt;b&gt;removal of object boundary artefacts&lt;/b&gt; (see person on 1&lt;sup&gt;st&lt;/sup&gt; and 3&lt;sup&gt;rd&lt;/sup&gt; rows.). 
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWsBIHaAPsAUGpw.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; Left to right: Input, ground-truth occlusion mask, CheapNVS occlusion mask, ground-truth warped RGB, CheapNVS warped RGB, AdaMPI inpainting and CheapNVS inpainting.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Future Directions&lt;/h2&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
+&lt;div&gt;
+&lt;b&gt;Larger baselines&lt;/b&gt;: CheapNVS is trained on narrow baselines, and naturally struggles to warp properly in larger camera baselines. We aim to train CheapNVS on a more diverse interval of camera transformation matrices, which should address the larger baseline issue.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
+&lt;div&gt;
+&lt;b&gt;Depth dependency&lt;/b&gt;: Our method relies on an external depth estimator, which might introduce errors in the pipeline. We aim to use higher quality depth estimators, or even integrate depth estimation itself into our pipeline.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
+&lt;div&gt;
+&lt;b&gt;Inpainting teacher&lt;/b&gt;: We aim to improve inpainting accuracy even further by using a diffusion-based inpainting teacher, potentially finetuned with warp-back data. 
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;
+CheapNVS, by replacing traditional 3D warping with learnable modules and executing tasks in parallel, achieves real-time single-image novel view synthesis on mobile devices, without sacrificing quality. Its success on Open Images highlights the value of scalable training data, while phased training ensures robust optimization.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Publication&lt;/h2&gt;
+
+&lt;p&gt;
+Our paper “CheapNVS: Real-Time On-Device Narrow-Baseline Novel View Synthesis” will appear at International Conference on Acoustics, Speech, and Signal Processing (ICASSP), 2025.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ieeexplore.ieee.org/document/10888972&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;https://ieeexplore.ieee.org/document/10888972&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;referInfo&quot;&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
+Bourigault, E. a. (2024). MVDiff: Scalable and Flexible Multi-View Diffusion for 3D Object Reconstruction from Single-View. Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops.
+&lt;/p&gt;
+&lt;p&gt;
+Ke, B. O. (2024). Repurposing diffusion-based image generators for monocular depth estimation. Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR).
+&lt;/p&gt;
+&lt;p&gt;
+Kerbl, B. G. (2023). 3D Gaussian splatting for real-time radiance field rendering. ACM Transactions on Graphics .
+&lt;/p&gt;
+&lt;p&gt;
+Kuznetsova, A. R.-T. (2020). The open images dataset v4: Unified image classification, object detection, and visual relationship detection at scale. International Journal of Computer Vision.
+&lt;/p&gt;
+&lt;p&gt;
+Lin, T.-Y. M. (2014). Microsoft coco: Common objects in context. European Conference on Computer Vision .
+&lt;/p&gt;
+&lt;p&gt;
+Mildenhall, B. a. (2021). Nerf: Representing scenes as neural radiance fields for view synthesis. Communications of the ACM, 99-106.
+&lt;/p&gt;
+&lt;p&gt;
+Rene Ranftl, A. B. (2021). Vision Transformers for Dense Prediction. Proceedings of the IEEE/CVF International Conference on Computer Vision.
+&lt;/p&gt;
+&lt;p&gt;
+Sandler, M. A.-C. (2018). Mobilenetv2: Inverted residuals and linear bottlenecks. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR).
+&lt;/p&gt;
+&lt;p&gt;
+Yang Zhou, H. W. (2023). Single-view view synthesis with self-rectified pseudostereo. International Journal of Computer Vision, 2032-2043.
+&lt;/p&gt;
+&lt;p&gt;
+Yuxuan Han, R. W. (2022). Single-view view synthesis in the wild with learned adaptive multiplane images. ACM SIGGRAPH .
+&lt;/p&gt;
+&lt;/div&gt;
+
+</description><link>https://research.samsung.com/blog/CheapNVS-Real-Time-On-Device-Novel-View-Synthesis-for-Mobile-Applications</link><guid isPermaLink="false">https://research.samsung.com/blog/CheapNVS-Real-Time-On-Device-Novel-View-Synthesis-for-Mobile-Applications</guid><pubDate>Tue, 18 Mar 2025 16:00:00 GMT</pubDate><author>Mehmet Kerim Yucel|Albert Saa-Garriga</author><category>AI</category><category>3DReconstruction</category><category>VirtualReality</category></item><item><title>SRCB&#39;s Non-Uniform Constellation Scheme in GLOBECOM 2024 Conference</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;
+The current 5G systems adopt conventional uniform quadrature-amplitude modulation (QAM) with signal points on the rectangular grid, which results in a theoretical 1.53 dB gap to the Shannon capacity. To address these challenges, the non-uniform constellations (NUCs) relax this restriction by employing constellation-shaping techniques to approach the Shannon capacity for extremely high spectral efficiency, emerging as one of the promising technologies for the physical layer communication evolution. The constellation shaping solutions for NUCs can be categorized into two types [1]: 1) probabilistic shaping by tackling the symbol probabilities with a shaping encoder; 2) geometrical shaping by optimizing the positions of the constellations. Probabilistic shaping solutions require a shaping decoder at receiver side, which increases the overall complexity and is not suitable for commercial deployment. Geometrical shaping solutions only require a new set of constellation points and the quantization in hardware implementations, which is superior
+&lt;/p&gt;
+
+&lt;p&gt;
+To address these issues, we integrate the biological observation into the constellation design. The idea is quiet interesting that the constellation arrangement is regarded as the progress of the seed growth. In order to obtain the enough sunlight and energy, the adjacent seeds are moving away as far as from each other possible which naturally solves the key challenge in the constellation design: how to maximize the Euclidean distances among the constellations. Specifically, we transform the conventional constellation design problem into a seed arrangement problem within a circular region. The proposed constellations, called ‘CirNUC’, adopt the contact-pressure model and utilize the centroidal Voronoi tessellation (CVT) method to maximize the average constellation point distance, which results in robust performance. Next, the particle swarm optimization (PSO) algorithm is proposed to minimize averaged bit error probability (ABEP), which is regarded as the lower bound of the bit error rate (BER) performance.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;System Setup&lt;/h2&gt;
+
+&lt;p&gt;
+We consider a point-to-point communication system with single antenna. The transmit symbols are randomly selected from an M-point constellation set with the normalized power. The symbols are associated to the bits at the input of the modulator by a one-to-one mapping. We employ two metrics to design the constellations: symbol error probability (SEP) and the averaged bit error probability (ABEP). The goal of our work is to arrange the locations of constellations s = [s&lt;sub&gt;1&lt;/sub&gt;, s&lt;sub&gt;2&lt;/sub&gt;, …, s&lt;sub&gt;M&lt;/sub&gt;]&lt;sup&gt;T&lt;/sup&gt; for minimizing SEP and minimizing ABEP.
+&lt;/p&gt;
+
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Proposed CirNUC&lt;/h2&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;A.SEP minimization &lt;/h2&gt;
+
+&lt;p&gt;
+We transform the conventional constellation design problem to a seed growth problem. The circle-shape constellations, called “CirNUC-SEP”, are proposed to enlarge the Euclidean distances among the constellations. The constellation initialization and the constellation optimization are corresponds to the seed birth and seed growth, which is introduced as follows: 
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Seed Birth&lt;/b&gt;: We select a circle with radius r and initialize {s&lt;sub&gt;m&lt;/sub&gt; }&lt;sup&gt;M&lt;/sup&gt;&lt;sub style=&quot;margin-left: -12px;&quot;&gt;m=1&lt;/sub&gt; in Ω, which can be regarded as the birth of the seeds and the generators of the Voronoi tessellation.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Seed Growth&lt;/b&gt;: Next, the seeds grow up to occupy more space for obtaining enough sunlight and energy. The CVT method is introduced to model this progress, where the mass centroid c&lt;sub&gt;m&lt;/sub&gt; of V&lt;sub&gt;m&lt;/sub&gt; is computed to represent the evolution of the growth, which is given by
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWmXDCKAL4AUGpw.png&quot; width=&quot;20%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+where ρ(v) is the density function of the region. For the uniform density, the Voronoi region can be viewed as the polygon and calculate its coordinate of the mass centroid. Then, we employ the centroid as the updated constellation and the new generator of the Voronoi region. By the iteration of the centroid and the Voronoi region, the adjacent points move away from each other resulting in the increase of the Euclidean distance until the convergence. In addition, the Voronoi regions can also be extended to weighted Voronoi regions, which can approximate a Gaussian distribution on the two-dimensional plane, which benefits the received signals with a Gaussian distribution to approach the Shannon capacity. An example of the proposed 64 points CirNUC with golden angle modulation (GAM) as the initialization is shown in Figure 1.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWmXJ0KAMEAUGpw.png&quot; width=&quot;30%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; The proposed 64-CirNUC-SEP and its Voronoi region in a circle.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;B.ABEP minimization&lt;/h2&gt;
+
+&lt;p&gt;
+We jointly consider the constellation Euclidean distance and hamming distance of its bit labelling to minimize the BER. Since the joint design of the bit labeling and constellation design is a NP-hard problem, we propose “CirNUC-ABEP” that employs the CVT method to enlarge the Euclidean distances among the constellations and then uses the PSO algorithm to further minimize ABEP in (4), which is described in the following: First, we utilize the QAM constellations and its gray labeling as the initialization, and perform the CVT method for K times and find the constellations with the minimum ABEP. Next, the PSO algorithm is applied to further optimize the constellations with the ABEP fitness function.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;C.MLP-based demodulation&lt;/h2&gt;
+
+&lt;p&gt;
+We propose a light-weight MLP-based demodulator to reduce the complexity caused by the asymmetric of constellations. The total framework of the proposed modulation and demodulation is shown in Figure 2.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWmXOnaAMQAUGpw.png&quot; width=&quot;50%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; A simplified demo of the proposed modulation and demodulation.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Experiments&lt;/h2&gt;
+
+&lt;p&gt;
+The SER and BER performance is evaluated for the proposed CirNUC and benchmarks which is shown in Figure 3. (a) SER performance for M =256. The proposed CirNUC-SEP scheme outperforms the QAM and GAM schemes for approximately 0.6dB and 0.3dB, respectively. (b): BER performance for M = 32. The code rate is 0.5 with low-density parity-check code. The GAM employs the bit labeling method in [2] and the QAM employs the gray mapping. The proposed scheme achieves 0.7dB and 1.6dB gain compared to QAM and GAM due to the ABEP minimization in our solution.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/3419ee9fbf/AZWmXVfKAMcAUGpw.png&quot; width=&quot;50%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; The SER and BER performance of the proposed CirNUC-SEP and CirNUC-ABEP.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;
+This paper investigated the modulation and demodulation in the wireless communication network and proposed a transceiver solution. We found the answer from the biology and contributed to enlarging the constellation distances, which provides a high spectral efficiency compared to the current QAM-based network. The ramification of this paper is that it provides a new perspective for the NUCs design to replace the current modulation, which performs a candidate for the standardization and the upcoming products.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Link to the paper&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ieeexplore.ieee.org/document/10901255&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;https://ieeexplore.ieee.org/document/10901255&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;referInfo&quot;&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
+1.J. Barrueco, J. Montalban, E. Iradier, and P. Angueira, “Constellation design for future communication systems: A comprehensive survey,” IEEE Access, vol. 9, pp. 89 778–89 797, Jun. 2021.
+&lt;/p&gt;
+&lt;p&gt;
+2.L. Xiao, X. Zhai, Y. Liu, G. Liu, P. Xiao, and T. Jiang, “A unified bit-to-symbol mapping for generalized constellation modulation,” China Commun., vol. 20, no. 6, pp. 229–239, Jun. 2023
+&lt;/p&gt;
+&lt;/div&gt;
+
+</description><link>https://research.samsung.com/blog/SRCB-s-Non-Uniform-Constellation-Scheme-in-GLOBECOM-2024-Conference</link><guid isPermaLink="false">https://research.samsung.com/blog/SRCB-s-Non-Uniform-Constellation-Scheme-in-GLOBECOM-2024-Conference</guid><pubDate>Sun, 16 Mar 2025 16:00:00 GMT</pubDate><author>Dong Wang|Shiwen Ma</author><category>Communications</category><category>Non-uniform constellations</category><category>Centroidal Voronoi tessellation</category></item><item><title>FaceMe: Robust Blind Face Restoration With Personal Identification</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1 Introduction&lt;/h2&gt;
 
 &lt;p&gt;
 Face restoration focuses on improving the quality of facial images by removing complex degradation and enhancing details. Face restoration is inherently a highly ill-posed task because a single low-quality input can correspond to many potential high-quality counterparts scattered throughout the high-quality image space. Most advanced face restoration methods cannot guarantee identity consistency.
@@ -147,7 +471,7 @@ We propose a method to address the issue of identity shift in blind facial image
 &lt;/p&gt;
 &lt;/div&gt;
 
-</description><link>https://research.samsung.com/blog/FaceMe-Robust-Blind-Face-Restoration-With-Personal-Identification</link><guid isPermaLink="false">https://research.samsung.com/blog/FaceMe-Robust-Blind-Face-Restoration-With-Personal-Identification</guid><pubDate>Invalid Date</pubDate><author>Jia Ouyang|Hyunhee Park</author><category>AI</category><category>Face Restoration</category><category>AAAI</category></item><item><title>Deep Learning for CSI Feedback: One-Sided Model and Joint Multi-Module Learning Perspectives</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1.Introduction&lt;/h2&gt;
+</description><link>https://research.samsung.com/blog/FaceMe-Robust-Blind-Face-Restoration-With-Personal-Identification</link><guid isPermaLink="false">https://research.samsung.com/blog/FaceMe-Robust-Blind-Face-Restoration-With-Personal-Identification</guid><pubDate>Mon, 24 Feb 2025 16:00:00 GMT</pubDate><author>Jia Ouyang|Hyunhee Park</author><category>AI</category><category>Face Restoration</category><category>AAAI</category></item><item><title>Deep Learning for CSI Feedback: One-Sided Model and Joint Multi-Module Learning Perspectives</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1.Introduction&lt;/h2&gt;
 
 &lt;p&gt;
 Massive multiple-input multiple-output (MIMO) technology plays a crucial role in delivering the potential of 5G and meeting its requirements. To fully exploit the potential of MIMO technology, it is crucial to obtain downlink channel state information (CSI) on the base station (BS) side by feeding the estimated downlink CSI from the user equipment (UE) back to the BS through the uplink channel, as shown in Fig. 1. The feedback of CSI leads to extra overhead, which escalates significantly with the increase in the number of service antennas. When the uplink channel resources are limited, the challenge of CSI feedback lies in maintaining the accuracy of the feedback while minimizing the feedback overhead.
@@ -266,7 +590,7 @@ In this article, we investigated the recent developments of DL-based CSI feedbac
 &lt;/p&gt;
 &lt;/div&gt;
 
-</description><link>https://research.samsung.com/blog/Deep-Learning-for-CSI-Feedback-One-Sided-Model-and-Joint-Multi-Module-Learning-Perspectives</link><guid isPermaLink="false">https://research.samsung.com/blog/Deep-Learning-for-CSI-Feedback-One-Sided-Model-and-Joint-Multi-Module-Learning-Perspectives</guid><pubDate>Invalid Date</pubDate><author>Feifei Sun</author><category>Communications</category><category>6G</category><category>CSI feedback</category></item><item><title>FiRa Consortium Release 3.0 - UWB Core Specification and Certification Program Launch</title><description>&lt;p&gt;
+</description><link>https://research.samsung.com/blog/Deep-Learning-for-CSI-Feedback-One-Sided-Model-and-Joint-Multi-Module-Learning-Perspectives</link><guid isPermaLink="false">https://research.samsung.com/blog/Deep-Learning-for-CSI-Feedback-One-Sided-Model-and-Joint-Multi-Module-Learning-Perspectives</guid><pubDate>Wed, 22 Jan 2025 16:00:00 GMT</pubDate><author>Feifei Sun</author><category>Communications</category><category>6G</category><category>CSI feedback</category></item><item><title>FiRa Consortium Release 3.0 - UWB Core Specification and Certification Program Launch</title><description>&lt;p&gt;
 In December 2024, FiRa Consortium announced launching of Release 3.0 Core Certification Program and Release 3.0 of Core Specifications of ultra-wideband (UWB) MAC, PHY and Link Layer subsystems in devices. This is a major milestone for FiRa after the successful release of 2.0 Certification Program, which supports UWB features for localization and device-to-device service in, October 2023.
 &lt;/p&gt;
 
@@ -397,7 +721,7 @@ The Car Connectivity Consortium&lt;sup&gt;®&lt;/sup&gt; (CCC) is a cross-indust
 &lt;/p&gt;
 &lt;/div&gt;
 
-</description><link>https://research.samsung.com/blog/FiRa-Consortium-Release-3-0-UWB-Core-Specification-and-Certification-Program-Launch</link><guid isPermaLink="false">https://research.samsung.com/blog/FiRa-Consortium-Release-3-0-UWB-Core-Specification-and-Certification-Program-Launch</guid><pubDate>Invalid Date</pubDate><author>Jieun Keum|Gyubong Oh|Ankur Bansal</author><category>Communications</category><category>UWB</category><category>FiRa</category></item><item><title>Off-Policy Selection for Optimizing Ad Display Timing in Mobile Games (Samsung Instant Plays)</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Abstract&lt;/h2&gt;
+</description><link>https://research.samsung.com/blog/FiRa-Consortium-Release-3-0-UWB-Core-Specification-and-Certification-Program-Launch</link><guid isPermaLink="false">https://research.samsung.com/blog/FiRa-Consortium-Release-3-0-UWB-Core-Specification-and-Certification-Program-Launch</guid><pubDate>Mon, 20 Jan 2025 16:00:00 GMT</pubDate><author>Jieun Keum|Gyubong Oh|Ankur Bansal</author><category>Communications</category><category>UWB</category><category>FiRa</category></item><item><title>Off-Policy Selection for Optimizing Ad Display Timing in Mobile Games (Samsung Instant Plays)</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Abstract&lt;/h2&gt;
 
 &lt;p&gt;
 Off-Policy Selection (OPS) aims to select the best policy from a set of policies trained using offline Reinforcement Learning. In this work, we describe our custom OPS method and its successful application in Samsung Instant Plays for optimizing ad delivery timings. The motivation behind proposing our custom OPS method is the fact that traditional Off-Policy Evaluation (OPE) methods often exhibit enormous variance leading to unreliable results. We applied our OPS method to initialize policies for our custom pseudo-online training pipeline. The final policy resulted in a substantial 49% lift in the number of watched ads while maintaining similar retention rate.
@@ -524,7 +848,7 @@ We conducted A/B tests where we compared our RL models against rule-based system
 &lt;/p&gt;
 &lt;/div&gt;
 
-</description><link>https://research.samsung.com/blog/Off-Policy-Selection-for-Optimizing-Ad-Display-Timing-in-Mobile-Games</link><guid isPermaLink="false">https://research.samsung.com/blog/Off-Policy-Selection-for-Optimizing-Ad-Display-Timing-in-Mobile-Games</guid><pubDate>Invalid Date</pubDate><author>Katarzyna Siudek-Tkaczuk|Bartłomiej Swoboda|Michał Romaniuk</author><category>AI</category><category>Off-PolicyEvaluation</category><category>RecSys</category></item><item><title>Towards Building a Trusted Execution Environment on RISC-V Microcontrollers</title><description>&lt;p&gt;
+</description><link>https://research.samsung.com/blog/Off-Policy-Selection-for-Optimizing-Ad-Display-Timing-in-Mobile-Games</link><guid isPermaLink="false">https://research.samsung.com/blog/Off-Policy-Selection-for-Optimizing-Ad-Display-Timing-in-Mobile-Games</guid><pubDate>Wed, 15 Jan 2025 16:00:00 GMT</pubDate><author>Katarzyna Siudek-Tkaczuk|Bartłomiej Swoboda|Michał Romaniuk</author><category>AI</category><category>Off-PolicyEvaluation</category><category>RecSys</category></item><item><title>Towards Building a Trusted Execution Environment on RISC-V Microcontrollers</title><description>&lt;p&gt;
 In this article we share our experience of developing a secure system using RISC-V Micro-Controller Unit (MCU). If this topic resonates, we encourage you to join our &lt;a href=&quot;https://github.com/Samsung/mTower&quot; target=&quot;_blank&quot;&gt;mTower&lt;/a&gt; project to explore the potential of RISC-V security.
 &lt;/p&gt;
 
@@ -1005,7 +1329,7 @@ We welcome contributions to the &lt;a href=&quot;https://github.com/Samsung/mTow
 &lt;/div&gt;
 &lt;!-- //220503 --&gt;
 &lt;/div&gt;
-</description><link>https://research.samsung.com/blog/Towards-Building-a-Trusted-Execution-Environment-on-RISC-V-Microcontrollers</link><guid isPermaLink="false">https://research.samsung.com/blog/Towards-Building-a-Trusted-Execution-Environment-on-RISC-V-Microcontrollers</guid><pubDate>Invalid Date</pubDate><author>Taras Drozdovskyi</author><category>Open Source</category><category>RISC-V</category><category>MCU</category></item><item><title>SOI: Scaling Down Computational Complexity by Estimating Partial States of the Model</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Motivation&lt;/h2&gt;
+</description><link>https://research.samsung.com/blog/Towards-Building-a-Trusted-Execution-Environment-on-RISC-V-Microcontrollers</link><guid isPermaLink="false">https://research.samsung.com/blog/Towards-Building-a-Trusted-Execution-Environment-on-RISC-V-Microcontrollers</guid><pubDate>Sun, 05 Jan 2025 16:00:00 GMT</pubDate><author>Taras Drozdovskyi</author><category>Open Source</category><category>RISC-V</category><category>MCU</category></item><item><title>SOI: Scaling Down Computational Complexity by Estimating Partial States of the Model</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;
 The rapid advancements in artificial intelligence (AI) have led to the development of increasingly sophisticated and powerful artificial neural networks (ANNs). While these models have achieved groundbreaking performance across various domains [1 3], their escalating size and computational demands render them impractical for resource-constrained environments. This issue is particularly concerning for real-time, energy-sensitive applications in consumer electronics, such as smartwatches, augmented reality (AR) glasses, and wireless earbuds.
@@ -1182,7 +1506,7 @@ The presented method offers an alternative to the STMC solution for strided conv
 &lt;/p&gt;
 &lt;/div&gt;
 
-</description><link>https://research.samsung.com/blog/SOI-Scaling-Down-Computational-Complexity-by-Estimating-Partial-States-of-the-Model</link><guid isPermaLink="false">https://research.samsung.com/blog/SOI-Scaling-Down-Computational-Complexity-by-Estimating-Partial-States-of-the-Model</guid><pubDate>Invalid Date</pubDate><author>Grzegorz Stefański|Paweł Daniluk|Artur Szumaczuk|Jakub Tkaczuk</author><category>AI</category><category>NeurIPS</category><category>SignalProcessing</category></item><item><title>RISC-V and Vectorization</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Introduction&lt;/h2&gt;
+</description><link>https://research.samsung.com/blog/SOI-Scaling-Down-Computational-Complexity-by-Estimating-Partial-States-of-the-Model</link><guid isPermaLink="false">https://research.samsung.com/blog/SOI-Scaling-Down-Computational-Complexity-by-Estimating-Partial-States-of-the-Model</guid><pubDate>Tue, 03 Dec 2024 16:00:00 GMT</pubDate><author>Grzegorz Stefański|Paweł Daniluk|Artur Szumaczuk|Jakub Tkaczuk</author><category>AI</category><category>NeurIPS</category><category>SignalProcessing</category></item><item><title>RISC-V and Vectorization</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;
 In 2023 Samsung joined and became an official member of “RISE (RISC-V Software Ecosystem)” project. Since then our company is participating in the development of a variety of projects and porting them to RISC-V architecture. In this article, we will throw some light on one of them: Chromium. When porting software to a new architecture, the first step is always to make it start and run on hardware, the next step is stabilization, but as Amber Huffman, chairperson of the RISE project emphasized: “In order for RISC-V to be commercialized, it is important to secure software that has performance, security, reliability, and compatibility”. For the final users performance is very important when browsing web pages, viewing streamed content or running web applications. All of those mentioned activities have a common ground: showing multimedia content and vectorization is one of the possibilities for performance improvement.
@@ -1704,248 +2028,4 @@ Contributing to optimizations for RISC-V in terms of vector extensions is not an
 As we are responsible for Chromium, we are planning to keep an eye on RVV support in the libraries that are most important for us and our plans for the near future are to port reported ARM NEON usage in Chromium and its dependencies to corresponding RISC-V RVV instruction, and measure performance gain in those specific regions. We keep our fingers crossed that the actual numbers proving performance increase and that tests made on our side will convince maintainers to merge our changes. If this will not be possible, the other option could be to branch out from the main repository, or postpone merges in some libraries. We will see what the future of RISC-V will bring.
 &lt;/p&gt;
 
-</description><link>https://research.samsung.com/blog/RISC-V-and-Vectorization</link><guid isPermaLink="false">https://research.samsung.com/blog/RISC-V-and-Vectorization</guid><pubDate>Invalid Date</pubDate><author>Bartłomiej Kobierzyński</author><category>Open Source</category><category>RISC-V</category><category>RVV</category></item><item><title>EnsIR: An Ensemble Algorithm for Image Restoration via Gaussian Mixture Models</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1 Introduction&lt;/h2&gt;
-
-&lt;p&gt;
-Image restoration has witnessed significant progress over the decades, especially with the advent of various deep learning networks. However, single models with different architectures or random initialization states exhibit prediction deviations from ground-truths, resulting in sub-optimal restoration results. 
-&lt;/p&gt;
-
-&lt;p&gt;
-To alleviate this problem, ensemble learning, a traditional but influential machine learning technique, has been applied to image restoration. However, most ensemble methods in image restoration focus on training-stage ensemble requiring the ensemble strategy to be determined while training multiple models, thus sacrificing flexibility of changing models and convenience for plug-and-play usage [1]. 
-&lt;/p&gt;
-
-&lt;p&gt;
-Post-training ensemble methods are needed but challenging. Unlike classification and regression, image restoration predictions are matrices with each pixel is correlated with others and range from 0 to 255. As a result, traditional methods like bagging and boosting either require enormous computational resources for the restoration task or fail to generalize well due to the imbalance between candidate number and feature dimension. As an alternative, Jiang et al. propose a post-training ensemble algorithm for super-resolution by optimizing a maximum a posteriori problem with a reconstruction constraint [2]. However, this constraint requires an explicit expression of the degradation process, which is extremely difficult to define for other restoration tasks beyond super-resolution. These issues lead researchers in image restoration still suffer weighted averaging as their primary choice [3].
-&lt;/p&gt;
-
-&lt;p&gt;
-To this end, we formulate the ensemble of restoration models using Gaussian mixture models (GMMs), where ensemble weights can be efficiently learned via the expectation maximization (EM) algorithm and stored in a lookup table (LUT) for subsequent inference. Our method does not require training or prior knowledge of the base models and degradation processes, making it applicable to various image restoration tasks.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;2 Method&lt;/h2&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;2.1Ensemble Formulation of Image Restoration&lt;/h2&gt;
-
-&lt;p&gt;
-Given a test set with numerous pairs of input images and ground-truths, suppose we have M pre-trained base models for image restoration. The widely-used averaging ensemble in image restoration assigns equal weights for all samples and pixels. Recent method in the NTIRE 2023 competition assigns weights inversely proportional to the mean squared error between the predictions and their average. However, they adopt globally constant weights for all pixels and samples, neglecting that the performances of base models may fluctuate for different patterns and samples. Alternatively, we start from the prospective of GMMs and assign range-specific weights based on the EM algorithm.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;2.2Restoration Ensemble as Gaussian Mixture Models&lt;/h2&gt;
-
-&lt;p&gt;
-Suppose we have a reference set with N pairs of input images and ground-truths. We assume the reference set and test set are sampled from the same data distribution. Based on Gaussian prior, it can be assumed that the estimation error of a model on an image follows a zero-mean Gaussian distribution, Then the observed ground-truth can be considered following a multivariate Gaussian with the mean equal to the prediction.
-&lt;/p&gt;
-
-&lt;p&gt;
-We can consider the ensemble problem as the weighted averaging of Gaussian variables and estimate the weights by solving its maximum likelihood estimation. However, solving the sample-wise mixture of Gaussian is not feasible because the covariance matrices are sample-wise different and thus hard to estimate. Besides, the number of prediction samples is much fewer than feature dimension, resulting in the singularity of the covariance matrices.
-&lt;/p&gt;
-
-&lt;p&gt;
-In contrast, we alternatively append the reference set into a single sample following Gaussian. Since data samples can be considered following i.i.d data distribution, the variance of the concatenated samples is diagonal.
-&lt;/p&gt;
-
-&lt;p&gt;
-However, the covariance matrix is still singular due to the imbalance between prediction sample number and feature dimension. Thus, directly mixing the multivariate Gaussian is still infeasible to solve. We thus alternatively categorize pixels into various small bins of mutually exclusive ranges such that the pixels within each range can be considered following a univariate Gaussian distribution according to the central limit theorem.
-&lt;/p&gt;
-
-&lt;p&gt;
-The reference set is therefore separated into a number of bin sets, and the ground-truth pixels
-inside each of them form a solvable univariate GMM. We then introduce the latent variable z representing the probability of the pixel belonging to the m-th Gaussian component, which is equivalent to the role of the ensemble weight for the m-th base model. The value of ensemble weights can be estimated by the maximum likelihood estimates of the observed ground-truths. We formulated the expression of GMMs for estimating the range-specific ensemble weights. The complete and detailed formulars can be seen in the paper.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;2.3Restoration Ensemble via Expectation Maximization and Lookup Table&lt;/h2&gt;
-
-&lt;p&gt;
-For each bin set, we estimate ensemble weights by maximizing the log likelihood. We have an E-step to estimate the posterior distribution. After that, we have an M-step to obtain the maximum likelihood estimates. Thanks to the separation of bin sets, we have prior knowledge of the mean and variance of each model, which can be estimated.
-&lt;/p&gt;
-
-&lt;p&gt;
-We store the range-specific weights estimated on the reference set into a LUT. During the inference stage for a test sample, we have the prediction of the m-th base model. For a bin set, we partition input pixels of multiple models into each bin. Then we retrieve the estimated range-wise weights from the LUT based on each key of the bin set and obtain the aggregated ensemble. The details of main algorithm can be found in the paper.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;3 Results&lt;/h2&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3.1Experimental Settings&lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/06a5d35a29/AZM9nokaAzYAUGoJ.jpg&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; A visual comparison on an image from Manga109 for super resolution. “HR &amp;amp; LR” means high-resolution and bicubic-upscaled low-resolution images. The second line of (c)-(g) are error maps&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-&lt;b&gt;Benchmarks&lt;/b&gt;. We evaluate our ensemble method on 3 image restoration tasks including super resolution, deblurring, and deraining. For super-resolution, we use Set5, Set14, BSDS100, Urban100 and Manga109 as benchmarks. For deblurring, we use GoPro, HIDE, RealBlur-J and -R. For deraining, we adopt Rain100H, Rain100L, Test100, Test1200, and Test2800.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Base Models&lt;/b&gt;. To evaluate the generalization of ensemble methods against model choices, we employ a wide variety of base models, including CNNs, ViTs, MLPs and Mambas. For image super-resolution, we use SwinIR, SRFormer, and MambaIR. We choose MPRNet, DGUNet, and Restormer for deblurring, as well as MPRNet, MAXIM, and Restormer for deraining.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Baselines&lt;/b&gt;. We utilize regression algorithms including bagging, AdaBoost, random forests (RForest), gradient boosting decision tree (GBDT), histogram gradient boosting decision tree (HGBT) as baselines. Averaging is also a commonly used ensemble baseline. A recent method proposed by team ZZPM in the NTIRE 2023 competition is also included for comparison. Additionally, we adopt RefESR [2] for image super-resolution ensemble.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3.2Quantitative Results&lt;/h2&gt;
-
-&lt;p&gt;
-We present quantitative comparisons with existing ensemble methods in Tab. 1 for super-resolution. In contrast, our method, which learns per-value weights, can recognize performance biases and alleviate and consistently performs well for all cases.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/06a5d35a29/AZM8sDyqAyMAUGoJ.jpg&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 1.&lt;/b&gt; The ensemble results on the task of image super-resolution. The categories of “Base”,
-“Regr.” and “IR.” in the first column mean base models, regression-based ensemble methods, and those ensemble methods designed for image restoration.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-More details of quantitative comparisons for deblurring and de-raining can be seen in the paper.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3.3Quantitative Results&lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/06a5d35a29/AZM80Ap6AyYAUGoJ.jpg&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; A visual comparison on an image from GoPro for the task of image deblurring. “GT &amp;amp; LQ” means ground-truth and low quality blurry images. The second line of (c)-(g) are error maps.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/06a5d35a29/AZM80EKaAykAUGoJ.jpg&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; A visual comparison of ensemble on an image from Test100 for image de-raining. “GT &amp;amp; LQ” means ground-truth and low quality rainy images. The second line of (c)-(g) are error maps&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-We also provide qualitative visual comparisons in Fig. 1 and 2. In Fig. 1, our method with the bin width b = 32 that learns fine-grained range-wise weights successfully recovers the pattern. In Fig. 2, only our method can effectively obtain a better ensemble with sharp edges and accurate colors. In Fig. 3, MPRNet removes all stripe patterns on the ground together with rain streaks while ours alleviates the issue.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;4Conclusion&lt;/h2&gt;
-
-&lt;p&gt;
-In this paper, we propose an ensemble algorithm for image restoration based on GMMs. We partition the pixels of predictions and ground-truths into separate bins of exclusive ranges and formulate the ensemble problem using GMMs over each bin. The GMMs are solved on a reference set, and the estimated ensemble weights are stored in a lookup table for the ensemble inference on the test set. Our algorithm outperforms regression-based ensemble methods as well as commonly used averaging strategies. It is training-free, model-agnostic, and thus suitable for plug-and-play usage.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Link to the paper&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://neurips.cc/virtual/2024/poster/93407&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;https://neurips.cc/virtual/2024/poster/93407&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;referInfo&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;
-[1] Lingfeng Wang, Zehao Huang, Yongchao Gong, and Chunhong Pan. Ensemble based deep networks for image super-resolution. Pattern Recognition, 2017.
-&lt;/p&gt;
-&lt;p&gt;
-[2] Junjun Jiang, Yi Yu, Zheng Wang, Suhua Tang, Ruimin Hu, and Jiayi Ma. Ensemble super-resolution with a reference dataset. IEEE TCYB, 2019
-&lt;/p&gt;
-&lt;p&gt;
-[3] Zhang Z, Zhang S, Wu R, et al. NTIRE 2024 challenge on bracketing image restoration and enhancement: Datasets methods and results[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2024: 6153-6166.
-&lt;/p&gt;
-
-&lt;/div&gt;
-
-</description><link>https://research.samsung.com/blog/EnsIR-An-Ensemble-Algorithm-for-Image-Restoration-via-Gaussian-Mixture-Models</link><guid isPermaLink="false">https://research.samsung.com/blog/EnsIR-An-Ensemble-Algorithm-for-Image-Restoration-via-Gaussian-Mixture-Models</guid><pubDate>Invalid Date</pubDate><author>Zikun Liu|Hyunhee Park</author><category>AI</category><category>NeurIPS</category><category>Image Storation</category></item><item><title>Blind Face Video Restoration with Temporal Consistent Generative Prior and Degradation-Aware Prompt</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1 Introduction&lt;/h2&gt;
-
-&lt;p&gt;
-In real-world scenarios, both face images and videos may suffer from unknown and varied types of degradation, such as down-sampling, noise, blur, and compression. Blind Face Restoration (BFR) is a challenging task that aims at restoring low-quality faces suffering from unknown degradation. Existing BFR methods usually use facial priors such as reference prior, geometry prior, and generative prior in the network structure. Although these existing BFR methods work well in the blind face image restoration (BFIR) problem, they do not fully consider blind face videos. To the best of our knowledge, there is still no specialized method for restoring blind face videos.
-&lt;/p&gt;
-
-&lt;p&gt;
-In this paper, we present a Stable Blind Face Video Restoration (StableBFVR). As shown in Fig. 1, we introduce temporal layers in the Stable Diffusion[1] preserve temporal consistency. First, we propose Shift-Resblock which implicitly captures global information for long-term aggregation. Second, we further improve restoration performance and temporal consistency by introducing Nearby-Frame Attention to aggregate short-term information. Moreover, to enable adaptive responses to complex and large-range blind degradation, we propose a degradation-aware prompt module to encode degradation-specific information as prompts to guide the restoration network.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/fb7ab3e5c2/AZG7lk96AJUAUGoJ.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; The architecture of the proposed StableBFVR.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;2 Methodology&lt;/h2&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;2.1Preliminary: Latent Diffusion Models&lt;/h2&gt;
-
-&lt;p&gt;
-StableBFVR uses the pre-trained latent diffusion model (LDM) Stable Diffusion as facial prior. In this work, we start with the pre-trained Stable Diffusion and create a new video diffusion model for blind face video restoration. By adopting temporal strategies within the LDM framework, our method can achieve temporal consistency while leveraging the prior knowledge from Stable Diffusion.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em;&quot;&gt;2.2Temporal Layers in StableBFVR&lt;/h2&gt;
-
-&lt;p&gt;
-To maintain temporal consistency and use multiple frame information to improve the restoration performance, we introduce temporal layers to Stable Diffusion. As shown in Fig. 2, these temporal layers comprehensively consider both long-term and short-term information in the video. Specifically, we present Shift-ResBlock which uses the proposed forward temporal shift block and backward temporal shift block alternatively to achieve bi-directional aggregation. By using Shift-ResBlock repeatedly, the aggregation of long-term information is achieved. For short-term information aggregation, we introduce a Nearby-Frame Attention (NFA). By seeking complementary sharp information existing in neighboring frames, NFA can refine restoration details.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/fb7ab3e5c2/AZG7sSoqAJgAUGoJ.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; The structure of the proposed Shift-Resblock and Nearby-Frame Attention (NFA).&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em;&quot;&gt;2.3Degradation-Aware Prompt Module&lt;/h2&gt;
-
-&lt;p&gt;
-To further improve the restoration performance, we propose a Degradation-Aware Prompt Module (DAPM). As shown in Fig. 1, DAPM first extracts degradation-aware features from the input frames to predict prompt weights about different types of degradation. Then DAPM utilizes these weights to adjust the corresponding prompt corresponding to different types of degeneration and fuses these prompts to obtain degradation-aware prompts which encode discriminative information about various types of degradation.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;3Results&lt;/h2&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3.1Quantitative Comparison&lt;/h2&gt;
-
-&lt;p&gt;
-For the synthetic VFHQ-Test, the quantitative results are shown in Tab. 1. The results indicate that our method achieves state-of-the-art performance on all perceptual metrics. Specifically, our StableBFVR achieves the best performance regarding LPIPS, indicating that the perceptual quality of restored face videos is closest to ground truth. Moreover, StableBFVR also obtains the best results of NIQE, MUSIQ, and CLIP-IQA, showing that the outputs better align with human visual and perceptive systems.
-To assess the generalization ability, we extend the evaluation of our model to the real-world dataset WebVideo-Test. StableBFVR exhibits superior performance across all three metrics NIQE, MUSIQ, and CLIP-IQA, showing its remarkable generalization capability. Furthermore, compared with video restoration methods, BFIR methods also show satisfactory performance, suggesting the importance of generative prior in the scenery of unknown degradations in the real world.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/fb7ab3e5c2/AZG7u9-6AJsAUGoJ.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 1.&lt;/b&gt; Quantitative comparison on VFHQ-Test and WebVideo-Test for blind face video restoration.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em;&quot;&gt;3.2Qualitative Comparison&lt;/h2&gt;
-
-&lt;p&gt;
-For the synthetic VFHQ-Test, as shown in Fig. 3. Compared with video restoration methods, our method recovers faithful details in the eyes, mouth, beard etc. Our method treats the input as a whole in restoration and performs well in all regions. Our method can aggregate information from other frames to improve performance.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/fb7ab3e5c2/AZG7vyDaAJ4AUGoJ.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; Visual comparison results of different methods on the VFHQ-Test.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-For WebVideo-Test, our method produces realistic facial textures in the case of complicated real-world degradation. As shown in the last column of Fig. 4, previous BRIR methods fail to restore the hair textures on the image boundary, while ours is successful. Compared with video restoration methods, our method produces significantly more texture detail.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/fb7ab3e5c2/AZG7v2aKAKEAUGoJ.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 4.&lt;/b&gt; Visual comparison results of different methods on the real-world dataset WebVideo-Test.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em;&quot;&gt;3.3Temporal Consistency&lt;/h2&gt;
-
-&lt;p&gt;
-To thoroughly verify our method, we visualize the consecutive frames generated by different methods in Fig. 5. It is observed that, although sequences restored by BFIR methods exhibit realistic texture, there are noticeable differences between the textures of continuous frames. Conversely, sequences restored by video restoration methods demonstrate commendable temporal consistency but tend to be excessively smooth, lacking textures. StableBFVR strikes a favorable balance, reconstructing more textures, while simultaneously preserving temporal consistency.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/fb7ab3e5c2/AZG7wHNaAKQAUGoJ.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 5.&lt;/b&gt; Visual comparisons of the temporal consistency for restored videos. (a) GFP-GAN, (b) CodeFormer, (c) DiffBIR, (d) RestoreFormer, (e) BaiscVSR++[2], (f) RVRT, (g) DSTNet, (h) Ours.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;4Conclusion&lt;/h2&gt;
-
-&lt;p&gt;
-In this work, we tackle the BFVR problem for the first time. We propose StableBFVR leveraging the strong generative prior from the pre-trained generative model Stable Diffusion to restore face videos with realistic details. To ensure content consistency among frames and use multi-frame information for improved restoration, we develop Shift-Resblock and Nearby-Frame Attention to aggregate both long-term and short-term information. Additionally, we propose a Degradation-Aware Prompt Module to dynamically guide the restoration process and further enhance performance. Extensive experiments show that our StableBFVR achieves superior performance than video restoration methods and blind face image restoration methods. 
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Link to the paper&lt;/h2&gt;
-&lt;br&gt;&lt;br&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://openreview.net/forum?id=qaIS3nvAem&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;https://openreview.net/forum?id=qaIS3nvAem&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;div class=&quot;referInfo&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;
-[1] Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn Ommer. 2022. High-resolution image synthesis with latent diffusion models. In IEEE Conference on Computer Vision and Pattern Recognition.
-&lt;/p&gt;
-&lt;p&gt;
-[2] Kelvin CK Chan, Shangchen Zhou, Xiangyu Xu, and Chen Change Loy. 2022. Basicvsr++: Improving video super-resolution with enhanced propagation and alignment. In IEEE Conference on Computer Vision and Pattern Recognition.
-&lt;/p&gt;
-
-&lt;/div&gt;
-
-</description><link>https://research.samsung.com/blog/Blind-Face-Video-Restoration-with-Temporal-Consistent-Generative-Prior-and-Degradation-Aware-Prompt</link><guid isPermaLink="false">https://research.samsung.com/blog/Blind-Face-Video-Restoration-with-Temporal-Consistent-Generative-Prior-and-Degradation-Aware-Prompt</guid><pubDate>Invalid Date</pubDate><author>Ying Zhang|Hyunhee Park</author><category>AI</category><category>Video Restoration</category><category>Diffusion</category></item></channel></rss>
+</description><link>https://research.samsung.com/blog/RISC-V-and-Vectorization</link><guid isPermaLink="false">https://research.samsung.com/blog/RISC-V-and-Vectorization</guid><pubDate>Wed, 27 Nov 2024 16:00:00 GMT</pubDate><author>Bartłomiej Kobierzyński</author><category>Open Source</category><category>RISC-V</category><category>RVV</category></item></channel></rss>

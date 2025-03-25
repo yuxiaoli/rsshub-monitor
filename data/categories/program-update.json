@@ -1,24 +1,5 @@
 [
   {
-    "provider_id": "alpinelinux",
-    "provider_name": "Alpine Linux",
-    "route_key": "/pkgs/:name/:routeParams?",
-    "route": {
-      "name": "Packages",
-      "path": "/pkgs/:name/:routeParams?",
-      "parameters": {
-        "name": "Packages name",
-        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
-      },
-      "example": "/alpinelinux/pkgs/nodejs",
-      "description": "Alpine Linux packages update",
-      "zh": {
-        "name": "软件包",
-        "description": "Alpine Linux 软件包更新"
-      }
-    }
-  },
-  {
     "provider_id": "amazon",
     "provider_name": "Amazon",
     "route_key": "/kindle/software-updates",
@@ -26,35 +7,10 @@
       "path": "/kindle/software-updates",
       "example": "/amazon/kindle/software-updates",
       "parameters": {},
-      "name": "Kindle Software Updates"
-    }
-  },
-  {
-    "provider_id": "android",
-    "provider_name": "Android",
-    "route_key": "/platform-tools-releases",
-    "route": {
-      "path": "/platform-tools-releases",
-      "example": "/android/platform-tools-releases",
-      "parameters": {},
-      "name": "SDK Platform Tools release notes",
-      "url": "developer.android.com/studio/releases/platform-tools"
-    }
-  },
-  {
-    "provider_id": "app-center",
-    "provider_name": "App Center",
-    "route_key": "/release/:user/:app/:distribution_group",
-    "route": {
-      "path": "/release/:user/:app/:distribution_group",
-      "example": "/app-center/release/cloudflare/1.1.1.1-windows/beta",
-      "parameters": {
-        "user": "User",
-        "app": "App name",
-        "distribution_group": "Distribution group"
-      },
-      "name": "Release",
-      "description": "::: tip\n  The parameters can be extracted from the Release page URL: `https://install.appcenter.ms/users/:user/apps/:app/distribution_groups/:distribution_group`\n:::"
+      "name": "Kindle Software Updates",
+      "provider_id": "amazon",
+      "provider_name": "Amazon",
+      "route_key": "/kindle/software-updates"
     }
   },
   {
@@ -91,7 +47,10 @@
         }
       },
       "name": "App Update",
-      "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::"
+      "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::",
+      "provider_id": "apple",
+      "provider_name": "Apple",
+      "route_key": "/apps/update/:country/:id/:platform?"
     }
   },
   {
@@ -107,19 +66,10 @@
         "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
       },
       "name": "Price Drop",
-      "url": "apps.apple.com/"
-    }
-  },
-  {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/xianmian",
-    "route": {
-      "path": "/xianmian",
-      "example": "/appstore/xianmian",
-      "parameters": {},
-      "name": "每日精品限免 / 促销应用（鲜面连线 by AppSo）",
-      "url": "app.so/xianmian"
+      "url": "apps.apple.com/",
+      "provider_id": "appstore",
+      "provider_name": "App Store/Mac App Store",
+      "route_key": "/price/:country/:type/:id"
     }
   },
   {
@@ -131,19 +81,27 @@
       "example": "/asus/gpu-tweak",
       "parameters": {},
       "name": "GPU Tweak",
-      "url": "asus.com/campaign/GPU-Tweak-III/*"
+      "url": "asus.com/campaign/GPU-Tweak-III/*",
+      "provider_id": "asus",
+      "provider_name": "ASUS",
+      "route_key": "/gpu-tweak"
     }
   },
   {
-    "provider_id": "brave",
-    "provider_name": "Brave",
-    "route_key": "/latest",
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/app/:id?",
     "route": {
-      "path": "/latest",
-      "example": "/brave/latest",
-      "parameters": {},
-      "name": "Release Notes",
-      "url": "brave.com/latest"
+      "path": "/app/:id?",
+      "example": "/bilibili/app/android",
+      "parameters": {
+        "id": "客户端 id，见下表，默认为安卓版"
+      },
+      "name": "更新情报",
+      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/app/:id?"
     }
   },
   {
@@ -155,7 +113,10 @@
       "example": "/civitai/models",
       "parameters": {},
       "name": "Latest models",
-      "url": "civitai.com/"
+      "url": "civitai.com/",
+      "provider_id": "civitai",
+      "provider_name": "Civitai",
+      "route_key": "/models"
     }
   },
   {
@@ -167,7 +128,10 @@
       "example": "/cpuid/news",
       "parameters": {},
       "name": "News",
-      "url": "cpuid.com/news.html"
+      "url": "cpuid.com/news.html",
+      "provider_id": "cpuid",
+      "provider_name": "CPUID",
+      "route_key": "/news"
     }
   },
   {
@@ -179,7 +143,25 @@
       "name": "Changelog",
       "url": "www.cursor.com",
       "example": "/cursor/changelog",
-      "view": 0
+      "view": 0,
+      "provider_id": "cursor",
+      "provider_name": "Cursor",
+      "route_key": "/changelog"
+    }
+  },
+  {
+    "provider_id": "diskanalyzer",
+    "provider_name": "WizTree",
+    "route_key": "/whats-new",
+    "route": {
+      "path": "/whats-new",
+      "example": "/diskanalyzer/whats-new",
+      "parameters": {},
+      "name": "What's New",
+      "url": "diskanalyzer.com/whats-new",
+      "provider_id": "diskanalyzer",
+      "provider_name": "WizTree",
+      "route_key": "/whats-new"
     }
   },
   {
@@ -198,23 +180,28 @@
           "default": "latest"
         }
       },
-      "name": "Image New Build"
+      "name": "Image New Build",
+      "provider_id": "dockerhub",
+      "provider_name": "Docker Hub",
+      "route_key": "/build/:owner/:image/:tag?"
     }
   },
   {
     "provider_id": "dockerhub",
     "provider_name": "Docker Hub",
-    "route_key": "/tag/:owner/:image/:limits?",
+    "route_key": "/repositories/:owner",
     "route": {
-      "path": "/tag/:owner/:image/:limits?",
-      "example": "/dockerhub/tag/library/mariadb",
+      "name": "Owner Repositories",
+      "description": "List of repositories for an image owner",
+      "path": "/repositories/:owner",
+      "view": 5,
+      "example": "/dockerhub/repositories/diygod",
       "parameters": {
-        "owner": "Image owner",
-        "image": "Image name",
-        "limits": "Tag count, 10 by default"
+        "owner": "Image owner"
       },
-      "name": "Image New Tag",
-      "description": "::: warning\n  Use `library` as the `owner` for official images, such as [https://rsshub.app/dockerhub/tag/library/mysql](https://rsshub.app/dockerhub/tag/library/mysql)\n:::"
+      "provider_id": "dockerhub",
+      "provider_name": "Docker Hub",
+      "route_key": "/repositories/:owner"
     }
   },
   {
@@ -228,7 +215,10 @@
         "language": "Language, see list, default to be `cn`"
       },
       "name": "Changelog",
-      "description": "Language\n\n| Simplified Chinese | Traditional Chinese | English |\n| ------------------ | ------------------- | ------- |\n| cn                 | tw                  | en      |"
+      "description": "Language\n\n| Simplified Chinese | Traditional Chinese | English |\n| ------------------ | ------------------- | ------- |\n| cn                 | tw                  | en      |",
+      "provider_id": "eagle",
+      "provider_name": "Eagle",
+      "route_key": "/changelog/:language?"
     }
   },
   {
@@ -241,7 +231,26 @@
       "parameters": {
         "app": "App's package name"
       },
-      "name": "App Update"
+      "name": "App Update",
+      "provider_id": "f-droid",
+      "provider_name": "F-Droid",
+      "route_key": "/apprelease/:app"
+    }
+  },
+  {
+    "provider_id": "firecore",
+    "provider_name": "Infuse",
+    "route_key": "/:os",
+    "route": {
+      "path": "/:os",
+      "example": "/firecore/ios",
+      "parameters": {
+        "os": "`ios`,`tvos`,`macos`"
+      },
+      "name": "Release Notes",
+      "provider_id": "firecore",
+      "provider_name": "Infuse",
+      "route_key": "/:os"
     }
   },
   {
@@ -254,7 +263,10 @@
       "parameters": {
         "id": "Add-ons id, can be found in add-ons url"
       },
-      "name": "Add-ons Update"
+      "name": "Add-ons Update",
+      "provider_id": "firefox",
+      "provider_name": "Mozilla",
+      "route_key": "/addons/:id"
     }
   },
   {
@@ -267,20 +279,10 @@
       "parameters": {
         "id": "Software id, can be found in URL"
       },
-      "name": "Software Update"
-    }
-  },
-  {
-    "provider_id": "gofans",
-    "provider_name": "GoFans",
-    "route_key": "/:kind?",
-    "route": {
-      "path": "/:kind?",
-      "example": "/gofans",
-      "parameters": {
-        "kind": "Platform, either `macos` or `ios`, empty means both (default)"
-      },
-      "name": "最新限免 / 促销应用"
+      "name": "Software Update",
+      "provider_id": "fosshub",
+      "provider_name": "FossHub",
+      "route_key": "/:id"
     }
   },
   {
@@ -293,7 +295,10 @@
       "parameters": {
         "id": "Extension id, can be found in extension url"
       },
-      "name": "Extension Update"
+      "name": "Extension Update",
+      "provider_id": "google",
+      "provider_name": "Google",
+      "route_key": "/chrome/extension/:id"
     }
   },
   {
@@ -306,43 +311,10 @@
       "parameters": {
         "script": "Script id, can be found in URL"
       },
-      "name": "Script Feedback"
-    }
-  },
-  {
-    "provider_id": "greasyfork",
-    "provider_name": "Greasy Fork",
-    "route_key": "/:language/:domain?",
-    "route": {
-      "path": [
-        "/:language/:domain?",
-        "/scripts/sort/:sort/:language?"
-      ],
-      "example": "/greasyfork/en/google.com",
-      "parameters": {
-        "language": "language, located on the top right corner of Greasy Fork's search page, set to `all` for including all languages",
-        "domain": "the script's target domain"
-      },
-      "name": "Script Update",
-      "description": "| Sort            | Description    |\n| --------------- | -------------- |\n| today           | Daily installs |\n| total_installs | Total installs |\n| ratings         | Ratings        |\n| created         | Created date   |\n| updated         | Updated date   |\n| name            | Name           |"
-    }
-  },
-  {
-    "provider_id": "greasyfork",
-    "provider_name": "Greasy Fork",
-    "route_key": "/scripts/sort/:sort/:language?",
-    "route": {
-      "path": [
-        "/:language/:domain?",
-        "/scripts/sort/:sort/:language?"
-      ],
-      "example": "/greasyfork/en/google.com",
-      "parameters": {
-        "language": "language, located on the top right corner of Greasy Fork's search page, set to `all` for including all languages",
-        "domain": "the script's target domain"
-      },
-      "name": "Script Update",
-      "description": "| Sort            | Description    |\n| --------------- | -------------- |\n| today           | Daily installs |\n| total_installs | Total installs |\n| ratings         | Ratings        |\n| created         | Created date   |\n| updated         | Updated date   |\n| name            | Name           |"
+      "name": "Script Feedback",
+      "provider_id": "greasyfork",
+      "provider_name": "Greasy Fork",
+      "route_key": "/scripts/:script/feedback"
     }
   },
   {
@@ -355,56 +327,60 @@
       "parameters": {
         "script": "Script id, can be found in URL"
       },
-      "name": "Script Version History"
+      "name": "Script Version History",
+      "provider_id": "greasyfork",
+      "provider_name": "Greasy Fork",
+      "route_key": "/scripts/:script/versions"
     }
   },
   {
-    "provider_id": "imagemagick",
-    "provider_name": "ImageMagick",
-    "route_key": "/changelog",
+    "provider_id": "iplaysoft",
+    "provider_name": "异次元软件世界",
+    "route_key": "/",
     "route": {
-      "path": "/changelog",
-      "example": "/imagemagick/changelog",
-      "parameters": {},
-      "name": "Changelog",
-      "url": "imagemagick.org/script/download.php"
+      "path": "/",
+      "name": "首页",
+      "url": "www.iplaysoft.com",
+      "example": "/iplaysoft",
+      "view": 0,
+      "provider_id": "iplaysoft",
+      "provider_name": "异次元软件世界",
+      "route_key": "/"
     }
   },
   {
-    "provider_id": "ipsw.dev",
-    "provider_name": "IPSW.dev",
-    "route_key": "/index/:productID",
+    "provider_id": "ipsw",
+    "provider_name": "IPSW.me",
+    "route_key": "/index/:ptype/:pname",
     "route": {
-      "path": "/index/:productID",
-      "example": "/ipsw.dev/index/iPhone16,1",
+      "path": "/index/:ptype/:pname",
+      "example": "/ipsw/index/ipsws/iPad8,11",
       "parameters": {
-        "productID": "Product ID"
+        "ptype": "Fill in ipsws or otas to get different versions of firmware",
+        "pname": "Product name, `http://rsshub.app/ipsw/index/ipsws/iPod`, if you fill in the iPad, follow the entire iPad series(ptype default to ipsws).`http://rsshub.app/ipsw/index/ipsws/iPhone11,8`, if you fill in the specific iPhone11,8, submit to the ipsws firmware information of this model"
       },
-      "name": "Apple latest beta firmware"
+      "name": "Apple Firmware Update-IPSWs/OTAs version",
+      "provider_id": "ipsw",
+      "provider_name": "IPSW.me",
+      "route_key": "/index/:ptype/:pname"
     }
   },
   {
-    "provider_id": "macupdate",
-    "provider_name": "MacUpdate",
-    "route_key": "/app/:appId/:appSlug?",
+    "provider_id": "lrepacks",
+    "provider_name": "REPACK скачать",
+    "route_key": "/:category?",
     "route": {
-      "path": "/app/:appId/:appSlug?",
-      "example": "/macupdate/app/11942",
+      "path": "/:category?",
+      "name": "REPACK скачать",
+      "url": "lrepacks.net",
+      "example": "/lrepacks",
       "parameters": {
-        "appId": "Application unique ID, can be found in URL",
-        "appSlug": "Application slug, can be found in URL"
+        "category": "Category, Homepage by default"
       },
-      "name": "Update"
-    }
-  },
-  {
-    "provider_id": "mi",
-    "provider_name": "小米",
-    "route_key": "/golden",
-    "route": {
-      "path": "/golden",
-      "example": "/mi/golden",
-      "name": "小米应用商店金米奖"
+      "description": "::: tip\n  If you subscribe to [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)，where the URL is `https://lrepacks.net/repaki-sistemnyh-programm/`, extract the part `https://lrepacks.net/` to the end, which is `repaki-sistemnyh-programm`, and use it as the parameter to fill in. Therefore, the route will be [`/lrepacks/repaki-sistemnyh-programm`](https://rsshub.app/lrepacks/repaki-sistemnyh-programm).\n\n| Category                                                                        | ID                                                                                           |\n| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |\n| [Новые репаки на сегодня](https://lrepacks.net/novye-repaki-elchupacabra/)      | [novye-repaki-elchupacabra](https://rsshub.app/lrepacks/novye-repaki-elchupacabra)           |\n| [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)          | [repaki-sistemnyh-programm](https://rsshub.app/lrepacks/repaki-sistemnyh-programm)           |\n| [Программы для графики](https://lrepacks.net/repaki-programm-dlya-grafiki/)     | [repaki-programm-dlya-grafiki](https://rsshub.app/lrepacks/repaki-programm-dlya-grafiki)     |\n| [Программы для интернета](https://lrepacks.net/repaki-programm-dlya-interneta/) | [repaki-programm-dlya-interneta](https://rsshub.app/lrepacks/repaki-programm-dlya-interneta) |\n| [Мультимедиа программы](https://lrepacks.net/repaki-multimedia-programm/)       | [repaki-multimedia-programm](https://rsshub.app/lrepacks/repaki-multimedia-programm)         |\n| [Программы для офиса](https://lrepacks.net/repaki-programm-dlya-ofisa/)         | [repaki-programm-dlya-ofisa](https://rsshub.app/lrepacks/repaki-programm-dlya-ofisa)         |\n| [Разные программы](https://lrepacks.net/repaki-raznyh-programm/)                | [repaki-raznyh-programm](https://rsshub.app/lrepacks/repaki-raznyh-programm)                 |\n| [Системные библиотеки](https://lrepacks.net/sistemnye-biblioteki/)              | [sistemnye-biblioteki](https://rsshub.app/lrepacks/sistemnye-biblioteki)                     |\n| [Важная информация](https://lrepacks.net/informaciya/)                          | [informaciya](https://rsshub.app/lrepacks/informaciya)                                       |\n:::",
+      "provider_id": "lrepacks",
+      "provider_name": "REPACK скачать",
+      "route_key": "/:category?"
     }
   },
   {
@@ -417,34 +393,10 @@
       "parameters": {
         "crxid": "Addon id, can be found in addon url"
       },
-      "name": "Addons Update"
-    }
-  },
-  {
-    "provider_id": "microsoft",
-    "provider_name": "Microsoft",
-    "route_key": "/mcr/product/*",
-    "route": {
-      "path": "/mcr/product/*",
-      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
-      "parameters": {
-        "product": "repository path in mcr.microsoft.com"
-      },
-      "name": "Product tags in mcr.microsoft.com"
-    }
-  },
-  {
-    "provider_id": "neatdownloadmanager",
-    "provider_name": "Neat Download Manager",
-    "route_key": "/download/:os?",
-    "route": {
-      "path": "/download/:os?",
-      "example": "/neatdownloadmanager/download",
-      "parameters": {
-        "os": "Operating system, windows or macos, all by default"
-      },
-      "name": "Download",
-      "url": "neatdownloadmanager.com/index.php"
+      "name": "Addons Update",
+      "provider_id": "microsoft",
+      "provider_name": "Microsoft",
+      "route_key": "/edge/addon/:crxid"
     }
   },
   {
@@ -454,7 +406,10 @@
     "route": {
       "path": "/blog",
       "name": "Blog",
-      "example": "/nextjs/blog"
+      "example": "/nextjs/blog",
+      "provider_id": "nextjs",
+      "provider_name": "Next.js",
+      "route_key": "/blog"
     }
   },
   {
@@ -466,7 +421,42 @@
       "example": "/notateslaapp/ota",
       "parameters": {},
       "name": "Tesla Software Updates",
-      "url": "notateslaapp.com/software-updates/history"
+      "url": "notateslaapp.com/software-updates/history",
+      "provider_id": "notateslaapp",
+      "provider_name": "Not a Tesla App",
+      "route_key": "/ota"
+    }
+  },
+  {
+    "provider_id": "oo-software",
+    "provider_name": "O&O Software",
+    "route_key": "/changelog/:id",
+    "route": {
+      "path": "/changelog/:id",
+      "example": "/oo-software/changelog/shutup10",
+      "parameters": {
+        "id": "Software id, see below, shutup10 by default, can be found in URL"
+      },
+      "name": "Changelog",
+      "description": "| Software        | Id          |\n| --------------- | ----------- |\n| O&O ShutUp10++ | shutup10    |\n| O&O AppBuster  | ooappbuster |\n| O&O Lanytix    | oolanytix   |\n| O&O DeskInfo   | oodeskinfo  |",
+      "provider_id": "oo-software",
+      "provider_name": "O&O Software",
+      "route_key": "/changelog/:id"
+    }
+  },
+  {
+    "provider_id": "postman",
+    "provider_name": "Postman",
+    "route_key": "/release-notes",
+    "route": {
+      "path": "/release-notes",
+      "example": "/postman/release-notes",
+      "parameters": {},
+      "name": "Release Notes",
+      "url": "postman.com/downloads/release-notes",
+      "provider_id": "postman",
+      "provider_name": "Postman",
+      "route_key": "/release-notes"
     }
   },
   {
@@ -478,17 +468,10 @@
       "example": "/putty/changes",
       "parameters": {},
       "name": "Change Log",
-      "url": "www.chiark.greenend.org.uk/~sgtatham/putty/changes.html"
-    }
-  },
-  {
-    "provider_id": "raycast",
-    "provider_name": "Raycast",
-    "route_key": "/changelog",
-    "route": {
-      "path": "/changelog",
-      "name": "Changelog",
-      "example": "/raycast/changelog"
+      "url": "www.chiark.greenend.org.uk/~sgtatham/putty/changes.html",
+      "provider_id": "putty",
+      "provider_name": "PuTTY",
+      "route_key": "/changes"
     }
   },
   {
@@ -500,58 +483,10 @@
       "example": "/remnote/changelog",
       "parameters": {},
       "name": "Changelog",
-      "url": "remnote.com/changelog"
-    }
-  },
-  {
-    "provider_id": "sony",
-    "provider_name": "Sony",
-    "route_key": "/downloads/:productType/:productId",
-    "route": {
-      "path": "/downloads/:productType/:productId",
-      "example": "/sony/downloads/product/nw-wm1am2",
-      "parameters": {
-        "productType": "product type",
-        "productId": "product id"
-      },
-      "name": "Software Downloads",
-      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
-    }
-  },
-  {
-    "provider_id": "syosetu",
-    "provider_name": "Syosetu",
-    "route_key": "/dev",
-    "route": {
-      "path": "/dev",
-      "example": "/syosetu/dev",
-      "name": "なろう小説 API の更新履歴",
-      "url": "dev.syosetu.com"
-    }
-  },
-  {
-    "provider_id": "tencent",
-    "provider_name": "腾讯",
-    "route_key": "/qq/sdk/changelog/:platform",
-    "route": {
-      "path": "/qq/sdk/changelog/:platform",
-      "example": "/tencent/qq/sdk/changelog/iOS",
-      "parameters": {
-        "platform": "平台，iOS / Android"
-      },
-      "name": "更新日志"
-    }
-  },
-  {
-    "provider_id": "tradingview",
-    "provider_name": "TradingView",
-    "route_key": "/desktop",
-    "route": {
-      "path": "/desktop",
-      "example": "/tradingview/desktop",
-      "parameters": {},
-      "name": "Desktop releases and release notes",
-      "url": "tradingview.com/support/solutions/43000673888-tradingview-desktop-releases-and-release-notes/"
+      "url": "remnote.com/changelog",
+      "provider_id": "remnote",
+      "provider_name": "RemNote",
+      "route_key": "/changelog"
     }
   },
   {
@@ -563,7 +498,10 @@
       "example": "/typora/changelog/dev",
       "parameters": {},
       "name": "Dev Release Changelog",
-      "url": "support.typora.io/"
+      "url": "support.typora.io/",
+      "provider_id": "typora",
+      "provider_name": "Typora",
+      "route_key": "/changelog/dev"
     }
   },
   {
@@ -575,20 +513,10 @@
       "example": "/unraid/community-apps",
       "parameters": {},
       "name": "Community Apps",
-      "url": "unraid.net/community/apps"
-    }
-  },
-  {
-    "provider_id": "wdc",
-    "provider_name": "Western Digital",
-    "route_key": "/download/:id?",
-    "route": {
-      "path": "/download/:id?",
-      "example": "/wdc/download/279",
-      "parameters": {
-        "id": "Software id, can be found in URL, 279 as Western Digital Dashboard by default"
-      },
-      "name": "Download"
+      "url": "unraid.net/community/apps",
+      "provider_id": "unraid",
+      "provider_name": "Unraid",
+      "route_key": "/community-apps"
     }
   },
   {
@@ -600,7 +528,25 @@
       "example": "/wizfile/updates",
       "parameters": {},
       "name": "Version History",
-      "url": "antibody-software.com/wizfile/download"
+      "url": "antibody-software.com/wizfile/download",
+      "provider_id": "wizfile",
+      "provider_name": "WziFile",
+      "route_key": "/updates"
+    }
+  },
+  {
+    "provider_id": "zotero",
+    "provider_name": "Zotero",
+    "route_key": "/versions",
+    "route": {
+      "path": "/versions",
+      "example": "/zotero/versions",
+      "parameters": {},
+      "name": "Version History",
+      "url": "zotero.org/",
+      "provider_id": "zotero",
+      "provider_name": "Zotero",
+      "route_key": "/versions"
     }
   }
 ]

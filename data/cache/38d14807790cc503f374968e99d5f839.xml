@@ -1,0 +1,1578 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>PuTTY Change Log</title><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/changes.html</link><atom:link href="http://rsshub.thzu.xyz/putty/changes" rel="self" type="application/rss+xml"></atom:link><description>PuTTY Change Log - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 25 Mar 2025 00:43:12 GMT</lastBuildDate><ttl>5</ttl><item><title>0.83 (released 2025-02-08):</title><description>&lt;li&gt;Support for ML-KEM, the NIST-standardised post-quantum key exchange mechanism. (In addition to NTRU Prime, which has been supported since 0.78.)
+&lt;/li&gt;&lt;li&gt;Support for full Unicode file names in Windows file selector dialogs. (However, these do not yet round-trip through a saved session.)
+&lt;/li&gt;&lt;li&gt;Bug fix: &lt;code&gt;psftp -b&lt;/code&gt; works again.
+&lt;/li&gt;&lt;li&gt;Bug fix: assertion failure if an SSH connection times out at the login prompt.
+&lt;/li&gt;&lt;li&gt;Bug fix: crash in Pageant if an SSH connection is abandoned while waiting for a deferred decryption passphrase.
+&lt;/li&gt;&lt;li&gt;Bug fix: tight loop if PuTTY tried to send an empty answerback string.
+&lt;/li&gt;&lt;li&gt;Bug fix: accidental truncation  of some configuration edit boxes&#39; contents to 127 characters.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows XP support was accidentally broken, and now reinstated.
+&lt;/li&gt;&lt;li&gt;Bug fix: restored interoperation with third-party tools that auto-fill login prompts by sending ^M for Return.
+&lt;/li&gt;&lt;li&gt;Bug fix: confusion when terminal window resized by tools like FancyZones.
+&lt;/li&gt;&lt;li&gt;Bug fix: the small keypad keys didn&#39;t reliably work in the terminal on Unix.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.83.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.83.html</guid><pubDate>Fri, 07 Feb 2025 16:00:00 GMT</pubDate></item><item><title>0.82 (released 2024-11-27):</title><description>&lt;li&gt;Major refactoring of Unicode handling to allow the use of &#39;foreign&#39; Unicode characters, i.e. outside the system&#39;s configured default character set / code page. Not yet complete, but the following things work:
+&lt;ul&gt;
+&lt;li&gt;Windows console: usernames and passwords entered interactively into PSCP, PSFTP and Plink can use foreign characters.
+&lt;/li&gt;&lt;li&gt;Windows command line: usernames, remote commands, and filenames entered via command-line options can use foreign characters.
+&lt;/li&gt;&lt;li&gt;PuTTY&#39;s own terminal (on Windows and Unix): even if it&#39;s not configured into UTF-8 mode for the main session, interactive usernames and passwords can use foreign characters.
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;Unicode version update: all character analysis is updated to Unicode 16.0.0.
+&lt;/li&gt;&lt;li&gt;Unicode terminal rendering: national and regional flags are now understood by PuTTY&#39;s terminal emulator. (However, correct display of those flags will depend on fonts and operating system.)
+&lt;/li&gt;&lt;li&gt;The Event Log mentions the local address and port number of the outgoing connection socket.
+&lt;/li&gt;&lt;li&gt;Bracketed paste mode can now be turned off in the Terminal &amp;gt; Features panel.
+&lt;/li&gt;&lt;li&gt;Unix Pageant: new &lt;code&gt;--foreground&lt;/code&gt; mode for running as a subprocess.
+&lt;/li&gt;&lt;li&gt;Bug fix: the &#39;border width&#39; configuration option is now honoured even when the window is maximised.
+&lt;/li&gt;&lt;li&gt;Bug fix: SHA-2 based RSA signatures are now sent with correct zero padding.
+&lt;/li&gt;&lt;li&gt;Bug fix: terminal wrap mishandling caused occasional incorrect redraws in curses-based applications.
+&lt;/li&gt;&lt;li&gt;Bug fix: Alt + function key in &quot;Xterm 216+&quot; mode sent a spurious extra escape character.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.82.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.82.html</guid><pubDate>Tue, 26 Nov 2024 16:00:00 GMT</pubDate></item><item><title>0.81 (released 2024-04-15):</title><description>&lt;li&gt;Security fix for &lt;a href=&quot;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-31497&quot;&gt;CVE-2024-31497&lt;/a&gt;: NIST P521 / &lt;code&gt;ecdsa-sha2-nistp521&lt;/code&gt; signatures are no longer generated with biased values of &lt;i&gt;k&lt;/i&gt;. &lt;strong&gt;The previous bias compromises private keys&lt;/strong&gt;.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.81.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.81.html</guid><pubDate>Sun, 14 Apr 2024 16:00:00 GMT</pubDate></item><item><title>0.80 (released 2023-12-18):</title><description>&lt;li&gt;Security fix: support for OpenSSH&#39;s new &lt;code&gt;kex-strict&lt;/code&gt;
+protocol modification, addressing a vulnerability in some
+&lt;code&gt;@openssh.com&lt;/code&gt; cipher and MAC modes, in particular
+ChaCha20+Poly1305.
+&lt;/li&gt;&lt;li&gt;Bug fix: the MSI-installed version of &lt;code&gt;putty.exe&lt;/code&gt; can
+now find its help file again.
+&lt;/li&gt;&lt;li&gt;Bug fix: a server sending non-displaying terminal escape sequences
+such as &lt;code&gt;ESC[0m&lt;/code&gt; now no longer resets the scrollback to the
+bottom of the window.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.80.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.80.html</guid><pubDate>Sun, 17 Dec 2023 16:00:00 GMT</pubDate></item><item><title>0.79 (released 2023-08-26):</title><description>&lt;li&gt;Windows installer scope is back to the normal &#39;per machine&#39;
+setting, reverting 0.78&#39;s security workaround.
+&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; this means that installing the 0.79 or later Windows
+installer will &lt;em&gt;not&lt;/em&gt; automatically uninstall 0.78, if 0.78 was
+installed using its default &#39;per user&#39; scope. In that situation we
+recommend uninstalling 0.78 first, if possible. If both end up
+installed, uninstalling both and then re-installing the new version
+will fix things up.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Terminal mouse tracking: support for mouse movements which are not
+drags.&lt;/li&gt;
+&lt;li&gt;Terminal mouse tracking: support for horizontal scroll events
+(e.g. generated by trackpads).&lt;/li&gt;
+&lt;li&gt;Backwards compatibility fix: certificate-based user authentication
+now works with OpenSSH 7.7 and earlier.&lt;/li&gt;
+&lt;li&gt;Bug fix: in a session using the &#39;Raw&#39; protocol, pressing ^D twice
+in the terminal window could cause an assertion failure.&lt;/li&gt;
+&lt;li&gt;Bug fix: terminal output could hang if a resize control sequence
+was sent by the server (and was not disabled in the Features panel)
+but PuTTY&#39;s window was set to non-resizable in the Window panel.&lt;/li&gt;
+&lt;li&gt;Bug fix: GTK PuTTY could fail an assertion if a resize control
+sequence was sent by the server while the window was docked to one
+half of the screen in KDE.&lt;/li&gt;
+&lt;li&gt;Bug fix: GTK PuTTY could fail an assertion if you tried to change
+the font size while the window was maximised.&lt;/li&gt;
+&lt;li&gt;Bug fix: the &#39;bell overload&#39; timing settings were misinterpreted
+by Unix PuTTY and pterm 0.77/0.78; if any settings were saved using
+these versions, confusion can persist with newer versions.&lt;/li&gt;
+&lt;li&gt;Bug fix: SSH authentication banners were not reliably printed if a
+server sent one immediately before closing the connection (e.g.
+intended as a user-visible explanation for the connection
+closure).&lt;/li&gt;
+&lt;li&gt;Bug fix: the &#39;close&#39; command in PSFTP always reported failure, so
+that ending a &lt;code&gt;psftp -b&lt;/code&gt; batch script with it would cause
+PSFTP as a whole to believe it had failed, even if everything worked
+fine.&lt;/li&gt;
+&lt;li&gt;Bug fix: certificate handling would do the wrong thing, for RSA
+keys only, if you specified a detached certificate to go with a PPK
+file that had a different certificate embedded.&lt;/li&gt;
+&lt;li&gt;Bug fix: Windows Pageant&#39;s option to write out a configuration
+file fragment for Windows OpenSSH now works even if you have a space
+in your user name.&lt;/li&gt;
+&lt;li&gt;Bug fix: in local-line-editing mode, pressing ^U now just clears
+the line, instead of clearing it and then inserting a literal ^U.&lt;/li&gt;
+&lt;li&gt;Several bug fixes in edge cases of terminal wrapping, involving
+double-width characters.&lt;/li&gt;
+</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.79.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.79.html</guid><pubDate>Fri, 25 Aug 2023 16:00:00 GMT</pubDate></item><item><title>0.78 (released 2022-10-29):</title><description>&lt;li&gt;Windows installer scope was changed to &#39;per user&#39; instead of the
+correct &#39;per machine&#39;. This was a workaround for a Windows security
+issue, now fixed. It causes many other problems, so if you need to
+install 0.78, we &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/wishlist/win-install-scope.html&quot;&gt;recommend&lt;/a&gt; running
+&lt;code&gt;msiexec.exe&lt;/code&gt; by hand with &lt;code&gt;ALLUSERS=1&lt;/code&gt; on the
+command line.&lt;/li&gt;
+&lt;li&gt;Support for OpenSSH certificates, for both user authentication
+keys and host keys.
+&lt;/li&gt;&lt;li&gt;New SSH proxy modes, for running a custom shell command or
+subsystem on the proxy server instead of forwarding a port through it.
+&lt;/li&gt;&lt;li&gt;New plugin system to allow a helper program to provide responses
+in &lt;code&gt;keyboard-interactive&lt;/code&gt; authentication, intended to
+automate one-time password systems.
+&lt;/li&gt;&lt;li&gt;Support for NTRU Prime post-quantum key exchange.
+&lt;/li&gt;&lt;li&gt;Support for AES-GCM (in the OpenSSH style rather than RFC 5647).
+&lt;/li&gt;&lt;li&gt;Support for more forms of Diffie-Hellman key exchange: new larger
+integer groups (such as group16 and group18), and support for using
+those and ECDH with GSSAPI.
+&lt;/li&gt;&lt;li&gt;SSH configuration panels slightly reorganised. In particular,
+the configuration option &#39;Private key file for authentication&#39; has
+moved to a new &#39;Credentials&#39; panel alongside controls for some of the
+above new features.
+&lt;/li&gt;&lt;li&gt;Bug fix: the 32-bit Windows build now runs on Windows XP again.
+&lt;/li&gt;&lt;li&gt;Bug fix: server-controlled window title setting now works again
+even if the character set is ISO 8859 (or a few other affected
+single-byte character sets).
+&lt;/li&gt;&lt;li&gt;Bug fix: certain forms of OSC escape sequences (sent by some
+real servers) could cause PuTTY to crash.
+&lt;/li&gt;&lt;li&gt;Bug fix: the &lt;code&gt;-pwfile&lt;/code&gt;/&lt;code&gt;-pw&lt;/code&gt; options no
+longer affect local key passphrase prompts, and no longer suppress
+Plink&#39;s anti-spoofing measures.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.78.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.78.html</guid><pubDate>Fri, 28 Oct 2022 16:00:00 GMT</pubDate></item><item><title>0.77 (released 2022-05-27):</title><description>&lt;li&gt;Major improvements to network proxy support:
+&lt;ul&gt;
+&lt;li&gt;Support for interactively prompting the user if the proxy server
+requires authentication.
+&lt;/li&gt;&lt;li&gt;Built-in support for proxying via another SSH server, so that
+PuTTY will SSH to the proxy and then automatically forward a port
+through it to the destination host. (Similar to running &lt;code&gt;plink
+-nc&lt;/code&gt; as a subprocess, but more convenient to set up, and allows
+you to answer interactive prompts presented by the proxy.)
+&lt;/li&gt;&lt;li&gt;Support for HTTP Digest authentication, when talking to HTTP
+proxies.
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;Introduced &lt;code&gt;pterm.exe&lt;/code&gt;, a PuTTY-like wrapper program
+for Windows command prompts (or anything else running in a Windows
+console). Not yet included in the installer, but available as a
+&lt;code&gt;.exe&lt;/code&gt; file from the Download page.
+&lt;/li&gt;&lt;li&gt;Updated Unicode and bidi support to Unicode 14.0.0.
+&lt;/li&gt;&lt;li&gt;New command-line option &lt;code&gt;-pwfile&lt;/code&gt;, like
+&lt;code&gt;-pw&lt;/code&gt; except that it reads the password from a file so that
+it doesn&#39;t show up on the command line.
+&lt;/li&gt;&lt;li&gt;Windows Pageant: option &lt;code&gt;--openssh-config&lt;/code&gt; to allow
+easy interoperation with Windows&#39;s &lt;code&gt;ssh.exe&lt;/code&gt;.
+&lt;/li&gt;&lt;li&gt;&lt;code&gt;-pw&lt;/code&gt; (and &lt;code&gt;-pwfile&lt;/code&gt;) now do not fall back
+to interactively prompting for a password if the provided password
+fails. (That was the original intention.)
+&lt;/li&gt;&lt;li&gt;New configuration options for keyboard handling:
+&lt;ul&gt;
+&lt;li&gt;Option to control handling of Shift + arrow keys
+&lt;/li&gt;&lt;li&gt;Extra mode in the function-keys option, for modern xterm (v216 and above).
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;Bug workaround flag to wait for the server&#39;s SSH greeting before
+sending our own, for servers (or proxies) that lose outgoing data
+before seeing any incoming data.
+&lt;/li&gt;&lt;li&gt;Crypto update: added side-channel resistance in probabilistic RSA
+key generation.
+&lt;/li&gt;&lt;li&gt;Crypto update: retired the use of short Diffie-Hellman exponents
+(just in case).
+&lt;/li&gt;&lt;li&gt;Bug fix: reconfiguring remote port forwardings more than once no
+longer crashes.
+&lt;/li&gt;&lt;li&gt;Bug fix: terminal output processing is now paused while handling a
+remote-controlled terminal resize, so that the subsequent screen
+redraw is interpreted relative to the new terminal size instead of the old.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows PuTTYgen&#39;s mouse-based entropy collection now
+handles high-frequency mice without getting confused.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows Pageant can now handle large numbers of
+concurrent connections without hanging or crashing.
+&lt;/li&gt;&lt;li&gt;Bug fix: if Windows Pageant is started multiple times
+simultaneously, the instances should reliably agree on one of them to
+be the persistent server.
+&lt;/li&gt;&lt;li&gt;Bug fix: remote-controlled changes of window title are now
+interpreted according to the configured character set.
+&lt;/li&gt;&lt;li&gt;Bug fix: remote-controlled changes of window title no longer get
+confused by UTF-8 characters whose encoding includes the byte 0x9C
+(which terminates the control sequence in non-UTF-8 contexts).
+&lt;/li&gt;&lt;li&gt;Bug fix: popping up the window context menu in the middle of a
+drag-select now no longer leaves the drag in a stuck state.
+&lt;/li&gt;&lt;li&gt;Bug fix: extensive use of true colour in the terminal no longer
+slows down window redraws unnecessarily.
+&lt;/li&gt;&lt;li&gt;Bug fix: when PSCP reports the server sending a disallowed
+compound pathname, it correctly reports the replacement name it&#39;s
+using for the downloaded file. 
+&lt;/li&gt;&lt;li&gt;Bug fix: enabling X11 forwarding in &lt;code&gt;psusan&lt;/code&gt; failed to
+fall back through possible port numbers for the forwarded X display.
+&lt;/li&gt;&lt;li&gt;For developers: migrated the build system to CMake, removing the
+old idiosyncratic &lt;code&gt;mkfiles.pl&lt;/code&gt; and the autotools system.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.77.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.77.html</guid><pubDate>Thu, 26 May 2022 16:00:00 GMT</pubDate></item><item><title>0.76 (released 2021-07-17):</title><description>&lt;li&gt;New option to abandon an SSH connection if the server allows you
+to authenticate in a trivial manner.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows PuTTY crashed when the &#39;Use system colours&#39;
+option was used.
+&lt;/li&gt;&lt;li&gt;Bug fix: crash on Windows when using MIT Kerberos together with
+&#39;Restart Session&#39;.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows PuTTY leaked named pipes after contacting
+Pageant.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows PuTTY didn&#39;t update the window while you held
+down the scrollbar arrow buttons long enough to &#39;key-repeat&#39;.
+&lt;/li&gt;&lt;li&gt;Bug fix: user colour-palette reconfiguration via &#39;Change Settings&#39;
+were delayed-action.
+&lt;/li&gt;&lt;li&gt;Bug fix: server colour-palette reconfigurations were sometimes
+lost.
+&lt;/li&gt;&lt;li&gt;Bug fix: a tight loop could occur on reading a truncated private
+key file.
+&lt;/li&gt;&lt;li&gt;Bug fix: the Windows Pageant GUI key list didn&#39;t display key
+lengths.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.76.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.76.html</guid><pubDate>Fri, 16 Jul 2021 16:00:00 GMT</pubDate></item><item><title>0.75 (released 2021-05-08):</title><description>&lt;li&gt;Security fix: on Windows, a server could DoS the whole Windows GUI
+by telling the PuTTY window to change its title repeatedly at high
+speed.
+&lt;/li&gt;&lt;li&gt;Pageant now supports loading a key still encrypted, and decrypting
+it later by prompting for the passphrase on first use.
+&lt;/li&gt;&lt;li&gt;Upgraded default SSH key fingerprint format to OpenSSH-style SHA-256.
+&lt;/li&gt;&lt;li&gt;Upgraded private key file format to PPK3, with improved passphrase
+hashing and no use of SHA-1.
+&lt;/li&gt;&lt;li&gt;Support for RSA key algorithms using SHA-2 instead of SHA-1.
+&lt;/li&gt;&lt;li&gt;Support for Curve448 key exchange and Ed448 public keys.
+&lt;/li&gt;&lt;li&gt;Terminal now supports ESC [ 9 m for strikethrough text.
+&lt;/li&gt;&lt;li&gt;New protocols: bare ssh-connection layer for use over
+already-secure IPC channels, and SUPDUP for talking to very old
+systems such as PDP-10s.
+&lt;/li&gt;&lt;li&gt;PuTTYgen now supports alternative provable-prime generation
+algorithm for RSA and DSA.
+&lt;/li&gt;&lt;li&gt;The Unix tools can now connect directly to a Unix-domain socket.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.75.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.75.html</guid><pubDate>Fri, 07 May 2021 16:00:00 GMT</pubDate></item><item><title>0.74 (released 2020-06-27):</title><description>&lt;li&gt;Security fix: if an SSH server accepted an offer of a public key
+and then rejected the signature, PuTTY could access freed memory, if
+the key had come from an SSH agent.&lt;/li&gt;
+&lt;li&gt;Security feature: new config option to disable PuTTY&#39;s dynamic
+host key preference policy, if you prefer to avoid giving away to
+eavesdroppers which hosts you have stored keys for.&lt;/li&gt;
+&lt;li&gt;Bug fix: the installer UI was illegible in Windows high-contrast
+mode.&lt;/li&gt;
+&lt;li&gt;Bug fix: console password input failed on Windows 7.&lt;/li&gt;
+&lt;li&gt;Bug fixes in the terminal: one instance of the dreaded
+&quot;line==NULL&quot; error box, and two other assertion failures.&lt;/li&gt;
+&lt;li&gt;Bug fix: potential memory-consuming loop in bug-compatible padding
+of an RSA signature from an agent.&lt;/li&gt;
+&lt;li&gt;Bug fix: PSFTP&#39;s buffer handling worked badly with some servers
+(particularly proftpd&#39;s &lt;code&gt;mod_sftp&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Bug fix: cursor could be wrongly positioned when restoring from
+the alternate terminal screen. (A bug of this type was fixed in 0.59;
+this is a case that that fix missed.)&lt;/li&gt;
+&lt;li&gt;Bug fix: character cell height could be a pixel too small when
+running GTK PuTTY on Ubuntu 20.04 (or any other system with a
+similarly up-to-date version of Pango).&lt;/li&gt;
+&lt;li&gt;Bug fix: old-style (low resolution) scroll wheel events did not
+work in GTK 3 PuTTY. This could stop the scroll wheel working at all
+in VNC.&lt;/li&gt;
+</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.74.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.74.html</guid><pubDate>Fri, 26 Jun 2020 16:00:00 GMT</pubDate></item><item><title>0.73 (released 2019-09-29):</title><description>&lt;li&gt;Security fix: on Windows, other applications were able to bind to the same TCP port as a PuTTY local port forwarding.
+&lt;/li&gt;&lt;li&gt;Security fix: in bracketed paste mode, the terminal escape sequences that should delimit the pasted data were appearing together on one side of it, making it possible to misidentify pasted data as manual keyboard input.
+&lt;/li&gt;&lt;li&gt;Bug fix (&lt;em&gt;possibly&lt;/em&gt; security-related): an SSH-1 server sending a disconnection message could cause an access to freed memory.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows Plink would crash on startup if it was acting as a connection-sharing downstream.
+&lt;/li&gt;&lt;li&gt;Bug fix: Windows PuTTY now updates its terminal window size correctly if the screen resolution changes while it&#39;s maximised.
+&lt;/li&gt;&lt;li&gt;Bug fix: tweaked terminal handling to prevent lost characters at the ends of lines in gcc&#39;s coloured error messages.
+&lt;/li&gt;&lt;li&gt;Bug fix: removed a bad interaction between the &#39;clear scrollback&#39; operation and mouse selection that could give rise to the dreaded &quot;line==NULL&quot; assertion box.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.73.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.73.html</guid><pubDate>Sat, 28 Sep 2019 16:00:00 GMT</pubDate></item><item><title>0.72 (released 2019-07-20):</title><description>&lt;li&gt;Security fixes found by the EU-funded bug bounty:
+&lt;ul&gt;
+&lt;li&gt;two separate vulnerabilities affecting the obsolete SSH-1 protocol, both available before host key checking
+&lt;/li&gt;&lt;li&gt;a vulnerability in all the SSH client tools (PuTTY, Plink, PSFTP and PSCP) if a malicious program can impersonate Pageant
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;Bug fix: crash in GSSAPI / Kerberos key exchange affecting third-party GSSAPI providers on Windows (such as MIT Kerberos for Windows)
+&lt;/li&gt;&lt;li&gt;Bug fix: crash in GSSAPI / Kerberos key exchange triggered if the server provided an ordinary SSH host key as part of the exchange
+&lt;/li&gt;&lt;li&gt;Bug fix: trust sigils were never turned off in SSH-1 or Rlogin
+&lt;/li&gt;&lt;li&gt;Bug fix: trust sigils were never turned back on if you used Restart Session
+&lt;/li&gt;&lt;li&gt;Bug fix: PSCP in SCP download mode could create files with a spurious newline at the end of their names
+&lt;/li&gt;&lt;li&gt;Bug fix: PSCP in SCP download mode with the &lt;code&gt;-p&lt;/code&gt; option would generate spurious complaints about illegal file renaming
+&lt;/li&gt;&lt;li&gt;Bug fix: the initial instruction message was never printed during SSH &lt;code&gt;keyboard-interactive&lt;/code&gt; authentication
+&lt;/li&gt;&lt;li&gt;Bug fix: pasting very long lines through connection sharing could crash the downstream PuTTY window
+&lt;/li&gt;&lt;li&gt;Bug fix: in keyboard layouts with a &#39;,&#39; key on the numeric keypad (e.g. German), Windows PuTTY would generate &#39;.&#39; instead for that key
+&lt;/li&gt;&lt;li&gt;Bug fix: PuTTYgen could generate RSA keys with a modulus one bit shorter than requested
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.72.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.72.html</guid><pubDate>Fri, 19 Jul 2019 16:00:00 GMT</pubDate></item><item><title>0.71 (released 2019-03-16):</title><description>&lt;li&gt;Security fixes found by an EU-funded bug bounty programme:
+&lt;ul&gt;
+&lt;li&gt;a remotely triggerable memory overwrite in RSA key exchange, which can occur before host key verification
+&lt;/li&gt;&lt;li&gt;potential recycling of random numbers used in cryptography
+&lt;/li&gt;&lt;li&gt;on Windows, hijacking by a malicious help file in the same directory as the executable
+&lt;/li&gt;&lt;li&gt;on Unix, remotely triggerable buffer overflow in any kind of server-to-client forwarding
+&lt;/li&gt;&lt;li&gt;multiple denial-of-service attacks that can be triggered by writing to the terminal
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;Other security enhancements: major rewrite of the crypto code to remove cache and timing side channels.
+&lt;/li&gt;&lt;li&gt;User interface changes to protect against fake authentication prompts from a malicious server.
+&lt;/li&gt;&lt;li&gt;We now provide pre-built binaries for Windows on Arm.
+&lt;/li&gt;&lt;li&gt;Hardware-accelerated versions of the most common cryptographic primitives: AES, SHA-256, SHA-1.
+&lt;/li&gt;&lt;li&gt;GTK PuTTY now supports non-X11 displays (e.g. Wayland) and high-DPI configurations.
+&lt;/li&gt;&lt;li&gt;Type-ahead now works as soon as a PuTTY window is opened: keystrokes typed before authentication has finished will be buffered instead of being dropped.
+&lt;/li&gt;&lt;li&gt;Support for GSSAPI key exchange: an alternative to the older GSSAPI authentication system which can keep your forwarded Kerberos credentials updated during a long session.
+&lt;/li&gt;&lt;li&gt;More choices of user interface for clipboard handling.
+&lt;/li&gt;&lt;li&gt;New terminal features: support the REP escape sequence (fixing an &lt;code&gt;ncurses&lt;/code&gt; screen redraw failure), true colour, and SGR 2 dim text.
+&lt;/li&gt;&lt;li&gt;Pressing Ctrl+Shift+PgUp or Ctrl+Shift+PgDn now takes you straight to the top or bottom of the terminal scrollback.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.71.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.71.html</guid><pubDate>Fri, 15 Mar 2019 16:00:00 GMT</pubDate></item><item><title>0.70 (released 2017-07-08):</title><description>&lt;li&gt;Security fix: the Windows PuTTY binaries should no longer be
+vulnerable to hijacking by specially named DLLs in the same directory,
+even a name we missed when we thought we&#39;d fixed this in 0.69.
+See &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-indirect-dll-hijack-3.html&quot;&gt;vuln-indirect-dll-hijack-3&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;Windows PuTTY should be able to print again, after our DLL
+hijacking defences broke that functionality.
+&lt;/li&gt;&lt;li&gt;Windows PuTTY should be able to accept keyboard input outside the
+current code page, after our DLL hijacking defences broke that too.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.70.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.70.html</guid><pubDate>Fri, 07 Jul 2017 16:00:00 GMT</pubDate></item><item><title>0.69 (released 2017-04-29):</title><description>&lt;li&gt;Security fix: the Windows PuTTY binaries should no longer be
+vulnerable to hijacking by specially named DLLs in the same directory,
+even the names we missed when we thought we&#39;d fixed this in 0.68.
+See &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-indirect-dll-hijack-2.html&quot;&gt;vuln-indirect-dll-hijack-2&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;Windows PuTTY should work with MIT Kerberos again, after our DLL
+hijacking defences broke it.
+&lt;/li&gt;&lt;li&gt;Jump lists should now appear again on the PuTTY shortcut in the
+Windows Start Menu.
+&lt;/li&gt;&lt;li&gt;You can now explicitly configure SSH terminal mode settings
+&lt;em&gt;not&lt;/em&gt; to be sent to the server, if your server objects to them.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.69.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.69.html</guid><pubDate>Fri, 28 Apr 2017 16:00:00 GMT</pubDate></item><item><title>0.68 (released 2017-02-21):</title><description>&lt;li&gt;Security fix: an integer overflow bug in the agent forwarding code.
+See &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-agent-fwd-overflow.html&quot;&gt;vuln-agent-fwd-overflow&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;Security fix: the Windows PuTTY binaries should no longer be
+vulnerable to hijacking by specially named DLLs in the same directory
+(on versions of Windows where they previously were).
+See &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-indirect-dll-hijack.html&quot;&gt;vuln-indirect-dll-hijack&lt;/a&gt;. &lt;strong&gt;WARNING: this fix turned out to be incomplete. 0.69 made further fixes in this area.&lt;/strong&gt;
+&lt;/li&gt;&lt;li&gt;Windows PuTTY no longer sets a restrictive process ACL by default,
+because this turned out to inconvenience too many legitimate
+applications such as NVDA and TortoiseGit. You can still manually
+request a restricted ACL using the command-line option
+&lt;code&gt;-restrict-acl&lt;/code&gt;.
+&lt;/li&gt;&lt;li&gt;The Windows PuTTY tools now come in a 64-bit version.
+&lt;/li&gt;&lt;li&gt;The Windows PuTTY tools now have Windows&#39;s ASLR and DEP security
+features turned on.
+&lt;/li&gt;&lt;li&gt;Support for elliptic-curve cryptography (the NIST curves and
+25519), for host keys, user authentication keys, and key exchange.
+&lt;/li&gt;&lt;li&gt;Support for importing and exporting OpenSSH&#39;s new private key format.
+&lt;/li&gt;&lt;li&gt;Host key preference policy change: PuTTY prefers host key formats
+for which it already knows the key.
+&lt;/li&gt;&lt;li&gt;Run-time option (from the system menu / Ctrl-right-click menu) to
+retrieve other host keys from the same server (which cross-certifies
+them using the session key established using an already-known key) and
+add them to the known host-keys database.
+&lt;/li&gt;&lt;li&gt;The Unix GUI PuTTY tools can now be built against GTK 3.
+&lt;/li&gt;&lt;li&gt;There is now a Unix version of Pageant.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.68.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.68.html</guid><pubDate>Mon, 20 Feb 2017 16:00:00 GMT</pubDate></item><item><title>0.67 (released 2016-03-05):</title><description>&lt;li&gt;Security fix: a buffer overrun in the old-style SCP protocol when
+receiving the header of each file downloaded from the server is fixed.
+See &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-pscp-sink-sscanf.html&quot;&gt;vuln-pscp-sink-sscanf&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;Windows PuTTY now sets its process ACL more restrictively, in an
+attempt to defend against malicious other processes reading sensitive
+data out of its memory.
+&lt;/li&gt;&lt;li&gt;Assorted other robustness fixes for crashes and memory leaks.
+&lt;/li&gt;&lt;li&gt;We have started using Authenticode to sign our Windows executables
+and installer.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.67.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.67.html</guid><pubDate>Fri, 04 Mar 2016 16:00:00 GMT</pubDate></item><item><title>0.66 (released 2015-11-07):</title><description>&lt;li&gt;Security fix: an escape sequence which used to make PuTTY&#39;s
+terminal code read and potentially write the wrong memory is fixed.
+See &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-ech-overflow.html&quot;&gt;vuln-ech-overflow&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;Bug fix: better Unicode handling in Windows PuTTY keyboard
+messages, so it should now work better with WinCompose.
+&lt;/li&gt;&lt;li&gt;Bug fix: jump lists on Windows 10 should now work.
+&lt;/li&gt;&lt;li&gt;There&#39;s now a set of command-line options to enable session
+logging.
+&lt;/li&gt;&lt;li&gt;&lt;code&gt;&amp;amp;P&lt;/code&gt; in the log file name now substitutes in the port
+number from the configuration.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.66.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.66.html</guid><pubDate>Fri, 06 Nov 2015 16:00:00 GMT</pubDate></item><item><title>0.65 (released 2015-07-25):</title><description>&lt;li&gt;
+Incoming connections to PuTTY tools (to forwarded ports and to the
+connection-sharing socket) now log their source address or pid, where
+facilities exist to do so.
+&lt;/li&gt;&lt;li&gt;
+Cryptography speedup on 64-bit Unix platforms by using gcc and
+clang&#39;s &lt;code&gt;__uint128_t&lt;/code&gt; built-in type.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the configuration dialog is no longer accidentally invisible
+in some Windows Vista display themes.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the Windows PuTTY GUI no longer becomes unresponsive if the
+server sends a continuous flood of data. (Sorry! We fixed that once
+before, but it came back in 0.64.)
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PSFTP now returns a failure exit status if a command fails in
+a batch-mode script.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: ESC [ 13 t can no longer elicit an invalid escape sequence as
+a response.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.65.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.65.html</guid><pubDate>Fri, 24 Jul 2015 16:00:00 GMT</pubDate></item><item><title>0.64 (released 2015-02-28):</title><description>&lt;li&gt;
+Security fix: PuTTY no longer retains the private half of users&#39; keys
+in memory by mistake after authenticating with them. See
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/private-key-not-wiped-2.html&quot;&gt;private-key-not-wiped-2&lt;/a&gt;.
+(Sorry! We thought we&#39;d fixed that in 0.63, but missed one.)
+&lt;/li&gt;&lt;li&gt;
+Support for SSH connection sharing, so that multiple instances of
+PuTTY to the same host can share a single SSH connection instead of
+all having to log in independently.
+&lt;/li&gt;&lt;li&gt;
+Command-line and configuration option to specify the expected host
+key(s).
+&lt;/li&gt;&lt;li&gt;
+Defaults change: PuTTY now defaults to SSH-2 &lt;em&gt;only&lt;/em&gt;, instead of
+its previous default of SSH-2 &lt;em&gt;preferred&lt;/em&gt;.
+&lt;/li&gt;&lt;li&gt;
+Local socket errors in port-forwarded connections are now recorded in
+the PuTTY Event Log.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: repeat key exchanges in the middle of an SSH session now
+never cause an annoying interactive host key prompt.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: reset the bolded-text default setting back to what it used to
+be. (0.63 set it to something wrong, as a side effect of refactoring.)
+&lt;/li&gt;&lt;li&gt;
+Bug fix: IPv6 literals are handled sensibly throughout the suite, if
+you enclose them in square brackets to prevent the colons being
+mistaken for a &lt;code&gt;:&lt;/code&gt;&lt;i&gt;port&lt;/i&gt; suffix.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: IPv6 dynamic port forwardings should work again.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.64.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.64.html</guid><pubDate>Fri, 27 Feb 2015 16:00:00 GMT</pubDate></item><item><title>0.63 (released 2013-08-06):</title><description>&lt;li&gt;
+Security fix: prevent a nefarious SSH server or network attacker from
+crashing PuTTY at startup in three different ways by presenting a
+maliciously constructed public key and signature. See
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-modmul.html&quot;&gt;vuln-modmul&lt;/a&gt;,
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-signature-stringlen.html&quot;&gt;vuln-signature-stringlen&lt;/a&gt;,
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-bignum-division-by-zero.html&quot;&gt;vuln-bignum-division-by-zero&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;
+Security fix: PuTTY no longer retains the private half of users&#39; keys
+in memory by mistake after authenticating with them. See
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/private-key-not-wiped.html&quot;&gt;private-key-not-wiped&lt;/a&gt;.
+(Addendum: this turned out not to be wholly fixed,
+because &lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/private-key-not-wiped-2.html&quot;&gt;private-key-not-wiped-2&lt;/a&gt;
+was not found until 0.64.)
+&lt;/li&gt;&lt;li&gt;
+Revamped the internal configuration storage system to remove all fixed
+arbitrary limits on string lengths. In particular, there should now no
+longer be an unreasonably small limit on the number of port
+forwardings PuTTY can store.
+&lt;/li&gt;&lt;li&gt;
+Port-forwarded TCP connections which close one direction before the
+other should now be reliably supported, with EOF propagated
+independently in the two directions. This also fixes some instances of
+port-forwarding data corruption (if the corruption consisted of losing
+data from the very end of the connection) and some instances of PuTTY
+failing to close when the session is over (because it wrongly thought
+a forwarding channel was still active when it was not).
+&lt;/li&gt;&lt;li&gt;
+The terminal emulation now supports &lt;code&gt;xterm&lt;/code&gt;&#39;s bracketed
+paste mode (allowing aware applications to tell the difference between
+typed and pasted text, so that e.g. editors need not apply
+inappropriate auto-indent).
+&lt;/li&gt;&lt;li&gt;
+You can now choose to display bold text by both brightening the
+foreground colour &lt;em&gt;and&lt;/em&gt; changing the font, not just one or the
+other.
+&lt;/li&gt;&lt;li&gt;
+PuTTYgen will now never generate a 2047-bit key when asked for 2048
+(or more generally &lt;i&gt;n&lt;/i&gt;−1 bits when asked for &lt;i&gt;n&lt;/i&gt;).
+&lt;/li&gt;&lt;li&gt;
+Some updates to default settings: PuTTYgen now generates 2048-bit keys
+by default (rather than 1024), and PuTTY defaults to UTF-8 encoding
+and 2000 lines of scrollback (rather than ISO 8859-1 and 200).
+&lt;/li&gt;&lt;li&gt;
+Unix: PSCP and PSFTP now preserve the Unix file permissions, on copies
+in both directions.
+&lt;/li&gt;&lt;li&gt;
+Unix: dead keys and compose-character sequences are now supported.
+&lt;/li&gt;&lt;li&gt;
+Unix: PuTTY and pterm now permit font fallback (where glyphs not
+present in your selected font are automatically filled in from other
+fonts on the system) even if you are using a server-side X11 font
+rather than a Pango client-side one.
+&lt;/li&gt;&lt;li&gt;
+Bug fixes too numerous to list, mostly resulting from running the code
+through Coverity Scan which spotted an assortment of memory and
+resource leaks, logic errors, and crashes in various circumstances.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.63.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.63.html</guid><pubDate>Mon, 05 Aug 2013 16:00:00 GMT</pubDate></item><item><title>0.62 (released 2011-12-10):</title><description>&lt;li&gt;
+Security fix: PuTTY no longer retains passwords in memory by mistake. See
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/password-not-wiped.html&quot;&gt;password-not-wiped&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: Pageant now talks to both new-style clients (0.61 and above)
+and old-style (0.60 and below).
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PuTTY no longer prints a spurious &quot;Access denied&quot; message
+when GSSAPI authentication fails.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PSCP and PSFTP now honour nonstandard port numbers in SSH
+saved sessions.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: Pageant no longer leaks a file handle when an authentication
+fails.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PuTTYtel no longer crashes when saving a session.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PuTTY now draws underlines under the underlined text instead
+of sometimes putting them somewhere off to the right.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PuTTY now should not draw VT100 line drawing characters at
+the wrong vertical offset.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.62.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.62.html</guid><pubDate>Fri, 09 Dec 2011 16:00:00 GMT</pubDate></item><item><title>0.61 (released 2011-07-12):</title><description>&lt;li&gt;
+Kerberos/GSSAPI authentication in SSH-2.
+&lt;/li&gt;&lt;li&gt;
+Local X11 authorisation support on Windows. (Unix already had it, of
+course.)
+&lt;/li&gt;&lt;li&gt;
+Support for non-fixed-width fonts on Windows.
+&lt;/li&gt;&lt;li&gt;
+GTK 2 support on Unix.
+&lt;/li&gt;&lt;li&gt;
+Specifying the logical host name independently of the physical network
+address to connect to.
+&lt;/li&gt;&lt;li&gt;
+Crypto and flow control optimisations.
+&lt;/li&gt;&lt;li&gt;
+Support for the &lt;code&gt;zlib@openssh.com&lt;/code&gt; SSH-2 compression method.
+&lt;/li&gt;&lt;li&gt;
+Support for new Windows 7 UI features: Aero resizing and jump lists.
+&lt;/li&gt;&lt;li&gt;
+Support for OpenSSH AES-encrypted private key files in PuTTYgen.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: handles OpenSSH private keys with primes in either order.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: corruption of port forwarding is fixed (we think).
+&lt;/li&gt;&lt;li&gt;
+Bug fix: various crashes and hangs when exiting on failure.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: hang in the serial back end on Windows.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: Windows clipboard is now read asynchronously, in case of
+deadlock due to the clipboard owner being at the far end of the same
+PuTTY&#39;s network connection (either via X forwarding or via
+tunnelled &lt;code&gt;rdesktop&lt;/code&gt;).
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.61.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.61.html</guid><pubDate>Mon, 11 Jul 2011 16:00:00 GMT</pubDate></item><item><title>0.60 (released 2007-04-29):</title><description>&lt;li&gt;
+Pressing Ctrl+Break now sends a serial break signal. (The previous
+behaviour can still be obtained with Ctrl+C.)
+&lt;/li&gt;&lt;li&gt;
+Serial ports higher than &lt;code&gt;COM9&lt;/code&gt; now no longer need a
+leading &lt;code&gt;\\.\&lt;/code&gt;.
+&lt;/li&gt;&lt;li&gt;
+You can now store a host name in the Default Settings.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: serial connections and local proxies should no longer crash
+all the time.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: configuring the default connection type to serial should no
+longer cause the configuration dialog to be skipped on startup.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: &quot;Unable to read from standard input&quot; should now not happen,
+or if it still does it should produce more detailed diagnostics.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: fixed some malformed SSH-2 packet generation.
+&lt;/li&gt;&lt;li&gt;
+Other minor bug fixes.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.60.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.60.html</guid><pubDate>Sat, 28 Apr 2007 16:00:00 GMT</pubDate></item><item><title>0.59 (released 2007-01-24):</title><description>&lt;li&gt;
+PuTTY can now connect to local serial ports as well as making network
+connections.
+&lt;/li&gt;&lt;li&gt;
+Windows PuTTY now supports &quot;local proxying&quot;, where a network
+connection is replaced by a local command. (Unix PuTTY has supported
+this since it was first released in 0.54.) Also, Plink has gained a
+&quot;&lt;code&gt;-nc&lt;/code&gt;&quot; mode where the primary channel is replaced by an
+SSH tunnel, which makes it particularly useful as the local command
+to run.
+&lt;/li&gt;&lt;li&gt;
+Improved speed of SSH on Windows (particularly SSH-2 key exchange and
+public-key authentication).
+&lt;/li&gt;&lt;li&gt;
+Improved SFTP throughput.
+&lt;/li&gt;&lt;li&gt;
+Various cryptographic improvements in SSH-2, including SDCTR cipher
+modes, a workaround for a weakness in CBC cipher modes, and
+Diffie-Hellman group exchange with SHA-256.
+&lt;/li&gt;&lt;li&gt;
+Support for the Arcfour cipher in SSH-2.
+&lt;/li&gt;&lt;li&gt;
+Support for sending terminal modes in SSH.
+&lt;/li&gt;&lt;li&gt;
+When Pageant is running and an SSH key is specified in the
+configuration, PuTTY will now only try Pageant authentication with
+that key. This gets round a problem where some servers would only
+allow a limited number of keys to be offered before disconnecting.
+&lt;/li&gt;&lt;li&gt;
+Support for SSH-2 password expiry mechanisms, and various other
+improvements and bugfixes in authentication.
+&lt;/li&gt;&lt;li&gt;
+A change to the SSH-2 password camouflage mechanism in 0.58 upset some
+Cisco servers, so we have reverted to the old method.
+&lt;/li&gt;&lt;li&gt;
+The Windows version now comes with documentation in HTML Help
+format. (Windows Vista does not support the older WinHelp format.
+However, we still provide documentation in that format, since Win95
+does not support HTML Help.)
+&lt;/li&gt;&lt;li&gt;
+On Windows, when pasting as RTF, attributes of the selection such as
+colours and formatting are also pasted.
+&lt;/li&gt;&lt;li&gt;
+Ability to configure font quality on Windows (including antialiasing
+and ClearType).
+&lt;/li&gt;&lt;li&gt;
+The terminal is now restored to a sensible state when reusing a window
+to restart a session.
+&lt;/li&gt;&lt;li&gt;
+We now support an escape sequence invented by xterm which lets the
+server clear the scrollback (CSI 3 J). This is useful for applications
+such as terminal locking programs.
+&lt;/li&gt;&lt;li&gt;
+Improvements to the Unix port:
+&lt;ul&gt;
+&lt;li&gt;
+now compiles cleanly with GCC 4
+&lt;/li&gt;&lt;li&gt;
+now has a &lt;code&gt;configure&lt;/code&gt; script, and should be portable to
+more platforms
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;
+Bug fix: 0.58 utterly failed to run on some installations of
+Windows XP.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PSCP and PSFTP now support large files (greater than 4
+gigabytes), provided the underlying operating system does too.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PSFTP (and PSCP) sometimes ran slowly and consumed lots of
+CPU when started directly from Windows Explorer.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: font linking (the automatic use of other fonts on the
+system to provide Unicode characters not present in the selected
+one) should now work again on Windows, after being broken in 0.58.
+(However, it unfortunately still won&#39;t work for Arabic and other
+right-to-left text.)
+&lt;/li&gt;&lt;li&gt;
+Bug fix: if the remote server saturated PuTTY with data, PuTTY could
+become unresponsive.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: certain large clipboard operations could cause PuTTY to
+crash.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: SSH-1 connections tended to crash, particularly when using
+port forwarding.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: SSH Tectia Server would reject SSH-2 tunnels from PuTTY due
+to a malformed request.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: SSH-2 login banner messages were being dropped silently under
+some circumstances.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the cursor could end up in the wrong place when a server-side
+application used the alternate screen.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: on Windows, PuTTY now tries harder to find a suitable place
+to store its random seed file &lt;code&gt;PUTTY.RND&lt;/code&gt; (previously it
+was tending to end up in &lt;code&gt;C:\&lt;/code&gt; or &lt;code&gt;C:\WINDOWS&lt;/code&gt;).
+&lt;/li&gt;&lt;li&gt;
+Bug fix: IPv6 should now work on Windows Vista.
+&lt;/li&gt;&lt;li&gt;
+Numerous other bugfixes, as usual.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.59.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.59.html</guid><pubDate>Tue, 23 Jan 2007 16:00:00 GMT</pubDate></item><item><title>0.58 (released 2005-04-05):</title><description>&lt;li&gt;
+Wildcards (&lt;code&gt;mput&lt;/code&gt;/&lt;code&gt;mget&lt;/code&gt;) and recursive file
+transfer in PSFTP.
+&lt;/li&gt;&lt;li&gt;
+You can now save your session details from the Change Settings
+dialog box, &lt;em&gt;after&lt;/em&gt; you&#39;ve started your session.
+&lt;/li&gt;&lt;li&gt;
+Various improvements to Unicode support, including:
+&lt;ul&gt;
+&lt;li&gt;
+support for right-to-left and bidirectional text (Arabic, Hebrew
+etc). Thanks to
+&lt;a href=&quot;http://www.arabeyes.org/&quot;&gt;&lt;code&gt;arabeyes.org&lt;/code&gt;&lt;/a&gt;
+for design and most of the implementation.
+&lt;/li&gt;&lt;li&gt;
+support for Arabic text shaping, again thanks to
+&lt;code&gt;arabeyes.org&lt;/code&gt;.
+&lt;/li&gt;&lt;li&gt;support for Unicode combining characters.
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;
+Support for the &lt;code&gt;xterm&lt;/code&gt; 256-colour control sequences.
+&lt;/li&gt;&lt;li&gt;
+Port forwardings can now be reconfigured in mid-session.
+&lt;/li&gt;&lt;li&gt;
+Support for IPv6. Thanks to
+&lt;a href=&quot;http://unfix.org/&quot;&gt;&lt;code&gt;unfix.org&lt;/code&gt;&lt;/a&gt;
+for having patiently maintained the patch for this until we were
+finally ready to integrate it.
+&lt;/li&gt;&lt;li&gt;
+More configurability and flexibility in SSH-2 key exchange. In
+particular, PuTTY can now initiate repeat key exchange during the
+session, which means that if your server doesn&#39;t initiate it (some
+servers don&#39;t bother) you can still have the cryptographic benefits.
+&lt;/li&gt;&lt;li&gt;
+Bug fix: display artefacts caused by characters overflowing their
+character cell should now all be gone. (This would probably have
+bothered Windows ClearType users more than anyone else.)
+&lt;/li&gt;&lt;li&gt;
+Bug fix: keepalives are now supported everywhere. (Previously they
+were supported by Windows GUI PuTTY, but were missing in Plink,
+PSFTP and the Unix port.)
+&lt;/li&gt;&lt;li&gt;
+Miscellaneous improvements for CJK/IME users; many thanks to Hung-Te
+Lin for assistance.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.58.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.58.html</guid><pubDate>Mon, 04 Apr 2005 16:00:00 GMT</pubDate></item><item><title>0.57 (released 2005-02-20):</title><description>&lt;li&gt;
+Security fixes: two vulnerabilities discovered by iDEFENSE,
+potentially allowing arbitrary code execution on an SFTP client by a
+malicious SFTP server (but only after host key verification), have
+been fixed. See
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-sftp-readdir.html&quot;&gt;vuln-sftp-readdir&lt;/a&gt;,
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-sftp-string.html&quot;&gt;vuln-sftp-string&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;
+Fixed small bug with X forwarding to local displays.
+&lt;/li&gt;&lt;li&gt;
+Fixed crashing bug with remote port forwarding.
+&lt;/li&gt;&lt;li&gt;
+Fixed handling of SSH-2 debug messages (embarrassingly, a bug
+introduced when fixing the previous vulnerability - it was more
+secure but didn&#39;t work any more!).
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.57.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.57.html</guid><pubDate>Sat, 19 Feb 2005 16:00:00 GMT</pubDate></item><item><title>0.56 (released 2004-10-26):</title><description>&lt;li&gt;Security fix: a vulnerability discovered by iDEFENSE,
+potentially allowing arbitrary code execution on the client by a
+malicious SSH-2 server &lt;em&gt;before host key verification&lt;/em&gt;, has been
+fixed. See
+&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-ssh2-debug.html&quot;&gt;vuln-ssh2-debug&lt;/a&gt;.
+&lt;/li&gt;&lt;li&gt;Ability to restart a session within an inactive window, via a new
+menu option.
+&lt;/li&gt;&lt;li&gt;Minimal support for not running a shell or command at all in SSH
+protocol 2 (equivalent to OpenSSH&#39;s &quot;-N&quot; option). PuTTY/Plink still
+provide a normal window for interaction, and have to be explicitly
+killed.
+&lt;/li&gt;&lt;li&gt;Transparent support for CHAP cryptographic authentication in the
+SOCKS 5 proxy protocol. (Not in PuTTYtel.)
+&lt;/li&gt;&lt;li&gt;More diagnostics in the Event Log, particularly of SSH port
+forwarding.
+&lt;/li&gt;&lt;li&gt;Ability to request setting of environment variables in SSH (protocol
+2 only). (However, we don&#39;t know of any &lt;em&gt;servers&lt;/em&gt; that support
+this.)
+&lt;/li&gt;&lt;li&gt;Ability to send POSIX signals in SSH (protocol 2 only) via the
+&quot;Special Commands&quot; menu. (Again, we don&#39;t know of any servers
+supporting this.)
+&lt;/li&gt;&lt;li&gt;Bug fix: The PuTTY tools now more consistently support usernames
+containing &quot;@&quot; signs.
+&lt;/li&gt;&lt;li&gt;Support for the Polish character set &quot;Mazovia&quot;.
+&lt;/li&gt;&lt;li&gt;When logging is enabled, the log file is flushed more frequently, so
+that its contents can be viewed before it is closed.
+&lt;/li&gt;&lt;li&gt;More flexibility in SSH packet logging: known passwords and session
+data can be omitted from the log file. Passwords are omitted by
+default. (This option isn&#39;t perfect for removing sensitive details;
+you should still review log files before letting them out of your
+sight.)
+&lt;/li&gt;&lt;li&gt;Unix-specific changes:
+&lt;ul&gt;
+&lt;li&gt;Ability to set environment variables in pterm.
+&lt;/li&gt;&lt;li&gt;PuTTY and pterm attempt to use a UTF-8 line character set by
+default if this is indicated by the locale; however, this can be
+overridden.
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;
+</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.56.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.56.html</guid><pubDate>Mon, 25 Oct 2004 16:00:00 GMT</pubDate></item><item><title>0.55 (released 2004-08-03):</title><description>&lt;li&gt;Security fix: a vulnerability discovered by Core Security
+Technologies (advisory number
+&lt;a href=&quot;http://www.coresecurity.com/common/showdoc.php?idx=417&amp;amp;idxseccion=10&quot;&gt;CORE-2004-0705&lt;/a&gt;),
+potentially allowing arbitrary code execution on the client by a
+malicious server &lt;em&gt;before host key verification&lt;/em&gt;, has been
+fixed.
+&lt;/li&gt;&lt;li&gt;Bug fix: General robustness of the SSH-1 implementation has been improved,
+which may have fixed further potential security problems although we
+are not aware of any specific ones.
+&lt;/li&gt;&lt;li&gt;Bug fix: Random noise generation was hanging some computers and
+interfering with other processes&#39; precision timing, and should now
+not do so.
+&lt;/li&gt;&lt;li&gt;Bug fix: dead key support should work better.
+&lt;/li&gt;&lt;li&gt;Bug fix: a terminal speed is now sent to the SSH server.
+&lt;/li&gt;&lt;li&gt;Bug fix: removed a spurious diagnostic message in Plink.
+&lt;/li&gt;&lt;li&gt;Bug fix: the `-load&#39; option in PSCP and PSFTP should work better.
+&lt;/li&gt;&lt;li&gt;Bug fix: X forwarding on the Unix port can now talk to Unix
+sockets as well as TCP sockets.
+&lt;/li&gt;&lt;li&gt;Bug fix: various crashes and assertion failures fixed..
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.55.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.55.html</guid><pubDate>Mon, 02 Aug 2004 16:00:00 GMT</pubDate></item><item><title>0.54 (released 2004-02-12):</title><description>&lt;li&gt;
+Port to Unix!
+&lt;/li&gt;&lt;li&gt;
+Dynamic SSH port forwarding.
+&lt;/li&gt;&lt;li&gt;
+Ability to leave DNS lookups to the proxy, when using a proxy.
+&lt;/li&gt;&lt;li&gt;
+Sped up PSFTP.
+&lt;/li&gt;&lt;li&gt;
+Fixed various bugs, notably one which was impeding port-forwarding
+of SMB.
+&lt;/li&gt;&lt;li&gt;
+Some default settings changes: SSH and SSH-2 are now default, BCE is
+off.
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.54.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.54.html</guid><pubDate>Wed, 11 Feb 2004 16:00:00 GMT</pubDate></item><item><title>0.53b (released 2002-11-12):</title><description>&lt;li&gt;
+Fixed an embarrassing command-line bug: the -P option didn&#39;t work at
+all.
+
+&lt;/li&gt;&lt;li&gt;
+Security fix: the vulnerability found by the Rapid7 SSHredder test
+suite is now believed fixed. See CERT advisory
+&lt;a href=&quot;http://www.cert.org/advisories/CA-2002-36.html&quot;&gt;CA-2002-36&lt;/a&gt;.
+
+&lt;/li&gt;&lt;li&gt;
+Security fix: an improvement in random number policy when running
+more than one PuTTY at the same time.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.53b.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.53b.html</guid><pubDate>Mon, 11 Nov 2002 16:00:00 GMT</pubDate></item><item><title>0.53 (released 2002-10-01):</title><description>&lt;li&gt;
+The feature everyone&#39;s been asking for: ANSI printer support.
+Currently this sends data to the printer in completely raw mode,
+without benefit of Windows GDI or the printer driver; so it will be
+fine for anyone whose server already knows what type of printer it
+expects to be talking to, but probably not ideal for someone who
+wants to print a text file and have it look nice. A less raw mode of
+printer access is still on the Wishlist, but is quite a big piece of
+coding work so it&#39;s in the Implausible section.
+
+&lt;/li&gt;&lt;li&gt;
+The &lt;em&gt;other&lt;/em&gt; feature everyone&#39;s been asking for: PuTTYgen can
+now import and export OpenSSH and ssh.com SSH-2 private keys, as well
+as PuTTY&#39;s own format.
+
+&lt;/li&gt;&lt;li&gt;
+We now ship the PuTTY tool set as an installer, created using Jordan
+Russell&#39;s excellent and easy-to-use
+&lt;a href=&quot;http://www.jrsoftware.org/isinfo.php&quot;&gt;Inno Setup&lt;/a&gt;.
+(For the other half of our users, who felt the best thing about
+PuTTY was that they &lt;em&gt;didn&#39;t&lt;/em&gt; have to mess around with
+installers, we still ship the single executables and the zip file,
+so nobody has to use the installer if they don&#39;t want to.)
+
+&lt;/li&gt;&lt;li&gt;
+PuTTY now has a default file extension for private key files:
+&lt;code&gt;.PPK&lt;/code&gt; (PuTTY Private Key). The installer associates this
+file extension with Pageant and PuTTYgen.
+
+&lt;/li&gt;&lt;li&gt;
+PuTTY now natively supports making its connection through various
+types of proxy. We support SOCKS 4 and 5, HTTP CONNECT (RFC 2817),
+and the common ad-hoc type of proxy where you telnet to the proxy
+and then send text of the form &quot;&lt;code&gt;connect host.name 22&lt;/code&gt;&quot;.
+Basic password authentication is supported in SOCKS and HTTP
+proxies. Many thanks to Justin Bradford for doing most of the work
+here.
+
+&lt;/li&gt;&lt;li&gt;
+PuTTY now supports a standard set of command-line options across all
+tools. Most of these options are ones that Plink has always
+supported; however, we also support a number of new options similar
+to the OpenSSH ones (&lt;code&gt;-A&lt;/code&gt; and &lt;code&gt;-a&lt;/code&gt;,
+&lt;code&gt;-X&lt;/code&gt; and &lt;code&gt;-x&lt;/code&gt;, and similar things; also the
+&lt;code&gt;-i&lt;/code&gt; option to specify a private key file).
+
+&lt;/li&gt;&lt;li&gt;
+The right-button menu on Pageant&#39;s System tray icon now offers the
+option to start PuTTY (New Session plus the Saved Sessions submenu).
+This feature is disabled if Pageant can&#39;t find the PuTTY binary on
+startup. Thanks to Dominique Faure.
+
+&lt;/li&gt;&lt;li&gt;
+Added the Features control panel, allowing the user to disable some
+of the more controversial terminal capabilities.
+
+&lt;/li&gt;&lt;li&gt;
+Added the Bugs control panel, allowing the user to manually control
+PuTTY&#39;s various workarounds for SSH server bugs.
+
+&lt;/li&gt;&lt;li&gt;
+Various bug fixes, including (with luck) much greater stability in
+high-traffic port forwarding situations.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.53.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.53.html</guid><pubDate>Mon, 30 Sep 2002 16:00:00 GMT</pubDate></item><item><title>0.52 (released 2002-01-14):</title><description>&lt;li&gt;
+A full manual has been written, and is supplied as a Windows Help
+file alongside the program executables.
+
+&lt;/li&gt;&lt;li&gt;
+Support for public keys in SSH-2, both RSA and DSA. Agent forwarding
+is supported, but only to OpenSSH servers, because ssh.com have a
+different agent protocol which they haven&#39;t published.
+&lt;ul&gt;
+&lt;li&gt;
+(Yes, I know I&#39;ve been claiming DSA is horrifically insecure for
+ages, but now I&#39;ve been told about a clever way to get round the
+insecurity. Details are in &lt;code&gt;sshdss.c&lt;/code&gt; for anyone who&#39;s
+interested; credit mostly goes to Colin Plumb for letting me know
+about it. We still think RSA is better, and recommend you use it if
+you have the choice.)
+&lt;/li&gt;&lt;/ul&gt;
+&lt;/li&gt;&lt;li&gt;
+PSCP now uses the new SFTP protocol if possible, and only falls back
+to the old scp1 form if SFTP can&#39;t be found (for example, if your
+connection is SSH-1). This should allow it to interoperate cleanly
+with ssh.com&#39;s product, and is a security improvement besides.
+
+&lt;/li&gt;&lt;li&gt;
+PSCP, in old-style scp1 mode, is now much tighter on security. It
+will refuse to let the remote host write to a file that doesn&#39;t have
+the same name as the file that was requested. &lt;b&gt;NOTE WELL&lt;/b&gt; that
+this disallows remote-to-local wildcards such as &quot;&lt;code&gt;pscp
+server:*.c .&lt;/code&gt;&quot;. scp1&#39;s implementation of server-side wildcards
+is inherently unsafe. If you are sure you trust your scp server not
+to be malicious, you can use the &quot;&lt;code&gt;-unsafe&lt;/code&gt;&quot; command line
+option to re-enable this behaviour. When using the new SFTP-based
+back end none of this is a problem, because SFTP is better designed.
+
+&lt;/li&gt;&lt;li&gt;
+Generic port forwarding support is now supported, thanks to a very
+comprehensive contribution from Nicolas Barry.
+
+&lt;/li&gt;&lt;li&gt;
+X11 forwarding support. Thanks to Andreas Schultz for doing a large
+part of the coding for this. Authentication munging is supported.
+However, PuTTY does &lt;em&gt;not&lt;/em&gt; currently attempt to authenticate
+connections to the local X server, because finding the
+authentication data to do so is server-dependent and complex and I
+thought I&#39;d wait to see what servers people actually want to use
+this with.
+
+&lt;/li&gt;&lt;li&gt;
+Added an SFTP client, for the improved file transfer protocol that
+comes with SSH-2.
+
+&lt;/li&gt;&lt;li&gt;
+Full-screen mode, &quot;like a DOS box&quot;. Not really like a DOS box, since
+it works within the current graphics mode rather than shifting into
+text mode, but it seems to work.
+
+&lt;/li&gt;&lt;li&gt;
+Support for resizing the font rather than the terminal when the user
+changes the window size. Also supports a hybrid mode, in which
+window resizes change the terminal size but maximising or going
+full-screen changes the font size. Patch due to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Unicode support in the terminal emulator. In the first place this
+allows us to support servers which actually send UTF-8 down their
+terminal sessions; but the architecture changes also mean that
+instead of specifying the local &lt;em&gt;and&lt;/em&gt; remote character sets
+in the Translation panel, you simply specify what character set you
+expect the server to be talking, and PuTTY handles the rest
+automatically. Many thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Experimental rlogin support. Thanks to Delian Delchev for the patch.
+Note that this may fail because the rlogin protocol relies on TCP
+Urgent data, which not all operating systems get right, and which
+not all firewalls pass through correctly. Also, local flow control
+is unsupported as yet, and the &quot;flush&quot; command is not handled
+correctly. Despite all this, it worked fine for me!
+
+&lt;/li&gt;&lt;li&gt;
+Improved support for local echo and local line editing. These are
+now separate options, controllable independently. PuTTY will make
+sensible guesses at the right settings, but those guesses can
+&lt;em&gt;always&lt;/em&gt; be overridden by the user.
+
+&lt;/li&gt;&lt;li&gt;
+Improved bell support. There&#39;s now a whole configuration panel; you
+can choose a bell that plays the Windows default sound, or plays a
+sound of your choice, or flashes the window, or does nothing. In
+addition the window&#39;s Taskbar entry can be made to flash if a bell
+goes off when the window is minimised, and also there&#39;s an option
+that disables all bells if it receives them too fast (so that if you
+&lt;code&gt;cat&lt;/code&gt; a binary file into your terminal it won&#39;t bleep for
+a week).
+
+&lt;/li&gt;&lt;li&gt;
+Support for AES in SSH-2.
+
+&lt;/li&gt;&lt;li&gt;
+Default Settings can now be used to save a default protocol and port
+number.
+
+&lt;/li&gt;&lt;li&gt;
+Scrollback should now automatically scroll if you try to drag-select
+off the top of the window (or off the bottom of the window when it&#39;s
+scrolled back), so you can easily select more than a screenful.
+
+&lt;/li&gt;&lt;li&gt;
+We now support rectangular-block selection, triggered by holding Alt
+while you drag the mouse. (You can also configure rectangular
+selection to be the default and Alt-drag to be conventional
+line-by-line selection.)
+
+&lt;/li&gt;&lt;li&gt;
+The mouse pointer can now be configured to disappear when the PuTTY
+window is active and text is typed, and reappear when the mouse is
+moved, à la MS Word. Particularly useful for those of us
+using focus-follows-mouse, where the pointer is quite likely to be
+inside the window and obscuring the view.
+
+&lt;/li&gt;&lt;li&gt;
+The cursor can now be displayed as an underline or as a vertical
+line, as well as a block. When it&#39;s a vertical line, it does
+something useful when not-quite-wrapping in the rightmost column.
+
+&lt;/li&gt;&lt;li&gt;
+Keepalive timeouts can now be specified in seconds rather than
+minutes.
+
+&lt;/li&gt;&lt;li&gt;
+Support for Diffie-Hellman group exchange in SSH-2.
+
+&lt;/li&gt;&lt;li&gt;
+If you don&#39;t supply a username, PSCP now guesses your remote
+username to be the same as your local username. (On Win95/98, this
+might not be useful to everybody, but it&#39;s at least no worse than
+bombing out with a complaint. On WinNT, it might be seriously
+useful.) Patch due to Christian Biesinger.
+
+&lt;/li&gt;&lt;li&gt;
+You can now enter a service name such as &quot;finger&quot;, in place of a
+port number. Patch due to Christian Biesinger.
+
+&lt;/li&gt;&lt;li&gt;
+It&#39;s now possible to invoke a second Pageant with some key files on
+the command line and have it feed those key files to the first
+Pageant. Also, you can make Pageant start another command once it&#39;s
+initialised itself; for example, &quot;&lt;code&gt;pageant -c
+wincvs.exe&lt;/code&gt;&quot; to start Pageant and then start WinCVS.
+
+&lt;/li&gt;&lt;li&gt;
+Scrollback on the terminal is no longer implemented by physically
+copying a huge array. It should now be safe to use very large
+scrollback buffers without suffering noticeable slowdown.
+
+&lt;/li&gt;&lt;li&gt;
+Patch due to Roman Pompejus: the &quot;&lt;code&gt;-log&lt;/code&gt;&quot; command line
+option on PuTTY is gone, replaced by a proper GUI-configurable
+logging facility.
+
+&lt;/li&gt;&lt;li&gt;
+Implemented a selection option to paste line drawing as the
+underlying characters &lt;i&gt;or&lt;/i&gt; as poor-man&#39;s. Thanks to to Robert
+de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Ctrl+Alt can be configured to &lt;em&gt;either&lt;/em&gt; have the traditional
+PuTTY behaviour (Ctrl+Alt+X is equivalent to ESC then Ctrl+X),
+&lt;em&gt;or&lt;/em&gt; to behave like AltGr. Thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Added SCO ANSI function key support (F1 is ESC [ M and F12 is ESC [
+X, with all obvious points in between).
+
+&lt;/li&gt;&lt;li&gt;
+Font changes when the window is maximised now keep it maximised.
+Thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+The Application key on Windows keyboards now behaves like a Compose
+key all the time. Compose behaviour on AltGr can still be configured
+on and off. Thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+The terminal driver now returns a configurable string when it sees
+^E. Thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+The About box now has a button that brings up a browser pointing at
+the PuTTY web site. Thanks to Eric Theriault.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the long-standing socket buffering bug should now be gone
+forever. If PuTTY is receiving data faster than it can send it out,
+it will attempt to slow down the entity it&#39;s receiving from rather
+than continuing to grow its buffers without bound.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: AltGr should now be fixed. It was broken in 0.51.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: repeat key exchange in SSH-2 is now handled correctly. You
+should no longer see &quot;Server failed host key check&quot; after your
+session has been running for an hour.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: various socket-handling problems should be corrected.
+Crashes on network errors, bad handling of TCP Urgent data in telnet
+and rlogin, and truncation of output when the remote server sends a
+lot of data and then immediately closes the connection. Thanks to
+Robert de Bath for the TCP Urgent stuff.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the cascading-error-boxes bug should be fixed. (This
+occurred when you had keepalives enabled and got Connection
+Aborted.)
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix in the configuration box: controls in panels other than the
+visible one should now not be able to get keyboard focus.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: Tab and accelerator keys now work in the Event Log and in
+the About box while a session is running. Thanks to Roman Pompejus
+for the fix.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.52.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.52.html</guid><pubDate>Sun, 13 Jan 2002 16:00:00 GMT</pubDate></item><item><title>0.51 (released 2000-12-14):</title><description>&lt;li&gt;
+Addition of PuTTYgen, an RSA key generation utility. Since PuTTY
+uses the same RSA key file format as SSH 1, keys generated by
+PuTTYgen are usable with SSH 1 as well.
+
+&lt;/li&gt;&lt;li&gt;
+SSH compression is now implemented.
+
+&lt;/li&gt;&lt;li&gt;
+Security improvement: better collection of randomness for the
+cryptographic random number generator. Thanks to Peter Gutmann of
+&lt;a href=&quot;http://www.cs.auckland.ac.nz/~pgut001/cryptlib/&quot;&gt;cryptlib&lt;/a&gt;
+for ideas.
+
+&lt;/li&gt;&lt;li&gt;
+Security improvement: PSCP should now not be vulnerable to malicious
+servers sending deliberately incorrect and harmful filenames down
+the SCP connection. (The problem was reported in Bugtraq
+&lt;a href=&quot;http://www.securityfocus.com/bid/1742&quot;&gt;#1742&lt;/a&gt;.)
+
+&lt;/li&gt;&lt;li&gt;
+Security improvement: the ssh client will not open agent forwarding
+channels unless agent forwarding has genuinely been enabled, by the
+user and the server. This allows a user to disable agent forwarding
+if they suspect the server might abuse the agent. (The problem was
+reported in Bugtraq
+&lt;a href=&quot;http://www.securityfocus.com/bid/1949&quot;&gt;#1949&lt;/a&gt;.)
+
+&lt;/li&gt;&lt;li&gt;
+New configurable option: the Compose key support is now off by
+default and configurable on.
+
+&lt;/li&gt;&lt;li&gt;
+New configurable option: whether or not Alt on its own brings up the
+System menu.
+
+&lt;/li&gt;&lt;li&gt;
+New configurable option: whether or not scrollback resets to the
+bottom when the display changes. (Previously you could control
+whether it reset on a keypress.)
+
+&lt;/li&gt;&lt;li&gt;
+New configurable options: application keypad mode and application
+cursor keys mode can be completely disabled. (Independently.)
+
+&lt;/li&gt;&lt;li&gt;
+New configurable options: Always On Top for the PuTTY window, so you
+can use it to keep system logs on-screen the whole time. (Might work
+particularly well with a &lt;em&gt;really&lt;/em&gt; small font.)
+
+&lt;/li&gt;&lt;li&gt;
+Better network error handling. All errors are now translated into
+plain text: &quot;Unexpected network error 10053&quot; is a thing of the past.
+
+&lt;/li&gt;&lt;li&gt;
+Added a small patch to improve Chinese support. Thanks to Zhong
+Ming-Xun.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: ISO8859-2 to Win1250 translation accidentally got broken in
+the 0.50 release. It should be back to normal now.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: restore the SSH back end&#39;s ability to distinguish stderr
+output from stdout output. This was breaking PSCP and potentially
+also Plink.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: correct the &quot;Lost connection while sending&quot; problem when
+pasting large amounts of data into PuTTY. This should also have
+fixed random connection loss in Plink. &lt;b&gt;Note&lt;/b&gt;: some of my
+experiments suggest that some SSH &lt;em&gt;servers&lt;/em&gt; are not entirely
+happy with very large (80Kb or so) pastes, so if you still have
+problems, they may not be PuTTY&#39;s fault.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: PuTTY proper now ignores trailing whitespace on the command
+line (this was causing problems with
+&quot;&lt;code&gt;putty&amp;nbsp;@sessionname&amp;nbsp;&lt;/code&gt;&quot; and similar.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the scrollbar is now reset to the bottom whenever the
+scrollback is, so they don&#39;t end up out of sync any more.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: both PuTTY and Pageant, when trying to load a private key
+file that turned out to be the wrong format, failed to close the
+file, so you couldn&#39;t delete it until the app had shut down.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: some SSH-2 connections were reporting &quot;Server failed host
+key check&quot; on session startup. This was a bug in PuTTY&#39;s DSA
+implementation.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the &quot;Default Settings&quot; pseudo-saved-session was often
+missing from the saved session list. This was causing chaos, as the
+rest of the code assumed it was there and so treated the first item
+in the list specially. It&#39;s now back.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: Plink and PSCP didn&#39;t load the Default Settings when
+presented with a simple hostname. (So a default username, default
+private key, etc, didn&#39;t get used.) Now they do.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: terminal resize events weren&#39;t being sent in SSH-2. Now they
+are.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: although local terminal line discipline was being turned
+off correctly on receipt of &lt;code&gt;IAC WILL ECHO&lt;/code&gt;, it wasn&#39;t
+being turned on again on receipt of &lt;code&gt;IAC WONT ECHO&lt;/code&gt;. This
+was breaking some BBS/MUD connections. Now fixed.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: pscp&#39;s GUI interface was computing wrong percentages for
+very large files (within a factor of 100 of 2^32).
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the Compose key now doesn&#39;t randomly trigger and cause
+keystroke loss on switching back into the PuTTY window.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: the Colours panel now works again. (The RGB values weren&#39;t
+updating when the selection changed in the list box.)
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: if you tried to use a local wildcard with PSCP (for
+example, &quot;&lt;code&gt;pscp * remotehost:&lt;/code&gt;&quot;, that wildcard would
+match the special directories &quot;&lt;code&gt;.&lt;/code&gt;&quot; and
+&quot;&lt;code&gt;..&lt;/code&gt;&quot;. It now doesn&#39;t; &quot;&lt;code&gt;.&lt;/code&gt;&quot; and
+&quot;&lt;code&gt;..&lt;/code&gt;&quot; can only be specified explicitly.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.51.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.51.html</guid><pubDate>Wed, 13 Dec 2000 16:00:00 GMT</pubDate></item><item><title>0.50 (released 2000-10-16):</title><description>&lt;li&gt;
+Keep-alives to prevent overzealous idle detectors in firewalls from
+closing connections down. Done by sending Telnet NOP or
+SSH_MSG_IGNORE, so as to avoid affecting the actual data stream.
+
+&lt;/li&gt;&lt;li&gt;
+In PuTTY proper, in SSH mode, you can now specify a command to be
+run at the remote end. (The SSH functionality was already there,
+because it was required for PSCP and Plink. All it took was a bit of
+GUI work to make it accessible from PuTTY itself.)
+
+&lt;/li&gt;&lt;li&gt;
+You can now configure the initial window title.
+
+&lt;/li&gt;&lt;li&gt;
+Running &quot;&lt;code&gt;putty -cleanup&lt;/code&gt;&quot; will now remove all files and
+registry entries created by PuTTY. If you&#39;ve used PuTTY on somebody
+else&#39;s machine and don&#39;t want to leave any mess behind, you can run
+this before deleting the PuTTY executable.
+
+&lt;/li&gt;&lt;li&gt;
+The Event Log now scrolls down when new events appear on it, so that
+if you leave it up all the time you can watch things happen. Also,
+you can select items from the Event Log and copy them to the
+clipboard (should help for debugging).
+
+&lt;/li&gt;&lt;li&gt;
+When using NT&#39;s opaque resize feature, resizing the window doesn&#39;t
+send resize events at &lt;em&gt;every&lt;/em&gt; step of the process, but
+instead sends a single one at the end. (I&#39;d have quite liked it to
+do a resize event if the drag paused for maybe a second, but
+WM_TIMER doesn&#39;t seem to get through in the middle of a resize. Oh
+well, this is good enough.)
+
+&lt;/li&gt;&lt;li&gt;
+Everyone&#39;s favourite trivial change: Shift+Ins pastes. (No
+configurable option to control this: it wasn&#39;t doing anything
+interesting anyway.)
+
+&lt;/li&gt;&lt;li&gt;
+Included two extra Makefile options: &lt;code&gt;/DAUTO_WINSOCK&lt;/code&gt;
+makes the build process assume that &lt;code&gt;&amp;lt;windows.h&amp;gt;&lt;/code&gt;
+implicitly includes a WinSock header file, and
+&lt;code&gt;/DWINSOCK_TWO&lt;/code&gt; makes PuTTY include
+&lt;code&gt;&amp;lt;winsock2.h&amp;gt;&lt;/code&gt; instead of
+&lt;code&gt;&amp;lt;winsock.h&amp;gt;&lt;/code&gt;.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix for a bug &lt;em&gt;nobody&lt;/em&gt; had ever noticed: if you hit About
+twice, you only get one About box (as designed), &lt;em&gt;except&lt;/em&gt;
+that if you open and close the Licence box then PuTTY forgets about
+the About box, so it will then let you open another. Now the
+behaviour is sane, and you can never open more than one About box.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: choosing local-terminal line discipline together with SSH
+password authentication now doesn&#39;t cause the password to be echoed
+to the screen.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: network errors now do not close the window if Close On Exit
+isn&#39;t set.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: fonts such as 9-point (12-pixel) Courier New, which
+previously failed to display underlines, now do so.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: stopped the saved-configuration-name box getting blanked
+when you swap away from and back to the Connection panel.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: closing the About box returns focus to the config box, and
+closing the View Licence box returns focus to the About box.
+
+&lt;/li&gt;&lt;li&gt;
+The moment you&#39;ve &lt;em&gt;all&lt;/em&gt; been waiting for: RSA public key
+authentication is here! You can enter a public-key file name in the
+SSH configuration panel, and PuTTY will attempt to authenticate with
+that before falling back to passwords or TIS. Key file format is the
+same as &quot;regular&quot; ssh. Decryption of the key using a passphrase is
+supported. No key generation utility is provided, yet.
+
+&lt;/li&gt;&lt;li&gt;
+Created Pageant, a PuTTY authentication agent. PuTTY can use RSA
+keys from this for authentication, and can also forward agent
+communications to the remote end. Keys can be added and removed
+either locally or remotely.
+
+&lt;/li&gt;&lt;li&gt;
+Created Plink, a command-line version of PuTTY suitable for use as a
+component of a pipe assembly (for example, Windows NT CVS can use it
+as a transport).
+
+&lt;/li&gt;&lt;li&gt;
+SSH protocol version 2 support. This is disabled by default unless
+you connect to a v2-only server. Public key authentication isn&#39;t
+supported (this places PuTTY technically in violation of the SSH-2
+specification).
+
+&lt;/li&gt;&lt;li&gt;
+Enable handling of &lt;code&gt;telnet://hostname:port/&lt;/code&gt; URLs on the
+command line. With this feature, you can now set PuTTY as the
+default handler for Telnet URLs. If you run the Registry Editor and
+set the value in
+&lt;code&gt;HKEY_CLASSES_ROOT\telnet\shell\open\command&lt;/code&gt; to be
+&quot;&lt;code&gt;\path\to\putty.exe %1&lt;/code&gt;&quot; (with the full pathname of your
+PuTTY executable), you should find that clicking on telnet links in
+your web browser now runs PuTTY.
+
+&lt;/li&gt;&lt;li&gt;
+Re-merge the two separate forks of the ssh protocol code. PuTTY and
+PSCP now use the same protocol module, meaning that further SSH
+developments will be easily able to affect both.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.50.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.50.html</guid><pubDate>Sun, 15 Oct 2000 16:00:00 GMT</pubDate></item><item><title>0.49 (released 2000-06-28):</title><description>&lt;li&gt;
+Stop the SSH protocol code from sending zero-length
+&lt;code&gt;SSH_CMSG_STDIN_DATA&lt;/code&gt; packets when Shift is pressed.
+These appear to be harmless to Unix sshd, but cause VMS sshd to
+generate an Exit signal.
+
+&lt;/li&gt;&lt;li&gt;
+Fix a small bug about using special port numbers in pscp; thanks to
+Joris van Rantwijk.
+
+&lt;/li&gt;&lt;li&gt;
+Three security improvements. PuTTY now checks the CRC on incoming
+packets, checks that the packet length and string length fields on
+incoming &lt;code&gt;SSH_SMSG_*_DATA&lt;/code&gt; packets are consistent, and
+outlaws attempts to set the terminal size too big by escape
+sequences (countering the xterm DoS attack shown in bugtraq
+&lt;a href=&quot;http://www.securityfocus.com/bid/1298&quot;&gt;#1298&lt;/a&gt;).
+
+&lt;/li&gt;&lt;li&gt;
+High-half characters (160 and above) are now supported in username
+and password input.
+
+&lt;/li&gt;&lt;li&gt;
+Bug fix: RSA keys whose storage format used an odd number of bytes
+(i.e. the bit length of the key, mod 16, was between 1 and 8
+inclusive) were being handled incorrectly. An sshd with an 850-bit
+server key wasn&#39;t able to accept connections from PuTTY as a result.
+
+&lt;/li&gt;&lt;li&gt;
+pscp now has the &quot;&lt;code&gt;-ls&lt;/code&gt;&quot; option to get a directory
+listing of a remote host. It does this by sending the command
+&quot;&lt;code&gt;ls -la &lt;/code&gt;&lt;em&gt;&amp;lt;dirspec&amp;gt;&lt;/em&gt;&quot;, so it might well not work
+on non-Unix ssh servers. It&#39;s mainly there to allow a useful
+directory listing facility for potential GUI front ends.
+
+&lt;/li&gt;&lt;li&gt;
+Local line discipline is now invoked in more sensible circumstances,
+and understands Telnet Erase Line. Thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Blinking cursor support (off by default). Thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+xterm mouse tracking support, thanks to Wez Furlong.
+
+&lt;/li&gt;&lt;li&gt;
+Hopefully vastly improved PuTTY&#39;s behaviour under load; also we can
+process incoming data even during a window move/resize. Thanks to
+Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Better handling of the bug in which underlines are drawn outside the
+character cell. Now they don&#39;t get drawn at _all_, which is still
+non-ideal but it&#39;s better than rampaging screen corruption. Thanks
+to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Various terminal emulation upgrades. Thanks to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+By popular demand, Shift-Tab now sends ESC [ Z instead of being
+indistinguishable from ordinary Tab.
+
+&lt;/li&gt;&lt;li&gt;
+^C, ^Z and ^D now instruct the local-terminal line discipline to
+send Telnet special control codes. The local line discipline can
+also be enabled and disabled in mid-session without dropping data,
+and it&#39;s also linked to the Telnet ECHO option. Patch due to Robert
+de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Telnet SYNCH is now preceded by IAC, which it wasn&#39;t previously.
+Patch due to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Fixed the long-standing bug in which CSI ? Q and CSI Q were treated
+identically for most values of Q. Patch due to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Pressing Return in a Telnet session now sends Telnet NL instead of
+Telnet CR (in raw data, that&#39;s CR-LF not CR-NUL; ^J continues to
+send just LF). Unix telnetds should not notice any difference;
+others might suddenly start working. Patch due to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Much patchery in font selection code; with any luck, mixed OEM+ANSI
+line drawing mode will now be more reliable. Patch due to Robert de
+Bath.
+
+&lt;/li&gt;&lt;li&gt;
+An attempt has been made to deal with the dropping of incoming data
+between decoding and display.
+
+&lt;/li&gt;&lt;li&gt;
+Replaced all the algorithms that weren&#39;t already my own code. The
+DES, MD5, SHA, and CRC32 implementations used in PuTTY are now all
+written by me and distributable under the PuTTY licence, instead of
+being borrowed from a variety of other places. Better still, there
+are &lt;em&gt;comments&lt;/em&gt;: the DES implementation contains a careful
+description of how the algorithm given in the spec was transformed
+into the optimised algorithm in the code, and the CRC32
+implementation explains what a CRC is and how the table lookup
+algorithm works.
+
+&lt;/li&gt;&lt;li&gt;
+Scrollback behaviour has changed. ANSI Delete Line at the top of the
+screen now inserts the lines into the scrollback (previously, only
+genuine scroll-up would do this). However, the scrollback is never
+touched by scroll operations in the alternate screen.
+
+&lt;/li&gt;&lt;li&gt;
+The response to Ctrl-E is now &quot;PuTTY&quot; instead of the xtermalike
+sequence it was previously.
+
+&lt;/li&gt;&lt;li&gt;
+The command line option &lt;code&gt;-log&lt;/code&gt; will now cause all data
+received from the remote host to be logged to a file
+&lt;code&gt;putty.log&lt;/code&gt;.
+
+&lt;/li&gt;&lt;li&gt;
+PSCP now doesn&#39;t try to &quot;recurse&quot; into the directories
+&lt;code&gt;.&lt;/code&gt; and &lt;code&gt;..&lt;/code&gt; like it did before.
+
+&lt;/li&gt;&lt;li&gt;
+Add keyboard accelerators on the System menu.
+
+&lt;/li&gt;&lt;li&gt;
+&quot;Warn On Close&quot; no longer applies to inactive windows: you can close
+one of those without complaint.
+
+&lt;/li&gt;&lt;li&gt;
+There is now a system to generate Borland and Cygnus makefiles from
+the master makefile, so that people can build PuTTY with other
+compilers but I still only have to maintain one makefile.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.49.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.49.html</guid><pubDate>Tue, 27 Jun 2000 16:00:00 GMT</pubDate></item><item><title>0.48 (released 1999-11-18):</title><description>&lt;li&gt;
+Cyrillic support: optional KOI8 to Win1251 translation, an internal
+version of the Cyrillic key map for machines that don&#39;t have it
+installed systemwide, and support for selecting a character set in
+the font configuration. All thanks to Oleg Panashchenko.
+
+&lt;/li&gt;&lt;li&gt;
+Support for the TIS authentication option (to the client, this looks
+much like a form of password authentication, so there&#39;s no local
+state involved).
+
+&lt;/li&gt;&lt;li&gt;
+SSH mode now shows an Event Log of all the initial protocol setup,
+to match the Telnet negotiation log.
+
+&lt;/li&gt;&lt;li&gt;
+Alt-F4 as &quot;close window&quot; can be configured off. Alt-Space as System
+menu is now an option and can be configured on, although it doesn&#39;t
+work very well (you have to press Down after hitting Alt-Space).
+
+&lt;/li&gt;&lt;li&gt;
+NetHack keypad mode mapping (shift-with-)numeric-keypad to
+(shift-with-)hjklyubn. Unfortunately Shift only works when NumLock
+is off, which is a bit odd.
+
+&lt;/li&gt;&lt;li&gt;
+An implementation of the &lt;em&gt;scp&lt;/em&gt; client, as a separate binary.
+Many thanks to Joris van Rantwijk.
+
+&lt;/li&gt;&lt;li&gt;
+Change the default title bar format to &quot;host.name - PuTTY&quot; rather
+than &quot;PuTTY: host.name&quot;, so as to be more useful in the taskbar.
+
+&lt;/li&gt;&lt;li&gt;
+Warning box &quot;are you sure you want to disconnect?&quot; on hitting the
+Close button or Alt-F4 or whatever.
+
+&lt;/li&gt;&lt;li&gt;
+Telnet mode was reported to drop char-255, presumably due to
+mishandling IAC IAC. Fix due to Robert de Bath.
+
+&lt;/li&gt;&lt;li&gt;
+Add some keyboard accelerators in the configuration box.
+
+&lt;/li&gt;&lt;li&gt;
+A raw-TCP connection option, alongside Telnet and SSH. Thanks to
+Mark Baker.
+
+&lt;/li&gt;&lt;li&gt;
+A local line-editing line discipline, which can be layered over any
+of the back end connection options. Most usefully, this can be used
+to make the raw-TCP back end suitable for talking to finger, SMTP,
+POP, NNTP etc. servers.
+
+&lt;/li&gt;&lt;li&gt;
+A small tool-tip that shows the size of the terminal window in
+character cells while it&#39;s being resized, so you can drag it out to
+a precise size. Many thanks to John Sullivan, who achieved this
+despite other people supporting my belief that it was impossible.
+
+&lt;/li&gt;&lt;li&gt;
+Single DES as an SSH encryption option, as well as triple DES.
+Thanks to Murphy Lam.
+
+&lt;/li&gt;&lt;li&gt;
+Support for using ssh by default: a &lt;code&gt;-ssh&lt;/code&gt; command line
+option, a compile-time definition &lt;code&gt;SSH_DEFAULT&lt;/code&gt;, and the
+ability to honour port and protocol (and host!) settings in the
+&quot;Default Settings&quot; part of the registry if they&#39;ve been manually
+inserted.
+
+&lt;/li&gt;&lt;li&gt;
+Made stored sessions available as a submenu from the system menu.
+Thanks to Owen Dunn.
+
+&lt;/li&gt;&lt;li&gt;
+Minimal Win32s compatibility, as a &lt;em&gt;compile-time&lt;/em&gt; option (so
+it&#39;s not in the snapshot binaries but is in the snapshot source
+releases). The configuration box apparently doesn&#39;t work, but the
+actual sessions will run OK. Thanks to Owen Dunn.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.48.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.48.html</guid><pubDate>Wed, 17 Nov 1999 16:00:00 GMT</pubDate></item><item><title>0.47 (released 1999-08-27):</title><description>&lt;li&gt;
+Fixed a potential security flaw in the random number generator.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.47.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.47.html</guid><pubDate>Thu, 26 Aug 1999 16:00:00 GMT</pubDate></item><item><title>0.46 (released 1999-07-09):</title><description>&lt;li&gt;Fixed a bug causing hangs when an SSH window was resized after
+the connection was closed. I&#39;d never spotted it, because I never use
+Close Window On Exit...
+
+&lt;/li&gt;&lt;li&gt;Default mouse pointer inside the PuTTY window is now an I-beam.
+
+&lt;/li&gt;&lt;li&gt;Support for AltGr. As it turns out, it &lt;i&gt;is&lt;/i&gt; possible to do
+this without also changing the behaviour of Ctrl/LeftAlt. Many
+thanks to &amp;lt;andre@via.ecp.fr&amp;gt; for inventing a way to achieve
+this.
+
+&lt;/li&gt;&lt;li&gt;
+Resource/memory leaks are apparently fixed. I&#39;m going to assume they
+&lt;i&gt;are&lt;/i&gt; completely fixed, unless someone mails me to suggest
+otherwise.
+
+&lt;/li&gt;&lt;li&gt;
+Fixed the bug in the configuration box whereby double-clicking on a
+saved session leaked the double click through to the window below.
+
+&lt;/li&gt;&lt;li&gt;
+ESC[?9r was being interpreted just like ESC[9r, with disastrous
+results (the former turns off mouse click reporting, which PuTTY
+doesn&#39;t support yet anyway; the latter munges the scroll region
+horribly). Fixed, in a temporary sort of way.
+
+&lt;/li&gt;&lt;li&gt;
+Added Blowfish encryption as an alternative to triple-DES.
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.46.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.46.html</guid><pubDate>Thu, 08 Jul 1999 16:00:00 GMT</pubDate></item><item><title>0.45 (released 1999-01-22):</title><description>&lt;li&gt;
+Fix the GPF on maximise-then-restore.
+
+&lt;/li&gt;&lt;li&gt;
+Fix the delayed update of the window title when in
+always-use-window-title mode and iconic.
+
+&lt;/li&gt;&lt;li&gt;
+Employ SetCapture() to allow drag-selects to continue to work when
+the pointer drifts out of the window.
+
+&lt;/li&gt;&lt;li&gt;
+Some platforms apparently define the identifier &quot;environ&quot; as a
+macro; stop using it inside PuTTY.
+
+&lt;/li&gt;&lt;li&gt;
+Add an option to ask SSH not to allocate a pty.
+
+&lt;/li&gt;&lt;li&gt;
+Add a terminal setting to cause LF to imply CR (useful with the
+above).
+
+&lt;/li&gt;</description><link>https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.45.html</link><guid isPermaLink="false">https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.45.html</guid><pubDate>Thu, 21 Jan 1999 16:00:00 GMT</pubDate></item></channel></rss>

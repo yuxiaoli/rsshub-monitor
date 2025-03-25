@@ -1,31 +1,5 @@
 [
   {
-    "provider_id": "0818tuan",
-    "provider_name": "0818 团",
-    "route_key": "/:listId?",
-    "route": {
-      "name": "分类",
-      "path": "/:listId?",
-      "example": "/0818tuan",
-      "parameters": {
-        "listId": "活动分类，见下表，默认为 `1`"
-      },
-      "description": "| 最新线报 | 实测活动 | 优惠券 |\n| -------- | -------- | ------ |\n| 1        | 2        | 3      |"
-    }
-  },
-  {
-    "provider_id": "ccreports",
-    "provider_name": "消费者报道",
-    "route_key": "/article",
-    "route": {
-      "name": "要闻",
-      "path": "/article",
-      "example": "/ccreports/article",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
     "provider_id": "damai",
     "provider_name": "大麦网",
     "route_key": "/activity/:city/:category/:subcategory/:keyword?",
@@ -40,48 +14,6 @@
         "keyword": "搜索关键字，置空为不限制"
       },
       "description": "城市、分类名、子分类名，请参见[大麦网搜索页面](https://search.damai.cn/search.htm)"
-    }
-  },
-  {
-    "provider_id": "duozhuayu",
-    "provider_name": "多抓鱼",
-    "route_key": "/search/:wd",
-    "route": {
-      "name": "搜索结果",
-      "path": "/search/:wd",
-      "example": "/duozhuayu/search/JavaScript",
-      "parameters": {
-        "wd": "搜索关键词"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/archive/:lang?",
-    "route": {
-      "name": "已经出售的角色列表",
-      "path": "/archive/:lang?",
-      "example": "/furstar/archive/cn",
-      "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/artists/:lang?",
-    "route": {
-      "name": "画师列表",
-      "path": "/artists/:lang?",
-      "example": "/furstar/artists/cn",
-      "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
-      },
-      "description": ""
     }
   },
   {
@@ -101,38 +33,14 @@
   {
     "provider_id": "guangdiu",
     "provider_name": "逛丢",
-    "route_key": "/:query?",
+    "route_key": "/search/:query?",
     "route": {
-      "name": "国内折扣 / 海外折扣",
-      "path": "/:query?",
-      "example": "/guangdiu/k=daily",
+      "name": "关键字搜索",
+      "path": "/search/:query?",
+      "example": "/guangdiu/search/q=百度网盘",
       "parameters": {
         "query": "链接参数，对应网址问号后的内容"
       },
-      "description": "::: tip\n  海外折扣: [`/guangdiu/k=daily&c=us`](https://rsshub.app/guangdiu/k=daily&c=us)\n:::"
-    }
-  },
-  {
-    "provider_id": "guangdiu",
-    "provider_name": "逛丢",
-    "route_key": "/rank",
-    "route": {
-      "name": "一小时风云榜",
-      "path": "/rank",
-      "example": "/guangdiu/rank",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "hotukdeals",
-    "provider_name": "hotukdeals",
-    "route_key": "/hottest",
-    "route": {
-      "name": "hottest",
-      "path": "/hottest",
-      "example": "/hotukdeals/hottest",
-      "parameters": {},
       "description": ""
     }
   },
@@ -192,6 +100,22 @@
     }
   },
   {
+    "provider_id": "mymusicsheet",
+    "provider_name": "MyMusicSheet",
+    "route_key": "/user/sheets/:username/:iso?/:freeOnly?",
+    "route": {
+      "name": "User Sheets",
+      "path": "/user/sheets/:username/:iso?/:freeOnly?",
+      "example": "/mymusicsheet/user/sheets/HalcyonMusic/USD/1",
+      "parameters": {
+        "username": "用户名，可在URL中找到",
+        "iso": "用于显示价格的ISO 4217货币代码, 支持常见代码, 默认为人民币, 即`CNY`",
+        "freeOnly": "只返回免费谱, 任意值为开启"
+      },
+      "description": "关于 ISO 4217，请参考[维基百科](https://zh.wikipedia.org/zh-cn/ISO_4217#%E7%8E%B0%E8%A1%8C%E4%BB%A3%E7%A0%81)"
+    }
+  },
+  {
     "provider_id": "openrice",
     "provider_name": "Openrice開飯喇",
     "route_key": "/:lang/hongkong/explore/chart/:category",
@@ -209,30 +133,15 @@
   {
     "provider_id": "openrice",
     "provider_name": "Openrice開飯喇",
-    "route_key": "/:lang/hongkong/offers",
+    "route_key": "/:lang/hongkong/promos",
     "route": {
-      "name": "香港餐廳精選優惠券",
-      "path": "/:lang/hongkong/offers",
-      "example": "/openrice/zh/hongkong/offers",
+      "name": "香港餐厅滋讯",
+      "path": "/:lang/hongkong/promos",
+      "example": "/openrice/zh/hongkong/promos",
       "parameters": {
         "lang": "语言，缺省为 zh"
       },
       "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n  "
-    }
-  },
-  {
-    "provider_id": "openrice",
-    "provider_name": "Openrice開飯喇",
-    "route_key": "/:lang/hongkong/voting/top/:categoryKey",
-    "route": {
-      "name": "OpenRice 開飯熱店 - 年度餐廳投票",
-      "path": "/:lang/hongkong/voting/top/:categoryKey",
-      "example": "/openrice/zh/hongkong/voting/top/chinese",
-      "parameters": {
-        "lang": "语言，缺省为 zh",
-        "categoryKey": "类别，缺省为 chinese"
-      },
-      "description": "\n  lang: 语言，见下方列表\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n\n  categoryKey: 部分类别，见下方列表 (更多的类别可以在页面的link中对照获取)\n| 中菜館 | 上海菜 | 粵菜 | 川菜 | 港式 | 粥粉麵店 | 廚師發辦 | 韓國菜 | 泰國菜 | 越南菜 |\n| -------- | -------- | -------- |  -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| chinese | shanghainese | guangdong | sichuan | hkstyle | congee_noodles | omakase | korean | thai | vietnamese |\n  "
     }
   },
   {
@@ -273,20 +182,6 @@
         "id": "音乐人 ID"
       },
       "description": "::: tip\n音乐人 ID 查询: `/showstart/search/artist/:keyword`，如: [https://rsshub.app/showstart/search/artist/周杰伦](https://rsshub.app/showstart/search/artist/周杰伦)\n:::"
-    }
-  },
-  {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/brand/:id",
-    "route": {
-      "name": "按厂牌 - 演出更新",
-      "path": "/brand/:id",
-      "example": "/showstart/brand/34707",
-      "parameters": {
-        "id": "厂牌 ID"
-      },
-      "description": "::: tip\n厂牌 ID 查询: `/showstart/search/brand/:keyword`，如: [https://rsshub.app/showstart/search/brand/声场](https://rsshub.app/showstart/search/brand/声场)\n:::"
     }
   },
   {
@@ -350,15 +245,16 @@
   {
     "provider_id": "smzdm",
     "provider_name": "什么值得买",
-    "route_key": "/baoliao/:uid",
+    "route_key": "/haowen/fenlei/:name/:sort?",
     "route": {
-      "name": "用户爆料",
-      "path": "/baoliao/:uid",
-      "example": "/smzdm/baoliao/7367111021",
+      "name": "好文分类",
+      "path": "/haowen/fenlei/:name/:sort?",
+      "example": "/smzdm/haowen/fenlei/shenghuodianqi",
       "parameters": {
-        "uid": "用户id，网址上直接可以看到"
+        "name": "分类名，可在 URL 中查看",
+        "sort": "排序方式，默认为最新"
       },
-      "description": ""
+      "description": "| 最新 | 周排行 | 月排行 |\n| ---- | ------ | ------ |\n| 0    | 7      | 30     |"
     }
   },
   {
@@ -388,34 +284,6 @@
           ],
           "default": "1"
         }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "smzdm",
-    "provider_name": "什么值得买",
-    "route_key": "/keyword/:keyword",
-    "route": {
-      "name": "关键词",
-      "path": "/keyword/:keyword",
-      "example": "/smzdm/keyword/女装",
-      "parameters": {
-        "keyword": "你想订阅的关键词"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "smzdm",
-    "provider_name": "什么值得买",
-    "route_key": "/product/:id",
-    "route": {
-      "name": "商品",
-      "path": "/product/:id",
-      "example": "/smzdm/product/zm5vzpe",
-      "parameters": {
-        "id": "商品 id，网址上直接可以看到"
       },
       "description": ""
     }
@@ -609,6 +477,18 @@
     }
   },
   {
+    "provider_id": "snowpeak",
+    "provider_name": "Snow Peak",
+    "route_key": "/us/new-arrivals",
+    "route": {
+      "name": "New Arrivals(USA)",
+      "path": "/us/new-arrivals",
+      "example": "/snowpeak/us/new-arrivals",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "taobao",
     "provider_name": "淘宝众筹",
     "route_key": "/zhongchou/:type?",
@@ -623,18 +503,18 @@
     }
   },
   {
-    "provider_id": "tesla",
-    "provider_name": "特斯拉中国",
-    "route_key": "/cx/:category?/:city?",
+    "provider_id": "uniqlo",
+    "provider_name": "Uniqlo",
+    "route_key": "/new/:country/:category",
     "route": {
-      "name": "权益中心",
-      "path": "/cx/:category?/:city?",
-      "example": "/tesla/cx/生活方式/北京",
+      "name": "New Arrivals",
+      "path": "/new/:country/:category",
+      "example": "/uniqlo/new/sg/men",
       "parameters": {
-        "category": "分类，见下表，默认为空，即全部",
-        "city": "城市，默认为空，即全国"
+        "country": "currently only supports sg, us, jp",
+        "category": "supports `men` `women`, `kids`, `baby`"
       },
-      "description": "| 充电免停 | 酒店 | 美食 | 生活方式 |\n| -------- | ---- | ---- | -------- |\n\n::: tip\n  分类为 **充电免停** 时，城市参数不起作用\n:::\n\n<details>\n<summary>可选城市</summary>\n\n| 成都 | 深圳 | 洛阳 | 北京 | 南京 | 绍兴 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 西安 | 上海 | 阿坝藏族羌族自治州 | 重庆 | 郑州 | 天津 |\n| ---- | ---- | ------------------ | ---- | ---- | ---- |\n\n| 晋中 | 三亚 | 湖州 | 苏州 | 扬州 | 秦皇岛 |\n| ---- | ---- | ---- | ---- | ---- | ------ |\n\n| 长沙 | 武汉 | 安阳 | 温州 | 瑞安 | 石家庄 |\n| ---- | ---- | ---- | ---- | ---- | ------ |\n\n| 佛山 | 广州 | 杭州 | 烟台 | 沧州 | 张家港 |\n| ---- | ---- | ---- | ---- | ---- | ------ |\n\n| 金华 | 临沧 | 大理 | 南昌 | 贵阳 | 信阳 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 张家口 | 铜仁 | 沈阳 | 合肥 | 黔东 | 高邮 |\n| ------ | ---- | ---- | ---- | ---- | ---- |\n\n| 三河 | 安顺 | 莆田 | 阳江 | 南宁 | 台州 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 余姚 | 淄博 | 三明 | 中山 | 宁波 | 厦门 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 永康 | 慈溪 | 台山 | 福州 | 无锡 | 宜昌 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 泉州 | 肇庆 | 太仓 | 珠海 | 邢台 | 衡水 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 温岭 | 宜兴 | 东莞 | 威海 | 南通 | 舟山 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 都匀 | 长治 | 江阴 | 云浮 | 常州 | 唐山 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 平湖 | 商丘 | 保定 | 泰州 | 青岛 | 龙口 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 泰安 | 岳阳 | 惠州 | 徐州 | 哈尔滨 | 潍坊 |\n| ---- | ---- | ---- | ---- | ------ | ---- |\n\n| 大同 | 嘉兴 | 毕节 | 临汾 | 江门 | 诸暨 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 儋州 | 衢州 | 大连 | 昆山 | 靖江 | 常熟 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 罗定 | 丽江 | 晋江 | 乐清 | 茂名 | 福清 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 廊坊 | 兰溪 | 汕尾 | 滨州 | 昆明 | 玉环 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 绵阳 | 漳州 | 德州 | 聊城 | 龙岩 | 临沂 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 新沂 | 桐乡 | 迪庆藏族自治州 | 汕头 | 潮州 | 驻马店 |\n| ---- | ---- | -------------- | ---- | ---- | ------ |\n\n| 曲阜 | 郴州 | 济源 | 兴义 |\n| ---- | ---- | ---- | ---- |\n</details>"
+      "description": ""
     }
   },
   {
