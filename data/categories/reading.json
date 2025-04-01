@@ -2,35 +2,35 @@
   {
     "provider_id": "56kog",
     "provider_name": "明月中文网",
-    "route_key": "/top/:category?",
+    "route_key": "/class/:category?",
     "route": {
-      "path": "/top/:category?",
-      "example": "/56kog/top/weekvisit",
+      "path": "/class/:category?",
+      "example": "/56kog/class/1_1",
       "parameters": {
-        "category": "分类，见下表，默认为周点击榜"
+        "category": "分类，见下表，默认为玄幻魔法"
       },
-      "name": "榜单",
-      "description": "| [周点击榜](https://www.56kog.com/top/weekvisit.html) | [总收藏榜](https://www.56kog.com/top/goodnum.html) | [最新 入库](https://www.56kog.com/top/postdate.html) |\n| ---------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------- |\n| weekvisit                                            | goodnum                                            | postdate                                             |",
+      "name": "分类",
+      "description": "| [玄幻魔法](https://www.56kog.com/class/1_1.html) | [武侠修真](https://www.56kog.com/class/2_1.html) | [历史军事](https://www.56kog.com/class/4_1.html) | [侦探推理](https://www.56kog.com/class/5_1.html) | [网游动漫](https://www.56kog.com/class/6_1.html) |\n| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |\n| 1_1                                             | 2_1                                             | 4_1                                             | 5_1                                             | 6_1                                             |\n\n| [恐怖灵异](https://www.56kog.com/class/8_1.html) | [都市言情](https://www.56kog.com/class/3_1.html) | [科幻](https://www.56kog.com/class/7_1.html) | [女生小说](https://www.56kog.com/class/9_1.html) | [其他](https://www.56kog.com/class/10_1.html) |\n| ------------------------------------------------ | ------------------------------------------------ | -------------------------------------------- | ------------------------------------------------ | --------------------------------------------- |\n| 8_1                                             | 3_1                                             | 7_1                                         | 9_1                                             | 10_1                                         |",
       "provider_id": "56kog",
       "provider_name": "明月中文网",
-      "route_key": "/top/:category?"
+      "route_key": "/class/:category?"
     }
   },
   {
-    "provider_id": "asianfanfics",
-    "provider_name": "Asianfanfics",
-    "route_key": "/text-search/:keyword",
+    "provider_id": "69shu",
+    "provider_name": "69书吧",
+    "route_key": "/article/:id",
     "route": {
-      "path": "/text-search/:keyword",
-      "example": "/asianfanfics/text-search/milklove",
+      "path": "/article/:id",
+      "name": "章节",
+      "url": "www.69shuba.cx",
+      "example": "/69shu/article/47117",
       "parameters": {
-        "keyword": "关键词"
+        "id": "小说 id, 可在对应小说页 URL 中找到"
       },
-      "name": "关键词",
-      "description": "匹配asianfanfics搜索关键词",
-      "provider_id": "asianfanfics",
-      "provider_name": "Asianfanfics",
-      "route_key": "/text-search/:keyword"
+      "provider_id": "69shu",
+      "provider_name": "69书吧",
+      "route_key": "/article/:id"
     }
   },
   {
@@ -76,6 +76,20 @@
     }
   },
   {
+    "provider_id": "gmcmonline",
+    "provider_name": "国门传媒在线",
+    "route_key": "/chinacustoms",
+    "route": {
+      "path": "/chinacustoms",
+      "name": "中国海关",
+      "url": "chinacustoms.gmcmonline.com",
+      "example": "/gmcmonline/chinacustoms",
+      "provider_id": "gmcmonline",
+      "provider_name": "国门传媒在线",
+      "route_key": "/chinacustoms"
+    }
+  },
+  {
     "provider_id": "inoreader",
     "provider_name": "Inoreader",
     "route_key": "/rss/:user/:tag",
@@ -110,19 +124,88 @@
     }
   },
   {
+    "provider_id": "jjwxc",
+    "provider_name": "晋江文学城",
+    "route_key": "/book/:id?",
+    "route": {
+      "path": "/book/:id?",
+      "view": 5,
+      "example": "/jjwxc/book/7013024",
+      "parameters": {
+        "id": "作品 id，可在对应作品页中找到"
+      },
+      "name": "作品章节",
+      "provider_id": "jjwxc",
+      "provider_name": "晋江文学城",
+      "route_key": "/book/:id?"
+    }
+  },
+  {
     "provider_id": "linovelib",
     "provider_name": "哔哩轻小说",
-    "route_key": "/novel/:id",
+    "route_key": "/volume/:id",
     "route": {
-      "path": "/novel/:id",
-      "example": "/linovelib/novel/2547",
+      "path": "/volume/:id",
+      "example": "/linovelib/volume/8",
       "parameters": {
-        "id": "小说 id，对应书架开始阅读 URL 中找到"
+        "id": "小说 ID，可在小说页 URL 中找到"
       },
-      "name": "小说更新",
+      "name": "卷",
       "provider_id": "linovelib",
       "provider_name": "哔哩轻小说",
-      "route_key": "/novel/:id"
+      "route_key": "/volume/:id"
+    }
+  },
+  {
+    "provider_id": "penguin-random-house",
+    "provider_name": "Penguin Random House",
+    "route_key": "/articles",
+    "route": {
+      "path": "/articles",
+      "example": "/penguin-random-house/articles",
+      "parameters": {},
+      "name": "Articles",
+      "url": "penguinrandomhouse.com/articles",
+      "provider_id": "penguin-random-house",
+      "provider_name": "Penguin Random House",
+      "route_key": "/articles"
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/search/:sub/:query",
+    "route": {
+      "path": "/search/:sub/:query",
+      "example": "/syosetu/search/noc/word=ハーレム&notword=&type=r&mintime=&maxtime=&minlen=30000&maxlen=&min_globalpoint=&max_globalpoint=&minlastup=&maxlastup=&minfirstup=&maxfirstup=&isgl=1&notbl=1&order=new?limit=5",
+      "parameters": {
+        "sub": {
+          "description": "The target Syosetu subsite.",
+          "options": [
+            {
+              "value": "yomou",
+              "label": "小説を読もう"
+            },
+            {
+              "value": "noc",
+              "label": "ノクターン"
+            },
+            {
+              "value": "mnlt",
+              "label": "ムーンライト"
+            },
+            {
+              "value": "mid",
+              "label": "ミッドナイト"
+            }
+          ]
+        },
+        "query": "Search parameters in Syosetu format."
+      },
+      "name": "Search",
+      "provider_id": "syosetu",
+      "provider_name": "Syosetu",
+      "route_key": "/search/:sub/:query"
     }
   }
 ]

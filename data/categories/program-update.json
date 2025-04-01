@@ -14,77 +14,37 @@
     }
   },
   {
-    "provider_id": "apple",
-    "provider_name": "Apple",
-    "route_key": "/apps/update/:country/:id/:platform?",
+    "provider_id": "android",
+    "provider_name": "Android",
+    "route_key": "/platform-tools-releases",
     "route": {
-      "path": "/apps/update/:country/:id/:platform?",
-      "view": 5,
-      "example": "/apple/apps/update/us/id408709785",
-      "parameters": {
-        "country": "App Store Country, obtain from the app URL, see below",
-        "id": "App id, obtain from the app URL",
-        "platform": {
-          "description": "App Platform, see below, all by default",
-          "options": [
-            {
-              "value": "All",
-              "label": "all"
-            },
-            {
-              "value": "iOS",
-              "label": "iOS"
-            },
-            {
-              "value": "macOS",
-              "label": "macOS"
-            },
-            {
-              "value": "tvOS",
-              "label": "tvOS"
-            }
-          ]
-        }
-      },
-      "name": "App Update",
-      "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::",
-      "provider_id": "apple",
-      "provider_name": "Apple",
-      "route_key": "/apps/update/:country/:id/:platform?"
-    }
-  },
-  {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/price/:country/:type/:id",
-    "route": {
-      "path": "/price/:country/:type/:id",
-      "example": "/appstore/price/us/mac/id1152443474",
-      "parameters": {
-        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
-        "type": "App type，either `iOS` or `mac`",
-        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
-      },
-      "name": "Price Drop",
-      "url": "apps.apple.com/",
-      "provider_id": "appstore",
-      "provider_name": "App Store/Mac App Store",
-      "route_key": "/price/:country/:type/:id"
-    }
-  },
-  {
-    "provider_id": "asus",
-    "provider_name": "ASUS",
-    "route_key": "/gpu-tweak",
-    "route": {
-      "path": "/gpu-tweak",
-      "example": "/asus/gpu-tweak",
+      "path": "/platform-tools-releases",
+      "example": "/android/platform-tools-releases",
       "parameters": {},
-      "name": "GPU Tweak",
-      "url": "asus.com/campaign/GPU-Tweak-III/*",
-      "provider_id": "asus",
-      "provider_name": "ASUS",
-      "route_key": "/gpu-tweak"
+      "name": "SDK Platform Tools release notes",
+      "url": "developer.android.com/studio/releases/platform-tools",
+      "provider_id": "android",
+      "provider_name": "Android",
+      "route_key": "/platform-tools-releases"
+    }
+  },
+  {
+    "provider_id": "app-center",
+    "provider_name": "App Center",
+    "route_key": "/release/:user/:app/:distribution_group",
+    "route": {
+      "path": "/release/:user/:app/:distribution_group",
+      "example": "/app-center/release/cloudflare/1.1.1.1-windows/beta",
+      "parameters": {
+        "user": "User",
+        "app": "App name",
+        "distribution_group": "Distribution group"
+      },
+      "name": "Release",
+      "description": "::: tip\n  The parameters can be extracted from the Release page URL: `https://install.appcenter.ms/users/:user/apps/:app/distribution_groups/:distribution_group`\n:::",
+      "provider_id": "app-center",
+      "provider_name": "App Center",
+      "route_key": "/release/:user/:app/:distribution_group"
     }
   },
   {
@@ -102,6 +62,21 @@
       "provider_id": "bilibili",
       "provider_name": "哔哩哔哩 bilibili",
       "route_key": "/app/:id?"
+    }
+  },
+  {
+    "provider_id": "brave",
+    "provider_name": "Brave",
+    "route_key": "/latest",
+    "route": {
+      "path": "/latest",
+      "example": "/brave/latest",
+      "parameters": {},
+      "name": "Release Notes",
+      "url": "brave.com/latest",
+      "provider_id": "brave",
+      "provider_name": "Brave",
+      "route_key": "/latest"
     }
   },
   {
@@ -135,21 +110,6 @@
     }
   },
   {
-    "provider_id": "cursor",
-    "provider_name": "Cursor",
-    "route_key": "/changelog",
-    "route": {
-      "path": "/changelog",
-      "name": "Changelog",
-      "url": "www.cursor.com",
-      "example": "/cursor/changelog",
-      "view": 0,
-      "provider_id": "cursor",
-      "provider_name": "Cursor",
-      "route_key": "/changelog"
-    }
-  },
-  {
     "provider_id": "diskanalyzer",
     "provider_name": "WizTree",
     "route_key": "/whats-new",
@@ -167,41 +127,20 @@
   {
     "provider_id": "dockerhub",
     "provider_name": "Docker Hub",
-    "route_key": "/build/:owner/:image/:tag?",
+    "route_key": "/tag/:owner/:image/:limits?",
     "route": {
-      "path": "/build/:owner/:image/:tag?",
-      "view": 5,
-      "example": "/dockerhub/build/diygod/rsshub/latest",
+      "path": "/tag/:owner/:image/:limits?",
+      "example": "/dockerhub/tag/library/mariadb",
       "parameters": {
-        "owner": "Image owner, the owner of the official image fills in the library, for example: /dockerhub/build/library/mysql",
+        "owner": "Image owner",
         "image": "Image name",
-        "tag": {
-          "description": "Image tag",
-          "default": "latest"
-        }
+        "limits": "Tag count, 10 by default"
       },
-      "name": "Image New Build",
+      "name": "Image New Tag",
+      "description": "::: warning\n  Use `library` as the `owner` for official images, such as [https://rsshub.app/dockerhub/tag/library/mysql](https://rsshub.app/dockerhub/tag/library/mysql)\n:::",
       "provider_id": "dockerhub",
       "provider_name": "Docker Hub",
-      "route_key": "/build/:owner/:image/:tag?"
-    }
-  },
-  {
-    "provider_id": "dockerhub",
-    "provider_name": "Docker Hub",
-    "route_key": "/repositories/:owner",
-    "route": {
-      "name": "Owner Repositories",
-      "description": "List of repositories for an image owner",
-      "path": "/repositories/:owner",
-      "view": 5,
-      "example": "/dockerhub/repositories/diygod",
-      "parameters": {
-        "owner": "Image owner"
-      },
-      "provider_id": "dockerhub",
-      "provider_name": "Docker Hub",
-      "route_key": "/repositories/:owner"
+      "route_key": "/tag/:owner/:image/:limits?"
     }
   },
   {
@@ -219,22 +158,6 @@
       "provider_id": "eagle",
       "provider_name": "Eagle",
       "route_key": "/changelog/:language?"
-    }
-  },
-  {
-    "provider_id": "f-droid",
-    "provider_name": "F-Droid",
-    "route_key": "/apprelease/:app",
-    "route": {
-      "path": "/apprelease/:app",
-      "example": "/f-droid/apprelease/com.termux",
-      "parameters": {
-        "app": "App's package name"
-      },
-      "name": "App Update",
-      "provider_id": "f-droid",
-      "provider_name": "F-Droid",
-      "route_key": "/apprelease/:app"
     }
   },
   {
@@ -286,6 +209,22 @@
     }
   },
   {
+    "provider_id": "gofans",
+    "provider_name": "GoFans",
+    "route_key": "/:kind?",
+    "route": {
+      "path": "/:kind?",
+      "example": "/gofans",
+      "parameters": {
+        "kind": "Platform, either `macos` or `ios`, empty means both (default)"
+      },
+      "name": "最新限免 / 促销应用",
+      "provider_id": "gofans",
+      "provider_name": "GoFans",
+      "route_key": "/:kind?"
+    }
+  },
+  {
     "provider_id": "google",
     "provider_name": "Google",
     "route_key": "/chrome/extension/:id",
@@ -334,6 +273,19 @@
     }
   },
   {
+    "provider_id": "home-assistant",
+    "provider_name": "Home Assistant",
+    "route_key": "/hacs/repositories",
+    "route": {
+      "path": "/hacs/repositories",
+      "name": "HACS Repositories",
+      "example": "/home-assistant/hacs/repositories",
+      "provider_id": "home-assistant",
+      "provider_name": "Home Assistant",
+      "route_key": "/hacs/repositories"
+    }
+  },
+  {
     "provider_id": "iplaysoft",
     "provider_name": "异次元软件世界",
     "route_key": "/",
@@ -349,38 +301,16 @@
     }
   },
   {
-    "provider_id": "ipsw",
-    "provider_name": "IPSW.me",
-    "route_key": "/index/:ptype/:pname",
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/golden",
     "route": {
-      "path": "/index/:ptype/:pname",
-      "example": "/ipsw/index/ipsws/iPad8,11",
-      "parameters": {
-        "ptype": "Fill in ipsws or otas to get different versions of firmware",
-        "pname": "Product name, `http://rsshub.app/ipsw/index/ipsws/iPod`, if you fill in the iPad, follow the entire iPad series(ptype default to ipsws).`http://rsshub.app/ipsw/index/ipsws/iPhone11,8`, if you fill in the specific iPhone11,8, submit to the ipsws firmware information of this model"
-      },
-      "name": "Apple Firmware Update-IPSWs/OTAs version",
-      "provider_id": "ipsw",
-      "provider_name": "IPSW.me",
-      "route_key": "/index/:ptype/:pname"
-    }
-  },
-  {
-    "provider_id": "lrepacks",
-    "provider_name": "REPACK скачать",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "name": "REPACK скачать",
-      "url": "lrepacks.net",
-      "example": "/lrepacks",
-      "parameters": {
-        "category": "Category, Homepage by default"
-      },
-      "description": "::: tip\n  If you subscribe to [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)，where the URL is `https://lrepacks.net/repaki-sistemnyh-programm/`, extract the part `https://lrepacks.net/` to the end, which is `repaki-sistemnyh-programm`, and use it as the parameter to fill in. Therefore, the route will be [`/lrepacks/repaki-sistemnyh-programm`](https://rsshub.app/lrepacks/repaki-sistemnyh-programm).\n\n| Category                                                                        | ID                                                                                           |\n| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |\n| [Новые репаки на сегодня](https://lrepacks.net/novye-repaki-elchupacabra/)      | [novye-repaki-elchupacabra](https://rsshub.app/lrepacks/novye-repaki-elchupacabra)           |\n| [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)          | [repaki-sistemnyh-programm](https://rsshub.app/lrepacks/repaki-sistemnyh-programm)           |\n| [Программы для графики](https://lrepacks.net/repaki-programm-dlya-grafiki/)     | [repaki-programm-dlya-grafiki](https://rsshub.app/lrepacks/repaki-programm-dlya-grafiki)     |\n| [Программы для интернета](https://lrepacks.net/repaki-programm-dlya-interneta/) | [repaki-programm-dlya-interneta](https://rsshub.app/lrepacks/repaki-programm-dlya-interneta) |\n| [Мультимедиа программы](https://lrepacks.net/repaki-multimedia-programm/)       | [repaki-multimedia-programm](https://rsshub.app/lrepacks/repaki-multimedia-programm)         |\n| [Программы для офиса](https://lrepacks.net/repaki-programm-dlya-ofisa/)         | [repaki-programm-dlya-ofisa](https://rsshub.app/lrepacks/repaki-programm-dlya-ofisa)         |\n| [Разные программы](https://lrepacks.net/repaki-raznyh-programm/)                | [repaki-raznyh-programm](https://rsshub.app/lrepacks/repaki-raznyh-programm)                 |\n| [Системные библиотеки](https://lrepacks.net/sistemnye-biblioteki/)              | [sistemnye-biblioteki](https://rsshub.app/lrepacks/sistemnye-biblioteki)                     |\n| [Важная информация](https://lrepacks.net/informaciya/)                          | [informaciya](https://rsshub.app/lrepacks/informaciya)                                       |\n:::",
-      "provider_id": "lrepacks",
-      "provider_name": "REPACK скачать",
-      "route_key": "/:category?"
+      "path": "/golden",
+      "example": "/mi/golden",
+      "name": "小米应用商店金米奖",
+      "provider_id": "mi",
+      "provider_name": "小米",
+      "route_key": "/golden"
     }
   },
   {
@@ -400,16 +330,36 @@
     }
   },
   {
-    "provider_id": "nextjs",
-    "provider_name": "Next.js",
-    "route_key": "/blog",
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/mcr/product/*",
     "route": {
-      "path": "/blog",
-      "name": "Blog",
-      "example": "/nextjs/blog",
-      "provider_id": "nextjs",
-      "provider_name": "Next.js",
-      "route_key": "/blog"
+      "path": "/mcr/product/*",
+      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
+      "parameters": {
+        "product": "repository path in mcr.microsoft.com"
+      },
+      "name": "Product tags in mcr.microsoft.com",
+      "provider_id": "microsoft",
+      "provider_name": "Microsoft",
+      "route_key": "/mcr/product/*"
+    }
+  },
+  {
+    "provider_id": "neatdownloadmanager",
+    "provider_name": "Neat Download Manager",
+    "route_key": "/download/:os?",
+    "route": {
+      "path": "/download/:os?",
+      "example": "/neatdownloadmanager/download",
+      "parameters": {
+        "os": "Operating system, windows or macos, all by default"
+      },
+      "name": "Download",
+      "url": "neatdownloadmanager.com/index.php",
+      "provider_id": "neatdownloadmanager",
+      "provider_name": "Neat Download Manager",
+      "route_key": "/download/:os?"
     }
   },
   {
@@ -425,6 +375,33 @@
       "provider_id": "notateslaapp",
       "provider_name": "Not a Tesla App",
       "route_key": "/ota"
+    }
+  },
+  {
+    "provider_id": "notion",
+    "provider_name": "Notion",
+    "route_key": "/release",
+    "route": {
+      "name": "Release",
+      "path": "/release",
+      "url": "notion.so/releases",
+      "example": "/notion/release",
+      "provider_id": "notion",
+      "provider_name": "Notion",
+      "route_key": "/release"
+    }
+  },
+  {
+    "provider_id": "npm",
+    "provider_name": "NPM",
+    "route_key": "/package/:name{(@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*}",
+    "route": {
+      "path": "/package/:name{(@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*}",
+      "name": "Package",
+      "example": "/npm/package/rsshub",
+      "provider_id": "npm",
+      "provider_name": "NPM",
+      "route_key": "/package/:name{(@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*}"
     }
   },
   {
@@ -460,48 +437,52 @@
     }
   },
   {
-    "provider_id": "putty",
-    "provider_name": "PuTTY",
-    "route_key": "/changes",
+    "provider_id": "sony",
+    "provider_name": "Sony",
+    "route_key": "/downloads/:productType/:productId",
     "route": {
-      "path": "/changes",
-      "example": "/putty/changes",
-      "parameters": {},
-      "name": "Change Log",
-      "url": "www.chiark.greenend.org.uk/~sgtatham/putty/changes.html",
-      "provider_id": "putty",
-      "provider_name": "PuTTY",
-      "route_key": "/changes"
+      "path": "/downloads/:productType/:productId",
+      "example": "/sony/downloads/product/nw-wm1am2",
+      "parameters": {
+        "productType": "product type",
+        "productId": "product id"
+      },
+      "name": "Software Downloads",
+      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::",
+      "provider_id": "sony",
+      "provider_name": "Sony",
+      "route_key": "/downloads/:productType/:productId"
     }
   },
   {
-    "provider_id": "remnote",
-    "provider_name": "RemNote",
-    "route_key": "/changelog",
+    "provider_id": "tencent",
+    "provider_name": "腾讯",
+    "route_key": "/qq/sdk/changelog/:platform",
     "route": {
-      "path": "/changelog",
-      "example": "/remnote/changelog",
-      "parameters": {},
-      "name": "Changelog",
-      "url": "remnote.com/changelog",
-      "provider_id": "remnote",
-      "provider_name": "RemNote",
-      "route_key": "/changelog"
+      "path": "/qq/sdk/changelog/:platform",
+      "example": "/tencent/qq/sdk/changelog/iOS",
+      "parameters": {
+        "platform": "平台，iOS / Android"
+      },
+      "name": "更新日志",
+      "provider_id": "tencent",
+      "provider_name": "腾讯",
+      "route_key": "/qq/sdk/changelog/:platform"
     }
   },
   {
-    "provider_id": "typora",
-    "provider_name": "Typora",
-    "route_key": "/changelog/dev",
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
     "route": {
-      "path": "/changelog/dev",
-      "example": "/typora/changelog/dev",
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
       "parameters": {},
-      "name": "Dev Release Changelog",
-      "url": "support.typora.io/",
-      "provider_id": "typora",
-      "provider_name": "Typora",
-      "route_key": "/changelog/dev"
+      "name": "Desktop releases and release notes",
+      "url": "tradingview.com/support/solutions/43000673888-tradingview-desktop-releases-and-release-notes/",
+      "provider_id": "tradingview",
+      "provider_name": "TradingView",
+      "route_key": "/desktop"
     }
   },
   {

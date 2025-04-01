@@ -1,55 +1,37 @@
 [
   {
-    "provider_id": "afr",
-    "provider_name": "The Australian Financial Review",
-    "route_key": "/navigation/:path{.+}",
+    "provider_id": "bbc",
+    "provider_name": "BBC",
+    "route_key": "/:site?/:channel?",
     "route": {
-      "path": "/navigation/:path{.+}",
-      "example": "/afr/navigation/markets",
+      "path": "/:site?/:channel?",
+      "name": "News",
+      "example": "/bbc/world-asia",
       "parameters": {
-        "path": "Navigation path, can be found in the URL of the page"
+        "site": "语言，简体或繁体中文",
+        "channel": "channel, default to `top stories`"
       },
-      "name": "Navigation",
-      "url": "www.afr.com",
-      "provider_id": "afr",
-      "provider_name": "The Australian Financial Review",
-      "route_key": "/navigation/:path{.+}"
+      "description": "Provides a better reading experience (full text articles) over the official ones.\n\n    Support major channels, refer to [BBC RSS feeds](https://www.bbc.co.uk/news/10628494). Eg, `business` for `https://feeds.bbci.co.uk/news/business/rss.xml`.\n\n    -   Channel contains sub-directories, such as `https://feeds.bbci.co.uk/news/world/asia/rss.xml`, replace `/` with `-`, `/bbc/world-asia`.",
+      "provider_id": "bbc",
+      "provider_name": "BBC",
+      "route_key": "/:site?/:channel?"
     }
   },
   {
-    "provider_id": "apnews",
-    "provider_name": "AP News",
-    "route_key": "/sitemap/:route",
+    "provider_id": "bjx",
+    "provider_name": "北极星电力网",
+    "route_key": "/gf/:type",
     "route": {
-      "path": "/sitemap/:route",
-      "example": "/apnews/sitemap/ap-sitemap-latest",
-      "view": 0,
+      "path": "/gf/:type",
+      "example": "/bjx/gf/sc",
       "parameters": {
-        "route": {
-          "description": "Route for sitemap, excluding the `.xml` extension"
-        }
+        "type": "分类，北极星光伏最后的`type`字段"
       },
-      "name": "Sitemap",
-      "provider_id": "apnews",
-      "provider_name": "AP News",
-      "route_key": "/sitemap/:route"
-    }
-  },
-  {
-    "provider_id": "bjnews",
-    "provider_name": "新京报",
-    "route_key": "/cat/:cat",
-    "route": {
-      "path": "/cat/:cat",
-      "example": "/bjnews/cat/depth",
-      "parameters": {
-        "cat": "分类, 可从URL中找到"
-      },
-      "name": "分类",
-      "url": "www.bjnews.com.cn",
-      "provider_id": "bjnews",
-      "provider_name": "新京报",
-      "route_key": "/cat/:cat"
+      "name": "光伏",
+      "description": "`:type` 类型可选如下\n\n| 要闻 | 政策 | 市场行情 | 企业动态 | 独家观点 | 项目工程 | 招标采购 | 财经 | 国际行情 | 价格趋势 | 技术跟踪 |\n| ---- | ---- | -------- | -------- | -------- | -------- | -------- | ---- | -------- | -------- | -------- |\n| yw   | zc   | sc       | mq       | dj       | xm       | zb       | cj   | gj       | sj       | js       |",
+      "provider_id": "bjx",
+      "provider_name": "北极星电力网",
+      "route_key": "/gf/:type"
     }
   },
   {
@@ -82,20 +64,54 @@
     }
   },
   {
-    "provider_id": "caixin",
-    "provider_name": "财新博客",
+    "provider_id": "caixinglobal",
+    "provider_name": "Caixin Global",
     "route_key": "/latest",
     "route": {
       "path": "/latest",
-      "view": 0,
-      "example": "/caixin/latest",
+      "example": "/caixinglobal/latest",
       "parameters": {},
-      "name": "最新文章",
-      "url": "caixin.com/",
-      "description": "说明：此 RSS feed 会自动抓取财新网的最新文章，但不包含 FM 及视频内容。订阅用户可根据文档设置环境变量后，在url传入`fulltext=`以解锁全文。",
-      "provider_id": "caixin",
-      "provider_name": "财新博客",
+      "name": "Latest News",
+      "url": "caixinglobal.com/news",
+      "provider_id": "caixinglobal",
+      "provider_name": "Caixin Global",
       "route_key": "/latest"
+    }
+  },
+  {
+    "provider_id": "cctv",
+    "provider_name": "央视新闻",
+    "route_key": "/lm/:id?",
+    "route": {
+      "path": "/lm/:id?",
+      "example": "/cctv/lm/xwzk",
+      "parameters": {
+        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 `xwzk` 即 新闻周刊"
+      },
+      "name": "栏目",
+      "description": "| 焦点访谈 | 等着我 | 今日说法 | 开讲啦 |\n| -------- | ------ | -------- | ------ |\n| jdft     | dzw    | jrsf     | kjl    |\n\n| 正大综艺 | 经济半小时 | 第一动画乐园 |\n| -------- | ---------- | ------------ |\n| zdzy     | jjbxs      | dydhly       |\n\n::: tip\n  更多栏目请看 [这里](https://tv.cctv.com/lm)\n:::",
+      "provider_id": "cctv",
+      "provider_name": "央视新闻",
+      "route_key": "/lm/:id?"
+    }
+  },
+  {
+    "provider_id": "ce",
+    "provider_name": "中国经济网",
+    "route_key": "/district/:category?",
+    "route": {
+      "path": "/district/:category?",
+      "name": "地方经济",
+      "url": "district.ce.cn",
+      "example": "/ce/district",
+      "parameters": {
+        "category": "栏目标识，默认为 roll（即时新闻）"
+      },
+      "description": "| 即时新闻 | 经济动态 | 独家视角 | 专题 | 数说地方 | 地方播报 | 专稿 | 港澳台 |\n|----------|----------|----------|------|----------|----------|------|--------|\n| roll     | jjdt     | poll     | ch   | ssdf     | dfbb     | zg   | gat    |",
+      "view": 0,
+      "provider_id": "ce",
+      "provider_name": "中国经济网",
+      "route_key": "/district/:category?"
     }
   },
   {
@@ -132,53 +148,17 @@
     }
   },
   {
-    "provider_id": "cts",
-    "provider_name": "華視",
-    "route_key": "/:category",
+    "provider_id": "dealstreetasia",
+    "provider_name": "DealStreetAsia",
+    "route_key": "/home",
     "route": {
-      "path": "/:category",
-      "example": "/cts/real",
-      "parameters": {
-        "category": "类别"
-      },
-      "name": "新聞",
-      "description": "| 即時 | 氣象    | 政治     | 國際          | 社會    | 運動   | 生活 | 財經  | 台語      | 地方  | 產業 | 綜合    | 藝文 | 娛樂      |\n| ---- | ------- | -------- | ------------- | ------- | ------ | ---- | ----- | --------- | ----- | ---- | ------- | ---- | --------- |\n| real | weather | politics | international | society | sports | life | money | taiwanese | local | pr   | general | arts | entertain |",
-      "provider_id": "cts",
-      "provider_name": "華視",
-      "route_key": "/:category"
-    }
-  },
-  {
-    "provider_id": "eastday",
-    "provider_name": "东方网",
-    "route_key": "/24/:category?",
-    "route": {
-      "path": "/24/:category?",
-      "example": "/eastday/24",
-      "parameters": {
-        "category": "分类，见下表，默认为社会"
-      },
-      "name": "24 小时热闻",
-      "url": "mini.eastday.com/",
-      "description": "| 推荐 | 社会 | 娱乐 | 国际 | 军事 |\n| ---- | ---- | ---- | ---- | ---- |\n\n| 养生 | 汽车 | 体育 | 财经 | 游戏 |\n| ---- | ---- | ---- | ---- | ---- |\n\n| 科技 | 国内 | 宠物 | 情感 | 人文 | 教育 |\n| ---- | ---- | ---- | ---- | ---- | ---- |",
-      "provider_id": "eastday",
-      "provider_name": "东方网",
-      "route_key": "/24/:category?"
-    }
-  },
-  {
-    "provider_id": "eastday",
-    "provider_name": "东方网",
-    "route_key": "/sh",
-    "route": {
-      "path": "/sh",
-      "example": "/eastday/sh",
-      "parameters": {},
-      "name": "上海新闻",
-      "url": "sh.eastday.com/",
-      "provider_id": "eastday",
-      "provider_name": "东方网",
-      "route_key": "/sh"
+      "path": "/home",
+      "example": "/dealstreetasia/home",
+      "name": "Home",
+      "url": "dealstreetasia.com/",
+      "provider_id": "dealstreetasia",
+      "provider_name": "DealStreetAsia",
+      "route_key": "/home"
     }
   },
   {
@@ -198,57 +178,17 @@
     }
   },
   {
-    "provider_id": "hkej",
-    "provider_name": "信报财经新闻",
-    "route_key": "/:category?",
+    "provider_id": "foreignaffairs",
+    "provider_name": "Foreign Affairs",
+    "route_key": "/rss",
     "route": {
-      "path": "/:category?",
-      "example": "/hkej/index",
-      "parameters": {
-        "category": "分类，默认为全部新闻"
-      },
-      "name": "即时新闻",
-      "url": "hkej.com/",
-      "description": "| index    | stock    | hongkong | china    | international | property | current  |\n| -------- | -------- | -------- | -------- | ------------- | -------- | -------- |\n| 全部新闻 | 港股直击 | 香港财经 | 中国财经 | 国际财经      | 地产新闻 | 时事脉搏 |",
-      "provider_id": "hkej",
-      "provider_name": "信报财经新闻",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "hket",
-    "provider_name": "香港经济日报",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/hket/sran001",
-      "parameters": {
-        "category": "分类，默认为全部新闻，可在 URL 中找到，部分见下表"
-      },
-      "name": "新闻",
-      "url": "www.hket.com/",
-      "description": "香港经济日报已有提供简单 RSS，详细可前往官方网站： [https://www.hket.com/rss](https://www.hket.com/rss)\n\n此路由主要补全官方 RSS 全文输出及完善分类输出。\n\n<details>\n<summary>分类</summary>\n\n| sran001  | sran008  | sran010  | sran011  | sran012  | srat006  |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n| 全部新闻 | 财经地产 | 科技信息 | 国际新闻 | 商业新闻 | 香港新闻 |\n\n| sran009  | sran009-1 | sran009-2 | sran009-3  | sran009-4 | sran009-5 | sran009-6 |\n| -------- | --------- | --------- | ---------- | --------- | --------- | --------- |\n| 即时财经 | 股市      | 新股 IPO  | 新经济追踪 | 当炒股    | 宏观解读  | Hot Talk  |\n\n| sran011-1 | sran011-2    | sran011-3    |\n| --------- | ------------ | ------------ |\n| 环球政治  | 环球经济金融 | 环球社会热点 |\n\n| sran016    | sran016-1  | sran016-2  | sran016-3  | sran016-4  | sran016-5      |\n| ---------- | ---------- | ---------- | ---------- | ---------- | -------------- |\n| 大湾区主页 | 大湾区发展 | 大湾区工作 | 大湾区买楼 | 大湾区消费 | 大湾区投资理财 |\n\n| srac002  | srac003  | srac004  | srac005  |\n| -------- | -------- | -------- | -------- |\n| 即时中国 | 经济脉搏 | 国情动向 | 社会热点 |\n\n| srat001 | srat008 | srat055  | srat069  | srat070   |\n| ------- | ------- | -------- | -------- | --------- |\n| 话题    | 观点    | 休闲消费 | 娱乐新闻 | TOPick TV |\n\n| srat052  | srat052-1 | srat052-2  | srat052-3 |\n| -------- | --------- | ---------- | --------- |\n| 健康主页 | 食用安全  | 医生诊症室 | 保健美颜  |\n\n| srat053  | srat053-1 | srat053-2 | srat053-3 | srat053-4  |\n| -------- | --------- | --------- | --------- | ---------- |\n| 亲子主页 | 儿童健康  | 育儿经    | 教育      | 亲子好去处 |\n\n| srat053-6   | srat053-61 | srat053-62 | srat053-63 | srat053-64 |\n| ----------- | ---------- | ---------- | ---------- | ---------- |\n| Band 1 学堂 | 幼稚园     | 中小学     | 尖子教室   | 海外升学   |\n\n| srat072-1  | srat072-2  | srat072-3        | srat072-4         |\n| ---------- | ---------- | ---------------- | ----------------- |\n| 健康身心活 | 抗癌新方向 | 「糖」「心」解密 | 风湿不再 你我自在 |\n\n| sraw007  | sraw009  | sraw010  | sraw011  | sraw012  | sraw014  | sraw018  | sraw019  |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| 全部博客 | Bloggers | 收息攻略 | 精明消费 | 退休规划 | 个人增值 | 财富管理 | 绿色金融 |\n\n| sraw015  | sraw015-07 | sraw015-08 | sraw015-09 | sraw015-10 |\n| -------- | ---------- | ---------- | ---------- | ---------- |\n| 移民百科 | 海外置业   | 移民攻略   | 移民点滴   | 海外理财   |\n\n| sraw020  | sraw020-1    | sraw020-2 | sraw020-3 | sraw020-4 |\n| -------- | ------------ | --------- | --------- | --------- |\n| ESG 主页 | ESG 趋势政策 | ESG 投资  | ESG 企业  | ESG 社会  |\n</details>",
-      "provider_id": "hket",
-      "provider_name": "香港经济日报",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "huanqiu",
-    "provider_name": "环球网",
-    "route_key": "/news/:category?",
-    "route": {
-      "path": "/news/:category?",
-      "example": "/huanqiu/news/china",
-      "parameters": {
-        "category": "类别，可以使用二级域名作为参数，默认为：china"
-      },
-      "name": "分类",
-      "url": "huanqiu.com/",
-      "description": "| 国内新闻 | 国际新闻 | 军事 | 台海   | 评论    |\n| -------- | -------- | ---- | ------ | ------- |\n| china    | world    | mil  | taiwai | opinion |",
-      "provider_id": "huanqiu",
-      "provider_name": "环球网",
-      "route_key": "/news/:category?"
+      "path": "/rss",
+      "example": "/foreignaffairs/rss",
+      "parameters": {},
+      "name": "RSS",
+      "provider_id": "foreignaffairs",
+      "provider_name": "Foreign Affairs",
+      "route_key": "/rss"
     }
   },
   {
@@ -267,6 +207,23 @@
       "provider_id": "i-cable",
       "provider_name": "有線新聞",
       "route_key": "/news/:category?"
+    }
+  },
+  {
+    "provider_id": "inewsweek",
+    "provider_name": "中国新闻周刊",
+    "route_key": "/:channel",
+    "route": {
+      "path": "/:channel",
+      "example": "/inewsweek/survey",
+      "parameters": {
+        "channel": "栏目"
+      },
+      "name": "栏目",
+      "description": "提取文章全文。\n\n| 封面  | 时政     | 社会    | 经济    | 国际  | 调查   | 人物   |\n| ----- | -------- | ------- | ------- | ----- | ------ | ------ |\n| cover | politics | society | finance | world | survey | people |",
+      "provider_id": "inewsweek",
+      "provider_name": "中国新闻周刊",
+      "route_key": "/:channel"
     }
   },
   {
@@ -305,122 +262,48 @@
     }
   },
   {
-    "provider_id": "mrdx",
-    "provider_name": "新华每日电讯",
-    "route_key": "/today",
+    "provider_id": "mirrormedia",
+    "provider_name": "鏡週刊 Mirror Media",
+    "route_key": "/",
     "route": {
-      "path": "/today",
-      "example": "/mrdx/today",
+      "path": "/",
+      "example": "/mirrormedia",
       "parameters": {},
-      "name": "今日",
-      "url": "mrdx.cn*",
-      "provider_id": "mrdx",
-      "provider_name": "新华每日电讯",
-      "route_key": "/today"
+      "name": "首页",
+      "provider_id": "mirrormedia",
+      "provider_name": "鏡週刊 Mirror Media",
+      "route_key": "/"
     }
   },
   {
-    "provider_id": "now",
-    "provider_name": "Now 新聞",
-    "route_key": "/news/:category?/:id?",
+    "provider_id": "nikkei",
+    "provider_name": "The Nikkei 日本経済新聞",
+    "route_key": "/asia",
     "route": {
-      "path": "/news/:category?/:id?",
-      "example": "/now/news",
-      "parameters": {
-        "category": "分类，见下表，默认为首页",
-        "id": "编号，可在对应专题/节目页 URL 中找到 topicId"
-      },
-      "name": "新聞",
-      "url": "news.now.com/",
-      "description": "::: tip\n  **编号** 仅对事件追蹤、評論節目、新聞專題三个分类起作用，例子如下：\n\n  对于 [事件追蹤](https://news.now.com/home/tracker) 中的 [塔利班奪權](https://news.now.com/home/tracker/detail?catCode=123&topicId=1056) 话题，其网址为 `https://news.now.com/home/tracker/detail?catCode=123&topicId=1056`，其中 `topicId` 为 1056，则对应路由为 [`/now/news/tracker/1056`](https://rsshub.app/now/news/tracker/1056)\n:::\n\n| 首頁 | 港聞  | 兩岸國際      | 娛樂          |\n| ---- | ----- | ------------- | ------------- |\n|      | local | international | entertainment |\n\n| 生活 | 科技       | 財經    | 體育   |\n| ---- | ---------- | ------- | ------ |\n| life | technology | finance | sports |\n\n| 事件追蹤 | 評論節目 | 新聞專題 |\n| -------- | -------- | -------- |\n| tracker  | feature  | opinion  |",
-      "provider_id": "now",
-      "provider_name": "Now 新聞",
-      "route_key": "/news/:category?/:id?"
+      "path": "/asia",
+      "example": "/nikkei/asia",
+      "name": "Nikkei Asia Latest News",
+      "url": "asia.nikkei.com",
+      "provider_id": "nikkei",
+      "provider_name": "The Nikkei 日本経済新聞",
+      "route_key": "/asia"
     }
   },
   {
-    "provider_id": "ntdtv",
-    "provider_name": "新唐人电视台",
-    "route_key": "/:language/:id",
+    "provider_id": "npr",
+    "provider_name": "National Public Radio",
+    "route_key": "/:endpoint?",
     "route": {
-      "path": "/:language/:id",
-      "example": "/ntdtv/b5/prog1201",
+      "path": "/:endpoint?",
+      "example": "/npr/1001",
       "parameters": {
-        "language": "语言，简体为`gb`，繁体为`b5`",
-        "id": "子频道名称"
+        "endpoint": "Channel ID, can be found in Official RSS URL, `1001` by default"
       },
-      "name": "频道",
-      "description": "参数均可在官网获取，如：\n\n  `https://www.ntdtv.com/b5/prog1201` 对应 `/ntdtv/b5/prog1201`",
-      "provider_id": "ntdtv",
-      "provider_name": "新唐人电视台",
-      "route_key": "/:language/:id"
-    }
-  },
-  {
-    "provider_id": "nytimes",
-    "provider_name": "The New York Times",
-    "route_key": "/book/:category?",
-    "route": {
-      "path": "/book/:category?",
-      "view": 5,
-      "example": "/nytimes/book/combined-print-and-e-book-nonfiction",
-      "parameters": {
-        "category": {
-          "description": "Category, can be found on the [official page](https://www.nytimes.com/books/best-sellers/)",
-          "options": [
-            {
-              "value": "combined-print-and-e-book-nonfiction",
-              "label": "Combined Print & E-Book Nonfiction"
-            },
-            {
-              "value": "hardcover-nonfiction",
-              "label": "Hardcover Nonfiction"
-            },
-            {
-              "value": "paperback-nonfiction",
-              "label": "Paperback Nonfiction"
-            },
-            {
-              "value": "advice-how-to-and-miscellaneous",
-              "label": "Advice, How-To & Miscellaneous"
-            },
-            {
-              "value": "combined-print-and-e-book-fiction",
-              "label": "Combined Print & E-Book Fiction"
-            },
-            {
-              "value": "hardcover-fiction",
-              "label": "Hardcover Fiction"
-            },
-            {
-              "value": "trade-fiction-paperback",
-              "label": "Paperback Trade Fiction"
-            },
-            {
-              "value": "childrens-middle-grade-hardcover",
-              "label": "Children's Middle Grade Hardcover"
-            },
-            {
-              "value": "picture-books",
-              "label": "Picture Books"
-            },
-            {
-              "value": "series-books",
-              "label": "Series Books"
-            },
-            {
-              "value": "young-adult-hardcover",
-              "label": "Young Adult Hardcover"
-            }
-          ],
-          "default": "combined-print-and-e-book-nonfiction"
-        }
-      },
-      "name": "Best Seller Books",
-      "url": "nytimes.com/",
-      "provider_id": "nytimes",
-      "provider_name": "The New York Times",
-      "route_key": "/book/:category?"
+      "name": "News",
+      "description": "Provide full article RSS for CBC topics.",
+      "provider_id": "npr",
+      "provider_name": "National Public Radio",
+      "route_key": "/:endpoint?"
     }
   },
   {
@@ -463,187 +346,77 @@
     }
   },
   {
-    "provider_id": "pts",
-    "provider_name": "公視新聞網",
-    "route_key": "/curations",
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/rss/:cat?",
     "route": {
-      "path": "/curations",
-      "example": "/pts/curations",
-      "parameters": {},
-      "name": "專題策展",
-      "url": "news.pts.org.tw/curations",
-      "provider_id": "pts",
-      "provider_name": "公視新聞網",
-      "route_key": "/curations"
+      "path": "/rss/:cat?",
+      "view": 0,
+      "example": "/nytimes/rss/HomePage",
+      "parameters": {
+        "cat": {
+          "description": "Category name, corresponding to the last segment of [official feed's](https://www.nytimes.com/rss) url."
+        }
+      },
+      "name": "News",
+      "url": "nytimes.com/",
+      "description": "Enhance the official EN RSS feed",
+      "provider_id": "nytimes",
+      "provider_name": "The New York Times",
+      "route_key": "/rss/:cat?"
+    }
+  },
+  {
+    "provider_id": "oeeee",
+    "provider_name": "南方都市报",
+    "route_key": "/web/:channel",
+    "route": {
+      "path": "/web/:channel",
+      "example": "/oeeee/web/170",
+      "parameters": {
+        "channel": "频道 ID"
+      },
+      "name": "奥一网",
+      "description": "-   若在桌面端打开奥一网栏目页（如 `https://www.oeeee.com/api/channel.php?s=/index/index/channel/gz`），可查看该页源代码，搜索 `OECID`。\n  -   若在移动端打开奥一网栏目页（格式例：`https://m.oeeee.com/m.php?s=/m2/channel&channel_id=169`），即可从 url 中获取。需注意的是，如果该栏目页的 url 格式为 `https://m.oeeee.com/detailChannel_indexData.html?channel_id=266` ，则 `266` 并非为本路由可用的频道 ID，建议从桌面端获取。",
+      "provider_id": "oeeee",
+      "provider_name": "南方都市报",
+      "route_key": "/web/:channel"
+    }
+  },
+  {
+    "provider_id": "oncc",
+    "provider_name": "东网",
+    "route_key": "/:language/:channel?",
+    "route": {
+      "path": "/:language/:channel?",
+      "example": "/oncc/zh-hant/news",
+      "parameters": {
+        "language": "`zh-hans` 为简体，`zh-hant` 为繁体",
+        "channel": "频道，默认为港澳"
+      },
+      "name": "即時新聞",
+      "description": "频道参数可以从官网的地址中获取，如：\n\n  `https://hk.on.cc/hk/finance/index_cn.html` 对应 `/oncc/zh-hans/finance`\n\n  `https://hk.on.cc/hk/finance/index.html` 对应 `/oncc/zh-hant/finance`",
+      "provider_id": "oncc",
+      "provider_name": "东网",
+      "route_key": "/:language/:channel?"
     }
   },
   {
     "provider_id": "publico",
     "provider_name": "Público",
-    "route_key": "/mujer/:subsection?",
+    "route_key": "/politica/:subsection?",
     "route": {
-      "path": "/mujer/:subsection?",
+      "path": "/politica/:subsection?",
       "parameters": {
         "subsection": {
           "description": "Filter by subsection. Check the subsections available on the newspaper's website."
         }
       },
-      "example": "/publico/mujer",
-      "name": "Mujer",
+      "example": "/publico/politica",
+      "name": "Política",
       "provider_id": "publico",
       "provider_name": "Público",
-      "route_key": "/mujer/:subsection?"
-    }
-  },
-  {
-    "provider_id": "publico",
-    "provider_name": "Público",
-    "route_key": "/public",
-    "route": {
-      "path": "/public",
-      "example": "/publico/public",
-      "name": "Public",
-      "provider_id": "publico",
-      "provider_name": "Público",
-      "route_key": "/public"
-    }
-  },
-  {
-    "provider_id": "publico",
-    "provider_name": "Público",
-    "route_key": "/tremending",
-    "route": {
-      "path": "/tremending",
-      "example": "/publico/tremending",
-      "name": "Tremending",
-      "provider_id": "publico",
-      "provider_name": "Público",
-      "route_key": "/tremending"
-    }
-  },
-  {
-    "provider_id": "setn",
-    "provider_name": "三立新聞網",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/setn",
-      "parameters": {
-        "category": "分类，见下表，默认为即時"
-      },
-      "name": "新聞",
-      "url": "setn.com/ViewAll.aspx",
-      "description": "| 即時 | 熱門 | 娛樂 | 政治 | 社會 |\n| ---- | ---- | ---- | ---- | ---- |\n\n| 國際 | 兩岸 | 生活 | 健康 | 旅遊 |\n| ---- | ---- | ---- | ---- | ---- |\n\n| 運動 | 地方 | 財經 | 富房網 | 名家 |\n| ---- | ---- | ---- | ------ | ---- |\n\n| 新奇 | 科技 | 汽車 | 寵物 | 女孩 | HOT 焦點 |\n| ---- | ---- | ---- | ---- | ---- | -------- |",
-      "provider_id": "setn",
-      "provider_name": "三立新聞網",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "solidot",
-    "provider_name": "Solidot",
-    "route_key": "/:type?",
-    "route": {
-      "path": "/:type?",
-      "view": 0,
-      "example": "/solidot/linux",
-      "parameters": {
-        "type": {
-          "description": "消息类型，在网站上方选择后复制子域名或参见 [https://www.solidot.org/index.rss](https://www.solidot.org/index.rss) 即可",
-          "options": [
-            {
-              "value": "www",
-              "label": "全部"
-            },
-            {
-              "value": "startup",
-              "label": "创业"
-            },
-            {
-              "value": "linux",
-              "label": "Linux"
-            },
-            {
-              "value": "science",
-              "label": "科学"
-            },
-            {
-              "value": "technology",
-              "label": "科技"
-            },
-            {
-              "value": "mobile",
-              "label": "移动"
-            },
-            {
-              "value": "apple",
-              "label": "苹果"
-            },
-            {
-              "value": "hardware",
-              "label": "硬件"
-            },
-            {
-              "value": "software",
-              "label": "软件"
-            },
-            {
-              "value": "security",
-              "label": "安全"
-            },
-            {
-              "value": "games",
-              "label": "游戏"
-            },
-            {
-              "value": "books",
-              "label": "书籍"
-            },
-            {
-              "value": "ask",
-              "label": "ask"
-            },
-            {
-              "value": "idle",
-              "label": "idle"
-            },
-            {
-              "value": "blog",
-              "label": "博客"
-            },
-            {
-              "value": "cloud",
-              "label": "云计算"
-            },
-            {
-              "value": "story",
-              "label": "奇客故事"
-            }
-          ],
-          "default": "www"
-        }
-      },
-      "name": "最新消息",
-      "provider_id": "solidot",
-      "provider_name": "Solidot",
-      "route_key": "/:type?"
-    }
-  },
-  {
-    "provider_id": "tass",
-    "provider_name": "Russian News Agency TASS",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/tass/politics",
-      "parameters": {
-        "category": "Category, can be found in URL, `politics` by default"
-      },
-      "name": "News",
-      "description": "| Russian Politics & Diplomacy | World | Business & Economy | Military & Defense | Science & Space | Emergencies | Society & Culture | Press Review | Sports |\n| ---------------------------- | ----- | ------------------ | ------------------ | --------------- | ----------- | ----------------- | ------------ | ------ |\n| politics                     | world | economy            | defense            | science         | emergencies | society           | pressreview  | sports |",
-      "provider_id": "tass",
-      "provider_name": "Russian News Agency TASS",
-      "route_key": "/:category?"
+      "route_key": "/politica/:subsection?"
     }
   },
   {
@@ -665,20 +438,97 @@
     }
   },
   {
-    "provider_id": "udn",
-    "provider_name": "聯合新聞網",
-    "route_key": "/global/:category?",
+    "provider_id": "xinhuanet",
+    "provider_name": "新华网",
+    "route_key": "/app",
     "route": {
-      "path": "/global/:category?",
-      "example": "/udn/global",
+      "path": "/app",
+      "name": "客户端",
+      "url": "app.xinhuanet.com",
+      "example": "/xinhuanet/app",
+      "description": "",
+      "provider_id": "xinhuanet",
+      "provider_name": "新华网",
+      "route_key": "/app"
+    }
+  },
+  {
+    "provider_id": "xkb",
+    "provider_name": "新快报",
+    "route_key": "/:channel",
+    "route": {
+      "path": "/:channel",
+      "example": "/xkb/350",
       "parameters": {
-        "category": "分类，见下表，默认为首頁"
+        "channel": "栏目 ID，点击对应栏目后在地址栏找到"
       },
-      "name": "轉角國際 - 首頁",
-      "description": "| 首頁 | 最新文章 | 熱門文章 |\n| ---- | -------- | -------- |\n|      | new      | hot      |",
-      "provider_id": "udn",
-      "provider_name": "聯合新聞網",
-      "route_key": "/global/:category?"
+      "name": "新闻",
+      "description": "常用栏目 ID：\n\n| 栏目名 | ID  |\n| ------ | --- |\n| 首页   | 350 |\n| 重点   | 359 |\n| 广州   | 353 |\n| 湾区   | 360 |\n| 天下   | 355 |",
+      "provider_id": "xkb",
+      "provider_name": "新快报",
+      "route_key": "/:channel"
+    }
+  },
+  {
+    "provider_id": "ycwb",
+    "provider_name": "羊城晚报金羊网",
+    "route_key": "/:node",
+    "route": {
+      "path": "/:node",
+      "example": "/ycwb/1",
+      "parameters": {
+        "node": "栏目 id"
+      },
+      "name": "新闻",
+      "description": "注：小部分栏目的 URL 会给出 nodeid。如未给出，可打开某条新闻链接后，查看网页源代码，搜索 nodeid 的值。\n\n  常用栏目节点：\n\n| 首页 | 中国 | 国际 | 体育 | 要闻 | 珠江评论 | 民生观察 | 房产 | 金羊教育 | 金羊财富 | 金羊文化 | 金羊健康 | 金羊汽车 |\n| ---- | ---- | ---- | ---- | ---- | -------- | -------- | ---- | -------- | -------- | -------- | -------- | -------- |\n| 1    | 14   | 15   | 16   | 22   | 1875     | 21773    | 222  | 5725     | 633      | 5281     | 21692    | 223      |\n\n| 广州 | 广州 - 广州要闻 | 广州 - 社会百态 | 广州 - 深读广州 | 广州 - 生活服务 | 今日大湾区 | 广东 - 政经热闻 | 广东 - 民生视点 | 广东 - 滚动新闻 |\n| ---- | --------------- | --------------- | --------------- | --------------- | ---------- | --------------- | --------------- | --------------- |\n| 18   | 5261            | 6030            | 13352           | 83422           | 100418     | 13074           | 12252           | 12212           |",
+      "provider_id": "ycwb",
+      "provider_name": "羊城晚报金羊网",
+      "route_key": "/:node"
+    }
+  },
+  {
+    "provider_id": "yicai",
+    "provider_name": "第一财经",
+    "route_key": "/headline",
+    "route": {
+      "path": "/headline",
+      "example": "/yicai/headline",
+      "parameters": {},
+      "name": "头条",
+      "url": "yicai.com/",
+      "provider_id": "yicai",
+      "provider_name": "第一财经",
+      "route_key": "/headline"
+    }
+  },
+  {
+    "provider_id": "yicai",
+    "provider_name": "第一财经",
+    "route_key": "/news/:id?",
+    "route": {
+      "path": "/news/:id?",
+      "example": "/yicai/news",
+      "parameters": {
+        "id": "分类 id，见下表，可在对应分类页中找到，默认为新闻"
+      },
+      "name": "新闻",
+      "description": "| Id                       | 名称       |\n| ------------------------ | ---------- |\n| gushi                    | A 股       |\n| kechuangban              | 科创板     |\n| hongguan                 | 大政       |\n| jinrong                  | 金融       |\n| quanqiushichang          | 海外市场   |\n| gongsi                   | 产经       |\n| shijie                   | 全球       |\n| kechuang                 | 科技       |\n| quyu                     | 区域       |\n| comment                  | 评论       |\n| dafengwenhua             | 商业人文   |\n| books                    | 阅读周刊   |\n| loushi                   | 地产       |\n| automobile               | 汽车       |\n| china_financial_herald | 对话陆家嘴 |\n| fashion                  | 时尚       |\n| ad                       | 商业资讯   |\n| info                     | 资讯       |\n| jzfxb                    | 价值风向标 |\n| shuducaijing             | 数读财经   |\n| shujujiepan              | 数据解盘   |\n| shudushenghuo            | 数读生活   |\n| cbndata                  | CBNData    |\n| dtcj                     | DT 财经    |\n| xfsz                     | 消费数知   |",
+      "provider_id": "yicai",
+      "provider_name": "第一财经",
+      "route_key": "/news/:id?"
+    }
+  },
+  {
+    "provider_id": "zaobao",
+    "provider_name": "联合早报",
+    "route_key": "/interactive-graphics",
+    "route": {
+      "path": "/interactive-graphics",
+      "example": "/zaobao/interactive-graphics",
+      "name": "互动新闻",
+      "provider_id": "zaobao",
+      "provider_name": "联合早报",
+      "route_key": "/interactive-graphics"
     }
   }
 ]

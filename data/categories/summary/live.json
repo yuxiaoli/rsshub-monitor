@@ -29,16 +29,29 @@
     }
   },
   {
-    "provider_id": "douyu",
-    "provider_name": "斗鱼直播",
-    "route_key": "/room/:id",
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/live/search/:key/:order",
     "route": {
-      "name": "直播间开播",
-      "path": "/room/:id",
-      "example": "/douyu/room/24422",
+      "name": "直播搜索",
+      "path": "/live/search/:key/:order",
+      "example": "/bilibili/live/search/dota/online",
       "parameters": {
-        "id": "直播间 id, 可在主播直播间页 URL 中找到"
+        "key": "搜索关键字",
+        "order": "排序方式, live_time 开播时间, online 人气"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "lxixsxa",
+    "provider_name": "LiSA",
+    "route_key": "/disco",
+    "route": {
+      "name": "Latest Discography",
+      "path": "/disco",
+      "example": "/lxixsxa/disco",
+      "parameters": {},
       "description": ""
     }
   },
@@ -53,6 +66,32 @@
       "parameters": {
         "login": "Twitch username"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "yoasobi-music",
+    "provider_name": "Yoasobi Official",
+    "route_key": "/info/:category?",
+    "route": {
+      "name": "News & Biography",
+      "path": "/info/:category?",
+      "example": "/yoasobi-music/info/news",
+      "parameters": {
+        "category": "`news`, `biography`"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "yoasobi-music",
+    "provider_name": "Yoasobi Official",
+    "route_key": "/media",
+    "route": {
+      "name": "Media",
+      "path": "/media",
+      "example": "/yoasobi-music/media",
+      "parameters": {},
       "description": ""
     }
   }

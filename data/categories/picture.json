@@ -18,37 +18,20 @@
     }
   },
   {
-    "provider_id": "cosplaytele",
-    "provider_name": "CosplayTele",
+    "provider_id": "4kup",
+    "provider_name": "4KUP",
     "route_key": "/popular/:period",
     "route": {
       "path": "/popular/:period",
-      "example": "/cosplaytele/popular/3",
+      "example": "/4kup/popular/7",
       "parameters": {
         "period": "Days"
       },
       "name": "Popular",
-      "url": "cosplaytele.com/",
-      "provider_id": "cosplaytele",
-      "provider_name": "CosplayTele",
+      "url": "4kup.net/",
+      "provider_id": "4kup",
+      "provider_name": "4KUP",
       "route_key": "/popular/:period"
-    }
-  },
-  {
-    "provider_id": "cosplaytele",
-    "provider_name": "CosplayTele",
-    "route_key": "/tag/:tag",
-    "route": {
-      "path": "/tag/:tag",
-      "example": "/cosplaytele/tag/aqua",
-      "parameters": {
-        "tag": "Tag"
-      },
-      "name": "Tag",
-      "url": "cosplaytele.com/",
-      "provider_id": "cosplaytele",
-      "provider_name": "CosplayTele",
-      "route_key": "/tag/:tag"
     }
   },
   {
@@ -65,24 +48,6 @@
       "provider_id": "dapenti",
       "provider_name": "喷嚏",
       "route_key": "/subject/:id"
-    }
-  },
-  {
-    "provider_id": "ehentai",
-    "provider_name": "E-Hentai",
-    "route_key": "/search/:params?/:page?/:routeParams?",
-    "route": {
-      "path": "/search/:params?/:page?/:routeParams?",
-      "example": "/ehentai/search/f_cats=1021/0/bittorrent=true&embed_thumb=false",
-      "parameters": {
-        "params": "Search parameters. You can copy the content after `https://e-hentai.org/?`",
-        "page": "Page number, set 0 to get latest",
-        "routeParams": "Additional parameters, see the table above"
-      },
-      "name": "Search",
-      "provider_id": "ehentai",
-      "provider_name": "E-Hentai",
-      "route_key": "/search/:params?/:page?/:routeParams?"
     }
   },
   {
@@ -286,20 +251,74 @@
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/doodles/:language?",
+    "provider_id": "konachan",
+    "provider_name": "Konachan.com Anime Wallpapers",
+    "route_key": "/post/popular_recent/:period?",
     "route": {
-      "path": "/doodles/:language?",
+      "path": "/post/popular_recent/:period?",
       "view": 2,
-      "example": "/google/doodles/zh-CN",
+      "example": "/konachan/post/popular_recent/1d",
       "parameters": {
-        "language": "Language, default to `zh-CN`, for other language values, you can get it from [Google Doodles official website](https://www.google.com/doodles)"
+        "period": {
+          "description": "展示时间",
+          "options": [
+            {
+              "value": "1d",
+              "label": "最近 24 小时"
+            },
+            {
+              "value": "1w",
+              "label": "最近一周"
+            },
+            {
+              "value": "1m",
+              "label": "最近一月"
+            },
+            {
+              "value": "1y",
+              "label": "最近一年"
+            }
+          ],
+          "default": "1d"
+        }
       },
-      "name": "Update",
-      "provider_id": "google",
-      "provider_name": "Google",
-      "route_key": "/doodles/:language?"
+      "name": "Popular Recent Posts",
+      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |",
+      "provider_id": "konachan",
+      "provider_name": "Konachan.com Anime Wallpapers",
+      "route_key": "/post/popular_recent/:period?"
+    }
+  },
+  {
+    "provider_id": "magnumphotos",
+    "provider_name": "Magnum Photos",
+    "route_key": "/magazine",
+    "route": {
+      "path": "/magazine",
+      "view": 2,
+      "example": "/magnumphotos/magazine",
+      "parameters": {},
+      "name": "Magazine",
+      "url": "magnumphotos.com/",
+      "provider_id": "magnumphotos",
+      "provider_name": "Magnum Photos",
+      "route_key": "/magazine"
+    }
+  },
+  {
+    "provider_id": "misskon",
+    "provider_name": "MissKON",
+    "route_key": "/posts/:routeParams?",
+    "route": {
+      "path": "/posts/:routeParams?",
+      "example": "/misskon/posts/search=video&tags_exclude=353,3100&per_page=5",
+      "parameters": {
+        "routeParams": "Additional parameters for filtering posts, refer to [WordPress API Reference](https://developer.wordpress.org/rest-api/reference/posts/#arguments) for details."
+      },
+      "name": "Posts",
+      "provider_id": "misskon",
+      "provider_name": "MissKON",
+      "route_key": "/posts/:routeParams?"
     }
   },
   {
@@ -337,22 +356,6 @@
   {
     "provider_id": "nasa",
     "provider_name": "NASA",
-    "route_key": "/apod-cn",
-    "route": {
-      "path": "/apod-cn",
-      "example": "/nasa/apod-cn",
-      "parameters": {},
-      "name": "NASA 中文",
-      "url": "apod.nasa.govundefined",
-      "description": "::: tip\n  [NASA 中文](https://www.nasachina.cn/) 提供了每日天文图的中英双语图文说明，但在更新上偶尔略有一两天的延迟。\n:::",
-      "provider_id": "nasa",
-      "provider_name": "NASA",
-      "route_key": "/apod-cn"
-    }
-  },
-  {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
     "route_key": "/apod-ncku",
     "route": {
       "path": "/apod-ncku",
@@ -382,6 +385,67 @@
     }
   },
   {
+    "provider_id": "pinterest",
+    "provider_name": "Pinterest",
+    "route_key": "/user/:username/:type?",
+    "route": {
+      "path": "/user/:username/:type?",
+      "example": "/pinterest/user/howieserious",
+      "parameters": {
+        "username": "Username",
+        "type": {
+          "description": "Type, default to `_created`",
+          "default": "_created",
+          "options": [
+            {
+              "value": "_created",
+              "label": "Created"
+            },
+            {
+              "value": "_saved",
+              "label": "Saved"
+            }
+          ]
+        }
+      },
+      "name": "User",
+      "provider_id": "pinterest",
+      "provider_name": "Pinterest",
+      "route_key": "/user/:username/:type?"
+    }
+  },
+  {
+    "provider_id": "pixabay",
+    "provider_name": "Pixabay",
+    "route_key": "/search/:q/:order?",
+    "route": {
+      "path": "/search/:q/:order?",
+      "view": 2,
+      "example": "/pixabay/search/cat",
+      "parameters": {
+        "q": "Search term",
+        "order": {
+          "description": "Order",
+          "options": [
+            {
+              "value": "popular",
+              "label": "popular"
+            },
+            {
+              "value": "latest",
+              "label": "latest"
+            }
+          ],
+          "default": "latest"
+        }
+      },
+      "name": "Search",
+      "provider_id": "pixabay",
+      "provider_name": "Pixabay",
+      "route_key": "/search/:q/:order?"
+    }
+  },
+  {
     "provider_id": "skeb",
     "provider_name": "Skeb",
     "route_key": "/:category",
@@ -398,42 +462,20 @@
     }
   },
   {
-    "provider_id": "yande",
-    "provider_name": "yande.re",
-    "route_key": "/post/popular_recent/:period?",
+    "provider_id": "skeb",
+    "provider_name": "Skeb",
+    "route_key": "/search/:keyword",
     "route": {
-      "path": "/post/popular_recent/:period?",
-      "view": 2,
-      "example": "/yande/post/popular_recent/1d",
+      "path": "/search/:keyword",
+      "example": "/skeb/search/初音ミク",
       "parameters": {
-        "period": {
-          "description": "展示时间",
-          "options": [
-            {
-              "value": "1d",
-              "label": "最近 24 小时"
-            },
-            {
-              "value": "1w",
-              "label": "最近一周"
-            },
-            {
-              "value": "1m",
-              "label": "最近一月"
-            },
-            {
-              "value": "1y",
-              "label": "最近一年"
-            }
-          ],
-          "default": "1d"
-        }
+        "keyword": "Search keyword"
       },
-      "name": "Popular Recent Posts",
-      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |",
-      "provider_id": "yande",
-      "provider_name": "yande.re",
-      "route_key": "/post/popular_recent/:period?"
+      "name": "Search Results",
+      "description": "Get the search results for works on Skeb",
+      "provider_id": "skeb",
+      "provider_name": "Skeb",
+      "route_key": "/search/:keyword"
     }
   }
 ]

@@ -17,15 +17,29 @@
   {
     "provider_id": "4gamers",
     "provider_name": "4Gamers",
-    "route_key": "/tag/:tag",
+    "route_key": "/topic/:topic",
     "route": {
-      "name": "标签",
-      "path": "/tag/:tag",
-      "example": "/4gamers/tag/限時免費",
+      "name": "主題",
+      "path": "/topic/:topic",
+      "example": "/4gamers/topic/gentlemen-topic",
       "parameters": {
-        "tag": "标签名，可在标签 URL 中找到"
+        "topic": "主题，可在首页上方页面内找到"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "ali213",
+    "provider_name": "游侠网",
+    "route_key": "/zl/:category?",
+    "route": {
+      "name": "大侠号",
+      "path": "/zl/:category?",
+      "example": "/ali213/zl",
+      "parameters": {
+        "category": "分类，默认为首页，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n若订阅 [游戏](https://www.ali213.net/news/zl/game/)，网址为 `https://www.ali213.net/news/zl/game/`，请截取 `https://www.ali213.net/news/zl/` 到末尾 `/` 的部分 `game` 作为 `category` 参数填入，此时目标路由为 [`/ali213/zl/game`](https://rsshub.app/ali213/zl/game)。\n:::\n\n| 首页                                     | 游戏                                         | 动漫                                           | 影视                                           | 娱乐                                           |\n| ---------------------------------------- | -------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |\n| [index](https://www.ali213.net/news/zl/) | [game](https://www.ali213.net/news/zl/game/) | [comic](https://www.ali213.net/news/zl/comic/) | [movie](https://www.ali213.net/news/zl/movie/) | [amuse](https://www.ali213.net/news/zl/amuse/) |\n"
     }
   },
   {
@@ -44,18 +58,15 @@
     }
   },
   {
-    "provider_id": "counter-strike",
-    "provider_name": "Counter Strike",
-    "route_key": "/news/:category?/:language?",
+    "provider_id": "devolverdigital",
+    "provider_name": "DevolverDigital",
+    "route_key": "/blog",
     "route": {
-      "name": "News",
-      "path": "/news/:category?/:language?",
-      "example": "/counter-strike/news",
-      "parameters": {
-        "category": "Category, `updates` or `all`, `all` by default",
-        "language": "Language, english by default, see below for more languages"
-      },
-      "description": "::: tip\n  If you subscribe to [Updates in English](https://www.counter-strike.net/news/updates?l=english)，where the URL is `https://www.counter-strike.net/news/updates?l=english`, extract the `l`, which is `english`, and use it as the parameter to fill in. Therefore, the route will be [`/counter-strike/news/updates/english`](https://rsshub.app/counter-strike/news/updates/english).\n:::\n\n<details>\n<summary>More languages</summary>\n\n| 语言代码                                          | 语言名称   |\n| ------------------------------------------------- | ---------- |\n| English                                           | english    |\n| Español - España (Spanish - Spain)                | spanish    |\n| Français (French)                                 | french     |\n| Italiano (Italian)                                | italian    |\n| Deutsch (German)                                  | german     |\n| Ελληνικά (Greek)                                  | greek      |\n| 한국어 (Korean)                                   | koreana    |\n| 简体中文 (Simplified Chinese)                     | schinese   |\n| 繁體中文 (Traditional Chinese)                    | tchinese   |\n| Русский (Russian)                                 | russian    |\n| ไทย (Thai)                                        | thai       |\n| 日本語 (Japanese)                                 | japanese   |\n| Português (Portuguese)                            | portuguese |\n| Português - Brasil (Portuguese - Brazil)          | brazilian  |\n| Polski (Polish)                                   | polish     |\n| Dansk (Danish)                                    | danish     |\n| Nederlands (Dutch)                                | dutch      |\n| Suomi (Finnish)                                   | finnish    |\n| Norsk (Norwegian)                                 | norwegian  |\n| Svenska (Swedish)                                 | swedish    |\n| Čeština (Czech)                                   | czech      |\n| Magyar (Hungarian)                                | hungarian  |\n| Română (Romanian)                                 | romanian   |\n| Български (Bulgarian)                             | bulgarian  |\n| Türkçe (Turkish)                                  | turkish    |\n| Українська (Ukrainian)                            | ukrainian  |\n| Tiếng Việt (Vietnamese)                           | vietnamese |\n| Español - Latinoamérica (Spanish - Latin America) | latam      |\n\n</details>\n    "
+      "name": "Official Blogs",
+      "path": "/blog",
+      "example": "/devolverdigital/blog",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -66,18 +77,6 @@
       "name": "新闻",
       "path": "/news",
       "example": "/diershoubing/news",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "dorohedoro",
-    "provider_name": "Dorohedoro",
-    "route_key": "/news",
-    "route": {
-      "name": "News",
-      "path": "/news",
-      "example": "/dorohedoro/news",
       "parameters": {},
       "description": ""
     }
@@ -104,17 +103,33 @@
     }
   },
   {
-    "provider_id": "gamersky",
-    "provider_name": "GamerSky",
-    "route_key": "/news/:type?",
+    "provider_id": "gamebase",
+    "provider_name": "遊戲基地 Gamebase",
+    "route_key": "/news/:type?/:category?",
     "route": {
-      "name": "资讯",
-      "path": "/news/:type?",
-      "example": "/gamersky/news/pc",
+      "name": "新聞",
+      "path": "/news/:type?/:category?",
+      "example": "/gamebase/news",
       "parameters": {
-        "type": "资讯类型，见表，默认为 `pc`"
+        "type": "類型，見下表，預設為 newslist",
+        "category": "分類，預設為 `all`，即全部，可在對應分類頁 URL 中找到"
       },
-      "description": "|today|pc|ns|mobile|web|industry|hardware|tech|\n|---|---|---|---|---|---|---|---|\n|今日推荐|单机电玩|NS|手游|网游|业界|硬件|科技|\n"
+      "description": ":::tip\n若訂閱 [手機遊戲新聞](https://news.gamebase.com.tw/news/newslist?type=mobile)，網址為 `https://news.gamebase.com.tw/news/newslist?type=mobile`，請截取 `https://news.gamebase.com.tw/news/` 到末尾的部分 `newslist` 作為 `type` 參數填入，`mobile` 作為 `category` 參數填入，此時目標路由為 [`/gamebase/news/newslist/mobile`](https://rsshub.app/gamebase/news/newslist/mobile)。\n:::\n\n| newslist | r18list |\n| -------- | ------- |\n"
+    }
+  },
+  {
+    "provider_id": "gamer520",
+    "provider_name": "全球游戏交流中心",
+    "route_key": "/:category?/:order?",
+    "route": {
+      "name": "文章",
+      "path": "/:category?/:order?",
+      "example": "/gamer520/switchyouxi",
+      "parameters": {
+        "category": "分类，见下表",
+        "order": "排序，发布日期: date; 修改日期: modified"
+      },
+      "description": "分类\n\n| 所有 | Switch 游戏下载 | 金手指     | 3A 巨作 | switch 主题 | PC 游戏 |\n| ---- | --------------- | ---------- | ------- | ----------- | ------- |\n| all  | switchyouxi     | jinshouzhi | 3ajuzuo | zhuti       | pcgame  |"
     }
   },
   {
@@ -127,47 +142,6 @@
       "example": "/gcores/articles",
       "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "gcores",
-    "provider_name": "机核网",
-    "route_key": "/categories/:id/:tab?",
-    "route": {
-      "name": "分类",
-      "path": "/categories/:id/:tab?",
-      "example": "/gcores/categories/1/articles",
-      "parameters": {
-        "id": {
-          "description": "分类 ID，可在对应分类页 URL 中找到"
-        },
-        "tab": {
-          "description": "类型，默认为空，即全部，可在对应分类页 URL 中找到",
-          "options": [
-            {
-              "label": "全部",
-              "value": ""
-            },
-            {
-              "label": "播客",
-              "value": "radios"
-            },
-            {
-              "label": "文章",
-              "value": "articles"
-            },
-            {
-              "label": "资讯",
-              "value": "news"
-            },
-            {
-              "label": "视频",
-              "value": "videos"
-            }
-          ]
-        }
-      },
-      "description": ":::tip\n若订阅 [文章 - 文章](https://www.gcores.com/categories/1?tab=articles)，网址为 `https://www.gcores.com/categories/1?tab=articles`，请截取 `https://www.gcores.com/categories/` 到末尾的部分 `1` 作为 `id` 参数填入，截取 `articles` 作为 `tab` 参数填入，此时目标路由为 [`/gcores/categories/1/articles`](https://rsshub.app/gcores/categories/1/articles)。\n:::\n\n| 全部 | 播客   | 文章     | 资讯 | 视频   |\n| ---- | ------ | -------- | ---- | ------ |\n|      | radios | articles | news | videos |\n"
     }
   },
   {
@@ -212,34 +186,15 @@
     }
   },
   {
-    "provider_id": "hoyolab",
-    "provider_name": "HoYoLAB",
-    "route_key": "/news/:language/:gids/:type",
+    "provider_id": "gcores",
+    "provider_name": "机核网",
+    "route_key": "/videos",
     "route": {
-      "name": "Official Announcement",
-      "path": "/news/:language/:gids/:type",
-      "example": "/hoyolab/news/zh-cn/2/2",
-      "parameters": {
-        "language": "Language",
-        "gids": "Game ID",
-        "type": "Announcement type"
-      },
-      "description": "| Language         | Code  |\n| ---------------- | ----- |\n| 简体中文         | zh-cn |\n| 繁體中文         | zh-tw |\n| 日本語           | ja-jp |\n| 한국어           | ko-kr |\n| English (US)     | en-us |\n| Español (EU)     | es-es |\n| Français         | fr-fr |\n| Deutsch          | de-de |\n| Русский          | ru-ru |\n| Português        | pt-pt |\n| Español (Latino) | es-mx |\n| Indonesia        | id-id |\n| Tiếng Việt       | vi-vn |\n| ภาษาไทย          | th-th |\n\n| Honkai Impact 3rd | Genshin Impact | Tears of Themis | HoYoLAB | Honkai: Star Rail | Zenless Zone Zero |\n| ----------------- | -------------- | --------------- | ------- | ----------------- | ----------------- |\n| 1                 | 2              | 4               | 5       | 6                 | 8                 |\n\n| Notices | Events | Info |\n| ------- | ------ | ---- |\n| 1       | 2      | 3    |"
-    }
-  },
-  {
-    "provider_id": "hypergryph",
-    "provider_name": "鹰角网络",
-    "route_key": "/arknights/announce/:platform?/:group?",
-    "route": {
-      "name": "明日方舟 - 游戏内公告",
-      "path": "/arknights/announce/:platform?/:group?",
-      "example": "/hypergryph/arknights/announce",
-      "parameters": {
-        "platform": "平台，默认为 Android",
-        "group": "分组，默认为 ALL"
-      },
-      "description": "平台\n\n|  安卓服 | iOS 服 |   B 服   |\n| :-----: | :----: | :------: |\n| Android |   IOS  | Bilibili |\n\n  分组\n\n| 全部 | 系统公告 | 活动公告 |\n| :--: | :------: | :------: |\n|  ALL |  SYSTEM  | ACTIVITY |"
+      "name": "视频",
+      "path": "/videos",
+      "example": "/gcores/videos",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -257,15 +212,56 @@
     }
   },
   {
-    "provider_id": "lfsyd",
-    "provider_name": "旅法师营地",
-    "route_key": "/home",
+    "provider_id": "indienova",
+    "provider_name": "indienova 独立游戏",
+    "route_key": "/usergames",
     "route": {
-      "name": "首页",
-      "path": "/home",
-      "example": "/lfsyd/home",
+      "name": "会员开发游戏库",
+      "path": "/usergames",
+      "example": "/indienova/usergames",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "leagueoflegends",
+    "provider_name": "League of Legends",
+    "route_key": "/patch-notes",
+    "route": {
+      "name": "Patch Notes",
+      "path": "/patch-notes",
+      "example": "/leagueoflegends/patch-notes",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "mihoyo",
+    "provider_name": "米哈游",
+    "route_key": "/bbs/follow-list/:uid",
+    "route": {
+      "name": "米游社 - 用户关注",
+      "path": "/bbs/follow-list/:uid",
+      "example": "/mihoyo/bbs/follow-list/77005350",
+      "parameters": {
+        "uid": "用户uid"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "mihoyo",
+    "provider_name": "米哈游",
+    "route_key": "/bbs/img-ranking/:game/:routeParams?",
+    "route": {
+      "name": "米游社 - 同人榜",
+      "path": "/bbs/img-ranking/:game/:routeParams?",
+      "example": "/mihoyo/bbs/img-ranking/ys/forumType=tongren&cateType=illustration&rankingType=daily",
+      "parameters": {
+        "game": "游戏缩写",
+        "routeParams": "额外参数；请参阅以下说明和表格"
+      },
+      "description": "| 键          | 含义                                  | 接受的值                                                             | 默认值       |\n| ----------- | ------------------------------------- | -------------------------------------------------------------------- | ------------ |\n| forumType   | 主榜类型（仅原神、大别野有 cos 主榜） | tongren/cos                                                          | tongren      |\n| cateType    | 子榜类型（仅崩坏三、原神有子榜）      | 崩坏三：illustration/comic/cos；原神：illustration/comic/qute/manual | illustration |\n| rankingType | 排行榜类型（崩坏二没有日榜）          | daily/weekly/monthly                                                 | daily        |\n| lastId      | 当前页 id（用于分页）                 | 数字                                                                 | 1            |\n\n  游戏缩写\n\n| 崩坏三 | 原神 | 崩坏二 | 未定事件簿 | 星穹铁道 | 大别野 | 绝区零 |\n| ------ | ---- | ------ | ---------- | -------- | ------ | ------ |\n| bh3    | ys   | bh2    | wd         | sr       | dby    | zzz    |\n\n  主榜类型\n\n| 同人榜  | COS 榜 |\n| ------- | ------ |\n| tongren | cos    |\n\n  子榜类型\n\n  崩坏三 子榜\n\n| 插画         | 漫画  | COS |\n| ------------ | ----- | --- |\n| illustration | comic | cos |\n\n  原神 子榜\n\n| 插画         | 漫画  | Q 版 | 手工   |\n| ------------ | ----- | ---- | ------ |\n| illustration | comic | qute | manual |\n\n  排行榜类型\n\n| 日榜  | 周榜   | 月榜    |\n| ----- | ------ | ------- |\n| daily | weekly | monthly |"
     }
   },
   {
@@ -281,6 +277,18 @@
         "category": "分类，见下表，默认为最新"
       },
       "description": "#### 新闻 {#mi-ha-you-beng-huai-xing-qiong-tie-dao-xin-wen}\n\n| 最新     | 新闻 | 公告   | 活动     |\n| -------- | ---- | ------ | -------- |\n| news-all | news | notice | activity |"
+    }
+  },
+  {
+    "provider_id": "minecraft",
+    "provider_name": "Minecraft",
+    "route_key": "/blockedservers",
+    "route": {
+      "name": "Java Blocked Servers",
+      "path": "/blockedservers",
+      "example": "/minecraft/blockedservers",
+      "parameters": {},
+      "description": "Java 版中被 Mojang 通过 sessionserver 阻止的服务器域名的 SHA-1 散列"
     }
   },
   {
@@ -301,18 +309,6 @@
   {
     "provider_id": "nintendo",
     "provider_name": "Nintendo",
-    "route_key": "/direct",
-    "route": {
-      "name": "Nintendo Direct",
-      "path": "/direct",
-      "example": "/nintendo/direct",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nintendo",
-    "provider_name": "Nintendo",
     "route_key": "/system-update",
     "route": {
       "name": "Switch System Update（Japan）",
@@ -325,15 +321,18 @@
   {
     "provider_id": "osu",
     "provider_name": "osu!",
-    "route_key": "/packs/:type?",
+    "route_key": "/latest-ranked/:routeParams?",
     "route": {
-      "name": "Beatmap Packs",
-      "path": "/packs/:type?",
-      "example": "/osu/packs",
+      "name": "Latest Ranked Beatmap",
+      "path": "/latest-ranked/:routeParams?",
+      "example": "/osu/latest-ranked/includeMode=osu&difficultyLimit=L3&difficultyLimit=U7",
       "parameters": {
-        "type": "pack type, default to `standard`, can choose from `featured`, `tournament`, `loved`, `chart`, `theme` and `artist`"
+        "routeParams": {
+          "description": "Used to pass route parameters in Query String format. Check out route description for more info.",
+          "default": "null"
+        }
       },
-      "description": ""
+      "description": "\nSubscribe to the new beatmaps on https://osu.ppy.sh/beatmapsets.\n\n#### Parameter Description\n\nParameters allows you to:\n\n- Filter game mode\n- Limit beatmap difficulty\n- Show/hide game mode in feed title\n\nBelow is a table of all allowed parameters passed to `routeParams`\n\n\n| Name              | Default  | Description                                                                                                                                                                                                                                          |\n| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `includeMode`     | All mode | Could be `osu`, `mania`, `fruits` or `taiko`. Specify included game mode of beatmaps. Including this paramseter multiple times to specify multiple game modes, e.g.: `includeMode=osu&includeMode=mania`. Subscribe to all game modes if not specified |\n| `difficultyLimit` | None     | Lower/upper limit of star rating of the beatmaps in the beatmapset item, e.g.:`difficultyLimit=U6`. Checkout tips in descriptions for detailed explaination and examples.                                                                            |\n| `modeInTitle`     | `true`   | `true` or `false` Add mode info into feed title.\n\n\nThis actual parameters should be passed as `routeParams` in URL Query String format without `?`, e.g.:\n\n    /osu/latest-ranked/modeInTitle=true&includeMode=osu\n\n:::tip\nYou could make use of `difficultyLimit` paramters to create a \"high difficulty/low difficulty only\" only feed.\n\nFor example, if you only wants to play low star rating beatmap like 1 or 2 star, you could subscribe to:\n\n    /osu/latest-ranked/difficultyLimit=U2\n\nThis will filter out all beatmapsets that do not provide at least one beatmap with star rating<=`2.00`.\n\nSimilarly, you could use lower bound to filter out beatmapsets which don't have at least one beatmap\nwith star rating higher than a certain threshold.\n\n    /osu/latest-ranked/difficultyLimit=L6\n\nNow all beatmapsets that don't provided at least one beatmap with star rating higher than `6.00` will be filtered.\n:::\n"
     }
   },
   {
@@ -351,20 +350,6 @@
     }
   },
   {
-    "provider_id": "qq",
-    "provider_name": "腾讯网",
-    "route_key": "/cfhd/news/:category?",
-    "route": {
-      "name": "穿越火线 CFHD 专区资讯中心",
-      "path": "/cfhd/news/:category?",
-      "example": "/qq/cfhd/news",
-      "parameters": {
-        "category": "分类，默认为 60847，即最新，可在对应分类页 URL 中找到"
-      },
-      "description": "::: tip\n  若订阅 [穿越火线 CFHD 专区资讯中心 - 最新](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60847/m22510/list_1.shtml)，网址为 `https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60847/m22510/list_1.shtml`。截取 `https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/` 到末尾 `/m22510/list_1.shtml` 的部分 `60847` 作为参数填入，此时路由为 [`/qq/cfhd/news/60847`](https://rsshub.app/qq/cfhd/news/60847)。\n:::\n\n| 分类                                                                                                  | ID                                            |\n| ----------------------------------------------------------------------------------------------------- | --------------------------------------------- |\n| [最新](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60847/m22510/list_1.shtml) | [60847](https://rsshub.app/qq/cfhd/news/60847) |\n| [公告](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/59625/m22510/list_1.shtml) | [59625](https://rsshub.app/qq/cfhd/news/59625) |\n| [版本](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60850/m22510/list_1.shtml) | [60850](https://rsshub.app/qq/cfhd/news/60850) |\n| [赛事](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/59626/m22510/list_1.shtml) | [59626](https://rsshub.app/qq/cfhd/news/59626) |\n| [杂谈](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/59624/m22510/list_1.shtml) | [59624](https://rsshub.app/qq/cfhd/news/59624) |\n  "
-    }
-  },
-  {
     "provider_id": "sega",
     "provider_name": "SEGA",
     "route_key": "/maimaidx/news",
@@ -379,76 +364,90 @@
   {
     "provider_id": "steam",
     "provider_name": "Steam",
-    "route_key": "/curator/:id/:routeParams?",
+    "route_key": "/appcommunityfeed/:appid/:routeParams?",
     "route": {
-      "name": "Latest Curator Reviews",
-      "path": "/curator/:id/:routeParams?",
-      "example": "/steam/curator/34646096-80-Days",
+      "name": "Steam Community Hub Feeds",
+      "path": "/appcommunityfeed/:appid/:routeParams?",
+      "example": "/steam/appcommunityfeed/730",
       "parameters": {
-        "id": "Steam curator id. It usually consists of a series of numbers and the curator's name.",
-        "routeParams": {
-          "description": "Extra parameters to filter the reviews. The following parameters are supported:\n| Key             | Description                                                                                   | Accepts                                    | Defaults to |\n| --------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |\n| `curations`   | Review type to filter by. `0`: Recommended, `1`: Not Recommended, `2`: Informational    | `0`/`1`/`2`/`0,1`/`0,2`/`1,2`  |             |\n| `tagids`      | Tag to filter by. Details are provided below.                                                 | use comma to separate multiple tagid       |             |\n\nNote: There is a [‘Popular Tags’](https://store.steampowered.com/tag/browse) page where you can find many but not all of the tags. The tag’s ID is in the `data-tagid` attribute of the element.Steam does not currently provide a page that comprehensively lists all tags, and you may need to explore alternative ways to find them.\n\nExamples:\n* `/steam/curator/34646096-80-Days/curations=&tagids=`\n* `/steam/curator/34646096-80-Days/curations=0&tagids=19`\n* `/steam/curator/34646096-80-Days/curations=0,2&tagids=19,21`\n"
-        }
+        "appid": "Steam appid, can be found on the community hub page or store page URL.",
+        "routeParams": "Query parameters."
       },
-      "description": "The Latest reviews from a Steam Curator."
+      "description": "Query Parameters:\n\n| Name                   | Type   | Description             |\n| ---------------------- | ------ | ----------------------- |\n| p                      | string | p                       |\n| rgSections[]           | string | rgSections              |\n| filterLanguage         | string | Filter Language         |\n| languageTag            | string | Language Tag            |\n| nMaxInappropriateScore | string | Max Inappropriate Score |\n\nExample:\n- `/appcommunityfeed/730/p=1&rgSections[]=2&rgSections[]=4&filterLanguage=english&languageTag=english&nMaxInappropriateScore=1` for CS2 Screenshot and Artwork contents.\n- `/appcommunityfeed/730/rgSections[]=6` for CS2 Workshop contents only.\n- `/appcommunityfeed/570/rgSections[]=3&rgSections[]=9` for Dota2 Video and Guides contents.\n\n::: tip\nIt can also access community hub contents that require a logged-in account.\n:::\n"
+    }
+  },
+  {
+    "provider_id": "steam",
+    "provider_name": "Steam",
+    "route_key": "/search/:params",
+    "route": {
+      "name": "Store Search",
+      "path": "/search/:params",
+      "example": "/steam/search/sort_by=Released_DESC&tags=492&category1=10&os=linux",
+      "parameters": {
+        "params": "Query parameters for a Steam Store search."
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "steam",
+    "provider_name": "Steam",
+    "route_key": "/workshopsearch/:appid?/:routeParams?",
+    "route": {
+      "name": "Community Workshop Search",
+      "path": "/workshopsearch/:appid?/:routeParams?",
+      "example": "/steam/workshopsearch/730",
+      "parameters": {
+        "appid": "Steam appid, can be found on the community hub page or store page URL, 730 by default.",
+        "routeParams": "Route parameters, can be found on the search result page URL. Route parameters located after the appid."
+      },
+      "description": "Steam Community Workshop Search Results.\nThe parameter 'l=language' changes the language of search results(if possible).\nFor example, route `/workshopsearch/730/l=schinese` will display the simplified Chinese descriptions of the entry.\n\nLanguage Parameter:\n\n| English | 简体中文 | 繁體中文 | 日本語   | 한국어  | ภาษาไทย | български | čeština | dansk  | Deutsch | español | latam | ελληνικά | français | italiano | Bahasa Indonesia | magyar    | Nederlands | norsk     | polski | português  | brasileiro | română   | русский | suomi   | svenska | Türkçe  | Tiếng Việt | українська |\n| ------- | -------- | -------- | -------- | ------- | ------- | --------- | ------- | ------ | ------- | ------- | ----- | -------- | -------- | -------- | ---------------- | --------- | ---------- | --------- | ------ | ---------- | ---------- | -------- | ------- | ------- | ------- | ------- | ---------- | ---------- |\n| english | schinese | tchinese | japanese | koreana | thai    | bulgarian | czech   | danish | german  | spanish | latam | greek    | french   | italian  | indonesian       | hungarian | dutch      | norwegian | polish | portuguese | brazilian  | romanian | russian | finnish | swedish | turkish | vietnamese | ukrainian  |\n\n"
     }
   },
   {
     "provider_id": "taptap",
     "provider_name": "TapTap",
-    "route_key": "/intl/review/:id/:order?/:lang?",
+    "route_key": "/review/:id/:order?/:lang?",
     "route": {
-      "name": "Ratings & Reviews",
-      "path": "/intl/review/:id/:order?/:lang?",
-      "example": "/taptap/intl/review/82354/recent",
+      "name": "游戏评价",
+      "path": "/review/:id/:order?/:lang?",
+      "example": "/taptap/review/142793/hot",
       "parameters": {
-        "id": "Game's App ID, you may find it from the URL of the Game",
-        "order": "Sort Method, default is `helpful`, checkout the table below for possible values",
-        "lang": "Language, checkout the table below for possible values, default is `en_US`"
+        "id": "游戏 ID，游戏主页 URL 中获取",
+        "order": "排序方式，空为综合，可选如下",
+        "lang": "语言，`zh-CN` 或 `zh-TW`，默认为 `zh-CN`"
       },
-      "description": "Sort Method\n\n| Most Helpful | Most Recent |\n| ------------ | ----------- |\n| helpful      | recent      |\n\nLanguage Code\n\n| English (US) | 繁體中文 | 한국어 | 日本語 |\n| ------------ | -------- | ------ | ------ |\n| en_US       | zh_TW   | ko_KR | ja_JP |"
+      "description": "| 最新   | 综合 |\n| --- | --- |\n| new | hot |"
     }
   },
   {
-    "provider_id": "tencent",
-    "provider_name": "腾讯",
-    "route_key": "/pvp/newsindex/:type",
+    "provider_id": "taptap",
+    "provider_name": "TapTap",
+    "route_key": "/topic/:id/:type?/:sort?/:lang?",
     "route": {
-      "name": "新闻中心",
-      "path": "/pvp/newsindex/:type",
-      "example": "/tencent/pvp/newsindex/all",
+      "name": "游戏论坛",
+      "path": "/topic/:id/:type?/:sort?/:lang?",
+      "example": "/taptap/topic/142793/official",
       "parameters": {
-        "type": "栏目分类，见下表"
+        "id": "游戏 ID，游戏主页 URL 中获取",
+        "type": "论坛版块，默认显示所有帖子，论坛版块 URL 中 `type` 参数，见下表，默认为 `feed`",
+        "sort": "排序，见下表，默认为 `created`",
+        "lang": "语言，`zh-CN`或`zh-TW`，默认为`zh-CN`"
       },
-      "description": "| 全部 | 热门 | 新闻 | 公告 | 活动 | 赛事 | 优化 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| all  | rm   | xw   | gg   | hd   | ss   | yh   |"
-    }
-  },
-  {
-    "provider_id": "tgbus",
-    "provider_name": "电玩巴士 TGBUS",
-    "route_key": "/list/:category",
-    "route": {
-      "name": "文章列表",
-      "path": "/list/:category",
-      "example": "/tgbus/list/news",
-      "parameters": {
-        "category": "列表分类，见下表"
-      },
-      "description": "| 最新资讯 | 游戏评测 | 游戏视频 | 巴士首页特稿 | 硬件资讯 |\n| -------- | -------- | -------- | ------------ | -------- |\n| news     | review   | video    | special      | hardware |"
+      "description": "| 全部 | 精华  | 官方     | 影片  |\n| ---- | ----- | -------- | ----- |\n| feed | elite | official | video |\n\n| 发布时间 | 回复时间  | 默认排序 |\n| -------- | --------- | ------- |\n| created  | commented | default |"
     }
   },
   {
     "provider_id": "xiaoheihe",
     "provider_name": "小黑盒",
-    "route_key": "/discount/:platform",
+    "route_key": "/news",
     "route": {
-      "name": "游戏折扣",
-      "path": "/discount/:platform",
-      "example": "/xiaoheihe/discount/pc",
-      "parameters": {
-        "platform": "平台分类，见下表"
-      },
-      "description": "| PC  | Switch  | PSN   | Xbox |\n| ----- | ------ | ----- | ----- |\n| pc    | switch | psn   | xbox  |"
+      "name": "游戏新闻",
+      "path": "/news",
+      "example": "/xiaoheihe/news",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -463,6 +462,20 @@
         "type": "折扣类型"
       },
       "description": "| Steam 最新折扣 | Steam 热门游戏折扣 | Steam 热门中文游戏折扣 | Steam 历史低价 | Steam 中文游戏历史低价 |\n| -------------- | ------------------ | ---------------------- | -------------- | ---------------------- |\n| discount       | popular            | popular_cn            | low            | low_cn                |"
+    }
+  },
+  {
+    "provider_id": "yystv",
+    "provider_name": "游研社",
+    "route_key": "/category/:category",
+    "route": {
+      "name": "游研社 - 分类文章",
+      "path": "/category/:category",
+      "example": "/yystv/category/recommend",
+      "parameters": {
+        "category": "专栏类型"
+      },
+      "description": "| 推游      | 游戏史  | 大事件 | 文化    | 趣闻 | 经典回顾 |\n| --------- | ------- | ------ | ------- | ---- | -------- |\n| recommend | history | big    | culture | news | retro    |"
     }
   }
 ]

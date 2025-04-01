@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Linux Kernel - 蓝点网</title><link>https://www.landiannews.com/archives/tag/linux-kernel</link><atom:link href="http://rsshub.henry.wang/landiannews/tag/linux-kernel" rel="self" type="application/rss+xml"></atom:link><description>给你感兴趣的内容! - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Apr 2025 00:30:41 GMT</lastBuildDate><ttl>14</ttl><item><title>新版Linux内核大幅改善运行Windows NT软件/游戏性能 Wine和SteamOS都将受益</title><description>&lt;p&gt;在早前推出的 Linux Kernel 6.14 正式版中，内核开发团队带来 NTSYNC 驱动程序，该驱动程序旨在模拟 Windows NT 同步原语 (计算机科学中的一种同步机制)。&lt;/p&gt;
+&lt;p&gt;同步原语对普通用户来说就是大幅度改进在 Linux 上运行 Windows NT 软件和游戏的性能，例如 Linux-Windows 兼容层应用 Wine 将从中受益，以及 Valve 基于 Wine 开发的 Proton 兼容层也将受益。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/2025/03/108567.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/2025/03/108567.png&quot; alt=&quot;新版Linux内核大幅改善运行Windows NT软件/游戏性能 Wine和SteamOS都将受益&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;起飞🛫&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;NTSYNC 驱动程序能够实现快速、便携、强大且正确的语义同步，可以在 Linux Kernel 内核模块中实现 Windows NT 风格的同步语义，而不是尝试在 futex/futex2 接口上进行临时拼凑或迭代。&lt;/p&gt;
+&lt;p&gt;该驱动程序还对 I/O 操作进行优化，减少延迟并提高吞吐量，同时还增强多线程环境下的性能从而提高并发处理能力，这些优势对兼容层应用来说都可以带来直观性能提升。&lt;/p&gt;
+&lt;p&gt;即将推出的 Canonical Ubuntu 25.04 版和 Fedora Linux 42 版都将采用 Linux Kernel 6.14 内核的支持，到时候应该会有相关对比测试发布。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/108567.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/108567.html</guid><pubDate>Thu, 27 Mar 2025 06:42:42 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>Linux</category><category>Linux Kernel</category><category>NTSync</category><category>SteamOS</category><category>windows</category><category>Wine</category><category>内核</category></item><item><title>喜报！Linux Kernel 6.14正式版发布 带来多项新功能和性能优化改进</title><description>&lt;p&gt;Linux Kernel 6.14 正式版现已推出，该版本是最新的稳定内核但并非 LTS 长期支持版，这类非长期支持版生命周期通常只有几个月直到新版本发布。&lt;/p&gt;
+&lt;p&gt;在这个新版本中内核团队对文件系统、虚拟化、架构、网络、电源管理等多方面进行改进，有些是新功能，有些是改进和性能优化等。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; alt=&quot;喜报！Linux Kernel 6.14正式版发布 带来多项新功能和性能优化改进&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;文件系统方面的改进如下：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Btrfs 文件系统新增 RAID1 读取平衡支持可以提升数据访问效率&lt;/p&gt;
+&lt;p&gt;XFS 实时设备支持 reflink 和反向映射功能用来优化存储管理&lt;/p&gt;
+&lt;p&gt;tmpfs 新增大页面 (large folios) 支持用来提升内存操作性能&lt;/p&gt;
+&lt;p&gt;新增 fsnotify 文件预访问事件类型以及支持冻结页面分配与释放的 zpdesc 内存描述符&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;虚拟化与架构方面的支持：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;新增 ntsync 子系统，提供 Windows NT 同步原语支持，通过 Wine 提升游戏仿真 / 模拟性能&lt;/p&gt;
+&lt;p&gt;KVM 针对龙芯架构 (LoongArch) 新增用户态 VMM 的 hypercall 服务支持&lt;/p&gt;
+&lt;p&gt;为 RISC-V 架构新增 T-Head 向量扩展支持&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;网络方面的变更包括：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;IPsec 支持 IP-TFS/AggFrag 封装，实现内部 IP 的聚合与分片&lt;/p&gt;
+&lt;p&gt;RxRPC 套接字支持巨型数据包传输&lt;/p&gt;
+&lt;p&gt;新增统一 PHY 统计报告接口，支持通过 ethtool 配置头部 – 数据分离阈值 (HDS)&lt;/p&gt;
+&lt;p&gt;支持 IPv4 映射的 IPv6 地址客户端 (smc-r v2) 以及多播 IPv4/IPv6 地址变更的 netlink 通知&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;电源管理与性能优化：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;针对 AMD CPU 新增核心能源计数器支持 (一种电源管理机制)&lt;/p&gt;
+&lt;p&gt;电源供应扩展允许从独立驱动程序添加属性&lt;/p&gt;
+&lt;p&gt;针对部分设备大幅缩短系统挂起与恢复的过渡时间&lt;/p&gt;
+&lt;p&gt;Raspberry Pi 设备新增电源管理挂起 / 恢复支持&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;硬件加速与驱动支持：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;新增 AMD XDNA Ryzen AI NPU 加速器驱动&lt;/p&gt;
+&lt;p&gt;DRM 为 AMDGPU 驱动新增 panic 支持&lt;/p&gt;
+&lt;p&gt;针对 IBM System/390 引入新的 PCI 错误恢复状态机制&lt;/p&gt;
+&lt;p&gt;其他更新还包括模块签名新增 SHA512 算法支持，通过强度更高的算法对内核模块进行签名以提升安全性，这方面主要是给开发者们使用的。&lt;/p&gt;
+&lt;p&gt;接下来各大 Linux 发行版开发商应该都会陆续适配 Linux Kernel 6.14，不着急的用户可以等待发行版开发商进行适配，如果着急的话也可以自己去 kernel.org 下载编译。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/108510.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/108510.html</guid><pubDate>Mon, 24 Mar 2025 16:01:33 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>Linux</category><category>Linux Kernel</category><category>内核</category><category>开源软件</category></item><item><title>Linux内核将俄罗斯开发者除名的后续 Linux基金会发布指南帮助开源项目规避风险</title><description>&lt;p&gt;&lt;a href=&quot;https://www.landiannews.com/archives/106274.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;2024 年 10 月 Linux Kernel 项目将 11 名俄罗斯内核开发者除名&lt;/a&gt;，这种做法在开源社区引起激烈讨论，最终 Linus Torvalds 都下场发布回应。&lt;/p&gt;
+&lt;p&gt;Linus Torvalds 称除名原因主要是因为各种合规要求，对开发者来说这意味着要谨慎对待贡献者提交的代码，因为稍有不慎就可能引起复杂的法律问题，显然对大多数开源项目开发者来说这些法律问题可能会引起非常麻烦的后果，所以 Linux Kernel 项目的做法就是直接将俄罗斯开发者除名避免引发可能的法律争议。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/2023/08/99983.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/2023/08/99983.png&quot; alt=&quot;Linux内核将俄罗斯开发者除名的后续 Linux基金会发布指南帮助开源项目规避风险&quot; width=&quot;1024&quot; height=&quot;600&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;日前 Linux 基金会发布综合指南帮助开源开发者应对美国外国资产控制办公室 (即 OFAC) 制裁的复杂局面，该基金会称监管合规和网络安全风险增加都给开源社区带来了负担。&lt;/p&gt;
+&lt;p&gt;大多数 OFAC 的制裁都豁免于信息材料，这些材料通常包括开源代码，但这仅适用于现有代码，即已经提交的代码无需处理，而提交的新代码和修改请求则需要进行审查。&lt;/p&gt;
+&lt;p&gt;例如当你的项目有俄罗斯开发者提交补丁就可能存在法律风险，按照 OFAC 的制裁要求，虽然被制裁地区的贡献者主动提交的补丁有时候是可以接受的，但如果让这些贡献者积极参与讨论或进行改进则可能引起法律问题。&lt;/p&gt;
+&lt;p&gt;Linux 基金会虽然无奈但也提到开发者要注意试图通过第三方间接做出贡献的受制裁实体或单独行动的开发者，也就是受制裁地区的个人和企业 / 组织提交的代码都需要进行审查。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;目前受到 OFAC 制裁的国家或地区包括：&lt;/strong&gt;(不含被单独制裁的企业/组织)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;俄罗斯&lt;/li&gt;
+&lt;li&gt;古巴&lt;/li&gt;
+&lt;li&gt;朝鲜&lt;/li&gt;
+&lt;li&gt;伊朗&lt;/li&gt;
+&lt;li&gt;叙利亚&lt;/li&gt;
+&lt;li&gt;乌克兰的以下地区：克里米亚、顿涅茨克、卢甘斯克&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Linux 基金会曾表示，OFAC 的制裁规则是严格责任规则，这意味着你是否了解这些规则并不重要，违反这些规则则可能受到严重的处罚，因此了解这些规则可能如何影响你的开源工作非常重要。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;当然现实情况是小公司通常会忽略这些问题，开源许可律师 Heather Meeker 表示：&lt;/strong&gt;&lt;/p&gt;
+&lt;p style=&quot;padding-left: 40px;&quot;&gt;&lt;em&gt;说实话小公司通常会忽略这样的规则，因为他们没有资源来分析这些法规，美国政府通常也会忽略小公司，因为美国政府也没有足够的资源来对他们实施强制措施，受到关注的大公司通常需要专业顾问提供帮助。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;以上内容全文详见 Linux 基金会官方博客。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/107708.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/107708.html</guid><pubDate>Mon, 03 Feb 2025 04:21:28 GMT</pubDate><author>山外的鸭子哥</author><category>科技资讯</category><category>行业资讯</category><category>Linux Kernel</category><category>Linux基金会</category><category>OFAC</category><category>开源软件</category><category>开源项目</category><category>美国</category></item><item><title>Linux Kernel 6.14内核模块签名由SHA1切换到SHA512来提高默认安全性</title><description>&lt;p&gt;目前已经有不少 Linux 发行版开发商将内核从默认的 SHA1 签名改成 SHA512 签名，不过 Linux Kernel 此前默认使用的还是 SHA1 算法进行内核模块签名。&lt;/p&gt;
+&lt;p&gt;随着内核版本的开发，在 Linux Kernel 6.14 版中内核也开始默认使用 SHA512 算法进行签名，相较于 SHA1 算法这可以显著提高安全性。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; alt=&quot;Linux Kernel 6.14内核模块签名由SHA1切换到SHA512来提高默认安全性&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在最新合并到 Linux Kernel 6.14 中的代码，内核现在默认使用 SHA512 但仍然支持 SHA1，前者更现代、更安全也可以抵御攻击，SHA1 算法因为存在弱点正在逐渐被弃用。&lt;/p&gt;
+&lt;p&gt;切换到 SHA512 算法后，后续某些 Linux 发行版使用的 OpenSSL 在尝试使用 SHA1 签名内核模块时也会出错从而导致内核构建失败。&lt;/p&gt;
+&lt;p&gt;不过随着时间的推移后续 SHA512 算法会变成主流，至少在 Linux 内核中 SHA512 会变成主流，所以在内核版本构建上面不会有太大问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;附合并的内核代码：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;diff --git a/kernel/module/Kconfig b/kernel/module/Kconfig
+index 7c6588148d42d3..0c746a150e34e2 100644
+--- a/kernel/module/Kconfig
++++ b/kernel/module/Kconfig
+@@ -231,6 +231,7 @@ comment &quot;Do not forget to sign required modules with scripts/sign-file&quot;
+choice
+ prompt &quot;Hash algorithm to sign modules&quot;
+ depends on MODULE_SIG || IMA_APPRAISE_MODSIG
++default MODULE_SIG_SHA512
+ help
+   This determines which sort of hashing algorithm will be used during
+   signature generation.  This algorithm _must_ be built into the kernel
+
+base-commit: d3d1556696c1a993eec54ac585fe5bf677e07474
+-- 
+2.45.0&lt;/pre&gt;
+</description><link>https://www.landiannews.com/archives/107685.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/107685.html</guid><pubDate>Mon, 27 Jan 2025 02:05:38 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>Linux</category><category>Linux Kernel</category><category>SHA 1</category><category>SHA-512</category><category>内核</category><category>签名</category><category>算法</category></item><item><title>Linux Kernel 6.13正式版发布 带来多项功能改进并提供更多硬件特性支持等</title><description>&lt;p&gt;Linux Kernel 6.13 正式版现已发布，作为新的主线版本更新 6.13 带来诸多新功能、功能改进和更多硬件支持等，该版本并非 LTS 版因此支持周期不是很长。&lt;/p&gt;
+&lt;p&gt;新版本的亮点功能包括延迟抢占功能支持以简化内核的抢占逻辑、支持在机密计算机构 Arm CAA 下受保护的虚拟机中运行 Linux、通过 GCS 受保护的堆栈控制位 AArch64 提供用户空间影子堆栈支持以及为 AMD CPU 提供分割锁检测支持等。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; alt=&quot;Linux Kernel 6.13正式版发布 带来多项功能改进并提供更多硬件特性支持等&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;新的硬件支持和优化方面则包括增加对 Intel Arrow Lake-H 和 Intel Panther Lake 处理器的 PMU 支持、针对 MacBook Pro 和 MacBook Air 等部分设备提供新的 ACPI 背光特性、对 SoundWire 子系统中的 MIPI DisCo 2.0 规范提供支持、对音频相关加速器提供新的直通模式。&lt;/p&gt;
+&lt;p&gt;如果你是树莓派爱好者，Linux Kernel 6.13 还对树莓派 V3D 驱动程序中的硬件超级页面提供支持，这可以优化 Broadcom V3D MMU 的特性从而提高对内存要求较多的应用程序的性能。&lt;/p&gt;
+&lt;p&gt;文件系统 F2FS 文件系统获得设备别名功能，借助该功能用户可以划分分区并可以通过删除根目录的别名文件回收空间；Btrfs 文件系统通过减少遍历范围缓冲区时的锁争以及减少搜索内联反向引用时的范围数锁帧提高性能；exFAT 文件系统通过减少 FAT 链遍历获得性能提升；EXT4 文件系统则获得了大量的杂项错误修复和清理等。&lt;/p&gt;
+&lt;p&gt;还有个亮点更新是 Linux Kernel 6.13 为龙芯架构 (LoongArch) 带来实时计算能力和对用户空间指针掩码的支持，有兴趣的用户可以通过 kernel.org 查看关于该内核的更多信息。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/107627.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/107627.html</guid><pubDate>Mon, 20 Jan 2025 05:54:05 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>Linux</category><category>Linux Kernel</category><category>内核</category><category>开源软件</category></item><item><title>Linux内核准备彻底放弃USB RNDIS协议的支持 因为真的没太多用户还不安全</title><description>&lt;p&gt;USB RNDIS (远程网络驱动程序规范接口协议) 是微软在 Windows XP 时代使用的协议，该协议旨在通过 USB 提供虚拟以太网链路方便设备进行联网。&lt;/p&gt;
+&lt;p&gt;尽管微软还在对该协议进行更新但目前大多数用户已经不再使用这类协议，有鉴于此 Linux 基金会研究人员 Greg Kroah-Hartman 准备将其从 Linux Kernel 里禁用。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; alt=&quot;Linux内核准备彻底放弃USB RNDIS协议的支持 因为真的没太大用户还不安全&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;最初在 2022 年 11 月 Greg Kroah-Hartman 就提议从 Linux Kernel 中删除 RNDIS 协议，不过当时这个提议还没有获得大多数开发者的支持。&lt;/p&gt;
+&lt;p&gt;现在这个提议被再次提出而且此次可能会获得大多数开发者同意，也就是最终结果是 Linux Kernel 将彻底禁用该协议未来不再提供支持。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Greg Kroah-Hartman 在提议中表示：&lt;/strong&gt;&lt;/p&gt;
+&lt;p style=&quot;padding-left: 40px;&quot;&gt;&lt;em&gt;Microsoft RNDIS 协议在设计上就是不安全的，并且对于任何将其与不受信任的主机或设备一起使用的系统来说都是易受攻击的。由于该协议不可能保证安全，因此只需要禁用所有 RNDIS 驱动程序即可防止任何人再次使用该协议。Windows NT 系统只需要在 XP 及之后的系统上使用此功能，比 XP 还古老的 Windows 系统可以使用普通的 USB 类协议，而这些 USB 类协议不存在这些安全问题。另外 Android 系统多年前就禁用了这个功能，因此应该没有任何实际系统仍然需要此功能。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;RNDIS 协议是一种独立于总线的消息协议，用于动态即插即用 (PnP) 总线例如 USB、1394、蓝牙和 InfiniBand 上的以太网 (IEEE 802.3) 网络设备，这种标准化方法可以让一组主机驱动程序通过 USB 支持任意数量的网络设备。&lt;/p&gt;
+&lt;p&gt;目前该协议的最新版本是 6.89 版，微软在 Windows 10 和 Windows 11 里仍然支持该协议，包括最新的 Windows 11 24H2 都支持，但考虑到大多数用户都用不上，所以 RNDIS 驱动程序不会被系统默认安装。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/107349.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/107349.html</guid><pubDate>Sun, 05 Jan 2025 03:00:41 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>Linux</category><category>Linux Kernel</category><category>RNDIS</category><category>内核</category><category>微软</category><category>操作系统</category></item><item><title>Linux Kernel EFI Zboot正在废弃大多数压缩选项 后续仅提供Gzip和Zstd压缩支持</title><description>&lt;p&gt;Linux Kernel EFI Zboot 代码用于以压缩形式承载 EFI 系统的 Linux 内核映像，原本支持的压缩支持非常多，包括但不限于 Gzip、LZ4、LZMA、LZO、XZ 和 Zstd 等。&lt;/p&gt;
+&lt;p&gt;不过基于兼容性和实际使用考虑，目前 Linux Kernel 开发者们正在废弃大多数压缩选项 / 算法，仅保留 Gzip 和 Zstd 两种压缩选项。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; alt=&quot;Linux Kernel EFI Zboot正在废弃大多数压缩选项 后续仅提供Gzip和Zstd压缩支持&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;内核开发者 Ard Biesheuvel 解释为什么要弃用大多数压缩选项：&lt;/strong&gt;&lt;/p&gt;
+&lt;p style=&quot;padding-left: 40px;&quot;&gt;由于历史原因各个架构上的旧解压缩代码支持 7 种不同的压缩内核映像类型，但 EFI Zboot 并不是压缩库博物馆，在实际使用中可能有用的选项只有 Gzip 和 Zstd。&lt;/p&gt;
+&lt;p style=&quot;padding-left: 40px;&quot;&gt;Gzip 经过尝试和测试当然是解压速度最快的选择之一，尽管压缩率不是很高；Fedora 已经为使用 Gzip 的 Arm64 提供 EFI Zboot 内核，并且 QEMU 在启动未加载固件的内核时实现了对 Gzip 的直接支持。&lt;/p&gt;
+&lt;p style=&quot;padding-left: 40px;&quot;&gt;Zstd 具有非常高的压缩率 (但不是最高的)，在解压时速度几乎和 Gzip 一样快。减少压缩选项数量使其他 EFI Zboot 格式的下游产品 (例如 QEMU 和 Kexec) 无需提供 7 种不同的压缩库即可完全支持。&lt;/p&gt;
+&lt;p&gt;这种做法应该不会产生什么负面影响，内核开发者的意思很明确，那就是提供这么多压缩选项也导致必须附带这么多压缩选项的开源库，但这是没有必要的。&lt;/p&gt;
+&lt;p&gt;所以后续仅提供 Gzip 和 Zstd 压缩选项后，只需要携带针对这两种压缩选项的开源库即可，这样也可以缩减体积减少其他浪费。&lt;/p&gt;
+&lt;p&gt;还需要强调的是这次变动仅影响 EFI Zboot 代码，Linux Kernel 其他区域的压缩和解压缩选项都不会改变，因此也不需要担心这会造成后续的正常使用问题。&lt;/p&gt;
+&lt;p&gt;最后这处改进预计会在未来几天内提交给 Linux Kernel 6.13 而不是等到 Linux Kernel 6.14，如果成功提交那么很快应该就会被合并到 Linux Kernel 6.13 版种。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/106979.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/106979.html</guid><pubDate>Mon, 09 Dec 2024 03:31:58 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>EFI</category><category>Linux</category><category>Linux Kernel</category><category>Zboot</category><category>内核</category><category>压缩算法</category></item><item><title>Linux Kernel 6.12正式被标记为LTS长期支持版 至少将获得2年的安全支持</title><description>&lt;p&gt;发布于 2024 年 11 月 17 日的 Linux Kernel 6.12 版目前已经被正式标记为 LTS 长期支持版，Linux 内核开发者 Greg Kroah-Hartman 宣布此版本预计寿命至少为 2 年。&lt;/p&gt;
+&lt;p&gt;也就是说在未来两年里 Linux Kernel 6.12 版将是项目组主要支持的内核版本，并在至少在 2026 年 12 月前都可以收到包含错误和安全修复的维护更新。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; alt=&quot;Linux Kernel 6.12正式被标记为LTS长期支持版 至少将获得2年的安全支持&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;值得注意的是 Linux Kernel 4.19 系列也迎来了支持终点，Linux Kernel 4.19.325 版为该系列的最终版本，自此 Linux Kernel 4.19 系列正式被标记为 EOL (End of life，生命周期结束)。&lt;/p&gt;
+&lt;p&gt;目前 Linux Kernel 6.12 版正在被各种 Linux 发行版接纳，包括 Arch Linux、openSUSE 的 Tumbleweed 和 Fedora Linux 等都已经开始提供 Linux Kernel 6.12 LTS 版。&lt;/p&gt;
+&lt;p&gt;如果你正式使用 Linux 系统可以通过系统更新命令升级到最新内核，新版内核提供的新功能包括死机二维码、实时 PREEMPT_RT、新的 sched_ext 调度程序等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;下面是目前还在支持的 Linux Kernel LTS 系列版本：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Linux Kernel 6.12：发布于 2024 年 11 月 17 日，预计将在 2026 年 12 月结束支持&lt;/p&gt;
+&lt;p&gt;Linux Kernel 6.6：发布于 2023 年 10 月 29 日，预计将在 2026 年 12 月结束支持&lt;/p&gt;
+&lt;p&gt;Linux Kernel 6.1：发布于 2022 年 12 月 11 日，预计将在 2026 年 12 月结束支持&lt;/p&gt;
+&lt;p&gt;Linux Kernel 5.15：发布于 2021 年 10 月 31 日，预计将在 2026 年 12 月结束支持&lt;/p&gt;
+&lt;p&gt;Linux Kernel 5.10：发布于 2020 年 12 月 13 日，预计将在 2026 年 12 月结束支持&lt;/p&gt;
+&lt;p&gt;Linux Kernel 5.4：发布于 2019 年 11 月 24 日。预计将在 2025 年 12 月结束支持&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/106958.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/106958.html</guid><pubDate>Fri, 06 Dec 2024 09:17:43 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>Linux</category><category>Linux Kernel</category><category>Linux内核</category><category>LTS</category><category>开源软件</category><category>操作系统</category><category>长期支持版</category></item><item><title>Linux Kernel 6.13首个候选版(RC1)发布 增加多个新功能和特性</title><description>&lt;p&gt;Linux Kernel 6.12 正式版已经在上月初发布，现在 Linux Kernel 6.13 首个候选版也已经面向用户进行公测，正式版则会在 2025 年 1 月 19 日～1 月 26 日之间发布。&lt;/p&gt;
+&lt;p&gt;Linux Kernel 6.13 带来多个新功能和特性，有兴趣的开发者们可以前往 Kernel.org 下载 Linux Kernel 6.13 RC1 版，请注意测试版内核可能会存在某些未知问题，请不要在生产环境中使用测试版内核以免出现问题导致业务中断。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/public/thumb/linux.png&quot; alt=&quot;Linux Kernel 6.13首个候选版(RC1)发布 增加多个新功能和特性&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;下面是 Linux Kernel 6.13 的亮点新功能：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;支持在 Arm CCA 和用户守护控制栈 (即 GCS) 下的受保护虚拟机运行 Linux&lt;/p&gt;
+&lt;p&gt;支持英特尔 6-node sub-NUMA 集群&lt;/p&gt;
+&lt;p&gt;新增字符设备用户空间 API 功能用于通知用户空间由内核用户触发的更改&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Linux Kernel 6.13 新增的特性包括：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;将 amd-pstate cpufreq 驱动程序设置为某些较新的 AMD EPYC 处理器默认值&lt;/p&gt;
+&lt;p&gt;为 Intel Arrow Lake-H CPU 添加 PMU 支持&lt;/p&gt;
+&lt;p&gt;在 SoundWire 子系统中实现对 MIPI DisCo 2.0 规范的支持&lt;/p&gt;
+&lt;p&gt;为 x86、RISC-V 和 LoongArch 平台启用延迟抢占模型&lt;/p&gt;
+&lt;p&gt;添加每个 per-netns RTNL 用于网络 (请注意：默认为禁用状态)&lt;/p&gt;
+&lt;p&gt;为 V3D 驱动程序添加硬件超页支持&lt;/p&gt;
+&lt;p&gt;添加对 Intel Panther Lake CPU 的支持&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Linux Kernel 6.13 在文件系统方面的更新：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;F2FS 文件系统新增设备别名功能用于划分分区，也可以通过删除根目录中的别名文件回收空间&lt;/p&gt;
+&lt;p&gt;FUSE 文件系统支持页面到页框的转换，支持通过 sysctl 配置 FUSE 请求的最大值&lt;/p&gt;
+&lt;p&gt;EXT4 文件系统获得大量杂项错误修复和清理&lt;/p&gt;
+&lt;p&gt;Btrfs 文件系统通过减少遍历范围缓冲区和搜索内联反向引用时的范围树锁争用提高性能&lt;/p&gt;
+&lt;p&gt;exFAT 文件系统通过减少 FTA 链遍历提升性能&lt;/p&gt;
+&lt;p&gt;最后 Linux Kernel 6.13 还为 LoongArch 架构带来了实时计算能力并支持用户空间指针掩码和探测矢量错位访问性能。&lt;/p&gt;
+&lt;p&gt;按照 Linus Torvalds 的规划，如果 6.13 发布 7 个 RC 版则将在 1 月 19 日推出正式版，如果发布 8 个 RC 版则会推迟到 1 月 26 日推出正式版。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/106857.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/106857.html</guid><pubDate>Mon, 02 Dec 2024 01:28:49 GMT</pubDate><author>山外的鸭子哥</author><category>Linux</category><category>系统资讯</category><category>Linux</category><category>Linux Kernel</category><category>Linux内核</category><category>内核</category><category>操作系统</category></item><item><title>首个针对Linux系统的无法清除的UEFI恶意软件问世 安全公司严阵以待</title><description>&lt;p&gt;正常情况下 Windows PC 上的安全软件可以在检测到恶意软件后执行查杀，为了避免被查杀部分恶意软件针对 UEFI 展开攻击，这样即便在重启系统后恶意软件依然可以持久化运行。&lt;/p&gt;
+&lt;p&gt;不过大多数针对 UEFI 的恶意软件都是针对 Windows PC 的，至少在此前还没有看到针对 Linux 系统的 UEFI 恶意软件，但这种情况现在发生了变化。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://img.lancdn.com/landian/2024/11/106843.png&quot; data-fancybox=&quot;gallery&quot; rel=&quot;nofollow&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;alignnone&quot; src=&quot;https://img.lancdn.com/landian/2024/11/106843.png&quot; alt=&quot;首个针对Linux系统的无法清除的UEFI恶意软件问世 安全公司严阵以待&quot; width=&quot;1280&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安全软件开发商 ESET 在检查 2024 年 11 月上传到 VirusTotal 扫描网站的可疑文件 bootkit.efi 时发现了 BootKitty，这个 rootkit 仅针对 Linux UEFI。&lt;/p&gt;
+&lt;p&gt;经过分析 ESET 确认这是 LinuxUEFI 启动工具包首次绕过内核签名验证并在系统启动过程中加载恶意组件的案例，不过开发 BootKitty 的黑客目前也仅在测试。&lt;/p&gt;
+&lt;p&gt;实际测试安全公司发现 BootKitty 只能在某些特定版本的 Ubuntu 和配置上使用，因此这并不能对大多数 Linux 系统造成威胁，但后续黑客肯定也会继续进行完善。&lt;/p&gt;
+&lt;p&gt;当然 BootKitty 目前使用的是自签名，因此如果已经启用了安全启动功能则自签名无法通过验证因此 BootKitty 也无法运行，或许还因为测试阶段开发不完善，ESET 在测试过程中发现这个 rootkit 经常导致 Linux 系统崩溃。&lt;/p&gt;
+&lt;p&gt;尽管就目前来说 BootKitty 不会在现实世界中产生影响，但这也说明已经有黑客瞄准 Linux 系统，对于安全业界来说这需要关注的情况，随着时间的推移这种 rootkit 工具可能就会逐渐成熟，对 Linux 展开广泛攻击。&lt;/p&gt;
+</description><link>https://www.landiannews.com/archives/106843.html</link><guid isPermaLink="false">https://www.landiannews.com/archives/106843.html</guid><pubDate>Fri, 29 Nov 2024 02:49:42 GMT</pubDate><author>山外的鸭子哥</author><category>安全资讯</category><category>科技资讯</category><category>ESET</category><category>Linux Kernel</category><category>RootKit</category><category>UEFI</category><category>恶意软件</category></item></channel></rss>

@@ -1,4 +1,367 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Blog - Bitmovin</title><link>https://bitmovin.com/blog/</link><atom:link href="http://rsshub.speednet.icu/bitmovin/blog" rel="self" type="application/rss+xml"></atom:link><description>Blog - Bitmovin - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Wed, 19 Mar 2025 23:00:57 GMT</lastBuildDate><ttl>5</ttl><item><title>The Essential Guide to SCTE-35</title><description>&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;everything-you-need-to-know-about-scte-35-the-popular-event-signaling-standard-that-powers-dynamic-ad-insertion-digital-program-insertion-blackouts-and-more-for-tv-live-streams-and-on-demand-video&quot;&gt;Everything you need to know about SCTE-35, the popular event signaling standard that powers dynamic ad insertion, digital program insertion, blackouts and more for TV, live streams and on-demand video.&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Blog - Bitmovin</title><link>https://bitmovin.com/blog/</link><atom:link href="http://rss.owo.nz/bitmovin/blog" rel="self" type="application/rss+xml"></atom:link><description>Blog - Bitmovin - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Apr 2025 00:18:35 GMT</lastBuildDate><ttl>5</ttl><item><title>AI Contextual Advertising: A New Era for Viewer-Centric Ads</title><description>&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;AI Contextual Advertising: A New Era for Viewer-Centric Ads&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Video has become the dominant medium for entertainment and information so effective advertising strategies have never been more important. This is exacerbated by Google’s plan to phase out third-party cookies for Chrome which is now expected to happen in early 2025. For over 20 years cookies have been the backbone for targeted advertising campaigns and their potential removal requires new solutions that can deliver relevant ads while respecting user privacy.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href=&quot;https://bitmovin.com/ai-contextual-advertising/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;Bitmovin’s AI Contextual Advertising&lt;/a&gt; addresses this problem. By analyzing the video, audio, and text data during encoding and passing this information to the video player, this technology enables ad servers to deliver highly relevant and targeted ads based on what’s being watched. Unlike traditional cookie-based methods, it integrates seamlessly into the viewing experience without relying on personal user data so it’s both privacy-friendly and highly effective. While advertising is the primary use case we’ll explore, this technology has the potential for a wide range of applications, which we’ll touch on later.&lt;/p&gt;
+
+
+
+&lt;p&gt;In this blog, we’ll dive into the technical implementation of AI Contextual Advertising, from its origins in a Bitmovin hackathon to the real-world engineering challenges we overcame to bring this latest feature to life.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;How It Started&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The concept originated during a brainstorming session at a Bitmovin hackathon. The goal of it was to see what we could come up with by utilizing Bitmovin’s multiple solutions. Among many ideas, one stood out: analyzing video content and serving ads relevant to the context of the scenes.&lt;/p&gt;
+
+
+
+&lt;p&gt;Armed with this concept, we quickly sketched a basic workflow, a rough hackathon-style diagram that you see below to guide us.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;955&quot; height=&quot;410&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1.png&quot; alt=&quot;&quot; class=&quot;wp-image-294771&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1.png 955w, https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1-300x129.png 300w, https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1-768x330.png 768w&quot; sizes=&quot;auto, (max-width: 955px) 100vw, 955px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;The idea was straightforward:&lt;/p&gt;
+
+
+
+&lt;ol class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Use Bitmovin’s Encoders to analyze video segments&lt;/li&gt;
+
+
+
+&lt;li&gt;Employ a multi-modal AI system to extract contextual descriptions of each scene&lt;/li&gt;
+
+
+
+&lt;li&gt;Pass this metadata to the Bitmovin Player for ad integration&lt;/li&gt;
+
+
+
+&lt;li&gt;The Player then provides this contextual information to the playout software, which works with the ad server to request relevant ads&lt;/li&gt;
+
+
+
+&lt;li&gt;Finally, the Player integrates and displays these ads seamlessly within the content&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;With just two days to deliver a working prototype, we were facing an uphill battle as we didn’t have time to include an ad vendor that we could integrate into the system. So to make sure we could cover this, our group decided to build a custom ad server during the hackathon that would generate ad placements on the fly with AI.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Hackathon Implementation&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;1. &lt;/strong&gt;Extraction of contextual information&lt;/h3&gt;
+
+
+
+&lt;p&gt;The first step was to extract contextual information from the live or on-demand video content during encoding. To simplify the process within our time constraints, we focused on analyzing the first frame of each video segment using an AI system. While not perfect, this approach was sufficient for demonstrating the concept (and hopefully winning first prize).&lt;/p&gt;
+
+
+
+&lt;p&gt;Since we were familiar with it, we leveraged ChatGPT as our AI, and to simplify the approach we set it up so that it would analyze the first frame of every video segment. We knew this wouldn’t be perfect, but it would be good enough to demo the concept for the hackathon. The idea was to give each one of the extracted frames to ChatGPT and to ask it to generate a short description of the contents of the frame in the form of 5 keyword-description pairs.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Then to make the data accessible to the Bitmovin Player, We encapsulated the extracted keyword-description pairs into the video segments as metadata using EMSG boxes.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXcGkKN6X2zCXZ5nPxj5hND5VnPYPVHhOuFQy3enOv_5OwxBSJqX6wj2Dt_bk_AxiWCJF6oZsmkiySE0FiTOf4MCkFs6w_Kkgp-A4QB9QyESVqP2gIpe3AVTyfDn22uHU_K-D1O2?key=HnKyUV6CUQzNjTLICJ3LjysU&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;&amp;nbsp;&lt;em&gt;Example of how the injected metadata looked within the video segments&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;2. Serving Ads in the Player&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;For the Player portion, we developed a new &lt;strong&gt;ContextualAds module&lt;/strong&gt;, which exposed an API for handling ad opportunities and scheduling ads. When an ad opportunity arose, the player would fetch and preload ads from the advertising server based on the metadata from the video segments.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Code Snippet:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;export interface ContextualAdvertisingApi {&lt;/p&gt;
+
+
+
+&lt;p&gt;&amp;nbsp;&amp;nbsp;readonly opportunities: AdOpportunity[];&lt;/p&gt;
+
+
+
+&lt;p&gt;&amp;nbsp;&amp;nbsp;schedule(opportunity: AdOpportunity, options?: Partial&amp;lt;ContextualAdOptions&amp;gt;): Promise&amp;lt;ContextualAd&amp;gt;;&lt;/p&gt;
+
+
+
+&lt;p&gt;&amp;nbsp;&amp;nbsp;setAdShape(shape: AdShape | undefined): void;&lt;/p&gt;
+
+
+
+&lt;p&gt;}&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;Example API code for the ContextualAds Module&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;The system was designed to display ads seamlessly within the video player, ensuring alignment with the content on screen and also show information about keywords once the ad starts.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;div class=&quot;bitmovin-stream-wrapper&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;&amp;nbsp; &lt;em&gt;Example video of how the ads and metadata were shown on live stream&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;3. Serving Ads with a Custom Ad Server&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Given the lack of time to integrate an actual ad vendor, we built a simple Node app to act as our ad server. This was a basic server that had an API to provide ad opportunity keywords, get ad suggestions from ChatGPT, and use suggestions to get an image/images back that would fit the keywords.&lt;/p&gt;
+
+
+
+&lt;p&gt;Initially, we aimed to generate ad images on the fly using AI as this would help us ensure that the ads we generated would fit perfectly within the scene. A quick and manual test of this approach immediately showed us how amazing the viewing experience could be, as with a system like this one, we would be able to serve ads that fit the content remarkably well and also have them stylized and presented in a way that is very engaging, light-hearted and even entertaining.&lt;/p&gt;
+
+
+
+&lt;p&gt;Just look at the – quite frankly astonishing – cat food commercial that ChatGPT came up with during our initial tests. Who would not love to buy DEEST’s QUALTING TASTE food for our beloved furry friends?&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXc4AZON-vERkBUtr_aoXIMzvxbb6zgcMiv_Ju3WRob_dYC-UsBFWKN2bGQZJvIVRpJzZICRavAVu1W4BrRrDkmyVbo46CyJ1LXqb_KZmN594jPe8PWWH9gQCYVARD8j7Hk7JjJ14w?key=HnKyUV6CUQzNjTLICJ3LjysU&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;&lt;em&gt;Example of a generated ad image with ChatGPT&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;However, when putting this into practice, we ran into issues quickly. The time it took to generate the images was longer than expected and the size set for them is very limited, with none fitting the aspect ratio that we wanted to display (L-shape around the player). The delay alone was a deal-breaker for us, as the Player would only be able to start requesting ads once it has parsed the ads and we wanted to showcase this in a live stream. We needed to use a small buffer to keep the distance to the live edge short, and we’d therefore only have a few seconds between first parsing a video segment and having to show an ad that fit the content being presented.&lt;/p&gt;
+
+
+
+&lt;p&gt;So we scrapped the idea of generating ad placement images on the fly and went for a more practical solution: searching for ad placements on the internet. Luckily Bing had what we needed – an API to search for images with very specific queries. This allowed us to find images that fit the aspect ratio of our ads and more targeted queries to find the actual ad content.&lt;/p&gt;
+
+
+
+&lt;p&gt;To use Bing, we needed to simplify the descriptions we had been sharing with ChatGPT so they would be easily digestible by the search engine and yield the results we needed. By leveraging the AI to refine the queries, we were able to successfully use the Bing API to search for images, ultimately getting our hackathon project over the finish line.&lt;/p&gt;
+
+
+
+&lt;p&gt;Needless to say we, of course, won the first prize and you can now test it out for yourself on the &lt;a href=&quot;https://dashboard.bitmovin.com/ai-contextual-advertising/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;Bitmovin Dashboard&lt;/a&gt;.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Current System Architecture&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;2586&quot; height=&quot;1375&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram.png&quot; alt=&quot;&quot; class=&quot;wp-image-294768&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram.png 2586w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-300x160.png 300w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-768x408.png 768w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-1536x817.png 1536w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-2048x1089.png 2048w&quot; sizes=&quot;auto, (max-width: 2586px) 100vw, 2586px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;&lt;em&gt;Architecture diagram of how Bitmovin’s Contextual Ads feature works and is now accessible to test&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;To sum up how AI Contextual Advertising works within the graph above:&lt;/p&gt;
+
+
+
+&lt;ol class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Content Analysis by Encoders&lt;/strong&gt;
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;The Live and VOD Encoders analyze each segment of the video stream by extracting the first frame of every segment.&lt;/li&gt;
+
+
+
+&lt;li&gt;The extracted frames are sent to ChatGPT, which generates five keyword/description pairs to summarize the scene.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Metadata Storage&lt;/strong&gt;
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;The contextual keywords are embedded into the video segments as metadata using custom emsg boxes.&lt;/li&gt;
+
+
+
+&lt;li&gt;Both the video and metadata are stored on the CDN during the encoding process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Player Metadata Extraction&lt;/strong&gt;
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;The Bitmovin Player loads the video segments from the CDN and extracts the contextual metadata from the emsg boxes.&lt;/li&gt;
+
+
+
+&lt;li&gt;The metadata is exposed through the Ad Opportunity API, which the Player uses to identify potential ad placements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Ad Request via Ad Server&lt;/strong&gt;
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;The Player sends the contextual metadata to the ad server, which uses ChatGPT to generate five ad placement ideas.&lt;/li&gt;
+
+
+
+&lt;li&gt;The ad server then uses Bing’s image search API to fetch images that match the selected ad idea and desired aspect ratio.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Ad Delivery and Playback&lt;/strong&gt;
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;The ad server responds with an ad placement consisting of two images.&lt;/li&gt;
+
+
+
+&lt;li&gt;The Player schedules and displays the ads in alignment with the associated content during playback.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Where we can go from here&lt;/strong&gt; – &lt;strong&gt;Future Possibilities&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The implementation of AI Contextual Advertising marks a significant advancement in delivering personalized viewer experiences. At the core of this innovation lies AI Scene Analysis, a technology that meticulously examines video content to extract detailed metadata, including mood, setting, objects, and characters like listed above. This rich metadata enables streaming platforms to align advertisements seamlessly with the content, ensuring that ads resonate with viewers on a contextual level.&lt;/p&gt;
+
+
+
+&lt;p&gt;Beyond enhancing advertising strategies, AI Scene Analysis opens the door to a multitude of future possibilities:&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Jumping to specific moments in content&lt;/strong&gt; using natural language queries, such as: “I want to watch the part where the guy drives a sled down the stairs and crashes through the glass pane.”&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Searching large content libraries&lt;/strong&gt; with intuitive queries like: “Find the movie where Tom Cruise does that one stunt.”&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Providing smarter content recommendations&lt;/strong&gt; by combining contextual metadata with insights into user viewing behavior.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Delivering targeted and personalized content warnings&lt;/strong&gt; based on sensitive themes and the user’s past viewing habits.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Summarizing missed episodes or key moments,&lt;/strong&gt; such as condensing a skipped episode of a TV series into a quick recap.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Automatically annotating important moments,&lt;/strong&gt; such as flagging goals in a soccer match or other points of interest in live or recorded content.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Identifying points of interest without prior knowledge&lt;/strong&gt; of the content type, such as auto-generating chapter markers in a video.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Recognizing people, brands, or objects in content,&lt;/strong&gt; and tracking when and where they appear.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Enhancing older content with up-to-date contextual overlays,&lt;/strong&gt; such as correcting outdated information in documentaries with real-time annotations.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Combining analytics data with contextual metadata&lt;/strong&gt; to gain deeper insights into viewing trends and audience engagement.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;hr class=&quot;wp-block-separator has-alpha-channel-opacity&quot;&gt;
+
+
+
+&lt;p&gt;As we continue to explore and harness the capabilities of AI Scene Analysis, the potential to transform viewer engagement and content management becomes increasingly evident. This technology not only enhances current advertising models but also paves the way for innovative applications that prioritize viewer satisfaction and content relevance.&lt;/p&gt;
+
+
+
+&lt;p&gt;If you want to learn more about the hackathon, check it out here and if you want to try the AI Contextual Advertising for yourself, test our&lt;a href=&quot;https://dashboard.bitmovin.com/ai-contextual-advertising&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt; live demo&lt;/a&gt; on the Bitmovin Dashboard.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/ai-contextual-advertising-viewer-centric-ads/</link><guid isPermaLink="false">https://bitmovin.com/blog/ai-contextual-advertising-viewer-centric-ads/</guid><pubDate>Thu, 20 Mar 2025 04:28:04 GMT</pubDate><author>Adis Talic, Wolfram Hofmeister</author></item><item><title>The Essential Guide to SCTE-35</title><description>&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;everything-you-need-to-know-about-scte-35-the-popular-event-signaling-standard-that-powers-dynamic-ad-insertion-digital-program-insertion-blackouts-and-more-for-tv-live-streams-and-on-demand-video&quot;&gt;Everything you need to know about SCTE-35, the popular event signaling standard that powers dynamic ad insertion, digital program insertion, blackouts and more for TV, live streams and on-demand video.&lt;/h2&gt;
 
 
 
@@ -42,7 +405,7 @@
 
 
 
-&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67db47a16ea36&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;283&quot; height=&quot;300&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03%E2%80%AFPM-283x300.png&quot; alt=&quot;Table containing SCTE-35 Document Release History from 2001 to 2023&quot; class=&quot;wp-image-275720&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-283x300.png 283w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-768x813.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM.png 986w&quot; sizes=&quot;auto, (max-width: 283px) 100vw, 283px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image: Table containing SCTE-35 Document Release History from 2001 to 2023&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
+&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67eb2fa23bdb5&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;283&quot; height=&quot;300&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03%E2%80%AFPM-283x300.png&quot; alt=&quot;Table containing SCTE-35 Document Release History from 2001 to 2023&quot; class=&quot;wp-image-275720&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-283x300.png 283w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-768x813.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM.png 986w&quot; sizes=&quot;auto, (max-width: 283px) 100vw, 283px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image: Table containing SCTE-35 Document Release History from 2001 to 2023&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;none&quot; viewBox=&quot;0 0 12 12&quot;&gt;
 &lt;path fill=&quot;#fff&quot; d=&quot;M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z&quot;&gt;&lt;/path&gt;
 &lt;/svg&gt;
@@ -118,7 +481,7 @@
 
 
 
-&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67db47a16f74d&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;300&quot; height=&quot;226&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19%E2%80%AFPM-300x226.png&quot; alt=&quot;&quot; class=&quot;wp-image-275722&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-300x226.png 300w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-768x580.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-1536x1159.png 1536w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM.png 1778w&quot; sizes=&quot;auto, (max-width: 300px) 100vw, 300px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
+&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67eb2fa23c56c&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;300&quot; height=&quot;226&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19%E2%80%AFPM-300x226.png&quot; alt=&quot;&quot; class=&quot;wp-image-275722&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-300x226.png 300w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-768x580.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-1536x1159.png 1536w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM.png 1778w&quot; sizes=&quot;auto, (max-width: 300px) 100vw, 300px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;none&quot; viewBox=&quot;0 0 12 12&quot;&gt;
 &lt;path fill=&quot;#fff&quot; d=&quot;M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z&quot;&gt;&lt;/path&gt;
 &lt;/svg&gt;
@@ -329,7 +692,7 @@ SCTE35:/DBcAAAAAAAAAP/wBQb//ciI8QBGAh1DVUVJXQk9EX+fAQ5FUDAxODAzODQwMDY2NiEEZAIZQ
 
 
 
-&lt;p&gt;After SCTE-35 markers are attached to the video, the Bitmovin HLS manifest generator will automatically interpret them and add corresponding cue tags to the HLS manifest. This will enable downstream systems like server-side and dynamic ad insertion to create seamless and tailored ad experiences.&amp;nbsp;Currently this VOD SCTE-35 support is in beta with some known limitations. See the &lt;a href=&quot;https://developer.bitmovin.com/encoding/docs/encoder-22000-22490#22210-beta&quot;&gt;release notes&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;After SCTE-35 markers are attached to the video, the Bitmovin HLS manifest generator will automatically interpret them and add corresponding cue tags to the HLS manifest. This will enable downstream systems like server-side and dynamic ad insertion to create seamless and tailored ad experiences.&amp;nbsp;Currently this VOD SCTE-35 support works with HLS outputs only. See the &lt;a href=&quot;https://developer.bitmovin.com/encoding/docs/encoder-22000-22490#22210-beta&quot;&gt;release notes&lt;/a&gt; for more details.&lt;/p&gt;
 
 
 
@@ -683,362 +1046,7 @@ SCTE35:/DBcAAAAAAAAAP/wBQb//ciI8QBGAh1DVUVJXQk9EX+fAQ5FUDAxODAzODQwMDY2NiEEZAIZQ
 
 
 &lt;p&gt;[4] &lt;a href=&quot;https://aclanthology.org/2020.lrec-1.739.pdf&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;https://aclanthology.org/2020.lrec-1.739.pdf&lt;/a&gt;&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/ai-sign-language-video-streaming-accessibility/</link><guid isPermaLink="false">https://bitmovin.com/blog/ai-sign-language-video-streaming-accessibility/</guid><pubDate>Tue, 31 Dec 2024 07:08:22 GMT</pubDate><author>Mario Graf, Kevin Rocard</author></item><item><title>AI Contextual Advertising: A New Era for Viewer-Centric Ads</title><description>&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;AI Contextual Advertising: A New Era for Viewer-Centric Ads&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Video has become the dominant medium for entertainment and information so effective advertising strategies have never been more important. This is exacerbated by Google’s plan to phase out third-party cookies for Chrome which is now expected to happen in early 2025. For over 20 years cookies have been the backbone for targeted advertising campaigns and their potential removal requires new solutions that can deliver relevant ads while respecting user privacy.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;a href=&quot;https://bitmovin.com/ai-contextual-advertising/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;Bitmovin’s AI Contextual Advertising&lt;/a&gt; addresses this problem. By analyzing the video, audio, and text data during encoding and passing this information to the video player, this technology enables ad servers to deliver highly relevant and targeted ads based on what’s being watched. Unlike traditional cookie-based methods, it integrates seamlessly into the viewing experience without relying on personal user data so it’s both privacy-friendly and highly effective. While advertising is the primary use case we’ll explore, this technology has the potential for a wide range of applications, which we’ll touch on later.&lt;/p&gt;
-
-
-
-&lt;p&gt;In this blog, we’ll dive into the technical implementation of AI Contextual Advertising, from its origins in a Bitmovin hackathon to the real-world engineering challenges we overcame to bring this latest feature to life.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;How It Started&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;The concept originated during a brainstorming session at a Bitmovin hackathon. The goal of it was to see what we could come up with by utilizing Bitmovin’s multiple solutions. Among many ideas, one stood out: analyzing video content and serving ads relevant to the context of the scenes.&lt;/p&gt;
-
-
-
-&lt;p&gt;Armed with this concept, we quickly sketched a basic workflow, a rough hackathon-style diagram that you see below to guide us.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;955&quot; height=&quot;410&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1.png&quot; alt=&quot;&quot; class=&quot;wp-image-294771&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1.png 955w, https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1-300x129.png 300w, https://bitmovin.com/wp-content/uploads/2024/12/BLAM-Patent-Application-1-768x330.png 768w&quot; sizes=&quot;auto, (max-width: 955px) 100vw, 955px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;The idea was straightforward:&lt;/p&gt;
-
-
-
-&lt;ol class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;Use Bitmovin’s Encoders to analyze video segments&lt;/li&gt;
-
-
-
-&lt;li&gt;Employ a multi-modal AI system to extract contextual descriptions of each scene&lt;/li&gt;
-
-
-
-&lt;li&gt;Pass this metadata to the Bitmovin Player for ad integration&lt;/li&gt;
-
-
-
-&lt;li&gt;The Player then provides this contextual information to the playout software, which works with the ad server to request relevant ads&lt;/li&gt;
-
-
-
-&lt;li&gt;Finally, the Player integrates and displays these ads seamlessly within the content&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;p&gt;With just two days to deliver a working prototype, we were facing an uphill battle as we didn’t have time to include an ad vendor that we could integrate into the system. So to make sure we could cover this, our group decided to build a custom ad server during the hackathon that would generate ad placements on the fly with AI.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Hackathon Implementation&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;1. &lt;/strong&gt;Extraction of contextual information&lt;/h3&gt;
-
-
-
-&lt;p&gt;The first step was to extract contextual information from the live or on-demand video content during encoding. To simplify the process within our time constraints, we focused on analyzing the first frame of each video segment using an AI system. While not perfect, this approach was sufficient for demonstrating the concept (and hopefully winning first prize).&lt;/p&gt;
-
-
-
-&lt;p&gt;Since we were familiar with it, we leveraged ChatGPT as our AI, and to simplify the approach we set it up so that it would analyze the first frame of every video segment. We knew this wouldn’t be perfect, but it would be good enough to demo the concept for the hackathon. The idea was to give each one of the extracted frames to ChatGPT and to ask it to generate a short description of the contents of the frame in the form of 5 keyword-description pairs.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Then to make the data accessible to the Bitmovin Player, We encapsulated the extracted keyword-description pairs into the video segments as metadata using EMSG boxes.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXcGkKN6X2zCXZ5nPxj5hND5VnPYPVHhOuFQy3enOv_5OwxBSJqX6wj2Dt_bk_AxiWCJF6oZsmkiySE0FiTOf4MCkFs6w_Kkgp-A4QB9QyESVqP2gIpe3AVTyfDn22uHU_K-D1O2?key=HnKyUV6CUQzNjTLICJ3LjysU&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p class=&quot;has-text-align-center&quot;&gt;&amp;nbsp;&lt;em&gt;Example of how the injected metadata looked within the video segments&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;2. Serving Ads in the Player&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;For the Player portion, we developed a new &lt;strong&gt;ContextualAds module&lt;/strong&gt;, which exposed an API for handling ad opportunities and scheduling ads. When an ad opportunity arose, the player would fetch and preload ads from the advertising server based on the metadata from the video segments.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Code Snippet:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;export interface ContextualAdvertisingApi {&lt;/p&gt;
-
-
-
-&lt;p&gt;&amp;nbsp;&amp;nbsp;readonly opportunities: AdOpportunity[];&lt;/p&gt;
-
-
-
-&lt;p&gt;&amp;nbsp;&amp;nbsp;schedule(opportunity: AdOpportunity, options?: Partial&amp;lt;ContextualAdOptions&amp;gt;): Promise&amp;lt;ContextualAd&amp;gt;;&lt;/p&gt;
-
-
-
-&lt;p&gt;&amp;nbsp;&amp;nbsp;setAdShape(shape: AdShape | undefined): void;&lt;/p&gt;
-
-
-
-&lt;p&gt;}&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Example API code for the ContextualAds Module&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;The system was designed to display ads seamlessly within the video player, ensuring alignment with the content on screen and also show information about keywords once the ad starts.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div class=&quot;bitmovin-stream-wrapper&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;p class=&quot;has-text-align-center&quot;&gt;&amp;nbsp; &lt;em&gt;Example video of how the ads and metadata were shown on live stream&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;3. Serving Ads with a Custom Ad Server&lt;/strong&gt;&lt;/h3&gt;
-
-
-
-&lt;p&gt;Given the lack of time to integrate an actual ad vendor, we built a simple Node app to act as our ad server. This was a basic server that had an API to provide ad opportunity keywords, get ad suggestions from ChatGPT, and use suggestions to get an image/images back that would fit the keywords.&lt;/p&gt;
-
-
-
-&lt;p&gt;Initially, we aimed to generate ad images on the fly using AI as this would help us ensure that the ads we generated would fit perfectly within the scene. A quick and manual test of this approach immediately showed us how amazing the viewing experience could be, as with a system like this one, we would be able to serve ads that fit the content remarkably well and also have them stylized and presented in a way that is very engaging, light-hearted and even entertaining.&lt;/p&gt;
-
-
-
-&lt;p&gt;Just look at the – quite frankly astonishing – cat food commercial that ChatGPT came up with during our initial tests. Who would not love to buy DEEST’s QUALTING TASTE food for our beloved furry friends?&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXc4AZON-vERkBUtr_aoXIMzvxbb6zgcMiv_Ju3WRob_dYC-UsBFWKN2bGQZJvIVRpJzZICRavAVu1W4BrRrDkmyVbo46CyJ1LXqb_KZmN594jPe8PWWH9gQCYVARD8j7Hk7JjJ14w?key=HnKyUV6CUQzNjTLICJ3LjysU&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p class=&quot;has-text-align-center&quot;&gt;&lt;em&gt;Example of a generated ad image with ChatGPT&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;However, when putting this into practice, we ran into issues quickly. The time it took to generate the images was longer than expected and the size set for them is very limited, with none fitting the aspect ratio that we wanted to display (L-shape around the player). The delay alone was a deal-breaker for us, as the Player would only be able to start requesting ads once it has parsed the ads and we wanted to showcase this in a live stream. We needed to use a small buffer to keep the distance to the live edge short, and we’d therefore only have a few seconds between first parsing a video segment and having to show an ad that fit the content being presented.&lt;/p&gt;
-
-
-
-&lt;p&gt;So we scrapped the idea of generating ad placement images on the fly and went for a more practical solution: searching for ad placements on the internet. Luckily Bing had what we needed – an API to search for images with very specific queries. This allowed us to find images that fit the aspect ratio of our ads and more targeted queries to find the actual ad content.&lt;/p&gt;
-
-
-
-&lt;p&gt;To use Bing, we needed to simplify the descriptions we had been sharing with ChatGPT so they would be easily digestible by the search engine and yield the results we needed. By leveraging the AI to refine the queries, we were able to successfully use the Bing API to search for images, ultimately getting our hackathon project over the finish line.&lt;/p&gt;
-
-
-
-&lt;p&gt;Needless to say we, of course, won the first prize and you can now test it out for yourself on the &lt;a href=&quot;https://dashboard.bitmovin.com/ai-contextual-advertising/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;Bitmovin Dashboard&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Current System Architecture&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;2586&quot; height=&quot;1375&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram.png&quot; alt=&quot;&quot; class=&quot;wp-image-294768&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram.png 2586w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-300x160.png 300w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-768x408.png 768w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-1536x817.png 1536w, https://bitmovin.com/wp-content/uploads/2024/12/Ai-Contextual-Advertising-Architecture-Diagram-2048x1089.png 2048w&quot; sizes=&quot;auto, (max-width: 2586px) 100vw, 2586px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p class=&quot;has-text-align-center&quot;&gt;&lt;em&gt;Architecture diagram of how Bitmovin’s Contextual Ads feature works and is now accessible to test&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;To sum up how AI Contextual Advertising works within the graph above:&lt;/p&gt;
-
-
-
-&lt;ol class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;&lt;strong&gt;Content Analysis by Encoders&lt;/strong&gt;
-&lt;ul class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;The Live and VOD Encoders analyze each segment of the video stream by extracting the first frame of every segment.&lt;/li&gt;
-
-
-
-&lt;li&gt;The extracted frames are sent to ChatGPT, which generates five keyword/description pairs to summarize the scene.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Metadata Storage&lt;/strong&gt;
-&lt;ul class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;The contextual keywords are embedded into the video segments as metadata using custom emsg boxes.&lt;/li&gt;
-
-
-
-&lt;li&gt;Both the video and metadata are stored on the CDN during the encoding process.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Player Metadata Extraction&lt;/strong&gt;
-&lt;ul class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;The Bitmovin Player loads the video segments from the CDN and extracts the contextual metadata from the emsg boxes.&lt;/li&gt;
-
-
-
-&lt;li&gt;The metadata is exposed through the Ad Opportunity API, which the Player uses to identify potential ad placements.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Ad Request via Ad Server&lt;/strong&gt;
-&lt;ul class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;The Player sends the contextual metadata to the ad server, which uses ChatGPT to generate five ad placement ideas.&lt;/li&gt;
-
-
-
-&lt;li&gt;The ad server then uses Bing’s image search API to fetch images that match the selected ad idea and desired aspect ratio.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Ad Delivery and Playback&lt;/strong&gt;
-&lt;ul class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;The ad server responds with an ad placement consisting of two images.&lt;/li&gt;
-
-
-
-&lt;li&gt;The Player schedules and displays the ads in alignment with the associated content during playback.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Where we can go from here&lt;/strong&gt; – &lt;strong&gt;Future Possibilities&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Our implementation for the Hackathon was basic and simple but it works and is a good starting point for more advanced AI features in the future. The possibilities are endless beyond ad placement. With AI that can extract visual and contextual information from video, audio and text, AI driven content analysis opens up many possibilities such as:&lt;/p&gt;
-
-
-
-&lt;ul class=&quot;wp-block-list&quot;&gt;
-&lt;li&gt;&lt;strong&gt;Jumping to specific moments in content&lt;/strong&gt; using natural language queries, such as: “I want to watch the part where the guy drives a sled down the stairs and crashes through the glass pane.”&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Searching large content libraries&lt;/strong&gt; with intuitive queries like: “Find the movie where Tom Cruise does that one stunt.”&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Providing smarter content recommendations&lt;/strong&gt; by combining contextual metadata with insights into user viewing behavior.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Delivering targeted and personalized content warnings&lt;/strong&gt; based on sensitive themes and the user’s past viewing habits.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Summarizing missed episodes or key moments,&lt;/strong&gt; such as condensing a skipped episode of a TV series into a quick recap.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Automatically annotating important moments,&lt;/strong&gt; such as flagging goals in a soccer match or other points of interest in live or recorded content.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Identifying points of interest without prior knowledge&lt;/strong&gt; of the content type, such as auto-generating chapter markers in a video.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Recognizing people, brands, or objects in content,&lt;/strong&gt; and tracking when and where they appear.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Enhancing older content with up-to-date contextual overlays,&lt;/strong&gt; such as correcting outdated information in documentaries with real-time annotations.&lt;/li&gt;
-
-
-
-&lt;li&gt;&lt;strong&gt;Combining analytics data with contextual metadata&lt;/strong&gt; to gain deeper insights into viewing trends and audience engagement.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-&lt;hr class=&quot;wp-block-separator has-alpha-channel-opacity&quot;&gt;
-
-
-
-&lt;p&gt;If you want to learn more about the hackathon, check it out here and if you want to try the AI Contextual Advertising for yourself, test our&lt;a href=&quot;https://dashboard.bitmovin.com/ai-contextual-advertising&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt; live demo&lt;/a&gt; on the Bitmovin Dashboard.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/ai-contextual-advertising-viewer-centric-ads/</link><guid isPermaLink="false">https://bitmovin.com/blog/ai-contextual-advertising-viewer-centric-ads/</guid><pubDate>Tue, 17 Dec 2024 05:59:22 GMT</pubDate><author>Adis Talic, Wolfram Hofmeister</author></item><item><title>Multiview HEVC (MV-HEVC): Powering spatial video experiences and more</title><description>&lt;p&gt;The world of video technology is constantly evolving, and one of the more interesting developments in recent years is the story of MV-HEVC (Multiview High Efficiency Video Coding). Even though it was added to the HEVC specification in 2014, MV-HEVC didn’t see much commercial use for almost a decade.&amp;nbsp;&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/ai-sign-language-video-streaming-accessibility/</link><guid isPermaLink="false">https://bitmovin.com/blog/ai-sign-language-video-streaming-accessibility/</guid><pubDate>Tue, 31 Dec 2024 07:08:22 GMT</pubDate><author>Mario Graf, Kevin Rocard</author></item><item><title>Multiview HEVC (MV-HEVC): Powering spatial video experiences and more</title><description>&lt;p&gt;The world of video technology is constantly evolving, and one of the more interesting developments in recent years is the story of MV-HEVC (Multiview High Efficiency Video Coding). Even though it was added to the HEVC specification in 2014, MV-HEVC didn’t see much commercial use for almost a decade.&amp;nbsp;&lt;/p&gt;
 
 
 
@@ -11776,7 +11784,7 @@ There is no new signaling necessary for HLS, just the regular content-specific v
 
 
 
-&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67db47a236712&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-full is-resized wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;3298&quot; height=&quot;732&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png&quot; alt=&quot;&quot; class=&quot;wp-image-272900&quot; style=&quot;width:1204px;height:auto&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png 3298w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-300x67.png 300w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-768x170.png 768w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-1536x341.png 1536w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-2048x455.png 2048w&quot; sizes=&quot;auto, (max-width: 3298px) 100vw, 3298px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
+&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67eb2fa2cb256&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-full is-resized wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;3298&quot; height=&quot;732&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png&quot; alt=&quot;&quot; class=&quot;wp-image-272900&quot; style=&quot;width:1204px;height:auto&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png 3298w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-300x67.png 300w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-768x170.png 768w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-1536x341.png 1536w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-2048x455.png 2048w&quot; sizes=&quot;auto, (max-width: 3298px) 100vw, 3298px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;none&quot; viewBox=&quot;0 0 12 12&quot;&gt;
 &lt;path fill=&quot;#fff&quot; d=&quot;M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z&quot;&gt;&lt;/path&gt;
 &lt;/svg&gt;

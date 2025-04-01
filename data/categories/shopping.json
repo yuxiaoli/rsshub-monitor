@@ -20,35 +20,67 @@
     }
   },
   {
-    "provider_id": "guangdiu",
-    "provider_name": "逛丢",
-    "route_key": "/cheaps/:query?",
+    "provider_id": "furstar",
+    "provider_name": "Furstar",
+    "route_key": "/artists/:lang?",
     "route": {
-      "path": "/cheaps/:query?",
-      "example": "/guangdiu/cheaps/k=clothes",
+      "path": "/artists/:lang?",
+      "example": "/furstar/artists/cn",
       "parameters": {
-        "query": "链接参数，对应网址问号后的内容"
+        "lang": "语言, 留空为jp, 支持cn, en"
       },
-      "name": "九块九",
-      "provider_id": "guangdiu",
-      "provider_name": "逛丢",
-      "route_key": "/cheaps/:query?"
+      "name": "画师列表",
+      "url": "furstar.jp/",
+      "provider_id": "furstar",
+      "provider_name": "Furstar",
+      "route_key": "/artists/:lang?"
+    }
+  },
+  {
+    "provider_id": "furstar",
+    "provider_name": "Furstar",
+    "route_key": "/characters/:lang?",
+    "route": {
+      "path": "/characters/:lang?",
+      "example": "/furstar/characters/cn",
+      "parameters": {
+        "lang": "语言, 留空为jp, 支持cn, en"
+      },
+      "name": "最新售卖角色列表",
+      "provider_id": "furstar",
+      "provider_name": "Furstar",
+      "route_key": "/characters/:lang?"
     }
   },
   {
     "provider_id": "guangdiu",
     "provider_name": "逛丢",
-    "route_key": "/search/:query?",
+    "route_key": "/rank",
     "route": {
-      "path": "/search/:query?",
-      "example": "/guangdiu/search/q=百度网盘",
-      "parameters": {
-        "query": "链接参数，对应网址问号后的内容"
-      },
-      "name": "关键字搜索",
+      "path": "/rank",
+      "example": "/guangdiu/rank",
+      "parameters": {},
+      "name": "一小时风云榜",
+      "url": "guangdiu.com/rank",
       "provider_id": "guangdiu",
       "provider_name": "逛丢",
-      "route_key": "/search/:query?"
+      "route_key": "/rank"
+    }
+  },
+  {
+    "provider_id": "hotukdeals",
+    "provider_name": "hotukdeals",
+    "route_key": "/:type",
+    "route": {
+      "path": "/:type",
+      "example": "/hotukdeals/hot",
+      "parameters": {
+        "type": "should be one of highlights, hot, new, discussed"
+      },
+      "name": "thread",
+      "provider_id": "hotukdeals",
+      "provider_name": "hotukdeals",
+      "route_key": "/:type"
     }
   },
   {
@@ -67,23 +99,6 @@
     }
   },
   {
-    "provider_id": "ktown4u",
-    "provider_name": "Ktown4u",
-    "route_key": "/artistBrandlist/:grpNo/:grpNo2?",
-    "route": {
-      "path": "/artistBrandlist/:grpNo/:grpNo2?",
-      "example": "/ktown4u/artistBrandlist/234590/1723449",
-      "parameters": {
-        "grpNo": "artist id (Get in url)",
-        "grpNo2": "product category id (Get in url), empty for all categories"
-      },
-      "name": "Get the products on sale",
-      "provider_id": "ktown4u",
-      "provider_name": "Ktown4u",
-      "route_key": "/artistBrandlist/:grpNo/:grpNo2?"
-    }
-  },
-  {
     "provider_id": "mi",
     "provider_name": "小米",
     "route_key": "/crowdfunding",
@@ -95,25 +110,6 @@
       "provider_id": "mi",
       "provider_name": "小米",
       "route_key": "/crowdfunding"
-    }
-  },
-  {
-    "provider_id": "modian",
-    "provider_name": "摩点",
-    "route_key": "/zhongchou/:category?/:sort?/:status?",
-    "route": {
-      "path": "/zhongchou/:category?/:sort?/:status?",
-      "example": "/modian/zhongchou",
-      "parameters": {
-        "category": "分类，见下表，默认为全部",
-        "sort": "排序，见下表，默认为最新上线",
-        "status": "状态，见下表，默认为全部"
-      },
-      "name": "众筹",
-      "description": "分类\n\n| 全部 | 游戏  | 动漫   | 出版       | 桌游       |\n| ---- | ----- | ------ | ---------- | ---------- |\n| all  | games | comics | publishing | tablegames |\n\n| 卡牌  | 潮玩模型 | 影视       | 音乐  | 活动       |\n| ----- | -------- | ---------- | ----- | ---------- |\n| cards | toys     | film-video | music | activities |\n\n| 设计   | 科技       | 食品 | 爱心通道 | 动物救助 |\n| ------ | ---------- | ---- | -------- | -------- |\n| design | technology | food | charity  | animals  |\n\n| 个人愿望 | 其他   |\n| -------- | ------ |\n| wishes   | others |\n\n  排序\n\n| 最新上线  | 金额最高   | 评论最多     |\n| --------- | ---------- | ------------ |\n| top_time | top_money | top_comment |\n\n  状态\n\n| 全部 | 创意 | 预热    | 众筹中 | 众筹成功 |\n| ---- | ---- | ------- | ------ | -------- |\n| all  | idea | preheat | going  | success  |",
-      "provider_id": "modian",
-      "provider_name": "摩点",
-      "route_key": "/zhongchou/:category?/:sort?/:status?"
     }
   },
   {
@@ -154,40 +150,6 @@
     }
   },
   {
-    "provider_id": "openrice",
-    "provider_name": "Openrice開飯喇",
-    "route_key": "/:lang/hongkong/promos",
-    "route": {
-      "path": "/:lang/hongkong/promos",
-      "example": "/openrice/zh/hongkong/promos",
-      "parameters": {
-        "lang": "语言，缺省为 zh"
-      },
-      "name": "香港餐厅滋讯",
-      "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n  ",
-      "provider_id": "openrice",
-      "provider_name": "Openrice開飯喇",
-      "route_key": "/:lang/hongkong/promos"
-    }
-  },
-  {
-    "provider_id": "patagonia",
-    "provider_name": "Patagonia",
-    "route_key": "/new-arrivals/:category",
-    "route": {
-      "path": "/new-arrivals/:category",
-      "example": "/patagonia/new-arrivals/mens",
-      "parameters": {
-        "category": "category, see below"
-      },
-      "name": "New Arrivals",
-      "description": "| Men's | Women's | Kids' & Baby | Packs & Gear |\n| ----- | ------- | ------------ | ------------ |\n| mens  | womens  | kids         | luggage      |",
-      "provider_id": "patagonia",
-      "provider_name": "Patagonia",
-      "route_key": "/new-arrivals/:category"
-    }
-  },
-  {
     "provider_id": "shcstheatre",
     "provider_name": "上海文化广场",
     "route_key": "/programs",
@@ -200,6 +162,22 @@
       "provider_id": "shcstheatre",
       "provider_name": "上海文化广场",
       "route_key": "/programs"
+    }
+  },
+  {
+    "provider_id": "shopback",
+    "provider_name": "ShopBack",
+    "route_key": "/:store",
+    "route": {
+      "path": "/:store",
+      "example": "/shopback/shopee-mart",
+      "parameters": {
+        "store": "Store, can be found in URL"
+      },
+      "name": "Store",
+      "provider_id": "shopback",
+      "provider_name": "ShopBack",
+      "route_key": "/:store"
     }
   },
   {
@@ -217,24 +195,6 @@
       "provider_id": "showstart",
       "provider_name": "秀动网",
       "route_key": "/artist/:id"
-    }
-  },
-  {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/event/:cityCode/:showStyle?",
-    "route": {
-      "path": "/event/:cityCode/:showStyle?",
-      "example": "/showstart/event/571/3",
-      "parameters": {
-        "cityCode": "演出城市 (编号)",
-        "showStyle": "演出风格 (编号)"
-      },
-      "name": "按城市 - 演出更新",
-      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::",
-      "provider_id": "showstart",
-      "provider_name": "秀动网",
-      "route_key": "/event/:cityCode/:showStyle?"
     }
   },
   {
@@ -283,245 +243,36 @@
     }
   },
   {
-    "provider_id": "smzdm",
-    "provider_name": "什么值得买",
-    "route_key": "/haowen/fenlei/:name/:sort?",
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/site/:siteId",
     "route": {
-      "path": "/haowen/fenlei/:name/:sort?",
-      "example": "/smzdm/haowen/fenlei/shenghuodianqi",
+      "path": "/site/:siteId",
+      "example": "/showstart/site/3583",
       "parameters": {
-        "name": "分类名，可在 URL 中查看",
-        "sort": "排序方式，默认为最新"
+        "siteId": "演出场地 (编号)"
       },
-      "name": "好文分类",
-      "description": "| 最新 | 周排行 | 月排行 |\n| ---- | ------ | ------ |\n| 0    | 7      | 30     |",
-      "provider_id": "smzdm",
-      "provider_name": "什么值得买",
-      "route_key": "/haowen/fenlei/:name/:sort?"
+      "name": "按场地 - 演出更新",
+      "description": "::: tip\n-   演出场地 ID 查询: `/showstart/search/site/:keyword`, 如: [https://rsshub.app/showstart/search/site/酒球会](https://rsshub.app/showstart/search/site/酒球会)\n:::",
+      "provider_id": "showstart",
+      "provider_name": "秀动网",
+      "route_key": "/site/:siteId"
     }
   },
   {
     "provider_id": "smzdm",
     "provider_name": "什么值得买",
-    "route_key": "/haowen/:day?",
+    "route_key": "/baoliao/:uid",
     "route": {
-      "path": "/haowen/:day?",
-      "example": "/smzdm/haowen/1",
+      "path": "/baoliao/:uid",
+      "example": "/smzdm/baoliao/7367111021",
       "parameters": {
-        "day": {
-          "description": "以天为时间跨度，默认为 `1`",
-          "options": [
-            {
-              "value": "1",
-              "label": "今日热门"
-            },
-            {
-              "value": "7",
-              "label": "周热门"
-            },
-            {
-              "value": "30",
-              "label": "月热门"
-            }
-          ],
-          "default": "1"
-        }
+        "uid": "用户id，网址上直接可以看到"
       },
-      "name": "好文",
+      "name": "用户爆料",
       "provider_id": "smzdm",
       "provider_name": "什么值得买",
-      "route_key": "/haowen/:day?"
-    }
-  },
-  {
-    "provider_id": "smzdm",
-    "provider_name": "什么值得买",
-    "route_key": "/ranking/:rank_type/:rank_id/:hour",
-    "route": {
-      "path": "/ranking/:rank_type/:rank_id/:hour",
-      "view": 5,
-      "example": "/smzdm/ranking/pinlei/11/3",
-      "parameters": {
-        "rank_type": {
-          "description": "榜单类型",
-          "options": [
-            {
-              "value": "pinlei",
-              "label": "好价品类榜"
-            },
-            {
-              "value": "dianshang",
-              "label": "好价电商榜"
-            },
-            {
-              "value": "haitao",
-              "label": "海淘 TOP 榜"
-            },
-            {
-              "value": "haowen",
-              "label": "好文排行榜"
-            },
-            {
-              "value": "haowu",
-              "label": "好物排行榜"
-            }
-          ]
-        },
-        "rank_id": {
-          "description": "榜单ID",
-          "options": [
-            {
-              "label": "好价品类榜 - 全部",
-              "value": "11"
-            },
-            {
-              "label": "好价品类榜 - 食品生鲜",
-              "value": "12"
-            },
-            {
-              "label": "好价品类榜 - 电脑数码",
-              "value": "13"
-            },
-            {
-              "label": "好价品类榜 - 运动户外",
-              "value": "14"
-            },
-            {
-              "label": "好价品类榜 - 家用电器",
-              "value": "15"
-            },
-            {
-              "label": "好价品类榜 - 白菜",
-              "value": "17"
-            },
-            {
-              "label": "好价品类榜 - 服饰鞋包",
-              "value": "74"
-            },
-            {
-              "label": "好价品类榜 - 日用百货",
-              "value": "75"
-            },
-            {
-              "label": "好价电商榜 - 券活动",
-              "value": "24"
-            },
-            {
-              "label": "好价电商榜 - 京东",
-              "value": "23"
-            },
-            {
-              "label": "好价电商榜 - 天猫",
-              "value": "25"
-            },
-            {
-              "label": "好价电商榜 - 亚马逊中国",
-              "value": "26"
-            },
-            {
-              "label": "好价电商榜 - 国美在线",
-              "value": "27"
-            },
-            {
-              "label": "好价电商榜 - 苏宁易购",
-              "value": "28"
-            },
-            {
-              "label": "好价电商榜 - 网易",
-              "value": "29"
-            },
-            {
-              "label": "好价电商榜 - 西集网",
-              "value": "30"
-            },
-            {
-              "label": "好价电商榜 - 美国亚马逊",
-              "value": "31"
-            },
-            {
-              "label": "好价电商榜 - 日本亚马逊",
-              "value": "32"
-            },
-            {
-              "label": "好价电商榜 - ebay",
-              "value": "33"
-            },
-            {
-              "label": "海淘 TOP 榜 - 全部",
-              "value": "39"
-            },
-            {
-              "label": "海淘 TOP 榜 - 海外直邮",
-              "value": "34"
-            },
-            {
-              "label": "海淘 TOP 榜 - 美国榜",
-              "value": "35"
-            },
-            {
-              "label": "海淘 TOP 榜 - 欧洲榜",
-              "value": "36"
-            },
-            {
-              "label": "海淘 TOP 榜 - 澳新榜",
-              "value": "37"
-            },
-            {
-              "label": "海淘 TOP 榜 - 亚洲榜",
-              "value": "38"
-            },
-            {
-              "label": "海淘 TOP 榜 - 晒物榜",
-              "value": "hsw"
-            },
-            {
-              "label": "好文排行榜 - 原创",
-              "value": "yc"
-            },
-            {
-              "label": "好文排行榜 - 资讯",
-              "value": "zx"
-            },
-            {
-              "label": "好物排行榜 - 新晋榜",
-              "value": "hwall"
-            },
-            {
-              "label": "好物排行榜 - 消费众测",
-              "value": "zc"
-            },
-            {
-              "label": "好物排行榜 - 新锐品牌",
-              "value": "nb"
-            },
-            {
-              "label": "好物排行榜 - 好物榜单",
-              "value": "hw"
-            }
-          ]
-        },
-        "hour": {
-          "description": "时间跨度",
-          "options": [
-            {
-              "value": "3",
-              "label": "3 小时"
-            },
-            {
-              "value": "12",
-              "label": "12 小时"
-            },
-            {
-              "value": "24",
-              "label": "24 小时"
-            }
-          ]
-        }
-      },
-      "name": "排行榜",
-      "provider_id": "smzdm",
-      "provider_name": "什么值得买",
-      "route_key": "/ranking/:rank_type/:rank_id/:hour"
+      "route_key": "/baoliao/:uid"
     }
   },
   {
@@ -540,20 +291,21 @@
     }
   },
   {
-    "provider_id": "taobao",
-    "provider_name": "淘宝众筹",
-    "route_key": "/zhongchou/:type?",
+    "provider_id": "tesla",
+    "provider_name": "特斯拉中国",
+    "route_key": "/cx/:category?/:city?",
     "route": {
-      "path": "/zhongchou/:type?",
-      "example": "/taobao/zhongchou/all",
+      "path": "/cx/:category?/:city?",
+      "example": "/tesla/cx/生活方式/北京",
       "parameters": {
-        "type": "类型, 默认为 `all` 全部"
+        "category": "分类，见下表，默认为空，即全部",
+        "city": "城市，默认为空，即全国"
       },
-      "name": "众筹项目",
-      "description": "| 全部 | 科技 | 食品        | 动漫 | 设计   | 公益 | 娱乐 | 影音  | 书籍 | 游戏 | 其他  |\n| ---- | ---- | ----------- | ---- | ------ | ---- | ---- | ----- | ---- | ---- | ----- |\n| all  | tech | agriculture | acg  | design | love | tele | music | book | game | other |",
-      "provider_id": "taobao",
-      "provider_name": "淘宝众筹",
-      "route_key": "/zhongchou/:type?"
+      "name": "权益中心",
+      "description": "| 充电免停 | 酒店 | 美食 | 生活方式 |\n| -------- | ---- | ---- | -------- |\n\n::: tip\n  分类为 **充电免停** 时，城市参数不起作用\n:::\n\n<details>\n<summary>可选城市</summary>\n\n| 成都 | 深圳 | 洛阳 | 北京 | 南京 | 绍兴 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 西安 | 上海 | 阿坝藏族羌族自治州 | 重庆 | 郑州 | 天津 |\n| ---- | ---- | ------------------ | ---- | ---- | ---- |\n\n| 晋中 | 三亚 | 湖州 | 苏州 | 扬州 | 秦皇岛 |\n| ---- | ---- | ---- | ---- | ---- | ------ |\n\n| 长沙 | 武汉 | 安阳 | 温州 | 瑞安 | 石家庄 |\n| ---- | ---- | ---- | ---- | ---- | ------ |\n\n| 佛山 | 广州 | 杭州 | 烟台 | 沧州 | 张家港 |\n| ---- | ---- | ---- | ---- | ---- | ------ |\n\n| 金华 | 临沧 | 大理 | 南昌 | 贵阳 | 信阳 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 张家口 | 铜仁 | 沈阳 | 合肥 | 黔东 | 高邮 |\n| ------ | ---- | ---- | ---- | ---- | ---- |\n\n| 三河 | 安顺 | 莆田 | 阳江 | 南宁 | 台州 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 余姚 | 淄博 | 三明 | 中山 | 宁波 | 厦门 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 永康 | 慈溪 | 台山 | 福州 | 无锡 | 宜昌 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 泉州 | 肇庆 | 太仓 | 珠海 | 邢台 | 衡水 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 温岭 | 宜兴 | 东莞 | 威海 | 南通 | 舟山 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 都匀 | 长治 | 江阴 | 云浮 | 常州 | 唐山 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 平湖 | 商丘 | 保定 | 泰州 | 青岛 | 龙口 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 泰安 | 岳阳 | 惠州 | 徐州 | 哈尔滨 | 潍坊 |\n| ---- | ---- | ---- | ---- | ------ | ---- |\n\n| 大同 | 嘉兴 | 毕节 | 临汾 | 江门 | 诸暨 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 儋州 | 衢州 | 大连 | 昆山 | 靖江 | 常熟 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 罗定 | 丽江 | 晋江 | 乐清 | 茂名 | 福清 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 廊坊 | 兰溪 | 汕尾 | 滨州 | 昆明 | 玉环 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 绵阳 | 漳州 | 德州 | 聊城 | 龙岩 | 临沂 |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n\n| 新沂 | 桐乡 | 迪庆藏族自治州 | 汕头 | 潮州 | 驻马店 |\n| ---- | ---- | -------------- | ---- | ---- | ------ |\n\n| 曲阜 | 郴州 | 济源 | 兴义 |\n| ---- | ---- | ---- | ---- |\n</details>",
+      "provider_id": "tesla",
+      "provider_name": "特斯拉中国",
+      "route_key": "/cx/:category?/:city?"
     }
   },
   {
@@ -571,6 +323,24 @@
       "provider_id": "uniqlo",
       "provider_name": "Uniqlo",
       "route_key": "/new/:country/:category"
+    }
+  },
+  {
+    "provider_id": "xianbao",
+    "provider_name": "线报酷",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "name": "线板酷",
+      "url": "new.xianbao.fun",
+      "example": "/xianbao",
+      "parameters": {
+        "category": "类别id，默认为：latest"
+      },
+      "description": "\n| 分类         | id             |\n| ------------ | -------------- |\n| 最新         | latest         |\n| 赚客吧       | zuankeba       |\n| 赚客吧热帖   | zuankeba-hot   |\n| 新赚吧       | xinzuanba      |\n| 新赚吧热帖   | xinzuanba-hot  |\n| 微博         | weibo          |\n| 微博热帖     | weibo-hot      |\n| 豆瓣线报     | douban         |\n| 豆瓣热帖     | douban-hot     |\n| 酷安         | kuan           |\n| 小嘀咕       | xiaodigu       |\n| 葫芦侠       | huluxia        |\n| 小刀娱乐网   | xiadao         |\n| 技术QQ网     | qqjishu        |\n| YYOK大全     | yyok           |\n| 活动资讯网   | huodong        |\n| 免费赚钱中心 | mianfei        |\n| 一小时       | yixiaoshi      |\n| 三小时       | sanxiaoshi     |\n| 六小时       | liuxiaoshi     |\n| 十二小时     | shierxiaoshi   |\n| 二十四小时   | ershisixiaoshi |\n| 四十八小时   | sishibaxiaoshi |\n| 今天         | jintian        |\n| 昨天         | zuotian        |\n| 前天         | qiantian       |\n| 三天         | santian        |\n| 五天         | wutian         |\n| 七天         | qitian         |\n| 十五天       | shiwutian      |",
+      "provider_id": "xianbao",
+      "provider_name": "线报酷",
+      "route_key": "/:category?"
     }
   },
   {
@@ -601,21 +371,6 @@
       "provider_id": "xiaomiyoupin",
       "provider_name": "小米有品",
       "route_key": "/latest"
-    }
-  },
-  {
-    "provider_id": "zhuwang",
-    "provider_name": "中国养猪网",
-    "route_key": "/zhujia",
-    "route": {
-      "path": "/zhujia",
-      "example": "/zhuwang/zhujia",
-      "parameters": {},
-      "name": "全国今日生猪价格",
-      "url": "zhujia.zhuwang.cc/",
-      "provider_id": "zhuwang",
-      "provider_name": "中国养猪网",
-      "route_key": "/zhujia"
     }
   }
 ]

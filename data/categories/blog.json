@@ -14,6 +14,23 @@
     }
   },
   {
+    "provider_id": "caixin",
+    "provider_name": "财新博客",
+    "route_key": "/blog/:column?",
+    "route": {
+      "path": "/blog/:column?",
+      "example": "/caixin/blog/zhangwuchang",
+      "parameters": {
+        "column": "博客名称，可在博客主页的 URL 找到"
+      },
+      "name": "用户博客",
+      "description": "通过提取文章全文，以提供比官方源更佳的阅读体验.",
+      "provider_id": "caixin",
+      "provider_name": "财新博客",
+      "route_key": "/blog/:column?"
+    }
+  },
+  {
     "provider_id": "cmpxchg8b",
     "provider_name": "cmpxchg8b",
     "route_key": "/articles",
@@ -29,32 +46,35 @@
     }
   },
   {
-    "provider_id": "daoxuan",
-    "provider_name": "道宣的窝",
-    "route_key": "/",
+    "provider_id": "cmu",
+    "provider_name": "Carnegie Mellon University",
+    "route_key": "/andypavlo/blog",
     "route": {
-      "path": "/",
-      "example": "/daoxuan",
-      "name": "推荐阅读文章",
-      "url": "daoxuan.cc/",
-      "provider_id": "daoxuan",
-      "provider_name": "道宣的窝",
-      "route_key": "/"
+      "path": "/andypavlo/blog",
+      "example": "/cmu/andypavlo/blog",
+      "parameters": {},
+      "name": "Andy Pavlo Blog",
+      "provider_id": "cmu",
+      "provider_name": "Carnegie Mellon University",
+      "route_key": "/andypavlo/blog"
     }
   },
   {
-    "provider_id": "deltaio",
-    "provider_name": "Delta Lake",
-    "route_key": "/blog",
+    "provider_id": "dayanzai",
+    "provider_name": "大眼仔旭",
+    "route_key": "/:category/:fulltext?",
     "route": {
-      "path": "/blog",
-      "example": "/deltaio/blog",
-      "parameters": {},
-      "name": "Blogs",
-      "url": "delta.io/blog",
-      "provider_id": "deltaio",
-      "provider_name": "Delta Lake",
-      "route_key": "/blog"
+      "path": "/:category/:fulltext?",
+      "example": "/dayanzai/windows",
+      "parameters": {
+        "category": "分类",
+        "fulltext": "是否获取全文，需要获取则传入参数`y`"
+      },
+      "name": "分类",
+      "description": "| 微软应用 | 安卓应用 | 教程资源 | 其他资源 |\n| -------- | -------- | -------- | -------- |\n| windows  | android  | tutorial | other    |",
+      "provider_id": "dayanzai",
+      "provider_name": "大眼仔旭",
+      "route_key": "/:category/:fulltext?"
     }
   },
   {
@@ -84,23 +104,6 @@
       "provider_id": "foreverblog",
       "provider_name": "十年之约",
       "route_key": "/feeds"
-    }
-  },
-  {
-    "provider_id": "freebuf",
-    "provider_name": "FreeBuf",
-    "route_key": "/articles/:type",
-    "route": {
-      "path": "/articles/:type",
-      "example": "/freebuf/articles/web",
-      "parameters": {
-        "type": "文章类别"
-      },
-      "name": "文章",
-      "description": "::: tip\n  Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。\n:::",
-      "provider_id": "freebuf",
-      "provider_name": "FreeBuf",
-      "route_key": "/articles/:type"
     }
   },
   {
@@ -198,47 +201,48 @@
     }
   },
   {
-    "provider_id": "itc",
-    "provider_name": "Open Github社区",
-    "route_key": "/collection/:colType",
+    "provider_id": "kunchengblog",
+    "provider_name": "Kun Cheng",
+    "route_key": "/essay",
     "route": {
-      "path": "/collection/:colType",
-      "example": "/itc/collection/1",
-      "name": "合集",
-      "provider_id": "itc",
-      "provider_name": "Open Github社区",
-      "route_key": "/collection/:colType"
+      "path": "/essay",
+      "example": "/kunchengblog/essay",
+      "parameters": {},
+      "name": "Essay",
+      "url": "kunchengblog.com/essay",
+      "provider_id": "kunchengblog",
+      "provider_name": "Kun Cheng",
+      "route_key": "/essay"
     }
   },
   {
-    "provider_id": "lala",
-    "provider_name": "荒岛",
-    "route_key": "/",
+    "provider_id": "langchain",
+    "provider_name": "LangChain Blog",
+    "route_key": "/blog",
     "route": {
-      "path": "/",
-      "example": "/lala",
-      "name": "最新发布",
-      "url": "lala.im/",
-      "provider_id": "lala",
-      "provider_name": "荒岛",
-      "route_key": "/"
+      "path": "/blog",
+      "example": "/langchain/blog",
+      "url": "blog.langchain.dev/",
+      "name": "Blog",
+      "description": "LangChain Blog Posts",
+      "provider_id": "langchain",
+      "provider_name": "LangChain Blog",
+      "route_key": "/blog"
     }
   },
   {
-    "provider_id": "logrocket",
-    "provider_name": "logrocket blog",
-    "route_key": "/:type",
+    "provider_id": "luxiangdong",
+    "provider_name": "土猛的员外",
+    "route_key": "/archive",
     "route": {
-      "path": "/:type",
-      "example": "/logrocket/dev",
-      "parameters": {
-        "type": "dev | product-management | ux-design"
-      },
-      "name": "blog.logrocket",
-      "url": "blog.logrocket.com/",
-      "provider_id": "logrocket",
-      "provider_name": "logrocket blog",
-      "route_key": "/:type"
+      "path": "/archive",
+      "example": "/luxiangdong/archive",
+      "parameters": {},
+      "name": "文章",
+      "url": "luxiangdong.com/",
+      "provider_id": "luxiangdong",
+      "provider_name": "土猛的员外",
+      "route_key": "/archive"
     }
   },
   {
@@ -255,6 +259,38 @@
       "provider_id": "macmenubar",
       "provider_name": "MacMenuBar",
       "route_key": "/recently/:category?"
+    }
+  },
+  {
+    "provider_id": "medium",
+    "provider_name": "Medium",
+    "route_key": "/feed/:user",
+    "route": {
+      "path": "/feed/:user",
+      "view": 1,
+      "example": "/medium/feed/zhgchgli",
+      "parameters": {
+        "user": "Username of the Medium"
+      },
+      "name": "Medium Feed",
+      "provider_id": "medium",
+      "provider_name": "Medium",
+      "route_key": "/feed/:user"
+    }
+  },
+  {
+    "provider_id": "nielsberglund",
+    "provider_name": "Niels Berglund Blog",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "example": "/nielsberglund/blog",
+      "url": "nielsberglund.com/",
+      "name": "Blog",
+      "description": "Niels Berglund Blog Posts",
+      "provider_id": "nielsberglund",
+      "provider_name": "Niels Berglund Blog",
+      "route_key": "/blog"
     }
   },
   {
@@ -288,45 +324,62 @@
     }
   },
   {
-    "provider_id": "playpcesor",
-    "provider_name": "电脑玩物",
-    "route_key": "/",
+    "provider_id": "react",
+    "provider_name": "React",
+    "route_key": "/blog",
     "route": {
-      "path": "/",
-      "example": "/playpcesor",
-      "name": "每日精选文章",
-      "url": "playpcesor.com/",
-      "provider_id": "playpcesor",
-      "provider_name": "电脑玩物",
-      "route_key": "/"
+      "path": "/blog",
+      "name": "Blog",
+      "example": "/react/blog",
+      "provider_id": "react",
+      "provider_name": "React",
+      "route_key": "/blog"
     }
   },
   {
-    "provider_id": "ygkkk",
-    "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
-    "route_key": "/",
+    "provider_id": "thegradient",
+    "provider_name": "The Gradient",
+    "route_key": "/posts",
     "route": {
-      "path": "/",
-      "example": "/ygkkk",
-      "name": "最新发表",
-      "url": "ygkkk.blogspot.com/",
-      "provider_id": "ygkkk",
-      "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
-      "route_key": "/"
+      "path": "/posts",
+      "example": "/thegradient/posts",
+      "url": "thegradient.pub/",
+      "name": "Posts",
+      "description": "The Gradient Blog Posts",
+      "provider_id": "thegradient",
+      "provider_name": "The Gradient",
+      "route_key": "/posts"
     }
   },
   {
-    "provider_id": "zhujiceping",
-    "provider_name": "国外主机测评",
-    "route_key": "/",
+    "provider_id": "youmemark",
+    "provider_name": "YouMeMark",
+    "route_key": "/:userid",
     "route": {
-      "path": "/",
-      "example": "/zhujiceping",
-      "name": "最新发布",
-      "url": "zhujiceping.com/",
-      "provider_id": "zhujiceping",
-      "provider_name": "国外主机测评",
-      "route_key": "/"
+      "path": "/:userid",
+      "example": "/youmemark/pseudoyu",
+      "parameters": {
+        "userid": "`userid` is the user id of youmemark"
+      },
+      "name": "Bookmarks",
+      "description": "Get user's public bookmarks from YouMeMark\n::: tip\n  Add `?limit=<number>` to the end of the route to limit the number of items. Default is 10.\n:::",
+      "provider_id": "youmemark",
+      "provider_name": "YouMeMark",
+      "route_key": "/:userid"
+    }
+  },
+  {
+    "provider_id": "zjuvag",
+    "provider_name": "浙江大学可视分析小组",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "example": "/zjuvag/blog",
+      "parameters": {},
+      "name": "博客",
+      "provider_id": "zjuvag",
+      "provider_name": "浙江大学可视分析小组",
+      "route_key": "/blog"
     }
   }
 ]

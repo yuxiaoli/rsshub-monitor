@@ -1,116 +1,89 @@
 [
   {
-    "provider_id": "78dm",
-    "provider_name": "78 动漫",
-    "route_key": "/:category{.+}?",
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/renjian/:category?",
     "route": {
-      "path": "/:category{.+}?",
-      "name": "分类",
-      "url": "78dm.net",
-      "example": "/78dm/news",
+      "path": "/renjian/:category?",
+      "example": "/163/renjian/texie",
       "parameters": {
-        "category": "分类，默认为 `news`，即新品速递，可在对应分类页 URL 中找到"
+        "category": "分类，见下表，默认为特写"
       },
-      "description": "::: tip\n  若订阅 [新品速递](https://www.78dm.net/news)，网址为 `https://www.78dm.net/news`。截取 `https://www.78dm.net/` 到末尾的部分 `news` 作为参数填入，此时路由为 [`/78dm/news`](https://rsshub.app/78dm/news)。\n\n  若订阅 [精彩评测 - 变形金刚](https://www.78dm.net/eval_list/109/0/0/1.html)，网址为 `https://www.78dm.net/eval_list/109/0/0/1.html`。截取 `https://www.78dm.net/` 到末尾 `.html` 的部分 `eval_list/109/0/0/1` 作为参数填入，此时路由为 [`/78dm/eval_list/109/0/0/1`](https://rsshub.app/78dm/eval_list/109/0/0/1)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### [新品速递](https://www.78dm.net/news)\n\n| 分类                                                           | ID                                                                     |\n| -------------------------------------------------------------- | ---------------------------------------------------------------------- |\n| [全部](https://www.78dm.net/news/0/0/0/0/0/0/0/1.html)         | [news/0/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/0/0/0/0/0/0/1)   |\n| [变形金刚](https://www.78dm.net/news/3/0/0/0/0/0/0/1.html)     | [news/3/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/3/0/0/0/0/0/0/1)   |\n| [高达](https://www.78dm.net/news/4/0/0/0/0/0/0/1.html)         | [news/4/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/4/0/0/0/0/0/0/1)   |\n| [圣斗士](https://www.78dm.net/news/2/0/0/0/0/0/0/1.html)       | [news/2/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/2/0/0/0/0/0/0/1)   |\n| [海贼王](https://www.78dm.net/news/8/0/0/0/0/0/0/1.html)       | [news/8/0/0/0/0/0/0/1](https://rsshub.app/78dm/news/8/0/0/0/0/0/0/1)   |\n| [PVC 手办](https://www.78dm.net/news/0/5/0/0/0/0/0/1.html)     | [news/0/5/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/5/0/0/0/0/0/1)   |\n| [拼装模型](https://www.78dm.net/news/0/1/0/0/0/0/0/1.html)     | [news/0/1/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/1/0/0/0/0/0/1)   |\n| [机甲成品](https://www.78dm.net/news/0/2/0/0/0/0/0/1.html)     | [news/0/2/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/2/0/0/0/0/0/1)   |\n| [特摄](https://www.78dm.net/news/0/3/0/0/0/0/0/1.html)         | [news/0/3/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/3/0/0/0/0/0/1)   |\n| [美系](https://www.78dm.net/news/0/4/0/0/0/0/0/1.html)         | [news/0/4/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/4/0/0/0/0/0/1)   |\n| [GK](https://www.78dm.net/news/0/6/0/0/0/0/0/1.html)           | [news/0/6/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/6/0/0/0/0/0/1)   |\n| [扭蛋盒蛋食玩](https://www.78dm.net/news/0/7/0/0/0/0/0/1.html) | [news/0/7/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/7/0/0/0/0/0/1)   |\n| [其他](https://www.78dm.net/news/0/8/0/0/0/0/0/1.html)         | [news/0/8/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/8/0/0/0/0/0/1)   |\n| [综合](https://www.78dm.net/news/0/9/0/0/0/0/0/1.html)         | [news/0/9/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/9/0/0/0/0/0/1)   |\n| [军模](https://www.78dm.net/news/0/10/0/0/0/0/0/1.html)        | [news/0/10/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/10/0/0/0/0/0/1) |\n| [民用](https://www.78dm.net/news/0/11/0/0/0/0/0/1.html)        | [news/0/11/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/11/0/0/0/0/0/1) |\n| [配件](https://www.78dm.net/news/0/12/0/0/0/0/0/1.html)        | [news/0/12/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/12/0/0/0/0/0/1) |\n| [工具](https://www.78dm.net/news/0/13/0/0/0/0/0/1.html)        | [news/0/13/0/0/0/0/0/1](https://rsshub.app/78dm/news/0/13/0/0/0/0/0/1) |\n\n#### [精彩评测](https://www.78dm.net/eval_list)\n\n| 分类                                                      | ID                                                                 |\n| --------------------------------------------------------- | ------------------------------------------------------------------ |\n| [全部](https://www.78dm.net/eval_list/0/0/0/1.html)       | [eval_list/0/0/0/1](https://rsshub.app/78dm/eval_list/0/0/0/1)     |\n| [变形金刚](https://www.78dm.net/eval_list/109/0/0/1.html) | [eval_list/109/0/0/1](https://rsshub.app/78dm/eval_list/109/0/0/1) |\n| [高达](https://www.78dm.net/eval_list/110/0/0/1.html)     | [eval_list/110/0/0/1](https://rsshub.app/78dm/eval_list/110/0/0/1) |\n| [圣斗士](https://www.78dm.net/eval_list/111/0/0/1.html)   | [eval_list/111/0/0/1](https://rsshub.app/78dm/eval_list/111/0/0/1) |\n| [海贼王](https://www.78dm.net/eval_list/112/0/0/1.html)   | [eval_list/112/0/0/1](https://rsshub.app/78dm/eval_list/112/0/0/1) |\n| [PVC 手办](https://www.78dm.net/eval_list/115/0/0/1.html) | [eval_list/115/0/0/1](https://rsshub.app/78dm/eval_list/115/0/0/1) |\n| [拼装模型](https://www.78dm.net/eval_list/113/0/0/1.html) | [eval_list/113/0/0/1](https://rsshub.app/78dm/eval_list/113/0/0/1) |\n| [机甲成品](https://www.78dm.net/eval_list/114/0/0/1.html) | [eval_list/114/0/0/1](https://rsshub.app/78dm/eval_list/114/0/0/1) |\n| [特摄](https://www.78dm.net/eval_list/116/0/0/1.html)     | [eval_list/116/0/0/1](https://rsshub.app/78dm/eval_list/116/0/0/1) |\n| [美系](https://www.78dm.net/eval_list/117/0/0/1.html)     | [eval_list/117/0/0/1](https://rsshub.app/78dm/eval_list/117/0/0/1) |\n| [GK](https://www.78dm.net/eval_list/118/0/0/1.html)       | [eval_list/118/0/0/1](https://rsshub.app/78dm/eval_list/118/0/0/1) |\n| [综合](https://www.78dm.net/eval_list/120/0/0/1.html)     | [eval_list/120/0/0/1](https://rsshub.app/78dm/eval_list/120/0/0/1) |\n\n#### [好贴推荐](https://www.78dm.net/ht_list)\n\n| 分类                                                    | ID                                                             |\n| ------------------------------------------------------- | -------------------------------------------------------------- |\n| [全部](https://www.78dm.net/ht_list/0/0/0/1.html)       | [ht_list/0/0/0/1](https://rsshub.app/78dm/ht_list/0/0/0/1)     |\n| [变形金刚](https://www.78dm.net/ht_list/95/0/0/1.html)  | [ht_list/95/0/0/1](https://rsshub.app/78dm/ht_list/95/0/0/1)   |\n| [高达](https://www.78dm.net/ht_list/96/0/0/1.html)      | [ht_list/96/0/0/1](https://rsshub.app/78dm/ht_list/96/0/0/1)   |\n| [圣斗士](https://www.78dm.net/ht_list/98/0/0/1.html)    | [ht_list/98/0/0/1](https://rsshub.app/78dm/ht_list/98/0/0/1)   |\n| [海贼王](https://www.78dm.net/ht_list/99/0/0/1.html)    | [ht_list/99/0/0/1](https://rsshub.app/78dm/ht_list/99/0/0/1)   |\n| [PVC 手办](https://www.78dm.net/ht_list/100/0/0/1.html) | [ht_list/100/0/0/1](https://rsshub.app/78dm/ht_list/100/0/0/1) |\n| [拼装模型](https://www.78dm.net/ht_list/101/0/0/1.html) | [ht_list/101/0/0/1](https://rsshub.app/78dm/ht_list/101/0/0/1) |\n| [机甲成品](https://www.78dm.net/ht_list/102/0/0/1.html) | [ht_list/102/0/0/1](https://rsshub.app/78dm/ht_list/102/0/0/1) |\n| [特摄](https://www.78dm.net/ht_list/103/0/0/1.html)     | [ht_list/103/0/0/1](https://rsshub.app/78dm/ht_list/103/0/0/1) |\n| [美系](https://www.78dm.net/ht_list/104/0/0/1.html)     | [ht_list/104/0/0/1](https://rsshub.app/78dm/ht_list/104/0/0/1) |\n| [GK](https://www.78dm.net/ht_list/105/0/0/1.html)       | [ht_list/105/0/0/1](https://rsshub.app/78dm/ht_list/105/0/0/1) |\n| [综合](https://www.78dm.net/ht_list/107/0/0/1.html)     | [ht_list/107/0/0/1](https://rsshub.app/78dm/ht_list/107/0/0/1) |\n| [装甲战车](https://www.78dm.net/ht_list/131/0/0/1.html) | [ht_list/131/0/0/1](https://rsshub.app/78dm/ht_list/131/0/0/1) |\n| [舰船模型](https://www.78dm.net/ht_list/132/0/0/1.html) | [ht_list/132/0/0/1](https://rsshub.app/78dm/ht_list/132/0/0/1) |\n| [飞机模型](https://www.78dm.net/ht_list/133/0/0/1.html) | [ht_list/133/0/0/1](https://rsshub.app/78dm/ht_list/133/0/0/1) |\n| [民用模型](https://www.78dm.net/ht_list/134/0/0/1.html) | [ht_list/134/0/0/1](https://rsshub.app/78dm/ht_list/134/0/0/1) |\n| [兵人模型](https://www.78dm.net/ht_list/135/0/0/1.html) | [ht_list/135/0/0/1](https://rsshub.app/78dm/ht_list/135/0/0/1) |\n</details>\n  ",
-      "provider_id": "78dm",
-      "provider_name": "78 动漫",
-      "route_key": "/:category{.+}?"
+      "name": "人间",
+      "description": "| 特写  | 记事  | 大写  | 好读  | 看客  |\n| ----- | ----- | ----- | ----- | ----- |\n| texie | jishi | daxie | haodu | kanke |",
+      "provider_id": "163",
+      "provider_name": "网易公开课",
+      "route_key": "/renjian/:category?"
     }
   },
   {
-    "provider_id": "abmedia",
-    "provider_name": "链新闻 ABMedia",
-    "route_key": "/index",
+    "provider_id": "36kr",
+    "provider_name": "36kr",
+    "route_key": "/:category/:subCategory?/:keyword?",
     "route": {
-      "path": "/index",
-      "example": "/abmedia/index",
+      "path": "/:category/:subCategory?/:keyword?",
+      "example": "/36kr/newsflashes",
+      "parameters": {
+        "category": "分类，必填项",
+        "subCategory": "子分类，选填项，目的是为了兼容老逻辑",
+        "keyword": "关键词，选填项，仅搜索文章/快讯时有效"
+      },
+      "name": "资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯",
+      "description": "| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |\n| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |\n| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |",
+      "provider_id": "36kr",
+      "provider_name": "36kr",
+      "route_key": "/:category/:subCategory?/:keyword?"
+    }
+  },
+  {
+    "provider_id": "52hrtt",
+    "provider_name": "52hrtt 华人头条",
+    "route_key": "/symposium/:id?/:classId?",
+    "route": {
+      "path": "/symposium/:id?/:classId?",
+      "example": "/52hrtt/symposium/F1626082387819",
+      "parameters": {
+        "id": "专题 id",
+        "classId": "子分类 id"
+      },
+      "name": "专题",
+      "description": "专题 id 和 子分类 id 皆可在浏览器地址栏中找到，下面是一个例子。\n\n  访问 “邱毅看平潭” 专题，会跳转到 `https://www.52hrtt.com/global/n/w/symposium/F1626082387819`。其中 `F1626082387819` 即为 **专题 id** 对应的地区代码。\n\n::: tip\n  更多的专题可以点击 [这里](https://www.52hrtt.com/global/n/w/symposium)\n:::",
+      "provider_id": "52hrtt",
+      "provider_name": "52hrtt 华人头条",
+      "route_key": "/symposium/:id?/:classId?"
+    }
+  },
+  {
+    "provider_id": "agora0",
+    "provider_name": "AG⓪RA",
+    "route_key": "/pen0",
+    "route": {
+      "path": "/pen0",
+      "example": "/agora0/pen0",
       "parameters": {},
-      "name": "首页最新新闻",
-      "url": "www.abmedia.io/",
-      "provider_id": "abmedia",
-      "provider_name": "链新闻 ABMedia",
-      "route_key": "/index"
-    }
-  },
-  {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/topic_list",
-    "route": {
-      "path": "/topic_list",
-      "example": "/agirls/topic_list",
-      "parameters": {},
-      "name": "当前精选主题列表",
-      "url": "agirls.aotter.net/",
-      "provider_id": "agirls",
-      "provider_name": "电獭少女",
-      "route_key": "/topic_list"
-    }
-  },
-  {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/topic/:topic",
-    "route": {
-      "path": "/topic/:topic",
-      "example": "/agirls/topic/AppleWatch",
-      "parameters": {
-        "topic": "精选主题，可通过下方精选主题列表获得"
-      },
-      "name": "精选主题",
-      "provider_id": "agirls",
-      "provider_name": "电獭少女",
-      "route_key": "/topic/:topic"
-    }
-  },
-  {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/agirls/app",
-      "parameters": {
-        "category": "分类，默认为最新文章，可在对应主题页的 URL 中找到，下表仅列出部分"
-      },
-      "name": "分类",
-      "description": "| App 评测 | 手机开箱 | 笔电开箱 | 3C 周边     | 教学小技巧 | 科技情报 |\n| -------- | -------- | -------- | ----------- | ---------- | -------- |\n| app      | phone    | computer | accessories | tutorial   | techlife |",
-      "provider_id": "agirls",
-      "provider_name": "电獭少女",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "agri",
-    "provider_name": "中国农业农村信息网",
-    "route_key": "/:category{.+}?",
-    "route": {
-      "path": "/:category{.+}?",
-      "name": "分类",
-      "url": "www.agri.cn",
-      "example": "/agri/zx/zxfb",
-      "parameters": {
-        "category": "分类，默认为 `zx/zxfb`，即最新发布，可在对应分类页 URL 中找到"
-      },
-      "description": "::: tip\n  若订阅 [最新发布](http://www.agri.cn/zx/zxfb/)，网址为 `http://www.agri.cn/zx/zxfb/`。截取 `https://www.agri.cn/` 到末尾的部分 `zx/zxfb` 作为参数填入，此时路由为 [`/agri/zx/zxfb`](https://rsshub.app/agri/zx/zxfb)。\n:::\n\n#### [机构](http://www.agri.cn/jg/)\n\n| 分类                                    | ID                                         |\n| --------------------------------------- | ------------------------------------------ |\n| [成果展示](http://www.agri.cn/jg/cgzs/) | [jg/cgzs](https://rsshub.app/agri/jg/cgzs) |\n\n#### [资讯](http://www.agri.cn/zx/)\n\n| 分类                                        | ID                                         |\n| ------------------------------------------- | ------------------------------------------ |\n| [最新发布](http://www.agri.cn/zx/zxfb/)     | [zx/zxfb](https://rsshub.app/agri/zx/zxfb) |\n| [农业要闻](http://www.agri.cn/zx/nyyw/)     | [zx/nyyw](https://rsshub.app/agri/zx/nyyw) |\n| [中心动态](http://www.agri.cn/zx/zxdt/)     | [zx/zxdt](https://rsshub.app/agri/zx/zxdt) |\n| [通知公告](http://www.agri.cn/zx/hxgg/)     | [zx/hxgg](https://rsshub.app/agri/zx/hxgg) |\n| [全国信息联播](http://www.agri.cn/zx/xxlb/) | [zx/xxlb](https://rsshub.app/agri/zx/xxlb) |\n\n#### [生产](http://www.agri.cn/sc/)\n\n| 分类                                    | ID                                         |\n| --------------------------------------- | ------------------------------------------ |\n| [生产动态](http://www.agri.cn/sc/scdt/) | [sc/scdt](https://rsshub.app/agri/sc/scdt) |\n| [农业品种](http://www.agri.cn/sc/nypz/) | [sc/nypz](https://rsshub.app/agri/sc/nypz) |\n| [农事指导](http://www.agri.cn/sc/nszd/) | [sc/nszd](https://rsshub.app/agri/sc/nszd) |\n| [农业气象](http://www.agri.cn/sc/nyqx/) | [sc/nyqx](https://rsshub.app/agri/sc/nyqx) |\n| [专项监测](http://www.agri.cn/sc/zxjc/) | [sc/zxjc](https://rsshub.app/agri/sc/zxjc) |\n\n#### [数据](http://www.agri.cn/sj/)\n\n| 分类                                    | ID                                         |\n| --------------------------------------- | ------------------------------------------ |\n| [市场动态](http://www.agri.cn/sj/scdt/) | [sj/scdt](https://rsshub.app/agri/sj/scdt) |\n| [供需形势](http://www.agri.cn/sj/gxxs/) | [sj/gxxs](https://rsshub.app/agri/sj/gxxs) |\n| [监测预警](http://www.agri.cn/sj/jcyj/) | [sj/jcyj](https://rsshub.app/agri/sj/jcyj) |\n\n#### [信息化](http://www.agri.cn/xxh/)\n\n| 分类                                           | ID                                               |\n| ---------------------------------------------- | ------------------------------------------------ |\n| [智慧农业](http://www.agri.cn/xxh/zhny/)       | [xxh/zhny](https://rsshub.app/agri/xxh/zhny)     |\n| [信息化标准](http://www.agri.cn/xxh/xxhbz/)    | [xxh/xxhbz](https://rsshub.app/agri/xxh/xxhbz)   |\n| [中国乡村资讯](http://www.agri.cn/xxh/zgxczx/) | [xxh/zgxczx](https://rsshub.app/agri/xxh/zgxczx) |\n\n#### [视频](http://www.agri.cn/video/)\n\n| 分类                                               | ID                                                               |\n| -------------------------------------------------- | ---------------------------------------------------------------- |\n| [新闻资讯](http://www.agri.cn/video/xwzx/nyxw/)    | [video/xwzx/nyxw](https://rsshub.app/agri/video/xwzx/nyxw)       |\n| [致富天地](http://www.agri.cn/video/zftd/)         | [video/zftd](https://rsshub.app/agri/video/zftd)                 |\n| [地方农业](http://www.agri.cn/video/dfny/beijing/) | [video/dfny/beijing](https://rsshub.app/agri/video/dfny/beijing) |\n| [气象农业](http://www.agri.cn/video/qxny/)         | [video/qxny](https://rsshub.app/agri/video/qxny)                 |\n| [讲座培训](http://www.agri.cn/video/jzpx/)         | [video/jzpx](https://rsshub.app/agri/video/jzpx)                 |\n| [文化生活](http://www.agri.cn/video/whsh/)         | [video/whsh](https://rsshub.app/agri/video/whsh)                 |\n  ",
-      "provider_id": "agri",
-      "provider_name": "中国农业农村信息网",
-      "route_key": "/:category{.+}?"
+      "name": "共和報",
+      "url": "agorahub.github.io/pen0",
+      "provider_id": "agora0",
+      "provider_name": "AG⓪RA",
+      "route_key": "/pen0"
     }
   },
   {
     "provider_id": "aibase",
     "provider_name": "AIbase",
-    "route_key": "/news",
+    "route_key": "/discover/:id?",
     "route": {
-      "path": "/news",
-      "name": "资讯",
-      "url": "www.aibase.com",
-      "example": "/aibase/news",
-      "description": "获取 AI 资讯列表",
+      "path": "/discover/:id?",
+      "name": "发现",
+      "url": "top.aibase.com",
+      "example": "/aibase/discover",
+      "parameters": {
+        "id": "发现分类，默认为空，即全部产品，可在对应发现分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [图片背景移除](https://top.aibase.com/discover/37-49)，网址为 `https://top.aibase.com/discover/37-49`。截取 `https://top.aibase.com/discover/` 到末尾的部分 `37-49` 作为参数填入，此时路由为 [`/aibase/discover/37-49`](https://rsshub.app/aibase/discover/37-49)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### 图像处理\n\n| 分类                                                  | ID                                                |\n| ----------------------------------------------------- | ------------------------------------------------- |\n| [图片背景移除](https://top.aibase.com/discover/37-49) | [37-49](https://rsshub.app/aibase/discover/37-49) |\n| [图片无损放大](https://top.aibase.com/discover/37-50) | [37-50](https://rsshub.app/aibase/discover/37-50) |\n| [图片AI修复](https://top.aibase.com/discover/37-51)   | [37-51](https://rsshub.app/aibase/discover/37-51) |\n| [图像生成](https://top.aibase.com/discover/37-52)     | [37-52](https://rsshub.app/aibase/discover/37-52) |\n| [Ai图片拓展](https://top.aibase.com/discover/37-53)   | [37-53](https://rsshub.app/aibase/discover/37-53) |\n| [Ai漫画生成](https://top.aibase.com/discover/37-54)   | [37-54](https://rsshub.app/aibase/discover/37-54) |\n| [Ai生成写真](https://top.aibase.com/discover/37-55)   | [37-55](https://rsshub.app/aibase/discover/37-55) |\n| [电商图片制作](https://top.aibase.com/discover/37-83) | [37-83](https://rsshub.app/aibase/discover/37-83) |\n| [Ai图像转视频](https://top.aibase.com/discover/37-86) | [37-86](https://rsshub.app/aibase/discover/37-86) |\n\n#### 视频创作\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [视频剪辑](https://top.aibase.com/discover/38-56)   | [38-56](https://rsshub.app/aibase/discover/38-56) |\n| [生成视频](https://top.aibase.com/discover/38-57)   | [38-57](https://rsshub.app/aibase/discover/38-57) |\n| [Ai动画制作](https://top.aibase.com/discover/38-58) | [38-58](https://rsshub.app/aibase/discover/38-58) |\n| [字幕生成](https://top.aibase.com/discover/38-84)   | [38-84](https://rsshub.app/aibase/discover/38-84) |\n\n#### 效率助手\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [AI文档工具](https://top.aibase.com/discover/39-59) | [39-59](https://rsshub.app/aibase/discover/39-59) |\n| [PPT](https://top.aibase.com/discover/39-60)        | [39-60](https://rsshub.app/aibase/discover/39-60) |\n| [思维导图](https://top.aibase.com/discover/39-61)   | [39-61](https://rsshub.app/aibase/discover/39-61) |\n| [表格处理](https://top.aibase.com/discover/39-62)   | [39-62](https://rsshub.app/aibase/discover/39-62) |\n| [Ai办公助手](https://top.aibase.com/discover/39-63) | [39-63](https://rsshub.app/aibase/discover/39-63) |\n\n#### 写作灵感\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [文案写作](https://top.aibase.com/discover/40-64) | [40-64](https://rsshub.app/aibase/discover/40-64) |\n| [论文写作](https://top.aibase.com/discover/40-88) | [40-88](https://rsshub.app/aibase/discover/40-88) |\n\n#### 艺术灵感\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [音乐创作](https://top.aibase.com/discover/41-65)   | [41-65](https://rsshub.app/aibase/discover/41-65) |\n| [设计创作](https://top.aibase.com/discover/41-66)   | [41-66](https://rsshub.app/aibase/discover/41-66) |\n| [Ai图标生成](https://top.aibase.com/discover/41-67) | [41-67](https://rsshub.app/aibase/discover/41-67) |\n\n#### 趣味\n\n| 分类                                                  | ID                                                |\n| ----------------------------------------------------- | ------------------------------------------------- |\n| [Ai名字生成器](https://top.aibase.com/discover/42-68) | [42-68](https://rsshub.app/aibase/discover/42-68) |\n| [游戏娱乐](https://top.aibase.com/discover/42-71)     | [42-71](https://rsshub.app/aibase/discover/42-71) |\n| [其他](https://top.aibase.com/discover/42-72)         | [42-72](https://rsshub.app/aibase/discover/42-72) |\n\n#### 开发编程\n\n| 分类                                                | ID                                                |\n| --------------------------------------------------- | ------------------------------------------------- |\n| [开发编程](https://top.aibase.com/discover/43-73)   | [43-73](https://rsshub.app/aibase/discover/43-73) |\n| [Ai开放平台](https://top.aibase.com/discover/43-74) | [43-74](https://rsshub.app/aibase/discover/43-74) |\n| [Ai算力平台](https://top.aibase.com/discover/43-75) | [43-75](https://rsshub.app/aibase/discover/43-75) |\n\n#### 聊天机器人\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [智能聊天](https://top.aibase.com/discover/44-76) | [44-76](https://rsshub.app/aibase/discover/44-76) |\n| [智能客服](https://top.aibase.com/discover/44-77) | [44-77](https://rsshub.app/aibase/discover/44-77) |\n\n#### 翻译\n\n| 分类                                          | ID                                                |\n| --------------------------------------------- | ------------------------------------------------- |\n| [翻译](https://top.aibase.com/discover/46-79) | [46-79](https://rsshub.app/aibase/discover/46-79) |\n\n#### 教育学习\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [教育学习](https://top.aibase.com/discover/47-80) | [47-80](https://rsshub.app/aibase/discover/47-80) |\n\n#### 智能营销\n\n| 分类                                              | ID                                                |\n| ------------------------------------------------- | ------------------------------------------------- |\n| [智能营销](https://top.aibase.com/discover/48-81) | [48-81](https://rsshub.app/aibase/discover/48-81) |\n\n#### 法律\n\n| 分类                                            | ID                                                    |\n| ----------------------------------------------- | ----------------------------------------------------- |\n| [法律](https://top.aibase.com/discover/138-139) | [138-139](https://rsshub.app/aibase/discover/138-139) |\n</details>\n    ",
       "provider_id": "aibase",
       "provider_name": "AIbase",
-      "route_key": "/news"
+      "route_key": "/discover/:id?"
     }
   },
   {
@@ -129,22 +102,6 @@
       "provider_id": "aliresearch",
       "provider_name": "阿里研究院",
       "route_key": "/information/:type?"
-    }
-  },
-  {
-    "provider_id": "amz123",
-    "provider_name": "Amz123",
-    "route_key": "/kx",
-    "route": {
-      "path": "/kx",
-      "example": "/amz123/kx",
-      "parameters": {},
-      "name": "AMZ123 快讯",
-      "url": "amz123.com/kx",
-      "view": 0,
-      "provider_id": "amz123",
-      "provider_name": "Amz123",
-      "route_key": "/kx"
     }
   },
   {
@@ -178,6 +135,23 @@
     }
   },
   {
+    "provider_id": "cdi",
+    "provider_name": "国家高端智库 / 综合开发研究院",
+    "route_key": "/:id?",
+    "route": {
+      "path": "/:id?",
+      "example": "/cdi",
+      "parameters": {
+        "id": "分类，见下表，默认为综研国策"
+      },
+      "name": "栏目",
+      "description": "| 樊纲观点 | 综研国策 | 综研观察 | 综研专访 | 综研视点 | 银湖新能源 |\n| -------- | -------- | -------- | -------- | -------- | ---------- |\n| 102      | 152      | 150      | 153      | 154      | 151        |",
+      "provider_id": "cdi",
+      "provider_name": "国家高端智库 / 综合开发研究院",
+      "route_key": "/:id?"
+    }
+  },
+  {
     "provider_id": "chiculture",
     "provider_name": "通識・現代中國",
     "route_key": "/topic/:category?",
@@ -195,21 +169,53 @@
     }
   },
   {
-    "provider_id": "chinania",
-    "provider_name": "中国有色金属工业网",
-    "route_key": "/:category{.+}?",
+    "provider_id": "china",
+    "provider_name": "China.com 中华网",
+    "route_key": "/news/:category?",
     "route": {
-      "path": "/:category{.+}?",
-      "name": "分类",
-      "url": "www.chinania.org.cn",
-      "example": "/chinania/xiehuidongtai/xiehuitongzhi",
+      "path": "/news/:category?",
+      "example": "/china/news",
       "parameters": {
-        "category": "分类，默认为 `xiehuidongtai/xiehuitongzhi`，即协会通知，可在对应分类页 URL 中找到"
+        "category": "Category of news. See the form below for details, default is china news."
       },
-      "description": "::: tip\n  若订阅 [协会通知](https://www.chinania.org.cn/html/xiehuidongtai/xiehuitongzhi/)，网址为 `https://www.chinania.org.cn/html/xiehuidongtai/xiehuitongzhi/`。截取 `https://www.chinania.org.cn/html` 到末尾 `/` 的部分 `xiehuidongtai/xiehuitongzhi` 作为参数填入，此时路由为 [`/chinania/xiehuidongtai/xiehuitongzhi`](https://rsshub.app/chinania/xiehuidongtai/xiehuitongzhi)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### [协会动态](https://www.chinania.org.cn/html/xiehuidongtai/)\n\n| [协会动态](https://www.chinania.org.cn/html/xiehuidongtai/xiehuidongtai/)              | [协会通知](https://www.chinania.org.cn/html/xiehuidongtai/xiehuitongzhi/)              | [有色企业50强](https://www.chinania.org.cn/html/xiehuidongtai/youseqiye50qiang/)             |\n| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |\n| [xiehuidongtai/xiehuidongtai](https://rsshub.app/chinania/xiehuidongtai/xiehuidongtai) | [xiehuidongtai/xiehuitongzhi](https://rsshub.app/chinania/xiehuidongtai/xiehuitongzhi) | [xiehuidongtai/youseqiye50qiang](https://rsshub.app/chinania/xiehuidongtai/youseqiye50qiang) |\n\n#### [党建工作](https://www.chinania.org.cn/html/djgz/)\n\n| [协会党建](https://www.chinania.org.cn/html/djgz/xiehuidangjian/)      | [行业党建](https://www.chinania.org.cn/html/djgz/hangyedangjian/)      |\n| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |\n| [djgz/xiehuidangjian](https://rsshub.app/chinania/djgz/xiehuidangjian) | [djgz/hangyedangjian](https://rsshub.app/chinania/djgz/hangyedangjian) |\n\n#### [行业新闻](https://www.chinania.org.cn/html/hangyexinwen/)\n\n| [时政要闻](https://www.chinania.org.cn/html/hangyexinwen/shizhengyaowen/)              | [要闻](https://www.chinania.org.cn/html/hangyexinwen/yaowen/)          | [行业新闻](https://www.chinania.org.cn/html/hangyexinwen/guoneixinwen/)            | [资讯](https://www.chinania.org.cn/html/hangyexinwen/zixun/)         |\n| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------- |\n| [hangyexinwen/shizhengyaowen](https://rsshub.app/chinania/hangyexinwen/shizhengyaowen) | [hangyexinwen/yaowen](https://rsshub.app/chinania/hangyexinwen/yaowen) | [hangyexinwen/guoneixinwen](https://rsshub.app/chinania/hangyexinwen/guoneixinwen) | [hangyexinwen/zixun](https://rsshub.app/chinania/hangyexinwen/zixun) |\n\n#### [人力资源](https://www.chinania.org.cn/html/renliziyuan/)\n\n| [相关通知](https://www.chinania.org.cn/html/renliziyuan/xiangguantongzhi/)               | [人事招聘](https://www.chinania.org.cn/html/renliziyuan/renshizhaopin/)            |\n| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |\n| [renliziyuan/xiangguantongzhi](https://rsshub.app/chinania/renliziyuan/xiangguantongzhi) | [renliziyuan/renshizhaopin](https://rsshub.app/chinania/renliziyuan/renshizhaopin) |\n\n#### [行业统计](https://www.chinania.org.cn/html/hangyetongji/jqzs/)\n\n| [行业分析](https://www.chinania.org.cn/html/hangyetongji/tongji/)      | [数据统计](https://www.chinania.org.cn/html/hangyetongji/chanyeshuju/)           | [景气指数](https://www.chinania.org.cn/html/hangyetongji/jqzs/)    |\n| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------ |\n| [hangyetongji/tongji](https://rsshub.app/chinania/hangyetongji/tongji) | [hangyetongji/chanyeshuju](https://rsshub.app/chinania/hangyetongji/chanyeshuju) | [hangyetongji/jqzs](https://rsshub.app/chinania/hangyetongji/jqzs) |\n\n#### [政策法规](https://www.chinania.org.cn/html/zcfg/zhengcefagui/)\n\n| [政策法规](https://www.chinania.org.cn/html/zcfg/zhengcefagui/)    |\n| ------------------------------------------------------------------ |\n| [zcfg/zhengcefagui](https://rsshub.app/chinania/zcfg/zhengcefagui) |\n\n#### [会议展览](https://www.chinania.org.cn/html/hyzl/huiyizhanlan/)\n\n| [会展通知](https://www.chinania.org.cn/html/hyzl/huiyizhanlan/)    | [会展报道](https://www.chinania.org.cn/html/hyzl/huizhanbaodao/)     |\n| ------------------------------------------------------------------ | -------------------------------------------------------------------- |\n| [hyzl/huiyizhanlan](https://rsshub.app/chinania/hyzl/huiyizhanlan) | [hyzl/huizhanbaodao](https://rsshub.app/chinania/hyzl/huizhanbaodao) |\n\n</details>\n    ",
-      "provider_id": "chinania",
-      "provider_name": "中国有色金属工业网",
-      "route_key": "/:category{.+}?"
+      "name": "News and current affairs 时事新闻",
+      "description": "Category of news\n\n| China News | International News | Social News | Breaking News |\n| ---------- | ------------------ | ----------- | ------------- |\n| domestic   | international      | social      | news100       |",
+      "provider_id": "china",
+      "provider_name": "China.com 中华网",
+      "route_key": "/news/:category?"
+    }
+  },
+  {
+    "provider_id": "china",
+    "provider_name": "China.com 中华网",
+    "route_key": "/news/military",
+    "route": {
+      "path": "/news/military",
+      "example": "/china/news/military",
+      "parameters": {},
+      "name": "Military - Military News 军事 - 军事新闻",
+      "url": "military.china.com/news",
+      "provider_id": "china",
+      "provider_name": "China.com 中华网",
+      "route_key": "/news/military"
+    }
+  },
+  {
+    "provider_id": "chinaventure",
+    "provider_name": "投中网",
+    "route_key": "/news/:id?",
+    "route": {
+      "path": "/news/:id?",
+      "example": "/chinaventure/news/78",
+      "parameters": {
+        "id": "分类，见下表，默认为推荐"
+      },
+      "name": "分类",
+      "url": "chinaventure.com.cn/",
+      "description": "| 推荐 | 商业深度 | 资本市场 | 5G | 健康 | 教育 | 地产 | 金融 | 硬科技 | 新消费 |\n| ---- | -------- | -------- | -- | ---- | ---- | ---- | ---- | ------ | ------ |\n|      | 78       | 80       | 83 | 111  | 110  | 112  | 113  | 114    | 116    |",
+      "provider_id": "chinaventure",
+      "provider_name": "投中网",
+      "route_key": "/news/:id?"
     }
   },
   {
@@ -227,16 +233,21 @@
     }
   },
   {
-    "provider_id": "chub",
-    "provider_name": "Chub",
-    "route_key": "/characters",
+    "provider_id": "cngold",
+    "provider_name": "中国黄金协会",
+    "route_key": "/:category?",
     "route": {
-      "path": "/characters",
-      "example": "/chub/characters",
-      "name": "Characters",
-      "provider_id": "chub",
-      "provider_name": "Chub",
-      "route_key": "/characters"
+      "path": "/:category?",
+      "name": "分类",
+      "url": "www.cngold.org.cn",
+      "example": "/cngold/news-325",
+      "parameters": {
+        "category": "分类，默认为 `news-325`，即行业资讯，可在对应分类页 URL 中找到, Category, `news-325`，即行业资讯by default"
+      },
+      "description": "::: tip\n  若订阅 [行业资讯](https://www.cngold.org.cn/news-325.html)，网址为 `https://www.cngold.org.cn/news-325.html`。截取 `https://www.cngold.org.cn/` 到末尾 `.html` 的部分 `news-325` 作为参数填入，此时路由为 [`/cngold/news-325`](https://rsshub.app/cngold/news-325)。\n:::\n\n#### 资讯中心\n\n| [图片新闻](https://www.cngold.org.cn/news-323.html) | [通知公告](https://www.cngold.org.cn/news-324.html) | [党建工作](https://www.cngold.org.cn/news-326.html) | [行业资讯](https://www.cngold.org.cn/news-325.html) | [黄金矿业](https://www.cngold.org.cn/news-327.html) | [黄金消费](https://www.cngold.org.cn/news-328.html) |\n| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |\n| [news-323](https://rsshub.app/cngold/news-323)      | [news-324](https://rsshub.app/cngold/news-324)      | [news-326](https://rsshub.app/cngold/news-326)      | [news-325](https://rsshub.app/cngold/news-325)      | [news-327](https://rsshub.app/cngold/news-327)      | [news-328](https://rsshub.app/cngold/news-328)      |\n\n| [黄金市场](https://www.cngold.org.cn/news-329.html) | [社会责任](https://www.cngold.org.cn/news-330.html) | [黄金书屋](https://www.cngold.org.cn/news-331.html) | [工作交流](https://www.cngold.org.cn/news-332.html) | [黄金统计](https://www.cngold.org.cn/news-333.html) | [协会动态](https://www.cngold.org.cn/news-334.html) |\n| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |\n| [news-329](https://rsshub.app/cngold/news-329)      | [news-330](https://rsshub.app/cngold/news-330)      | [news-331](https://rsshub.app/cngold/news-331)      | [news-332](https://rsshub.app/cngold/news-332)      | [news-333](https://rsshub.app/cngold/news-333)      | [news-334](https://rsshub.app/cngold/news-334)      |\n\n<details>\n<summary>更多分类</summary>\n\n#### [政策法规](https://www.cngold.org.cn/policies.html)\n\n| [法律法规](https://www.cngold.org.cn/policies-245.html) | [产业政策](https://www.cngold.org.cn/policies-262.html) | [黄金标准](https://www.cngold.org.cn/policies-281.html) |\n| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |\n| [policies-245](https://rsshub.app/cngold/policies-245)  | [policies-262](https://rsshub.app/cngold/policies-262)  | [policies-281](https://rsshub.app/cngold/policies-281)  |\n\n#### [行业培训](https://www.cngold.org.cn/training.html)\n\n| [黄金投资分析师](https://www.cngold.org.cn/training-242.html) | [教育部1+X](https://www.cngold.org.cn/training-246.html) | [矿业权评估师](https://www.cngold.org.cn/training-338.html) | [其他培训](https://www.cngold.org.cn/training-247.html) |\n| ------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |\n| [training-242](https://rsshub.app/cngold/training-242)        | [training-246](https://rsshub.app/cngold/training-246)   | [training-338](https://rsshub.app/cngold/training-338)      | [training-247](https://rsshub.app/cngold/training-247)  |\n\n#### [黄金科技](https://www.cngold.org.cn/technology.html)\n\n| [黄金协会科学技术奖](https://www.cngold.org.cn/technology-318.html) | [科学成果评价](https://www.cngold.org.cn/technology-319.html) | [新技术推广](https://www.cngold.org.cn/technology-320.html) | [黄金技术大会](https://www.cngold.org.cn/technology-350.html) |\n| ------------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------- |\n| [technology-318](https://rsshub.app/cngold/technology-318)          | [technology-319](https://rsshub.app/cngold/technology-319)    | [technology-320](https://rsshub.app/cngold/technology-320)  | [technology-350](https://rsshub.app/cngold/technology-350)    |\n\n</details>\n    ",
+      "provider_id": "cngold",
+      "provider_name": "中国黄金协会",
+      "route_key": "/:category?"
     }
   },
   {
@@ -253,25 +264,6 @@
       "provider_id": "copernicium",
       "provider_name": "日新说",
       "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "cpcaauto",
-    "provider_name": "cpcaauto.com",
-    "route_key": "/news/:type?/:id?",
-    "route": {
-      "path": "/news/:type?/:id?",
-      "name": "文章",
-      "url": "cpcaauto.com",
-      "example": "/cpcaauto/news/news",
-      "parameters": {
-        "type": "分类，默认为 news，可在对应分类页 URL 中找到",
-        "id": "id，默认为 news，可在对应分类页 URL 中找到"
-      },
-      "description": "::: tip\n  若订阅 [行业新闻 > 国内乘用车](http://cpcaauto.com/news.php?types=news&anid=10)，网址为 `http://cpcaauto.com/news.php?types=news&anid=10`。截取 `types` 和 `anid` 的部分 `` 作为参数填入，此时路由为 [`/cpcaauto/news/news/10`](https://rsshub.app/cpcaauto/news/news/10)。\n:::\n\n#### [行业新闻](http://cpcaauto.com/news.php?types=news)\n\n| [国内乘用车](http://cpcaauto.com/news.php?types=news&anid=10) | [进口及国外乘用车](http://cpcaauto.com/news.php?types=news&anid=64) | [后市场](http://cpcaauto.com/news.php?types=news&anid=44) | [商用车](http://cpcaauto.com/news.php?types=news&anid=62) |\n| ----------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |\n| [news/10](https://rsshub.app/cpcaauto/news/news/10)              | [news/64](https://rsshub.app/cpcaauto/news/news/64)                    | [news/44](https://rsshub.app/cpcaauto/news/news/44)          | [news/62](https://rsshub.app/cpcaauto/news/news/62)          |\n\n#### [车市解读](http://cpcaauto.com/news.php?types=csjd)\n\n| [周度](http://cpcaauto.com/news.php?types=csjd&anid=128) | [月度](http://cpcaauto.com/news.php?types=csjd&anid=129) | [指数](http://cpcaauto.com/news.php?types=csjd&anid=130) | [预测](http://cpcaauto.com/news.php?types=csjd&anid=131) |\n| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |\n| [csjd/128](https://rsshub.app/cpcaauto/news/csjd/128)       | [csjd/129](https://rsshub.app/cpcaauto/news/csjd/129)       | [csjd/130](https://rsshub.app/cpcaauto/news/csjd/130)       | [csjd/131](https://rsshub.app/cpcaauto/news/csjd/131)       |\n\n#### [发布会报告](http://cpcaauto.com/news.php?types=bgzl)\n\n| [上海市场上牌数](http://cpcaauto.com/news.php?types=bgzl&anid=119) | [京城车市](http://cpcaauto.com/news.php?types=bgzl&anid=122) | [进口车市场分析](http://cpcaauto.com/news.php?types=bgzl&anid=120) | [二手车市场分析](http://cpcaauto.com/news.php?types=bgzl&anid=121) | [价格指数](http://cpcaauto.com/news.php?types=bgzl&anid=124) |\n| ---------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |\n| [bgzl/119](https://rsshub.app/cpcaauto/news/bgzl/119)                 | [bgzl/122](https://rsshub.app/cpcaauto/news/bgzl/122)           | [bgzl/120](https://rsshub.app/cpcaauto/news/bgzl/120)                 | [bgzl/121](https://rsshub.app/cpcaauto/news/bgzl/121)                 | [bgzl/124](https://rsshub.app/cpcaauto/news/bgzl/124)           |\n\n| [热点评述](http://cpcaauto.com/news.php?types=bgzl&anid=125) | [新能源月报](http://cpcaauto.com/news.php?types=bgzl&anid=126) | [商用车月报](http://cpcaauto.com/news.php?types=bgzl&anid=127) | [政策分析](http://cpcaauto.com/news.php?types=bgzl&anid=123) |\n| ---------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------- |\n| [bgzl/125](https://rsshub.app/cpcaauto/news/bgzl/125)           | [bgzl/126](https://rsshub.app/cpcaauto/news/bgzl/126)             | [bgzl/127](https://rsshub.app/cpcaauto/news/bgzl/127)             | [bgzl/123](https://rsshub.app/cpcaauto/news/bgzl/123)           |\n\n#### [经济与政策](http://cpcaauto.com/news.php?types=meeting)\n\n| [一周经济](http://cpcaauto.com/news.php?types=meeting&anid=46) | [一周政策](http://cpcaauto.com/news.php?types=meeting&anid=47) |\n| ------------------------------------------------------------------ | ------------------------------------------------------------------ |\n| [meeting/46](https://rsshub.app/cpcaauto/news/meeting/46)         | [meeting/47](https://rsshub.app/cpcaauto/news/meeting/47)         |\n\n#### [乘联会论坛](http://cpcaauto.com/news.php?types=yjsy)\n\n| [论坛文章](http://cpcaauto.com/news.php?types=yjsy&anid=49) | [两会](http://cpcaauto.com/news.php?types=yjsy&anid=111) | [车展看点](http://cpcaauto.com/news.php?types=yjsy&anid=113) |\n| --------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- |\n| [yjsy/49](https://rsshub.app/cpcaauto/news/yjsy/49)            | [yjsy/111](https://rsshub.app/cpcaauto/news/yjsy/111)       | [yjsy/113](https://rsshub.app/cpcaauto/news/yjsy/113)           |\n  ",
-      "provider_id": "cpcaauto",
-      "provider_name": "cpcaauto.com",
-      "route_key": "/news/:type?/:id?"
     }
   },
   {
@@ -293,20 +285,19 @@
     }
   },
   {
-    "provider_id": "dahecube",
-    "provider_name": "大河财立方",
-    "route_key": "/:type?",
+    "provider_id": "cyzone",
+    "provider_name": "创业邦",
+    "route_key": "/label/:name",
     "route": {
-      "path": "/:type?",
-      "example": "/dahecube",
+      "path": "/label/:name",
+      "example": "/cyzone/label/创业邦周报",
       "parameters": {
-        "type": "板块，见下表，默认为推荐"
+        "name": "标签名称，可在对应标签页 URL 中找到"
       },
-      "name": "新闻",
-      "description": "| 推荐      | 党史    | 豫股  | 财经     | 投教      | 金融    | 科创    | 投融   | 专栏   |\n| --------- | ------- | ----- | -------- | --------- | ------- | ------- | ------ | ------ |\n| recommend | history | stock | business | education | finance | science | invest | column |",
-      "provider_id": "dahecube",
-      "provider_name": "大河财立方",
-      "route_key": "/:type?"
+      "name": "标签",
+      "provider_id": "cyzone",
+      "provider_name": "创业邦",
+      "route_key": "/label/:name"
     }
   },
   {
@@ -321,21 +312,6 @@
       "provider_id": "digitalcameraworld",
       "provider_name": "Digital Camera World",
       "route_key": "/news"
-    }
-  },
-  {
-    "provider_id": "disinfo",
-    "provider_name": "EU Disinfo Lab",
-    "route_key": "/publications",
-    "route": {
-      "path": "/publications",
-      "example": "/disinfo/publications",
-      "parameters": {},
-      "name": "Publications",
-      "url": "disinfo.eu/",
-      "provider_id": "disinfo",
-      "provider_name": "EU Disinfo Lab",
-      "route_key": "/publications"
     }
   },
   {
@@ -373,70 +349,6 @@
     }
   },
   {
-    "provider_id": "dongqiudi",
-    "provider_name": "懂球帝",
-    "route_key": "/special/:id",
-    "route": {
-      "path": "/special/:id",
-      "example": "/dongqiudi/special/41",
-      "parameters": {
-        "id": "专题 id, 可自行通过 https://www.dongqiudi.com/special/+数字匹配"
-      },
-      "name": "专题",
-      "description": "| 新闻大爆炸 | 懂球帝十佳球 | 懂球帝本周 MVP |\n| ---------- | ------------ | -------------- |\n| 41         | 52           | 53             |",
-      "provider_id": "dongqiudi",
-      "provider_name": "懂球帝",
-      "route_key": "/special/:id"
-    }
-  },
-  {
-    "provider_id": "dongqiudi",
-    "provider_name": "懂球帝",
-    "route_key": "/top_news/:id?",
-    "route": {
-      "path": "/top_news/:id?",
-      "example": "/dongqiudi/top_news/1",
-      "parameters": {
-        "id": "类别 id，不填默认头条新闻"
-      },
-      "name": "新闻",
-      "description": "| 头条 | 深度 | 闲情 | D 站 | 中超 | 国际 | 英超 | 西甲 | 意甲 | 德甲 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 1    | 55   | 37   | 219  | 56   | 120  | 3    | 5    | 4    | 6    |",
-      "provider_id": "dongqiudi",
-      "provider_name": "懂球帝",
-      "route_key": "/top_news/:id?"
-    }
-  },
-  {
-    "provider_id": "dushu",
-    "provider_name": "樊登读书",
-    "route_key": "/fuzhou",
-    "route": {
-      "path": "/fuzhou",
-      "example": "/dushu/fuzhou",
-      "parameters": {},
-      "name": "樊登福州运营中心",
-      "url": "www.dushu365.com*",
-      "provider_id": "dushu",
-      "provider_name": "樊登读书",
-      "route_key": "/fuzhou"
-    }
-  },
-  {
-    "provider_id": "egsea",
-    "provider_name": "e 公司",
-    "route_key": "/flash",
-    "route": {
-      "path": "/flash",
-      "example": "/egsea/flash",
-      "parameters": {},
-      "name": "快讯",
-      "url": "egsea.com/news/flash",
-      "provider_id": "egsea",
-      "provider_name": "e 公司",
-      "route_key": "/flash"
-    }
-  },
-  {
     "provider_id": "eprice",
     "provider_name": "ePrice",
     "route_key": "/:region?",
@@ -456,6 +368,38 @@
   {
     "provider_id": "foresightnews",
     "provider_name": "Foresight News",
+    "route_key": "/article",
+    "route": {
+      "path": "/article",
+      "example": "/foresightnews/article",
+      "parameters": {},
+      "name": "文章",
+      "url": "foresightnews.pro/",
+      "provider_id": "foresightnews",
+      "provider_name": "Foresight News",
+      "route_key": "/article"
+    }
+  },
+  {
+    "provider_id": "foresightnews",
+    "provider_name": "Foresight News",
+    "route_key": "/column/:id",
+    "route": {
+      "path": "/column/:id",
+      "example": "/foresightnews/column/1",
+      "parameters": {
+        "id": "专栏 id, 可在对应专栏页 URL 中找到"
+      },
+      "name": "专栏",
+      "url": "foresightnews.pro/",
+      "provider_id": "foresightnews",
+      "provider_name": "Foresight News",
+      "route_key": "/column/:id"
+    }
+  },
+  {
+    "provider_id": "foresightnews",
+    "provider_name": "Foresight News",
     "route_key": "/",
     "route": {
       "path": "/",
@@ -468,35 +412,35 @@
     }
   },
   {
-    "provider_id": "gcores",
-    "provider_name": "机核网",
-    "route_key": "/radios/:category?",
+    "provider_id": "fuliba",
+    "provider_name": "福利吧",
+    "route_key": "/latest",
     "route": {
-      "path": "/radios/:category?",
-      "example": "/gcores/radios/45",
-      "parameters": {
-        "category": "分类名，默认为全部，可在分类页面的 URL 中找到，如 Gadio News -- 45"
-      },
-      "name": "播客",
-      "url": "gcores.com/radios",
-      "provider_id": "gcores",
-      "provider_name": "机核网",
-      "route_key": "/radios/:category?"
+      "path": "/latest",
+      "example": "/fuliba/latest",
+      "parameters": {},
+      "name": "最新",
+      "url": "fuliba2023.net/",
+      "provider_id": "fuliba",
+      "provider_name": "福利吧",
+      "route_key": "/latest"
     }
   },
   {
-    "provider_id": "grist",
-    "provider_name": "Grist",
-    "route_key": "/",
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/news/:category/:locale",
     "route": {
-      "path": "/",
-      "name": "Latest Articles",
-      "example": "/grist",
-      "parameters": {},
-      "url": "grist.org/articles/",
-      "provider_id": "grist",
-      "provider_name": "Grist",
-      "route_key": "/"
+      "path": "/news/:category/:locale",
+      "example": "/google/news/Top stories/hl=en-US&gl=US&ceid=US:en",
+      "parameters": {
+        "category": "Category Title",
+        "locale": "locales, could be found behind `?`, including `hl`, `gl`, and `ceid` as parameters"
+      },
+      "name": "News",
+      "provider_id": "google",
+      "provider_name": "Google",
+      "route_key": "/news/:category/:locale"
     }
   },
   {
@@ -519,6 +463,21 @@
   {
     "provider_id": "guancha",
     "provider_name": "观察者网",
+    "route_key": "/headline",
+    "route": {
+      "path": "/headline",
+      "example": "/guancha/headline",
+      "parameters": {},
+      "name": "头条",
+      "url": "guancha.cn/GuanChaZheTouTiao",
+      "provider_id": "guancha",
+      "provider_name": "观察者网",
+      "route_key": "/headline"
+    }
+  },
+  {
+    "provider_id": "guancha",
+    "provider_name": "观察者网",
     "route_key": "/:category?",
     "route": {
       "path": "/:category?",
@@ -532,42 +491,6 @@
       "provider_id": "guancha",
       "provider_name": "观察者网",
       "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "guancha",
-    "provider_name": "观察者网",
-    "route_key": "/member/:category?",
-    "route": {
-      "path": "/member/:category?",
-      "example": "/guancha/member/recommend",
-      "parameters": {
-        "category": "分类，见下表"
-      },
-      "name": "观学院",
-      "url": "guancha.cn/",
-      "description": "| 精选      | 观书堂 | 在线课  | 观学院   |\n| --------- | ------ | ------- | -------- |\n| recommend | books  | courses | huodongs |",
-      "provider_id": "guancha",
-      "provider_name": "观察者网",
-      "route_key": "/member/:category?"
-    }
-  },
-  {
-    "provider_id": "guokr",
-    "provider_name": "果壳网",
-    "route_key": "/column/:channel",
-    "route": {
-      "path": "/column/:channel",
-      "example": "/guokr/column/calendar",
-      "parameters": {
-        "channel": "专栏类别"
-      },
-      "name": "果壳网专栏",
-      "url": "guokr.com/",
-      "description": "| 物种日历 | 吃货研究所 | 美丽也是技术活 |\n| -------- | ---------- | -------------- |\n| calendar | institute  | beauty         |",
-      "provider_id": "guokr",
-      "provider_name": "果壳网",
-      "route_key": "/column/:channel"
     }
   },
   {
@@ -600,6 +523,24 @@
     }
   },
   {
+    "provider_id": "hinatazaka46",
+    "provider_name": "Sakamichi Series 坂道系列官网资讯",
+    "route_key": "/blog/:id?/:page?",
+    "route": {
+      "path": "/blog/:id?/:page?",
+      "example": "/hinatazaka46/blog",
+      "parameters": {
+        "id": "Member ID, see below, `all` by default",
+        "page": "Page, `0` by default"
+      },
+      "name": "Hinatazaka46 Blog 日向坂 46 博客",
+      "description": "Member ID\n\n| Member ID | Name         |\n| --------- | ------------ |\n| 2000      | 四期生リレー |\n| 36        | 渡辺 莉奈    |\n| 35        | 山下 葉留花  |\n| 34        | 宮地 すみれ  |\n| 33        | 藤嶌 果歩    |\n| 32        | 平岡 海月    |\n| 31        | 平尾 帆夏    |\n| 30        | 竹内 希来里  |\n| 29        | 正源司 陽子  |\n| 28        | 清水 理央    |\n| 27        | 小西 夏菜実  |\n| 26        | 岸 帆夏      |\n| 25        | 石塚 瑶季    |\n| 24        | 山口 陽世    |\n| 23        | 森本 茉莉    |\n| 22        | 髙橋 未来虹  |\n| 21        | 上村 ひなの  |\n| 18        | 松田 好花    |\n| 17        | 濱岸 ひより  |\n| 16        | 丹生 明里    |\n| 15        | 富田 鈴花    |\n| 14        | 小坂 菜緒    |\n| 13        | 河田 陽菜    |\n| 12        | 金村 美玖    |\n| 11        | 東村 芽依    |\n| 10        | 高本 彩花    |\n| 9         | 高瀬 愛奈    |\n| 8         | 佐々木 美玲  |\n| 7         | 佐々木 久美  |\n| 6         | 齊藤 京子    |\n| 5         | 加藤 史帆    |\n| 4         | 影山 優佳    |\n| 2         | 潮 紗理菜    |",
+      "provider_id": "hinatazaka46",
+      "provider_name": "Sakamichi Series 坂道系列官网资讯",
+      "route_key": "/blog/:id?/:page?"
+    }
+  },
+  {
     "provider_id": "hk01",
     "provider_name": "香港 01",
     "route_key": "/hot",
@@ -615,83 +556,52 @@
     }
   },
   {
-    "provider_id": "hk01",
-    "provider_name": "香港 01",
-    "route_key": "/latest",
+    "provider_id": "hkepc",
+    "provider_name": "HKEPC",
+    "route_key": "/:category?",
     "route": {
-      "path": "/latest",
-      "example": "/hk01/latest",
-      "parameters": {},
-      "name": "即時",
-      "url": "hk01.com/latest",
-      "provider_id": "hk01",
-      "provider_name": "香港 01",
-      "route_key": "/latest"
+      "path": "/:category?",
+      "example": "/hkepc/news",
+      "parameters": {
+        "category": "分类，见下表，默认为最新消息"
+      },
+      "name": "HKEPC 电脑领域",
+      "url": "hkepc.com/",
+      "description": "| 专题报导   | 新闻中心 | 新品快递 | 超频领域 | 流动数码 | 生活娱乐      | 会员消息 | 脑场新闻 | 业界资讯 | 最新消息 |\n| ---------- | -------- | -------- | -------- | -------- | ------------- | -------- | -------- | -------- | -------- |\n| coverStory | news     | review   | ocLab    | digital  | entertainment | member   | price    | press    | latest   |",
+      "provider_id": "hkepc",
+      "provider_name": "HKEPC",
+      "route_key": "/:category?"
     }
   },
   {
     "provider_id": "houxu",
     "provider_name": "后续",
-    "route_key": "/events",
+    "route_key": "/lives/:id",
     "route": {
-      "path": "/events",
-      "example": "/houxu/events",
-      "name": "专栏",
-      "url": "houxu.app/events",
+      "path": "/lives/:id",
+      "example": "/houxu/lives/33899",
+      "parameters": {
+        "id": "编号，可在对应 Live 页面的 URL 中找到"
+      },
+      "name": "Live",
+      "url": "houxu.app/",
       "provider_id": "houxu",
       "provider_name": "后续",
-      "route_key": "/events"
+      "route_key": "/lives/:id"
     }
   },
   {
-    "provider_id": "huxiu",
-    "provider_name": "虎嗅",
-    "route_key": "/collection/:id",
+    "provider_id": "houxu",
+    "provider_name": "后续",
+    "route_key": "/memory",
     "route": {
-      "path": "/collection/:id",
-      "example": "/huxiu/collection/212",
-      "parameters": {
-        "id": "文集 id，可在对应文集页 URL 中找到"
-      },
-      "name": "文集",
-      "description": "更多文集请参见 [文集](https://www.huxiu.com/collection)",
-      "provider_id": "huxiu",
-      "provider_name": "虎嗅",
-      "route_key": "/collection/:id"
-    }
-  },
-  {
-    "provider_id": "huxiu",
-    "provider_name": "虎嗅",
-    "route_key": "/search/:keyword",
-    "route": {
-      "path": "/search/:keyword",
-      "example": "/huxiu/search/生活",
-      "parameters": {
-        "keyword": "关键字"
-      },
-      "name": "搜索",
-      "url": "huxiu.com/",
-      "provider_id": "huxiu",
-      "provider_name": "虎嗅",
-      "route_key": "/search/:keyword"
-    }
-  },
-  {
-    "provider_id": "huxiu",
-    "provider_name": "虎嗅",
-    "route_key": "/tag/:id",
-    "route": {
-      "path": "/tag/:id",
-      "example": "/huxiu/tag/291",
-      "parameters": {
-        "id": "标签 id，可在对应标签页 URL 中找到"
-      },
-      "name": "标签",
-      "description": "更多标签请参见 [标签](https://www.huxiu.com/tags)",
-      "provider_id": "huxiu",
-      "provider_name": "虎嗅",
-      "route_key": "/tag/:id"
+      "path": "/memory",
+      "example": "/houxu/memory",
+      "name": "跟踪",
+      "url": "houxu.app/memory",
+      "provider_id": "houxu",
+      "provider_name": "后续",
+      "route_key": "/memory"
     }
   },
   {
@@ -728,6 +638,24 @@
     }
   },
   {
+    "provider_id": "ifeng",
+    "provider_name": "凤凰网",
+    "route_key": "/feng/:id/:type",
+    "route": {
+      "path": "/feng/:id/:type",
+      "example": "/ifeng/feng/2583/doc",
+      "parameters": {
+        "id": "对应 id，可在 大风号作者页面 找到",
+        "type": "类型，见下表"
+      },
+      "name": "大风号",
+      "description": "| 文章 | 视频  |\n| ---- | ----- |\n| doc  | video |",
+      "provider_id": "ifeng",
+      "provider_name": "凤凰网",
+      "route_key": "/feng/:id/:type"
+    }
+  },
+  {
     "provider_id": "ithome",
     "provider_name": "iThome 台灣",
     "route_key": "/tag/:name",
@@ -744,37 +672,21 @@
     }
   },
   {
-    "provider_id": "joneslanglasalle",
-    "provider_name": "Jones Lang LaSalle",
-    "route_key": "/:language?/:category{.+}?",
+    "provider_id": "kbs",
+    "provider_name": "KBS",
+    "route_key": "/today/:language?",
     "route": {
-      "path": "/:language?/:category{.+}?",
-      "name": "Trends & Insights",
-      "url": "joneslanglasalle.com.cn",
-      "example": "/joneslanglasalle/en/trends-and-insights",
+      "path": "/today/:language?",
+      "example": "/kbs/today",
       "parameters": {
-        "language": "Language, `zh` by default",
-        "category": "Category, `trends-and-insights` by default"
+        "language": "Language, see below, e as English by default"
       },
-      "description": "::: tip\nIf you subscribe to [Trends & Insights](https://www.joneslanglasalle.com.cn/en/trends-and-insights)，where the URL is `https://www.joneslanglasalle.com.cn/en/trends-and-insights`, extract the part `https://joneslanglasalle.com.cn/` to the end. Use `zh` and `trends-and-insights` as the parameters to fill in. Therefore, the route will be [`/joneslanglasalle/en/trends-and-insights`](https://rsshub.app/joneslanglasalle/en/trends-and-insights).\n:::\n\n| Category  | ID                            |\n| --------- | ----------------------------- |\n| Latest    | trends-and-insights           |\n| Workplace | trends-and-insights/workplace |\n| Investor  | trends-and-insights/investor  |\n| Cities    | trends-and-insights/cities    |\n| Research  | trends-and-insights/research  |\n",
-      "view": 0,
-      "zh": {
-        "path": "/:language?/:category{.+}?",
-        "name": "房地产趋势与洞察",
-        "url": "joneslanglasalle.com.cn",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "example": "/joneslanglasalle/zh/trends-and-insights",
-        "parameters": {
-          "language": "语言，默认为 `zh`，可在对应分类页 URL 中找到",
-          "category": "分类，默认为 `trends-and-insights`，可在对应分类页 URL 中找到"
-        },
-        "description": "::: tip\n若订阅 [房地产趋势与洞察](https://www.joneslanglasalle.com.cn/zh/trends-and-insights)，网址为 `https://www.joneslanglasalle.com.cn/zh/trends-and-insights`，请截取 `https://joneslanglasalle.com.cn/` 到末尾的部分 `zh` 和 `trends-and-insights` 作为 `language` 和 `category` 参数填入，此时目标路由为 [`/joneslanglasalle/zh/trends-and-insights`](https://rsshub.app/joneslanglasalle/zh/trends-and-insights)。\n:::\n\n| 分类名称   | 分类 ID                       |\n| ---------- | ----------------------------- |\n| 趋势及洞察 | trends-and-insights           |\n| 办公空间   | trends-and-insights/workplace |\n| 投资者     | trends-and-insights/investor  |\n| 城市       | trends-and-insights/cities    |\n| 研究报告   | trends-and-insights/research  |\n"
-      },
-      "provider_id": "joneslanglasalle",
-      "provider_name": "Jones Lang LaSalle",
-      "route_key": "/:language?/:category{.+}?"
+      "name": "Today",
+      "url": "world.kbs.co.kr/",
+      "description": "| 한국어 | عربي | 中国语 | English | Français | Deutsch | Bahasa Indonesia | 日本語 | Русский | Español | Tiếng Việt |\n| ------ | ---- | ------ | ------- | -------- | ------- | ---------------- | ------ | ------- | ------- | ---------- |\n| k      | a    | c      | e       | f        | g       | i                | j      | r       | s       | v          |",
+      "provider_id": "kbs",
+      "provider_name": "KBS",
+      "route_key": "/today/:language?"
     }
   },
   {
@@ -796,67 +708,74 @@
     }
   },
   {
-    "provider_id": "kepu",
-    "provider_name": "中国科普博览",
-    "route_key": "/live",
+    "provider_id": "landiannews",
+    "provider_name": "蓝点网",
+    "route_key": "/tag/:slug",
     "route": {
-      "path": "/live",
-      "example": "/kepu/live",
-      "parameters": {},
-      "name": "直播回看",
-      "url": "live.kepu.net.cn/replay/index",
-      "provider_id": "kepu",
-      "provider_name": "中国科普博览",
-      "route_key": "/live"
+      "path": "/tag/:slug",
+      "name": "标签",
+      "url": "www.landiannews.com",
+      "example": "/landiannews/tag/linux-kernel",
+      "parameters": {
+        "slug": "标签名称"
+      },
+      "view": 0,
+      "provider_id": "landiannews",
+      "provider_name": "蓝点网",
+      "route_key": "/tag/:slug"
     }
   },
   {
-    "provider_id": "liveuamap",
-    "provider_name": "Live Universal Awareness Map",
-    "route_key": "/:region?",
+    "provider_id": "line",
+    "provider_name": "LINE",
+    "route_key": "/today/:edition/publisher/:id",
     "route": {
-      "path": "/:region?",
-      "example": "/liveuamap",
+      "path": "/today/:edition/publisher/:id",
+      "example": "/line/today/th/publisher/101048",
       "parameters": {
-        "region": "region 热点地区，默认为`ukraine`，其他选项见liveuamap.com的三级域名"
+        "edition": "Edition, see table above",
+        "id": "Channel ID, can be found in URL"
       },
-      "name": "实时消息",
-      "provider_id": "liveuamap",
-      "provider_name": "Live Universal Awareness Map",
-      "route_key": "/:region?"
+      "name": "TODAY - Channel",
+      "provider_id": "line",
+      "provider_name": "LINE",
+      "route_key": "/today/:edition/publisher/:id"
     }
   },
   {
     "provider_id": "lvv2",
     "provider_name": "LVV2",
-    "route_key": "/top/:channel/:sort?",
+    "route_key": "/news/:channel/:sort?",
     "route": {
-      "path": "/top/:channel/:sort?",
-      "example": "/lvv2/top/sort-score",
+      "path": "/news/:channel/:sort?",
+      "example": "/lvv2/news/sort-score",
       "parameters": {
         "channel": "频道，见下表",
         "sort": "排序方式，仅得分和24小时榜可选填该参数，见下表"
       },
-      "name": "24 小时点击排行 Top 10",
+      "name": "频道",
       "description": "|   热门   |   最新   |    得分    |   24 小时榜   |\n| :------: | :------: | :--------: | :-----------: |\n| sort-hot | sort-new | sort-score | sort-realtime |\n\n| 排序方式 | 一小时内 | 一天内 | 一个周内 | 一个月内 |\n| :------: | :------: | :----: | :------: | :------: |\n|          |  t-hour  |  t-day |  t-week  |  t-month |",
       "provider_id": "lvv2",
       "provider_name": "LVV2",
-      "route_key": "/top/:channel/:sort?"
+      "route_key": "/news/:channel/:sort?"
     }
   },
   {
-    "provider_id": "macfilos",
-    "provider_name": "Macfilos",
-    "route_key": "/blog",
+    "provider_id": "malaysiakini",
+    "provider_name": "Malaysiakini",
+    "route_key": "/:lang/:category?",
     "route": {
-      "path": "/blog",
-      "example": "/macfilos/blog",
-      "parameters": {},
-      "name": "Blog",
-      "url": "macfilos.com/blog",
-      "provider_id": "macfilos",
-      "provider_name": "Macfilos",
-      "route_key": "/blog"
+      "path": "/:lang/:category?",
+      "example": "/malaysiakini/en",
+      "parameters": {
+        "lang": "Language, see below",
+        "category": "Category, see below, news by default"
+      },
+      "name": "News",
+      "description": "\n| Language | English | Bahasa Malaysia | 华文     |\n| -------- | ------ | ------- | ------ | \n| `:lang`  | `en`    | `my`   | `zh`    |\n\n| Category               | `:category` |\n| ---------------------- | ------------- |\n| News                   | `news`      |\n| Columns                | `columns`   |\n| From Our Readers       | `letters`   |",
+      "provider_id": "malaysiakini",
+      "provider_name": "Malaysiakini",
+      "route_key": "/:lang/:category?"
     }
   },
   {
@@ -891,23 +810,6 @@
     }
   },
   {
-    "provider_id": "mygopen",
-    "provider_name": "MyGoPen",
-    "route_key": "/:label?",
-    "route": {
-      "path": "/:label?",
-      "example": "/mygopen",
-      "parameters": {
-        "label": "分類，见下表，默认为首页"
-      },
-      "name": "分類",
-      "description": "| 謠言 | 詐騙 | 真實資訊 | 教學 |\n| ---- | ---- | -------- | ---- |",
-      "provider_id": "mygopen",
-      "provider_name": "MyGoPen",
-      "route_key": "/:label?"
-    }
-  },
-  {
     "provider_id": "nautil",
     "provider_name": "Nautilus",
     "route_key": "/topic/:tid",
@@ -922,6 +824,58 @@
       "provider_id": "nautil",
       "provider_name": "Nautilus",
       "route_key": "/topic/:tid"
+    }
+  },
+  {
+    "provider_id": "newsmarket",
+    "provider_name": "上下游 News&Market",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "example": "/newsmarket",
+      "parameters": {
+        "category": "分类，见下表，默认为首页"
+      },
+      "name": "分類",
+      "description": "| 時事。政策  | 食安        | 新知      | 愛地方       | 種好田       | 好吃。好玩    |\n| ----------- | ----------- | --------- | ------------ | ------------ | ------------- |\n| news-policy | food-safety | knowledge | country-life | good-farming | good-food-fun |\n\n| 食農教育       | 人物               | 漁業。畜牧           | 綠生活。國際        | 評論    |\n| -------------- | ------------------ | -------------------- | ------------------- | ------- |\n| food-education | people-and-history | raising-and-breeding | living-green-travel | opinion |",
+      "provider_id": "newsmarket",
+      "provider_name": "上下游 News&Market",
+      "route_key": "/:category?"
+    }
+  },
+  {
+    "provider_id": "nextapple",
+    "provider_name": "壹蘋新聞網",
+    "route_key": "/realtime/:category?",
+    "route": {
+      "path": "/realtime/:category?",
+      "example": "/nextapple/realtime/latest",
+      "parameters": {
+        "category": "類別，見下表，默認為首頁"
+      },
+      "name": "最新新聞",
+      "url": "tw.nextapple.com/",
+      "description": "| 首頁   | 焦點      | 熱門 | 娛樂          | 生活 | 女神     | 社會  |\n| ------ | --------- | ---- | ------------- | ---- | -------- | ----- |\n| latest | recommend | hit  | entertainment | life | gorgeous | local |\n\n| 政治     | 國際          | 財經    | 體育   | 旅遊美食  | 3C 車市 |\n| -------- | ------------- | ------- | ------ | --------- | ------- |\n| politics | international | finance | sports | lifestyle | gadget  |",
+      "provider_id": "nextapple",
+      "provider_name": "壹蘋新聞網",
+      "route_key": "/realtime/:category?"
+    }
+  },
+  {
+    "provider_id": "nltimes",
+    "provider_name": "NL Times",
+    "route_key": "/news/:category?",
+    "route": {
+      "path": "/news/:category?",
+      "example": "/nltimes/news/top-stories",
+      "parameters": {
+        "category": "category"
+      },
+      "name": "News",
+      "description": "| Top Stories (default) | Health | Crime | Politics | Business | Tech | Culture | Sports | Weird | 1-1-2 |\n| --------------------- | ------ | ----- | -------- | -------- | ---- | ------- | ------ | ----- | ----- |\n| top-stories           | health | crime | politics | business | tech | culture | sports | weird | 1-1-2 |",
+      "provider_id": "nltimes",
+      "provider_name": "NL Times",
+      "route_key": "/news/:category?"
     }
   },
   {
@@ -942,6 +896,24 @@
   {
     "provider_id": "odaily",
     "provider_name": "Odaily 星球日报",
+    "route_key": "/:id?",
+    "route": {
+      "path": "/:id?",
+      "example": "/odaily",
+      "parameters": {
+        "id": "id，见下表，默认为最新"
+      },
+      "name": "文章",
+      "url": "0daily.com/",
+      "description": "| 最新 | 新品 | DeFi | NFT | 存储 | 波卡 | 行情 | 活动 |\n| ---- | ---- | ---- | --- | ---- | ---- | ---- | ---- |\n| 280  | 333  | 331  | 334 | 332  | 330  | 297  | 296  |",
+      "provider_id": "odaily",
+      "provider_name": "Odaily 星球日报",
+      "route_key": "/:id?"
+    }
+  },
+  {
+    "provider_id": "odaily",
+    "provider_name": "Odaily 星球日报",
     "route_key": "/search/news/:keyword",
     "route": {
       "path": "/search/news/:keyword",
@@ -956,19 +928,17 @@
     }
   },
   {
-    "provider_id": "patreon",
-    "provider_name": "Patreon",
-    "route_key": "/:creator",
+    "provider_id": "panewslab",
+    "provider_name": "PANews",
+    "route_key": "/news",
     "route": {
-      "path": "/:creator",
-      "example": "/patreon/straightupsisters",
-      "parameters": {
-        "creator": "Patreon creator id, can be found in the url"
-      },
-      "name": "Home",
-      "provider_id": "patreon",
-      "provider_name": "Patreon",
-      "route_key": "/:creator"
+      "path": "/news",
+      "example": "/panewslab/news",
+      "name": "快讯",
+      "url": "panewslab.com/",
+      "provider_id": "panewslab",
+      "provider_name": "PANews",
+      "route_key": "/news"
     }
   },
   {
@@ -987,37 +957,92 @@
     }
   },
   {
-    "provider_id": "psyche",
-    "provider_name": "Psyche",
-    "route_key": "/type/:type",
+    "provider_id": "pingwest",
+    "provider_name": "品玩",
+    "route_key": "/tag/:tag/:type/:option?",
     "route": {
-      "path": "/type/:type",
-      "example": "/psyche/type/ideas",
+      "path": "/tag/:tag/:type/:option?",
+      "example": "/pingwest/tag/ChinaJoy/1",
       "parameters": {
-        "type": "Type"
+        "tag": "话题名或话题id, 可从话题页url中得到",
+        "type": "内容类型",
+        "option": "参数, 默认无"
       },
-      "name": "Types",
-      "description": "Supported types: Ideas, Guides, and Films.",
-      "provider_id": "psyche",
-      "provider_name": "Psyche",
-      "route_key": "/type/:type"
+      "name": "话题动态",
+      "description": "内容类型\n\n| 最新 | 热门 |\n| ---- | ---- |\n| 1    | 2    |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/tag/ChinaJoy/1/fulltext`\n\n::: tip\n  该路由一次最多显示 30 条文章\n:::",
+      "provider_id": "pingwest",
+      "provider_name": "品玩",
+      "route_key": "/tag/:tag/:type/:option?"
     }
   },
   {
-    "provider_id": "qqorw",
-    "provider_name": "早报网",
+    "provider_id": "pingwest",
+    "provider_name": "品玩",
+    "route_key": "/user/:uid/:type?/:option?",
+    "route": {
+      "path": "/user/:uid/:type?/:option?",
+      "example": "/pingwest/user/7781550877/article",
+      "parameters": {
+        "uid": "用户id, 可从用户主页中得到",
+        "type": "内容类型, 默认为`article`",
+        "option": "参数"
+      },
+      "name": "用户",
+      "description": "内容类型\n\n| 文章    | 动态  |\n| ------- | ----- |\n| article | state |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/user/7781550877/article/fulltext`",
+      "provider_id": "pingwest",
+      "provider_name": "品玩",
+      "route_key": "/user/:uid/:type?/:option?"
+    }
+  },
+  {
+    "provider_id": "qbitai",
+    "provider_name": "量子位",
+    "route_key": "/tag/:tag",
+    "route": {
+      "path": "/tag/:tag",
+      "example": "/qbitai/tag/大语言模型",
+      "parameters": {
+        "tag": "标签名"
+      },
+      "name": "标签",
+      "provider_id": "qbitai",
+      "provider_name": "量子位",
+      "route_key": "/tag/:tag"
+    }
+  },
+  {
+    "provider_id": "readhub",
+    "provider_name": "Readhub",
     "route_key": "/:category?",
     "route": {
       "path": "/:category?",
-      "example": "/qqorw",
+      "example": "/readhub",
       "parameters": {
-        "category": "分类，见下表，默认为首页"
+        "category": "分类，见下表，默认为热门话题"
       },
-      "name": "每日早报",
-      "description": "| 首页 | 每日早报 | 国际早报 | 生活冷知识 |\n| ---- | -------- | -------- | ---------- |\n|      | mrzb     | zbapp    | zbzzd      |",
-      "provider_id": "qqorw",
-      "provider_name": "早报网",
+      "name": "分类",
+      "description": "| 热门话题 | 科技动态 | 医疗产业 | 财经快讯           |\n| -------- | -------- | -------- | ------------------ |\n|          | news     | medical  | financial_express |",
+      "provider_id": "readhub",
+      "provider_name": "Readhub",
       "route_key": "/:category?"
+    }
+  },
+  {
+    "provider_id": "sakurazaka46",
+    "provider_name": "Sakamichi Series 坂道系列官网资讯",
+    "route_key": "/blog/:id?/:page?",
+    "route": {
+      "path": "/blog/:id?/:page?",
+      "example": "/sakurazaka46/blog",
+      "parameters": {
+        "id": "Member ID, see below, `all` by default",
+        "page": "Page, `0` by default"
+      },
+      "name": "Sakurazaka46 Blog 櫻坂 46 博客",
+      "description": "Member ID\n\n| Member ID | Name         |\n| --------- | ------------ |\n| 2000      | 三期生リレー |\n| 69        | 山下 瞳月    |\n| 68        | 村山 美羽    |\n| 67        | 村井 優      |\n| 66        | 向井 純葉    |\n| 65        | 的野 美青    |\n| 64        | 中嶋 優月    |\n| 63        | 谷口 愛季    |\n| 62        | 小島 凪紗    |\n| 61        | 小田倉 麗奈  |\n| 60        | 遠藤 理子    |\n| 59        | 石森 璃花    |\n| 58        | 守屋 麗奈    |\n| 57        | 増本 綺良    |\n| 56        | 幸阪 茉里乃  |\n| 55        | 大沼 晶保    |\n| 54        | 大園 玲      |\n| 53        | 遠藤 光莉    |\n| 51        | 山﨑 天      |\n| 50        | 森田 ひかる  |\n| 48        | 松田 里奈    |\n| 47        | 藤吉 夏鈴    |\n| 46        | 田村 保乃    |\n| 45        | 武元 唯衣    |\n| 44        | 関 有美子    |\n| 43        | 井上 梨名    |\n| 15        | 原田 葵      |\n| 14        | 土生 瑞穂    |\n| 11        | 菅井 友香    |\n| 08        | 齋藤 冬優花  |\n| 07        | 小林 由依    |\n| 06        | 小池 美波    |\n| 04        | 尾関 梨香    |\n| 03        | 上村 莉菜    |",
+      "provider_id": "sakurazaka46",
+      "provider_name": "Sakamichi Series 坂道系列官网资讯",
+      "route_key": "/blog/:id?/:page?"
     }
   },
   {
@@ -1036,54 +1061,52 @@
     }
   },
   {
-    "provider_id": "samsung",
-    "provider_name": "Samsung",
-    "route_key": "/research/blog",
+    "provider_id": "sohu",
+    "provider_name": "搜狐号",
+    "route_key": "/mp/:xpt",
     "route": {
-      "path": "/research/blog",
-      "example": "/samsung/research/blog",
-      "parameters": {},
-      "name": "Research Blog",
-      "url": "research.samsung.com/blog",
-      "provider_id": "samsung",
-      "provider_name": "Samsung",
-      "route_key": "/research/blog"
+      "path": "/mp/:xpt",
+      "example": "/sohu/mp/c29odXptdGhnbjZ3NEBzb2h1LmNvbQ==",
+      "parameters": {
+        "xpt": "搜狐号 xpt ，可在URL中找到或搜狐号 ID"
+      },
+      "name": "最新",
+      "description": "搜狐号 ID 可以通过以下方式获取：\n  1.  通过浏览器搜索相关搜狐号 `果壳 site: mp.sohu.com`。\n  2.  通过浏览器控制台执行 `window.globalConst.mkeyConst_mkey`，返回的即为搜狐号 ID。",
+      "provider_id": "sohu",
+      "provider_name": "搜狐号",
+      "route_key": "/mp/:xpt"
     }
   },
   {
-    "provider_id": "sciencenet",
-    "provider_name": "科学网",
-    "route_key": "/blog/:type?/:time?/:sort?",
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/author/:id",
     "route": {
-      "path": "/blog/:type?/:time?/:sort?",
-      "example": "/sciencenet/blog",
+      "path": "/author/:id",
+      "example": "/sspai/author/796518",
       "parameters": {
-        "type": "类型，见下表，默认为推荐",
-        "time": "时间，见下表，默认为所有时间",
-        "sort": "排序，见下表，默认为按发表时间排序"
+        "id": "作者 slug 或 id，slug 可在作者主页URL中找到，id 不易查找，仅作兼容"
       },
-      "name": "精选博客",
-      "description": "类型\n\n| 精选      | 最新 | 热门 |\n| --------- | ---- | ---- |\n| recommend | new  | hot  |\n\n  时间\n\n| 36 小时内精选博文 | 一周内精选博文 | 一月内精选博文 | 半年内精选博文 | 所有时间精选博文 |\n| ----------------- | -------------- | -------------- | -------------- | ---------------- |\n| 1                 | 2              | 3              | 4              | 5                |\n\n  排序\n\n| 按发表时间排序 | 按评论数排序 | 按点击数排序 |\n| -------------- | ------------ | ------------ |\n| 1              | 2            | 3            |",
-      "provider_id": "sciencenet",
-      "provider_name": "科学网",
-      "route_key": "/blog/:type?/:time?/:sort?"
+      "name": "作者",
+      "provider_id": "sspai",
+      "provider_name": "少数派 sspai",
+      "route_key": "/author/:id"
     }
   },
   {
-    "provider_id": "simpleinfo",
-    "provider_name": "簡訊設計",
-    "route_key": "/:category?",
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/bookmarks/:slug",
     "route": {
-      "path": "/:category?",
-      "example": "/simpleinfo",
+      "path": "/bookmarks/:slug",
+      "example": "/sspai/bookmarks/urfp0d9i",
       "parameters": {
-        "category": "分类名"
+        "slug": "用户 slug，可在个人主页URL中找到"
       },
-      "name": "志祺七七",
-      "description": "| 夥伴聊聊 | 專案設計 |\n| -------- | -------- |\n| work     | talk     |\n\n| 國內外新聞 | 政治百分百 | 社會觀察家 | 心理與哲學            |\n| ---------- | ---------- | ---------- | --------------------- |\n| news       | politics   | society    | psychology-philosophy |\n\n| 科學大探索 | 環境與健康         | ACG 快樂聊 | 好書籍分享   | 其它主題     |\n| ---------- | ------------------ | ---------- | ------------ | ------------ |\n| science    | environment-health | acg        | book-sharing | other-topics |",
-      "provider_id": "simpleinfo",
-      "provider_name": "簡訊設計",
-      "route_key": "/:category?"
+      "name": "用户收藏",
+      "provider_id": "sspai",
+      "provider_name": "少数派 sspai",
+      "route_key": "/bookmarks/:slug"
     }
   },
   {
@@ -1100,6 +1123,39 @@
       "provider_id": "sspai",
       "provider_name": "少数派 sspai",
       "route_key": "/index"
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/series/:id",
+    "route": {
+      "path": "/series/:id",
+      "example": "/sspai/series/77",
+      "parameters": {
+        "id": "专栏 id"
+      },
+      "name": "付费专栏文章更新",
+      "url": "sspai.com/series",
+      "provider_id": "sspai",
+      "provider_name": "少数派 sspai",
+      "route_key": "/series/:id"
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/topic/:id",
+    "route": {
+      "path": "/topic/:id",
+      "example": "/sspai/topic/250",
+      "parameters": {
+        "id": "专题 id，可在专题主页URL中找到"
+      },
+      "name": "专题内文章更新",
+      "provider_id": "sspai",
+      "provider_name": "少数派 sspai",
+      "route_key": "/topic/:id"
     }
   },
   {
@@ -1120,70 +1176,37 @@
     }
   },
   {
-    "provider_id": "storm",
-    "provider_name": "風傳媒",
-    "route_key": "/:category?/:id?",
+    "provider_id": "thecover",
+    "provider_name": "封面新闻",
+    "route_key": "/channel/:id?",
     "route": {
-      "path": "/:category?/:id?",
-      "example": "/storm",
+      "path": "/channel/:id?",
+      "example": "/thecover/channel/3560",
       "parameters": {
-        "category": "分类，见下表，默认为新聞總覽",
-        "id": "子分类 ID，可在 URL 中找到"
-      },
-      "name": "分类",
-      "description": "| 新聞總覽 | 地方新聞      | 歷史頻道 | 評論總覽    |\n| -------- | ------------- | -------- | ----------- |\n| articles | localarticles | history  | all-comment |\n\n::: tip\n  支持形如 `https://www.storm.mg/category/118` 的路由，即 [`/storm/category/118`](https://rsshub.app/storm/category/118)\n\n  支持形如 `https://www.storm.mg/localarticle-category/s149845` 的路由，即 [`/storm/localarticle-category/s149845`](https://rsshub.app/storm/localarticle-category/s149845)\n:::",
-      "provider_id": "storm",
-      "provider_name": "風傳媒",
-      "route_key": "/:category?/:id?"
-    }
-  },
-  {
-    "provider_id": "techcrunch",
-    "provider_name": "TechCrunch",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/techcrunch/news",
-      "parameters": {},
-      "name": "News",
-      "url": "techcrunch.com/",
-      "provider_id": "techcrunch",
-      "provider_name": "TechCrunch",
-      "route_key": "/news"
-    }
-  },
-  {
-    "provider_id": "thepaper",
-    "provider_name": "澎湃新闻",
-    "route_key": "/channel/:id",
-    "route": {
-      "path": "/channel/:id",
-      "example": "/thepaper/channel/25950",
-      "parameters": {
-        "id": "频道 id，可在频道页 URL 中找到"
+        "id": "对应id,可在频道链接中获取，默认为3892"
       },
       "name": "频道",
-      "description": "| 频道 ID | 频道名 |\n| ------- | ------ |\n| 26916   | 视频   |\n| 108856  | 战疫   |\n| 25950   | 时事   |\n| 25951   | 财经   |\n| 36079   | 澎湃号 |\n| 119908  | 科技   |\n| 25952   | 思想   |\n| 119489  | 智库   |\n| 25953   | 生活   |\n| 26161   | 问吧   |\n| 122908  | 国际   |\n| -21     | 体育   |\n| -24     | 评论   |",
-      "provider_id": "thepaper",
-      "provider_name": "澎湃新闻",
-      "route_key": "/channel/:id"
+      "description": "| 天下 | 四川 | 辟谣 | 国际 | 云招考 | 30 秒 | 拍客 | 体育 | 国内 | 帮扶铁军 | 文娱 | 宽窄 | 商业 | 千面 | 封面号 |\n| ---- | ---- | ---- | ---- | ------ | ----- | ---- | ---- | ---- | -------- | ---- | ---- | ---- | ---- | ------ |\n| 3892 | 3560 | 3909 | 3686 | 11     | 3902  | 3889 | 3689 | 1    | 4002     | 12   | 46   | 4    | 21   | 17     |",
+      "provider_id": "thecover",
+      "provider_name": "封面新闻",
+      "route_key": "/channel/:id?"
     }
   },
   {
     "provider_id": "thepaper",
     "provider_name": "澎湃新闻",
-    "route_key": "/sidebar/:sec?",
+    "route_key": "/factpaper/:status?",
     "route": {
-      "path": "/sidebar/:sec?",
-      "name": "侧边栏",
-      "example": "/thepaper/sidebar",
+      "path": "/factpaper/:status?",
+      "example": "/thepaper/factpaper",
       "parameters": {
-        "sec": "侧边栏 id，可选 `hotNews` 即 澎湃热榜、`financialInformationNews` 即 澎湃财讯、`morningEveningNews` 即 早晚报，默认为 `hotNews`"
+        "status": "状态 id，可选 `1` 即 有定论 或 `0` 即 核查中，默认为 `1`"
       },
-      "url": "thepaper.cn/",
+      "name": "明查",
+      "url": "factpaper.cn/",
       "provider_id": "thepaper",
       "provider_name": "澎湃新闻",
-      "route_key": "/sidebar/:sec?"
+      "route_key": "/factpaper/:status?"
     }
   },
   {
@@ -1206,116 +1229,85 @@
   {
     "provider_id": "tophub",
     "provider_name": "今日热榜",
-    "route_key": "/list/:id",
+    "route_key": "/:id",
     "route": {
-      "path": "/list/:id",
-      "example": "/tophub/list/Om4ejxvxEN",
+      "path": "/:id",
+      "example": "/tophub/Om4ejxvxEN",
       "parameters": {
         "id": "榜单id，可在 URL 中找到"
       },
-      "name": "榜单列表",
-      "description": "::: tip\n将榜单条目集合到一个列表中，可避免推送大量条目，更符合阅读习惯且有热度排序，推荐使用。\n:::",
+      "name": "榜单",
       "provider_id": "tophub",
       "provider_name": "今日热榜",
-      "route_key": "/list/:id"
+      "route_key": "/:id"
     }
   },
   {
-    "provider_id": "twreporter",
-    "provider_name": "報導者",
-    "route_key": "/newest",
+    "provider_id": "topys",
+    "provider_name": "TOPYS",
+    "route_key": "/:keyword?",
     "route": {
-      "path": "/newest",
-      "example": "/twreporter/newest",
-      "parameters": {},
-      "name": "最新",
-      "url": "twreporter.org/",
-      "provider_id": "twreporter",
-      "provider_name": "報導者",
-      "route_key": "/newest"
+      "path": "/:keyword?",
+      "example": "/topys",
+      "parameters": {
+        "keyword": "关键字，可在对应结果页的 URL 中找到"
+      },
+      "name": "关键字",
+      "description": "| 创意 | 设计 | 商业 | 艺术 | 文化 | 科技 |\n| ---- | ---- | ---- | ---- | ---- | ---- |",
+      "provider_id": "topys",
+      "provider_name": "TOPYS",
+      "route_key": "/:keyword?"
     }
   },
   {
     "provider_id": "utgd",
     "provider_name": "UNTAG",
-    "route_key": "/timeline",
+    "route_key": "/category/:category?",
     "route": {
-      "path": "/timeline",
-      "example": "/utgd/timeline",
-      "parameters": {},
-      "name": "时间线",
-      "url": "utgd.net/",
+      "path": "/category/:category?",
+      "example": "/utgd/category/method",
+      "parameters": {
+        "category": "分类，可在对应分类页的 URL 中找到，默认为方法"
+      },
+      "name": "分类",
+      "description": "| 方法   | 观点    |\n| ------ | ------- |\n| method | opinion |",
       "provider_id": "utgd",
       "provider_name": "UNTAG",
-      "route_key": "/timeline"
+      "route_key": "/category/:category?"
     }
   },
   {
     "provider_id": "wechat",
     "provider_name": "微信小程序",
-    "route_key": "/mp/homepage/:biz/:hid/:cid?",
+    "route_key": "/ce/:id",
     "route": {
-      "path": "/mp/homepage/:biz/:hid/:cid?",
-      "example": "/wechat/mp/homepage/MzA3MDM3NjE5NQ==/16",
+      "path": "/ce/:id",
+      "example": "/wechat/ce/595a5b14d7164e53908f1606",
       "parameters": {
-        "biz": "公众号id",
-        "hid": "分页id",
-        "cid": "页内栏目"
+        "id": "公众号 id，在 [CareerEngine](https://search.careerengine.us/) 搜索公众号，通过 URL 中找到对应的公众号 id"
       },
-      "name": "公众号栏目 (非推送 & 历史消息)",
-      "description": "只适用拥有首页模板 (分享链接带有 homepage) 的公众号。例如从公众号分享出来的链接为 `https://mp.weixin.qq.com/mp/homepage?__biz=MzA3MDM3NjE5NQ==&hid=4`，`biz` 为 `MzA3MDM3NjE5NQ==`，`hid` 为 `4`。\n\n  有些页面里会有分栏， `cid` 可以通过元素选择器选中栏目查看`data-index`。如[链接](https://mp.weixin.qq.com/mp/homepage?__biz=MzA3MDM3NjE5NQ==&hid=4)里的 `京都职人` 栏目的 `cid` 为 `0`，`文艺时光` 栏目的 `cid` 为 `2`。如果不清楚的话最左边的栏目为`0`，其右方栏目依次递增 `1`。",
+      "name": "公众号（CareerEngine 来源）",
       "provider_id": "wechat",
       "provider_name": "微信小程序",
-      "route_key": "/mp/homepage/:biz/:hid/:cid?"
+      "route_key": "/ce/:id"
     }
   },
   {
-    "provider_id": "wyzxwk",
-    "provider_name": "乌有之乡",
-    "route_key": "/article/:id?",
+    "provider_id": "zhonglun",
+    "provider_name": "中伦律师事务所",
+    "route_key": "/research/article/:language{[a-zA-Z0-9-]+}?",
     "route": {
-      "path": "/article/:id?",
-      "example": "/wyzxwk/article/shushe",
+      "path": "/research/article/:language{[a-zA-Z0-9-]+}?",
+      "name": "中伦研究专业文章",
+      "url": "zhonglun.com",
+      "example": "/zhonglun/research/article/zh",
       "parameters": {
-        "id": "栏目 id，可在栏目页 URL 中找到，默认为时代观察"
+        "category": "语言，默认为 zh，即简体中文，可在对应分类页 URL 中找到"
       },
-      "name": "栏目",
-      "description": "时政\n\n| 时代观察 | 舆论战争 |\n| -------- | -------- |\n| shidai   | yulun    |\n\n  经济\n\n| 经济视点 | 社会民生 | 三农关注 | 产业研究 |\n| -------- | -------- | -------- | -------- |\n| jingji   | shehui   | sannong  | chanye   |\n\n  国际\n\n| 国际纵横 | 国防外交 |\n| -------- | -------- |\n| guoji    | guofang  |\n\n  思潮\n\n| 理想之旅 | 思潮碰撞 | 文艺新生 | 读书交流 |\n| -------- | -------- | -------- | -------- |\n| lixiang  | sichao   | wenyi    | shushe   |\n\n  历史\n\n| 历史视野 | 中华文化 | 中华医药 | 共产党人 |\n| -------- | -------- | -------- | -------- |\n| lishi    | zhonghua | zhongyi  | cpers    |\n\n  争鸣\n\n| 风华正茂 | 工农之声 | 网友杂谈 | 网友时评 |\n| -------- | -------- | -------- | -------- |\n| qingnian | gongnong | zatan    | shiping  |\n\n  活动\n\n| 乌有公告 | 红色旅游 | 乌有讲堂  | 书画欣赏 |\n| -------- | -------- | --------- | -------- |\n| gonggao  | lvyou    | jiangtang | shuhua   |",
-      "provider_id": "wyzxwk",
-      "provider_name": "乌有之乡",
-      "route_key": "/article/:id?"
-    }
-  },
-  {
-    "provider_id": "yahoo",
-    "provider_name": "Yahoo",
-    "route_key": "/news/providers/:region/list",
-    "route": {
-      "path": "/news/providers/:region/list",
-      "example": "/yahoo/news/providers/tw/list",
-      "parameters": {
-        "region": "地区, 同路由\"新闻来源\"中的支持地区, 即 hk 或 tw"
-      },
-      "name": "新聞來源列表",
-      "provider_id": "yahoo",
-      "provider_name": "Yahoo",
-      "route_key": "/news/providers/:region/list"
-    }
-  },
-  {
-    "provider_id": "zhiy",
-    "provider_name": "知园",
-    "route_key": "/letters/:author",
-    "route": {
-      "path": "/letters/:author",
-      "example": "/zhiy/letters/messy",
-      "parameters": {
-        "author": "作者 ID，可在URL中找到"
-      },
-      "name": "Newsletter",
-      "provider_id": "zhiy",
-      "provider_name": "知园",
-      "route_key": "/letters/:author"
+      "description": "\n| ENG | 简体中文 | 日本語 | 한국어 |\n| --- | -------- | ------ | ------ |\n| en  | zh       | ja     | kr     |\n    ",
+      "provider_id": "zhonglun",
+      "provider_name": "中伦律师事务所",
+      "route_key": "/research/article/:language{[a-zA-Z0-9-]+}?"
     }
   }
 ]

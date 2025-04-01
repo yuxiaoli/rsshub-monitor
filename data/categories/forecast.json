@@ -1,64 +1,34 @@
 [
   {
-    "provider_id": "cqgas",
-    "provider_name": "重庆燃气",
-    "route_key": "/tqtz",
+    "provider_id": "cma",
+    "provider_name": "中国气象局",
+    "route_key": "/channel/:id?",
     "route": {
-      "path": "/tqtz",
-      "example": "/cqgas/tqtz",
-      "parameters": {},
-      "name": "停气检修通知",
-      "url": "cqgas.cn/",
-      "provider_id": "cqgas",
-      "provider_name": "重庆燃气",
-      "route_key": "/tqtz"
-    }
-  },
-  {
-    "provider_id": "earthquake",
-    "provider_name": "地震速报",
-    "route_key": "/:region?",
-    "route": {
-      "path": "/:region?",
-      "example": "/earthquake",
+      "path": "/channel/:id?",
+      "example": "/cma/channel/380",
       "parameters": {
-        "region": "区域，0全部，1国内（默认），2国外"
+        "id": "分类，见下表，可在对应频道页 URL 中找到，默认为 380，即每日天气提示"
       },
-      "name": "中国地震局",
-      "url": "www.cea.gov.cn/cea/xwzx/zqsd/index.html",
-      "description": "可通过全局过滤参数订阅您感兴趣的地区.",
-      "provider_id": "earthquake",
-      "provider_name": "地震速报",
-      "route_key": "/:region?"
+      "name": "天气预报频道",
+      "description": "#### 天气实况\n\n| 频道名称 | 频道 id                          |\n| -------- | -------------------------------- |\n| 卫星云图 | d3236549863e453aab0ccc4027105bad |\n| 单站雷达 | 103                              |\n| 降水量   | 18                               |\n| 气温     | 32                               |\n| 土壤水分 | 45                               |\n\n#### 气象公报\n\n| 频道名称       | 频道 id                          |\n| -------------- | -------------------------------- |\n| 每日天气提示   | 380                              |\n| 重要天气提示   | da5d55817ad5430fb9796a0780178533 |\n| 天气公报       | 3780                             |\n| 强对流天气预报 | 383                              |\n| 交通气象预报   | 423                              |\n| 森林火险预报   | 424                              |\n| 海洋天气公报   | 452                              |\n| 环境气象公报   | 467                              |\n\n::: tip\n  订阅更多细分频道，请前往对应上级频道页，使用下拉菜单选择项目后跳转到目标频道页，查看其 URL 找到对应频道 id\n:::",
+      "provider_id": "cma",
+      "provider_name": "中国气象局",
+      "route_key": "/channel/:id?"
     }
   },
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/guangdong/tqyb/tfxtq",
+    "route_key": "/guangdong/tqyb/sncsyjxh",
     "route": {
-      "path": "/guangdong/tqyb/tfxtq",
-      "example": "/gov/guangdong/tqyb/tfxtq",
+      "path": "/guangdong/tqyb/sncsyjxh",
+      "example": "/gov/guangdong/tqyb/sncsyjxh",
       "parameters": {},
-      "name": "突发性天气提示",
-      "url": "www.tqyb.com.cn/gz/weatherAlarm/suddenWeather/",
+      "name": "广东省内城市预警信号",
+      "url": "www.tqyb.com.cn/gz/weatherAlarm/otherCity/",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/guangdong/tqyb/tfxtq"
-    }
-  },
-  {
-    "provider_id": "hko",
-    "provider_name": "Hong Kong Observatory",
-    "route_key": "/weather",
-    "route": {
-      "path": "/weather",
-      "name": "Current Weather Report",
-      "example": "/hko/weather",
-      "url": "www.weather.gov.hk/en/wxinfo/currwx/current.htm",
-      "provider_id": "hko",
-      "provider_name": "Hong Kong Observatory",
-      "route_key": "/weather"
+      "route_key": "/guangdong/tqyb/sncsyjxh"
     }
   },
   {
@@ -90,6 +60,21 @@
       "provider_id": "tingshuitz",
       "provider_name": "停水通知",
       "route_key": "/guangzhou"
+    }
+  },
+  {
+    "provider_id": "tingshuitz",
+    "provider_name": "停水通知",
+    "route_key": "/xiaoshan",
+    "route": {
+      "path": "/xiaoshan",
+      "example": "/tingshuitz/xiaoshan",
+      "parameters": {},
+      "name": "萧山区",
+      "url": "www.xswater.com/gongshui/channels/227.html",
+      "provider_id": "tingshuitz",
+      "provider_name": "停水通知",
+      "route_key": "/xiaoshan"
     }
   },
   {

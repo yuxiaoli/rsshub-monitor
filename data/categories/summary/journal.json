@@ -1,16 +1,30 @@
 [
   {
-    "provider_id": "bioone",
-    "provider_name": "BioOne",
-    "route_key": "/journals/:journal?",
+    "provider_id": "academia",
+    "provider_name": "Academia",
+    "route_key": "/topic/:interest",
     "route": {
-      "name": "Journals",
-      "path": "/journals/:journal?",
-      "example": "/bioone/journals/acta-chiropterologica",
+      "name": "interest",
+      "path": "/topic/:interest",
+      "example": "/academia/topic/Urban_History",
       "parameters": {
-        "journal": "Journals, can be found in URL"
+        "interest": "interest"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "aeaweb",
+    "provider_name": "American Economic Association",
+    "route_key": "/:id",
+    "route": {
+      "name": "Journal",
+      "path": "/:id",
+      "example": "/aeaweb/aer",
+      "parameters": {
+        "id": "Journal id, can be found in URL"
+      },
+      "description": "The URL of the journal [American Economic Review](https://www.aeaweb.org/journals/aer) is `https://www.aeaweb.org/journals/aer`, where `aer` is the id of the journal, so the route for this journal is `/aeaweb/aer`.\n\n::: tip\n  More jounals can be found in [AEA Journals](https://www.aeaweb.org/journals).\n:::"
     }
   },
   {
@@ -26,28 +40,44 @@
     }
   },
   {
-    "provider_id": "caareviews",
-    "provider_name": "caa.reviews",
-    "route_key": "/exhibition",
+    "provider_id": "cnki",
+    "provider_name": "中国知网",
+    "route_key": "/journals/debut/:name",
     "route": {
-      "name": "Exhibition Reviews",
-      "path": "/exhibition",
-      "example": "/caareviews/exhibition",
-      "parameters": {},
+      "name": "网络首发",
+      "path": "/journals/debut/:name",
+      "example": "/cnki/journals/debut/LKGP",
+      "parameters": {
+        "name": "期刊缩写，可以在网址中得到"
+      },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/citations/:id",
+    "route": {
+      "name": "Scholar Author Citations",
+      "path": "/citations/:id",
+      "example": "/google/citations/mlmE4JMAAAAJ",
+      "parameters": {
+        "id": "N"
+      },
+      "description": "The parameter id in the route is the id in the URL of the user's Google Scholar reference page, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ` to `mlmE4JMAAAAJ`.\n\n  Query parameters are also supported here, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ&sortby=pubdate` to `mlmE4JMAAAAJ&sortby=pubdate`. Please make sure that the user id (`mlmE4JMAAAAJ` in this case) should be the first parameter in the query string."
     }
   },
   {
     "provider_id": "ieee",
     "provider_name": "IEEE Xplore",
-    "route_key": "/journal/:punumber/:earlyAccess?",
+    "route_key": "/author/:aid/:sortType",
     "route": {
-      "name": "IEEE Journal Articles",
-      "path": "/journal/:punumber/:earlyAccess?",
-      "example": "/ieee/journal/6287639/preprint",
+      "name": "IEEE Author Articles",
+      "path": "/author/:aid/:sortType",
+      "example": "/ieee/author/37264968900/newest",
       "parameters": {
-        "punumber": "Publication Number, look for `punumber` in the URL",
-        "earlyAccess": "Optional, set any value to get early access articles"
+        "aid": "Author ID",
+        "sortType": "Sort Type of papers"
       },
       "description": ""
     }
@@ -65,34 +95,6 @@
     }
   },
   {
-    "provider_id": "linkresearcher",
-    "provider_name": "Link Research",
-    "route_key": "/:params",
-    "route": {
-      "name": "Articles",
-      "path": "/:params",
-      "example": "/linkresearcher/category=theses&columns=Nature%20导读&subject=生物",
-      "parameters": {
-        "params": {
-          "description": "search parameters, support `category`, `subject`, `columns`, `query`"
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nymity",
-    "provider_name": "nymity",
-    "route_key": "/censorbib",
-    "route": {
-      "name": "CensorBib Updates",
-      "path": "/censorbib",
-      "example": "/nymity/censorbib",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
     "provider_id": "papers",
     "provider_name": "Cool Papers",
     "route_key": "/query/:keyword{.+}?",
@@ -107,20 +109,6 @@
     }
   },
   {
-    "provider_id": "sciencedirect",
-    "provider_name": "ScienceDirect",
-    "route_key": "/call-for-paper/:subject",
-    "route": {
-      "name": "Call for Papers",
-      "path": "/call-for-paper/:subject",
-      "example": "/sciencedirect/call-for-paper/education",
-      "parameters": {
-        "subject": "学科分类，例如“education”"
-      },
-      "description": "`sciencedirect.com/browse/calls-for-papers?subject=education` -> `/sciencedirect/call-for-paper/education`"
-    }
-  },
-  {
     "provider_id": "sigsac",
     "provider_name": "ACM Special Interest Group on Security Audit and Control",
     "route_key": "/ccs",
@@ -130,6 +118,22 @@
       "example": "/sigsac/ccs",
       "parameters": {},
       "description": "Return results from 2020"
+    }
+  },
+  {
+    "provider_id": "trendingpapers",
+    "provider_name": "Trending Papers",
+    "route_key": "/papers/:category?/:time?/:cited?",
+    "route": {
+      "name": "Trending Papers on arXiv",
+      "path": "/papers/:category?/:time?/:cited?",
+      "example": "/trendingpapers/papers",
+      "parameters": {
+        "category": "Category of papers, can be found in URL. `All categories` by default.",
+        "time": "Time like `24 hours` to specify the duration of ranking, can be found in URL. `Since beginning` by default.",
+        "cited": "Cited or uncited papers, can be found in URL. `Cited and uncited papers` by default."
+      },
+      "description": ""
     }
   }
 ]

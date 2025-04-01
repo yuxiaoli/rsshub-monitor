@@ -1,4 +1,135 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>LA UOSC-最新帖子</title><link>https://bbs.loongarch.org/api/discussions</link><atom:link href="http://rsshub.rssforever.com/loongarch/post/newest" rel="self" type="application/rss+xml"></atom:link><description>LA UOSC-最新帖子 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 25 Mar 2025 00:38:39 GMT</lastBuildDate><ttl>5</ttl><item><title>求助大佬重新编译LA 仿真运行x86 docker 镜像</title><description>&lt;h2&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>LA UOSC-最新帖子</title><link>https://bbs.loongarch.org/api/discussions</link><atom:link href="http://rsshub.henry.wang/loongarch/post/newest" rel="self" type="application/rss+xml"></atom:link><description>LA UOSC-最新帖子 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Apr 2025 00:31:05 GMT</lastBuildDate><ttl>14</ttl><item><title>能用GTA5 泄漏源代码把游戏编译移植到龙架构Loongarch 的本地系统吗？</title><description>&lt;p&gt;&lt;a href=&quot;https://forum.gtaos.com/threads/624/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;教程 - GTA5 源代码编译教程 | GTAOS.COM&amp;lt;论坛&amp;gt;&lt;/a&gt;&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/552-gta5-loongarch</link><guid isPermaLink="false">https://bbs.loongarch.org/d/552-gta5-loongarch</guid><pubDate>Mon, 31 Mar 2025 09:27:04 GMT</pubDate><author>allenfeld</author><category>编程开发</category></item><item><title>求助：Veyon无LoongArch架构安装包</title><description>&lt;p&gt;尊敬的各位开发者与技术达人，本人目前遇到一个棘手的问题，特来此求教求助。实验室新近购置了50台国产信创台式计算机组建新机房，其中有10台是装有LoongArch64架构的台式机，其余是Arm架构与x86架构（后续还会采购一些鸿蒙PC）。所有机器预装的系统是银河麒麟V10。龙芯架构计算机的CPU型号是 3A5000。&lt;/p&gt;
+
+&lt;p&gt;为了管理方便，选择了电子教室管理软件 Veyon的最新版 4.9.x, 下载链接为 &lt;a href=&quot;https://veyon.io/en/download/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://veyon.io/en/download/&lt;/a&gt; 官网上提供的是针对x86架构的安装包，我们也找到了合适的arm架构安装包（能成功安装并使用），但是缺少针对龙芯架构的安装包。官网上有Veyon的源代码可以下载，不过本人尚无编译出适合龙芯架构安装包的能力。针对由不同类型国产信创计算机系统组成的机房，目前尚无合适的电子教室管理软件(当前比较流行的极域只适用于Windows系统)， Veyon是较为理想的管理软件，但是缺少针对龙芯架构的安装包。期待开发人员能早日编译出适合龙芯架构的Veyon安装包(deb/rpm/…), 本人邮箱: &lt;a href=&quot;mailto:hongyan@hainnu.edu.cn&quot; rel=&quot;&quot; target=&quot;&quot;&gt;hongyan@hainnu.edu.cn&lt;/a&gt;, 期待您的建议与好消息！&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/551-veyonloongarch</link><guid isPermaLink="false">https://bbs.loongarch.org/d/551-veyonloongarch</guid><pubDate>Sat, 29 Mar 2025 17:58:13 GMT</pubDate><author>qubitzhy</author><category>意见反馈</category></item><item><title>Qemu in loong64 does not boot Linux x86_64 ISO</title><description>&lt;p&gt;Hello again.&lt;/p&gt;
+
+&lt;p&gt;I&#39;m trying to emulate some Linux ISOs with Qemu in my loong64, but it does not boot, not Debian or Archlinux.&lt;/p&gt;
+
+&lt;p&gt;It fails when it tries to load the initramfs image.&lt;/p&gt;
+
+&lt;p&gt;This the command I run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;qemu-system-x86_64 &amp;nbsp;-display none -vnc :0 &amp;nbsp;-m 4G -smp 2 &amp;nbsp;-drive if=virtio,format=qcow2,file=/home/loongson/debian/debian12.qcow2 -boot d -cdrom /home/loongson/debian/debian-12.10.0-amd64-netinst.iso&lt;/code&gt;&lt;br&gt;
+ or&lt;code&gt;qemu-system-x86_64 &amp;nbsp;-display none -vnc :0 &amp;nbsp;-m 4G -smp 2 &amp;nbsp;-drive if=virtio,format=qcow2,file=/home/loongson/debian/debian12.qcow2 -boot d -cdrom /home/loongson/debian/archlinux-2025.03.01-x86_64.iso&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;But it just loads the kernel image and I can see the CPU is used but never boots.&lt;/p&gt;
+
+&lt;p&gt;I Debian looks like it loads initrd.gz in expert mode, but nothing else.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;-`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;loongson&lt;/strong&gt;@&lt;strong&gt;loongson01&lt;/strong&gt; &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;.o+`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;------------------- &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`ooo/&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;OS&lt;/strong&gt;: Arch Linux loongarch64 &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`+oooo:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Host&lt;/strong&gt;: Loongson-3A6000-HV-7A2000-1w-V0.1-EVB &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`+oooooo:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Kernel&lt;/strong&gt;: 6.6.45-2-lts &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;-+oooooo+:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Uptime&lt;/strong&gt;: 26 mins &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/:-:++oooo+:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Packages&lt;/strong&gt;: 989 (pacman) &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/++++/+++++++:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Shell&lt;/strong&gt;: bash 5.2.32 &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/++++++++++++++:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Terminal&lt;/strong&gt;: /dev/pts/1 &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/+++ooooooooooooo/`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;CPU&lt;/strong&gt;: Loongson-3A6000-HV (8) &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;./ooosssso++osssssso+`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;GPU&lt;/strong&gt;: 00:06.1 Loongson Technology LLC Display Controller &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;.oossssso-````/ossssss+`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Memory&lt;/strong&gt;: 1077MiB / 16143MiB &amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;-osssssso. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;:ssssssso.&lt;/strong&gt; &lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;:osssssss/ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;osssso+++.&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;/ossssssss/ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;+ssssooo/-&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;
+ &amp;nbsp;&amp;nbsp;&lt;strong&gt;`/ossssso+/:- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;-:/+osssso+-&lt;/strong&gt; &lt;br&gt;
+ &amp;nbsp;&lt;strong&gt;`+sso+:-` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`.-/+oso:&lt;/strong&gt; &lt;br&gt;
+ &lt;strong&gt;`++:. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`-/+/&lt;/strong&gt; &lt;br&gt;
+ &lt;strong&gt;.` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`/&lt;/strong&gt;&lt;/p&gt; 
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161425-144779-screenshot-20250328-122615.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161433-206824-screenshot-20250328-122646.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161436-681501-screenshot-20250328-122816.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161440-43856-screenshot-20250328-122900.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Any ideas? someone managed to boot ISO images with qemu?&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+
+
+</description><link>https://bbs.loongarch.org/d/550-qemu-in-loong64-does-not-boot-linux-x86-64-iso</link><guid isPermaLink="false">https://bbs.loongarch.org/d/550-qemu-in-loong64-does-not-boot-linux-x86-64-iso</guid><pubDate>Fri, 28 Mar 2025 11:32:59 GMT</pubDate><author>MaxHeadroom</author><category>*nix</category><category>Archlinux</category></item><item><title>联想开天 N60d G1d 笔记本 展示分享</title><description>&lt;ul&gt;&lt;li&gt;&lt;p&gt;基本信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CPU：3A6000M 2.0Ghz
+桥片：7A2000
+显卡：LG110 4G
+内存：江波龙 DDR4 16G 3200
+硬盘：佰维 PCIE3.0 NVME 512G
+有线网卡：裕太微 TY6801
+无线网卡：瑞昱 8852BE
+电池：70wh
+电源：65W PD
+接口：HDMI，2A3C，3.5mm音频&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;整机功率&lt;/p&gt;
+    &lt;ul&gt;&lt;li&gt;空载：22W&lt;/li&gt;
+    &lt;li&gt;满载：41W&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;硬件更换&lt;/p&gt;
+    &lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;内存升级为 32G&lt;/li&gt;
+    &lt;li&gt;硬盘升级为 1T&lt;/li&gt;
+    &lt;li&gt;无线网卡升级为 8852CE&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085641-771275-img-20250327-221457.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085642-355793-img-20250327-222357.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085641-181200-img-20250327-2214191.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085641-486555-img-20250327-2214311.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085640-319259-img-20250326-201113.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085642-57265-img-20250327-222242.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085640-41511-img-20250326-195852.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085639-174206-img-20250326-194842.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085639-745360-img-20250326-195434.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085639-458155-img-20250326-195150.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085871-123801-img-20250327-223046.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085773-62266-photo-2025-03-27-20-04-44.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+</description><link>https://bbs.loongarch.org/d/549-n60d-g1d</link><guid isPermaLink="false">https://bbs.loongarch.org/d/549-n60d-g1d</guid><pubDate>Thu, 27 Mar 2025 14:37:31 GMT</pubDate><author>Katyusha</author><category>日知录</category><category>开箱专场</category></item><item><title>Loongnix25 编译 latx 1.6 成功</title><description>&lt;p&gt;代码仓库：&lt;br&gt;
+&lt;a href=&quot;https://github.com/lat-opensource/lat&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/lat-opensource/lat&lt;/a&gt;&lt;br&gt;
+使用了如下补丁：&lt;br&gt;
+&lt;a href=&quot;https://github.com/lat-opensource/lat/pull/5/commits/27026fb60dc1707962539d8887ee4a9e4fb7d3ed&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/lat-opensource/lat/pull/5/commits/27026fb60dc1707962539d8887ee4a9e4fb7d3ed&lt;/a&gt;&lt;br&gt;
+编译通过&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Installing latx-i386 to /home/dbhrscom/mysdk/lat/lat-Loongnix-nw/bin
+Stripping target &#39;latx-i386&#39; using strip.
+-e 
+
+
+////////////////////// Loongnix on Loongson-3A6000 //////////////////////
+
+Linux xlnotes 6.6.52-loong64 #1 SMP Debian 6.6.52-1.3 (2025-01-10) loongarch64 GNU/Linux
+-e
+-e Compiler Information:
+gcc (Debian 14.2.0-4) 14.2.0
+-e
+-e latx-x86_64:
+         before strip: 7.5M      after strip: 6.7M
+         MD5: 3657e6c6f57395faf97fb065b6ee9b6c /home/dbhrscom/mysdk/lat/build64-release-nw/latx-x86_64
+         VERSION: lat-x86_64 unknown
+
+-e
+-e latx-i386:
+         before strip: 7.0M      after strip: 6.2M
+         MD5: 0c2d50178060ea8c4b574f104452e05b /home/dbhrscom/mysdk/lat/build32-release-nw/latx-i386
+         VERSION: lat-i386 unknown
+
+lat-Loongnix-nw/
+lat-Loongnix-nw/bin/
+lat-Loongnix-nw/bin/latx-i386
+lat-Loongnix-nw/bin/latx-x86_64
+lat-Loongnix-nw/README&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;编译结果打包：&lt;/p&gt;
+
+&lt;div class=&quot;ButtonGroup&quot; data-fof-upload-download-uuid=&quot;12d843a9-e7e8-4be2-ba83-96ce225ec439&quot;&gt;&lt;div class=&quot;Button hasIcon Button--icon Button--primary&quot;&gt;&lt;i class=&quot;fas fa-download&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;lat-loongnix-nw.zip&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;4MB&lt;/div&gt;&lt;/div&gt;
+
+
+&lt;p&gt;构建记录：&lt;/p&gt;
+
+&lt;div class=&quot;ButtonGroup&quot; data-fof-upload-download-uuid=&quot;788eb73f-63c2-4b3b-9398-e3c25b3315c7&quot;&gt;&lt;div class=&quot;Button hasIcon Button--icon Button--primary&quot;&gt;&lt;i class=&quot;fas fa-download&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;nw-build-success.zip&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;24kB&lt;/div&gt;&lt;/div&gt;
+
+
+
+</description><link>https://bbs.loongarch.org/d/548-loongnix25-latx-16</link><guid isPermaLink="false">https://bbs.loongarch.org/d/548-loongnix25-latx-16</guid><pubDate>Wed, 26 Mar 2025 13:39:21 GMT</pubDate><author>杜比</author><category>日知录</category><category>开源生态</category><category>新世界</category></item><item><title>求助大佬重新编译LA 仿真运行x86 docker 镜像</title><description>&lt;h2&gt;&lt;/h2&gt;
 
 &lt;p&gt;ABI 1.0 仿真运行x86 docker镜像失效了麻烦大佬重新编译下&lt;/p&gt;
 
@@ -114,106 +245,4 @@ $ git am 3.patch&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;写入固件：&lt;br&gt;
 首先取下旧flash芯片,开机状态下取下flash芯片&lt;strong&gt;一般&lt;/strong&gt;是没问题的,再从 &lt;a href=&quot;https://github.com/loongson/Firmware.git&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;Firmware&lt;/a&gt; 中找到自己所需要的固件文件, 例如我需要的是 1.fd&lt;br&gt;
 &lt;code&gt;$ sudo ./flashrom -p loongson3_spi:cpu=3a4000 -w 1.fd&lt;/code&gt;&lt;br&gt;
-写入后重启即可, 在本机上成功重启&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/534-loongson3-spi</link><guid isPermaLink="false">https://bbs.loongarch.org/d/534-loongson3-spi</guid><pubDate>Sat, 08 Feb 2025 02:00:50 GMT</pubDate><author>Sunny</author><category>天南海北</category></item><item><title>loongarch版安卓已经发布</title><description>&lt;p&gt;&lt;a href=&quot;https://github.com/android-la64/docs&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/android-la64/docs&lt;/a&gt;   有人试过效果如何吗？&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/533-loongarch</link><guid isPermaLink="false">https://bbs.loongarch.org/d/533-loongarch</guid><pubDate>Thu, 06 Feb 2025 03:21:42 GMT</pubDate><author>rrrqq</author><category>开源生态</category><category>IT资讯</category><category>编程开发</category></item><item><title>旧世界的能安装Loongnix25吗</title><description>&lt;p&gt;请问一下，旧世界的3A5000能安装Loongnix25吗？我买的笔记本好像无法升级固件&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/532-loongnix25</link><guid isPermaLink="false">https://bbs.loongarch.org/d/532-loongnix25</guid><pubDate>Tue, 21 Jan 2025 02:12:25 GMT</pubDate><author>Heaven_XyZ</author><category>*nix</category><category>Loongnix</category><category>旧世界</category></item><item><title>官网loongnix25 glmark2 几次测试的分数</title><description>&lt;p&gt;主板：XA612A0&lt;br&gt;
-内存：16G&lt;br&gt;
-显卡：7A2000内置显卡&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737304476-147268-loongnix25-glmark2-01.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737304487-10343-loongnix25-glmark2-02.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737304496-503950-loongnix25-glmark2-03.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737304517-867857-loongnix25-glmark2-04.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737304541-175262-loongnix25-glmark2-05.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-</description><link>https://bbs.loongarch.org/d/531-loongnix25-glmark2</link><guid isPermaLink="false">https://bbs.loongarch.org/d/531-loongnix25-glmark2</guid><pubDate>Sun, 19 Jan 2025 16:35:47 GMT</pubDate><author>杜比</author><category>日知录</category><category>*nix</category><category>Loongnix</category><category>新世界</category></item><item><title>nim install FAILURE</title><description>&lt;pre&gt;&lt;code&gt;[root@LS-GD nim-2.2.0]# ls
-bin   build32.bat c_code      compiler  deinstall.shicons    koch.nim  nim.nimble  testament
-build.bat  build64.bat changelogs  config  distinstall.sh  lib       nimpretty   tests
-build.sh   build_all.sh  ci     copying.txt  dockoch    makefile  nimsuggest  tools
-[root@LS-GD nim-2.2.0]# ./koch boot -d:release
-iteration: 1
-bin/nim c  --skipUserCfg --skipParentCfg -d:nimKochBootstrap --nimcache:nimcache/r_linux_loongarch64 -d:release --noNimblePath --compileOnly compiler/nim.nim
-Hint: used config file &#39;/root/nim-2.2.0/config/nim.cfg&#39; [Conf]
-Hint: used config file &#39;/root/nim-2.2.0/config/config.nims&#39; [Conf]
-Hint: used config file &#39;/root/nim-2.2.0/compiler/nim.cfg&#39; [Conf]
-.............................................................................................................................................................................................
-/root/nim-2.2.0/compiler/modulegraphs.nim(14, 47) Warning: imported and not used: &#39;algorithm&#39; [UnusedImport]
-.................
-/root/nim-2.2.0/compiler/semdata.nim(18, 17) Warning: imported and not used: &#39;astalgo&#39; [UnusedImport]
-..................
-/root/nim-2.2.0/compiler/concepts.nim(14, 13) Warning: imported and not used: &#39;astalgo&#39; [UnusedImport]
-FAILURE&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://nim-lang.org/install_unix.html&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://nim-lang.org/install_unix.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;先锋派BSP（不定期更新）：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://pan.baidu.com/s/1l1-X7BOmLP0jimjzj4qHeg?pwd=1234&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://pan.baidu.com/s/1l1-X7BOmLP0jimjzj4qHeg?pwd=1234&lt;/a&gt;&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/530-nim-install-failure</link><guid isPermaLink="false">https://bbs.loongarch.org/d/530-nim-install-failure</guid><pubDate>Sun, 19 Jan 2025 09:06:00 GMT</pubDate><author>jk49</author><category>编程开发</category><category>软件移植</category></item><item><title>龙芯生态产品直营店推出了一款“超龙jtag烧录器”</title><description>&lt;p&gt;openocd架构，支持ls1c101、102，ls1d100，淘宝价格88元&lt;/p&gt;
-
-&lt;p&gt;adapter类型为 ch347&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;la-link.cfg 内容：
-adapter driver la-link
-ch347 vid_pid 0x1a86 0x55dd 
-adapter speed 10000&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;真机图由“loongarch嵌入式”群“玉宇swh”提供&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737263787-399434-chaolong-jtag-01.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737263811-254196-chaolong-jtag-02.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737263834-907864-chaolong-jtag-03.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-19/1737264188-870077-chaolong-jtag-0401.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-</description><link>https://bbs.loongarch.org/d/529-jtag</link><guid isPermaLink="false">https://bbs.loongarch.org/d/529-jtag</guid><pubDate>Sun, 19 Jan 2025 05:17:22 GMT</pubDate><author>杜比</author><category>日知录</category><category>嵌入式</category></item><item><title>龙芯华硕黑板BIOS刷成砖之后的进展</title><description>&lt;p&gt;&lt;strong&gt;这篇帖子的后半部内容可能会被论坛论坛删帖，不过这就看这个论坛的宽容度是多少了。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;我是首批购买龙芯华硕黑板的用户，应该是2024年3月5日，1799元。华硕黑板在出场的 BIOS 版本是0206的版本，之后官方也一直没有放出过新的 BIOS 固件。在 LA UOSC 论坛上有朋友放出一个 0804 版本的固件，我刷了，但是那个固件对风扇的控制有问题，经常cpu负载30-40%，风扇全速转，噪音很大。于是乎我在QQ群里找了一个固件又刷了一下，结果可想而知，黑板变成砖了，以下是BIOS寄回原厂刷BIOS的记录：&lt;/p&gt;
-
-&lt;p&gt;1月14日：刷BIOS失败，联系龙芯请求返场刷BIOS，群友建议自己刷，但是问题不在于这个，在于没有华硕黑板的BIOS。&lt;/p&gt;
-
-&lt;p&gt;1月15日：快递已经寄出，顺丰陆运，估计17号送到。确认可以返场刷 BIOS，龙芯的工程师联系华硕要最新的 BIOS 版本，得知目前黑板的 BIOS 只有两个版本，一个是出场的版本，一个是 0804 的版本，还有很多特殊的定制化的 BIOS 并不适用华硕黑板，龙芯的工程师向华硕反馈，是否可以给一个稳定的，可以长期使用的 BIOS。（大家有问题多踢踢龙芯和华硕的屁股还是有人管的）&lt;/p&gt;
-
-&lt;p&gt;1月16日：龙芯的工程师联系我说，会先给我刷一个0602 的BIOS 版本，在刷之前会测试好这个版本是稳定的，没有问题的。华硕反馈关于龙芯 3A600 的最新 BIOS 后面会和昆仑的固件通用，目前计划2025年2月份会出一个稳定的版本，现在的正在测试中。昆仑的固件不会放到 龙芯的 github firmware 仓库中，我向龙芯的工程师反馈希望能够有一个公开下载的渠道，关于这点只能在2月份的时候再看了。&lt;/p&gt;
-
-&lt;p&gt;1月17日：龙芯的工程师已经收到主板，准备刷 BIOS,结果发现 BIOS 的芯片在散热器下面，刷 BIOS 还要拆散热器，这意味着装上的时候还要涂硅脂，很nc的设计。BIOS 版本确定还是刷 0804 的版本，稍后我把 BIOS 文件发到论坛中。&lt;/p&gt;
-
-&lt;p&gt;1月18日：龙芯工程师已经开始邮寄刷好 BIOS 的板子，刷的还是 0804 的固件，这个固件的问题在于 CPU 风扇会全速转，进而带来很大的噪音，也就说并没有拿到新的固件。新的固件在 bbs.loongarch.org 中已经可以下载了，我这里就不放出来了。&lt;/p&gt;
-
-&lt;p&gt;今天在 LoongArch 板卡交流体验 群里获得了一些不愉快的体验。现在我已经被某个群管理踢出群了，关于被踢出群的原委，这里我说一下：&lt;/p&gt;
-
-&lt;p&gt;如这这个帖子的开头所说，我是华硕龙芯黑板的首批用户，购满渠道是 LoongArch 板卡交流体验。说实话华硕黑板的体验很不好，而且龙芯工程师刷的固件版本是 0804 这个问题很明显的版本，我在群里吐槽的是“华硕黑板”的 BIOS 确实很垃圾。&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;这个群的群主说：帮你说帮你刷已经很好了，因为本来应该是华硕包售后，但是我寄给的是龙芯。但是我说的是华硕的 BIOS 确实很垃圾，没有好用的BIOS。&lt;/li&gt;
-&lt;li&gt;群管理小胖说：不能刷。其他群友说：可以刷，买板子应该送编程器，但是我说的问题是华硕的黑板 BIOS 确实很垃圾。&lt;/li&gt;
-&lt;li&gt;当然中间还有一些其他的无意义的争吵。&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;然后很神奇的一幕就出现了：我被禁言了，而且被踢出了群。我作为&lt;strong&gt;消费者在龙芯的群里面购买华硕的板卡，然后说 BIOS 不好用，然后被禁言踢出群了&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-18/1737179813-243921-img-0748.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-18/1737179813-510159-img-0749.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-18/1737179813-743106-img-0751.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;然后龙芯社区部门的人来私聊我，说了下面的这些话，但是我是感觉到好像已经没什么意义了。跟出了问题怪临时工不一样吗？&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-01-18/1737180025-406055-image.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;在群里一两年，不如吐槽十分钟，我会给我手里的 3A6000 和 3A5000 的主板找好其他的归宿的。&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;华硕黑板劝退指南：&lt;/p&gt;
-
-&lt;p&gt;作为华硕黑板的首批用户，我不建议任何群友购买华硕的龙芯主板，因为：&lt;/p&gt;
-
-&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;溢价高，这些溢价都在品牌上，不再板子质量或者用户体验上。&lt;/li&gt;
-&lt;li&gt;华硕的 x86 主板的售后好找，但是华硕龙芯主板的售后只能找龙芯，龙芯再去找华硕，一些客户需求没有反馈渠道，体验没有很差。就拿 BIOS 这个事情来说，8个月才更新了2个通用版本的 BIOS，同样的时间内，龙芯官方主板的 BIOS 更新了几个呢？可以去龙芯 Gtihub 的 firmware 仓库看看，差距很大。&lt;/li&gt;
-&lt;li&gt;固件没有下载渠道。商业上的问题，华硕的固件是不能放到龙芯的 github firmware 仓库的，那么从那里可以下载呢？可能需要一个把板子刷成砖的人，需要一个龙芯的工程师，然后龙芯的工程师找华硕要最新的固件，然后这个刷成板子的人可能才会拿到，在群里发出来，然后一传十十传百，相当原始的软件分发方式。&lt;/li&gt;&lt;/ol&gt;
-
-&lt;p&gt;所以，就算以后3B6000M 发布了，就算 3B6600 发布了，就算戴尔、联想为龙芯站台，在龙芯的大会上宣布会为龙芯做主板，那么也请第一时间选择龙芯官方的主板，这是一个华硕黑板用户的切身体会。当然，也希望华硕能加大一些投入，起码不能太不当回事儿，虽然龙芯的这点量相比于x86不算什么，但是好的口碑会口口相传的，坏的口碑也是。&lt;/p&gt;
-
-&lt;p&gt;如果你购买了其他第三方的龙芯主板，也请你在评论区反馈一下这些第三方主板的售后怎么样。毕竟3B6000M 快来了，又到了购买新板子的时候。&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/528-bios</link><guid isPermaLink="false">https://bbs.loongarch.org/d/528-bios</guid><pubDate>Thu, 16 Jan 2025 06:35:10 GMT</pubDate><author>izhouliren</author><category>问答集</category><category>意见反馈</category></item><item><title>请问咱们这里有用irc的吗？</title><description>&lt;p&gt;感觉irc更加实时，也更加随意，但是龙芯相关频道一直不火&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/527-irc</link><guid isPermaLink="false">https://bbs.loongarch.org/d/527-irc</guid><pubDate>Sun, 12 Jan 2025 15:10:41 GMT</pubDate><author>EMCA</author><category>开源生态</category><category>天南海北</category></item></channel></rss>
+写入后重启即可, 在本机上成功重启&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/534-loongson3-spi</link><guid isPermaLink="false">https://bbs.loongarch.org/d/534-loongson3-spi</guid><pubDate>Sat, 08 Feb 2025 02:00:50 GMT</pubDate><author>Sunny</author><category>天南海北</category></item><item><title>loongarch版安卓已经发布</title><description>&lt;p&gt;&lt;a href=&quot;https://github.com/android-la64/docs&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/android-la64/docs&lt;/a&gt;   有人试过效果如何吗？&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/533-loongarch</link><guid isPermaLink="false">https://bbs.loongarch.org/d/533-loongarch</guid><pubDate>Thu, 06 Feb 2025 03:21:42 GMT</pubDate><author>rrrqq</author><category>开源生态</category><category>IT资讯</category><category>编程开发</category></item><item><title>旧世界的能安装Loongnix25吗</title><description>&lt;p&gt;请问一下，旧世界的3A5000能安装Loongnix25吗？我买的笔记本好像无法升级固件&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/532-loongnix25</link><guid isPermaLink="false">https://bbs.loongarch.org/d/532-loongnix25</guid><pubDate>Tue, 21 Jan 2025 02:12:25 GMT</pubDate><author>Heaven_XyZ</author><category>*nix</category><category>Loongnix</category><category>旧世界</category></item></channel></rss>
