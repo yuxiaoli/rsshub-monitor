@@ -1,5 +1,31 @@
 [
   {
+    "provider_id": "10jqka",
+    "provider_name": "同花顺财经",
+    "route_key": "/realtimenews/:tag?",
+    "route": {
+      "name": "7×24小时要闻直播",
+      "path": "/realtimenews/:tag?",
+      "example": "/10jqka/realtimenews",
+      "parameters": {
+        "tag": "标签，默认为全部"
+      },
+      "description": "::: tip\n  若订阅 [7×24小时要闻直播](https://news.10jqka.com.cn/realtimenews.html) 的 `公告` 标签。将 `公告` 作为标签参数填入，此时路由为 [`/10jqka/realtimenews/公告`](https://rsshub.app/10jqka/realtimenews/公告)。\n  \n  若订阅 [7×24小时要闻直播](https://news.10jqka.com.cn/realtimenews.html) 的 `公告` 和 `A股` 标签。将 `公告,A股` 作为标签参数填入，此时路由为 [`/10jqka/realtimenews/公告,A股`](https://rsshub.app/10jqka/realtimenews/公告,A股)。\n:::\n\n| 全部 | 重要 | A股 | 港股 | 美股 | 机会 | 异动 | 公告 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n    "
+    }
+  },
+  {
+    "provider_id": "ainvest",
+    "provider_name": "AInvest",
+    "route_key": "/news",
+    "route": {
+      "name": "Latest News",
+      "path": "/news",
+      "example": "/ainvest/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "baidu",
     "provider_name": "百度",
     "route_key": "/gushitong/index",
@@ -12,29 +38,31 @@
     }
   },
   {
-    "provider_id": "caijing",
-    "provider_name": "财经网",
-    "route_key": "/roll",
+    "provider_id": "cls",
+    "provider_name": "财联社",
+    "route_key": "/depth/:category?",
     "route": {
-      "name": "滚动新闻",
-      "path": "/roll",
-      "example": "/caijing/roll",
-      "parameters": {},
-      "description": ""
+      "name": "深度",
+      "path": "/depth/:category?",
+      "example": "/cls/depth/1000",
+      "parameters": {
+        "category": "分类代码，可在首页导航栏的目标网址 URL 中找到"
+      },
+      "description": "| 头条 | 股市 | 港股 | 环球 | 公司 | 券商 | 基金 | 地产 | 金融 | 汽车 | 科创 | 创业版 | 品见 | 期货 | 投教 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- |\n| 1000 | 1003 | 1135 | 1007 | 1005 | 1118 | 1110 | 1006 | 1032 | 1119 | 1111 | 1127   | 1160 | 1124 | 1176 |"
     }
   },
   {
-    "provider_id": "chinaratings",
-    "provider_name": "中债资信评估有限责任公司",
-    "route_key": "/CreditResearch/:category{.+}?",
+    "provider_id": "cls",
+    "provider_name": "财联社",
+    "route_key": "/telegraph/:category?",
     "route": {
-      "name": "中债研究",
-      "path": "/CreditResearch/:category{.+}?",
-      "example": "/chinaratings/CreditResearch",
+      "name": "电报",
+      "path": "/telegraph/:category?",
+      "example": "/cls/telegraph",
       "parameters": {
-        "category": "分类，默认为 `Industry/Comment`，即行业评论，可在对应分类页 URL 中找到"
+        "category": "分类，见下表，默认为全部"
       },
-      "description": ":::tip\n若订阅 [行业评论](https://www.chinaratings.com.cn/CreditResearch/Industry/Comment/)，网址为 `https://www.chinaratings.com.cn/CreditResearch/Industry/Comment/`，请截取 `https://www.chinaratings.com.cn/CreditResearch/` 到末尾 `/` 的部分 `Industry/Comment` 作为 `category` 参数填入，此时目标路由为 [`/chinaratings/CreditResearch/Industry/Comment`](https://rsshub.app/chinaratings/CreditResearch/Industry/Comment)。\n:::\n"
+      "description": "| 看盘  | 公司         | 解读    | 加红 | 推送  | 提醒   | 基金 | 港股 |\n| ----- | ------------ | ------- | ---- | ----- | ------ | ---- | ---- |\n| watch | announcement | explain | red  | jpush | remind | fund | hk   |"
     }
   },
   {
@@ -52,13 +80,13 @@
   {
     "provider_id": "eastmoney",
     "provider_name": "东方财富",
-    "route_key": "/ttjj/user/:uid",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "天天基金用户动态",
-      "path": "/ttjj/user/:uid",
-      "example": "/eastmoney/ttjj/user/6551094298949188",
+      "name": "搜索",
+      "path": "/search/:keyword",
+      "example": "/eastmoney/search/web3",
       "parameters": {
-        "uid": "用户id, 可以通过天天基金App分享用户主页到浏览器，在相应的URL中找到"
+        "keyword": "关键词，可以设置为自己需要检索的关键词"
       },
       "description": ""
     }
@@ -66,102 +94,54 @@
   {
     "provider_id": "followin",
     "provider_name": "Followin",
-    "route_key": "/news/:lang?",
+    "route_key": "/kol/:kolId/:lang?",
     "route": {
-      "name": "News",
-      "path": "/news/:lang?",
-      "example": "/followin/news",
+      "name": "KOL",
+      "path": "/kol/:kolId/:lang?",
+      "example": "/followin/kol/4075592991",
       "parameters": {
-        "lang": {
-          "description": "Language",
-          "options": [
-            {
-              "value": "en",
-              "label": "English"
-            },
-            {
-              "value": "zh-Hans",
-              "label": "简体中文"
-            },
-            {
-              "value": "zh-Hant",
-              "label": "繁體中文"
-            },
-            {
-              "value": "vi",
-              "label": "Tiếng Việt"
-            }
-          ],
-          "default": "en"
-        }
+        "kolId": "KOL ID, can be found in URL",
+        "lang": "Language, see table above, `en` by default"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "fx-markets",
-    "provider_name": "FX Markets",
-    "route_key": "/:channel",
-    "route": {
-      "name": "Channel",
-      "path": "/:channel",
-      "example": "/fx-markets/trading",
-      "parameters": {
-        "channel": "channel, can be found in the navi bar links at the home page"
-      },
-      "description": "| Trading | Infrastructure | Tech and Data | Regulation |\n| ------- | -------------- | ------------- | ---------- |\n| trading | infrastructure | tech-and-data | regulation |"
-    }
-  },
-  {
     "provider_id": "gelonghui",
     "provider_name": "格隆汇",
-    "route_key": "/hot-article/:type?",
+    "route_key": "/home/:tag?",
     "route": {
-      "name": "最热文章",
-      "path": "/hot-article/:type?",
-      "example": "/gelonghui/hot-article",
+      "name": "首页",
+      "path": "/home/:tag?",
+      "example": "/gelonghui/home",
       "parameters": {
-        "type": {
-          "description": "`day` 为日排行，`week` 为周排行，默认为 `day`",
+        "tag": {
+          "description": "分类标签，见下表，默认为 `web_home_page`",
           "options": [
             {
-              "value": "day",
-              "label": "日排行"
+              "value": "web_home_page",
+              "label": "推荐"
             },
             {
-              "value": "week",
-              "label": "周排行"
+              "value": "stock",
+              "label": "股票"
+            },
+            {
+              "value": "fund",
+              "label": "基金"
+            },
+            {
+              "value": "new_stock",
+              "label": "新股"
+            },
+            {
+              "value": "research",
+              "label": "研报"
             }
           ]
         }
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "gelonghui",
-    "provider_name": "格隆汇",
-    "route_key": "/keyword/:keyword",
-    "route": {
-      "name": "搜索关键字",
-      "path": "/keyword/:keyword",
-      "example": "/gelonghui/keyword/早报",
-      "parameters": {
-        "keyword": "搜索关键字"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "gelonghui",
-    "provider_name": "格隆汇",
-    "route_key": "/live",
-    "route": {
-      "name": "实时快讯",
-      "path": "/live",
-      "example": "/gelonghui/live",
-      "parameters": {},
-      "description": ""
+      "description": "| 推荐            | 股票  | 基金 | 新股       | 研报     |\n| --------------- | ----- | ---- | ---------- | -------- |\n| web_home_page | stock | fund | new_stock | research |"
     }
   },
   {
@@ -174,6 +154,20 @@
       "example": "/jin10",
       "parameters": {
         "important": "只看重要，任意值开启，留空关闭"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "jin10",
+    "provider_name": "金十数据",
+    "route_key": "/topic/:id",
+    "route": {
+      "name": "主题文章",
+      "path": "/topic/:id",
+      "example": "/jin10/topic/396",
+      "parameters": {
+        "id": "N"
       },
       "description": ""
     }
@@ -222,129 +216,17 @@
     }
   },
   {
-    "provider_id": "jiuyangongshe",
-    "provider_name": "韭研公社",
-    "route_key": "/community",
+    "provider_id": "sse",
+    "provider_name": "上海证券交易所",
+    "route_key": "/disclosure/:query?",
     "route": {
-      "name": "社群",
-      "path": "/community",
-      "example": "/jiuyangongshe/community",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "laohu8",
-    "provider_name": "老虎社区",
-    "route_key": "/personal/:id",
-    "route": {
-      "name": "个人主页",
-      "path": "/personal/:id",
-      "example": "/laohu8/personal/3527667596890271",
+      "name": "上市公司信息最新公告披露",
+      "path": "/disclosure/:query?",
+      "example": "/sse/disclosure/beginDate=2018-08-18&endDate=2020-08-25&productId=600696",
       "parameters": {
-        "id": "用户 ID，见网址链接"
+        "query": "筛选条件，见示例"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "mrm",
-    "provider_name": "华储网",
-    "route_key": "/:category?",
-    "route": {
-      "name": "通知",
-      "path": "/:category?",
-      "example": "/mrm",
-      "parameters": {
-        "category": "N"
-      },
-      "description": "| 交易通知     | 政策规定             | 业务通知          |\n| ------------ | -------------------- | ----------------- |\n| zonghezixun3 | zhengceguiding_list | yewutongzhi_list |"
-    }
-  },
-  {
-    "provider_id": "nbd",
-    "provider_name": "每经网",
-    "route_key": "/daily",
-    "route": {
-      "name": "重磅原创",
-      "path": "/daily",
-      "example": "/nbd/daily",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nifd",
-    "provider_name": "国家金融与发展实验室",
-    "route_key": "/research/:categoryGuid?",
-    "route": {
-      "name": "研究",
-      "path": "/research/:categoryGuid?",
-      "example": "/nifd/research/3333d2af-91d6-429b-be83-28b92f31b6d7",
-      "parameters": {
-        "categoryGuid": "资讯类型，默认为周报"
-      },
-      "description": "资讯类型可以从网址中获取，如：\n\n  `http://www.nifd.cn/Research?categoryGuid=7a6a826d-b525-42aa-b550-4236e524227f` 对应 `/nifd/research/7a6a826d-b525-42aa-b550-4236e524227f`"
-    }
-  },
-  {
-    "provider_id": "qianzhan",
-    "provider_name": "前瞻网",
-    "route_key": "/analyst/rank/:type?",
-    "route": {
-      "name": "排行榜",
-      "path": "/analyst/rank/:type?",
-      "example": "/qianzhan/analyst/rank/week",
-      "parameters": {
-        "type": "分类，见下表"
-      },
-      "description": "| 周排行 | 月排行 |\n| ------ | ------ |\n| week   | month  |"
-    }
-  },
-  {
-    "provider_id": "spglobal",
-    "provider_name": "S&P Global",
-    "route_key": "/ratings/:language?",
-    "route": {
-      "name": "Ratings",
-      "path": "/ratings/:language?",
-      "example": "/spglobal/ratings/en",
-      "parameters": {
-        "language": {
-          "description": "语言",
-          "options": [
-            {
-              "value": "zh",
-              "label": "中文"
-            },
-            {
-              "value": "en",
-              "label": "English"
-            },
-            {
-              "value": "es",
-              "label": "Español"
-            },
-            {
-              "value": "pt",
-              "label": "Português"
-            },
-            {
-              "value": "jp",
-              "label": "日本語"
-            },
-            {
-              "value": "ru",
-              "label": "Русский"
-            },
-            {
-              "value": "ar",
-              "label": "العربية"
-            }
-          ]
-        }
-      },
-      "description": "\n| language | Description |\n| ---   | ---   |\n| zh | 中文 |\n| en | English |\n| es | Español |\n| pt | Português |\n| jp | 日本語 |\n| ru | Русский |\n| ar | العربية |\n    "
     }
   },
   {
@@ -360,99 +242,13 @@
     }
   },
   {
-    "provider_id": "stcn",
-    "provider_name": "证券时报网",
-    "route_key": "/article/list/:id?",
+    "provider_id": "stockedge",
+    "provider_name": "Stock Edge",
+    "route_key": "/daily-updates/news",
     "route": {
-      "name": "列表",
-      "path": "/article/list/:id?",
-      "example": "/stcn/article/list/yw",
-      "parameters": {
-        "category": {
-          "description": "分类，默认为 `yw`，即要闻，可在对应分类页 URL 中找到",
-          "options": [
-            {
-              "label": "要闻",
-              "value": "yw"
-            },
-            {
-              "label": "股市",
-              "value": "gs"
-            },
-            {
-              "label": "公司",
-              "value": "company"
-            },
-            {
-              "label": "基金",
-              "value": "fund"
-            },
-            {
-              "label": "金融",
-              "value": "finance"
-            },
-            {
-              "label": "评论",
-              "value": "comment"
-            },
-            {
-              "label": "产经",
-              "value": "cj"
-            },
-            {
-              "label": "科创板",
-              "value": "kcb"
-            },
-            {
-              "label": "新三板",
-              "value": "xsb"
-            },
-            {
-              "label": "ESG",
-              "value": "zk"
-            },
-            {
-              "label": "滚动",
-              "value": "gd"
-            }
-          ]
-        }
-      },
-      "description": ":::tip\n若订阅 [要闻](https://www.stcn.com/article/list/yw.html)，网址为 `https://www.stcn.com/article/list/yw.html`，请截取 `https://www.stcn.com/article/list/` 到末尾 `.html` 的部分 `yw` 作为 `id` 参数填入，此时目标路由为 [`/stcn/article/list/yw`](https://rsshub.app/stcn/article/list/yw)。\n\n:::\n\n| 要闻 | 股市 | 公司    | 基金 | 金融    | 评论    |\n| ---- | ---- | ------- | ---- | ------- | ------- |\n| yw   | gs   | company | fund | finance | comment |\n\n| 产经 | 科创板 | 新三板 | ESG | 滚动 |\n| ---- | ------ | ------ | --- | ---- |\n| cj   | kcb    | xsb    | zk  | gd   |\n"
-    }
-  },
-  {
-    "provider_id": "stcn",
-    "provider_name": "证券时报网",
-    "route_key": "/article/list/kx",
-    "route": {
-      "name": "快讯",
-      "path": "/article/list/kx",
-      "example": "/stcn/article/list/kx",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "szse",
-    "provider_name": "深圳证券交易所",
-    "route_key": "/notice",
-    "route": {
-      "name": "上市公告 - 可转换债券",
-      "path": "/notice",
-      "example": "/szse/notice",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "techflowpost",
-    "provider_name": "深潮 TechFlow",
-    "route_key": "/",
-    "route": {
-      "name": "首页",
-      "path": "/",
-      "example": "/techflowpost",
+      "name": "Daily Updates News",
+      "path": "/daily-updates/news",
+      "example": "/stockedge/daily-updates/news",
       "parameters": {},
       "description": ""
     }
@@ -460,13 +256,15 @@
   {
     "provider_id": "ulapia",
     "provider_name": "乌拉邦",
-    "route_key": "/research/latest",
+    "route_key": "/reports/:category?",
     "route": {
-      "name": "最新研报",
-      "path": "/research/latest",
-      "example": "/ulapia/research/latest",
-      "parameters": {},
-      "description": ""
+      "name": "频道",
+      "path": "/reports/:category?",
+      "example": "/ulapia/reports/stock_research",
+      "parameters": {
+        "category": "频道类型，默认为券商晨报（今日晨报）"
+      },
+      "description": "|     个股研报    |      行业研报      |      策略研报      |     宏观研报    |    新股研报   | 券商晨报（今日晨报） |\n| :-------------: | :----------------: | :----------------: | :-------------: | :-----------: | :------------------: |\n| stock_research | industry_research | strategy_research | macro_research | ipo_research |    brokerage_news   |"
     }
   },
   {
@@ -496,17 +294,80 @@
     }
   },
   {
-    "provider_id": "xueqiu",
-    "provider_name": "雪球",
-    "route_key": "/fund/:id",
+    "provider_id": "wallstreetcn",
+    "provider_name": "华尔街见闻",
+    "route_key": "/live/:category?/:score?",
     "route": {
-      "name": "蛋卷基金净值更新",
-      "path": "/fund/:id",
-      "example": "/xueqiu/fund/040008",
+      "name": "实时快讯",
+      "path": "/live/:category?/:score?",
+      "example": "/wallstreetcn/live",
       "parameters": {
-        "id": "基金代码, 可在基金主页 URL 中找到. 此路由的数据为场外基金 (`F`开头)"
+        "category": "快讯分类，默认`global`，见下表",
+        "score": "快讯重要度，默认`1`全部快讯，可设置为`2`只看重要的"
       },
-      "description": ""
+      "description": "| 要闻   | A 股    | 美股     | 港股     | 外汇  | 商品      | 理财      |\n| ------ | ------- | -------- | -------- | ----- | --------- | --------- |\n| global | a-stock | us-stock | hk-stock | forex | commodity | financing |"
+    }
+  },
+  {
+    "provider_id": "youzhiyouxing",
+    "provider_name": "有知有行",
+    "route_key": "/materials/:id?",
+    "route": {
+      "name": "有知文章",
+      "path": "/materials/:id?",
+      "example": "/youzhiyouxing/materials",
+      "parameters": {
+        "id": {
+          "description": "分类",
+          "options": [
+            {
+              "value": "0",
+              "label": "全部"
+            },
+            {
+              "value": "4",
+              "label": "知行小酒馆"
+            },
+            {
+              "value": "2",
+              "label": "知行黑板报"
+            },
+            {
+              "value": "10",
+              "label": "无人知晓"
+            },
+            {
+              "value": "1",
+              "label": "孟岩专栏"
+            },
+            {
+              "value": "3",
+              "label": "知行读书会"
+            },
+            {
+              "value": "11",
+              "label": "你好，同路人"
+            }
+          ],
+          "default": "0"
+        }
+      },
+      "description": "| 全部 | 知行小酒馆 | 知行黑板报 | 无人知晓 | 孟岩专栏 | 知行读书会 | 你好，同路人 |\n| :--: | :--------: | :--------: | :------: | :------: | :--------: | :----------: |\n|   0  |      4     |      2     |    10    |     1    |      3     |      11      |"
+    }
+  },
+  {
+    "provider_id": "zhitongcaijing",
+    "provider_name": "智通财经网",
+    "route_key": "/:id?/:category?",
+    "route": {
+      "name": "推荐",
+      "path": "/:id?/:category?",
+      "example": "/zhitongcaijing",
+      "parameters": {
+        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 recommend，即推荐",
+        "category": "分类 id，可在对应栏目子分类页 URL 中找到，默认为全部"
+      },
+      "description": "| id           | 栏目 |\n| ------------ | ---- |\n| recommend    | 推荐 |\n| hkstock      | 港股 |\n| meigu        | 美股 |\n| agu          | 沪深 |\n| ct           | 创投 |\n| esg          | ESG  |\n| aqs          | 券商 |\n| ajj          | 基金 |\n| focus        | 要闻 |\n| announcement | 公告 |\n| research     | 研究 |\n| shares       | 新股 |\n| bazaar       | 市场 |\n| company      | 公司 |"
     }
   }
 ]

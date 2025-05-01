@@ -1,29 +1,72 @@
 [
   {
-    "provider_id": "afdian",
-    "provider_name": "爱发电",
-    "route_key": "/dynamic/:uid?",
+    "provider_id": "acpaa",
+    "provider_name": "中华全国专利代理师协会",
+    "route_key": "/:id?/:name?",
     "route": {
-      "name": "用户动态",
-      "path": "/dynamic/:uid?",
-      "example": "/afdian/dynamic/@afdian",
+      "name": "标签",
+      "path": "/:id?/:name?",
+      "example": "/acpaa",
       "parameters": {
-        "uid": "用户id，用户动态页面url里可找到"
+        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
+        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "aqicn",
-    "provider_name": "空气质量",
-    "route_key": "/:city/:pollution?",
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/explore/:type/:category?",
     "route": {
-      "name": "实时 AQI",
-      "path": "/:city/:pollution?",
-      "example": "/aqicn/beijing/pm25",
+      "name": "发现用户",
+      "path": "/explore/:type/:category?",
+      "example": "/afdian/explore/hot/所有",
       "parameters": {
-        "city": "城市拼音或地区 ID，详见[aqicn.org](http://aqicn.org/city/)",
-        "pollution": "可选择显示更详细的空气污染成分"
+        "type": "分类",
+        "category": "目录类型，默认为 `所有`"
+      },
+      "description": "分类\n\n| 推荐 | 最热 |\n| ---- | ---- |\n| rec  | hot  |\n\n  目录类型\n\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |"
+    }
+  },
+  {
+    "provider_id": "apple",
+    "provider_name": "Apple",
+    "route_key": "/exchange_repair/:country?",
+    "route": {
+      "name": "Exchange and Repair Extension Programs",
+      "path": "/exchange_repair/:country?",
+      "example": "/apple/exchange_repair",
+      "parameters": {
+        "country": "country code in apple.com URL (exception: for `United States` please use `us`), default to China `cn`"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "atptour",
+    "provider_name": "ATP Tour",
+    "route_key": "/news/:lang?",
+    "route": {
+      "name": "News",
+      "path": "/news/:lang?",
+      "example": "/atptour/news/en",
+      "parameters": {
+        "lang": "en or es."
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/search/:keyword",
+    "route": {
+      "name": "搜索",
+      "path": "/search/:keyword",
+      "example": "/baidu/search/rss",
+      "parameters": {
+        "keyword": "搜索关键词"
       },
       "description": ""
     }
@@ -57,33 +100,31 @@
     }
   },
   {
-    "provider_id": "clickme",
-    "provider_name": "ClickMe",
-    "route_key": "/:site/:grouping/:name",
+    "provider_id": "boc",
+    "provider_name": "中国银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "name": "文章",
-      "path": "/:site/:grouping/:name",
-      "example": "/clickme/default/category/beauty",
+      "name": "外汇牌价",
+      "path": "/whpj/:format?",
+      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
       "parameters": {
-        "site": "站点，`default`为普通站，`r18`为成人站，其它值默认为普通站",
-        "grouping": "分组方式，`category`为分类，`tag`为标签，其他值默认为分类",
-        "name": "分类名或标签名，分类名为英文，可以在分类 URL 中找到"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
-      "description": ""
+      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
     }
   },
   {
-    "provider_id": "dingshao",
-    "provider_name": "盯梢",
-    "route_key": "/share/:shortId",
+    "provider_id": "cfachina",
+    "provider_name": "中国期货业协会",
+    "route_key": "/servicesupport/analygarden/:program?",
     "route": {
-      "name": "频道",
-      "path": "/share/:shortId",
-      "example": "/dingshao/share/FzFypN",
+      "name": "分析师园地",
+      "path": "/servicesupport/analygarden/:program?",
+      "example": "/cfachina/servicesupport/analygarden",
       "parameters": {
-        "shortId": "频道 ID"
+        "program": "分类，见下表，留空为全部"
       },
-      "description": ""
+      "description": "| 有色金属类 | 黑色金属类 | 能源化工类 | 贵金属类 | 农产品类 | 金融类 | 指数类 |\n| ---------- | ---------- | ---------- | -------- | -------- | ------ | ------ |\n| ysjsl      | hsjsl      | nyhgl      | gjsl     | ncpl     | jrl    | zsl    |"
     }
   },
   {
@@ -101,67 +142,29 @@
     }
   },
   {
-    "provider_id": "hostmonit",
-    "provider_name": "全球主机监控",
-    "route_key": "/cloudflareyes/:type?",
+    "provider_id": "guduodata",
+    "provider_name": "骨朵数据",
+    "route_key": "/daily",
     "route": {
-      "name": "CloudFlareYes",
-      "path": "/cloudflareyes/:type?",
-      "example": "/hostmonit/cloudflareyes",
+      "name": "日榜",
+      "path": "/daily",
+      "example": "/guduodata/daily",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "icbc",
+    "provider_name": "中国工商银行",
+    "route_key": "/whpj/:format?",
+    "route": {
+      "name": "外汇牌价",
+      "path": "/whpj/:format?",
+      "example": "/icbc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
       "parameters": {
-        "type": "类型，见下表，默认为 v4"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
-      "description": "| v4 | v6 |\n| -- | -- |\n|    | v6 |"
-    }
-  },
-  {
-    "provider_id": "iknowwhatyoudownload",
-    "provider_name": "I Know What You Download",
-    "route_key": "/stats/daily/:country",
-    "route": {
-      "name": "Daily Torrents Statistics",
-      "path": "/stats/daily/:country",
-      "example": "/iknowwhatyoudownload/stats/daily/CN",
-      "parameters": {
-        "country": "the country of the stats. ISO 3166-1 alpha-2 code."
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "iqnew",
-    "provider_name": "爱 Q 生活网",
-    "route_key": "/latest",
-    "route": {
-      "name": "最近更新",
-      "path": "/latest",
-      "example": "/iqnew/latest",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "piyao",
-    "provider_name": "中国互联网联合辟谣平台",
-    "route_key": "/jrpy",
-    "route": {
-      "name": "今日辟谣",
-      "path": "/jrpy",
-      "example": "/piyao/jrpy",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "producthunt",
-    "provider_name": "Product Hunt",
-    "route_key": "/today",
-    "route": {
-      "name": "Today Popular",
-      "path": "/today",
-      "example": "/producthunt/today",
-      "parameters": {},
-      "description": ""
+      "description": "| 短格式 | 参考价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs     | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
     }
   },
   {
@@ -177,25 +180,13 @@
     }
   },
   {
-    "provider_id": "scmp",
-    "provider_name": "Corona Virus Disease 2019",
-    "route_key": "/coronavirus",
+    "provider_id": "taiwanmobile",
+    "provider_name": "台灣大哥大",
+    "route_key": "/rate-plans",
     "route": {
-      "name": "South China Morning Post - China coronavirus outbreak",
-      "path": "/coronavirus",
-      "example": "/scmp/coronavirus",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sogou",
-    "provider_name": "搜狗",
-    "route_key": "/doodles",
-    "route": {
-      "name": "特色 LOGO",
-      "path": "/doodles",
-      "example": "/sogou/doodles",
+      "name": "資費公告",
+      "path": "/rate-plans",
+      "example": "/taiwanmobile/rate-plans",
       "parameters": {},
       "description": ""
     }
@@ -230,32 +221,27 @@
     }
   },
   {
-    "provider_id": "usepanda",
-    "provider_name": "Panda",
-    "route_key": "/feeds/:id",
+    "provider_id": "urbandictionary",
+    "provider_name": "Urban Dictionary",
+    "route_key": "/random",
     "route": {
-      "name": "Feeds",
-      "path": "/feeds/:id",
-      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
-      "parameters": {
-        "id": "Feed ID"
-      },
-      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |"
+      "name": "Random words",
+      "path": "/random",
+      "example": "/urbandictionary/random",
+      "parameters": {},
+      "description": ""
     }
   },
   {
-    "provider_id": "wise",
-    "provider_name": "Wise",
-    "route_key": "/pair/:source/:target",
+    "provider_id": "wfdf",
+    "provider_name": "WFDF",
+    "route_key": "/news",
     "route": {
-      "name": "FX Pair Yesterday",
-      "path": "/pair/:source/:target",
-      "example": "/wise/pair/GBP/USD",
-      "parameters": {
-        "source": "Base currency abbreviation",
-        "target": "Quote currency abbreviation"
-      },
-      "description": "Refer to [the list of supported currencies](https://wise.com/tools/exchange-rate-alerts/)."
+      "name": "News",
+      "path": "/news",
+      "example": "/wfdf/news",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

@@ -2,6 +2,22 @@
   {
     "provider_id": "bilibili",
     "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/article/:uid",
+    "route": {
+      "path": "/user/article/:uid",
+      "example": "/bilibili/user/article/334958638",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到"
+      },
+      "name": "UP 主图文",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/user/article/:uid"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
     "route_key": "/audio/:id",
     "route": {
       "path": "/audio/:id",
@@ -18,16 +34,52 @@
   {
     "provider_id": "bilibili",
     "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/hot-search",
+    "route_key": "/bangumi/media/:mediaid/:embed?",
     "route": {
-      "path": "/hot-search",
-      "example": "/bilibili/hot-search",
-      "parameters": {},
-      "name": "热搜",
-      "url": "www.bilibili.com/",
+      "path": "/bangumi/media/:mediaid/:embed?",
+      "name": "番剧",
+      "parameters": {
+        "mediaid": "番剧媒体 id, 番剧主页 URL 中获取",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "example": "/bilibili/bangumi/media/9192",
+      "view": 3,
       "provider_id": "bilibili",
       "provider_name": "哔哩哔哩 bilibili",
-      "route_key": "/hot-search"
+      "route_key": "/bangumi/media/:mediaid/:embed?"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/precious/:embed?",
+    "route": {
+      "path": "/precious/:embed?",
+      "example": "/bilibili/precious",
+      "parameters": {
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "name": "入站必刷",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/precious/:embed?"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/coin/:uid/:embed?",
+    "route": {
+      "path": "/user/coin/:uid/:embed?",
+      "example": "/bilibili/user/coin/208259",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "name": "UP 主投币视频",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/user/coin/:uid/:embed?"
     }
   },
   {
@@ -45,22 +97,6 @@
       "provider_id": "bilibili",
       "provider_name": "哔哩哔哩 bilibili",
       "route_key": "/user/like/:uid/:embed?"
-    }
-  },
-  {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/link/news/:product",
-    "route": {
-      "path": "/link/news/:product",
-      "example": "/bilibili/link/news/live",
-      "parameters": {
-        "product": "公告分类, 包括 直播:live 小视频:vc 相簿:wh"
-      },
-      "name": "link 公告",
-      "provider_id": "bilibili",
-      "provider_name": "哔哩哔哩 bilibili",
-      "route_key": "/link/news/:product"
     }
   },
   {
@@ -137,6 +173,123 @@
   {
     "provider_id": "bilibili",
     "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/popular/all/:embed?",
+    "route": {
+      "path": "/popular/all/:embed?",
+      "example": "/bilibili/popular/all",
+      "parameters": {
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "name": "综合热门",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/popular/all/:embed?"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
+    "route": {
+      "path": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
+      "name": "排行榜",
+      "view": 3,
+      "example": "/bilibili/ranking/0",
+      "parameters": {
+        "rid_index": {
+          "description": "排行榜分区 id 序号",
+          "default": "0",
+          "options": [
+            {
+              "value": "0",
+              "label": "全站"
+            },
+            {
+              "value": "3",
+              "label": "国创相关"
+            },
+            {
+              "value": "5",
+              "label": "动画"
+            },
+            {
+              "value": "6",
+              "label": "音乐"
+            },
+            {
+              "value": "7",
+              "label": "舞蹈"
+            },
+            {
+              "value": "8",
+              "label": "游戏"
+            },
+            {
+              "value": "9",
+              "label": "知识"
+            },
+            {
+              "value": "10",
+              "label": "科技"
+            },
+            {
+              "value": "11",
+              "label": "运动"
+            },
+            {
+              "value": "12",
+              "label": "汽车"
+            },
+            {
+              "value": "13",
+              "label": "生活"
+            },
+            {
+              "value": "14",
+              "label": "美食"
+            },
+            {
+              "value": "15",
+              "label": "动物圈"
+            },
+            {
+              "value": "16",
+              "label": "鬼畜"
+            },
+            {
+              "value": "17",
+              "label": "时尚"
+            },
+            {
+              "value": "18",
+              "label": "娱乐"
+            },
+            {
+              "value": "19",
+              "label": "影视"
+            },
+            {
+              "value": "23",
+              "label": "原创"
+            },
+            {
+              "value": "24",
+              "label": "新人"
+            }
+          ]
+        },
+        "embed": "默认为开启内嵌视频, 任意值为关闭",
+        "redirect1": "留空，用于兼容之前的路由",
+        "redirect2": "留空，用于兼容之前的路由"
+      },
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
     "route_key": "/readlist/:listid",
     "route": {
       "path": "/readlist/:listid",
@@ -154,18 +307,39 @@
   {
     "provider_id": "bilibili",
     "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/user/bangumi/:uid/:type?",
+    "route_key": "/user/channel/:uid/:sid/:embed?",
     "route": {
-      "path": "/user/bangumi/:uid/:type?",
-      "example": "/bilibili/user/bangumi/208259",
+      "path": "/user/channel/:uid/:sid/:embed?",
+      "example": "/bilibili/user/channel/2267573/396050",
       "parameters": {
-        "uid": "用户 id",
-        "type": "1为番，2为剧，留空为1"
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "sid": "频道 id, 可在频道的 URL 中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
       },
-      "name": "用户追番列表",
+      "name": "UP 主频道的视频列表",
       "provider_id": "bilibili",
       "provider_name": "哔哩哔哩 bilibili",
-      "route_key": "/user/bangumi/:uid/:type?"
+      "route_key": "/user/channel/:uid/:sid/:embed?"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/collection/:uid/:sid/:embed?/:sortReverse?/:page?",
+    "route": {
+      "path": "/user/collection/:uid/:sid/:embed?/:sortReverse?/:page?",
+      "example": "/bilibili/user/collection/245645656/529166",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "sid": "合集 id, 可在合集页面的 URL 中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭",
+        "sortReverse": "默认:默认排序 1:升序排序",
+        "page": "页码, 默认1"
+      },
+      "name": "UP 主频道的合集",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/user/collection/:uid/:sid/:embed?/:sortReverse?/:page?"
     }
   },
   {
@@ -206,6 +380,22 @@
     }
   },
   {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/weekly/:embed?",
+    "route": {
+      "path": "/weekly/:embed?",
+      "example": "/bilibili/weekly",
+      "parameters": {
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "name": "B 站每周必看",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/weekly/:embed?"
+    }
+  },
+  {
     "provider_id": "bsky",
     "provider_name": "Bluesky (bsky)",
     "route_key": "/profile/:handle/:routeParams?",
@@ -222,6 +412,23 @@
       "provider_id": "bsky",
       "provider_name": "Bluesky (bsky)",
       "route_key": "/profile/:handle/:routeParams?"
+    }
+  },
+  {
+    "provider_id": "changba",
+    "provider_name": "唱吧",
+    "route_key": "/:userid",
+    "route": {
+      "path": "/:userid",
+      "view": 4,
+      "example": "/changba/skp6hhF59n48R-UpqO3izw",
+      "parameters": {
+        "userid": "用户ID, 可在对应分享页面的 URL 中找到"
+      },
+      "name": "用户",
+      "provider_id": "changba",
+      "provider_name": "唱吧",
+      "route_key": "/:userid"
     }
   },
   {
@@ -244,18 +451,18 @@
   {
     "provider_id": "douban",
     "provider_name": "豆瓣",
-    "route_key": "/book/latest/:type?",
+    "route_key": "/book/rank/:type?",
     "route": {
-      "path": "/book/latest/:type?",
-      "example": "/douban/book/latest/fiction",
+      "path": "/book/rank/:type?",
+      "example": "/douban/book/rank/fiction",
       "parameters": {
-        "type": "专题分类，可选，默认为 `all`"
+        "type": "图书类型，默认合并列表"
       },
-      "name": "新书速递",
-      "description": "| 文学         | 小说    | 历史文化 | 社会纪实  | 科学新知 | 艺术设计 | 商业经管 | 绘本漫画 |\n| ------------ | ------- | -------- | --------- | -------- | -------- | -------- | -------- |\n| prose_poetry | fiction | history  | biography | science  | art      | business | comics   |",
+      "name": "热门图书排行",
+      "description": "| 全部 | 虚构    | 非虚构     |\n| ---- | ------- | ---------- |\n|      | fiction | nonfiction |",
       "provider_id": "douban",
       "provider_name": "豆瓣",
-      "route_key": "/book/latest/:type?"
+      "route_key": "/book/rank/:type?"
     }
   },
   {
@@ -279,6 +486,22 @@
   {
     "provider_id": "douban",
     "provider_name": "豆瓣",
+    "route_key": "/event/hot/:locationId",
+    "route": {
+      "path": "/event/hot/:locationId",
+      "example": "/douban/event/hot/118172",
+      "parameters": {
+        "locationId": "位置 id, [同城首页](https://www.douban.com/location)打开控制台执行 `window.__loc_id__` 获取"
+      },
+      "name": "热门同城活动",
+      "provider_id": "douban",
+      "provider_name": "豆瓣",
+      "route_key": "/event/hot/:locationId"
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
     "route_key": "/movie/coming",
     "route": {
       "path": "/movie/coming",
@@ -287,6 +510,20 @@
       "provider_id": "douban",
       "provider_name": "豆瓣",
       "route_key": "/movie/coming"
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/bookstore",
+    "route": {
+      "path": "/bookstore",
+      "example": "/douban/bookstore",
+      "parameters": {},
+      "name": "豆瓣书店",
+      "provider_id": "douban",
+      "provider_name": "豆瓣",
+      "route_key": "/bookstore"
     }
   },
   {
@@ -326,6 +563,24 @@
   {
     "provider_id": "douban",
     "provider_name": "豆瓣",
+    "route_key": "/recommended/:type?/:routeParams?",
+    "route": {
+      "path": "/recommended/:type?/:routeParams?",
+      "example": "/douban/recommended/tv",
+      "parameters": {
+        "type": "片单类型剧集/电影，tv或movie，默认为tv",
+        "routeParams": "额外参数；请参阅以下说明和表格"
+      },
+      "name": "豆瓣每月推荐片单",
+      "description": "| 额外参数 | 含义                   | 接受的值 | 默认值 |\n| -------- | ---------------------- | -------- | ------ |\n| playable | 仅看有可播放片源的影片 | 0/1      | 0      |\n| score    | 筛选评分               | 0-10     | 0      |\n\n  用例：`/douban/recommended/tv/playable=0&score=8`\n\n::: tip\n  整合了 /douban/list/ 路由，省去每月手动更新 id 参数，因为当月推荐剧集片单中，会有还未播出 / 开评分剧集、海外平台播出剧集，请自行考虑是否使用额外参数。\n:::",
+      "provider_id": "douban",
+      "provider_name": "豆瓣",
+      "route_key": "/recommended/:type?/:routeParams?"
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
     "route_key": "/topic/:id/:sort?",
     "route": {
       "path": "/topic/:id/:sort?",
@@ -358,37 +613,54 @@
     }
   },
   {
-    "provider_id": "fediverse",
-    "provider_name": "Fediverse",
-    "route_key": "/timeline/:account",
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/people/:userid/wish/:routeParams?",
     "route": {
-      "path": "/timeline/:account",
-      "view": 1,
-      "example": "/fediverse/timeline/Mastodon@mastodon.social",
+      "path": "/people/:userid/wish/:routeParams?",
+      "example": "/douban/people/exherb/wish",
       "parameters": {
-        "account": "username@domain"
+        "userid": "用户id",
+        "routeParams": "额外参数；见下"
       },
-      "name": "Timeline",
-      "provider_id": "fediverse",
-      "provider_name": "Fediverse",
-      "route_key": "/timeline/:account"
+      "name": "用户想看",
+      "description": "对于豆瓣用户想看的内容，在 `routeParams` 参数中以 query string 格式设置如下选项可以控制输出的样式\n\n| 键         | 含义       | 接受的值 | 默认值 |\n| ---------- | ---------- | -------- | ------ |\n| pagesCount | 查询页面数 |          | 1      |",
+      "provider_id": "douban",
+      "provider_name": "豆瓣",
+      "route_key": "/people/:userid/wish/:routeParams?"
     }
   },
   {
-    "provider_id": "furaffinity",
-    "provider_name": "Furaffinity",
-    "route_key": "/browse/:mode?",
+    "provider_id": "fansly",
+    "provider_name": "Fansly",
+    "route_key": "/tag/:tag",
     "route": {
-      "path": "/browse/:mode?",
-      "name": "Browse",
-      "url": "furaffinity.net",
-      "example": "/furaffinity/browse/nsfw",
+      "path": "/tag/:tag",
+      "example": "/fansly/tag/free",
       "parameters": {
-        "mode": "R18 content toggle, default value is sfw, options are sfw, nsfw"
+        "tag": "Hashtag"
       },
-      "provider_id": "furaffinity",
-      "provider_name": "Furaffinity",
-      "route_key": "/browse/:mode?"
+      "name": "Hashtag",
+      "provider_id": "fansly",
+      "provider_name": "Fansly",
+      "route_key": "/tag/:tag"
+    }
+  },
+  {
+    "provider_id": "follow",
+    "provider_name": "Follow",
+    "route_key": "/profile/:uid",
+    "route": {
+      "name": "User subscriptions",
+      "path": "/profile/:uid",
+      "example": "/follow/profile/41279032429549568",
+      "parameters": {
+        "uid": "User ID or user handle"
+      },
+      "view": 5,
+      "provider_id": "follow",
+      "provider_name": "Follow",
+      "route_key": "/profile/:uid"
     }
   },
   {
@@ -412,20 +684,35 @@
     }
   },
   {
-    "provider_id": "gettr",
-    "provider_name": "GETTR",
-    "route_key": "/user/:id",
+    "provider_id": "furaffinity",
+    "provider_name": "Furaffinity",
+    "route_key": "/status",
     "route": {
-      "path": "/user/:id",
-      "view": 1,
-      "example": "/gettr/user/jasonmillerindc",
+      "path": "/status",
+      "name": "Status",
+      "url": "furaffinity.net",
+      "example": "/furaffinity/status",
+      "parameters": {},
+      "provider_id": "furaffinity",
+      "provider_name": "Furaffinity",
+      "route_key": "/status"
+    }
+  },
+  {
+    "provider_id": "furaffinity",
+    "provider_name": "Furaffinity",
+    "route_key": "/watchers/:username",
+    "route": {
+      "path": "/watchers/:username",
+      "name": "User's Watcher List",
+      "url": "furaffinity.net",
+      "example": "/furaffinity/watchers/fender",
       "parameters": {
-        "id": "User id"
+        "username": "Username, can find in userpage"
       },
-      "name": "User timeline",
-      "provider_id": "gettr",
-      "provider_name": "GETTR",
-      "route_key": "/user/:id"
+      "provider_id": "furaffinity",
+      "provider_name": "Furaffinity",
+      "route_key": "/watchers/:username"
     }
   },
   {
@@ -471,19 +758,18 @@
     }
   },
   {
-    "provider_id": "jike",
-    "provider_name": "即刻",
+    "provider_id": "keep",
+    "provider_name": "Keep",
     "route_key": "/user/:id",
     "route": {
       "path": "/user/:id",
-      "view": 1,
-      "example": "/jike/user/3EE02BC9-C5B3-4209-8750-4ED1EE0F67BB",
+      "example": "/keep/user/556b02c1ab59390afea671ea",
       "parameters": {
-        "id": "用户 id, 可在即刻分享出来的单条动态页点击用户头像进入个人主页，然后在个人主页的 URL 中找到，或者在单条动态页使用 RSSHub Radar 插件"
+        "id": "Keep 用户 id"
       },
-      "name": "用户动态",
-      "provider_id": "jike",
-      "provider_name": "即刻",
+      "name": "运动日记",
+      "provider_id": "keep",
+      "provider_name": "Keep",
       "route_key": "/user/:id"
     }
   },
@@ -586,76 +872,85 @@
     }
   },
   {
-    "provider_id": "likeshop",
-    "provider_name": "LikeShop",
-    "route_key": "/:site",
+    "provider_id": "mastodon",
+    "provider_name": "Mastodon",
+    "route_key": "/timeline/:site/:only_media?",
     "route": {
-      "path": "/:site",
-      "example": "/likeshop/bloombergpursuits",
+      "path": "/timeline/:site/:only_media?",
+      "view": 1,
+      "example": "/mastodon/timeline/pawoo.net/true",
       "parameters": {
-        "site": "the site attached to likeshop.me/"
+        "site": "instance address, only domain, no `http://` or `https://` protocol header",
+        "only_media": {
+          "description": "whether only display media content, default to false, any value to true",
+          "options": [
+            {
+              "value": "true",
+              "label": "true"
+            },
+            {
+              "value": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        }
       },
-      "name": "Posts",
-      "description": "LikeShop link in bio takes your audience from Instagram and TikTok to your website in one easy step.",
-      "provider_id": "likeshop",
-      "provider_name": "LikeShop",
-      "route_key": "/:site"
+      "name": "Instance timeline (local)",
+      "description": "If the instance address is not `mastodon.social` or `pawoo.net`, then the route requires `ALLOW_USER_SUPPLY_UNSAFE_DOMAIN` to be `true`.",
+      "provider_id": "mastodon",
+      "provider_name": "Mastodon",
+      "route_key": "/timeline/:site/:only_media?"
     }
   },
   {
-    "provider_id": "linkedin",
-    "provider_name": "LinkedIn",
-    "route_key": "/jobs/:job_types/:exp_levels/:keywords?/:routeParams?",
+    "provider_id": "mastodon",
+    "provider_name": "Mastodon",
+    "route_key": "/remote/:site/:only_media?",
     "route": {
-      "path": "/jobs/:job_types/:exp_levels/:keywords?/:routeParams?",
-      "view": 5,
-      "example": "/linkedin/jobs/C-P/1/software engineer",
+      "path": "/remote/:site/:only_media?",
+      "view": 1,
+      "example": "/mastodon/remote/pawoo.net/true",
       "parameters": {
-        "job_types": "See the following table for details, use '-' as delimiter",
-        "exp_levels": "See the following table for details, use '-' as delimiter",
-        "keywords": "keywords",
-        "routeParams": "additional query parameters, see the table below"
+        "site": "instance address, only domain, no `http://` or `https://` protocol header",
+        "only_media": {
+          "description": "whether only display media content, default to false, any value to true",
+          "options": [
+            {
+              "value": "true",
+              "label": "true"
+            },
+            {
+              "value": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        }
       },
-      "name": "Jobs",
-      "description": "#### `job_types` list\n\n| Full Time | Part Time | Contractor | All |\n| --------- | --------- | ---------- | --- |\n| F         | P         | C          | all |\n\n#### `exp_levels` list\n\n| Intership | Entry Level | Associate | Mid-Senior Level | Director | All |\n| --------- | ----------- | --------- | ---------------- | -------- | --- |\n| 1         | 2           | 3         | 4                | 5        | all |\n\n#### `routeParams` additional query parameters\n\n##### `f_WT` list\n\n| Onsite | Remote | Hybrid |\n| ------ | ------- | ------ |\n|    1   |    2    |   3    |\n\n##### `geoId`\n\n  Geographic location ID. You can find this ID in the URL of a LinkedIn job search page that is filtered by location.\n\n  For example:\n  91000012 is the ID of East Asia.\n\n##### `f_TPR`\n\n  Time posted range. Here are some possible values:\n\n  *   `r86400`: Past 24 hours\n  *   `r604800`: Past week\n  *   `r2592000`: Past month\n\n  For example:\n\n  1.  If we want to search software engineer jobs of all levels and all job types, use `/linkedin/jobs/all/all/software engineer`\n  2.  If we want to search all entry level contractor/part time software engineer jobs, use `/linkedin/jobs/P-C/2/software engineer`\n  3.  If we want to search remote mid-senior level software engineer jobs in APAC posted within the last month, use `/linkedin/jobs/F/4/software%20engineer/f_WT=2&geoId=91000003&f_TPR=r2592000`\n\n  **To make it easier, the recommended way is to start a search on [LinkedIn](https://www.linkedin.com/jobs/search) and use [RSSHub Radar](https://github.com/DIYgod/RSSHub-Radar) to load the specific feed.**",
-      "provider_id": "linkedin",
-      "provider_name": "LinkedIn",
-      "route_key": "/jobs/:job_types/:exp_levels/:keywords?/:routeParams?"
+      "name": "Instance timeline (federated)",
+      "description": "If the instance address is not `mastodon.social` or `pawoo.net`, then the route requires `ALLOW_USER_SUPPLY_UNSAFE_DOMAIN` to be `true`.",
+      "provider_id": "mastodon",
+      "provider_name": "Mastodon",
+      "route_key": "/remote/:site/:only_media?"
     }
   },
   {
-    "provider_id": "lofter",
-    "provider_name": "Lofter",
-    "route_key": "/tag/:name?/:type?",
+    "provider_id": "misskey",
+    "provider_name": "Misskey",
+    "route_key": "/users/notes/:username/:routeParams?",
     "route": {
-      "path": "/tag/:name?/:type?",
-      "example": "/lofter/tag/cosplay/date",
+      "path": "/users/notes/:username/:routeParams?",
+      "view": 1,
+      "example": "/misskey/users/notes/support@misskey.io",
       "parameters": {
-        "name": "tag name, such as `名侦探柯南`, `摄影` by default",
-        "type": "ranking type, see below, new by default"
+        "username": "Misskey username in the format of username@instance.domain",
+        "routeParams": "\n| Key               | Description                             | Accepted Values | Default |\n| ----------------- | --------------------------------------- | --------------- | ------- |\n| withRenotes       | Include renotes in the timeline         | 0/1/true/false  | false   |\n| mediaOnly         | Only return posts containing media      | 0/1/true/false  | false   |\n| simplifyAuthor    | Simplify author field in feed items     | 0/1/true/false  | false   |\n\nNote: `withRenotes` and `mediaOnly` are mutually exclusive and cannot both be set to true.\n\nExamples:\n- /misskey/users/notes/mttb2ccp@misskey.io/withRenotes=true\n- /misskey/users/notes/mttb2ccp@misskey.io/mediaOnly=true"
       },
-      "name": "Tag",
-      "description": "| new  | date | week | month | total |\n| ---- | ---- | ---- | ----- | ----- |\n| 最新 | 日榜 | 周榜 | 月榜  | 总榜  |",
-      "provider_id": "lofter",
-      "provider_name": "Lofter",
-      "route_key": "/tag/:name?/:type?"
-    }
-  },
-  {
-    "provider_id": "lofter",
-    "provider_name": "Lofter",
-    "route_key": "/user/:name?",
-    "route": {
-      "path": "/user/:name?",
-      "example": "/lofter/user/i",
-      "view": 0,
-      "parameters": {
-        "name": "Lofter user name, can be found in the URL"
-      },
-      "name": "User",
-      "provider_id": "lofter",
-      "provider_name": "Lofter",
-      "route_key": "/user/:name?"
+      "name": "User timeline",
+      "provider_id": "misskey",
+      "provider_name": "Misskey",
+      "route_key": "/users/notes/:username/:routeParams?"
     }
   },
   {
@@ -693,51 +988,50 @@
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
-    "route_key": "/anonymous",
+    "route_key": "/hotlinks",
     "route": {
-      "path": "/anonymous",
-      "example": "/plurk/anonymous",
+      "path": "/hotlinks",
+      "example": "/plurk/hotlinks",
       "parameters": {},
-      "name": "Anonymous",
-      "url": "plurk.com/anonymous",
+      "name": "Hotlinks",
+      "url": "plurk.com/hotlinks",
       "provider_id": "plurk",
       "provider_name": "Plurk",
-      "route_key": "/anonymous"
+      "route_key": "/hotlinks"
     }
   },
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
-    "route_key": "/search/:keyword",
+    "route_key": "/news/:lang?",
     "route": {
-      "path": "/search/:keyword",
-      "example": "/plurk/search/FGO",
+      "path": "/news/:lang?",
+      "example": "/plurk/news/:lang?",
       "parameters": {
-        "keyword": "Search keyword"
+        "lang": "Language, see the table above, `en` by default"
       },
-      "name": "Search",
+      "name": "Plurk News",
+      "url": "plurk.com/news",
       "provider_id": "plurk",
       "provider_name": "Plurk",
-      "route_key": "/search/:keyword"
+      "route_key": "/news/:lang?"
     }
   },
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
-    "route_key": "/top/:category?/:lang?",
+    "route_key": "/topic/:topic",
     "route": {
-      "path": "/top/:category?/:lang?",
+      "path": "/topic/:topic",
       "view": 1,
-      "example": "/plurk/top/topReplurks",
+      "example": "/plurk/topic/standwithukraine",
       "parameters": {
-        "category": "Category, see the table below, `topReplurks` by default",
-        "lang": "Language, see the table below, `en` by default"
+        "topic": "Topic ID, can be found in URL"
       },
-      "name": "Top",
-      "description": "| Top Replurks | Top Favorites | Top Responded |\n| ------------ | ------------- | ------------- |\n| topReplurks  | topFavorites  | topResponded  |\n\n| English | 中文（繁體） |\n| ------- | ------------ |\n| en      | zh           |",
+      "name": "Topic",
       "provider_id": "plurk",
       "provider_name": "Plurk",
-      "route_key": "/top/:category?/:lang?"
+      "route_key": "/topic/:topic"
     }
   },
   {
@@ -774,19 +1068,19 @@
     }
   },
   {
-    "provider_id": "qq",
-    "provider_name": "腾讯网",
-    "route_key": "/kg/:userId",
+    "provider_id": "rattibha",
+    "provider_name": "Rattibha",
+    "route_key": "/user/:user",
     "route": {
-      "path": "/kg/:userId",
-      "example": "/qq/kg/639a9a86272c308e33",
+      "path": "/user/:user",
+      "example": "/rattibha/user/elonmusk",
       "parameters": {
-        "userId": "用户 ID, 可在对应页面的 URL 中找到"
+        "user": "Twitter username, without @"
       },
-      "name": "用户作品列表",
-      "provider_id": "qq",
-      "provider_name": "腾讯网",
-      "route_key": "/kg/:userId"
+      "name": "User Threads",
+      "provider_id": "rattibha",
+      "provider_name": "Rattibha",
+      "route_key": "/user/:user"
     }
   },
   {
@@ -806,41 +1100,32 @@
     }
   },
   {
-    "provider_id": "telegram",
-    "provider_name": "Telegram",
-    "route_key": "/channel/:username/:routeParams?",
+    "provider_id": "twitter",
+    "provider_name": "X (Twitter)",
+    "route_key": "/home_latest/:routeParams?",
     "route": {
-      "path": "/channel/:username/:routeParams?",
-      "view": 1,
-      "example": "/telegram/channel/awesomeRSSHub",
-      "parameters": {
-        "username": "channel username",
-        "routeParams": "extra parameters, see the table below\n| Key                    | Description                                                           | Accepts                                            | Defaults to  |\n| :--------------------: | :-------------------------------------------------------------------: | :------------------------------------------------: | :----------: |\n| showLinkPreview        | Show the link preview from Telegram                                   | 0/1/true/false                                     | true         |\n| showViaBot             | For messages sent via bot, show the bot                               | 0/1/true/false                                     | true         |\n| showReplyTo            | For reply messages, show the target of the reply                      | 0/1/true/false                                     | true         |\n| showFwdFrom            | For forwarded messages, show the forwarding source                    | 0/1/true/false                                     | true         |\n| showFwdFromAuthor      | For forwarded messages, show the author of the forwarding source      | 0/1/true/false                                     | true         |\n| showInlineButtons      | Show inline buttons                                                   | 0/1/true/false                                     | false        |\n| showMediaTagInTitle    | Show media tags in the title                                          | 0/1/true/false                                     | true         |\n| showMediaTagAsEmoji    | Show media tags as emoji                                              | 0/1/true/false                                     | true         |\n| showHashtagAsHyperlink | Show hashtags as hyperlinks (`https://t.me/s/channel?q=%23hashtag`) | 0/1/true/false                                     | true         |\n| includeFwd             | Include forwarded messages                                            | 0/1/true/false                                     | true         |\n| includeReply           | Include reply messages                                                | 0/1/true/false                                     | true         |\n| includeServiceMsg      | Include service messages (e.g. message pinned, channel photo updated) | 0/1/true/false                                     | true         |\n| includeUnsupportedMsg  | Include messages unsupported by t.me                                  | 0/1/true/false                                     | false        |\n| searchQuery            | search query                                                          | keywords; replace `#hashtag` with `%23hashtag` | (no keyword) |\n\nSpecify different option values than default values can meet different needs, URL\n\n```\nhttps://rsshub.app/telegram/channel/NewlearnerChannel/showLinkPreview=0&showViaBot=0&showReplyTo=0&showFwdFrom=0&showFwdFromAuthor=0&showInlineButtons=0&showMediaTagInTitle=1&showMediaTagAsEmoji=1&includeFwd=0&includeReply=1&includeServiceMsg=0&includeUnsupportedMsg=0\n```\n\ngenerates an RSS without any link previews and annoying metadata, with emoji media tags in the title, without forwarded messages (but with reply messages), and without messages you don't care about (service messages and unsupported messages), for people who prefer pure subscriptions.\n\nFor backward compatibility reasons, invalid `routeParams` will be treated as `searchQuery` .\n"
-      },
-      "name": "Channel",
-      "description": "\n::: tip\n  Due to Telegram restrictions, some channels involving pornography, copyright, and politics cannot be subscribed. You can confirm by visiting `https://t.me/s/:username`, it's recommended to deploy your own instance with telegram api configs (create your telegram application via `https://core.telegram.org/api/obtaining_api_id`, run this command `node ./lib/routes/telegram/scripts/get-telegram-session.mjs` to get `TELEGRAM_SESSION` and set it as Environment Variable).\n:::",
-      "provider_id": "telegram",
-      "provider_name": "Telegram",
-      "route_key": "/channel/:username/:routeParams?"
+      "path": "/home_latest/:routeParams?",
+      "example": "/twitter/home_latest",
+      "name": "Home latest timeline",
+      "provider_id": "twitter",
+      "provider_name": "X (Twitter)",
+      "route_key": "/home_latest/:routeParams?"
     }
   },
   {
-    "provider_id": "weibo",
-    "provider_name": "微博",
-    "route_key": "/super_index/:id/:type?/:routeParams?",
+    "provider_id": "vocus",
+    "provider_name": "方格子",
+    "route_key": "/publication/:id",
     "route": {
-      "path": "/super_index/:id/:type?/:routeParams?",
-      "example": "/weibo/super_index/1008084989d223732bf6f02f75ea30efad58a9/sort_time",
+      "path": "/publication/:id",
+      "example": "/vocus/publication/bass",
       "parameters": {
-        "id": "超话ID",
-        "type": "类型：见下表",
-        "routeParams": "额外参数；请参阅上面的说明和表格"
+        "id": "出版專題 id，可在出版專題主页的 URL 找到"
       },
-      "name": "超话",
-      "description": "| type       | 备注             |\n| ---------- | ---------------- |\n| soul       | 精华             |\n| video      | 视频（暂不支持） |\n| album      | 相册（暂不支持） |\n| hot_sort  | 热门             |\n| sort_time | 最新帖子         |\n| feed       | 最新评论         |",
-      "provider_id": "weibo",
-      "provider_name": "微博",
-      "route_key": "/super_index/:id/:type?/:routeParams?"
+      "name": "出版專題",
+      "provider_id": "vocus",
+      "provider_name": "方格子",
+      "route_key": "/publication/:id"
     }
   },
   {
@@ -879,105 +1164,19 @@
     }
   },
   {
-    "provider_id": "weibo",
-    "provider_name": "微博",
-    "route_key": "/search/hot/:fulltext?",
-    "route": {
-      "path": "/search/hot/:fulltext?",
-      "view": 1,
-      "example": "/weibo/search/hot",
-      "parameters": {
-        "fulltext": {
-          "description": "\n-   使用`/weibo/search/hot`可以获取热搜条目列表；\n-   使用`/weibo/search/hot/fulltext`可以进一步获取热搜条目下的摘要信息（不含图片视频）；\n-   使用`/weibo/search/hot/fulltext?pic=true`可以获取图片缩略（但需要配合额外的手段，例如浏览器上的 Header Editor 等来修改 referer 参数为`https://weibo.com`，以规避微博的外链限制，否则图片无法显示。）\n-   使用`/weibo/search/hot/fulltext?pic=true&fullpic=true`可以获取 Original 图片（但需要配合额外的手段，例如浏览器上的 Header Editor 等来修改 referer 参数为`https://weibo.com`，以规避微博的外链限制，否则图片无法显示。）"
-        }
-      },
-      "name": "热搜榜",
-      "url": "s.weibo.com/top/summary",
-      "provider_id": "weibo",
-      "provider_name": "微博",
-      "route_key": "/search/hot/:fulltext?"
-    }
-  },
-  {
     "provider_id": "youtube",
     "provider_name": "YouTube",
-    "route_key": "/channel/:id/:embed?",
+    "route_key": "/community/:handle",
     "route": {
-      "path": "/channel/:id/:embed?",
-      "example": "/youtube/channel/UCDwDMPOZfxVV0x_dz0eQ8KQ",
+      "path": "/community/:handle",
+      "example": "/youtube/community/@JFlaMusic",
       "parameters": {
-        "id": "YouTube channel id",
-        "embed": "Default to embed the video, set to any value to disable embedding"
+        "handle": "YouTube handles or channel id"
       },
-      "name": "Channel with id",
-      "description": "::: tip\nYouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).\n:::",
+      "name": "Community",
       "provider_id": "youtube",
       "provider_name": "YouTube",
-      "route_key": "/channel/:id/:embed?"
-    }
-  },
-  {
-    "provider_id": "zhihu",
-    "provider_name": "知乎",
-    "route_key": "/people/allCollections/:id",
-    "route": {
-      "path": "/people/allCollections/:id",
-      "view": 0,
-      "example": "/zhihu/people/allCollections/87-44-49-67",
-      "parameters": {
-        "id": "作者 id，可在用户主页 URL 中找到"
-      },
-      "name": "用户全部收藏内容",
-      "provider_id": "zhihu",
-      "provider_name": "知乎",
-      "route_key": "/people/allCollections/:id"
-    }
-  },
-  {
-    "provider_id": "zhihu",
-    "provider_name": "知乎",
-    "route_key": "/collection/:id/:getAll?",
-    "route": {
-      "path": "/collection/:id/:getAll?",
-      "example": "/zhihu/collection/26444956",
-      "parameters": {
-        "id": "收藏夹 id，可在收藏夹页面 URL 中找到",
-        "getAll": "获取全部收藏内容，任意值为打开"
-      },
-      "name": "收藏夹",
-      "provider_id": "zhihu",
-      "provider_name": "知乎",
-      "route_key": "/collection/:id/:getAll?"
-    }
-  },
-  {
-    "provider_id": "zhihu",
-    "provider_name": "知乎",
-    "route_key": "/weekly",
-    "route": {
-      "path": "/weekly",
-      "example": "/zhihu/weekly",
-      "parameters": {},
-      "name": "知乎书店 - 知乎周刊",
-      "url": "www.zhihu.com/pub/weekly",
-      "provider_id": "zhihu",
-      "provider_name": "知乎",
-      "route_key": "/weekly"
-    }
-  },
-  {
-    "provider_id": "zhihu",
-    "provider_name": "知乎",
-    "route_key": "/pin/daily",
-    "route": {
-      "path": "/pin/daily",
-      "example": "/zhihu/pin/daily",
-      "parameters": {},
-      "name": "知乎想法 - 24 小时新闻汇总",
-      "url": "daily.zhihu.com/*",
-      "provider_id": "zhihu",
-      "provider_name": "知乎",
-      "route_key": "/pin/daily"
+      "route_key": "/community/:handle"
     }
   },
   {

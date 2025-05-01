@@ -1,5 +1,22 @@
 [
   {
+    "provider_id": "0818tuan",
+    "provider_name": "0818 团",
+    "route_key": "/:listId?",
+    "route": {
+      "path": "/:listId?",
+      "example": "/0818tuan",
+      "parameters": {
+        "listId": "活动分类，见下表，默认为 `1`"
+      },
+      "name": "分类",
+      "description": "| 最新线报 | 实测活动 | 优惠券 |\n| -------- | -------- | ------ |\n| 1        | 2        | 3      |",
+      "provider_id": "0818tuan",
+      "provider_name": "0818 团",
+      "route_key": "/:listId?"
+    }
+  },
+  {
     "provider_id": "damai",
     "provider_name": "大麦网",
     "route_key": "/activity/:city/:category/:subcategory/:keyword?",
@@ -17,6 +34,22 @@
       "provider_id": "damai",
       "provider_name": "大麦网",
       "route_key": "/activity/:city/:category/:subcategory/:keyword?"
+    }
+  },
+  {
+    "provider_id": "duozhuayu",
+    "provider_name": "多抓鱼",
+    "route_key": "/search/:wd",
+    "route": {
+      "path": "/search/:wd",
+      "example": "/duozhuayu/search/JavaScript",
+      "parameters": {
+        "wd": "搜索关键词"
+      },
+      "name": "搜索结果",
+      "provider_id": "duozhuayu",
+      "provider_name": "多抓鱼",
+      "route_key": "/search/:wd"
     }
   },
   {
@@ -53,34 +86,32 @@
     }
   },
   {
-    "provider_id": "guangdiu",
-    "provider_name": "逛丢",
-    "route_key": "/rank",
+    "provider_id": "hottoys",
+    "provider_name": "Hot Toys",
+    "route_key": "/",
     "route": {
-      "path": "/rank",
-      "example": "/guangdiu/rank",
-      "parameters": {},
-      "name": "一小时风云榜",
-      "url": "guangdiu.com/rank",
-      "provider_id": "guangdiu",
-      "provider_name": "逛丢",
-      "route_key": "/rank"
+      "path": "/",
+      "example": "/hottoys",
+      "name": "Toys List",
+      "url": "hottoys.com.hk/",
+      "provider_id": "hottoys",
+      "provider_name": "Hot Toys",
+      "route_key": "/"
     }
   },
   {
-    "provider_id": "hotukdeals",
-    "provider_name": "hotukdeals",
-    "route_key": "/:type",
+    "provider_id": "ikea",
+    "provider_name": "IKEA",
+    "route_key": "/cn/new",
     "route": {
-      "path": "/:type",
-      "example": "/hotukdeals/hot",
-      "parameters": {
-        "type": "should be one of highlights, hot, new, discussed"
-      },
-      "name": "thread",
-      "provider_id": "hotukdeals",
-      "provider_name": "hotukdeals",
-      "route_key": "/:type"
+      "path": "/cn/new",
+      "example": "/ikea/cn/new",
+      "parameters": {},
+      "name": "中国 - 当季新品推荐",
+      "url": "ikea.cn/cn/zh/new/",
+      "provider_id": "ikea",
+      "provider_name": "IKEA",
+      "route_key": "/cn/new"
     }
   },
   {
@@ -96,20 +127,6 @@
       "provider_id": "ikea",
       "provider_name": "IKEA",
       "route_key": "/gb/new"
-    }
-  },
-  {
-    "provider_id": "mi",
-    "provider_name": "小米",
-    "route_key": "/crowdfunding",
-    "route": {
-      "path": "/crowdfunding",
-      "example": "/mi/crowdfunding",
-      "name": "小米众筹",
-      "view": 5,
-      "provider_id": "mi",
-      "provider_name": "小米",
-      "route_key": "/crowdfunding"
     }
   },
   {
@@ -132,36 +149,35 @@
     }
   },
   {
-    "provider_id": "openrice",
-    "provider_name": "Openrice開飯喇",
-    "route_key": "/:lang/hongkong/explore/chart/:category",
+    "provider_id": "patagonia",
+    "provider_name": "Patagonia",
+    "route_key": "/new-arrivals/:category",
     "route": {
-      "path": "/:lang/hongkong/explore/chart/:category",
-      "example": "/openrice/zh/hongkong/explore/chart/most-bookmarked",
+      "path": "/new-arrivals/:category",
+      "example": "/patagonia/new-arrivals/mens",
       "parameters": {
-        "lang": "语言，缺省为 zh",
-        "category": "类别，缺省为 most-bookmarked"
+        "category": "category, see below"
       },
-      "name": "香港餐廳排行榜",
-      "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n\n| 最多收藏 | 每周最高评分 | 最高浏览 | 最佳甜品餐厅 |\n| ----- | ------ | ----- | ----- |\n| most-bookmarked | best-rating | most-popular | best-dessert |\n  ",
-      "provider_id": "openrice",
-      "provider_name": "Openrice開飯喇",
-      "route_key": "/:lang/hongkong/explore/chart/:category"
+      "name": "New Arrivals",
+      "description": "| Men's | Women's | Kids' & Baby | Packs & Gear |\n| ----- | ------- | ------------ | ------------ |\n| mens  | womens  | kids         | luggage      |",
+      "provider_id": "patagonia",
+      "provider_name": "Patagonia",
+      "route_key": "/new-arrivals/:category"
     }
   },
   {
-    "provider_id": "shcstheatre",
-    "provider_name": "上海文化广场",
-    "route_key": "/programs",
+    "provider_id": "shoac",
+    "provider_name": "上海东方艺术中心",
+    "route_key": "/recent-show",
     "route": {
-      "path": "/programs",
-      "example": "/shcstheatre/programs",
+      "path": "/recent-show",
+      "example": "/shoac/recent-show",
       "parameters": {},
-      "name": "节目列表",
-      "url": "www.shcstheatre.com/Program/programList.aspx",
-      "provider_id": "shcstheatre",
-      "provider_name": "上海文化广场",
-      "route_key": "/programs"
+      "name": "演出月历",
+      "url": "shoac.com.cn/",
+      "provider_id": "shoac",
+      "provider_name": "上海东方艺术中心",
+      "route_key": "/recent-show"
     }
   },
   {
@@ -183,96 +199,19 @@
   {
     "provider_id": "showstart",
     "provider_name": "秀动网",
-    "route_key": "/artist/:id",
+    "route_key": "/event/:cityCode/:showStyle?",
     "route": {
-      "path": "/artist/:id",
-      "example": "/showstart/artist/301783",
+      "path": "/event/:cityCode/:showStyle?",
+      "example": "/showstart/event/571/3",
       "parameters": {
-        "id": "音乐人 ID"
+        "cityCode": "演出城市 (编号)",
+        "showStyle": "演出风格 (编号)"
       },
-      "name": "按音乐人 - 演出更新",
-      "description": "::: tip\n音乐人 ID 查询: `/showstart/search/artist/:keyword`，如: [https://rsshub.app/showstart/search/artist/周杰伦](https://rsshub.app/showstart/search/artist/周杰伦)\n:::",
+      "name": "按城市 - 演出更新",
+      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::",
       "provider_id": "showstart",
       "provider_name": "秀动网",
-      "route_key": "/artist/:id"
-    }
-  },
-  {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/search/:type/:keyword?",
-    "route": {
-      "path": "/search/:type/:keyword?",
-      "example": "/showstart/search/live",
-      "parameters": {
-        "keyword": "搜索关键词",
-        "type": {
-          "description": "类别",
-          "options": [
-            {
-              "value": "event",
-              "label": "演出"
-            },
-            {
-              "value": "artist",
-              "label": "音乐人"
-            },
-            {
-              "value": "site",
-              "label": "场地"
-            },
-            {
-              "value": "brand",
-              "label": "厂牌"
-            },
-            {
-              "value": "city",
-              "label": "城市"
-            },
-            {
-              "value": "style",
-              "label": "风格"
-            }
-          ]
-        }
-      },
-      "name": "演出搜索",
-      "provider_id": "showstart",
-      "provider_name": "秀动网",
-      "route_key": "/search/:type/:keyword?"
-    }
-  },
-  {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/site/:siteId",
-    "route": {
-      "path": "/site/:siteId",
-      "example": "/showstart/site/3583",
-      "parameters": {
-        "siteId": "演出场地 (编号)"
-      },
-      "name": "按场地 - 演出更新",
-      "description": "::: tip\n-   演出场地 ID 查询: `/showstart/search/site/:keyword`, 如: [https://rsshub.app/showstart/search/site/酒球会](https://rsshub.app/showstart/search/site/酒球会)\n:::",
-      "provider_id": "showstart",
-      "provider_name": "秀动网",
-      "route_key": "/site/:siteId"
-    }
-  },
-  {
-    "provider_id": "smzdm",
-    "provider_name": "什么值得买",
-    "route_key": "/baoliao/:uid",
-    "route": {
-      "path": "/baoliao/:uid",
-      "example": "/smzdm/baoliao/7367111021",
-      "parameters": {
-        "uid": "用户id，网址上直接可以看到"
-      },
-      "name": "用户爆料",
-      "provider_id": "smzdm",
-      "provider_name": "什么值得买",
-      "route_key": "/baoliao/:uid"
+      "route_key": "/event/:cityCode/:showStyle?"
     }
   },
   {
@@ -309,53 +248,18 @@
     }
   },
   {
-    "provider_id": "uniqlo",
-    "provider_name": "Uniqlo",
-    "route_key": "/new/:country/:category",
+    "provider_id": "tesla",
+    "provider_name": "特斯拉中国",
+    "route_key": "/price",
     "route": {
-      "path": "/new/:country/:category",
-      "example": "/uniqlo/new/sg/men",
-      "parameters": {
-        "country": "currently only supports sg, us, jp",
-        "category": "supports `men` `women`, `kids`, `baby`"
-      },
-      "name": "New Arrivals",
-      "provider_id": "uniqlo",
-      "provider_name": "Uniqlo",
-      "route_key": "/new/:country/:category"
-    }
-  },
-  {
-    "provider_id": "xianbao",
-    "provider_name": "线报酷",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "name": "线板酷",
-      "url": "new.xianbao.fun",
-      "example": "/xianbao",
-      "parameters": {
-        "category": "类别id，默认为：latest"
-      },
-      "description": "\n| 分类         | id             |\n| ------------ | -------------- |\n| 最新         | latest         |\n| 赚客吧       | zuankeba       |\n| 赚客吧热帖   | zuankeba-hot   |\n| 新赚吧       | xinzuanba      |\n| 新赚吧热帖   | xinzuanba-hot  |\n| 微博         | weibo          |\n| 微博热帖     | weibo-hot      |\n| 豆瓣线报     | douban         |\n| 豆瓣热帖     | douban-hot     |\n| 酷安         | kuan           |\n| 小嘀咕       | xiaodigu       |\n| 葫芦侠       | huluxia        |\n| 小刀娱乐网   | xiadao         |\n| 技术QQ网     | qqjishu        |\n| YYOK大全     | yyok           |\n| 活动资讯网   | huodong        |\n| 免费赚钱中心 | mianfei        |\n| 一小时       | yixiaoshi      |\n| 三小时       | sanxiaoshi     |\n| 六小时       | liuxiaoshi     |\n| 十二小时     | shierxiaoshi   |\n| 二十四小时   | ershisixiaoshi |\n| 四十八小时   | sishibaxiaoshi |\n| 今天         | jintian        |\n| 昨天         | zuotian        |\n| 前天         | qiantian       |\n| 三天         | santian        |\n| 五天         | wutian         |\n| 七天         | qitian         |\n| 十五天       | shiwutian      |",
-      "provider_id": "xianbao",
-      "provider_name": "线报酷",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "xiaomiyoupin",
-    "provider_name": "小米有品",
-    "route_key": "/crowdfunding",
-    "route": {
-      "path": "/crowdfunding",
-      "example": "/xiaomiyoupin/crowdfunding",
+      "path": "/price",
+      "example": "/tesla/price",
       "parameters": {},
-      "name": "小米有品众筹",
-      "url": "xiaomiyoupin.com/",
-      "provider_id": "xiaomiyoupin",
-      "provider_name": "小米有品",
-      "route_key": "/crowdfunding"
+      "name": "价格",
+      "url": "tesla.cn/model3/design",
+      "provider_id": "tesla",
+      "provider_name": "特斯拉中国",
+      "route_key": "/price"
     }
   },
   {

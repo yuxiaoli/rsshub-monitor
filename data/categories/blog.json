@@ -1,33 +1,30 @@
 [
   {
-    "provider_id": "apache",
-    "provider_name": "Apache",
-    "route_key": "/apisix/blog",
+    "provider_id": "apnic",
+    "provider_name": "APNIC",
+    "route_key": "/blog",
     "route": {
-      "path": "/apisix/blog",
-      "example": "/apache/apisix/blog",
-      "parameters": {},
-      "name": "APISIX 博客",
-      "provider_id": "apache",
-      "provider_name": "Apache",
-      "route_key": "/apisix/blog"
+      "path": "/blog",
+      "example": "/apnic/blog",
+      "url": "blog.apnic.net",
+      "name": "Blog",
+      "provider_id": "apnic",
+      "provider_name": "APNIC",
+      "route_key": "/blog"
     }
   },
   {
-    "provider_id": "caixin",
-    "provider_name": "财新博客",
-    "route_key": "/blog/:column?",
+    "provider_id": "bulianglin",
+    "provider_name": "不良林",
+    "route_key": "/",
     "route": {
-      "path": "/blog/:column?",
-      "example": "/caixin/blog/zhangwuchang",
-      "parameters": {
-        "column": "博客名称，可在博客主页的 URL 找到"
-      },
-      "name": "用户博客",
-      "description": "通过提取文章全文，以提供比官方源更佳的阅读体验.",
-      "provider_id": "caixin",
-      "provider_name": "财新博客",
-      "route_key": "/blog/:column?"
+      "path": "/",
+      "example": "/bulianglin",
+      "name": "全部文章",
+      "url": "bulianglin.com/",
+      "provider_id": "bulianglin",
+      "provider_name": "不良林",
+      "route_key": "/"
     }
   },
   {
@@ -46,48 +43,17 @@
     }
   },
   {
-    "provider_id": "cmu",
-    "provider_name": "Carnegie Mellon University",
-    "route_key": "/andypavlo/blog",
-    "route": {
-      "path": "/andypavlo/blog",
-      "example": "/cmu/andypavlo/blog",
-      "parameters": {},
-      "name": "Andy Pavlo Blog",
-      "provider_id": "cmu",
-      "provider_name": "Carnegie Mellon University",
-      "route_key": "/andypavlo/blog"
-    }
-  },
-  {
-    "provider_id": "dayanzai",
-    "provider_name": "大眼仔旭",
-    "route_key": "/:category/:fulltext?",
-    "route": {
-      "path": "/:category/:fulltext?",
-      "example": "/dayanzai/windows",
-      "parameters": {
-        "category": "分类",
-        "fulltext": "是否获取全文，需要获取则传入参数`y`"
-      },
-      "name": "分类",
-      "description": "| 微软应用 | 安卓应用 | 教程资源 | 其他资源 |\n| -------- | -------- | -------- | -------- |\n| windows  | android  | tutorial | other    |",
-      "provider_id": "dayanzai",
-      "provider_name": "大眼仔旭",
-      "route_key": "/:category/:fulltext?"
-    }
-  },
-  {
-    "provider_id": "flashcat",
-    "provider_name": "Flashcat",
+    "provider_id": "deltaio",
+    "provider_name": "Delta Lake",
     "route_key": "/blog",
     "route": {
       "path": "/blog",
-      "example": "/flashcat/blog",
+      "example": "/deltaio/blog",
       "parameters": {},
-      "name": "快猫星云博客",
-      "provider_id": "flashcat",
-      "provider_name": "Flashcat",
+      "name": "Blogs",
+      "url": "delta.io/blog",
+      "provider_id": "deltaio",
+      "provider_name": "Delta Lake",
       "route_key": "/blog"
     }
   },
@@ -104,6 +70,56 @@
       "provider_id": "foreverblog",
       "provider_name": "十年之约",
       "route_key": "/feeds"
+    }
+  },
+  {
+    "provider_id": "geocaching",
+    "provider_name": "Geocaching",
+    "route_key": "/blogs/:language?",
+    "route": {
+      "path": "/blogs/:language?",
+      "example": "/geocaching/blogs/en",
+      "parameters": {
+        "language": {
+          "description": "language",
+          "default": "en",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "nl",
+              "label": "Nederlands"
+            },
+            {
+              "value": "cs",
+              "label": "Čeština"
+            },
+            {
+              "value": "all",
+              "label": "Not Specified"
+            }
+          ]
+        }
+      },
+      "name": "Official Blogs",
+      "url": "geocaching.com/blog/",
+      "provider_id": "geocaching",
+      "provider_name": "Geocaching",
+      "route_key": "/blogs/:language?"
     }
   },
   {
@@ -158,46 +174,48 @@
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/research",
+    "provider_id": "gs",
+    "provider_name": "Goldman Sachs",
+    "route_key": "/developer/blog",
     "route": {
-      "path": "/research",
-      "example": "/google/research",
-      "name": "Research Blog",
-      "provider_id": "google",
-      "provider_name": "Google",
-      "route_key": "/research"
-    }
-  },
-  {
-    "provider_id": "hicairo",
-    "provider_name": "HiFeng'Blog",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/hicairo",
-      "name": "最近发表",
-      "url": "hicairo.com/",
-      "provider_id": "hicairo",
-      "provider_name": "HiFeng'Blog",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "imhcg",
-    "provider_name": "imhcg的信息站",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "view": 5,
-      "example": "/imhcg",
+      "path": "/developer/blog",
+      "example": "/gs/developer/blog",
       "parameters": {},
-      "name": "Engineering blogs",
-      "url": "infos.imhcg.cn",
-      "provider_id": "imhcg",
-      "provider_name": "imhcg的信息站",
-      "route_key": "/"
+      "name": "Goldman Sachs Developer Blog",
+      "zh": {
+        "name": "高盛开发者博客"
+      },
+      "provider_id": "gs",
+      "provider_name": "Goldman Sachs",
+      "route_key": "/developer/blog"
+    }
+  },
+  {
+    "provider_id": "itc",
+    "provider_name": "Open Github社区",
+    "route_key": "/collection/:colType",
+    "route": {
+      "path": "/collection/:colType",
+      "example": "/itc/collection/1",
+      "name": "合集",
+      "provider_id": "itc",
+      "provider_name": "Open Github社区",
+      "route_key": "/collection/:colType"
+    }
+  },
+  {
+    "provider_id": "kadokawa",
+    "provider_name": "台灣角川",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "name": "角編新聞台",
+      "url": "kadokawa.com.tw",
+      "example": "/kadokawa/blog",
+      "description": "",
+      "provider_id": "kadokawa",
+      "provider_name": "台灣角川",
+      "route_key": "/blog"
     }
   },
   {
@@ -216,18 +234,18 @@
     }
   },
   {
-    "provider_id": "langchain",
-    "provider_name": "LangChain Blog",
-    "route_key": "/blog",
+    "provider_id": "luolei",
+    "provider_name": "罗磊的独立博客",
+    "route_key": "/",
     "route": {
-      "path": "/blog",
-      "example": "/langchain/blog",
-      "url": "blog.langchain.dev/",
-      "name": "Blog",
-      "description": "LangChain Blog Posts",
-      "provider_id": "langchain",
-      "provider_name": "LangChain Blog",
-      "route_key": "/blog"
+      "path": "/",
+      "name": "罗磊的独立博客",
+      "url": "luolei.org",
+      "example": "/luolei",
+      "description": "",
+      "provider_id": "luolei",
+      "provider_name": "罗磊的独立博客",
+      "route_key": "/"
     }
   },
   {
@@ -246,39 +264,6 @@
     }
   },
   {
-    "provider_id": "macmenubar",
-    "provider_name": "MacMenuBar",
-    "route_key": "/recently/:category?",
-    "route": {
-      "path": "/recently/:category?",
-      "example": "/macmenubar/recently/developer-apps,system-tools",
-      "parameters": {
-        "category": "Category path name, seperate by comma, default is all categories. Category path name can be found in url"
-      },
-      "name": "Recently",
-      "provider_id": "macmenubar",
-      "provider_name": "MacMenuBar",
-      "route_key": "/recently/:category?"
-    }
-  },
-  {
-    "provider_id": "medium",
-    "provider_name": "Medium",
-    "route_key": "/feed/:user",
-    "route": {
-      "path": "/feed/:user",
-      "view": 1,
-      "example": "/medium/feed/zhgchgli",
-      "parameters": {
-        "user": "Username of the Medium"
-      },
-      "name": "Medium Feed",
-      "provider_id": "medium",
-      "provider_name": "Medium",
-      "route_key": "/feed/:user"
-    }
-  },
-  {
     "provider_id": "nielsberglund",
     "provider_name": "Niels Berglund Blog",
     "route_key": "/blog",
@@ -294,46 +279,17 @@
     }
   },
   {
-    "provider_id": "njuferret",
-    "provider_name": "njuferret",
-    "route_key": "/blog",
+    "provider_id": "playpcesor",
+    "provider_name": "电脑玩物",
+    "route_key": "/",
     "route": {
-      "path": "/blog",
-      "example": "/njuferret/blog",
-      "name": "Blogs",
-      "provider_id": "njuferret",
-      "provider_name": "njuferret",
-      "route_key": "/blog"
-    }
-  },
-  {
-    "provider_id": "obsidian",
-    "provider_name": "Obsidian",
-    "route_key": "/publish/:id",
-    "route": {
-      "path": "/publish/:id",
-      "example": "/obsidian/publish/marshallontheroad",
-      "parameters": {
-        "id": "网站 id，由Publish持有者自定义"
-      },
-      "name": "Publish",
-      "url": "publish.obsidian.md/",
-      "provider_id": "obsidian",
-      "provider_name": "Obsidian",
-      "route_key": "/publish/:id"
-    }
-  },
-  {
-    "provider_id": "react",
-    "provider_name": "React",
-    "route_key": "/blog",
-    "route": {
-      "path": "/blog",
-      "name": "Blog",
-      "example": "/react/blog",
-      "provider_id": "react",
-      "provider_name": "React",
-      "route_key": "/blog"
+      "path": "/",
+      "example": "/playpcesor",
+      "name": "每日精选文章",
+      "url": "playpcesor.com/",
+      "provider_id": "playpcesor",
+      "provider_name": "电脑玩物",
+      "route_key": "/"
     }
   },
   {
@@ -352,34 +308,32 @@
     }
   },
   {
-    "provider_id": "youmemark",
-    "provider_name": "YouMeMark",
-    "route_key": "/:userid",
+    "provider_id": "xys",
+    "provider_name": "新语丝",
+    "route_key": "/new",
     "route": {
-      "path": "/:userid",
-      "example": "/youmemark/pseudoyu",
-      "parameters": {
-        "userid": "`userid` is the user id of youmemark"
-      },
-      "name": "Bookmarks",
-      "description": "Get user's public bookmarks from YouMeMark\n::: tip\n  Add `?limit=<number>` to the end of the route to limit the number of items. Default is 10.\n:::",
-      "provider_id": "youmemark",
-      "provider_name": "YouMeMark",
-      "route_key": "/:userid"
+      "path": "/new",
+      "example": "/xys/new",
+      "parameters": {},
+      "name": "新到资料",
+      "url": "xys.org/",
+      "provider_id": "xys",
+      "provider_name": "新语丝",
+      "route_key": "/new"
     }
   },
   {
-    "provider_id": "zjuvag",
-    "provider_name": "浙江大学可视分析小组",
-    "route_key": "/blog",
+    "provider_id": "ygkkk",
+    "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
+    "route_key": "/",
     "route": {
-      "path": "/blog",
-      "example": "/zjuvag/blog",
-      "parameters": {},
-      "name": "博客",
-      "provider_id": "zjuvag",
-      "provider_name": "浙江大学可视分析小组",
-      "route_key": "/blog"
+      "path": "/",
+      "example": "/ygkkk",
+      "name": "最新发表",
+      "url": "ygkkk.blogspot.com/",
+      "provider_id": "ygkkk",
+      "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
+      "route_key": "/"
     }
   }
 ]

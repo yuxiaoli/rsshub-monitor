@@ -1,5 +1,19 @@
 [
   {
+    "provider_id": "0818tuan",
+    "provider_name": "0818 团",
+    "route_key": "/:listId?",
+    "route": {
+      "name": "分类",
+      "path": "/:listId?",
+      "example": "/0818tuan",
+      "parameters": {
+        "listId": "活动分类，见下表，默认为 `1`"
+      },
+      "description": "| 最新线报 | 实测活动 | 优惠券 |\n| -------- | -------- | ------ |\n| 1        | 2        | 3      |"
+    }
+  },
+  {
     "provider_id": "damai",
     "provider_name": "大麦网",
     "route_key": "/activity/:city/:category/:subcategory/:keyword?",
@@ -14,6 +28,20 @@
         "keyword": "搜索关键字，置空为不限制"
       },
       "description": "城市、分类名、子分类名，请参见[大麦网搜索页面](https://search.damai.cn/search.htm)"
+    }
+  },
+  {
+    "provider_id": "duozhuayu",
+    "provider_name": "多抓鱼",
+    "route_key": "/search/:wd",
+    "route": {
+      "name": "搜索结果",
+      "path": "/search/:wd",
+      "example": "/duozhuayu/search/JavaScript",
+      "parameters": {
+        "wd": "搜索关键词"
+      },
+      "description": ""
     }
   },
   {
@@ -45,28 +73,26 @@
     }
   },
   {
-    "provider_id": "guangdiu",
-    "provider_name": "逛丢",
-    "route_key": "/rank",
+    "provider_id": "hottoys",
+    "provider_name": "Hot Toys",
+    "route_key": "/",
     "route": {
-      "name": "一小时风云榜",
-      "path": "/rank",
-      "example": "/guangdiu/rank",
+      "name": "Toys List",
+      "path": "/",
+      "example": "/hottoys",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "hotukdeals",
-    "provider_name": "hotukdeals",
-    "route_key": "/:type",
+    "provider_id": "ikea",
+    "provider_name": "IKEA",
+    "route_key": "/cn/new",
     "route": {
-      "name": "thread",
-      "path": "/:type",
-      "example": "/hotukdeals/hot",
-      "parameters": {
-        "type": "should be one of highlights, hot, new, discussed"
-      },
+      "name": "中国 - 当季新品推荐",
+      "path": "/cn/new",
+      "example": "/ikea/cn/new",
+      "parameters": {},
       "description": ""
     }
   },
@@ -78,18 +104,6 @@
       "name": "UK - New Product Release",
       "path": "/gb/new",
       "example": "/ikea/gb/new",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "mi",
-    "provider_name": "小米",
-    "route_key": "/crowdfunding",
-    "route": {
-      "name": "小米众筹",
-      "path": "/crowdfunding",
-      "example": "/mi/crowdfunding",
       "parameters": {},
       "description": ""
     }
@@ -111,28 +125,27 @@
     }
   },
   {
-    "provider_id": "openrice",
-    "provider_name": "Openrice開飯喇",
-    "route_key": "/:lang/hongkong/explore/chart/:category",
+    "provider_id": "patagonia",
+    "provider_name": "Patagonia",
+    "route_key": "/new-arrivals/:category",
     "route": {
-      "name": "香港餐廳排行榜",
-      "path": "/:lang/hongkong/explore/chart/:category",
-      "example": "/openrice/zh/hongkong/explore/chart/most-bookmarked",
+      "name": "New Arrivals",
+      "path": "/new-arrivals/:category",
+      "example": "/patagonia/new-arrivals/mens",
       "parameters": {
-        "lang": "语言，缺省为 zh",
-        "category": "类别，缺省为 most-bookmarked"
+        "category": "category, see below"
       },
-      "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n\n| 最多收藏 | 每周最高评分 | 最高浏览 | 最佳甜品餐厅 |\n| ----- | ------ | ----- | ----- |\n| most-bookmarked | best-rating | most-popular | best-dessert |\n  "
+      "description": "| Men's | Women's | Kids' & Baby | Packs & Gear |\n| ----- | ------- | ------------ | ------------ |\n| mens  | womens  | kids         | luggage      |"
     }
   },
   {
-    "provider_id": "shcstheatre",
-    "provider_name": "上海文化广场",
-    "route_key": "/programs",
+    "provider_id": "shoac",
+    "provider_name": "上海东方艺术中心",
+    "route_key": "/recent-show",
     "route": {
-      "name": "节目列表",
-      "path": "/programs",
-      "example": "/shcstheatre/programs",
+      "name": "演出月历",
+      "path": "/recent-show",
+      "example": "/shoac/recent-show",
       "parameters": {},
       "description": ""
     }
@@ -154,86 +167,16 @@
   {
     "provider_id": "showstart",
     "provider_name": "秀动网",
-    "route_key": "/artist/:id",
+    "route_key": "/event/:cityCode/:showStyle?",
     "route": {
-      "name": "按音乐人 - 演出更新",
-      "path": "/artist/:id",
-      "example": "/showstart/artist/301783",
+      "name": "按城市 - 演出更新",
+      "path": "/event/:cityCode/:showStyle?",
+      "example": "/showstart/event/571/3",
       "parameters": {
-        "id": "音乐人 ID"
+        "cityCode": "演出城市 (编号)",
+        "showStyle": "演出风格 (编号)"
       },
-      "description": "::: tip\n音乐人 ID 查询: `/showstart/search/artist/:keyword`，如: [https://rsshub.app/showstart/search/artist/周杰伦](https://rsshub.app/showstart/search/artist/周杰伦)\n:::"
-    }
-  },
-  {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/search/:type/:keyword?",
-    "route": {
-      "name": "演出搜索",
-      "path": "/search/:type/:keyword?",
-      "example": "/showstart/search/live",
-      "parameters": {
-        "keyword": "搜索关键词",
-        "type": {
-          "description": "类别",
-          "options": [
-            {
-              "value": "event",
-              "label": "演出"
-            },
-            {
-              "value": "artist",
-              "label": "音乐人"
-            },
-            {
-              "value": "site",
-              "label": "场地"
-            },
-            {
-              "value": "brand",
-              "label": "厂牌"
-            },
-            {
-              "value": "city",
-              "label": "城市"
-            },
-            {
-              "value": "style",
-              "label": "风格"
-            }
-          ]
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/site/:siteId",
-    "route": {
-      "name": "按场地 - 演出更新",
-      "path": "/site/:siteId",
-      "example": "/showstart/site/3583",
-      "parameters": {
-        "siteId": "演出场地 (编号)"
-      },
-      "description": "::: tip\n-   演出场地 ID 查询: `/showstart/search/site/:keyword`, 如: [https://rsshub.app/showstart/search/site/酒球会](https://rsshub.app/showstart/search/site/酒球会)\n:::"
-    }
-  },
-  {
-    "provider_id": "smzdm",
-    "provider_name": "什么值得买",
-    "route_key": "/baoliao/:uid",
-    "route": {
-      "name": "用户爆料",
-      "path": "/baoliao/:uid",
-      "example": "/smzdm/baoliao/7367111021",
-      "parameters": {
-        "uid": "用户id，网址上直接可以看到"
-      },
-      "description": ""
+      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::"
     }
   },
   {
@@ -264,42 +207,13 @@
     }
   },
   {
-    "provider_id": "uniqlo",
-    "provider_name": "Uniqlo",
-    "route_key": "/new/:country/:category",
+    "provider_id": "tesla",
+    "provider_name": "特斯拉中国",
+    "route_key": "/price",
     "route": {
-      "name": "New Arrivals",
-      "path": "/new/:country/:category",
-      "example": "/uniqlo/new/sg/men",
-      "parameters": {
-        "country": "currently only supports sg, us, jp",
-        "category": "supports `men` `women`, `kids`, `baby`"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "xianbao",
-    "provider_name": "线报酷",
-    "route_key": "/:category?",
-    "route": {
-      "name": "线板酷",
-      "path": "/:category?",
-      "example": "/xianbao",
-      "parameters": {
-        "category": "类别id，默认为：latest"
-      },
-      "description": "\n| 分类         | id             |\n| ------------ | -------------- |\n| 最新         | latest         |\n| 赚客吧       | zuankeba       |\n| 赚客吧热帖   | zuankeba-hot   |\n| 新赚吧       | xinzuanba      |\n| 新赚吧热帖   | xinzuanba-hot  |\n| 微博         | weibo          |\n| 微博热帖     | weibo-hot      |\n| 豆瓣线报     | douban         |\n| 豆瓣热帖     | douban-hot     |\n| 酷安         | kuan           |\n| 小嘀咕       | xiaodigu       |\n| 葫芦侠       | huluxia        |\n| 小刀娱乐网   | xiadao         |\n| 技术QQ网     | qqjishu        |\n| YYOK大全     | yyok           |\n| 活动资讯网   | huodong        |\n| 免费赚钱中心 | mianfei        |\n| 一小时       | yixiaoshi      |\n| 三小时       | sanxiaoshi     |\n| 六小时       | liuxiaoshi     |\n| 十二小时     | shierxiaoshi   |\n| 二十四小时   | ershisixiaoshi |\n| 四十八小时   | sishibaxiaoshi |\n| 今天         | jintian        |\n| 昨天         | zuotian        |\n| 前天         | qiantian       |\n| 三天         | santian        |\n| 五天         | wutian         |\n| 七天         | qitian         |\n| 十五天       | shiwutian      |"
-    }
-  },
-  {
-    "provider_id": "xiaomiyoupin",
-    "provider_name": "小米有品",
-    "route_key": "/crowdfunding",
-    "route": {
-      "name": "小米有品众筹",
-      "path": "/crowdfunding",
-      "example": "/xiaomiyoupin/crowdfunding",
+      "name": "价格",
+      "path": "/price",
+      "example": "/tesla/price",
       "parameters": {},
       "description": ""
     }

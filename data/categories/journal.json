@@ -49,53 +49,35 @@
     }
   },
   {
-    "provider_id": "cnki",
-    "provider_name": "中国知网",
-    "route_key": "/journals/debut/:name",
+    "provider_id": "caareviews",
+    "provider_name": "caa.reviews",
+    "route_key": "/essay",
     "route": {
-      "path": "/journals/debut/:name",
-      "example": "/cnki/journals/debut/LKGP",
-      "parameters": {
-        "name": "期刊缩写，可以在网址中得到"
-      },
-      "name": "网络首发",
-      "provider_id": "cnki",
-      "provider_name": "中国知网",
-      "route_key": "/journals/debut/:name"
-    }
-  },
-  {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/citations/:id",
-    "route": {
-      "path": "/citations/:id",
-      "example": "/google/citations/mlmE4JMAAAAJ",
-      "parameters": {
-        "id": "N"
-      },
-      "name": "Scholar Author Citations",
-      "description": "The parameter id in the route is the id in the URL of the user's Google Scholar reference page, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ` to `mlmE4JMAAAAJ`.\n\n  Query parameters are also supported here, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ&sortby=pubdate` to `mlmE4JMAAAAJ&sortby=pubdate`. Please make sure that the user id (`mlmE4JMAAAAJ` in this case) should be the first parameter in the query string.",
-      "provider_id": "google",
-      "provider_name": "Google",
-      "route_key": "/citations/:id"
+      "path": "/essay",
+      "example": "/caareviews/essay",
+      "parameters": {},
+      "name": "Essays",
+      "url": "caareviews.org/reviews/essay",
+      "provider_id": "caareviews",
+      "provider_name": "caa.reviews",
+      "route_key": "/essay"
     }
   },
   {
     "provider_id": "ieee",
     "provider_name": "IEEE Xplore",
-    "route_key": "/author/:aid/:sortType",
+    "route_key": "/journal/:punumber/:earlyAccess?",
     "route": {
-      "name": "IEEE Author Articles",
-      "path": "/author/:aid/:sortType",
+      "name": "IEEE Journal Articles",
+      "path": "/journal/:punumber/:earlyAccess?",
       "parameters": {
-        "aid": "Author ID",
-        "sortType": "Sort Type of papers"
+        "punumber": "Publication Number, look for `punumber` in the URL",
+        "earlyAccess": "Optional, set any value to get early access articles"
       },
-      "example": "/ieee/author/37264968900/newest",
+      "example": "/ieee/journal/6287639/preprint",
       "provider_id": "ieee",
       "provider_name": "IEEE Xplore",
-      "route_key": "/author/:aid/:sortType"
+      "route_key": "/journal/:punumber/:earlyAccess?"
     }
   },
   {
@@ -129,39 +111,6 @@
       "provider_id": "papers",
       "provider_name": "Cool Papers",
       "route_key": "/query/:keyword{.+}?"
-    }
-  },
-  {
-    "provider_id": "sigsac",
-    "provider_name": "ACM Special Interest Group on Security Audit and Control",
-    "route_key": "/ccs",
-    "route": {
-      "path": "/ccs",
-      "example": "/sigsac/ccs",
-      "name": "The ACM Conference on Computer and Communications Security",
-      "url": "sigsac.org/ccs.html",
-      "description": "Return results from 2020",
-      "provider_id": "sigsac",
-      "provider_name": "ACM Special Interest Group on Security Audit and Control",
-      "route_key": "/ccs"
-    }
-  },
-  {
-    "provider_id": "trendingpapers",
-    "provider_name": "Trending Papers",
-    "route_key": "/papers/:category?/:time?/:cited?",
-    "route": {
-      "path": "/papers/:category?/:time?/:cited?",
-      "example": "/trendingpapers/papers",
-      "parameters": {
-        "category": "Category of papers, can be found in URL. `All categories` by default.",
-        "time": "Time like `24 hours` to specify the duration of ranking, can be found in URL. `Since beginning` by default.",
-        "cited": "Cited or uncited papers, can be found in URL. `Cited and uncited papers` by default."
-      },
-      "name": "Trending Papers on arXiv",
-      "provider_id": "trendingpapers",
-      "provider_name": "Trending Papers",
-      "route_key": "/papers/:category?/:time?/:cited?"
     }
   }
 ]
