@@ -14,34 +14,6 @@
     }
   },
   {
-    "provider_id": "56kog",
-    "provider_name": "明月中文网",
-    "route_key": "/top/:category?",
-    "route": {
-      "name": "榜单",
-      "path": "/top/:category?",
-      "example": "/56kog/top/weekvisit",
-      "parameters": {
-        "category": "分类，见下表，默认为周点击榜"
-      },
-      "description": "| [周点击榜](https://www.56kog.com/top/weekvisit.html) | [总收藏榜](https://www.56kog.com/top/goodnum.html) | [最新 入库](https://www.56kog.com/top/postdate.html) |\n| ---------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------- |\n| weekvisit                                            | goodnum                                            | postdate                                             |"
-    }
-  },
-  {
-    "provider_id": "aisixiang",
-    "provider_name": "爱思想",
-    "route_key": "/column/:id",
-    "route": {
-      "name": "栏目",
-      "path": "/column/:id",
-      "example": "/aisixiang/column/722",
-      "parameters": {
-        "id": "栏目 ID, 可在对应栏目 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "aisixiang",
     "provider_name": "爱思想",
     "route_key": "/thinktank/:id/:type?",
@@ -57,17 +29,56 @@
     }
   },
   {
-    "provider_id": "aisixiang",
-    "provider_name": "爱思想",
-    "route_key": "/zhuanti/:id",
+    "provider_id": "asianfanfics",
+    "provider_name": "Asianfanfics",
+    "route_key": "/tag/:tag/:type",
     "route": {
-      "name": "专题",
-      "path": "/zhuanti/:id",
-      "example": "/aisixiang/zhuanti/211",
+      "name": "标签",
+      "path": "/tag/:tag/:type",
+      "example": "/asianfanfics/tag/milklove/N",
       "parameters": {
-        "id": "专题 ID, 可在对应专题 URL 中找到"
+        "tag": "标签",
+        "type": "排序类型"
       },
-      "description": "::: tip\n  更多专题请见 [关键词](http://www.aisixiang.com/zhuanti/)\n:::"
+      "description": "匹配asianfanfics标签，支持排序类型：\n- L: Latest 最近更新\n- N: Newest 最近发布\n- O: Oldest 最早发布\n- C: Completed 已完成\n- OS: One Shots 短篇\n"
+    }
+  },
+  {
+    "provider_id": "bookfere",
+    "provider_name": "书伴",
+    "route_key": "/:category",
+    "route": {
+      "name": "分类",
+      "path": "/:category",
+      "example": "/bookfere/skills",
+      "parameters": {
+        "category": {
+          "description": "分类名",
+          "options": [
+            {
+              "value": "weekly",
+              "label": "每周一书"
+            },
+            {
+              "value": "skills",
+              "label": "使用技巧"
+            },
+            {
+              "value": "books",
+              "label": "图书推荐"
+            },
+            {
+              "value": "news",
+              "label": "新闻速递"
+            },
+            {
+              "value": "essay",
+              "label": "精选短文"
+            }
+          ]
+        }
+      },
+      "description": "| 每周一书 | 使用技巧 | 图书推荐 | 新闻速递 | 精选短文 |\n| -------- | -------- | -------- | -------- | -------- |\n| weekly   | skills   | books    | news     | essay    |"
     }
   },
   {
@@ -85,16 +96,14 @@
     }
   },
   {
-    "provider_id": "jjwxc",
-    "provider_name": "晋江文学城",
-    "route_key": "/author/:id?",
+    "provider_id": "gmcmonline",
+    "provider_name": "国门传媒在线",
+    "route_key": "/chinacustoms",
     "route": {
-      "name": "作者最新作品",
-      "path": "/author/:id?",
-      "example": "/jjwxc/author/4364484",
-      "parameters": {
-        "id": "作者 id，可在对应作者页中找到"
-      },
+      "name": "中国海关",
+      "path": "/chinacustoms",
+      "example": "/gmcmonline/chinacustoms",
+      "parameters": {},
       "description": ""
     }
   },
@@ -115,13 +124,13 @@
   {
     "provider_id": "linovelib",
     "provider_name": "哔哩轻小说",
-    "route_key": "/volume/:id",
+    "route_key": "/novel/:id",
     "route": {
-      "name": "卷",
-      "path": "/volume/:id",
-      "example": "/linovelib/volume/8",
+      "name": "小说更新",
+      "path": "/novel/:id",
+      "example": "/linovelib/novel/2547",
       "parameters": {
-        "id": "小说 ID，可在小说页 URL 中找到"
+        "id": "小说 id，对应书架开始阅读 URL 中找到"
       },
       "description": ""
     }
@@ -141,15 +150,15 @@
     }
   },
   {
-    "provider_id": "tongli",
-    "provider_name": "東立出版社",
-    "route_key": "/news/:type",
+    "provider_id": "yomujp",
+    "provider_name": "日本語多読道場",
+    "route_key": "/:level?",
     "route": {
-      "name": "新聞",
-      "path": "/news/:type",
-      "example": "/tongli/news/6",
+      "name": "等级",
+      "path": "/:level?",
+      "example": "/yomujp/n1",
       "parameters": {
-        "type": "分類，可以在“新聞”鏈接中找到"
+        "level": "等级，n1~n6，为空默认全部"
       },
       "description": ""
     }

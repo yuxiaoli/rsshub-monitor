@@ -1,4 +1,1337 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Blog - Bitmovin</title><link>https://bitmovin.com/blog/</link><atom:link href="http://rss.owo.nz/bitmovin/blog" rel="self" type="application/rss+xml"></atom:link><description>Blog - Bitmovin - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Apr 2025 00:18:35 GMT</lastBuildDate><ttl>5</ttl><item><title>AI Contextual Advertising: A New Era for Viewer-Centric Ads</title><description>&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;AI Contextual Advertising: A New Era for Viewer-Centric Ads&lt;/strong&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Blog - Bitmovin</title><link>https://bitmovin.com/blog/</link><atom:link href="http://127.0.0.1:1200/bitmovin/blog" rel="self" type="application/rss+xml"></atom:link><description>Blog - Bitmovin - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Sun, 01 Jun 2025 00:21:28 GMT</lastBuildDate><ttl>60</ttl><item><title>Advancing Error Reporting Across iOS, tvOS &amp; visionOS with the Bitmovin Player</title><description>&lt;p&gt;For developers working on streaming apps across Apple platforms, error resolution has often felt like chasing shadows. Playback interruptions might show up as vague “Operation couldn’t be completed” messages, offering little guidance for debugging or pattern recognition. When every second of viewer downtime impacts QoE and revenue, these generic error codes don’t just slow teams down, they obscure critical issues like misconfigured DRM, flaky CDNs, or malformed renditions. That’s why we’ve overhauled how the Bitmovin Player surfaces and categorizes errors on iOS, tvOS, and visionOS. With our latest SDK releases and updates to Bitmovin’s Analytics, you now get fine-grained system error visibility, both in your application logs and the Bitmovin Dashboard. This enables faster root-cause analysis, better monitoring, and smoother streaming with no guesswork required.&lt;/p&gt;
+
+
+
+&lt;p&gt;In this blog, we’ll walk through the specific challenges developers have faced with error reporting on Apple platforms, how the Bitmovin Player now surfaces raw system-level errors, and what improvements you’ll see in Bitmovin’s Analytics. We’ll also cover how to enable these updates and where to find updated documentation for faster, more reliable debugging, with a callout on what it means for AVPlayer users as well.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The challenge: Generic error codes that obscure root causes&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Until now, debugging streaming issues on Apple platforms often meant sifting through broad, ambiguous error categories. The Bitmovin Player condensed a wide range of &lt;strong&gt;AVFoundation&lt;/strong&gt; and &lt;strong&gt;CoreMedia&lt;/strong&gt; errors into just a few internal error codes. That approach simplified error handling, but it came at the cost of visibility.&lt;/p&gt;
+
+
+
+&lt;p&gt;Teams faced three major obstacles:&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Broad buckets:&lt;/strong&gt; Different root causes—like mis-muxed renditions, CDN delivery failures, or FairPlay certificate issues—were all grouped under the same high-level code, making pattern recognition nearly impossible.&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Dashboard blindness:&lt;/strong&gt; In Bitmovin’s Analytics dashboard, these generic codes collapsed under a single entry in &lt;strong&gt;Top Errors&lt;/strong&gt;, hiding key trends and masking repeat failures.&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Inconsistent language context:&lt;/strong&gt; iOS error strings were reported in the viewer’s device language, creating an added layer of friction for globally distributed engineering teams.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This made it difficult to identify real trends across sessions or diagnose issues with confidence, especially at scale.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXdTKHk6qcF2QljQyrPFRU2YQBtzB2nsHEL2ack8D-ovttDFX9cf3-P37ddMgsE0eO1js21jW3uuNLP33KOfzMVKd9w_IIcpUaNtEiq-5czygRutHLnesWwrTi95R4qgulm7YWHYKg?key=23HOFRIVzgbAemV4zRu4eCEg&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;An example of dashboard blindness and how it used to look&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXeBmu_dgrgLdG5OFLkmdiNvppqiFRwDxsM9w7KUxwK6Y1dFYZzHqSeScLOPAPSIu93CTyw5W809PHvqRd7UYNT-4y5f7NWeJhylLXsrAHbjvIgCQY0zh0E-ZyupK2LX3t8J0cF2Qg?key=23HOFRIVzgbAemV4zRu4eCEg&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;An example of Inconsistent language context&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The fix: expose the real underlying error codes&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;To eliminate ambiguity and give developers full visibility into playback failures, the Bitmovin Player now exposes the original system-level error codes generated by Apple’s &lt;strong&gt;AVFoundation&lt;/strong&gt; and &lt;strong&gt;CoreMedia&lt;/strong&gt; frameworks. These are the same low-level codes the OS generates when something goes wrong, whether it’s a network issue, a FairPlay decryption failure, or a corrupted media stream. Instead of masking them behind internal error categories, Bitmovin’s Player surfaces these codes directly through Analytics, allowing teams to pinpoint exactly what went wrong without relying on guesswork or manual log scraping.&lt;/p&gt;
+
+
+
+&lt;p&gt;You’ll now see a new errorCode property attached to the following event types:&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;PlayerErrorEvent&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;SourceErrorEvent&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;AdErrorEvent&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;OfflineErrorEvent&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Each of these events now includes the original numeric error code from the OS, passed unmodified into Bitmovin’s Analytics. These codes power clearer, more specific error breakdowns across your logs and in the Bitmovin Analytics dashboard. Instead of vague “operation couldn’t be completed” messages, you now get actionable data tied to the actual failure. Whether you’re debugging expired FairPlay certs, CDN timeouts, or unsupported stream formats, this update helps your team isolate root causes quickly, resolve issues faster, and reduce viewer disruption at scale.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Decoding Apple system error codes&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Apple’s system error codes may be detailed, but they aren’t always well-documented. Many of the codes returned by AVFoundation and CoreMedia are either poorly described or missing entirely from Apple’s public resources. So we rolled up our sleeves and &lt;strong&gt;catalogued over 100 distinct Apple system error codes&lt;/strong&gt; ourselves, covering iOS, tvOS, and visionOS. Check out the &lt;a href=&quot;https://developer.bitmovin.com/playback/docs/system-error-codes-ios&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;developer doc&lt;/a&gt; for more&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;Bitmovin’s Analytics automatically maps recognized codes to clear, human-readable error messages. Even if your application is running an older SDK version, the backend will still resolve known system codes to their descriptions within the dashboard and API. This means you get deeper visibility and better diagnostics over time without needing to constantly upgrade your SDKs.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;What you’ll see in the Dashboard&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;After upgrading to Bitmovin Player SDK v3.82.0 and Analytics SDK v3.10.0 or higher, you’ll start seeing detailed system error codes appear throughout Bitmovin’s Analytics dashboard. The &lt;a href=&quot;https://dashboard.bitmovin.com/analytics/errors/top-errors&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;Top Errors&lt;/a&gt; view surfaces each OS-level failure as its own entry, no longer grouping unrelated issues under a generic label. Errors like expired FairPlay certificates, intermittent CDN timeouts, or unsupported stream formats are now called out clearly, making it easier to spot recurring problems and take action. That level of detail carries through to individual sessions. When you drill into the &lt;strong&gt;Error&lt;/strong&gt; tab on a specific playback session, you’ll find the raw system error code alongside a human-readable message from Bitmovin’s catalog. This gives your team the context it needs to resolve issues quickly and confidently.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXe3dxJ7uFnvcIXrK-3qoShSt4n4bH_XNqNRWAAGrtqYzbmRkCSDEMbryYx2nC9EUeNpNVhz7hr5cDCMwqy_cXYK8Cub5cW8R66kAllOI2efAQAEjGjw7kDhcB0BN-zkdYdLfnF5AA?key=23HOFRIVzgbAemV4zRu4eCEg&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;An example of how the updated dashboard view looks&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXcZbSfNERutgZiJuwtrkIb6yOEoDL0g5FCE4UC-9p89M3smAivU33s73FlkHAcvaxh6rr2U42VkgoFr1IeYSt7l4cDLsQKH63o-6JBGR3UXytoSfuRb71s-8DEEmVrTobIghqdadA?key=23HOFRIVzgbAemV4zRu4eCEg&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p class=&quot;has-text-align-center&quot;&gt;Content on Error tab in the session-level view.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Good news for AVPlayer users too&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;These improvements aren’t limited to Bitmovin’s Player. If you’re using Bitmovin’s Analytics alongside a native AVPlayer integration, you’ll still benefit from the enhanced error visibility. When AVPlayer surfaces raw system error codes, Bitmovin’s Analytics will automatically recognize and translate them into clear, actionable descriptions.&lt;/p&gt;
+
+
+
+&lt;p&gt;This means you can maintain your existing native playback implementation while still gaining access to more detailed diagnostics and a unified view of errors across all Apple platforms. Whether you’re using Bitmovin’s Player or AVPlayer directly, your analytics data will reflect the same level of clarity and granularity.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Documentation that actually helps&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Alongside these product updates, we’ve overhauled our error documentation to make it easier to troubleshoot and resolve system-level issues. The new docs include clearer descriptions, an improved structure, and support for searching directly by error code. This makes it faster to identify what a specific system error means, where it originates from, and how to address it in your playback pipeline. Whether you’re responding to a production issue or reviewing logs during QA, the updated documentation is built to support real developer workflows and accelerate debugging. You can explore the full set of documented errors here:&lt;/p&gt;
+
+
+
+&lt;p&gt;🔗 &lt;a href=&quot;https://cdn.bitmovin.com/player/ios/3/documentation/bitmovinplayer/errors&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;Bitmovin Player iOS error documentation&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;How to get it&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;To take full advantage of the improved error reporting, make sure your application is running:&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Bitmovin Player SDK v3.82.0 or later&lt;/strong&gt; for iOS, tvOS, and visionOS&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Bitmovin Analytics SDK v3.10.0 or later&lt;/strong&gt;&lt;strong&gt;&lt;br&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Once both SDKs are in place, the errorCode property will be included automatically in relevant events, and Bitmovin’s Analytics will handle the rest. System-level error codes will start appearing throughout the dashboard with no additional configuration required.&lt;/p&gt;
+
+
+
+&lt;p&gt;To get started:&lt;/p&gt;
+
+
+
+&lt;ol class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Update your Podfile or Swift Package Manager references to the latest SDK versions&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Build and push your next app update&lt;br&gt;&lt;/li&gt;
+
+
+
+&lt;li&gt;Monitor the &lt;a href=&quot;https://dashboard.bitmovin.com/analytics/errors/top-errors&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;dashboard&lt;/a&gt; to confirm that detailed error codes are appearing in Top Errors and session views&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;p&gt;These updates take just a few minutes to integrate and give your team much deeper visibility into playback issues across Apple platforms. Give it a try in your next release and let us know how it’s working for you. We’re always open to feedback and eager to keep improving the experience.&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/ios-error-reporting-bitmovin-player-analytics/</link><guid isPermaLink="false">https://bitmovin.com/blog/ios-error-reporting-bitmovin-player-analytics/</guid><pubDate>Mon, 19 May 2025 08:57:55 GMT</pubDate><author>Roland Kákonyi</author></item><item><title>Delivering Playback at Super Bowl Scale: FOX’s Streaming Success</title><description>&lt;p&gt;Super Bowl LIX was the most-streamed NFL event in history, reaching over 15.5 million peak concurrent viewers on FOX’s ad-supported platform, Tubi. That level of viewership brings enormous technical pressure to deliver smooth, reliable playback across a wide range of devices. Achieving this at scale requires a highly optimized streaming stack, where every component performs under pressure, especially the player. It must deliver fast start-up times, consistent performance across platforms, and simplified integration that reduces operational complexity. It becomes a powerful foundation for live event success when paired with real-time playback visibility and the ability to support telemetry at scale.&lt;/p&gt;
+
+
+
+&lt;p&gt;In the following sections, we’ll explore how FOX met these challenges during Super Bowl LIX using Bitmovin’s Player. From optimizing playback and simplifying infrastructure to helping Momento’s telemetry system collect billions of insights through their beacons without disruption, the results set a new benchmark. This is how FOX delivered one of the most demanding streaming events in history with confidence.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXcHkS_Mo8TzUMHocXrMIAMCKxa8i-fZdrGvOzhu9QMCVg3PcDHcwxBY6izq_MGEVn7vSwQCH6uv70rGxBlR_Zr4r3PUBf_L4_F6EbNvtGytD0K_LUdI0wm9h2DaDIgzd9qjYJR9Dg?key=WsP9rv2D3dI9_w9oNQ69QQ&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;a href=&quot;https://nabstreamingsummit.com/wp-content/uploads/2025/04/FOX-NAB-2025.pdf&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;&lt;em&gt;Super Bowl LIX Streaming Insights&lt;/em&gt;&lt;/a&gt;&lt;em&gt; from presentation by Mayur Srinivasan on behalf of FOX at NAB Streaming Summit&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;How Bitmovin’s player helped FOX meet Super Bowl-scale demands&lt;/h2&gt;
+
+
+
+&lt;p&gt;FOX approached Super Bowl LIX with clear objectives: deliver fast, resilient playback on every device, maintain low latency, and gain full visibility into session performance at scale. This required a solution that addressed both technical performance and operational control across a fragmented device ecosystem.&lt;/p&gt;
+
+
+
+&lt;p&gt;To meet these goals, FOX implemented Bitmovin’s Player with a range of advanced capabilities:&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Production-ready build for Connected TV (CTV) and web&lt;/strong&gt;: Delivered out-of-the-box compatibility across one of the largest arrays of Connected TV devices, reducing development overhead and accelerating deployment.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Adaptive Bitrate (ABR) tuning&lt;/strong&gt;: Customized to balance latency, quality, and buffering across changing network conditions.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Customizable UI framework&lt;/strong&gt;: Tailored specifically for the Super Bowl event to ensure brand alignment and viewer familiarity.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Robust event model and API&lt;/strong&gt;: Provided deep visibility into every viewing session through granular playback telemetry, which supported real-time monitoring and operational decision-making.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;This configuration helped FOX confidently scale playback across millions of sessions while maintaining full performance and quality oversight.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXe2uxBgdxYky_pmXmrrg2alaPwNKlrhIiLYP4MmVhuL34R6a1fISvTftQccQ9RxEYxbEWNI2F5u-JvzOeBRSjqEEgBX9x5_lvXr6qtqcjZUUsXJm-F96BcZj0X9hnP3ebGSfCwfyw?key=WsP9rv2D3dI9_w9oNQ69QQ&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;a href=&quot;https://nabstreamingsummit.com/wp-content/uploads/2025/04/FOX-NAB-2025.pdf&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener nofollow&quot;&gt;&lt;em&gt;Super Bowl LIX Streaming Insights&lt;/em&gt;&lt;/a&gt;&lt;em&gt; from presentation by Mayur Srinivasan on behalf of FOX at NAB Streaming Summit&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;Ecosystem integration and operational efficiency&lt;/h2&gt;
+
+
+
+&lt;p&gt;FOX’s engineering team required a playback solution that fit into their existing workflows without adding complexity. Bitmovin’s Player provided a flexible API model that allowed engineers to track key playback events, including buffering, ad behavior, and network conditions. These capabilities supported FOX’s ability to monitor sessions at scale and quickly act on any issues impacting the viewing experience. The same architecture enabled our partner Momento to access high-frequency playback signals, such as buffer status and bitrate shifts, which were essential to maintaining stream quality in real time. This helped simplify operations during the Super Bowl and ensured every stream met the high bar expected on game day. Momento’s telemetry system ultimately captured more than 25 billion playback beacons across the event, without disruption, reinforcing the efficiency and resilience of the platform at massive scale.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;Enhanced viewer satisfaction through advanced features&lt;/h2&gt;
+
+
+
+&lt;p&gt;FOX’s Super Bowl stream was built to deliver an experience that felt immersive, immediate, and consistent, no matter where or how fans were watching. That level of engagement depended on more than just a reliable stream, it required a playback experience that responded seamlessly to user expectations and network conditions. Bitmovin’s Player helped FOX meet those expectations with features that shaped how viewers experienced the game.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Fast start-up times:&lt;/strong&gt; Viewers were able to join the stream instantly, creating a frictionless entry point that set the tone for the event.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Consistent video quality:&lt;/strong&gt; Smooth transitions and stable playback helped maintain immersion, even under variable network conditions.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Event-specific interface:&lt;/strong&gt; FOX’s branding was reflected in a cohesive design across platforms, reinforcing viewer trust and familiarity.&lt;/li&gt;
+
+
+
+&lt;li&gt;&lt;strong&gt;Parity across devices:&lt;/strong&gt; Whether on web or Connected TV (CTV), fans enjoyed the same high-quality experience with no compromise.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;Together, these capabilities helped FOX deliver a seamless, immersive experience that kept fans engaged from pregame to final whistle.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh7-rt.googleusercontent.com/docsz/AD_4nXc6EcukoTU-kqyrxXI70aebjDC1GK9SgrnjWkqA1_EWKoRjoSWlH41XObvblsaJJJVDcYUugMP2ZJfGKUu9lKVDg88LilrtEoKAzlWGPVkoaREyjbfUM5RTNK1G9UlCamondi-hhg?key=WsP9rv2D3dI9_w9oNQ69QQ&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;em&gt;Image from by &lt;/em&gt;&lt;a href=&quot;https://www.streamingmediablog.com/2025/02/tubi-superbowl-stream.html&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener nofollow&quot;&gt;&lt;em&gt;Dan Rayburn’s Live Blog on Tubi’s stream of Super Bowl LIX&lt;/em&gt;&lt;/a&gt;&lt;em&gt;&amp;nbsp;&lt;/em&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;Setting the standard for live sports streaming&lt;/h2&gt;
+
+
+
+&lt;p&gt;FOX’s Super Bowl LIX deployment set a new benchmark for how modern streaming technology should perform under pressure. Bitmovin’s Player supported fast, consistent playback across millions of sessions and enabled real-time visibility into playback behavior, helping FOX create a seamless experience for viewers. As more major events stream online, platforms need playback technology that performs reliably at scale, adapts to complex delivery environments, and supports critical monitoring capabilities. FOX’s success shows how the right playback foundation can deliver when it matters most, and Bitmovin’s Player was built to meet that challenge.&amp;nbsp;&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/fox-super-bowl-streaming-bitmovin-player/</link><guid isPermaLink="false">https://bitmovin.com/blog/fox-super-bowl-streaming-bitmovin-player/</guid><pubDate>Mon, 19 May 2025 08:40:57 GMT</pubDate><author>Adam Massaro</author></item><item><title>NAB 2025: The trends propelling the video streaming industry forward</title><description>&lt;p&gt;The dust has just about settled from the 2025 edition of NAB! As always, it was fantastic to see all of our customers, partners, and industry friends in Las Vegas once again and get a real sense of the trends that will shape the media and entertainment technology industry in the coming months. There’s no denying the last couple of years have been tough for the industry due to macroeconomic challenges. Consumers are reducing their spending, and at the same time, streaming services need to manage this alongside the increasing costs of creating and acquiring high-quality content while investing in technology to improve their services.&amp;nbsp;&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;However, throughout NAB, I found a lot to be excited about. As an industry, we will still need to face more challenging times and adapt. Here are some of the trends I noticed at the show that will help drive us forward.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;AI grows up&amp;nbsp;&lt;/strong&gt;&lt;br&gt;Significant technical advancements mean that AI is no longer a buzzword; it’s powering technology that is shaping every aspect of the streaming workflow and delivering tangible results. At NAB, I saw use cases spanning content creation and distribution to personalized user experiences. Currently, every streaming service is trying to maximize the monetization potential of their platform, which is why in recent years we’ve seen so many adopt hybrid monetization models, like AVOD or FAST, to supplement their subscription business model. AI can also help increase revenue potential by providing contextual scene metadata that can be used for contextual advertising.&lt;/p&gt;
+
+
+
+&lt;p&gt;This is something we’ve achieved with &lt;a href=&quot;https://bitmovin.com/ai-scene-analysis/&quot;&gt;Bitmovin’s Scene Analysis&lt;/a&gt;, which won a Best of Show Award at NAB, and works by leveraging market-leading AI models like &lt;a href=&quot;https://gemini.google.com/?is_sa=1&amp;amp;is_sa=1&amp;amp;android-min-version=301356232&amp;amp;ios-min-version=322.0&amp;amp;campaign_id=bkws&amp;amp;utm_source=sem&amp;amp;utm_source=google&amp;amp;utm_medium=paid-media&amp;amp;utm_medium=cpc&amp;amp;utm_campaign=bkws&amp;amp;utm_campaign=2024enGB_gemfeb&amp;amp;pt=9008&amp;amp;mt=8&amp;amp;ct=p-growth-sem-bkws&amp;amp;gad_source=1&amp;amp;gclid=Cj0KCQjwqv2_BhC0ARIsAFb5Ac_WAZOovERZ8kj-EIJnC7rj8Cp6ve18t1Sjvh2wpdK3v_EFMjXDjkcaAvDhEALw_wcB&amp;amp;gclsrc=aw.ds&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Google’s Gemini&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://openai.com/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;OpenAI’s&lt;/a&gt; &lt;a href=&quot;https://openai.com/index/chatgpt/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;ChatGPT&lt;/a&gt;. The AI models extract metadata from the content classified by scene, giving customers a much more granular level of content tagging and categorisation than before, which can be used to create more personalised experiences through recommendations and advertising.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Codecs and the continued pursuit of efficiency and quality&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;At NAB, there were advancements in existing codecs, specifically AV1, to deliver greater visual improvements and optimize streaming workflows. It’s undeniable that there’s a huge interest in AV1, but adoption has not been as quick as we anticipated. Yet, at the show, I saw an increasing number of software and hardware solutions supporting AV1 encoding and decoding. Bitmovin is an advocate of AV1, and we know it has huge potential to reduce CDN costs, reduce bandwidth consumption, and improve video quality, especially for high-resolution content like 4K and 8K. Of course, HEVC remains the dominant codec for premium content as AV1 continues to gain ground. There were continued optimizations and enhancements to HEVC encoding, especially for 4K content.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Short-form content has a long future.&amp;nbsp;&lt;/strong&gt;&lt;br&gt;Short-form content is often accused of shortening attention spans, but it definitely isn’t a flash in the pan. At this year’s show, a number of tech companies showcased solutions to meet demand for short-form content. So many platforms are now optimized for vertical video and come with interactive elements and AI-powered editing tools to facilitate rapid content creation. Short-form content is optimized for mobile-first consumption, and the features that support it need to be mobile-first too. Alongside editing tools, many platforms also incorporate interactive features like quizzes and polls to boost viewer engagement and help creators build a sense of community amongst their audience.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Overall, it was a highly interesting NAB Show. AI is shaping so many of the trends and technology on the showfloor, and it was super exciting to see the number of innovations that are bringing benefits and results to real-world deployments and projects. I hope you had a successful show, and hopefully I will see you on the road soon!&lt;br&gt;&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/nab-2025-trends/</link><guid isPermaLink="false">https://bitmovin.com/blog/nab-2025-trends/</guid><pubDate>Wed, 16 Apr 2025 07:34:56 GMT</pubDate><author>Stefan Lederer</author></item><item><title>Seven ways Bitmovin Analytics helps you get the most out of your encoding, player and ads</title><description>&lt;div class=&quot;bitmovin-stream-wrapper&quot;&gt;&lt;iframe src=&quot;https://streams.bitmovin.com/d00hca61pf7itg7cg5m0/embed&quot; title=&quot;bitmovin-streams&quot; allow=&quot;fullscreen&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;Bitmovin Analytics provides valuable insights that can take the performance and efficiency of your video streaming workflow to new levels. By leveraging Analytics, you can optimize encoding profiles, improve player performance, gain deeper understanding of audience behavior, and ultimately, deliver a superior viewing experience while managing costs effectively. This blog post will explore seven ways Bitmovin Analytics can help you to get the most out of your encoding, player, and ad solutions.&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-advgb-summary advgb-toc alignnone&quot;&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#boost-visual-quality-for-viewers-1b3845a2-532c-4570-b0cc-74c8ce662a3c&quot;&gt;Boost visual quality for viewers&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#lower-storage-cdn-and-overall-video-costs-46c9c57e-a42c-487a-a7d8-32e80da9a1d0&quot;&gt;Lower storage, CDN and overall video costs&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#monitor-and-debug-ssai-workflows-in-realtime-9679bca6-003a-46da-840b-b33ea80194ef&quot;&gt;Monitor and debug SSAI workflows in real-time&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#scale-live-support-and-observability-with-custom-alerts-ad7a5dd1-5254-494d-8f03-93174ecd9acf&quot;&gt;Scale live support and observability with custom alerts&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#reduce-video-start-times-36f17993-a78a-4db2-a7e2-8de365a1fdc9&quot;&gt;Reduce video start times&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#dive-deeper-with-playback-error-debuggingnbsp-de152595-34f8-4524-9168-9e77e5007856&quot;&gt;Dive deeper with playback error debugging&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#generate-deep-audience-and-user-behavior-metrics-434fbfc1-7b89-4835-bb4a-e02326e929df&quot;&gt;Generate deep audience and user behavior metrics&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#conclusion-3de82b94-76ab-4860-a6b7-79d3b5197f69&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;&lt;li class=&quot;toc-level-1&quot;&gt;&lt;a href=&quot;https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/#related-resources-7f4c520e-46b3-47ea-bd60-efd783f027ae&quot;&gt;Related Resources&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+
+
+
+&lt;div style=&quot;height:0px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;boost-visual-quality-for-viewers-1b3845a2-532c-4570-b0cc-74c8ce662a3c&quot;&gt;Boost visual quality for viewers&lt;/h2&gt;
+
+
+
+&lt;p&gt;To deliver the highest quality of experience for your viewers, you need pristinely encoded video at resolutions that match the viewers’ screens and bitrates that can be delivered over the public internet. You can make a best estimate at what these combinations should be, starting with something like Apple’s &lt;a href=&quot;https://developer.apple.com/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;examples in their HLS docs&lt;/a&gt;, which is what many people and companies do. What you’ll soon find though, is there is no one size fits all solution, and the ideal settings will depend on your specific content, your audience, their locations and their viewing devices.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;This is where Bitmovin Analytics can help shine some light on where you have room to optimize and potentially improve quality for your viewers. The Video Quality section shows useful stats like your audience’s download speeds and video bitrate being played, which gives an indication of their potential for viewing higher bitrate streams.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1362&quot; height=&quot;516&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.39.30%E2%80%AFAM.png&quot; alt=&quot;Screenshot of Bitmovin Analytics Dashboard showing chart with viewers&#39; bandwidth varying over time.&quot; class=&quot;wp-image-303694&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.39.30 AM.png 1362w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.39.30 AM-300x114.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.39.30 AM-768x291.png 768w&quot; sizes=&quot;auto, (max-width: 1362px) 100vw, 1362px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Screenshot of Bitmovin Analytics Dashboard showing viewers’  bandwidth over time.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Another useful metric is the scale factor, which shows the relationship between the playback window size and the resolution of the stream that was delivered. For example if you see the scale factor is above 0, that means your content is being upscaled and could appear pixelated, so you should consider adding a higher resolution rendition to your encoding. The Top Screen Resolutions graph shows what screen sizes are being used to view your content most, so it’s another way to see how much of your audience can handle 720p vs 1080p vs 4K.&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;911&quot; height=&quot;515&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.07.15%E2%80%AFAM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303695&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.07.15 AM.png 911w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.07.15 AM-300x170.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.07.15 AM-768x434.png 768w&quot; sizes=&quot;auto, (max-width: 911px) 100vw, 911px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Scale factor shows the relationship between video resolution and player size. Negative scale factor means the video is larger than the playback window.&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Could your viewers potentially handle higher quality than you’re giving them? Is your audience ready for 4K? For streaming services that want to be known for their quality, these are the questions that should be asked and can be answered with Analytics. Bitmovin’s &lt;a href=&quot;https://bitmovin.com/encoding-service&quot;&gt;VOD Encoder&lt;/a&gt; has the wide codec support and deep configurability that lets you turn these insights into actions.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;lower-storage-cdn-and-overall-video-costs-46c9c57e-a42c-487a-a7d8-32e80da9a1d0&quot;&gt;Lower storage, CDN and overall video costs&lt;/h2&gt;
+
+
+
+&lt;p&gt;Besides the factors mentioned above for the highest quality viewing experience, another part of the reality for streaming services is cost. Encoding, storing and delivering high quality video at scale can get expensive, but reducing costs does not necessarily mean lowering quality. An easy way to find the sweet spot is to use our &lt;a href=&quot;https://bitmovin.com/encoding-service/per-title-encoding&quot;&gt;Per-Title Encoding&lt;/a&gt;, which creates the ideal encoding settings for each piece of content to maintain high quality without wasting bandwidth.&lt;/p&gt;
+
+
+
+&lt;p&gt;However you are choosing your encoding settings, Bitmovin Analytics can add another layer of insight to help you identify where changes or cuts can be made to your encoding stack without impacting your viewers. In some cases you may even potentially improve their experience.&lt;/p&gt;
+
+
+
+&lt;p&gt;One great resource for understanding your audience’s experience is the video bitrate heatmap. This gives you an idea of which combinations of bitrate and resolution are being seen most often. If you find there are renditions that are rarely being viewed, you might consider removing them from your encoding ladder. Small changes like that can lead to massive savings over time.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Looking at the heatmap below, most of the viewers are seeing the 7.8 Mbps, 1920 x 1080 version, but it appears there are also 5.98 Mbps, 4.88 Mbps, and 3.75 Mbps versions at 1920 x 1080 that only have a few views each. By eliminating one or more of those “extra” 1080 versions from your encoding ladder, you’ll save on the cost of encoding and storing something that is rarely seen. Your viewers won’t know the difference and your budget (and finance team) will thank you.&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1281&quot; height=&quot;461&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.10.14%E2%80%AFAM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303696&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.10.14 AM.png 1281w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.10.14 AM-300x108.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.10.14 AM-768x276.png 768w&quot; sizes=&quot;auto, (max-width: 1281px) 100vw, 1281px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Video Bitrate Heatmap showing which combinations of resolution and bitrate are being viewed most often&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The video bitrate graph shows the median value across Bitmovin’s customer base. While all content and scenarios have different requirements, this can give you a general idea where you are compared to the rest of the industry and if there’s potential for savings.&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1355&quot; height=&quot;569&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.34.21%E2%80%AFAM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303697&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.34.21 AM.png 1355w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.34.21 AM-300x126.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.34.21 AM-768x323.png 768w&quot; sizes=&quot;auto, (max-width: 1355px) 100vw, 1355px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Monitor your audience’s video bitrate over time and compare against the industry median &lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Another way you can maintain quality for the viewer while reducing overall costs is by using more modern video codecs. While H.264/AVC is the old, reliable standard that just works everywhere, HEVC, VP9 and AV1 can all deliver the same or better quality at much lower bitrates. That translates to reduced CDN bills, which are usually the most costly component for streaming platforms.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;The Video Codec Support graph shows you how many of your viewers could have potentially used a different codec. Adding newer codecs will slightly increase encoding costs, but the longer term savings with your CDN will usually make up for it, significantly so with popular videos. The exact break-even points will depend on your CDN contracts and pricing, so we created this &lt;a href=&quot;https://bitmovin.com/demos/av1-break-even-calculator&quot;&gt;calculator&lt;/a&gt; to help you decide when it makes sense to add AV1 to your encoding stack. &lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1350&quot; height=&quot;465&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.51.53%E2%80%AFAM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303698&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.51.53 AM.png 1350w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.51.53 AM-300x103.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.51.53 AM-768x265.png 768w&quot; sizes=&quot;auto, (max-width: 1350px) 100vw, 1350px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;***It should be noted that these numbers include software decoding support, so if you are streaming DRM-protected content that requires hardware decoding, your percentages will likely be lower. &lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;monitor-and-debug-ssai-workflows-in-realtime-9679bca6-003a-46da-840b-b33ea80194ef&quot;&gt;Monitor and debug SSAI workflows in real-time&lt;/h2&gt;
+
+
+
+&lt;p&gt;The transition between ads and the main content during server side ad insertion (SSAI) has been a blind spot for troubleshooting and tracking, because the boundary between the main content and ad has been invisible to the player and analytics. This made it especially hard to get to the root cause of errors around that handoff. Now with Bitmovin’s SSAI Analytics, you can get an unprecedented view into your ad breaks, transitions and performance.&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1652&quot; height=&quot;510&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-08-at-10.38.11%E2%80%AFAM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303699&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-08-at-10.38.11 AM.png 1652w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-08-at-10.38.11 AM-300x93.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-08-at-10.38.11 AM-768x237.png 768w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-08-at-10.38.11 AM-1536x474.png 1536w&quot; sizes=&quot;auto, (max-width: 1652px) 100vw, 1652px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Typical SSAI Ad break, now with individual ad tracking&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Our &lt;a href=&quot;https://developer.bitmovin.com/playback/docs/how-to-set-up-ssai-tracking&quot;&gt;SSAI tracking&lt;/a&gt; collects the relevant data to be able to identify and debug errors like rebuffering, failed ad beacon requests and glitches when switching between encrypted and clear content. Having this level of visibility helps you minimize the cost of errors and playback disruptions. &amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1459&quot; height=&quot;628&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-6.01.28%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303700&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-6.01.28 PM.png 1459w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-6.01.28 PM-300x129.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-6.01.28 PM-768x331.png 768w&quot; sizes=&quot;auto, (max-width: 1459px) 100vw, 1459px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Keep an eye on ad rebuffering to minimize lost revenue and viewers&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;There are also engagement statistics that show the number of ad plays, plays per quartile, and abandonment rate. Each metric can be filtered to identify commonalities between viewers, devices, stream types, and ad servers. That data can then inform decisions like expanding ad campaigns that viewers are responding positively to or ending ones that viewers are abandoning.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;All of this data is available in real time at the session level, including for individual ads within an ad break. This allows for real-time decision making, letting you quickly identify and address issues that might disrupt monetization or the viewing experience.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;scale-live-support-and-observability-with-custom-alerts-ad7a5dd1-5254-494d-8f03-93174ecd9acf&quot;&gt;Scale live support and observability with custom alerts&lt;/h2&gt;
+
+
+
+&lt;p&gt;High profile live events will usually have several people monitoring the stream on multiple devices in different physical locations. That can provide some level of assurance that things are working, but it’s not possible to scale a support staff to actively cover the full distribution of viewers for a major global major event. What about scaling to several or even hundreds of concurrent events? What can you do?&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;a href=&quot;https://bitmovin.com/live-encoding-live-streaming/&quot;&gt;Bitmovin’s Live Encoder&lt;/a&gt; is a cloud-native service built to to scale as needed, quickly and reliably. We have customers running thousands of live streams per day through our platform, so we built our Analytics to scale with your event and viewership, multiplying the coverage and effectiveness of your support staff.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;You can create custom alerts for a new level of observability across all of your playback sessions. You can define your own alert conditions and rules, including thresholds for metrics like median video startup time, error percentage and rebuffer percentage. You can also filter them by 20+ technical metrics, including custom data fields, so if you’ve been having trouble with a particular brand of smart TV or want to keep a closer eye on quality of service with a specific CDN or in a particular region, it’s easy to create very granular alerts to help you be as proactive as possible.&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1808&quot; height=&quot;556&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-3.49.03%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303701&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-3.49.03 PM.png 1808w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-3.49.03 PM-300x92.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-3.49.03 PM-768x236.png 768w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-31-at-3.49.03 PM-1536x472.png 1536w&quot; sizes=&quot;auto, (max-width: 1808px) 100vw, 1808px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Customizable, granular alerts help scale support team coverage and efficiency&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The alerts can be configured to notify a Slack or Microsoft Teams channel, making sure the right people see it right away, and can get started investigating and resolving the issue before any customer reports arrive.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;reduce-video-start-times-36f17993-a78a-4db2-a7e2-8de365a1fdc9&quot;&gt;Reduce video start times&lt;/h2&gt;
+
+
+
+&lt;p&gt;Bitmovin’s cloud partner Akamai &lt;a href=&quot;https://content.akamai.com/PG2114-Audience-Engagement-WP.html&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;has reported&lt;/a&gt; that in some cases, impatient viewers will start to abandon videos after as little as 200-400 milliseconds of waiting for playback to start. The big drop off comes after 2 seconds and the losses compound with each additional second of wait time. This is really interesting and potentially scary data when abandonment directly affects your revenue, but using Bitmovin Analytics can help in a few ways.&lt;/p&gt;
+
+
+
+&lt;p&gt;The Analytics dashboard shows your video startup time across all videos, which you can observe live or across a custom time frame. The startup times can be broken down by video title, geography and several technical metrics for as granular a view as needed. We also provide the median industry startup time as a benchmark to compare against.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1029&quot; height=&quot;845&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.20.55%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303702&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.20.55 PM.png 1029w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.20.55 PM-300x246.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.20.55 PM-768x631.png 768w&quot; sizes=&quot;auto, (max-width: 1029px) 100vw, 1029px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Fast video start times are crucial for keeping viewers engaged&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;DRM load time is another place to check when trying to reduce overall video startup times. It can also be broken down by platform and other categories, allowing you to identify whether slower start times are regional, global or unique to a particular platform or DRM provider. This level of insight allows you to make improvements in minutes and hours instead of days and weeks.&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1164&quot; height=&quot;860&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.36.29%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303703&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.36.29 PM.png 1164w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.36.29 PM-300x222.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-4.36.29 PM-768x567.png 768w&quot; sizes=&quot;auto, (max-width: 1164px) 100vw, 1164px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;DRM load time can impact overall video startup time&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The size of the player itself also contributes to video startup time, so that’s another area to explore if your Analytics data is showing consistently longer than desired startup times. Bitmovin’s &lt;a href=&quot;https://developer.bitmovin.com/playback/docs/getting-started-with-the-modular-player&quot;&gt;modular player&lt;/a&gt; can be customized to include only the components you need for quicker loading and better performance. When you need the most performant player possible, our &lt;a href=&quot;https://bitmovin.com/player-web-x/&quot;&gt;Player Web X&lt;/a&gt; offers faster startup times than hls.js and seamless source switching to keep viewers engaged with a steady stream of content.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;dive-deeper-with-playback-error-debuggingnbsp-de152595-34f8-4524-9168-9e77e5007856&quot;&gt;Dive deeper with playback error debugging&lt;/h2&gt;
+
+
+
+&lt;p&gt;The results of &lt;a href=&quot;https://bitmovin.com/video-developer-report/&quot;&gt;Bitmovin’s 8th annual Video Developer Survey&lt;/a&gt; show “Error Rates” and “Buffering/Rebuffering Rates” as the 2 most important video performance metrics to video developers today, by a pretty wide margin.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1600&quot; height=&quot;799&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/unnamed.png&quot; alt=&quot;&quot; class=&quot;wp-image-303705&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/unnamed.png 1600w, https://bitmovin.com/wp-content/uploads/2025/04/unnamed-300x150.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/unnamed-768x384.png 768w, https://bitmovin.com/wp-content/uploads/2025/04/unnamed-1536x767.png 1536w&quot; sizes=&quot;auto, (max-width: 1600px) 100vw, 1600px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Error and rebuffering rates are the most important metrics according the the latest Bitmovin Video Developer Report&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Conveniently, the Debugging section of the Analytics dashboard lets you zoom in on those metrics and more. Error Percentage shows the number of errors in relation to the number of play attempts on a video platform. It includes errors that disrupted a user’s playback as well as errors from which the player was able to recover. Error Ratio shows the number of errors per hour of playing time. Breaking these metrics down by operating system and player software version is especially useful for identifying a problematic software update that needs to be fixed or rolled back.&amp;nbsp;&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1515&quot; height=&quot;734&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-4.51.45%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303706&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-4.51.45 PM.png 1515w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-4.51.45 PM-300x145.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-4.51.45 PM-768x372.png 768w&quot; sizes=&quot;auto, (max-width: 1515px) 100vw, 1515px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Track your error percentage by platform, OS, player software version and other sub-categories&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Rebuffering percentage is the average time a user had to wait for video segment downloads in relation to the total time a user spent watching a video. Buffering time shows the average buffering duration per play. High rebuffering rates could be investigated by breaking the graph down by CDN or browser to isolate performance issues. You could also experiment with different &lt;a href=&quot;https://developer.bitmovin.com/playback/docs/what-abrs-do-the-bitmovin-player-sdks-support&quot;&gt;adaptive bitrate logic&lt;/a&gt; in your player to see if an algorithm change improves things.&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1230&quot; height=&quot;570&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.23.08%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303707&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.23.08 PM.png 1230w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.23.08 PM-300x139.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.23.08 PM-768x356.png 768w&quot; sizes=&quot;auto, (max-width: 1230px) 100vw, 1230px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Another extremely useful view for troubleshooting player issues is the Top Error Codes section of the dashboard. Errors are sorted by frequency, and are clickable, letting you immediately zoom in on the most recent individual viewing sessions that experienced that error.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1610&quot; height=&quot;476&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.58.44%E2%80%AFAM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303708&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.58.44 AM.png 1610w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.58.44 AM-300x89.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.58.44 AM-768x227.png 768w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-7.58.44 AM-1536x454.png 1536w&quot; sizes=&quot;auto, (max-width: 1610px) 100vw, 1610px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt;Triage and prioritize troubleshooting efforts&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;The session view shows a timeline of events leading up to the error and includes the error message, stacktrace, and Network Explorer that captures the last 10 network requests around the error.&amp;nbsp;&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1512&quot; height=&quot;874&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.44.46%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303709&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.44.46 PM.png 1512w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.44.46 PM-300x173.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-04-01-at-5.44.46 PM-768x444.png 768w&quot; sizes=&quot;auto, (max-width: 1512px) 100vw, 1512px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;When investigating error reports, a support engineer will often run something like Wireshark or Charles Proxy while trying to reproduce the error themselves, hoping to capture valuable hints from the network and application about what caused the problem. Now, with Bitmovin Analytics, you already have that detailed information captured, from every viewing session where it happened. It is a proverbial goldmine for troubleshooting streaming issues.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;generate-deep-audience-and-user-behavior-metrics-434fbfc1-7b89-4835-bb4a-e02326e929df&quot;&gt;Generate deep audience and user behavior metrics&lt;/h2&gt;
+
+
+
+&lt;p&gt;Bitmovin’s &lt;a href=&quot;https://bitmovin.com/ai-scene-analysis/&quot;&gt;AI Scene Analysis&lt;/a&gt; generates scene-level metadata including mood, setting, characters, and objects as part of the video encoding process. Streaming platforms can use this contextual info to improve ad relevance, automate ad scheduling, generate highlights, enhance recommendations, and more.&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-image size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;991&quot; height=&quot;595&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-5.51.18%E2%80%AFPM.png&quot; alt=&quot;&quot; class=&quot;wp-image-303710&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-5.51.18 PM.png 991w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-5.51.18 PM-300x180.png 300w, https://bitmovin.com/wp-content/uploads/2025/04/Screenshot-2025-03-30-at-5.51.18 PM-768x461.png 768w&quot; sizes=&quot;auto, (max-width: 991px) 100vw, 991px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;This rich metadata enables a deeper level of content understanding than was previously possible. By combining and correlating that data with audience metrics from Bitmovin Analytics like pausing, seeking, replaying, and abandonment, you can build richer, more meaningful user behavior metrics. These can be used for better, more personalized recommendations that make viewers happier and subscribers stickier. They can also be useful to inform longer term content strategy and velocity decisions.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;conclusion-3de82b94-76ab-4860-a6b7-79d3b5197f69&quot;&gt;Conclusion&lt;/h2&gt;
+
+
+
+&lt;p&gt;These seven examples show how Bitmovin Analytics provides critical insights for optimizing your video streaming workflow, from encoding to playback and monetization. Hopefully they provide some inspiration for how you can enhance your viewers’ experience, reduce costs, and gain a deeper understanding of your own audience’s behavior.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Ready to experience Bitmovin Analytics for yourself? &lt;a href=&quot;https://dashboard.bitmovin.com/signup&quot;&gt;Sign up for a Bitmovin Trial&lt;/a&gt; today and see how you can transform your video streaming performance.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:14px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot; id=&quot;related-resources-7f4c520e-46b3-47ea-bd60-efd783f027ae&quot;&gt;Related Resources&lt;/h2&gt;
+
+
+
+&lt;p&gt;Video: &lt;a href=&quot;https://bitmovin.com/resources/webinars/video-analytics-overview/&quot;&gt;An Overview on Bitmovin Analytics&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Website: &lt;a href=&quot;https://bitmovin.com/ai-scene-analysis/&quot;&gt;Bitmovin AI Scene Analysis&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Blog: &lt;a href=&quot;https://bitmovin.com/blog/ai-contextual-advertising-viewer-centric-ads/&quot;&gt;AI Contextual Advertising&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Docs: &lt;a href=&quot;https://developer.bitmovin.com/playback/docs/setup-analytics-web&quot;&gt;How to Set Up Bitmovin Analytics&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/</link><guid isPermaLink="false">https://bitmovin.com/blog/bitmovin-analytics-enhances-encoder-player-ads/</guid><pubDate>Thu, 10 Apr 2025 07:28:20 GMT</pubDate><author>Andy Francis</author></item><item><title>Forging Connections and Driving Innovation: Bitmovin Innovators Network at NAB 2025</title><description>&lt;p&gt;The video streaming industry thrives on collaboration, where sharing expertise and joining efforts lead to meaningful advancements. At Bitmovin, partnerships are not just part of our approach – they are central to how we create solutions that address the challenges faced by the Media &amp;amp; Entertainment industry. As NAB Show 2025 approaches, we are excited to showcase how our collaborations with partners are delivering practical solutions to our customers. From exclusive networking events to “better together” success stories on display, here is what you can expect from Bitmovin Innovators Network at NAB 2025.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;An Exclusive Networking Experience with Industry Leaders&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;On Saturday, April 5, we will host our much-anticipated Innovators Network Executive Networking Event, sponsored by Evergent, EZDRM, and Hydrolix. This sold-out gathering will bring together industry leaders to exchange ideas and celebrate success stories that demonstrate the value of collaboration.&amp;nbsp;&amp;nbsp;&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;This year’s event will feature an engaging lineup of customer success presentations, including &lt;strong&gt;Accedo&lt;/strong&gt; presenting a “better together” customer success story regarding one of the largest telecommunications and media companies in North America, &lt;strong&gt;ViewLift&lt;/strong&gt; highlighting their “better together” success with DIRTVision, and &lt;strong&gt;Oracle&lt;/strong&gt; describing their customer story with Plex. Additionally, Mark Nakano, Vice President of Content Security at &lt;strong&gt;Warner Bros. Discovery&lt;/strong&gt;, will lead a “Voice of the Customer” session, offering a direct perspective on addressing challenges in content security.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The event will conclude with the second annual Bitmovin Innovators Network Partner of the Year Awards, followed by an executive happy hour and an exclusive marketing executive networking reception.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Innovation in Action at the Bitmovin Booth&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Throughout NAB, visitors to Bitmovin Stand (W3221) will have the chance to explore how Bitmovin’s partnership with &lt;strong&gt;Oracle Cloud Infrastructure (OCI)&lt;/strong&gt; is revolutionizing streaming operations. By leveraging OCI’s capabilities, Bitmovin’s solutions help reduce costs, generate new revenue streams, and enhance subscriber retention – all while delivering exceptional viewing experiences.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;For those seeking a hands-on experience, the Oracle Red Bull Racing F1 simulator at our booth offers a fun way to test your driving skills while competing for exclusive prizes. It’s not just about technology – it’s also about creating memorable moments.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Partner Solutions Shaping the Future of Streaming&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The NAB floor will host a variety of demonstrations from the members of Bitmovin Innovators Network that address some of the most pressing challenges in video streaming today.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Accedo&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=5172451&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W3273&lt;/a&gt;] will demonstrate Accedo One Sustainable Marketplace – a SaaS OTT solution featuring Bitmovin Player as a part of Accedo’s commitment to a climate-friendly ecosystem.&lt;/p&gt;
+
+
+
+&lt;p&gt;Learn about &lt;strong&gt;Akamai Connected Cloud&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=529&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W234LMR&lt;/a&gt;], a massively distributed edge computing cloud platform and how Bitmovin Live and VOD Encoding SaaS on Akamai Connected Cloud helps Media &amp;amp; Entertainment customers reduce streaming expense by up to 90% by reducing compute and data transfer costs.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Alpha Networks&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=2065&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W4109&lt;/a&gt;] will showcase a joint solution for live streaming that optimizes costs without compromising video quality, featuring Alpha Networks’ PaaS and SaaS products, Gecko and Bee, and modular video software Tucano, integrated with Bitmovin Live Encoding on Akamai Connected Cloud.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;At &lt;strong&gt;Broadpeak’s&lt;/strong&gt; stand [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=832&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W3331&lt;/a&gt;], learn how to sharpen your monetization strategy with a new type of inventory. With broadpeak.io SSAI and Bitmovin VOD Encoding managing AI scene analysis with scene-level contextual information, both linear ad units (e.g. mid-rolls ad breaks) and non-linear ad units (e.g. L-banner ads) can now be combined to maximize ad revenue while preserving UX.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;Learn how &lt;strong&gt;DoveRunner’s&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=5171860&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W3551&lt;/a&gt;] DRM License Cipher and Concurrent Stream Limiting resolve key pain points for the media industry, such as DRM key extraction and credential sharing. Seamlessly integrated with the Bitmovin Player, it ensures robust content protection and secure streaming experiences for global audiences&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;&lt;strong&gt;EZDRM&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=8799270&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W2466&lt;/a&gt;] is showcasing its DRMaaS ecosystem collaboration with both hardware and software vendors, including cost effective leverage of Akamai Connected Cloud resources with Bitmovin Live Encoding and novel use of C2PA provenance tracking to address CDN leeching for live events.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;&lt;strong&gt;Irdeto&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=1324&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Encore Salon 2BDR&lt;/a&gt;] will demonstrate how Irdeto and Bitmovin seamlessly integrate to deliver industry-leading streaming solutions – combining robust content aggregation, monetization, and protection with adaptive, cross-platform playback for unmatched performance and security.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;MediaKind&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=119&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W1731&lt;/a&gt;] is showing how to stream flawless video and build iconic sports apps with Bitmovin Player and Bitmovin Analytics as part of an end-to-end solution for D2C streaming and monetization.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;NAGRAVISION&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=5171683&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W2678MR&lt;/a&gt;] will showcase its streaming security and consumer engagement solutions including OpenTV ENTera, integrated with Bitmovin Player for secure, high-quality streaming across multiple devices, ensuring seamless delivery and protection of premium content.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;&lt;strong&gt;Nomad Media&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=8800458&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W3409&lt;/a&gt;] demonstrates Nomad CMS with Bitmovin Player and Bitmovin Analytics as part of an end-to-end solution for customers to stream live events to web browsers and iOS and Android mobile devices.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Osprey Video&lt;/strong&gt; [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=411158&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W1625&lt;/a&gt;] is showcasing its quad channel desktop and openGear form factor encoders ideal for high density contribution workflows to the Bitmovin Live Encoder via RTMP, SRT or Zixi.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;&lt;strong&gt;Simplestream&lt;/strong&gt; will showcase Media Manager and App Platform at NAB Show this year.&amp;nbsp; Leveraging Bitmovin Player, this integrated solution offers broadcasters and content owners an intuitive, user-friendly OTT platform combining live TV, on-demand content and catch-up services, enabling SSAI and DRM cross platform.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;Hosted at the Zixi stand [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=1252&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;W1929&lt;/a&gt;],&lt;strong&gt; Videon &lt;/strong&gt;is demonstrating a live end-to-end secured stream, encrypted from the video source with a Docker container running on the Videon LiveEdge® platform, sent to the Bitmovin Live Encoder running on Akamai Connected Cloud, and distributed over the Akamai Content Delivery Network (CDN), then played back on Bitmovin Player in a cost-effective and scalable fashion.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Zype, &lt;/strong&gt;a Backlight company, [&lt;a href=&quot;https://nab25.mapyourshow.com/8_0/exhibitor/exhibitor-details.cfm?exhid=5171938&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;SL5006&lt;/a&gt;] will be showcasing their new real-time content and audience analytics solution, Zype Analytics 3, powered by Bitmovin Analytics. Zype’s API-first, full-stack video platform allows content publishers to manage, distribute, and monetize their live, VOD, and linear video across digital platforms.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Other Events with Partners at NAB&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Beyond the show floor, Bitmovin is participating in several events designed to encourage meaningful connections among industry professionals. On Sunday, April 6th, Igor Oreper and Reinhard Grandl will present &lt;a href=&quot;https://nab25.mapyourshow.com/8_0/sessions/session-details.cfm?scheduleid=2156&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;“The Right Ad at the Right Time”&lt;/a&gt; at the AWS Theatre from 2:45 to 3:15 PM. This session will focus on how the AI Content Analyzer, a cutting-edge feature integrated into Bitmovin’s Encoder, enhances ad personalization using Amazon Bedrock technology, offering a practical approach to creating more relevant advertising experiences for viewers.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;Later that evening, Bitmovin is excited to collaborate with Oracle for our NAB executive reception. This exclusive gathering provides an excellent opportunity to engage with industry professionals, exchange ideas, and unwind in a lively and welcoming atmosphere. If you would like to attend, please reach out to your Bitmovin representative for an invitation.&lt;br&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;br&gt;For those interested in exploring data-driven approaches further, Brian Harvey from Oracle and Stefan Lederer from Bitmovin will co-present a session on Monday, April 7th, at the Streaming Summit from 12:00 to 12:30 PM, titled &lt;a href=&quot;https://nab25.mapyourshow.com/8_0/sessions/session-details.cfm?scheduleid=1988&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;“Unlocking the Power of Data: How Analytics and AI are Revolutionizing Streaming”.&lt;/a&gt; Their discussion promises valuable insights into data-driven decision-making in the rapidly evolving world of streaming.&lt;/p&gt;
+
+
+
+&lt;p&gt;We look forward to connecting with you at NAB 2025 – whether it is at our booth or during one of our events – and exploring how we can collaborate to shape the future of streaming technology together.&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/bitmovin-innovators-network-nab-2025/</link><guid isPermaLink="false">https://bitmovin.com/blog/bitmovin-innovators-network-nab-2025/</guid><pubDate>Mon, 07 Apr 2025 04:02:10 GMT</pubDate><author>Brandon Zupancic</author></item><item><title>Build vs. Buy: The Real Cost of In-House VOD Encoding Workflow for Streaming Platforms</title><description>&lt;p&gt;When streaming VOD content, whether you’re just launching a streaming service or operating a global enterprise platform, your encoding workflow is essential to how your content plays back and is available to your audience wherever they are viewing from. Many teams initially build their workflows in-house using different options that are available for free. For some, that works well early on. For otheras, it becomes an ongoing burden. As content libraries grow, formats evolve, and new devices emerge, the demands on your encoding stack increase, and what once seemed manageable becomes a costly distraction from your core business.&lt;/p&gt;
+
+
+
+&lt;p&gt;That’s why understanding the total cost of ownership (TCO) is critical. TCO includes more than infrastructure bills. It reflects the time your developers spend maintaining workflows, fixing playback issues, keeping up with codec changes, and implementing new features. It also accounts for workflow fragility, missed publishing deadlines, and rising costs from inefficient processing. Without realizing it, how you choose to build out and deploy your encoding pipeline can become a bottleneck to growth.&lt;/p&gt;
+
+
+
+&lt;p&gt;Before we dive into where Bitmovin can help, it’s worth reviewing what each approach brings to the table.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;&lt;strong&gt;Pros and cons of choosing a commercial VOD Encoder&lt;/strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Pros:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Faster implementation and time-to-market&lt;/li&gt;
+
+
+
+&lt;li&gt;Consistent output quality across devices&lt;/li&gt;
+
+
+
+&lt;li&gt;Reduced internal engineering overhead&lt;/li&gt;
+
+
+
+&lt;li&gt;Ongoing access to new formats and standards&lt;/li&gt;
+
+
+
+&lt;li&gt;Scales easily with content and viewer growth&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Cons:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Licensing cost based on usage&lt;/li&gt;
+
+
+
+&lt;li&gt;Less control over the underlying encoding logic&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Pros and Cons of Building In-House VOD Encoding&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Pros:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Full control over workflows and customization&lt;/li&gt;
+
+
+
+&lt;li&gt;Potentially lower cost at a very small scale&lt;/li&gt;
+
+
+
+&lt;li&gt;In-house tools can reduce initial expenses&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Cons:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;High engineering and maintenance burden&lt;/li&gt;
+
+
+
+&lt;li&gt;Harder to scale and stay current with new devices and codecs&lt;/li&gt;
+
+
+
+&lt;li&gt;Inconsistent output may impact playback quality&lt;/li&gt;
+
+
+
+&lt;li&gt;Greater risk of re-encoding, bugs, and delays&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;Bitmovin’s VOD Encoder helps reduce these costs by offloading complexity, speeding up development, and optimizing performance behind the scenes. To understand where it makes the biggest impact, we’ll look at three types of streaming platforms and what TCO really looks like at each stage of growth.&lt;/p&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;What Bitmovin customers have been able to &lt;/strong&gt;save by using the VOD Encoder&lt;/h2&gt;
+
+
+
+&lt;p&gt;According to the &lt;a href=&quot;https://go.bitmovin.com/forrester-tei-encoding-2021&quot; target=&quot;_blank&quot; data-type=&quot;link&quot; data-id=&quot;https://go.bitmovin.com/forrester-tei-encoding-2021&quot; rel=&quot;noreferrer noopener&quot;&gt;Forrester Total Economic Impact (TEI) study&lt;/a&gt;, organizations that adopted Bitmovin’s VOD Encoder achieved significant cost reductions and operational efficiencies, including:&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Over &lt;strong&gt;$1.92 million&lt;/strong&gt; in personnel cost savings over three years by reducing the need for dedicated encoding staff&lt;/li&gt;
+
+
+
+&lt;li&gt;Over &lt;strong&gt;$3.26 million&lt;/strong&gt; in storage and delivery savings from reduced file sizes and more efficient encoding&lt;/li&gt;
+
+
+
+&lt;li&gt;A &lt;strong&gt;355% ROI&lt;/strong&gt; and &lt;strong&gt;$4.05 million&lt;/strong&gt; in net present value (NPV) through a combination of time savings, cost reduction, and improved scalability&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;These outcomes vary by platform type and size, but they highlight the real-world impact of switching from in-house encoding to a commercial solution like Bitmovin.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;hr class=&quot;wp-block-separator has-alpha-channel-opacity&quot;&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Scenario 1: Segment Streaming Services&lt;/strong&gt; &lt;/h2&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;Viewers: &lt;strong&gt;Locally and in the thousands to hundreds of thousands per month&lt;/strong&gt;.&lt;strong&gt; Cost Driver: Processing resources&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;For smaller platforms, reliability and simplicity are the top priorities. These teams need encoding that doesn’t require constant supervision or specialized video knowledge. Often, they’re dealing with unpredictable viewership patterns and limited budgets, making scalability and cost efficiency essential from the start. While an in-house solution may seem manageable early on, it can quickly become unstable or inconsistent as the library and user base grow. Bitmovin provides the stability and efficiency these platforms need without adding technical burden.&lt;/p&gt;
+
+
+
+&lt;p&gt;Segment streaming platforms are typically smaller services, such as regional broadcasters or niche content providers. Their viewer base tends to be local, and their teams are small, often without dedicated video engineers. Their encoding needs are simple but essential. Content must be reliably processed and streamed without a significant technical lift.&lt;/p&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Key Needs:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;A solution that works out of the box&lt;/li&gt;
+
+
+
+&lt;li&gt;Minimal internal developer time and no video specialists&lt;/li&gt;
+
+
+
+&lt;li&gt;Best-practice defaults that require little tuning&lt;/li&gt;
+
+
+
+&lt;li&gt;Efficient processing to keep infrastructure costs low despite unpredictable viewership&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Bitmovin’s Value:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Bitmovin’s VOD Encoder is cloud-native and pre-configured with proven encoding defaults&lt;/li&gt;
+
+
+
+&lt;li&gt;Requires no specialized knowledge to set up and manage&lt;/li&gt;
+
+
+
+&lt;li&gt;Can run on any major cloud provider via Cloud Connect&lt;/li&gt;
+
+
+
+&lt;li&gt;Continuously optimized algorithms reduce resource use and cost&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;TCO Breakdown:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Saves developer time by automating encoding operations&lt;/li&gt;
+
+
+
+&lt;li&gt;Fewer re-encodes and playback complaints&lt;/li&gt;
+
+
+
+&lt;li&gt;No need to train or hire dedicated video engineers&lt;/li&gt;
+
+
+
+&lt;li&gt;Faster time to publish with less technical debt&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;hr class=&quot;wp-block-separator has-alpha-channel-opacity&quot;&gt;
+
+
+
+&lt;div style=&quot;height:1px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Scenario 2: Regional Streaming Services&lt;/strong&gt; &lt;/h2&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;em&gt;Viewers: &lt;/em&gt;&lt;strong&gt;Regionally and in the hundreds of thousands to tens of millions per month. Cost Driver: A balance of encoding and CDN or data transfer&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Regional platforms often sit in a transitional phase. They’ve outgrown the MVP stage and are now focused on refining their workflows and minimizing delivery costs. Encoding strategies at this level must be adaptable to varying content types, audience sizes, and quality expectations. Manual tuning quickly becomes unsustainable, and the limitations of earlier in-house efforts start to show. These platforms need smarter automation, better quality control, and encoding technology that aligns with evolving business needs.&lt;/p&gt;
+
+
+
+&lt;p&gt;Regional streaming platforms are scaling fast and looking to improve efficiency across the board. Their teams are often more experienced, but still resource-constrained. Content is no longer uniform, and encoding strategies must differentiate between high-priority and long-tail assets to avoid overspending.&lt;/p&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Key Needs:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Balancing encoding cost with bitrate efficiency&lt;/li&gt;
+
+
+
+&lt;li&gt;Differentiated workflows for high- and low-traffic content&lt;/li&gt;
+
+
+
+&lt;li&gt;Deeper integration into CI/CD pipelines&lt;/li&gt;
+
+
+
+&lt;li&gt;More nuanced encoding quality control without manual tuning&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Bitmovin’s Value:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Bitmovin’s Per-Title and 3-Pass Encoding optimize each asset individually based on content complexity&lt;/li&gt;
+
+
+
+&lt;li&gt;Encoding workflows can be automated and integrated directly into publishing systems&lt;/li&gt;
+
+
+
+&lt;li&gt;Supports hybrid encoding deployments for better cost control&lt;/li&gt;
+
+
+
+&lt;li&gt;Reduces storage and delivery overhead without sacrificing quality&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;TCO Breakdown:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Lower storage and CDN costs due to leaner, more efficient files&lt;/li&gt;
+
+
+
+&lt;li&gt;Less time spent tuning or segmenting encoding jobs manually&lt;/li&gt;
+
+
+
+&lt;li&gt;More consistency across content classes&lt;/li&gt;
+
+
+
+&lt;li&gt;Fewer viewer complaints, fewer support issues, and smoother CI/CD deployment&lt;/li&gt;
+
+
+
+&lt;li&gt;Fewer engineering hours spent on configuring encoding settings&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;hr class=&quot;wp-block-separator has-alpha-channel-opacity&quot;&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Scenario 3: Global Streaming Services&lt;/strong&gt; &lt;/h2&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;em&gt;Viewers: Globally and in the tens to hundreds of millions per month&lt;/em&gt;. &lt;em&gt;Cost Driver: CDN and data transfer efficiency&lt;/em&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;At global scale, encoding is no longer just a backend process—it’s a strategic differentiator. Enterprise streaming platforms must support complex monetization strategies, international compliance, multi-device delivery, and high viewer expectations, all while maintaining operational efficiency. Many have internal solutions already in place, but those systems may be rigid, expensive to maintain, or too slow to adopt new codecs and formats. Bitmovin addresses these gaps through co-development, optimization, and cutting-edge encoding capabilities that are built for enterprise scale.&lt;/p&gt;
+
+
+
+&lt;p&gt;Many global streaming platforms already operate with mature encoding pipelines. These systems may have served them well in the past, but as audiences scale and content libraries expand, the cost and complexity of maintaining high-performance encoding becomes harder to justify internally.&lt;/p&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Key Needs:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;A customizable and flexible encoding stack&lt;/li&gt;
+
+
+
+&lt;li&gt;A partner that can help lead innovation and codec strategy&lt;/li&gt;
+
+
+
+&lt;li&gt;Best-in-class bitrate efficiency for both quality and cost optimization&lt;/li&gt;
+
+
+
+&lt;li&gt;A workflow that evolves with audience and format trends&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Bitmovin’s Value:&lt;/strong&gt;&lt;/h4&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Acts as a co-development partner to global platforms&lt;/li&gt;
+
+
+
+&lt;li&gt;Provides strategic guidance on AV1, VVC, and emerging formats&lt;/li&gt;
+
+
+
+&lt;li&gt;Offers perceptual-based quality tuning to reduce delivery cost without sacrificing visual performance&lt;/li&gt;
+
+
+
+&lt;li&gt;Optimizes encoding across massive libraries while minimizing processing time and infrastructure spend&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Cost Savings Highlight:&lt;/strong&gt; One global customer saw a &lt;strong&gt;355 percent ROI and $4.05 million in net present value over three years&lt;/strong&gt; from adopting Bitmovin’s encoder at scale. (Source: Forrester TEI) &lt;strong&gt;TCO Breakdown:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Demonstrated multi-million dollar annual savings from AV1 and 3-Pass Encoding implementation&lt;/li&gt;
+
+
+
+&lt;li&gt;Reduced re-encoding and debugging overhead&lt;/li&gt;
+
+
+
+&lt;li&gt;Future-proofs workflows with ongoing updates and innovations&lt;/li&gt;
+
+
+
+&lt;li&gt;Engineering teams focus more on innovation and experience than pipeline upkeep&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;hr class=&quot;wp-block-separator has-alpha-channel-opacity&quot;&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Final Thoughts&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Choosing to build your own encoding pipeline might feel like the right decision early on. It offers control, flexibility, and minimal upfront cost. But as your platform grows, that control often turns into technical debt. Maintaining performance, quality, and scalability becomes an uphill climb, and the burden on your engineering team keeps increasing.&lt;/p&gt;
+
+
+
+&lt;p&gt;Bitmovin’s VOD Encoder is designed to reduce that burden. It delivers consistent quality, scales with your platform, and removes the complexity of managing video workflows in-house. Whether you’re encoding hundreds of assets or handling billions of views, Bitmovin helps you achieve a lower TCO while keeping your focus where it belongs—on building a better streaming experience.&lt;/p&gt;
+
+
+
+&lt;p&gt;Want to see what Bitmovin can do for your platform?&lt;a href=&quot;https://bitmovin.com/video-encoding/&quot;&gt; Explore the VOD Encoder&lt;/a&gt; or talk to our team to learn more.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+</description><link>https://bitmovin.com/blog/vod-encoding-commercial-vs-inhouse/</link><guid isPermaLink="false">https://bitmovin.com/blog/vod-encoding-commercial-vs-inhouse/</guid><pubDate>Tue, 01 Apr 2025 01:04:40 GMT</pubDate><author>Markus Hafellner</author></item><item><title>How to Build the Best Streaming E-Sports and Sports Experience</title><description>&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;There was a time when all you needed to build the best streaming experience was to create quality content and have a fast internet connection. &lt;/span&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;However, with the explosion of over-the-top (OTT) platforms, the available options and viewers’ preferences have changed. This has caused an unprecedented segmentation of the OTT industry, as the needs of entertainment, news, and sports streaming are not the same.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;To that end, this article will explore what’s needed to build the best streaming experience for sports and esports viewers.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;What Makes the eSports and Sports Streaming Experience Different?&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;Both on-demand and live OTT media streaming have quickly become an important source of revenue for the sports industry, causing investment in the sector to skyrocket. &lt;/span&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;But what makes sports streaming different from that of other industries? The answer lies in the unique needs of the sports industry and in viewers’ expectations.&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;&lt;strong&gt;Publishing velocity&lt;/strong&gt; – In certain industries, for example, Sport or News, every second matters. From having that goal, try or wicket that happens on the field, to having a specific clip published on the website – you must be first. To that end the Bitmovin encoder provides industry-leading speed and scale; whether the clip comes in from the live stream, or comes in from the edit bay Bitmovin’s split-and-stitch encoding approach gets it to your audience quicker.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Syndication support&lt;/strong&gt; – rarely is one sports asset used under one masthead,&amp;nbsp; preparing a clip for syndication may be as simple as changing the bug/logo/watermark or maybe involve different workflow treatments.&amp;nbsp; With Bitmovin encoding, the jobs can be tailored to the individual demands of your syndicators, broadcasters, or sponsors&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Image quality, latency, and bit rate &lt;/strong&gt;– Depending on the industry, the standards of what is acceptable and what is not can vary drastically. For a newscast, picture quality, sound, and transmission delay may not be as important. For a concert, audio quality is paramount. For sports, an excellent frame rate and extremely low latency are essential.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Digital rights management (DRM) and forensic watermarking&lt;/strong&gt; The complex regional deals and negotiations behind high-profile sporting events are among the many reasons that the sports industry enforces the world’s strictest anti-piracy controls.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customization&lt;/strong&gt; – Few viewers are as demanding as online sports fans about personalizing their experience. They expect multiple options on camera angles, commentators, statistics, and other information.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monetization models&lt;/strong&gt; – The sports industry is one of the most flexible of all. It can use pay-per-view models for high-impact events, such as a World Cup final, as well as on-demand subscriptions for other content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;mceTemp&quot;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure id=&quot;attachment_194355&quot; aria-describedby=&quot;caption-attachment-194355&quot; style=&quot;width: 545px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;wp-image-194355&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2021/09/AdobeStock_244516806-2-776x1024.jpeg&quot; alt=&quot;Sports Streaming_Graphic of 3D player on device&quot; width=&quot;545&quot; height=&quot;720&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption id=&quot;caption-attachment-194355&quot; class=&quot;wp-caption-text&quot;&gt;It’s time to build an engaging sports streaming experience&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;High Quality vs Low Latency&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;In streaming for the sports industry, which is more important: low latency or image quality?&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;According to a &lt;a href=&quot;https://www.ringdigital.tv/futureoftv/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;survey conducted by Ring Digital&lt;/a&gt;, in 2021, the majority of viewers don’t seem to mind that the average delay of live streaming is twenty to fifty seconds. Of those surveyed, 26.3 percent were aware of the delay but did not care, 24.4 percent were vaguely aware of the delay, and 22.6 percent had not noticed it. Only 26.8 percent responded that the delay was annoying.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;Meanwhile, the consulting firm &lt;a href=&quot;https://www2.deloitte.com/content/dam/Deloitte/us/Documents/technology-media-telecommunications/us-enhancing-digital-fan-engagement.pdf&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Deloitte&lt;/a&gt; states that “the single most important factor for fans is picture quality.”&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;Does this mean that latency in sports broadcasting is not important? On the contrary, latency is critical, even if viewers don’t perceive it as such. &lt;/span&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;Two fundamental factors drive sports content providers to invest heavily in improving quality through low-latency streaming. The first is the rapid expansion of sports betting, and the second, more related to the COVID-19 pandemic, is the growing popularity of watch parties.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;Online sports betting is not only a multimillion-dollar business in the &lt;a href=&quot;https://www.usbets.com/sports-betting-expansion-2021-expectations/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;U.S. states where it is already legal&lt;/a&gt;, but it can be a profitable source of revenue for OTT operators. Through strategic partnerships, live sports and esports providers could benefit from the legalization of betting in many states and even consider scaling back other monetization strategies, such as advertising. The problem? For this type of partnership to be fruitful, latency must be extremely low. In the world of gambling, a forty-second delay compared to other conventional transmission media is simply unacceptable.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;In the case of watch parties, the stakes could be even higher, as the user experience is so important. Imagine a group of friends and family that decided to watch the live broadcast of a baseball game together from separate homes. Not everyone is using the same provider, and some may be watching the game on their tablet, while others are still using the traditional cable service. Who do you think is going to see the home run first? This uneven situation could ruin the whole eSports and Sports streaming experience.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;And this doesn’t just apply to watch parties. A growing second-screen culture motivates many viewers to use their phone, tablet, or laptop while watching sports online to check statistics or complement their experience in other ways.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;Low latency in live sports streaming is important today and will be even more important in the future. To build the best eSports and Sports streaming experience, OTT providers must address the root causes that affect latency, such as encoding technology, content delivery network (CDN), and video player buffering.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;What about Streaming Bit Rate?&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;While image quality and latency are important for OTT sports, the bit rate cannot be neglected. In simple terms, the time it takes for the encoded video to be transmitted is directly linked to the bit rate. Since lower bit rates result in smaller files, they can be transmitted more quickly. In other words, lower bit rates favor lower latency. The problem is that higher frame rates require a higher bit rate. Consequently, for sports that involve fast movements, a high bit rate is critical to catch all the details.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;The solution? Using platforms that provide the highest quality at the lowest possible bit rate. In this way, image quality can be preserved without affecting latency. To achieve this high-speed encoding, it is essential to use the most advanced codecs, such as AV1, VP9, H.264, and HEVC.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;An additional advantage of modern codecs is that they are more resilient against errors that can degrade transmission quality. A low error rate is another factor that, if not handled properly, can affect the user experience. This is possible thanks to the advanced compression algorithms of these codecs, which minimize the impact of channel errors.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;Anti-Piracy, DRM, and Forensic Watermarking&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;Delivering high-quality content with low latency is a challenge, not only from a technical point of view but also from an investment requirement point of view. For this reason, it is essential to safeguard this investment by implementing appropriate anti-piracy mechanisms.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;According to a &lt;a href=&quot;https://parksassociates.com/blog/article/pr-01152020&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Parks Associates estimate&lt;/a&gt;, piracy and account sharing cost OTT operators more than $9 billion in revenue in 2019. Using DRM technology to control streaming access is not enough to solve the issue. &lt;/span&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;&lt;a href=&quot;https://go.bitmovin.com/drm-whitepaper&quot;&gt;DRM&lt;/a&gt; ensures that only authorized users have access to premium content; however, it does not prevent anyone from stealing your content by using, for example, a simple screen recording utility. This is why forensic watermarking is essential as an additional layer of security.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;&lt;a href=&quot;https://bitmovin.com/video-watermarking/&quot;&gt;Forensic watermarking&lt;/a&gt; allows a unique identifier to be embedded in each session of OTT sports content so that you know with certainty which device is violating the transmission rights. This makes it easy to take immediate action, such as shutting off the service for that subscriber to prevent the retransmission of content.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;Native Multidevice Support&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;According to &lt;a href=&quot;https://www.verizondigitalmedia.com/infographic/evolution-of-live-sports/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Verizon Media&lt;/a&gt;, 46 percent of viewers prefer to stream sports on a big screen, while 22 percent find it more convenient to do so from their phone, 19 percent from their PC, and 13 percent from a tablet. The study also shows that OTT video services that fail to deliver a quality eSports and Sports streaming experience across platforms can lose up to 25 percent in revenue. &lt;a href=&quot;https://www.akamai.com/newsroom/press-release/quality-of-ott-video-streaming-experiences-directly-tied-to-viewer-loyalty-service-provider-success&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Another study&lt;/a&gt; conducted by Akamai Technologies revealed that up to 76 percent of users would be willing to cancel their subscriptions if the streaming service did not offer the expected quality.&lt;/span&gt;&lt;br&gt;
+&lt;/p&gt;&lt;figure id=&quot;attachment_194357&quot; aria-describedby=&quot;caption-attachment-194357&quot; style=&quot;width: 776px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;a href=&quot;https://www.verizondigitalmedia.com/infographic/evolution-of-live-sports/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; class=&quot;wp-image-194357 size-full&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2021/09/Screenshot-2021-09-29-at-14.09.43.png&quot; alt=&quot;eSports and Sports Streaming Experience_Preferred streaming devices_infographic&quot; width=&quot;776&quot; height=&quot;426&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2021/09/Screenshot-2021-09-29-at-14.09.43.png 776w, https://bitmovin.com/wp-content/uploads/2021/09/Screenshot-2021-09-29-at-14.09.43-300x165.png 300w, https://bitmovin.com/wp-content/uploads/2021/09/Screenshot-2021-09-29-at-14.09.43-768x422.png 768w&quot; sizes=&quot;auto, (max-width: 776px) 100vw, 776px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;figcaption id=&quot;caption-attachment-194357&quot; class=&quot;wp-caption-text&quot;&gt;Where do viewers prefer to watch sports?&lt;/figcaption&gt;&lt;/figure&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;Put another way: in a world dominated by devices of all kinds, from wearables to desktop PCs, offering quality streaming that adapts to each platform is key to maintaining customer loyalty.&lt;/span&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;Monetization Models&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;One of the biggest advantages of OTT services for sports is the flexibility to implement different monetization strategies. Subscription video on demand (SVOD), transactional video on demand (TVOD), and advertising video on demand (AVOD) are some of the most widely used models in the industry.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;None of these models is mutually exclusive. This means that OTT providers could, for example, combine the SVOD and TVOD models (as DirecTV has done for years) to monetize both on-demand and live content. Another option would be to use the AVOD model (similar to how YouTube operates) so that users can view sporting events on-demand for free.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;The possibilities are endless.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;Conclusion&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style=&quot;font-weight: 400&quot;&gt;The key to building the best eSports and Sports Streaming Experience is to deliver high-quality video on as many streaming devices as possible. To this end, aspects such as image quality, latency, and bit rate must be balanced without overlooking security and anti-piracy mechanisms.&lt;/span&gt;&lt;br&gt;
+&lt;span style=&quot;font-weight: 400&quot;&gt;Achieving this balance does not have to be an overwhelming task. &lt;a href=&quot;https://bitmovin.com/&quot;&gt;Bitmovin&lt;/a&gt; provides an end-to-end solution that allows content creators to reliably deliver quality video with low latency to their viewers across all major platforms. Moreover, Bitmovin’s built-in analytics allow you to diagnose issues in real-time while providing insights so you can optimize the user experience and stand out from the competition. In fact, Bitmovin has applied these best practices with the National Rugby League of Australia, find out how at the following links:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[Case Study] &lt;a href=&quot;https://bitmovin.com/customer-showcase/nrl&quot;&gt;The National Rugby League finds a winning team in Dalet and Bitmovin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Blog Post] &lt;a href=&quot;https://bitmovin.com/quality-of-experience-dalet/&quot;&gt;Quality of Experience Issues: Leveling the Content Creation Playing Field (ft. Dalet) &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[On-Demand Webinar] &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1I-zxrWz4GkVyfu9G2iOIQU-5Kwihw0Hnb1crMJA8e8w/edit#gid=133942411&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;&lt;span data-sheets-value=&quot;{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:&amp;quot;How Dalet + Bitmovin solutions can help you innovate your sports content OTT strategy&amp;quot;}&quot; data-sheets-userformat=&quot;{&amp;quot;2&amp;quot;:7101,&amp;quot;3&amp;quot;:{&amp;quot;1&amp;quot;:0},&amp;quot;5&amp;quot;:{&amp;quot;1&amp;quot;:[{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0,&amp;quot;5&amp;quot;:{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0}},{&amp;quot;1&amp;quot;:0,&amp;quot;2&amp;quot;:0,&amp;quot;3&amp;quot;:3},{&amp;quot;1&amp;quot;:1,&amp;quot;2&amp;quot;:0,&amp;quot;4&amp;quot;:1}]},&amp;quot;6&amp;quot;:{&amp;quot;1&amp;quot;:[{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0,&amp;quot;5&amp;quot;:{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0}},{&amp;quot;1&amp;quot;:0,&amp;quot;2&amp;quot;:0,&amp;quot;3&amp;quot;:3},{&amp;quot;1&amp;quot;:1,&amp;quot;2&amp;quot;:0,&amp;quot;4&amp;quot;:1}]},&amp;quot;7&amp;quot;:{&amp;quot;1&amp;quot;:[{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0,&amp;quot;5&amp;quot;:{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0}},{&amp;quot;1&amp;quot;:0,&amp;quot;2&amp;quot;:0,&amp;quot;3&amp;quot;:3},{&amp;quot;1&amp;quot;:1,&amp;quot;2&amp;quot;:0,&amp;quot;4&amp;quot;:1}]},&amp;quot;8&amp;quot;:{&amp;quot;1&amp;quot;:[{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0,&amp;quot;5&amp;quot;:{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0}},{&amp;quot;1&amp;quot;:0,&amp;quot;2&amp;quot;:0,&amp;quot;3&amp;quot;:3},{&amp;quot;1&amp;quot;:1,&amp;quot;2&amp;quot;:0,&amp;quot;4&amp;quot;:1}]},&amp;quot;10&amp;quot;:2,&amp;quot;11&amp;quot;:3,&amp;quot;12&amp;quot;:0,&amp;quot;14&amp;quot;:{&amp;quot;1&amp;quot;:2,&amp;quot;2&amp;quot;:0},&amp;quot;15&amp;quot;:&amp;quot;arial,sans,sans-serif&amp;quot;}&quot;&gt;How Dalet &amp;amp; Bitmovin solutions can help you innovate your sports content OTT strategy&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description><link>https://bitmovin.com/blog/esports-and-sports-streaming-experience/</link><guid isPermaLink="false">https://bitmovin.com/blog/esports-and-sports-streaming-experience/</guid><pubDate>Tue, 01 Apr 2025 01:03:51 GMT</pubDate><author>Adam Massaro</author></item><item><title>AI Contextual Advertising: A New Era for Viewer-Centric Ads</title><description>&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;AI Contextual Advertising: A New Era for Viewer-Centric Ads&lt;/strong&gt;&lt;/h2&gt;
 
 
 
@@ -369,7 +1702,7 @@
 
 
 
-&lt;div class=&quot;bitmovin-stream-wrapper&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;bitmovin-stream-wrapper&quot;&gt;&lt;iframe src=&quot;https://streams.bitmovin.com/cmu1sebmrdgnsb54edc0/embed&quot; title=&quot;bitmovin-streams&quot; allow=&quot;fullscreen&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;
 
 
 
@@ -405,7 +1738,7 @@
 
 
 
-&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67eb2fa23bdb5&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;283&quot; height=&quot;300&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03%E2%80%AFPM-283x300.png&quot; alt=&quot;Table containing SCTE-35 Document Release History from 2001 to 2023&quot; class=&quot;wp-image-275720&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-283x300.png 283w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-768x813.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM.png 986w&quot; sizes=&quot;auto, (max-width: 283px) 100vw, 283px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image: Table containing SCTE-35 Document Release History from 2001 to 2023&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
+&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;683b9b1a011d5&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;283&quot; height=&quot;300&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03%E2%80%AFPM-283x300.png&quot; alt=&quot;Table containing SCTE-35 Document Release History from 2001 to 2023&quot; class=&quot;wp-image-275720&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-283x300.png 283w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM-768x813.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.38.03 PM.png 986w&quot; sizes=&quot;auto, (max-width: 283px) 100vw, 283px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image: Table containing SCTE-35 Document Release History from 2001 to 2023&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;none&quot; viewBox=&quot;0 0 12 12&quot;&gt;
 &lt;path fill=&quot;#fff&quot; d=&quot;M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z&quot;&gt;&lt;/path&gt;
 &lt;/svg&gt;
@@ -481,7 +1814,7 @@
 
 
 
-&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67eb2fa23c56c&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;300&quot; height=&quot;226&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19%E2%80%AFPM-300x226.png&quot; alt=&quot;&quot; class=&quot;wp-image-275722&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-300x226.png 300w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-768x580.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-1536x1159.png 1536w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM.png 1778w&quot; sizes=&quot;auto, (max-width: 300px) 100vw, 300px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
+&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;683b9b1a0197a&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-medium wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;300&quot; height=&quot;226&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19%E2%80%AFPM-300x226.png&quot; alt=&quot;&quot; class=&quot;wp-image-275722&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-300x226.png 300w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-768x580.png 768w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM-1536x1159.png 1536w, https://bitmovin.com/wp-content/uploads/2024/01/Screenshot-2024-01-19-at-4.42.19 PM.png 1778w&quot; sizes=&quot;auto, (max-width: 300px) 100vw, 300px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;none&quot; viewBox=&quot;0 0 12 12&quot;&gt;
 &lt;path fill=&quot;#fff&quot; d=&quot;M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z&quot;&gt;&lt;/path&gt;
 &lt;/svg&gt;
@@ -571,26 +1904,26 @@ SCTE35:/DBcAAAAAAAAAP/wBQb//ciI8QBGAh1DVUVJXQk9EX+fAQ5FUDAxODAzODQwMDY2NiEEZAIZQ
 &lt;p&gt;In MPEG-DASH streams, SCTE-35 defined breaks and segments are added as new periods to the .mpd file.&lt;/p&gt;
 
 
-&lt;div class=&quot;wp-block-syntaxhighlighter-code &quot;&gt;&lt;pre class=&quot;brush: plain; title: ; notranslate&quot; title=&quot;&quot;&gt;&amp;amp;lt;MPD&amp;amp;gt;
-&amp;amp;lt;Period start=&quot;PT0S&quot; id=&quot;1&quot;&amp;amp;gt;
-   &amp;amp;lt;!-- Content Period --&amp;amp;gt;
-&amp;amp;lt;/Period&amp;amp;gt;
+&lt;div class=&quot;wp-block-syntaxhighlighter-code &quot;&gt;&lt;pre class=&quot;brush: xml; title: ; notranslate&quot; title=&quot;&quot;&gt;&amp;lt;MPD&amp;gt;
+&amp;lt;Period start=&quot;PT0S&quot; id=&quot;1&quot;&amp;gt;
+   &amp;lt;!-- Content Period --&amp;gt;
+&amp;lt;/Period&amp;gt;
 
-&amp;amp;lt;Period start=&quot;PT32S&quot; id=&quot;2&quot;&amp;amp;gt;
-    &amp;amp;lt;!-- Ad Break Period --&amp;amp;gt;
-   &amp;amp;lt;EventStream timescale=&quot;90000&quot;
-    schemeIdUri=&quot;urn:scte:scte35:2014:xml+bin&quot;&amp;amp;gt;
-     &amp;amp;lt;Event duration=&quot;2520000&quot; id=&quot;1&quot;&amp;amp;gt;
-       &amp;amp;lt;Signal xmlns=&quot;urn:scte:scte35:2013:xml&quot;&amp;amp;gt;
-         &amp;amp;lt;Binary&amp;amp;gt;      /DAlAAAAAAAAAP/wFAUAAAAEf+/+kybGyP4BSvaQAAEBAQAArky/3g==
-         &amp;amp;lt;Binary&amp;amp;gt;
-       &amp;amp;lt;/Signal&amp;amp;gt;
-      &amp;amp;lt;/Event&amp;amp;gt;
-    &amp;amp;lt;/EventStream&amp;amp;gt; 
-&amp;amp;lt;/Period&amp;amp;gt;
+&amp;lt;Period start=&quot;PT32S&quot; id=&quot;2&quot;&amp;gt;
+    &amp;lt;!-- Ad Break Period --&amp;gt;
+   &amp;lt;EventStream timescale=&quot;90000&quot;
+    schemeIdUri=&quot;urn:scte:scte35:2014:xml+bin&quot;&amp;gt;
+     &amp;lt;Event duration=&quot;2520000&quot; id=&quot;1&quot;&amp;gt;
+       &amp;lt;Signal xmlns=&quot;urn:scte:scte35:2013:xml&quot;&amp;gt;
+         &amp;lt;Binary&amp;gt;      /DAlAAAAAAAAAP/wFAUAAAAEf+/+kybGyP4BSvaQAAEBAQAArky/3g==
+         &amp;lt;Binary&amp;gt;
+       &amp;lt;/Signal&amp;gt;
+      &amp;lt;/Event&amp;gt;
+    &amp;lt;/EventStream&amp;gt; 
+&amp;lt;/Period&amp;gt;
 
-&amp;amp;lt;Period start=&quot;PT60S&quot; id=&quot;3&quot;&amp;amp;gt; 
-   &amp;amp;lt;!-- Content Period --&amp;amp;gt;
+&amp;lt;Period start=&quot;PT60S&quot; id=&quot;3&quot;&amp;gt; 
+&amp;lt;!-- Content Period --&amp;gt;
 
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -11784,7 +13117,7 @@ There is no new signaling necessary for HLS, just the regular content-specific v
 
 
 
-&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;67eb2fa2cb256&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-full is-resized wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;3298&quot; height=&quot;732&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png&quot; alt=&quot;&quot; class=&quot;wp-image-272900&quot; style=&quot;width:1204px;height:auto&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png 3298w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-300x67.png 300w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-768x170.png 768w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-1536x341.png 1536w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-2048x455.png 2048w&quot; sizes=&quot;auto, (max-width: 3298px) 100vw, 3298px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
+&lt;figure data-wp-context=&quot;{&amp;quot;imageId&amp;quot;:&amp;quot;683b9b1a9aeb4&amp;quot;}&quot; data-wp-interactive=&quot;core/image&quot; class=&quot;wp-block-image aligncenter size-full is-resized wp-lightbox-container&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;3298&quot; height=&quot;732&quot; data-wp-class--hide=&quot;state.isContentHidden&quot; data-wp-class--show=&quot;state.isContentVisible&quot; data-wp-init=&quot;callbacks.setButtonStyles&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-on-async--load=&quot;callbacks.setButtonStyles&quot; data-wp-on-async-window--resize=&quot;callbacks.setButtonStyles&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png&quot; alt=&quot;&quot; class=&quot;wp-image-272900&quot; style=&quot;width:1204px;height:auto&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM.png 3298w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-300x67.png 300w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-768x170.png 768w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-1536x341.png 1536w, https://bitmovin.com/wp-content/uploads/2023/11/Screenshot-2023-11-26-at-8.07.04-PM-2048x455.png 2048w&quot; sizes=&quot;auto, (max-width: 3298px) 100vw, 3298px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;button class=&quot;lightbox-trigger&quot; type=&quot;button&quot; aria-haspopup=&quot;dialog&quot; aria-label=&quot;Enlarge image&quot; data-wp-init=&quot;callbacks.initTriggerButton&quot; data-wp-on-async--click=&quot;actions.showLightbox&quot; data-wp-style--right=&quot;state.imageButtonRight&quot; data-wp-style--top=&quot;state.imageButtonTop&quot;&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;12&quot; height=&quot;12&quot; fill=&quot;none&quot; viewBox=&quot;0 0 12 12&quot;&gt;
 &lt;path fill=&quot;#fff&quot; d=&quot;M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z&quot;&gt;&lt;/path&gt;
 &lt;/svg&gt;
@@ -21863,7 +23196,7 @@ const mediaSource = getMediaSource();
 
 
 
-&lt;ul class=&quot;wp-block-list&quot; style=&quot;font-style:normal;font-weight:600&quot;&gt;
+&lt;ul style=&quot;font-style:normal;font-weight:600&quot; class=&quot;wp-block-list&quot;&gt;
 &lt;li&gt;Average time for scheduling decisions dropped from 40 seconds to less than 2 seconds (under high load)&lt;/li&gt;
 
 
@@ -21919,7 +23252,7 @@ const mediaSource = getMediaSource();
 
 
 
-&lt;figure class=&quot;wp-block-image aligncenter size-full is-resized&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2023/04/image-20221110-140926-1.png&quot; alt=&quot;&quot; class=&quot;wp-image-256595&quot; width=&quot;476&quot; height=&quot;736&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2023/04/image-20221110-140926-1.png 545w, https://bitmovin.com/wp-content/uploads/2023/04/image-20221110-140926-1-194x300.png 194w&quot; sizes=&quot;auto, (max-width: 476px) 100vw, 476px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
+&lt;figure class=&quot;wp-block-image aligncenter size-full is-resized&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;545&quot; height=&quot;842&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2023/04/image-20221110-140926-1.png&quot; alt=&quot;&quot; class=&quot;wp-image-256595&quot; style=&quot;width:476px;height:736px&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2023/04/image-20221110-140926-1.png 545w, https://bitmovin.com/wp-content/uploads/2023/04/image-20221110-140926-1-194x300.png 194w&quot; sizes=&quot;auto, (max-width: 545px) 100vw, 545px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
 
 
 
@@ -21965,7 +23298,7 @@ const mediaSource = getMediaSource();
 
 
 
-&lt;p&gt;Especially for encoding jobs that have a big configuration (e.g., a lot of Streams, Muxings, etc.) we saw that the processing times of an Encoding Start call could sometimes take longer than 60 seconds. Our API gateway is configured with a 60 seconds timeout, thus our customers were getting 504 gateway timeout errors. Many customers did not have good retry mechanisms or strategies in place, so we shared this article that documents our &lt;a href=&quot;https://bitmovin.com/docs/encoding/articles/best-practice-guide-rest-api-5xx-errors&quot;&gt;best practices for handling 5xx errors&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Especially for encoding jobs that have a big configuration (e.g., a lot of Streams, Muxings, etc.) we saw that the processing times of an Encoding Start call could sometimes take longer than 60 seconds. Our API gateway is configured with a 60 seconds timeout, thus our customers were getting 504 gateway timeout errors. Many customers did not have good retry mechanisms or strategies in place, so we shared this article that documents our &lt;a href=&quot;https://developer.bitmovin.com/encoding/docs/best-practice-guide-rest-api-5xx-errors&quot;&gt;best practices for handling 5xx errors&lt;/a&gt;.&lt;/p&gt;
 
 
 
@@ -28351,457 +29684,4 @@ color: #939393 !important;
 
 
 &lt;p&gt;All in all, if PlayStation 5 is on your team’s roadmap, check out the Bitmovin Player to start with, as you and your team will save time and vital resources during development. In addition, once deployed, it will give you and your team the time to work on core features for your service and focus on what sets you apart in the market.&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/an-engineers-pov-on-developing-the-bitmovin-player-for-playstation-5/</link><guid isPermaLink="false">https://bitmovin.com/blog/an-engineers-pov-on-developing-the-bitmovin-player-for-playstation-5/</guid><pubDate>Mon, 10 Oct 2022 07:34:23 GMT</pubDate><author>Adis Talic</author></item><item><title>The GAIA Research Project: Creating a Climate-Friendly Video Streaming Platform</title><description>&lt;p&gt;We’re excited to share that Bitmovin and the University of Klagenfurt are collaborating on a new research project with the goal of making video streaming more sustainable. Project ‘GAIA’ is co-funded by the Austrian Research Promotion Agency (FFG) and will help enable more climate-friendly video streaming solutions by providing better energy awareness and efficiency through the end-to-end video workflow.&lt;/p&gt;
-
-
-
-&lt;p&gt;Dr. Christian Timmerer is an Associate Professor at the Institute of Information Technology (ITEC) at the University of Klagenfurt and one of the co-founders of Bitmovin. We asked him a few questions to learn more about the goals and motivation behind the ‘GAIA’ project.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;em&gt;When you co-founded Bitmovin back in 2013, was there any focus on sustainability? What changes have you seen over the last 10+ years?&lt;/em&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Christian&lt;/strong&gt;: With our research background, we always tried to utilize the latest technology and research results which includes our focus on video codecs. For example, our first FFG-funded project termed “AdvUHD-DASH” aimed at integrating HEVC into our video encoding workflow; later, we were among the first to showcase AV1 live streaming (&lt;a href=&quot;https://bitmovin.com/bitmovin-rocks-show-takes-home-best-nab-award/&quot;&gt;2017 NAB award&lt;/a&gt;); and now we’re already successfully experimenting with VVC (&lt;a href=&quot;https://www.digitalmedia.fraunhofer.de/en/mediainformation/trendbrochures/trendbrochure-2021/versatile-video-coding.html&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Collaboration with Fraunhofer HHI&lt;/a&gt;).&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Each new generation of video codec reduces the amount of storage by approximately 50%, which contributes to sustainability goals. Over the past 10+ years, there has been a shift to focus on more efficient usage of the available resources, where in the beginning of video streaming over the internet, much was solved using massive over-provisioning. I think this is no longer the case, and people are starting to think about environmental and climate-friendly video streaming solutions in the industry.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;em&gt;GAIA is a two-year joint research project between Bitmovin and the University of Klagenfurt. What is the end goal, and how soon do you think there will be actionable results and recommendations?&lt;/em&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Christian&lt;/strong&gt;: The results of the GAIA project will (i) enable complete awareness and accountability of the energy consumption and GHG emissions and (ii) provide efficient strategies from encoding and streaming to playback and analytics that will minimize average energy consumption.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the beginning, we will mainly focus on collecting data and benchmarking systems with regard to energy consumption that will hopefully lead to publicly available datasets useful for both industry and academia at large, like a baseline for later improvements. Later we will use those findings to optimize encoding, streaming and playback concerning energy consumption by following and repeating the traditional “design – implement – analyze” work cycles to iteratively devise and improve solutions.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;em&gt;Will the results of this research be exclusive to Bitmovin?&lt;/em&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Christian&lt;/strong&gt;: We will showcase results at the usual trade shows like NAB and IBC., while scientific results and findings will be published in renowned conferences and journals. We will try to make them publicly available as much as possible to increase the impact and adoption of these technologies within the industry and academia.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;em&gt;This is the fourth time Bitmovin and the University of Klagenfurt have collaborated on a research project. What makes this one unique?&lt;/em&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Christian&lt;/strong&gt;: Environmental-friendliness was always implicitly addressed within the scope of previous research projects; GAIA is unique as it makes this an explicit goal, allowing to address these issues as the top priority.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;You can read more details about the GAIA research project &lt;a href=&quot;https://bitmovin.com/press-room/bitmovin-launches-climate-friendly-video-streaming-platform-research-project-gaia&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Ready to make your own video workflows more eco-friendly with HEVC or AV1 encoding? Sign up for a &lt;a href=&quot;https://bitmovin.com/dashboard/signup&quot;&gt;free Bitmovin trial&lt;/a&gt; today!&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/gaia-research-climate-friendly-video-streaming/</link><guid isPermaLink="false">https://bitmovin.com/blog/gaia-research-climate-friendly-video-streaming/</guid><pubDate>Thu, 06 Oct 2022 11:54:47 GMT</pubDate><author>Christian Timmerer</author></item><item><title>Reach Millions of Users with Dedicated PlayStation 5 Player Support</title><description>&lt;p&gt;In Q3, we’ve recently had some big news regarding the Bitmovin Player and how we now officially have dedicated &lt;a href=&quot;https://bitmovin.com/video-player/game-consoles-sdk/&quot; data-type=&quot;page&quot; data-id=&quot;247676&quot;&gt;PlayStation 5 player support&lt;/a&gt; streaming Playback. To go into more detail on what this means and why this is important, we sat down with Jacob Arends, an Associate Product Manager at Bitmovin, and asked him the top 5 questions about it.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Along with our new React Native SDK and Player Wizard which has simplified the process of deploying/embedding the player into web environments on Smart TVs and other devices, he has put a big effort into making the PlayStation 5 coverage a reality. This is crucial as it will enable some of the major brands in streaming that are looking to utilize Bitmovin’s industry-leading Player in their workflow to take advantage of the millions of eyeballs that are glued to their screens while they use the PS5 each month.&lt;/p&gt;
-
-
-
-&lt;p&gt;Let’s jump in and get down to the nitty-gritty.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Q1. We have recently launched our dedicated PlayStation 5 player support. Can you tell us about what has been released?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Jacob:&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;That’s right, we’re very excited to announce that we now support PlayStation 5 (PS5), considering the importance and growing scale that game consoles continue to bring.&amp;nbsp; They represent a huge amount of reach within the market.&amp;nbsp; In June this year, a reported 20 million PlayStation 5 devices were sold, with 70% of those across AMER &amp;amp; EUR, which means OTT services adding this to their device coverage unlock the potential for millions of new impressions.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Q2. Considering the bigger picture, how do you see companies being able to take advantage of this new functionality?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Jacob:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;With Bitmovin’s Player having dedicated coverage for PlayStation 5, it gives clients the ability to add the game console to their supported devices and ensure a unified experience for their viewers as they stream with Bitmovin on other devices like SmartTVs and other consoles. With PlayStation 5’s capabilities, companies will be able to stream up to 4K, which has been a capability of our player for quite some time with its ability to stream in 8K.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Q3. Who do you see this being useful for?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Jacob:&lt;/strong&gt;&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Having the ability to stream over PS5 will be a must-have for companies in the coming year as they look to take advantage of its large user base. I see major brands and growing companies in OTT, social media, film and TV studios, and gaming taking the steps to stream their video content over the platform. You could think of it like this: if you’re already running across Smart TVs, then this is an additional device for you to be able to make use of that is highly scalable and If you’re already using our Web SDK, you’re ready to deliver on PS5 devices.&amp;nbsp; Additionally, with Sony’s goal of creating a robust media and entertainment ecosystem on their platform, &lt;a href=&quot;https://www.playstation.com/en-gb/ps5/ps5-entertainment/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;media services will have a dedicated area&lt;/a&gt; to showcase their offerings and our Player can now streamline deployment, helping brands get to market quicker.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Q4. What’s the best way to get started today?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Jacob:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Sure, the easiest way to get up and running is to have a read of &lt;a href=&quot;https://bitmovin.com/docs/player/tutorials/getting-started-with-the-web-player-on-playstation-5&quot;&gt;this guide&lt;/a&gt; and get familiar with these &lt;a href=&quot;https://bitmovin.com/docs/player/releases/web/web-8-88-0&quot;&gt;release notes&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Q5. Thanks for the time and insight, Jacob, we’re looking forward to speaking with you again to hear more about how things are developing.&amp;nbsp; Any final thoughts for us?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Jacob:&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Definitely! PS5 is one of the next battlegrounds for streaming services to get eyeballs on their content, so time to market will be imperative. &lt;a href=&quot;https://bitmovin.com/dashboard/signup&quot;&gt;Our free trial&lt;/a&gt; gives companies access to Bitmovin’s complete Player, especially our unique feature, Stream Lab, that enables companies to test their stream on real devices like game consoles before putting resources towards supporting them.&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/dedicated-playstation-5-player-support/</link><guid isPermaLink="false">https://bitmovin.com/blog/dedicated-playstation-5-player-support/</guid><pubDate>Mon, 26 Sep 2022 06:59:17 GMT</pubDate><author>Adam Massaro</author></item><item><title>Bitmovin Video Encoding is now available in AWS Marketplace!</title><description>&lt;div style=&quot;height:24px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;has-lg-font-size wp-block-heading&quot;&gt;&lt;strong&gt;Leading-edge Innovation over the cloud&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Live and on-demand streaming video have become ubiquitous for every use case ranging from Over-the-Top (OTT) video services such as Apple TV+ and HBO Max to eLearning platforms, religious services, music and sporting events, social media, and even internal corporate communications. With their video libraries growing exponentially and most video workflows increasingly adopting cloud-based systems, many search for an easy-to-use, off-the-shelf video encoding solution that they can purchase and deploy in minutes but have trouble finding one. This is where the AWS Marketplace comes in.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image aligncenter size-full is-resized&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2022/09/AWS-image.png&quot; alt=&quot;&quot; class=&quot;wp-image-242431&quot; width=&quot;604&quot; height=&quot;241&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2022/09/AWS-image.png 512w, https://bitmovin.com/wp-content/uploads/2022/09/AWS-image-300x120.png 300w&quot; sizes=&quot;auto, (max-width: 604px) 100vw, 604px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Frictionless procurement of video encoding software&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;To help open Bitmovin’s solutions to a broader audience, we have made Bitmovin Video Encoding available in AWS Marketplace! We chose to list Bitmovin’s Video Encoding in AWS Marketplace because it gives customers using AWS Marketplace to piece together their workflow a frictionless, self-service procurement option with the added benefit of being billed directly through their AWS account.&lt;/p&gt;
-
-
-
-&lt;p&gt;Bitmovin’s Video Encoding is a fully-managed Software as a Service (SaaS). Powered by massively distributed processing and content-aware encoding, it allows you to deliver stunning viewing experiences at the highest possible visual quality and the lowest bitrates. Unlike other encoding products, Bitmovin Video Encoding supports file-based transcoding, live encoding, and packaging in a single, easy-to-use product.&lt;/p&gt;
-
-
-
-&lt;p&gt;With support for industry-standard encryption from more than 15 Digital Rights Management (DRM) vendors, studio-grade forensic watermarking, and video resolutions of up to 8K Ultra-High Definition (UHD), you can cost-effectively and securely deliver video to viewers on any device anywhere in the world.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Deliver the highest quality, binge-worthy viewing experiences at a lower cost&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Bitmovin’s Video Encoding supports over 50 audio and video codecs and file formats to ingest video from nearly any source. Multi-codec outputs, including H.264, HEVC, AV1, VP9, and others, mean that your audience can watch your content on mobile devices, smart TVs, streaming video player devices, set-top-boxes, web browsers, and game consoles using the most-efficient video codecs for each device type.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Our content-aware transcoding capabilities, both per-title and per-scene, let you further optimize your Adaptive Bit Rate (ABR) ladder to reduce your Content Delivery Network (CDN) cost significantly. It even supports Dolby Atmos and DTS:X, allowing you to captivate your audience with an immersive sound experience. Similarly, support for High Dynamic Range (HDR), including Dolby Vision, Hybrid Log-Gamma (HLG), and HDR10, as well as the ability to convert Dolby Vision inputs to HLG and HDR10, let you deliver visually spectacular video to any HDR-capable viewing device. You can even up-convert Standard Dynamic Range (SDR) video to HDR to rejuvenate your existing content library.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Stream video for any use case&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Bitmovin’s Video Encoding is well suited for any industry that streams video over the internet, such as organizations within Media &amp;amp; Entertainment, Broadcast, Publishing, eLearning, Sports and Events, esports, social media, and even Telcos. Additionally, large customers with AWS Enterprise Discount Program (EDP) agreements benefit from purchasing SaaS products through AWS Marketplace because those purchases apply to their EDP commitment.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Check it out!&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;See how &lt;a href=&quot;https://aws.amazon.com/marketplace/pp/prodview-fyg2dndqnsnwq?sr=0-1&amp;amp;ref_=beagle&amp;amp;applicationId=AWSMPContessa&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Bitmovin’s Video Encoding,&lt;/a&gt; available in AWS Marketplace, can help you quickly and easily harness the power of video streaming for your use case!&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/bitmovin-video-encoding-in-aws-marketplace/</link><guid isPermaLink="false">https://bitmovin.com/blog/bitmovin-video-encoding-in-aws-marketplace/</guid><pubDate>Thu, 22 Sep 2022 04:25:25 GMT</pubDate><author>Brandon Zupancic</author></item><item><title>Google Quietly Added HEVC Support in Chrome</title><description>&lt;figure class=&quot;wp-block-image alignright size-large is-resized&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2022/09/google-104-105-1024x587.png&quot; alt=&quot;&quot; class=&quot;wp-image-242419&quot; width=&quot;512&quot; height=&quot;294&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2022/09/google-104-105-1024x587.png 1024w, https://bitmovin.com/wp-content/uploads/2022/09/google-104-105-300x172.png 300w, https://bitmovin.com/wp-content/uploads/2022/09/google-104-105-768x441.png 768w, https://bitmovin.com/wp-content/uploads/2022/09/google-104-105-1536x881.png 1536w, https://bitmovin.com/wp-content/uploads/2022/09/google-104-105.png 1651w&quot; sizes=&quot;auto, (max-width: 512px) 100vw, 512px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption class=&quot;wp-element-caption&quot;&gt; &lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;Quietly, without any announcement or updates on support pages, Google fixed a bug in Chrome with a significant implication for the video streaming industry: Support for adaptive streaming of HEVC/H.265 video content has finally been enabled!&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Thanks to Bitmovin (Humble Brag, just kidding), &lt;a href=&quot;https://bugs.chromium.org/p/chromium/issues/detail?id=460703&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;we submitted a bug report&lt;/a&gt; about 6 years ago about this very thing. After a “small” bit of waiting, we got the answer that It’s now officially supported for Chrome 104, and with a little investigation also found out that it’s enabled by default for Chrome 105 for all platforms, ready to be used in the wild.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Why does support for HEVC matter?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;High-Efficiency&lt;a href=&quot;https://bitmovin.com/developer-network/lesson-video-1-9-high-efficiency-video-coding-hevc/&quot;&gt; Video Coding (HEVC)&lt;/a&gt; provides better compression for files than the ubiquitous AVC/H.264, meaning you will be able to stream the same quality with lower bandwidth and big savings on CDN costs with the added bonus of improving the user experience.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;While HEVC is commonly used for serving content to Smart TVs, set-top boxes, and devices like Roku and Fire TV, its usage on mobile and desktop browsers was limited to just Safari for a long time (after Microsoft changed the Edge browser to being Chromium-based). With &lt;a href=&quot;https://gs.statcounter.com/browser-market-share&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Safari’s market share still below 19%&lt;/a&gt; globally, the vast majority of users had no choice but to use another codec. However, with this latest change from Google, Chrome’s market share of more than 65% can be “theoretically” added to the HEVC-capable browsers, making it available to 84% of browser users.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;I say “theoretically”, as there’s often a caveat: HEVC is only supported if the underlying device has an HEVC hardware decoder.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Today’s modern devices should already have that as standard, but reliable global data on this point are scarce. If you are curious to see if your device can play HEVC-encoded DASH and HLS streams, open our stream test page with an HEVC-encoded DASH and HLS URL, or you can use this &lt;a href=&quot;https://bitmovin.com/demos/stream-test?format=hls&amp;amp;manifest=https%3A%2F%2Fdemo.unified-streaming.com%2Fk8s%2Ffeatures%2Fstable%2Fvideo%2Ftears-of-steel%2Ftears-of-steel-hevc.ism%2F.m3u8&quot;&gt;example URL&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Does is also work with DRM?&lt;/h2&gt;
-
-
-
-&lt;p&gt;That’s where the catch is, unfortunately. The biggest drawback is that HEVC with Widevine DRM is not supported at this point, only clear, unprotected content. It’s unclear whether Google has plans to add support for this in the future or not.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Great feature, but where is the necessary hype!?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;While this sounds like a feature Google should be boasting about to the moon over their comms channels, they haven’t really updated their documentation. In fact, &lt;a href=&quot;https://www.chromium.org/audio-video/#:~:text=codec%20and%20container%20support&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Chromium’s Audio/Video codec &amp;amp; container support page&lt;/a&gt; was not updated as of the writing of this article, and the popular &lt;a href=&quot;https://caniuse.com/?search=hevc&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;caniuse.com&lt;/a&gt; still lists HEVC as unsupported.&lt;/p&gt;
-
-
-
-&lt;p&gt;Android already supported HEVC, but Chrome on Android only supported HEVC with progressive files, not via the &lt;a href=&quot;https://w3c.github.io/media-source/&quot; rel=&quot;nofollow noopener&quot; target=&quot;_blank&quot;&gt;Media Source Extension (MSE) API&lt;/a&gt;, which is used for adaptive streaming like DASH or HLS. After little movement for years from Google, the bug finally got picked up earlier this year and fixed. So despite the original scope being just Android, it was a very positive surprise to see HEVC support enabled and rolled out on all Chrome platforms. Now, we just need to see DRM supported along with it!&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/google-adds-hevc-support-chrome/</link><guid isPermaLink="false">https://bitmovin.com/blog/google-adds-hevc-support-chrome/</guid><pubDate>Wed, 21 Sep 2022 07:25:07 GMT</pubDate><author>Daniel Weinberger</author></item><item><title>A Triumphant Return to IBC</title><description>&lt;p&gt;&lt;em&gt;IBC made a welcome return to Amsterdam following a two-year absence, and we caught up with our CEO and co-founder, Stefan Lederer, to discuss how he found the show, the big trends he saw and what comes next!&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;How was IBC 2022 for you?&lt;/h2&gt;
-
-
-
-&lt;p&gt;Busy! Which is how you want IBC to be! We had great conversations with prospects, customers and partners throughout the show. NAB was the first significant industry tradeshow; conversations focused on industry trends and catching up, which was important. At IBC,&amp;nbsp; everything focused on driving opportunities and projects forward. This was our best IBC to date. We had lots of quality meetings, a great buzz around the brand and the best-designed stand in Hall 5!&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;The last IBC Show was in 2019; how has the video streaming industry changed since then?&lt;/h2&gt;
-
-
-
-&lt;p&gt;Innovation in video streaming technologies has accelerated in the last two years at a remarkable rate, which was evident at IBC. Back in 2019,&amp;nbsp; the video streaming companies at IBC were in Hall 14, essentially a tent connected to the RAI, but this year we were in Hall 5, one of the biggest halls at the show. It’s proof that video streaming has grown exponentially and become ingrained in our day-to-day lives.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;What big trends do you see at IBC this year?&lt;/h2&gt;
-
-
-
-&lt;p&gt;There was a big focus on codecs, including AV1, AV2 and VVC, as demand for high-quality streams at lower bitrates continues to grow. Also, technologies to optimize the encoding and streaming experience, like per-title and per-scene, became a big trend. I also noticed many innovations around digital rights management, which is incredibly important because there’s still room for improvement in content protection for video streaming.&lt;/p&gt;
-
-
-
-&lt;p&gt;One of the biggest trends I think this year was live. It seems there is an enormous appetite for cloud-native workflows, event-based streaming for sports, news, and events, reliable ingest using SRT and Zixi, efficient scaling and operations, and of course, highest quality and low end-to-end delay.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;When speaking about Live, FAST was a big topic at IBC. FAST services are an interesting blend of linear television with the speed and agility of video streaming technologies which are already hugely popular in the US. I expect we will see FAST services take off in other markets over the next 12 months, bringing an exciting change to linear television. However, I also think this could be hype and result in way more FAST channels available than customers can consume, eventually resulting in a quick saturation of the market. I am interested in seeing how FAST plays out.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Which stands did you visit during the show?&lt;/h2&gt;
-
-
-
-&lt;p&gt;I thought the MediaKind stand was really cool, especially with its F1 Grand Prix simulator, which was a fun game and a great way to get people on the stand. I also saw a lot of startups with impressive innovations throughout the show.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;What’s the plan post-IBC?&lt;/h2&gt;
-
-
-
-&lt;p&gt;I slept as soon as I got home, but now I feel refreshed and ready to return to work! Lots of work goes into an event like IBC, and the work doesn’t finish when the event ends, but I am excited about the conversations we had with the great companies we met at the show. Stay tuned!&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/triumphant-return-ibc/</link><guid isPermaLink="false">https://bitmovin.com/blog/triumphant-return-ibc/</guid><pubDate>Wed, 14 Sep 2022 07:08:29 GMT</pubDate><author>Stefan Lederer</author></item><item><title>IBC Preview [2022]: 5 Minutes with… Reinhard Grandl</title><description>&lt;p&gt;&lt;em&gt;All roads lead to IBC, in our latest blog series, we spent 5 minutes with some of the Bitmovin team to get their thoughts on why IBC is important and tips for enjoying the show.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Say hello to Reinhard Grandl, who oversees Bitmovin’s product department, who develops the company’s product strategy and ensures it is optimized for customers.&amp;nbsp;&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Discover his insights in the big trends at IBC 2022 and how to enjoy the show&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1600&quot; height=&quot;600&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2022/08/header-2.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-240615&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2022/08/header-2.jpg 1600w, https://bitmovin.com/wp-content/uploads/2022/08/header-2-300x113.jpg 300w, https://bitmovin.com/wp-content/uploads/2022/08/header-2-1024x384.jpg 1024w, https://bitmovin.com/wp-content/uploads/2022/08/header-2-768x288.jpg 768w, https://bitmovin.com/wp-content/uploads/2022/08/header-2-1536x576.jpg 1536w&quot; sizes=&quot;auto, (max-width: 1600px) 100vw, 1600px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Why are shows like IBC necessary for the media and entertainment industry?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Business is, ultimately, based on building trust and the best way to do this is with human interaction. Things are starting to change due to the rise of SaaS companies, but there’s no doubt that in-person meetings are still valuable. Shows like IBC are vital because they bring all of our customers, partners and prospects together in one place and provide multiple opportunities to connect with them, from giving them a demo on the stand to going out for dinner later. Last but not least, it’s a forcing function for vendors to announce new products and thus helps propel the industry forward.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The last IBC Show was in 2019; how has the video streaming industry changed since then?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;It’s changed massively. Part of it is due to the pandemic, but some technical and business trends were already emerging. One significant difference is the range of streaming services available. Almost all major US conglomerates have built streaming services to compete with the likes of Netflix and AppleTV. Furthermore, many sports leagues are trying to monetize their content for fans or via sports-focused streaming services like DAZN.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;All of this creates a fragmented market for viewers who need multiple subscriptions to watch their favorite content. Without a doubt, there will be some market consolidation, but from a technological perspective, it’s creating a huge demand for technologies that can offer a superior viewing experience. At IBC2022, I expect we will see many product launches that focus on offering an optimal viewing experience while simultaneously reducing costs.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;What significant trends do you expect to see at IBC this year?&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;We will see the next steps in the evolution of technology; 5G, the VVC codec&lt;s&gt; &lt;/s&gt;or new cloud-hosted services, to just name a few. I am particularly interested to see how much they’ve evolved since the last IBC in 2019. Of course, sustainability will be high on the agenda. It’s been inspiring to see so many projects emerge with the sole intention of helping the media and entertainment industry reduce its carbon footprint.&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/ibc-preview-5-minutes-with-reinhard-grandl/</link><guid isPermaLink="false">https://bitmovin.com/blog/ibc-preview-5-minutes-with-reinhard-grandl/</guid><pubDate>Thu, 08 Sep 2022 01:59:34 GMT</pubDate><author>Reinhard Grandl</author></item><item><title>Unbreakable Live Streams With The Bitmovin Live Event Encoder</title><description>&lt;p&gt;Bitmovin is going Live! We’ve expanded on our &lt;a href=&quot;https://bitmovin.com/emmy-award-journey-per-title-encoding/#:~:text=As%20of%20February%202021%2C%20Bitmovin,Massive%20Processing%20Optimized%20Compression%20Technologies.&quot;&gt;award-winning&lt;/a&gt; VoD encoding engine to build a live encoding solution that is more resilient and cost efficient than anything before. Ready to run on AWS, Google Cloud and Azure, the Bitmovin Live Event Encoder frees you from vendor lock-in and allows you to migrate or build multi-cloud redundancy with the same encoding workflows.&lt;/p&gt;
-
-
-
-&lt;div style=&quot;height:50px&quot; aria-hidden=&quot;true&quot; class=&quot;wp-block-spacer&quot;&gt;&lt;/div&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Highest Quality Inputs, Outputs and Content Protection&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;div class=&quot;wp-block-columns is-layout-flex wp-container-core-columns-is-layout-10 wp-block-columns-is-layout-flex&quot;&gt;
-&lt;div class=&quot;wp-block-column is-layout-flow wp-block-column-is-layout-flow&quot;&gt;
-&lt;p class=&quot;has-lg-font-size&quot;&gt;✅ RTMP&lt;/p&gt;
-&lt;/div&gt;
-
-
-
-&lt;div class=&quot;wp-block-column is-layout-flow wp-block-column-is-layout-flow&quot;&gt;
-&lt;p class=&quot;has-lg-font-size&quot;&gt;✅ SRT&lt;/p&gt;
-&lt;/div&gt;
-
-
-
-&lt;div class=&quot;wp-block-column is-layout-flow wp-block-column-is-layout-flow&quot;&gt;
-&lt;p class=&quot;has-lg-font-size&quot;&gt;✅ Zixi&lt;/p&gt;
-&lt;/div&gt;
-
-
-
-&lt;div class=&quot;wp-block-column is-layout-flow wp-block-column-is-layout-flow&quot;&gt;
-&lt;p class=&quot;has-lg-font-size&quot;&gt;✅ DRM&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-
-&lt;p&gt;The RTMP protocol is older than some Twitch streamers at this point, but it’s still one of the most popular for live streaming. Lately a lot of professional workflows are switching to SRT or Zixi, which are better at delivering high bandwidth streams through network congestion. Whichever protocol you’re using now or in the future, we’ll have you covered and with support for end-to-end DRM, you can be sure your content and investment are protected.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image aligncenter size-full&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;1999&quot; height=&quot;854&quot; src=&quot;https://bitmovin.com/wp-content/uploads/2022/09/unbreakable-live-event-encoder.png&quot; alt=&quot;Live Event Encoder&quot; class=&quot;wp-image-241231&quot; srcset=&quot;https://bitmovin.com/wp-content/uploads/2022/09/unbreakable-live-event-encoder.png 1999w, https://bitmovin.com/wp-content/uploads/2022/09/unbreakable-live-event-encoder-300x128.png 300w, https://bitmovin.com/wp-content/uploads/2022/09/unbreakable-live-event-encoder-1024x437.png 1024w, https://bitmovin.com/wp-content/uploads/2022/09/unbreakable-live-event-encoder-768x328.png 768w, https://bitmovin.com/wp-content/uploads/2022/09/unbreakable-live-event-encoder-1536x656.png 1536w&quot; sizes=&quot;auto, (max-width: 1999px) 100vw, 1999px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Read Next: &lt;strong&gt;Live Streaming Encoders&lt;/strong&gt;&lt;/h2&gt;
-
-
-
-&lt;p&gt;Our team of video engineering experts have put together a comprehensive comparison of the best live contribution encoders available. Keep reading for the what, where, when, and why of video encoding: &lt;a href=&quot;https://bitmovin.com/live-streaming-encoder/&quot; data-type=&quot;post&quot; data-id=&quot;255772&quot;&gt;The 20 Best Live Streaming Encoders: Software &amp;amp; Hardware [2023]&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Want to learn more?&lt;/strong&gt; Check out all the &lt;a href=&quot;https://bitmovin.com/live-encoding-live-streaming/&quot;&gt;details and features&lt;/a&gt; of the Bitmovin Live Event Encoder, sign up for a &lt;a href=&quot;https://bitmovin.com/dashboard/signup&quot;&gt;free trial&lt;/a&gt; and start streaming today!&lt;/p&gt;
-</description><link>https://bitmovin.com/blog/unbreakable-live-streams-event-encoder/</link><guid isPermaLink="false">https://bitmovin.com/blog/unbreakable-live-streams-event-encoder/</guid><pubDate>Wed, 07 Sep 2022 07:20:47 GMT</pubDate><author>Andy Francis</author></item></channel></rss>
+</description><link>https://bitmovin.com/blog/an-engineers-pov-on-developing-the-bitmovin-player-for-playstation-5/</link><guid isPermaLink="false">https://bitmovin.com/blog/an-engineers-pov-on-developing-the-bitmovin-player-for-playstation-5/</guid><pubDate>Mon, 10 Oct 2022 07:34:23 GMT</pubDate><author>Adis Talic</author></item></channel></rss>

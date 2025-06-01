@@ -15,20 +15,6 @@
     }
   },
   {
-    "provider_id": "3dmgame",
-    "provider_name": "3DMGame",
-    "route_key": "/news/:category?",
-    "route": {
-      "name": "新闻中心",
-      "path": "/news/:category?",
-      "example": "/3dmgame/news",
-      "parameters": {
-        "category": "分类名或 ID，见下表，默认为新闻推荐，ID 可从分类 URL 中找到，如 Steam 为 `22221`"
-      },
-      "description": "| 新闻推荐 | 游戏新闻 | 动漫影视 | 智能数码 | 时事焦点    |\n| -------- | -------- | -------- | -------- | ----------- |\n|          | game     | acg      | next     | news_36_1 |"
-    }
-  },
-  {
     "provider_id": "3kns",
     "provider_name": "3k-Switch游戏库",
     "route_key": "/:filters?/:order?",
@@ -46,29 +32,15 @@
   {
     "provider_id": "4gamers",
     "provider_name": "4Gamers",
-    "route_key": "/topic/:topic",
+    "route_key": "/tag/:tag",
     "route": {
-      "name": "主題",
-      "path": "/topic/:topic",
-      "example": "/4gamers/topic/gentlemen-topic",
+      "name": "标签",
+      "path": "/tag/:tag",
+      "example": "/4gamers/tag/限時免費",
       "parameters": {
-        "topic": "主题，可在首页上方页面内找到"
+        "tag": "标签名，可在标签 URL 中找到"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "ali213",
-    "provider_name": "游侠网",
-    "route_key": "/zl/:category?",
-    "route": {
-      "name": "大侠号",
-      "path": "/zl/:category?",
-      "example": "/ali213/zl",
-      "parameters": {
-        "category": "分类，默认为首页，可在对应分类页 URL 中找到"
-      },
-      "description": "::: tip\n若订阅 [游戏](https://www.ali213.net/news/zl/game/)，网址为 `https://www.ali213.net/news/zl/game/`，请截取 `https://www.ali213.net/news/zl/` 到末尾 `/` 的部分 `game` 作为 `category` 参数填入，此时目标路由为 [`/ali213/zl/game`](https://rsshub.app/ali213/zl/game)。\n:::\n\n| 首页                                     | 游戏                                         | 动漫                                           | 影视                                           | 娱乐                                           |\n| ---------------------------------------- | -------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |\n| [index](https://www.ali213.net/news/zl/) | [game](https://www.ali213.net/news/zl/game/) | [comic](https://www.ali213.net/news/zl/comic/) | [movie](https://www.ali213.net/news/zl/movie/) | [amuse](https://www.ali213.net/news/zl/amuse/) |\n"
     }
   },
   {
@@ -96,40 +68,33 @@
     }
   },
   {
-    "provider_id": "epicgames",
-    "provider_name": "Epic Games Store",
-    "route_key": "/freegames/:locale?/:country?",
+    "provider_id": "gamersky",
+    "provider_name": "GamerSky",
+    "route_key": "/news/:type?",
     "route": {
-      "name": "Free games",
-      "path": "/freegames/:locale?/:country?",
-      "example": "/epicgames/freegames/en-US/US",
+      "name": "资讯",
+      "path": "/news/:type?",
+      "example": "/gamersky/news/pc",
       "parameters": {
-        "locale": {
-          "description": "Locale",
-          "default": "en-US"
-        },
-        "country": {
-          "description": "Country",
-          "default": "US"
-        }
+        "type": "资讯类型，见表，默认为 `pc`"
       },
-      "description": ""
+      "description": "|today|pc|ns|mobile|web|industry|hardware|tech|\n|---|---|---|---|---|---|---|---|\n|今日推荐|单机电玩|NS|手游|网游|业界|硬件|科技|\n"
     }
   },
   {
     "provider_id": "gcores",
     "provider_name": "机核网",
-    "route_key": "/tags/:id/:tab?",
+    "route_key": "/categories/:id/:tab?",
     "route": {
-      "name": "标签",
-      "path": "/tags/:id/:tab?",
-      "example": "/gcores/tags/1/articles",
+      "name": "分类",
+      "path": "/categories/:id/:tab?",
+      "example": "/gcores/categories/1/articles",
       "parameters": {
         "id": {
-          "description": "标签 ID，可在对应标签页 URL 中找到"
+          "description": "分类 ID，可在对应分类页 URL 中找到"
         },
         "tab": {
-          "description": "类型，默认为空，即全部，可在对应标签页 URL 中找到",
+          "description": "类型，默认为空，即全部，可在对应分类页 URL 中找到",
           "options": [
             {
               "label": "全部",
@@ -154,50 +119,7 @@
           ]
         }
       },
-      "description": ":::tip\n若订阅 [美国 - 文章](https://www.gcores.com/tags/1/originals?tab=articles)，网址为 `https://www.gcores.com/tags/1/originals?tab=articles`，请截取 `https://www.gcores.com/tags/` 到末尾 `/originals` 的部分 `1` 作为 `id` 参数填入，截取 `articles` 作为 `tab` 参数填入，此时目标路由为 [`/gcores/tags/1/articles`](https://rsshub.app/gcores/tags/1/articles)。\n:::\n\n| 全部 | 播客   | 文章     | 资讯 | 视频   |\n| ---- | ------ | -------- | ---- | ------ |\n|      | radios | articles | news | videos |\n"
-    }
-  },
-  {
-    "provider_id": "hoyolab",
-    "provider_name": "HoYoLAB",
-    "route_key": "/news/:language/:gids/:type",
-    "route": {
-      "name": "Official Announcement",
-      "path": "/news/:language/:gids/:type",
-      "example": "/hoyolab/news/zh-cn/2/2",
-      "parameters": {
-        "language": "Language",
-        "gids": "Game ID",
-        "type": "Announcement type"
-      },
-      "description": "| Language         | Code  |\n| ---------------- | ----- |\n| 简体中文         | zh-cn |\n| 繁體中文         | zh-tw |\n| 日本語           | ja-jp |\n| 한국어           | ko-kr |\n| English (US)     | en-us |\n| Español (EU)     | es-es |\n| Français         | fr-fr |\n| Deutsch          | de-de |\n| Русский          | ru-ru |\n| Português        | pt-pt |\n| Español (Latino) | es-mx |\n| Indonesia        | id-id |\n| Tiếng Việt       | vi-vn |\n| ภาษาไทย          | th-th |\n\n| Honkai Impact 3rd | Genshin Impact | Tears of Themis | HoYoLAB | Honkai: Star Rail | Zenless Zone Zero |\n| ----------------- | -------------- | --------------- | ------- | ----------------- | ----------------- |\n| 1                 | 2              | 4               | 5       | 6                 | 8                 |\n\n| Notices | Events | Info |\n| ------- | ------ | ---- |\n| 1       | 2      | 3    |"
-    }
-  },
-  {
-    "provider_id": "hypergryph",
-    "provider_name": "鹰角网络",
-    "route_key": "/arknights/announce/:platform?/:group?",
-    "route": {
-      "name": "明日方舟 - 游戏内公告",
-      "path": "/arknights/announce/:platform?/:group?",
-      "example": "/hypergryph/arknights/announce",
-      "parameters": {
-        "platform": "平台，默认为 Android",
-        "group": "分组，默认为 ALL"
-      },
-      "description": "平台\n\n|  安卓服 | iOS 服 |   B 服   |\n| :-----: | :----: | :------: |\n| Android |   IOS  | Bilibili |\n\n  分组\n\n| 全部 | 系统公告 | 活动公告 |\n| :--: | :------: | :------: |\n|  ALL |  SYSTEM  | ACTIVITY |"
-    }
-  },
-  {
-    "provider_id": "imop",
-    "provider_name": "imop",
-    "route_key": "/tianshu",
-    "route": {
-      "name": "全部消息",
-      "path": "/tianshu",
-      "example": "/imop/tianshu",
-      "parameters": {},
-      "description": ""
+      "description": ":::tip\n若订阅 [文章 - 文章](https://www.gcores.com/categories/1?tab=articles)，网址为 `https://www.gcores.com/categories/1?tab=articles`，请截取 `https://www.gcores.com/categories/` 到末尾的部分 `1` 作为 `id` 参数填入，截取 `articles` 作为 `tab` 参数填入，此时目标路由为 [`/gcores/categories/1/articles`](https://rsshub.app/gcores/categories/1/articles)。\n:::\n\n| 全部 | 播客   | 文章     | 资讯 | 视频   |\n| ---- | ------ | -------- | ---- | ------ |\n|      | radios | articles | news | videos |\n"
     }
   },
   {
@@ -213,32 +135,44 @@
     }
   },
   {
-    "provider_id": "mcmod",
-    "provider_name": "MC百科",
-    "route_key": "/:type",
+    "provider_id": "mihoyo",
+    "provider_name": "米哈游",
+    "route_key": "/bbs/follow-list/:uid",
     "route": {
-      "name": "最新MOD",
-      "path": "/:type",
-      "example": "/mcmod/new",
+      "name": "米游社 - 用户关注",
+      "path": "/bbs/follow-list/:uid",
+      "example": "/mihoyo/bbs/follow-list/77005350",
       "parameters": {
-        "type": "查询类型，详见下表"
+        "uid": "用户uid"
       },
-      "description": "`:type` 类型可选如下\n\n| 随机显示MOD | 最新收录MOD | 最近编辑MOD |\n| ------ | --- | ---- |\n| random | new | edit |"
+      "description": ""
     }
   },
   {
-    "provider_id": "modrinth",
-    "provider_name": "Modrinth",
-    "route_key": "/project/:id/versions/:routeParams?",
+    "provider_id": "mihoyo",
+    "provider_name": "米哈游",
+    "route_key": "/bbs/img-ranking/:game/:routeParams?",
     "route": {
-      "name": "Project versions",
-      "path": "/project/:id/versions/:routeParams?",
-      "example": "/modrinth/project/sodium/versions",
+      "name": "米游社 - 同人榜",
+      "path": "/bbs/img-ranking/:game/:routeParams?",
+      "example": "/mihoyo/bbs/img-ranking/ys/forumType=tongren&cateType=illustration&rankingType=daily",
       "parameters": {
-        "id": "Id or slug of the Modrinth project",
-        "routeParams": "Extra route params. See the table below for options"
+        "game": "游戏缩写",
+        "routeParams": "额外参数；请参阅以下说明和表格"
       },
-      "description": "| Name           | Example                                      |\n| -------------- | -------------------------------------------- |\n| loaders        | loaders=fabric&loaders=quilt&loaders=forge |\n| game_versions | game_versions=1.20.1&game_versions=1.20.2 |\n| featured       | featured=true                                |"
+      "description": "| 键          | 含义                                  | 接受的值                                                             | 默认值       |\n| ----------- | ------------------------------------- | -------------------------------------------------------------------- | ------------ |\n| forumType   | 主榜类型（仅原神、大别野有 cos 主榜） | tongren/cos                                                          | tongren      |\n| cateType    | 子榜类型（仅崩坏三、原神有子榜）      | 崩坏三：illustration/comic/cos；原神：illustration/comic/qute/manual | illustration |\n| rankingType | 排行榜类型（崩坏二没有日榜）          | daily/weekly/monthly                                                 | daily        |\n| lastId      | 当前页 id（用于分页）                 | 数字                                                                 | 1            |\n\n  游戏缩写\n\n| 崩坏三 | 原神 | 崩坏二 | 未定事件簿 | 星穹铁道 | 大别野 | 绝区零 |\n| ------ | ---- | ------ | ---------- | -------- | ------ | ------ |\n| bh3    | ys   | bh2    | wd         | sr       | dby    | zzz    |\n\n  主榜类型\n\n| 同人榜  | COS 榜 |\n| ------- | ------ |\n| tongren | cos    |\n\n  子榜类型\n\n  崩坏三 子榜\n\n| 插画         | 漫画  | COS |\n| ------------ | ----- | --- |\n| illustration | comic | cos |\n\n  原神 子榜\n\n| 插画         | 漫画  | Q 版 | 手工   |\n| ------------ | ----- | ---- | ------ |\n| illustration | comic | qute | manual |\n\n  排行榜类型\n\n| 日榜  | 周榜   | 月榜    |\n| ----- | ------ | ------- |\n| daily | weekly | monthly |"
+    }
+  },
+  {
+    "provider_id": "nintendo",
+    "provider_name": "Nintendo",
+    "route_key": "/direct",
+    "route": {
+      "name": "Nintendo Direct",
+      "path": "/direct",
+      "example": "/nintendo/direct",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -296,17 +230,48 @@
     }
   },
   {
-    "provider_id": "tencent",
-    "provider_name": "腾讯",
-    "route_key": "/pvp/newsindex/:type",
+    "provider_id": "steam",
+    "provider_name": "Steam",
+    "route_key": "/appcommunityfeed/:appid/:routeParams?",
     "route": {
-      "name": "新闻中心",
-      "path": "/pvp/newsindex/:type",
-      "example": "/tencent/pvp/newsindex/all",
+      "name": "Steam Community Hub Feeds",
+      "path": "/appcommunityfeed/:appid/:routeParams?",
+      "example": "/steam/appcommunityfeed/730",
       "parameters": {
-        "type": "栏目分类，见下表"
+        "appid": "Steam appid, can be found on the community hub page or store page URL.",
+        "routeParams": "Query parameters."
       },
-      "description": "| 全部 | 热门 | 新闻 | 公告 | 活动 | 赛事 | 优化 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| all  | rm   | xw   | gg   | hd   | ss   | yh   |"
+      "description": "Query Parameters:\n\n| Name                   | Type   | Description             |\n| ---------------------- | ------ | ----------------------- |\n| p                      | string | p                       |\n| rgSections[]           | string | rgSections              |\n| filterLanguage         | string | Filter Language         |\n| languageTag            | string | Language Tag            |\n| nMaxInappropriateScore | string | Max Inappropriate Score |\n\nExample:\n- `/appcommunityfeed/730/p=1&rgSections[]=2&rgSections[]=4&filterLanguage=english&languageTag=english&nMaxInappropriateScore=1` for CS2 Screenshot and Artwork contents.\n- `/appcommunityfeed/730/rgSections[]=6` for CS2 Workshop contents only.\n- `/appcommunityfeed/570/rgSections[]=3&rgSections[]=9` for Dota2 Video and Guides contents.\n\n::: tip\nIt can also access community hub contents that require a logged-in account.\n:::\n"
+    }
+  },
+  {
+    "provider_id": "steam",
+    "provider_name": "Steam",
+    "route_key": "/search/:params",
+    "route": {
+      "name": "Store Search",
+      "path": "/search/:params",
+      "example": "/steam/search/sort_by=Released_DESC&tags=492&category1=10&os=linux",
+      "parameters": {
+        "params": "Query parameters for a Steam Store search."
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "taptap",
+    "provider_name": "TapTap",
+    "route_key": "/review/:id/:order?/:lang?",
+    "route": {
+      "name": "游戏评价",
+      "path": "/review/:id/:order?/:lang?",
+      "example": "/taptap/review/142793/hot",
+      "parameters": {
+        "id": "游戏 ID，游戏主页 URL 中获取",
+        "order": "排序方式，空为综合，可选如下",
+        "lang": "语言，`zh-CN` 或 `zh-TW`，默认为 `zh-CN`"
+      },
+      "description": "| 最新   | 综合 |\n| --- | --- |\n| new | hot |"
     }
   },
   {
@@ -324,13 +289,15 @@
   {
     "provider_id": "yystv",
     "provider_name": "游研社",
-    "route_key": "/docs",
+    "route_key": "/category/:category",
     "route": {
-      "name": "游研社 - 全部文章",
-      "path": "/docs",
-      "example": "/yystv/docs",
-      "parameters": {},
-      "description": ""
+      "name": "游研社 - 分类文章",
+      "path": "/category/:category",
+      "example": "/yystv/category/recommend",
+      "parameters": {
+        "category": "专栏类型"
+      },
+      "description": "| 推游      | 游戏史  | 大事件 | 文化    | 趣闻 | 经典回顾 |\n| --------- | ------- | ------ | ------- | ---- | -------- |\n| recommend | history | big    | culture | news | retro    |"
     }
   }
 ]

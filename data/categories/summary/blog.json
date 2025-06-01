@@ -1,17 +1,5 @@
 [
   {
-    "provider_id": "apnic",
-    "provider_name": "APNIC",
-    "route_key": "/blog",
-    "route": {
-      "name": "Blog",
-      "path": "/blog",
-      "example": "/apnic/blog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
     "provider_id": "bulianglin",
     "provider_name": "不良林",
     "route_key": "/",
@@ -24,25 +12,27 @@
     }
   },
   {
-    "provider_id": "cmpxchg8b",
-    "provider_name": "cmpxchg8b",
-    "route_key": "/articles",
+    "provider_id": "ceph",
+    "provider_name": "Ceph",
+    "route_key": "/blog/:topic?",
     "route": {
-      "name": "Articles",
-      "path": "/articles",
-      "example": "/cmpxchg8b/articles",
-      "parameters": {},
+      "name": "Blog",
+      "path": "/blog/:topic?",
+      "example": "/ceph/blog/a11y",
+      "parameters": {
+        "category": "filter blog post by category, return all posts if not specified"
+      },
       "description": ""
     }
   },
   {
-    "provider_id": "deltaio",
-    "provider_name": "Delta Lake",
-    "route_key": "/blog",
+    "provider_id": "cmu",
+    "provider_name": "Carnegie Mellon University",
+    "route_key": "/andypavlo/blog",
     "route": {
-      "name": "Blogs",
-      "path": "/blog",
-      "example": "/deltaio/blog",
+      "name": "Andy Pavlo Blog",
+      "path": "/andypavlo/blog",
+      "example": "/cmu/andypavlo/blog",
       "parameters": {},
       "description": ""
     }
@@ -60,107 +50,27 @@
     }
   },
   {
-    "provider_id": "geocaching",
-    "provider_name": "Geocaching",
-    "route_key": "/blogs/:language?",
+    "provider_id": "freebuf",
+    "provider_name": "FreeBuf",
+    "route_key": "/articles/:type",
     "route": {
-      "name": "Official Blogs",
-      "path": "/blogs/:language?",
-      "example": "/geocaching/blogs/en",
+      "name": "文章",
+      "path": "/articles/:type",
+      "example": "/freebuf/articles/web",
       "parameters": {
-        "language": {
-          "description": "language",
-          "default": "en",
-          "options": [
-            {
-              "value": "en",
-              "label": "English"
-            },
-            {
-              "value": "de",
-              "label": "Deutsch"
-            },
-            {
-              "value": "fr",
-              "label": "Français"
-            },
-            {
-              "value": "es",
-              "label": "Español"
-            },
-            {
-              "value": "nl",
-              "label": "Nederlands"
-            },
-            {
-              "value": "cs",
-              "label": "Čeština"
-            },
-            {
-              "value": "all",
-              "label": "Not Specified"
-            }
-          ]
-        }
+        "type": "文章类别"
       },
-      "description": ""
+      "description": "::: tip\n  Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。\n:::"
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/developers/:locale?",
+    "provider_id": "hicairo",
+    "provider_name": "HiFeng'Blog",
+    "route_key": "/",
     "route": {
-      "name": "Developers Blog",
-      "path": "/developers/:locale?",
-      "example": "/google/developers/en",
-      "parameters": {
-        "locale": {
-          "description": "language",
-          "default": "en",
-          "options": [
-            {
-              "value": "en",
-              "label": "English"
-            },
-            {
-              "value": "es",
-              "label": "Español (Latam)"
-            },
-            {
-              "value": "id",
-              "label": "Bahasa Indonesia"
-            },
-            {
-              "value": "ja",
-              "label": "日本語"
-            },
-            {
-              "value": "ko",
-              "label": "한국어"
-            },
-            {
-              "value": "pt-br",
-              "label": "Português (Brasil)"
-            },
-            {
-              "value": "zh-hans",
-              "label": "简体中文"
-            }
-          ]
-        }
-      },
-      "description": "Google Developers Blog"
-    }
-  },
-  {
-    "provider_id": "gs",
-    "provider_name": "Goldman Sachs",
-    "route_key": "/developer/blog",
-    "route": {
-      "name": "Goldman Sachs Developer Blog",
-      "path": "/developer/blog",
-      "example": "/gs/developer/blog",
+      "name": "最近发表",
+      "path": "/",
+      "example": "/hicairo",
       "parameters": {},
       "description": ""
     }
@@ -190,38 +100,16 @@
     }
   },
   {
-    "provider_id": "kunchengblog",
-    "provider_name": "Kun Cheng",
-    "route_key": "/essay",
+    "provider_id": "medium",
+    "provider_name": "Medium",
+    "route_key": "/feed/:user",
     "route": {
-      "name": "Essay",
-      "path": "/essay",
-      "example": "/kunchengblog/essay",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "luolei",
-    "provider_name": "罗磊的独立博客",
-    "route_key": "/",
-    "route": {
-      "name": "罗磊的独立博客",
-      "path": "/",
-      "example": "/luolei",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "luxiangdong",
-    "provider_name": "土猛的员外",
-    "route_key": "/archive",
-    "route": {
-      "name": "文章",
-      "path": "/archive",
-      "example": "/luxiangdong/archive",
-      "parameters": {},
+      "name": "Medium Feed",
+      "path": "/feed/:user",
+      "example": "/medium/feed/zhgchgli",
+      "parameters": {
+        "user": "Username of the Medium"
+      },
       "description": ""
     }
   },
@@ -235,54 +123,6 @@
       "example": "/nielsberglund/blog",
       "parameters": {},
       "description": "Niels Berglund Blog Posts"
-    }
-  },
-  {
-    "provider_id": "playpcesor",
-    "provider_name": "电脑玩物",
-    "route_key": "/",
-    "route": {
-      "name": "每日精选文章",
-      "path": "/",
-      "example": "/playpcesor",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "thegradient",
-    "provider_name": "The Gradient",
-    "route_key": "/posts",
-    "route": {
-      "name": "Posts",
-      "path": "/posts",
-      "example": "/thegradient/posts",
-      "parameters": {},
-      "description": "The Gradient Blog Posts"
-    }
-  },
-  {
-    "provider_id": "xys",
-    "provider_name": "新语丝",
-    "route_key": "/new",
-    "route": {
-      "name": "新到资料",
-      "path": "/new",
-      "example": "/xys/new",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ygkkk",
-    "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
-    "route_key": "/",
-    "route": {
-      "name": "最新发表",
-      "path": "/",
-      "example": "/ygkkk",
-      "parameters": {},
-      "description": ""
     }
   }
 ]

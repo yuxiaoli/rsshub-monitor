@@ -1,4 +1,363 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Niels Berglund Blog</title><link>https://nielsberglund.com</link><atom:link href="http://rsshub.email-once.com/nielsberglund/blog" rel="self" type="application/rss+xml"></atom:link><description>Niels Berglund Blog - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Thu, 01 May 2025 00:35:06 GMT</lastBuildDate><ttl>5</ttl><item><title>Interesting Stuff - Week 17, 2025</title><description>&lt;p&gt;This week, the future of AI came roaring closer — and it’s not slowing down. From vibe coding and multi-agent architectures to autonomous tool-using AIs and self-improving agents, the boundaries of what’s possible keep expanding.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Niels Berglund Blog</title><link>https://nielsberglund.com</link><atom:link href="http://rsshub.email-once.com/nielsberglund/blog" rel="self" type="application/rss+xml"></atom:link><description>Niels Berglund Blog - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Sun, 01 Jun 2025 00:36:03 GMT</lastBuildDate><ttl>5</ttl><item><title>Interesting Stuff - Week 21, 2025</title><description>&lt;p&gt;This week’s roundup explores some of the most exciting developments in the AI and data space - from SQL Server 2025 becoming an AI-native database to the rise of autonomous coding agents like OpenAI Codex and GitHub Copilot’s Agent Mode.&lt;/p&gt;
+&lt;p&gt;We explore how AI models are learning to reason more effectively, build agentic systems from scratch, and scale real-time infrastructure like Dream11’s Kafka-powered backend. I also share a behind-the-scenes look at our sold-out 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI – The Age of Agency&lt;/strong&gt;&lt;/a&gt; event, which was a huge success.&lt;/p&gt;
+&lt;!--
+## Podcast
+
+If you rather listen to the summary:
+
+
+
+Click on the link above to listen to the podcast. Oh, the direct link to the episode is [here]().
+--&gt;
+&lt;h2 id=&quot;sql-server&quot;&gt;SQL Server&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://techcommunity.microsoft.com/blog/sqlserver/sql-server-2025---ai-ready-enterprise-database-from-ground-to-cloud/4413529&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SQL Server 2025 - AI ready enterprise database from ground to cloud&lt;/a&gt;. In this detailed post by Venkata Raj Pochiraju from Microsoft, readers are introduced to the groundbreaking features of SQL Server 2025, designed as a comprehensive, AI-ready enterprise database. The new SQL Server release integrates seamlessly from on-premises setups to cloud infrastructures and Microsoft Fabric, redefining how organizations can leverage data through enhanced AI capabilities. Key highlights include a native vector data type facilitating efficient hybrid AI vector searches, built-in support for Retrieval-Augmented Generation (RAG) applications, and AI Agent functionalities via familiar T-SQL syntax. Including advanced vector indexing (leveraging Approximate Nearest Neighbors), native JSON support, regular expression queries, and external REST endpoint invocation promises transformative potential for developers and businesses alike. Notably, SQL Server 2025 also significantly bolsters data security and encryption standards, reflecting evolving compliance and security requirements. This development is particularly intriguing because it symbolizes a shift in the role of the traditional database from mere data storage towards becoming a proactive participant in AI-driven decision-making processes. How will this shift impact the roles of database administrators and developers in your organizations? Are we prepared for databases to increasingly drive rather than support AI initiatives?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;generic-ai&quot;&gt;Generic AI&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://openai.com/index/introducing-codex/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Introducing Codex&lt;/a&gt;. This OpenAI post introduces Codex, their latest multi-agent coding assistant powered by the new codex-1 model (based on o3), optimized for collaborative software development. Codex can read your codebase, propose fixes, write new features, run tests, and even generate pull requests - all from isolated cloud environments. Developers interact via ChatGPT’s UI or the new Codex CLI, while AGENTS.md files give Codex crucial context to operate effectively. What’s fascinating here is the promise of asynchronous coding collaboration with AI - where you assign multiple scoped tasks, and Codex works in parallel, citing terminal logs and test results for transparency. This isn’t just Copilot++. It’s shaping up to be your team’s AI engineer.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://lilianweng.github.io/posts/2025-05-01-thinking/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Why We Think&lt;/a&gt;. This massive post by Lilian Weng takes a deep dive into how and why we want LLMs to “think” at test time - especially through techniques like Chain-of-Thought (CoT), adaptive computation, and reasoning tokens. Drawing analogies to human cognition (think Kahneman’s System 1 vs System 2), Weng surveys everything from latent variable modelling and CoT scaling laws to self-correction learning, reward hacking, and external tool use (like code execution during reasoning). I absolutely loved framing “test-time compute” as thinking time and how larger models benefit disproportionately from it. But what stuck with me most was this: the emergence of the “aha moment” in RL-trained models that self-reflect and correct past mistakes. Are we now seeing models not just reason but learn to reason better? If so, how do we ensure that reasoning remains faithful—not just effective?&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub Copilot: Meet the new coding agent&lt;/a&gt;. GitHub, in this post, reveals a major leap forward in developer tooling: the introduction of the GitHub Copilot coding agent. This isn’t just autocomplete-on-steroids - it’s a full-fledged background agent that spins up a secure dev environment via GitHub Actions, analyzes your codebase, and iteratively pushes commits to a draft pull request as it implements assigned GitHub issues. Developers can now assign tasks directly to Copilot (even via chat!) and track progress through rich session logs and agent commentary. What’s game-changing is the integration of Model Context Protocol (MCP) and RAG-powered understanding. Copilot can follow instructions and reason across past issues, pull request discussions and even interpret screenshots of bugs. And yes, it can revise its own work based on your comments. This update marks the shift from “Copilot as a pair programmer” to “Copilot as a junior engineer on your team.” But it raises a question: how far are we from this being more than just a helper? When does an agent like this become responsible for its work—or does that always stay on us humans? As we embrace agentic workflows, where does trust in automation begin, and where should it end?&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://medium.com/@ali_hamza/how-to-build-agentic-ai-systems-from-scratch-22c33999df91&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;How to Build Agentic AI Systems from Scratch?&lt;/a&gt;. In this practical and well-structured post, Ali Hamza demystifies the process of building agentic AI systems—autonomous entities capable of perceiving, reasoning, and taking action - by walking through a clear end-to-end development pipeline. From defining your problem to setting up the development environment and integrating perception, reasoning, and execution components, this guide lays down actionable steps for building everything from trading bots to web automation agents. Ali breaks the system into three core layers: Perception (data intake via APIs, sensors), Reasoning (decision-making via RL or LLMs), and Action Execution (via APIs or automation tools like Selenium). There’s even a useful nod to deploying via Docker. It’s like building your own baby Jarvis with Python and a few pip installs. What stood out to me is how achievable agentic systems now feel. This wasn’t a theoretical paper - it’s a weekend project starter kit for devs who want to explore AI autonomy. But here’s the discussion spark: while the tech is approachable, are we teaching developers enough about the responsibility that comes with automation and autonomy? Coding an agent is one thing - ensuring it acts ethically and safely is another.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://pub.towardsai.net/the-hidden-power-of-mcp-google-adk-a-guide-to-building-systems-that-scale-773463e0284a?sk=v2%2F49da747f-4a9b-4001-8084-9f1d448c2544&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Hidden Power of MCP + Google ADK — A Guide to Building Systems That Scale&lt;/a&gt;. In this post, Subhadip Saha explores how Model Context Protocol (MCP) and Google’s Agent Development Kit (ADK) can supercharge the development of scalable, secure, and truly agentic AI systems. MCP bridges AI models and the real world - handling external interactions like database queries or API calls - while ADK gives developers a modular, Python-based framework to orchestrate agents, tools, and workflows. The post walks through everything from architecture fundamentals to implementation, including a practical example of building a weather-checking agent. It emphasizes modularity, multi-agent orchestration, real-world use cases (like customer support and smart homes), and even performance tips like caching and async I/O. Consider MCP + ADK as the clean API + workflow automation layer that lets AI agents become practical, actionable, and composable systems. What I found particularly compelling is how this combo enables AI systems to move from “chatty assistant” to “functioning teammate.” With MCP abstracting tool access and ADK handling orchestration, we now have the plumbing to scale agent behaviour reliably. But here’s the thought: as AI agents get better at connecting and acting, who becomes accountable for their decisions? The infrastructure is clean - but governance may be the next big challenge.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://github.blog/ai-and-ml/github-copilot/agent-mode-101-all-about-github-copilots-powerful-mode/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Agent mode 101: All about GitHub Copilot’s powerful mode&lt;/a&gt;. In this hands-on overview, Alexandra Lietzke explains what GitHub Copilot Agent Mode is, how it differs from the newer asynchronous coding agent, and why it’s a game-changer for real-time, synchronous development. Agent Mode acts like a junior developer on your team - analyzing your codebase, planning and executing multi-step changes, running tests, fixing errors, and iterating independently - all guided by your high-level prompt. This post gives a clear walkthrough of how Agent Mode works under the hood: a backend system prompt augments your request, tools like read_file, edit_file, and run_in_terminal power its actions, and the whole thing loops until a successful outcome is reached. It can also integrate with Model Context Protocol (MCP) servers, enabling powerful external tool interaction (e.g., automating GitHub workflows or fetching issue data). The real value here is how Agent Mode elevates GitHub Copilot from a passive code helper to an active autonomous collaborator. Whether you’re prototyping, migrating stacks, or modernizing legacy code, it’s a workflow accelerator. That said, the prompt still matters - your agent is only as clear as your instructions. The future looks increasingly agentic, but the interface (human-AI communication) may remain the real frontier.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;streaming&quot;&gt;Streaming&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://www.kai-waehner.de/blog/2025/05/19/powering-fantasy-sports-at-scale-how-dream11-uses-apache-kafka-for-real-time-gaming/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Powering Fantasy Sports at Scale: How Dream11 Uses Apache Kafka for Real-Time Gaming&lt;/a&gt;. In this concise and powerful post, Kai Waehner unpacks how Dream11, India’s largest fantasy sports platform, uses Apache Kafka to deliver seamless, real-time gameplay to over 230 million users. The stakes are high: millions of concurrent users, 44TB of data processed daily, and traffic spikes timed to the start of live matches. Kafka plays a central role, enabling low-latency data streaming, real-time scoring updates, fraud detection, and smooth gameplay - at a scale that rivals global tech giants. What sets Dream11 apart is their engineering innovation. They developed a custom Java-based Kafka consumer library to overcome challenges around offset management, rebalancing, and throughput under peak load. This abstraction layer boosted developer productivity and allowed the backend to scale with confidence during moments of extreme concurrency, such as IPL match kickoffs. Here’s what resonated: fantasy sports isn’t just a fun application - it’s a real-time systems masterclass. Dream11’s platform architecture highlights how mission-critical Kafka has become in domains where milliseconds = money. This makes me wonder: will every competitive edge in consumer tech ultimately be decided by who streams data better, faster, and smarter?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;wind-what-is-niels-doing&quot;&gt;WIND (What Is Niels Doing)&lt;/h2&gt;
+&lt;p&gt;Yesterday, we held 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI – The Age of Agency&lt;/strong&gt;&lt;/a&gt;, and I’m still buzzing from the experience. With over 200 attendees, the venue was alive with excitement, curiosity, and some seriously great hallway conversations. The feedback has been overwhelmingly positive - people were raving about the sessions, the networking, and the overall energy of the event. It’s always a thrill to see a room full of genuinely engaged and inspired people, and this one was no exception.&lt;/p&gt;
+&lt;p&gt;Beyond organizing the event (which is a feat on its own!), I also gave my talk, “&lt;strong&gt;Vibe Coding: Where AI Handles the Syntax, and You Build the Future.&lt;/strong&gt;” The room was packed, and judging by the crowd’s reactions and early feedback, it resonated nicely. I’ve started collating the session evaluations and should have the full results ready later today or tomorrow, but here’s a quick peek: the event scored an average of &lt;strong&gt;6.68/7&lt;/strong&gt;, the sessions landed at an average of &lt;strong&gt;6.46/7&lt;/strong&gt;, and the speaker ratings averaged &lt;strong&gt;6.51/7&lt;/strong&gt;. To say I’m ecstatic is a massive understatement - those numbers are fantastic and a real testament to the amazing community (both attendees and speakers) we have here in Durban!&lt;/p&gt;
+&lt;p&gt;I want to extend a heartfelt &lt;strong&gt;THANK YOU&lt;/strong&gt; to everyone who attended, spoke, and helped make this event a success. Your enthusiasm and engagement are what make these events worthwhile. And a special shoutout to our sponsors for their support - we couldn’t have done it without you!&lt;/p&gt;
+&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
+&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
+
+&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
+
+                
+
+                
+                &lt;hr&gt;
+                &lt;ul class=&quot;pager&quot;&gt;
+                    
+                    &lt;li class=&quot;previous&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-05-18-interesting-stuff---week-20-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 20, 2025&quot;&gt;←
+                            Previous Post&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                    
+                &lt;/ul&gt;
+                
+
+                
+
+
+&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
+
+
+            </description><link>https://nielsberglund.com/post/2025-05-25-interesting-stuff---week-21-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-05-25-interesting-stuff---week-21-2025/</guid><pubDate>Sat, 24 May 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 20, 2025</title><description>&lt;p&gt;This week’s roundup explores the cutting edge of agentic AI, from Microsoft’s ARTIST framework and the rise of the A2A protocol to GitHub’s top open source projects driving multi-agent innovation. We dive into real-world implementations with LangChain, Codex’s leap into parallel coding, and Windsurf’s SWE-1 models redefining the developer experience.&lt;/p&gt;
+&lt;p&gt;I also had a great time presenting &lt;strong&gt;Vibe Coding: Where AI Handles the Syntax, and You Build the Future&lt;/strong&gt; at the 
+
+&lt;a href=&quot;https://www.dataandaicommunity.co.za/events/JHB-202505.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data and AI Community Day Joburg May 2025&lt;/strong&gt;&lt;/a&gt;, and now, all focus shifts to our Durban event on May 24. It’s a packed week in AI, and the momentum shows no signs of slowing down.&lt;/p&gt;
+&lt;!--
+## Podcast
+
+If you rather listen to the summary:
+
+
+
+Click on the link above to listen to the podcast. Oh, the direct link to the episode is [here]().
+--&gt;
+&lt;h2 id=&quot;generative-ai&quot;&gt;Generative AI&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://www.marktechpost.com/2025/05/10/microsoft-researchers-introduce-artist-a-reinforcement-learning-framework-that-equips-llms-with-agentic-reasoning-and-dynamic-tool-use/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Microsoft Researchers Introduce ARTIST: A Reinforcement Learning Framework That Equips LLMs with Agentic Reasoning and Dynamic Tool Use&lt;/a&gt;. In this post, Sana Hassan introduces ARTIST (Agentic Reasoning and Tool Integration in Self-improving Transformers), a groundbreaking framework developed by Microsoft Research that combines agentic reasoning, reinforcement learning (RL), and dynamic tool integration. ARTIST enables large language models (LLMs) to autonomously interact with external tools, such as code execution platforms and APIs, significantly enhancing their problem-solving capabilities. Unlike traditional models restricted by static inference and manual prompts, ARTIST dynamically chooses when and how to invoke these external resources, achieving impressive accuracy gains, notably outperforming GPT-4o by up to 22% on challenging mathematical benchmarks. The ARTIST framework is fascinating as it moves AI capabilities closer to human-like autonomy in complex reasoning tasks. The idea that LLMs can now independently decide their tool interactions—without step-by-step human supervision—opens exciting possibilities and significant challenges regarding oversight and transparency.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://github.blog/open-source/maintainers/from-mcp-to-multi-agents-the-top-10-open-source-ai-projects-on-github-right-now-and-why-they-matter/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;From MCP to multi-agents: The top 10 new open source AI projects on GitHub right now and why they matter&lt;/a&gt;. This post by Jeimy Ruiz from the GitHub Blog dives into the hottest new open source AI projects lighting up GitHub, and more importantly, why they matter. It’s a well-curated guide to what’s shaping the future of AI tooling, from Model Context Protocol (MCP)-based integrations to multi-agent orchestration and portable AI containers. Projects like OWL show how agents move from solo performers to collaborative teams, while innovations like Letta provide a “Docker-for-agents” approach to AI portability. We also see creative intersections of AI with 3D design in Blender-MCP, and voice synthesis stepping up with tools like VoiceStar and CSM. What struck me in this roundup is the rapid emergence of MCP as a unifying standard. Think USB-C for AI, everything plugs in and works. That kind of integration power is critical if we’re to build AI systems that aren’t siloed but can orchestrate across services and environments. As developers, the opportunity here is massive: interoperability means more composability and faster innovation. Are we finally seeing the infrastructure emerge that allows us to build agentic systems as easily as web apps?&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://www.microsoft.com/en-us/microsoft-cloud/blog/2025/05/07/empowering-multi-agent-apps-with-the-open-agent2agent-a2a-protocol/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Empowering multi-agent apps with the open Agent2Agent (A2A) protocol&lt;/a&gt;. In this post, Yina Arenas and Bas Brekelmans from Microsoft explore the Agent2Agent (A2A) protocol, a new standard designed to allow AI agents to securely and efficiently collaborate across platforms, clouds, and organisational boundaries. A2A is being integrated into Azure AI Foundry and Copilot Studio, enabling developers to build dynamic, composable, agentic systems that maintain governance and trust. With support for tools like Semantic Kernel and LangChain, and security layers including mutual TLS and Azure AI Content Safety, A2A is positioned as a critical backbone for next-gen intelligent applications. What excites me about A2A is the vision of software shifting from monolithic apps to swarms of cooperating agents. This protocol doesn’t just make multi-agent communication possible; it formalises it in an observable, secure, and interoperable way. It’s a pragmatic move that may finally break down silos across AI ecosystems. If you’ve experimented with agent-based systems before, this could be the glue that makes your setup production-ready. Are we heading toward a future where your data analyst agent chats with your customer support agent like colleagues over Slack?&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://pub.towardsai.net/a2a-mcp-langchain-powerful-agent-communication-8bb692ed51d3?sk=v2%2Fa2a72c0b-be77-4420-9c85-297408bdc1e6&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;A2A + MCP + LangChain = Powerful Agent Communication&lt;/a&gt;. Gao Dalie delivers in this post an in-depth tutorial on how to build a multi-agent chatbot that integrates Google’s A2A (Agent2Agent) protocol, MCP (Model Context Protocol), and LangChain. The result? A powerful, real-time system where intelligent agents communicate with each other and intelligently select and invoke tools, like fetching stock prices and scraping financial news, based on the user’s query. Gao walks us through every step: dynamic port allocation, setting up OpenAI agents, designing tools using yFinance and BeautifulSoup, converting them into LangChain-compatible components, and finally integrating them into a seamless meta-agent. I particularly appreciate how Gao doesn’t just talk about agentic interoperability; he builds it and shares the code to prove it. This real-world application shows how far we’ve come from hardcoded APIs and brittle prompts. If you’re developing with LangChain or are interested in building intelligent assistants that “think with tools,” this guide is pure gold. It also raises a provocative thought: are we nearing a future where systems like these replace static dashboards with interactive, multi-agent financial analysts? What do you think—just clever demos or the start of a new UX paradigm?&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://www.marktechpost.com/2025/05/16/ai-agents-now-write-code-in-parallel-openai-introduces-codex-a-cloud-based-coding-agent-inside-chatgpt/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;AI Agents Now Write Code in Parallel: OpenAI Introduces Codex, a Cloud-Based Coding Agent Inside ChatGPT&lt;/a&gt;. In this post, Asif Razzaq explores Codex, OpenAI’s new cloud-native coding agent embedded directly into ChatGPT. Far beyond simple autocomplete, Codex can run tests, generate pull requests, fix bugs, and even understand your project’s coding style and structure—all in isolated cloud sandboxes. The agent is powered by a specialised model, codex-1, that enables developers to offload parallel tasks and receive testable, context-aware code snippets, complete with diffs and terminal output. What really piqued my interest is the idea of agent-driven development—a shift from tooling that “assists” to agents that collaborate. This isn’t just about faster coding; it’s about redefining developer workflows. When you can tell an AI, “add input validation to this endpoint,” and it returns a working patch aligned with your coding style, we’re moving into a space where knowing what to build and why may matter more than knowing how to write every line.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://windsurf.com/blog/windsurf-wave-9-swe-1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Windsurf Wave 9&lt;/a&gt;. Windsurf, formerly Codeium, has unveiled its Wave 9 update, introducing the SWE-1 family of AI models specifically designed for the software engineering lifecycle. This release marks Windsurf’s transition from solely a tool provider to a developer of foundational AI models. The SWE-1 series comprises three distinct models: SWE-1: a full-scale model offering advanced reasoning and tool usage capabilities, available to paying users; SWE-1-lite: a lightweight version replacing the previous Cascade Base, accessible to all users and finally SWE-1-mini: an ultra-light model providing quick code predictions within the Windsurf Tab feature, also available to all users. These models are engineered to handle various aspects of software development, from coding and testing to documentation and deployment, aiming to accelerate the development process by up to 99%. Windsurf claims that the SWE-1 models perform comparably to leading AI models like Claude 3.5 and GPT-4.1 in software engineering tasks. The models are integrated into the Windsurf Editor, providing users with an AI-powered development environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;wind-what-is-niels-doing&quot;&gt;WIND (What Is Niels Doing)&lt;/h2&gt;
+&lt;p&gt;Yesterday (Saturday May 17), I had the pleasure of speaking at 
+
+&lt;a href=&quot;https://www.dataandaicommunity.co.za/events/JHB-202505.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data and AI Community Day Joburg May 2025&lt;/strong&gt;&lt;/a&gt;, where I presented my talk, &lt;strong&gt;Vibe Coding: Where AI Handles the Syntax, and You Build the Future&lt;/strong&gt;. The room was packed (standing-room only!), and the energy was amazing. Seeing so many developers engaged and curious about how AI is reshaping the way we approach software development was great. Judging by the number of nods, laughs, and follow-up questions, it’s safe to say the talk landed well!&lt;/p&gt;
+&lt;p&gt;Now, it’s full steam ahead as I prep for our big Durban event, 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI – The Age of Agency&lt;/strong&gt;&lt;/a&gt;, happening on May 24. The agenda is officially locked, and it’s brimming with brilliant sessions covering everything from AI agents and the Model Context Protocol (MCP) to Microsoft Fabric, Vibe Coding, and beyond. I’m incredibly excited about the speaker lineup and can’t wait to see our Durban community dive into the next wave of AI innovation. You can view all the details about the event below:&lt;/p&gt;
+&lt;p&gt;📌 &lt;strong&gt;Event Details:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;📅 &lt;strong&gt;Date:&lt;/strong&gt; May 24, 2025&lt;/li&gt;
+&lt;li&gt;🕘 &lt;strong&gt;Time:&lt;/strong&gt; Registration from 08:00, kicking off at 08:20 sharp!&lt;/li&gt;
+&lt;li&gt;📍 &lt;strong&gt;Venue:&lt;/strong&gt; 
+
+&lt;a href=&quot;https://www.coastlands.co.za/umhlanga/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Coastlands Umhlanga Hotel and Convention Centre&lt;/strong&gt;&lt;/a&gt;, 329 Umhlanga Rocks Drive, Umhlanga Ridge, Durban.&lt;/li&gt;
+&lt;li&gt;🌐 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Event Info&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🎤 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents-speakers/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Speakers&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;📖 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents-sessions/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Sessions&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🔗 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents-agenda/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Agenda&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope to see at the event. If you are in the area, please join us for a day of learning and networking with like-minded individuals.&lt;/p&gt;
+&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
+&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
+
+&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
+
+                
+
+                
+                &lt;hr&gt;
+                &lt;ul class=&quot;pager&quot;&gt;
+                    
+                    &lt;li class=&quot;previous&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-05-11-interesting-stuff---week-19-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 19, 2025&quot;&gt;←
+                            Previous Post&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                    
+                    &lt;li class=&quot;next&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-05-25-interesting-stuff---week-21-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 21, 2025&quot;&gt;Next
+                            Post →&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                &lt;/ul&gt;
+                
+
+                
+
+
+&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
+
+
+            </description><link>https://nielsberglund.com/post/2025-05-18-interesting-stuff---week-20-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-05-18-interesting-stuff---week-20-2025/</guid><pubDate>Sat, 17 May 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 19, 2025</title><description>&lt;p&gt;This week’s roundup dives deep into the evolving world of Generative AI—from choosing the right Copilot model to surviving the chaos of vibe coding, and even auto-generating code from ML papers.&lt;/p&gt;
+&lt;p&gt;We also examine Google’s Gemini 2.5 models and why they might quietly take over the AI backend stack. Plus, I’ve just locked in the full agenda for 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban&lt;/strong&gt;&lt;/a&gt; and am prepping to speak at the 
+
+&lt;a href=&quot;https://www.dataandaicommunity.co.za/events/JHB-202505.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Joburg edition&lt;/strong&gt;&lt;/a&gt; next week on (you guessed it) vibe coding!&lt;/p&gt;
+&lt;!--
+## Podcast
+
+If you rather listen to the summary:
+
+
+
+Click on the link above to listen to the podcast. Oh, the direct link to the episode is [here]().
+--&gt;
+&lt;h2 id=&quot;generative-ai&quot;&gt;Generative AI&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://github.blog/ai-and-ml/github-copilot/which-ai-model-should-i-use-with-github-copilot/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Which AI model should I use with GitHub Copilot?&lt;/a&gt;. In this post, Cassidy Williams breaks down the landscape of AI models available for GitHub Copilot and offers a practical, at-a-glance guide for developers overwhelmed by choice. The article compares models like GPT-4.1, Claude 3.5 Sonnet, Gemini 2.5 Pro, and others across dimensions like speed, reasoning power, and multimodal capability. Whether you’re after blazing-fast prototyping with o4-mini or deep architectural planning with Claude 3.7 Sonnet, there’s a model for every coding challenge. What stood out to me is how Cassidy emphasises fit-for-purpose over brand loyalty. It’s a subtle but important reminder that tooling decisions should be made based on your problem space, not just hype or cost. I’ve personally fallen into the “just use GPT-4 for everything” trap, and this post nudged me to rethink that approach. I particularly appreciated the cheat-sheet style TL;DR - more blogs should offer that kind of developer-first readability.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://pub.towardsai.net/surviving-vibe-coding-strategies-for-staying-productive-f2034ba3799e&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Surviving Vibe Coding: Strategies for Staying Productive&lt;/a&gt;. This post by Kelvin Lu tackles the chaos, promise, and reality of “vibe coding”—the hands-off, prompt-driven programming paradigm popularised by Andrej Karpathy. Unlike traditional AI-assisted coding, where the developer leads and the AI supports, vibe coding flips the dynamic: you describe what you want in natural language, and the AI builds it. Sounds magical, right? Not so fast. Kelvin’s deep-dive analysis surfaces serious shortcomings: lack of clarification from LLMs, rushed solutions, poor memory handling, and limited collaboration cues. What makes this post a standout is Kelvin’s hands-on testing. He compared LLMs like ChatGPT, Gemini, Claude, DeepSeek, Qwen, and Mercury by asking them to build a doctor appointment app. Surprisingly, it wasn’t the usual suspects that stole the show—models like Qwen and DeepSeek outperformed more popular options with thoughtful architecture and practical guidance. Here’s where I’ll chime in: vibe coding does feel like managing a junior dev who’s brilliant, but has zero social skills. The advice to shift your mindset from “coder” to “project manager” is spot on. The magic of vibe coding isn’t in expecting AI to “just do it,” but in learning to orchestrate it effectively, with documentation, phased planning, and rule-setting. If this is the future, it will reward those who guide the vibe, not just ride it.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://arxiv.org/pdf/2504.17192&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Paper2Code: Automating Code Generation from Scientific Papers in Machine Learning&lt;/a&gt;. In this paper, the authors from KAIST and DeepAuto.ai present PaperCoder, a multi-agent framework that converts ML research papers into executable code repositories—an ambitious leap in reproducibility and research automation. The process mimics a full software development lifecycle through three key stages: planning (architecture and configuration), analysis (file-level intent and structure), and coding (modular, dependency-aware generation). Unlike prior systems that rely on partial implementations or APIs, PaperCoder takes the full paper as input and builds a functional repo from scratch. This post goes well beyond the typical “LLMs can help” narrative. PaperCoder outperformed ChatDev and MetaGPT on the Paper2Code and PaperBench Code-Dev benchmarks, with both model-based and human evaluations showing significantly better scores in code quality, completeness, and usefulness. The generated code was more structured and nearly executable out-of-the-box, requiring on average only 0.48% of lines to be fixed. That’s staggering. Here’s my take: this might be one of the most meaningful applications of LLMs to date. It addresses the actual pain point in ML research—reproducibility—and offers a viable, structured path toward automating it. But the real genius? The team didn’t stop at “let’s generate code.” They built a reproducible framework that emulates how humans would tackle this task, complete with diagrams, dependency resolution, and config generation. If you ask me, PaperCoder isn’t just another AI tool—it’s a blueprint for the future of scientific publishing. Imagine every NeurIPS paper having a GitHub repo auto-generated and validated on submission.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://every.to/context-window/vibe-check-gemini-2-5-pro-and-gemini-2-5-flash&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Vibe Check: Gemini 2.5 Pro and Gemini 2.5 Flash&lt;/a&gt;. In this post, Katie Parrott gives a no-nonsense look at why Google’s Gemini 2.5 models - Pro and Flash - might quietly take the AI backend crown. Unlike OpenAI’s splashier releases, Gemini doesn’t dominate headlines, but it’s quickly becoming the engine behind popular dev tools like Cursor and Windsurf, and running under the hood of AI products like Cora and Sparkle. Gemini 2.5 Pro is positioned as a “thinking model,” built for deep reasoning with a whopping 1 million-token context window. It shines at rewriting entire code bases, long-context planning, and multimodal tasks. Developers praise it for its reliability and logic, though some grumble about excessive inline comments and clunky tool calls. Gemini 2.5 Flash, on the other hand, is the nimble multitasker: it offers programmable reasoning depth and excels at orchestrating high-throughput tasks at budget-friendly costs. Here’s my take: this piece nails the underlying strategic brilliance of Google’s AI play. Flash isn’t trying to win on IQ—it’s playing the operational long game. With cheap inference, speed tuning, and tight integrations across Google’s vast stack (Chrome, Android, Gmail), Gemini is quietly becoming the infrastructure glue for AI-powered apps. If OpenAI wins the hype war, Google may win the deployment war, which really matters for devs and companies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;wind-what-is-niels-doing&quot;&gt;WIND (What Is Niels Doing)&lt;/h2&gt;
+&lt;p&gt;Last week, I gave our speakers more time by extending the Call for Speakers for 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI – The Age of Agency&lt;/strong&gt;&lt;/a&gt;. And wow - I’m glad I did! The extra window brought in a wave of quality submissions, and after reviewing them over the past few days, I’m excited to say that we now have a fully packed agenda for the May 24 event. It will be another strong showing of sessions on AI Agents, vibe coding, streaming, and a lot of other cool stuff. You can view all the details about the event below:&lt;/p&gt;
+&lt;p&gt;📌 &lt;strong&gt;Event Details:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;📅 &lt;strong&gt;Date:&lt;/strong&gt; May 24, 2025&lt;/li&gt;
+&lt;li&gt;📍 &lt;strong&gt;Venue:&lt;/strong&gt; TBA (announcement coming soon!)&lt;/li&gt;
+&lt;li&gt;🌐 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Event Info&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🎤 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents-speakers/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Speakers&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;📖 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents-sessions/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Sessions&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;🔗 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents-agenda/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Agenda&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope to see at the event. If you are in the area, please join us for a day of learning and networking with like-minded individuals.&lt;/p&gt;
+&lt;p&gt;This week, I’m shifting gears and preparing for 
+
+&lt;a href=&quot;https://www.dataandaicommunity.co.za/events/JHB-202505.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Joburg&lt;/strong&gt;&lt;/a&gt; on May 17. I’ll present &lt;strong&gt;Vibe Coding: Where AI Handles the Syntax, and You Build the Future&lt;/strong&gt;, which fits perfectly with many of the themes in this week’s roundup. If you’ve enjoyed the articles about LLM-powered workflows, Gemini Pro, and PaperCoder, this talk will be right up your alley. There are still a few tickets left, so if you’re in Jozi and want to nerd out about the future of AI-assisted development, 
+
+&lt;a href=&quot;https://www.quicket.co.za/events/311338-data-ai-community-day-johannesburg-may-2025/#/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;grab one while you can&lt;/strong&gt;&lt;/a&gt;!&lt;/p&gt;
+&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
+&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
+
+&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
+
+                
+
+                
+                &lt;hr&gt;
+                &lt;ul class=&quot;pager&quot;&gt;
+                    
+                    &lt;li class=&quot;previous&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-05-04-interesting-stuff---week-18-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 18, 2025&quot;&gt;←
+                            Previous Post&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                    
+                    &lt;li class=&quot;next&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-05-18-interesting-stuff---week-20-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 20, 2025&quot;&gt;Next
+                            Post →&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                &lt;/ul&gt;
+                
+
+                
+
+
+&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
+
+
+            </description><link>https://nielsberglund.com/post/2025-05-11-interesting-stuff---week-19-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-05-11-interesting-stuff---week-19-2025/</guid><pubDate>Sat, 10 May 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 18, 2025</title><description>&lt;p&gt;This week’s roundup dives into how AI rapidly reshapes the tech landscape! From Microsoft’s AI-driven codebases and the rise of small but mighty language models to the real meaning of vibe coding and the junior developer revolution, the pace of change is breathtaking.&lt;/p&gt;
+&lt;p&gt;We also explore how Confluent and Databricks break down the batch vs. stream divide, setting the stage for a real-time future. Plus, a quick update on planning for 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI – The Age of Agency&lt;/strong&gt;&lt;/a&gt; — it’s shaping up to be something special!&lt;/p&gt;
+&lt;!--
+## Podcast
+
+If you rather listen to the summary:
+
+
+
+Click on the link above to listen to the podcast. Oh, the direct link to the episode is [here]().
+--&gt;
+&lt;h2 id=&quot;generative-ai&quot;&gt;Generative AI&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://www.theregister.com/2025/04/30/microsoft_meta_autocoding&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;30 percent of some Microsoft code now written by AI - especially the new stuff&lt;/a&gt;. The Register reports in this post that AI tools, notably GitHub Copilot, are now responsible for writing 30% or more of the code in specific Microsoft projects. The article highlights how AI is shifting from a helpful assistant to a true co-developer, handling routine coding tasks so that engineers can focus on higher-level work. Interestingly, it also raises the point that with AI’s growing contribution, the definition of what it means to be a “software engineer” is evolving. This is both exciting and thought-provoking. While AI accelerating development is fantastic, it also challenges us to rethink our roles—becoming more about architecture, creativity, and critical thinking rather than just syntax. It’s an inevitable evolution that we, as a community, need to actively shape.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://azure.microsoft.com/en-us/blog/one-year-of-phi-small-language-models-making-big-leaps-in-ai/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;One year of Phi: Small language models making big leaps in AI&lt;/a&gt;. This post by Weizhu Chen and Ece Kamar on the Microsoft Azure Blog celebrates the evolution of the Phi family of small language models (SLMs), culminating in the launch of Phi-4-reasoning, Phi-4-reasoning-plus, and Phi-4-mini-reasoning. These new models punch far above their weight, demonstrating reasoning capabilities that challenge much larger models—perfect for environments where low latency and efficient computing matter. Particularly impressive is how Phi-4-reasoning-plus outperforms models five times its size on complex benchmarks like the AIME 2025 math test! Reflecting on this, I’m amazed by how small models close the capability gap with large frontier models. It’s not just about scaling bigger anymore; it’s about scaling smarter. This shift could make sophisticated AI reasoning accessible to far more applications, devices, and developers than ever—and I think that’s a truly exciting development to watch.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://pub.towardsai.net/experiment-driven-ai-development-building-the-plane-while-flying-7c9b0ac302eb&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Experiment-Driven AI Development: Building the Plane While Flying&lt;/a&gt;. Towards AI dives into the reality of modern AI development in this post, where uncertainty is the norm and experimentation must replace rigid planning. He argues that instead of building AI systems with traditional, feature-driven roadmaps, we must embrace Experiment-Driven Development (EDD)—treating AI creation as a series of structured experiments to reduce critical uncertainties. Naleszkiewicz stresses that teams should focus on validating hypotheses rather than delivering pre-scoped features, changing how we measure success. Reading this, I couldn’t agree more. AI is inherently messy, full of surprises both delightful and dangerous. Trying to fit it into traditional development moulds feels like using a ruler to measure the ocean. EDD reframes progress into learning milestones rather than feature checkboxes, and honestly, it’s probably the mindset shift we need to build truly transformative AI systems.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://simonwillison.net/2025/May/1/not-vibe-coding/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Two publishers and three authors fail to understand what “vibe coding” means&lt;/a&gt;. In this post, Simon Willison vents (rightfully!) about the misuse of the term vibe coding by two publishers and three authors who, according to him, fundamentally misunderstood the idea. Vibe coding, coined by Andrej Karpathy, isn’t simply using AI tools to assist coding—it’s about letting go, generating code without caring about the exact implementation, and “going with the vibes” to create throwaway projects. Willison expresses frustration that forthcoming books have already started redefining the term incorrectly to mean professional-grade AI-assisted development—missing the point entirely. Honestly, I sympathize with Simon’s frustration here, and I have the same POV as Simon. It’s, however, a fascinating glimpse into how quickly “semantic diffusion” happens in tech culture. New ideas get watered down before they’ve even had a chance to mature. Vibe coding, at its core, empowers non-programmers to build without fear—and we desperately need more tools, guides, and books that embrace that spirit, not confuse it.&lt;/li&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://sourcegraph.com/blog/revenge-of-the-junior-developer&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Revenge of the junior developer&lt;/a&gt;. This post by Steve Yegge on the Sourcegraph Blog offers a whirlwind tour through the fast-moving world of vibe coding, coding agents, and the upcoming “agent fleets.” Yegge describes the six waves of AI-assisted software development—from manual coding to completions, chat, agents, clusters, and eventually fleets. He paints a picture where the role of a software developer shifts from writing code to orchestrating fleets of coding agents, with junior developers leading the charge because they’re adapting faster than senior engineers. The “revenge” part? Juniors are embracing AI so successfully that they’re positioning themselves as the workforce of the future. Reading this post, I can’t help but smile (and nod). It’s clear: adaptability is the ultimate superpower. Those who lean into AI workflows now—especially coding agents—will surf the coming waves rather than get washed away. It’s not about replacing developers but evolving into something far more scalable and powerful. Honestly, seeing juniors take the lead here feels like a refreshing and much-needed shake-up.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;streaming&quot;&gt;Streaming&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+&lt;a href=&quot;https://www.kai-waehner.de/blog/2025/05/02/the-past-present-and-future-of-confluent-the-kafka-company-and-databricks-the-spark-company/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Past, Present, and Future of Confluent (The Kafka Company) and Databricks (The Spark Company)&lt;/a&gt;. Kai Waehner explores in this post the intertwined journeys of Confluent and Databricks, two giants that started with open-source roots—Kafka and Spark—and have evolved into full-fledged platforms, redefining modern data architectures. Confluent is now much more than Kafka, providing a comprehensive data streaming platform, while Databricks positions itself as a Data Intelligence Platform focused on AI, machine learning, and analytics. Waehner explains how real-time data movement (Confluent) and large-scale AI/BI processing (Databricks) increasingly converge, especially with integrations like Tableflow and Delta Lake, creating a seamless bridge between operational and analytical workloads. Reflecting on this, I find it fascinating how “batch vs. stream” has blurred into a more unified architecture. The future clearly belongs to platforms that can deliver agility across the data spectrum—moving from data at rest to data in motion easily. It’s no longer a choice between Confluent or Databricks—it’s about how to orchestrate both to drive next-gen AI and data-driven enterprises.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;wind-what-is-niels-doing&quot;&gt;WIND (What Is Niels Doing)&lt;/h2&gt;
+&lt;p&gt;This past Friday, I extended the Call for Speakers (CfS) for 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI – The Age of Agency&lt;/strong&gt;&lt;/a&gt;, which is happening on May 24! The CfS officially closes today, Sunday, May 4. We had such a strong response leading up to the deadline that extending it a couple more days was absolutely worth it.&lt;/p&gt;
+&lt;p&gt;Now comes the exciting part — I’m busy reviewing the fantastic submissions we’ve received and starting to plan the event agenda. Based on what I’m seeing, we’re shaping up for a top-notch lineup covering AI Agents, the Model Context Protocol (MCP), the Power Platform, database development, and much more. As soon as the speakers and sessions are locked in, I’ll update the event webpage so everyone can see what’s in store!&lt;/p&gt;
+&lt;p&gt;🌟 &lt;strong&gt;Event Details&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;📆 &lt;strong&gt;Date:&lt;/strong&gt; Saturday, May 24, 2025&lt;/li&gt;
+&lt;li&gt;🏨 &lt;strong&gt;Venue:&lt;/strong&gt; The venue has not been confirmed yet, but we are working on it. Check our event page for venue details and updates!&lt;/li&gt;
+&lt;li&gt;🌍 
+
+&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;View Event Information&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The event is sold out, but if you’re interested in attending, please 
+
+&lt;a href=&quot;mailto:events@aimldatadurban.org&quot;&gt;&lt;strong&gt;email us&lt;/strong&gt;&lt;/a&gt;. If a spot opens up, we’ll notify you!&lt;/p&gt;
+&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
+&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
+
+&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
+
+                
+
+                
+                &lt;hr&gt;
+                &lt;ul class=&quot;pager&quot;&gt;
+                    
+                    &lt;li class=&quot;previous&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-04-27-interesting-stuff---week-17-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 17, 2025&quot;&gt;←
+                            Previous Post&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                    
+                    &lt;li class=&quot;next&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-05-11-interesting-stuff---week-19-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 19, 2025&quot;&gt;Next
+                            Post →&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                &lt;/ul&gt;
+                
+
+                
+
+
+&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
+
+
+            </description><link>https://nielsberglund.com/post/2025-05-04-interesting-stuff---week-18-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-05-04-interesting-stuff---week-18-2025/</guid><pubDate>Sat, 03 May 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 17, 2025</title><description>&lt;p&gt;This week, the future of AI came roaring closer — and it’s not slowing down. From vibe coding and multi-agent architectures to autonomous tool-using AIs and self-improving agents, the boundaries of what’s possible keep expanding.&lt;/p&gt;
 &lt;p&gt;Whether it’s reshaping how we build software or how enterprises operate, this week’s developments hint at a massive shift ahead. Let’s jump into the highlights!&lt;/p&gt;
 &lt;!--
 ## Podcast
@@ -49,6 +408,11 @@ Click on the link above to listen to the podcast. Oh, the direct link to the epi
                             Previous Post&lt;/a&gt;
                     &lt;/li&gt;
                     
+                    
+                    &lt;li class=&quot;next&quot;&gt;
+                        &lt;a href=&quot;https://nielsberglund.com/post/2025-05-04-interesting-stuff---week-18-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 18, 2025&quot;&gt;Next
+                            Post →&lt;/a&gt;
+                    &lt;/li&gt;
                     
                 &lt;/ul&gt;
                 
@@ -457,315 +821,4 @@ Click on the link above to listen to the podcast. Oh, the direct link to the epi
 &lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
 
 
-            </description><link>https://nielsberglund.com/post/2025-03-23-interesting-stuff---week-12-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-03-23-interesting-stuff---week-12-2025/</guid><pubDate>Sat, 22 Mar 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 11, 2025</title><description>&lt;p&gt;The AI world never slows down, and this week was no exception! DeepSeek went all-in on open source, dropping six powerful LLM training and deployment tools. OpenAI unveiled its Agents Platform, making multi-agent applications easier than ever, while Dapr AI Agents introduced a scalable, vendor-neutral approach for enterprise AI.&lt;/p&gt;
-&lt;p&gt;Meanwhile, Microsoft Fabric’s Real-Time Intelligence redefines streaming analytics with low-latency, event-driven insights. With less than a week to go until 
-
-&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-ignite/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI - AI @ Ignite++&lt;/strong&gt;&lt;/a&gt;, I’m deep in the trenches finalising the agenda—so much great content, so little time!&lt;/p&gt;
-&lt;!--
-## Podcast
-
-If you rather listen to the summary:
-
-
-
-Click on the link above to listen to the podcast. Oh, the direct link to the episode is [here]().
---&gt;
-&lt;h2 id=&quot;generative-ai&quot;&gt;Generative AI&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.pyspur.dev/blog/deepseek_open_source_week&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;DeepSeek’s open-source week and why it’s a big deal&lt;/a&gt;. This blog post by PySpur details a significant release of six software libraries by DeepSeek, specifically designed to tackle demanding challenges in large language model (LLM) training, inference, and data infrastructure. The initial sections highlight the open-sourcing of these tools, including FlashMLA for efficient attention mechanisms, DeepEP for optimised expert parallelism communication, and DeepGEMM for fast FP8 matrix multiplication. Subsequent sections delve into optimised parallelism strategies (DualPipe and EPLB) and data infrastructure solutions (3FS and Smallpond). The post culminates in discussing the inference system for DeepSeek-V3/R1, providing insights into their production deployment and operational efficiency. Overall, the post announces DeepSeek’s commitment to open source and showcases its advanced technologies for building and deploying large-scale AI models.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.latent.space/p/openai-agents-platform&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The new OpenAI Agents Platform&lt;/a&gt;. This Latent Space blog post discusses OpenAI’s new Agents Platform, which aims to empower developers in building more sophisticated agentic applications. The platform introduces a Responses API, positioned as a flexible successor to the chat completion API, enhanced with integrated tools for Web Search, Computer Use, and File Search. To facilitate development, OpenAI is also releasing an open-source Agents SDK, complete with observability features, supporting common multi-agent workflow patterns. This initiative signals OpenAI’s commitment to advancing the field of AI agents by providing foundational APIs and developer tools.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.cncf.io/blog/2025/03/12/announcing-dapr-ai-agents/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Announcing Dapr AI Agents&lt;/a&gt;. This blog post introduces Dapr AI Agents, a new framework built upon the existing Dapr project. Its primary purpose is to simplify the development of AI agents that can reason using large language models, take actions, and collaborate effectively. The announcement highlights key features such as reliable execution, scalability on Kubernetes, built-in support for multi-agent systems, and vendor neutrality, positioning Dapr Agents as a robust solution for enterprise-grade AI agent applications and explaining how it differs from other frameworks by leveraging Dapr’s established capabilities.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;streaming&quot;&gt;Streaming&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.jamesserra.com/archive/2025/03/real-time-intelligence-in-microsoft-fabric/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Real-Time Intelligence in Microsoft Fabric&lt;/a&gt;. This blog post by James Serra introduces Real-Time Intelligence (RTI) within Microsoft Fabric, highlighting its capability to process, store, analyse, and visualise data with minimal delay. The article details the key components of RTI, explaining how Eventstream ingests and processes real-time data, Eventhouse provides efficient storage, Activator triggers automated actions, KQL Queryset enables rapid analysis, and Real-Time Dashboards offer instant visualisations, all managed through the Real-Time Hub. Furthermore, the post differentiates between RTI dashboards and Power BI, noting RTI’s specific focus on low-latency, event-driven insights, and suggests RTI can even offload operational reporting from source systems.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;wind-what-is-niels-doing&quot;&gt;WIND (What Is Niels Doing)&lt;/h2&gt;
-&lt;p&gt;Less than a week to go:&lt;/p&gt;
-&lt;p&gt;
-  &lt;img src=&quot;https://nielsberglund.com/images/posts/banner-data-ai-ignite.jpg&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-
-&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Figure 1:&lt;/strong&gt; &lt;em&gt;Data &amp;amp; AI Community Day Durban: Season of AI - AI @ Ignite++&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;We’re officially in the final countdown to 
-
-&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-ignite/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI - AI @ Ignite++&lt;/strong&gt;&lt;/a&gt; on March 22, and things are heating up faster than a GPU running stable diffusion on max settings! The Call for Speakers closed on Friday, and now I’m deep in the trenches, going through the incredible lineup of submitted talks. And let me tell you, choosing the final sessions is tougher than explaining backpropagation to your grandma.&lt;/p&gt;
-&lt;p&gt;The sheer awesomeness of the topics has me in a paradox—how do I pick just a few when they all deserve the spotlight? It’s like deciding which AI model to use when they all promise “state-of-the-art” results! But fear not—I’m working through the submissions, fueled by copious amounts of coffee and an existential crisis or two, to curate an agenda that will blow your minds. It will be a tech-packed, AI-infused, brain-expanding day—and you won’t want to miss it!&lt;/p&gt;
-&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
-&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
-
-&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
-
-                
-
-                
-                &lt;hr&gt;
-                &lt;ul class=&quot;pager&quot;&gt;
-                    
-                    &lt;li class=&quot;previous&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-03-09-interesting-stuff---week-10-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 10, 2025&quot;&gt;←
-                            Previous Post&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                    
-                    &lt;li class=&quot;next&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-03-23-interesting-stuff---week-12-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 12, 2025&quot;&gt;Next
-                            Post →&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                &lt;/ul&gt;
-                
-
-                
-
-
-&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
-
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
-&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
-
-
-            </description><link>https://nielsberglund.com/post/2025-03-16-interesting-stuff---week-11-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-03-16-interesting-stuff---week-11-2025/</guid><pubDate>Sat, 15 Mar 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 10, 2025</title><description>&lt;p&gt;AI is evolving fast, and this week’s roundup dives into some of the most exciting developments! From a must-read guide on the foundations of LLMs to the rising power of Agentic AI, we explore the cutting edge of generative AI.&lt;/p&gt;
-&lt;p&gt;In the streaming world, we look at how real-time data transforms capital markets and how Flink AI pushes the boundaries of RAG applications. Whether you’re into AI, streaming, or both, there’s plenty to unpack - let’s dive in!&lt;/p&gt;
-&lt;h2 id=&quot;podcast&quot;&gt;Podcast&lt;/h2&gt;
-&lt;p&gt;If you rather listen to the summary:&lt;/p&gt;
-&lt;iframe title=&quot;Interesting Stuff Week 10, 2025&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=rwfan-1832536-pb&amp;amp;from=pb6admin&amp;amp;share=1&amp;amp;download=1&amp;amp;rtl=0&amp;amp;fonts=Arial&amp;amp;skin=1&amp;amp;font-color=auto&amp;amp;logo_link=episode_page&amp;amp;btn-skin=7&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;Click on the link above to listen to the podcast. Oh, the direct link to the episode is 
-
-&lt;a href=&quot;https://nielsitberglund.podbean.com/e/interesting-stuff-week-10-2025/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;generative-ai&quot;&gt;Generative AI&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://arxiv.org/pdf/2501.09223&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Foundations of Large Language Models&lt;/a&gt;. This paper, titled “Foundations of Large Language Models”, authored by Tong Xiao and Jingbo Zhu, is an introductory guide to the core concepts and techniques underpinning these powerful AI systems. The text begins by establishing the significance of LLMs within the field of artificial intelligence, highlighting their capacity to acquire world and language knowledge through large-scale pre-training. It then systematically delves into the fundamental building blocks, dedicating chapters to pre-training methodologies encompassing unsupervised, supervised, and self-supervised approaches, along with an in-depth exploration of the architecture and training of generative LLMs. Furthermore, the paper addresses critical aspects of scaling these models, including handling long sequences and the computational challenges of large-scale training. Finally, it examines prompting strategies for effectively eliciting desired behaviours from LLMs and the essential topic of alignment, focusing on techniques to ensure these models are safe and adhere to human values. This work provides a structured overview of the theoretical underpinnings and practical considerations vital to understanding and working with large language models. &lt;em&gt;My thoughts:&lt;/em&gt; This paper is a &lt;strong&gt;MUST-READ&lt;/strong&gt; for anyone who works with LLMs!&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.marktechpost.com/2025/03/03/agentic-ai-vs-ai-agents-a-technical-deep-dive/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Agentic AI vs. AI Agents: A Technical Deep Dive&lt;/a&gt;. This MarkTechPost article provides a technical exploration of the distinctions between AI Agents and the more advanced concept of Agentic AI. It begins by defining each term, highlighting that while both are autonomous, AI Agents typically operate within fixed scopes and follow a sense-decide-act loop. In contrast, Agentic AI exhibits greater autonomy and adaptability, capable of autonomously planning and executing complex, multi-step tasks with continuous learning. The article details the key technical differences in autonomy, learning, and reasoning alongside their respective architectures and underlying technologies. Finally, it illustrates these concepts with real-world applications across various sectors. It discusses their roles in multi-agent systems and human-AI collaboration, concluding that Agentic AI’s advanced capabilities position it to significantly impact numerous industries.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://jina.ai/news/a-practical-guide-to-implementing-deepsearch-deepresearch/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;A Practical Guide to Implementing DeepSearch / DeepResearch&lt;/a&gt;. This blog post serves as a practical guide detailing the implementation of DeepSearch and DeepResearch, new approaches to information retrieval that move beyond traditional methods. It explains that DeepSearch employs an iterative searching, reading, and reasoning process to find comprehensive answers. DeepResearch builds upon this by providing a structured framework for generating lengthy research reports. The authors share their experiences developing an open-source version, highlighting key architectural decisions such as a reasoning loop with action constraints, gap question handling, and a unique approach to memory management that forgoes vector databases. Furthermore, the article discusses the surprising importance of query expansion and the necessity of robust web crawling and content processing, concluding with valuable insights into the essential and unexpectedly useful components for building deep search systems.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://seanfalconer.medium.com/the-ai-silo-problem-how-data-streaming-can-unify-enterprise-ai-agents-0a138cf6398c&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The AI Silo Problem: How Data Streaming Can Unify Enterprise AI Agents&lt;/a&gt;. This post identifies a growing problem termed the “AI silo problem,” where numerous independent AI agents within an enterprise, such as those for CRM, data warehousing, and knowledge retrieval, operate in isolation. This fragmentation mirrors historical data silos and leads to duplicated effort, lost insights, and inefficiencies, as these agents lack a shared means of communication. The author argues that establishing a “shared language for AI agents” through an event-driven architecture based on data streaming platforms is the solution. By enabling agents to publish and subscribe to real-time event streams, they can collaborate, exchange insights, and coordinate actions dynamically, fostering a more interconnected and effective AI ecosystem across the organisation, moving away from isolated intelligence.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;streaming&quot;&gt;Streaming&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://risingwave.com/blog/stream-processing-in-capital-markets-real-time-portfolio-monitoring-and-risk-management/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Stream Processing in Capital Markets: Real-Time Portfolio Monitoring and Risk Management&lt;/a&gt;. This blog post from RisingWave Labs introduces RisingWave, an open-source streaming database designed for real-time data processing and analytics. It highlights the product’s core capabilities, comparing it with alternatives and showcasing various use cases, particularly within capital markets. The article then delves into a specific application: real-time portfolio monitoring and risk management, explaining why data freshness is critical in this domain and detailing how RisingWave’s features, such as low-latency stream integration, efficient joins, and sliding window analytics, address these needs. Ultimately, the piece positions RisingWave as a powerful tool for building sophisticated real-time financial systems, emphasising its speed, scalability, and ease of use with SQL.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.confluent.io/blog/flink-ai-rag-with-federated-search/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flink AI: Hands-On FEDERATED_SEARCH()—Search a Vector Database with Confluent Cloud for Apache Flink&lt;/a&gt;. This Confluent blog post introduces a new capability within their Flink offering called FEDERATED_SEARCH(), which allows users to perform vector searches on external databases like Pinecone directly from Flink SQL. The context for this is Retrieval Augmented Generation (RAG), a technique for enhancing large language model outputs with information retrieved from external knowledge bases. By combining FEDERATED_SEARCH() with their existing ML_PREDICT() function for generating embeddings, Confluent enables the building of real-time, RAG-aware applications that can answer natural language queries using up-to-date, specific data within a streaming data platform. The article discusses a practical example of creating an airline FAQ chatbot using Pinecone as the vector database. It demonstrates how these Flink AI features can be orchestrated to provide intelligent responses.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
-&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
-
-&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
-
-                
-
-                
-                &lt;hr&gt;
-                &lt;ul class=&quot;pager&quot;&gt;
-                    
-                    &lt;li class=&quot;previous&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-03-02-interesting-stuff---week-09-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 09, 2025&quot;&gt;←
-                            Previous Post&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                    
-                    &lt;li class=&quot;next&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-03-16-interesting-stuff---week-11-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 11, 2025&quot;&gt;Next
-                            Post →&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                &lt;/ul&gt;
-                
-
-                
-
-
-&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
-
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
-&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
-
-
-            </description><link>https://nielsberglund.com/post/2025-03-09-interesting-stuff---week-10-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-03-09-interesting-stuff---week-10-2025/</guid><pubDate>Sat, 08 Mar 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 09, 2025</title><description>&lt;p&gt;AI is pushing boundaries once again! This week, we explore a multi-agent system automating PC tasks, OpenAI’s reasoning models vs GPT workflows, and a next-gen research AI outshining Google.&lt;/p&gt;
-&lt;p&gt;Plus, we dive into LLM customisation, AI’s evolving role in engineering, and the arrival of GPT-4.5. Finally, the Call for Speakers for 
-
-&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-ignite/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: AI @ Ignite++&lt;/strong&gt;&lt;/a&gt; is live—registrations open today, so don’t miss out! 🚀&lt;/p&gt;
-&lt;h2 id=&quot;podcast&quot;&gt;Podcast&lt;/h2&gt;
-&lt;p&gt;If you rather listen to the summary:&lt;/p&gt;
-&lt;iframe title=&quot;Interesting Stuff Week 09, 2025&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=s26u9-1823afa-pb&amp;amp;from=pb6admin&amp;amp;share=1&amp;amp;download=1&amp;amp;rtl=0&amp;amp;fonts=Arial&amp;amp;skin=1&amp;amp;font-color=auto&amp;amp;logo_link=episode_page&amp;amp;btn-skin=7&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;Click on the link above to listen to the podcast. Oh, the direct link to the episode is 
-
-&lt;a href=&quot;https://nielsitberglund.podbean.com/e/interesting-stuff-week-09-2025/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;generative-ai&quot;&gt;Generative AI&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://arxiv.org/pdf/2502.14282&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PC-Agent: A Hierarchical Multi-Agent Collaboration Framework for Complex Task Automation on PC&lt;/a&gt;. This research paper introduces PC-Agent, a novel hierarchical multi-agent framework designed to automate complex tasks on personal computers. The framework addresses the challenges of the PC’s complex interactive environment and intricate workflows using an Active Perception Module (APM) to improve screenshot content perception. PC-Agent employs a hierarchical architecture with specialized agents (Manager, Progress, Decision, and Reflection) operating at different levels (Instruction-Subtask-Action) to manage instruction decomposition, track progress, make decisions, and provide error feedback. The paper also introduces PC-Eval, a new benchmark for evaluating PC agent performance on real-world complex instructions, demonstrating that PC-Agent significantly improves task completion rates over existing methods.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://platform.openai.com/docs/guides/reasoning-best-practices&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Reasoning best practices&lt;/a&gt;. This OpenAI document guides OpenAI’s reasoning models (like o1 and o3-mini) and how they compare to their GPT models (such as GPT-4o). It highlights that reasoning models excel at complex tasks like strategising, planning, and decision-making under ambiguous conditions, particularly in fields requiring human expertise. In contrast, GPT models are better suited for efficiently executing well-defined tasks. The guide emphasises that the best AI workflows often combine both model types, using reasoning models for high-level planning and GPT models for rapid task completion. Finally, it offers practical advice on when to use reasoning models, how to prompt them effectively, and details successful use cases observed by OpenAI customers.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.understandingai.org/p/these-experts-were-stunned-by-openai&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;These experts were stunned by OpenAI Deep Research&lt;/a&gt;. This blog post discusses OpenAI’s Deep Research, a new product built upon their powerful o3 reasoning model, capable of extended thinking and web searching to answer complex questions. Testers preferred Deep Research over Google’s equivalent, praising its depth and quality of responses, often comparing it to work done by experienced professionals. The article highlights Deep Research’s iterative search process, which mimics human research by refining searches based on gathered information, surpassing traditional Retrieval Augmented Generation (RAG) systems that struggle with complex queries. This advancement indicates significant progress in AI capabilities and suggests potential for further improvement through self-play, where models learn from their own reasoning processes.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://towardsdatascience.com/6-common-llm-customization-strategies-briefly-explained/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;6 Common LLM Customization Strategies Briefly Explained&lt;/a&gt;. This Towards Data Science post outlines and elucidates various methods for adapting large language models (LLMs) to specific needs. It provides readers with a concise overview of different strategies for modifying and fine-tuning LLMs for improved performance in niche applications. Ultimately, it serves as an introductory resource on the practical customisation of these powerful AI models.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://philcalcado.com/2025/02/27/ai.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;AI is not the engineer we wanted, but it might be the one we need&lt;/a&gt;. In this blog post, the argument is made that while AI isn’t currently capable of fully replacing software engineers, it has the potential to significantly disrupt the development of B2B SaaS applications and internal tools. The author contends that the modern software landscape, characterised by the widespread use of reusable components and SaaS APIs, has unknowingly created an environment where AI can bridge the gap between business logic and code implementation. Instead of viewing AI as a replacement for engineers, it should be seen as a tool that enables non-technical business experts to create applications directly, similar to how Heroku simplified cloud computing by enabling easier application development. The post suggests that generative AI is arriving at the opportune moment to capitalise on this existing ecosystem and infrastructure.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://openai.com/index/introducing-gpt-4-5/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Introducing GPT-4.5&lt;/a&gt;. This blog post introduces GPT-4.5, OpenAI’s latest and most advanced chat model, a research preview available to Pro users and developers. Its primary advancement lies in scaling unsupervised learning, enhancing its knowledge base and intuition for improved accuracy and reduced hallucinations. The model is trained for better human collaboration, demonstrating greater emotional intelligence (“EQ”), nuance understanding, and creativity, particularly in writing and design applications. While reasoning capabilities are still developing, GPT-4.5 showcases improved performance on academic benchmarks. It is intended to be a foundation for future models, with OpenAI inviting user feedback to guide its continued development and API availability.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;wind-what-is-niels-doing&quot;&gt;WIND (What Is Niels Doing)&lt;/h2&gt;
-&lt;p&gt;Last week, we officially opened the Call for Speakers for 
-
-&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-ignite/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI - AI @ Ignite++&lt;/strong&gt;&lt;/a&gt; on March 22, and the response has been incredible! We’ve already received some fascinating session submissions covering cutting-edge AI, AI Agents, Database development, ML, and more. However, the CfS is still open, and we haven’t filled all speaker slots yet. If you have an exciting topic to share—whether it’s on AI, AI Agents, LLMs, real-time intelligence, database development or any other innovative tech—submit your session now! We’d love to see more fresh faces and unique perspectives on stage.&lt;/p&gt;
-&lt;p&gt;🔥 
-
-&lt;a href=&quot;https://sessionize.com/data-ai-community-day-durban-ignite&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Submit Your Session Here&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;And for those eagerly waiting—registrations open later today (Sunday, March 2)! If past events are anything to go by, tickets will disappear fast 🏃💨, so don’t wait too long to grab yours. Join us for a full day of insightful talks, networking, and hands-on learning with some of the best minds in AI and data.&lt;/p&gt;
-&lt;p&gt;🎟 
-
-&lt;a href=&quot;https://www.quicket.co.za/events/303504-data-ai-community-day-durban-season-of-ai-ai-ignite/?ref=link-campaign&amp;amp;lc=blog&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Register for the Event&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;📅 
-
-&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-ignite/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Event Details&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;We can’t wait to see you there! 🚀&lt;/p&gt;
-&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
-&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
-
-&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
-
-                
-
-                
-                &lt;hr&gt;
-                &lt;ul class=&quot;pager&quot;&gt;
-                    
-                    &lt;li class=&quot;previous&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-02-23-interesting-stuff---week-08-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 08, 2025&quot;&gt;←
-                            Previous Post&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                    
-                    &lt;li class=&quot;next&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-03-09-interesting-stuff---week-10-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 10, 2025&quot;&gt;Next
-                            Post →&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                &lt;/ul&gt;
-                
-
-                
-
-
-&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
-
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
-&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
-
-
-            </description><link>https://nielsberglund.com/post/2025-03-02-interesting-stuff---week-09-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-03-02-interesting-stuff---week-09-2025/</guid><pubDate>Sat, 01 Mar 2025 16:00:00 GMT</pubDate></item><item><title>Interesting Stuff - Week 08, 2025</title><description>&lt;p&gt;AI is evolving fast, from multi-agent planning breakthroughs to LLMs that reason better than ever. This week, we explore how Grok 3 stacks up against OpenAI, why AutoGen’s AI debate system is a game-changer, and how startups are secretly 10X-ing their success with AI.&lt;/p&gt;
-&lt;p&gt;Plus, a deep dive into LLM-powered coding workflows and the shift toward event-driven multi-agent systems. And on the event front: 
-
-&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-ignite/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: AI @ Ignite++&lt;/strong&gt;&lt;/a&gt; is happening on March 22! The Call for Speakers is now open, and registrations kick off next week—don’t miss it!&lt;/p&gt;
-&lt;h2 id=&quot;podcast&quot;&gt;Podcast&lt;/h2&gt;
-&lt;p&gt;If you rather listen to the summary:&lt;/p&gt;
-&lt;iframe title=&quot;Interesting Stuff - Week 08, 2025&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=mu4w8-1812016-pb&amp;amp;from=pb6admin&amp;amp;share=1&amp;amp;download=1&amp;amp;rtl=0&amp;amp;fonts=Arial&amp;amp;skin=1&amp;amp;font-color=&amp;amp;logo_link=episode_page&amp;amp;btn-skin=7&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;Click on the link above to listen to the podcast. Oh, the direct link to the episode is 
-
-&lt;a href=&quot;https://nielsitberglund.podbean.com/e/interesting-stuff-week-08-2025/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;generative-ai&quot;&gt;Generative AI&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://arxiv.org/pdf/2502.08950&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Single-Agent Planning in a Multi-Agent System: A Unified Framework for Type-Based Planners&lt;/a&gt;. This research paper, “Single-Agent Planning in a Multi-Agent System: A Unified Framework for Type-Based Planners,” addresses the challenge of&amp;nbsp;planning for a single agent in a multi-agent environment without prior knowledge of its opponents. The authors propose a&amp;nbsp;theoretical framework that unifies various planning approaches, balancing the trade-off between exploiting existing information and exploring to improve future planning. This framework encompasses a spectrum of planners, ranging from those seeking exact solutions to those providing approximations for larger problems. By implementing and testing several planners within this framework in a multi-agent route planning domain, the authors offer&amp;nbsp;new insights into multi-agent decision-making&amp;nbsp;and potential applications in related areas like mechanism design, highlighting the surprisingly strong performance of “safe-agents.”&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.marktechpost.com/2025/02/15/deepseek-ai-introduces-codei-o-a-novel-approach-that-transforms-code-based-reasoning-patterns-into-natural-language-formats-to-enhance-llms-reasoning-capabilities/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;DeepSeek AI Introduces CODEI/O: A Novel Approach that Transforms Code-based Reasoning Patterns into Natural Language Formats to Enhance LLMs’ Reasoning Capabilities&lt;/a&gt;. DeepSeek AI’s CODEI/O is a novel method designed to improve the reasoning capabilities of Large Language Models (LLMs). It transforms code-based reasoning patterns into a natural language format using input-output pairs and Chain-of-Thought rationales. This approach allows LLMs to internalise reasoning processes, such as logic flow, decision tree traversal, and modular decomposition,&amp;nbsp;separate from the complexities of code syntax.&amp;nbsp;The result is&amp;nbsp;enhanced performance across diverse reasoning tasks, including logic, symbolic inference, mathematics, scientific deduction, and commonsense reasoning, as demonstrated by improved scores on multiple benchmarks.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://pub.towardsai.net/the-ai-growth-playbook-how-startups-are-quietly-10x-ing-with-ai-and-how-you-can-too-beb94aa888f3?sk=v2%2F303b3c52-6087-4a22-937a-59ff7eac64ab&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The AI Growth Playbook: How Startups Are Quietly 10X-ing with AI (And How You Can Too)&lt;/a&gt;. This post, “The AI Growth Playbook,” argues that&amp;nbsp;AI is no longer optional for startups but critical for achieving rapid growth and outmanoeuvring competitors.&amp;nbsp;It outlines six key areas where AI can be leveraged: automating repetitive tasks, improving customer acquisition, hyper-personalising customer experiences, guiding product development, unlocking new revenue streams, and gathering competitive intelligence. The post demonstrates&amp;nbsp;how AI is successfully implemented to drive efficiency, enhance customer engagement, and create new business models through companies like Scale AI, Jasper AI, and Spotify case studies.&amp;nbsp;Ultimately, the piece serves as a practical guide for startups looking to&amp;nbsp;integrate AI strategically across their operations to achieve exponential growth.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://x.com/karpathy/status/1891720635363254772&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Karpathy on Grok3&lt;/a&gt;. Andrej Karpathy’s Twitter post offers an early assessment of&amp;nbsp;Grok 3, a new AI model. Karpathy highlights that&amp;nbsp;Grok 3 with “Thinking” enabled demonstrates state-of-the-art capabilities, rivalling OpenAI’s top models in specific areas such as solving logic puzzles and coding challenges while also showing courage in attempting complex problems. He also explores&amp;nbsp;DeepSearch, Grok 3’s research tool, finding it comparable to Perplexity but slightly behind OpenAI’s offering. Despite some shortcomings in humour, ethical reasoning, and specific puzzle types, Karpathy concludes that&amp;nbsp;Grok 3 shows tremendous promise&amp;nbsp;due to its rapid development and positions it as a valuable tool in the AI landscape.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.marktechpost.com/2025/02/20/building-an-ideation-agent-system-with-autogen-create-ai-agents-that-brainstorm-and-debate-ideas/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Building an Ideation Agent System with AutoGen: Create AI Agents that Brainstorm and Debate Ideas&lt;/a&gt;. This tutorial outlines how to build an AI-powered ideation system using AutoGen, leveraging the capabilities of LLMs like ChatGPT. The core idea involves creating two&amp;nbsp;specialised AI agents&amp;nbsp;with distinct roles, such as “idea generator” and “critic,” and then having them debate ideas in a structured conversation.&amp;nbsp;AutoGen’s RoundRobinGroupChat&amp;nbsp;component ensures fair interaction, while&amp;nbsp;TextMentionTermination&amp;nbsp;allows the conversation to end gracefully upon reaching a consensus. The agents, built using&amp;nbsp;AssistantAgent, utilise system messages to guide their behaviour, demonstrating a method for creating collaborative AI systems that can brainstorm and refine ideas efficiently.&lt;/li&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;My LLM codegen workflow atm&lt;/a&gt;. Harper Reed’s blog post details his current workflow for using&amp;nbsp;Large Language Models (LLMs) to generate code, covering greenfield projects and iterative work on existing codebases. For new projects, he advocates a process of&amp;nbsp;honing ideas with conversational LLMs, followed by detailed planning and, finally, execution using code generation tools like Claude or Aider. For existing projects, he emphasises&amp;nbsp;efficiently gathering code context with tools like&amp;nbsp;repomix&amp;nbsp;to enable incremental improvements and code reviews. The post also touches on the&amp;nbsp;challenges of solo LLM-assisted coding and the need for better multiplayer interfaces while acknowledging concerns about the environmental impact of AI.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;streaming&quot;&gt;Streaming&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-
-&lt;a href=&quot;https://www.confluent.io/blog/event-driven-multi-agent-systems/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;A Distributed State of Mind: Event-Driven Multi-Agent Systems&lt;/a&gt;. This post explores the power and challenges of&amp;nbsp;multi-agent systems, where intelligent software agents collaborate to solve complex problems. It highlights how&amp;nbsp;event-driven design, inspired by microservices architecture and enabled by technologies like Apache Kafka, can provide scalable and efficient solutions. The article details four key&amp;nbsp;multi-agent design patterns&amp;nbsp;– orchestrator-worker, hierarchical agent, blackboard, and market-based – and explains how to implement them using an event-driven approach. By using events as a&amp;nbsp;shared language&amp;nbsp;and focusing on reactive agent interfaces, the authors propose shifting from traditional request/response models to more agile, resilient, and adaptable systems, ultimately unlocking the full potential of multi-agent AI.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;wind-what-is-niels-doing&quot;&gt;WIND (What Is Niels Doing)&lt;/h2&gt;
-&lt;p&gt;It is this time again:&lt;/p&gt;
-&lt;p&gt;
-  &lt;img src=&quot;https://nielsberglund.com/images/posts/banner-data-ai-ignite.jpg&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-
-&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Figure 1:&lt;/strong&gt; &lt;em&gt;Data &amp;amp; AI Community Day Durban: Season of AI — AI @ Ignite++&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The gears are already in motion for our next big event—
-
-&lt;a href=&quot;https://aimldatadurban.org/events/2025/season-of-ai-ignite/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Data &amp;amp; AI Community Day Durban: Season of AI — AI @ Ignite++&lt;/strong&gt;&lt;/a&gt;, happening on 88! The “&lt;strong&gt;++&lt;/strong&gt;” isn’t just for show; while AI will take center stage, we’re bringing in a broader range of topics to spark discussions beyond the usual AI focus. Think cutting-edge data innovations, cloud advancements, real-time streaming, and much more—all packed into a full-day event designed to inspire and educate.&lt;/p&gt;
-&lt;p&gt;We officially opened the 
-
-&lt;a href=&quot;https://sessionize.com/data-ai-community-day-durban-ignite&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;strong&gt;Call for Speakers&lt;/strong&gt;&lt;/a&gt; yesterday, and I’m already excited to see the lineup shaping up. If you’ve got insights to share—whether in AI, ML, data engineering, cloud solutions, or anything that fits the Ignite++ theme—this is your chance to be part of something great!&lt;/p&gt;
-&lt;p&gt;Registrations open in a week, so stay tuned if you want to secure your spot. It will be another incredible day of tech, networking, and learning, and I can’t wait to share more details as we finalise the agenda!&lt;/p&gt;
-&lt;h2 id=&quot;-finally&quot;&gt;~ Finally&lt;/h2&gt;
-&lt;p&gt;That’s all for this week. I hope you find this information valuable. Please share your thoughts and ideas on this post or 
-
-&lt;a href=&quot;mailto:niels.it.berglund@gmail.com&quot;&gt;ping&lt;/a&gt; me if you have suggestions for future topics. Your input is highly valued and can help shape the direction of our discussions.&lt;/p&gt;
-
-                
-
-                
-                &lt;hr&gt;
-                &lt;ul class=&quot;pager&quot;&gt;
-                    
-                    &lt;li class=&quot;previous&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-02-16-interesting-stuff---week-07-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 07, 2025&quot;&gt;←
-                            Previous Post&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                    
-                    &lt;li class=&quot;next&quot;&gt;
-                        &lt;a href=&quot;https://nielsberglund.com/post/2025-03-02-interesting-stuff---week-09-2025/&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Interesting Stuff - Week 09, 2025&quot;&gt;Next
-                            Post →&lt;/a&gt;
-                    &lt;/li&gt;
-                    
-                &lt;/ul&gt;
-                
-
-                
-
-
-&lt;div id=&quot;disqus-comment&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
-
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
-&lt;a href=&quot;https://disqus.com/&quot; class=&quot;dsq-brlink&quot;&gt;comments powered by &lt;span class=&quot;logo-disqus&quot;&gt;Disqus&lt;/span&gt;&lt;/a&gt;
-
-
-            </description><link>https://nielsberglund.com/post/2025-02-23-interesting-stuff---week-08-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-02-23-interesting-stuff---week-08-2025/</guid><pubDate>Sat, 22 Feb 2025 16:00:00 GMT</pubDate></item></channel></rss>
+            </description><link>https://nielsberglund.com/post/2025-03-23-interesting-stuff---week-12-2025/</link><guid isPermaLink="false">https://nielsberglund.com/post/2025-03-23-interesting-stuff---week-12-2025/</guid><pubDate>Sat, 22 Mar 2025 16:00:00 GMT</pubDate></item></channel></rss>

@@ -1,5 +1,33 @@
 [
   {
+    "provider_id": "19lou",
+    "provider_name": "19 楼",
+    "route_key": "/:city?",
+    "route": {
+      "name": "头条",
+      "path": "/:city?",
+      "example": "/19lou/jiaxing",
+      "parameters": {
+        "city": "分类，见下表，默认为 www，即杭州"
+      },
+      "description": "| 杭州 | 台州    | 嘉兴    | 宁波   | 湖州   |\n| ---- | ------- | ------- | ------ | ------ |\n| www  | taizhou | jiaxing | ningbo | huzhou |\n\n| 绍兴     | 湖州   | 温州    | 金华   | 舟山     |\n| -------- | ------ | ------- | ------ | -------- |\n| shaoxing | huzhou | wenzhou | jinhua | zhoushan |\n\n| 衢州   | 丽水   | 义乌 | 萧山     | 余杭   |\n| ------ | ------ | ---- | -------- | ------ |\n| quzhou | lishui | yiwu | xiaoshan | yuhang |\n\n| 临安  | 富阳   | 桐庐   | 建德   | 淳安   |\n| ----- | ------ | ------ | ------ | ------ |\n| linan | fuyang | tonglu | jiande | chunan |"
+    }
+  },
+  {
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/blog/:category?",
+    "route": {
+      "name": "博客",
+      "path": "/blog/:category?",
+      "example": "/1point3acres/blog",
+      "parameters": {
+        "category": "分类，见下表，可在对应分类页 URL 中找到"
+      },
+      "description": "| 留学申请   | 找工求职 | 生活攻略  | 投资理财 | 签证移民 | 时政要闻 |\n| ---------- | -------- | --------- | -------- | -------- | -------- |\n| studyinusa | career   | lifestyle | invest   | visa     | news     |"
+    }
+  },
+  {
     "provider_id": "1point3acres",
     "provider_name": "一亩三分地",
     "route_key": "/offer/:year?/:major?/:school?",
@@ -18,70 +46,55 @@
   {
     "provider_id": "baidu",
     "provider_name": "百度",
-    "route_key": "/tieba/search/:qw/:routeParams?",
+    "route_key": "/tieba/user/:uid",
     "route": {
-      "name": "贴吧搜索",
-      "path": "/tieba/search/:qw/:routeParams?",
-      "example": "/baidu/tieba/search/neuro",
+      "name": "用户帖子",
+      "path": "/tieba/user/:uid",
+      "example": "/baidu/tieba/user/斗鱼游戏君",
       "parameters": {
-        "qw": "搜索关键词",
-        "routeParams": "额外参数；请参阅以下说明和表格"
+        "uid": "用户 ID"
       },
-      "description": "| 键           | 含义                                                       | 接受的值      | 默认值 |\n| ------------ | ---------------------------------------------------------- | ------------- | ------ |\n| kw           | 在名为 kw 的贴吧中搜索                                     | 任意名称 / 无 | 无     |\n| only_thread  | 只看主题帖，默认为 0 关闭                                  | 0/1           | 0      |\n| rn           | 返回条目的数量                                             | 1-20          | 20     |\n| sm           | 排序方式，0 为按时间顺序，1 为按时间倒序，2 为按相关性顺序 | 0/1/2         | 1      |\n\n  用例：`/baidu/tieba/search/neuro/kw=neurosama&only_thread=1&sm=2`"
+      "description": "用户 ID 可以通过打开用户的主页后查看地址栏的 `un` 字段来获取。"
     }
   },
   {
     "provider_id": "deepin",
     "provider_name": "Deepin",
-    "route_key": "/threads/:type?",
+    "route_key": "/homepage/:user_id",
     "route": {
-      "name": "首页主题列表",
-      "path": "/threads/:type?",
-      "example": "/deepin/threads/latest",
+      "name": "BBS Home Page",
+      "path": "/homepage/:user_id",
+      "example": "/deepin/homepage/78326",
       "parameters": {
-        "type": {
-          "description": "主题类型",
-          "options": [
-            {
-              "value": "hot",
-              "label": "最热主题"
-            },
-            {
-              "value": "latest",
-              "label": "最新主题"
-            }
-          ]
-        }
+        "user_id": "user id"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "elasticsearch-cn",
-    "provider_name": "Elastic 中文社区",
-    "route_key": "/:params?",
+    "provider_id": "douyu",
+    "provider_name": "斗鱼直播",
+    "route_key": "/post/:id",
     "route": {
-      "name": "发现",
-      "path": "/:params?",
-      "example": "/elasticsearch-cn",
+      "name": "鱼吧跟帖",
+      "path": "/post/:id",
+      "example": "/douyu/post/631737151576473201",
       "parameters": {
-        "params": "分类，可在对应分类页 URL 中找到"
+        "id": "帖子 id，可在帖子页 URL 中找到"
       },
-      "description": "如 [Elasticsearch 最新](https://elasticsearch.cn/category-2) 的 URL 为 `https://elasticsearch.cn/category-2`，则分类参数处填写 `category-2`，最后得到路由地址 [`/elasticsearch-cn/category-2`](https://rsshub.app/elasticsearch-cn/category-2)。\n\n  又如 [求职招聘 30 天热门](https://elasticsearch.cn/sort_type-hot____category-12__day-30) 的 URL 为 `https://elasticsearch.cn/sort_type-hot____category-12__day-30`，则分类参数处填写 `sort_type-hot____category-12__day-30`，最后得到路由地址 [`/elasticsearch-cn/sort_type-hot____category-12__day-30`](https://rsshub.app/elasticsearch-cn/sort_type-hot____category-12__day-30)。"
+      "description": ""
     }
   },
   {
     "provider_id": "eleduck",
     "provider_name": "电鸭社区",
-    "route_key": "/posts/:id?",
+    "route_key": "/jobs",
     "route": {
-      "name": "分类文章",
-      "path": "/posts/:id?",
-      "example": "/eleduck/posts/4",
-      "parameters": {
-        "id": "分类id,可以论坛的URL找到，默认为全部"
-      },
-      "description": "| id | 分类     |\n| -- | -------- |\n| 0  | 全部     |\n| 1  | 讨论     |\n| 2  | 分享     |\n| 3  | 露个脸   |\n| 4  | 访谈故事 |\n| 5  | 招聘     |\n| 10 | 海外移民 |\n| 12 | 英语     |\n| 14 | 电鸭官方 |\n| 15 | 独立产品 |\n| 17 | 闲话开源 |\n| 19 | Web3     |\n| 21 | 设计     |\n| 22 | 人才库   |\n| 23 | Upwork   |\n| 24 | 经验课   |"
+      "name": "工作机会",
+      "path": "/jobs",
+      "example": "/eleduck/jobs",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -99,16 +112,14 @@
     }
   },
   {
-    "provider_id": "miui",
-    "provider_name": "MIUI",
-    "route_key": "/community/user/:uid",
+    "provider_id": "nowcoder",
+    "provider_name": "牛客网",
+    "route_key": "/recommend",
     "route": {
-      "name": "小米社区用户发帖",
-      "path": "/community/user/:uid",
-      "example": "/miui/community/user/1200057564",
-      "parameters": {
-        "uid": "小米用户 UID，可于网页版用户主页链接中 `uid` 项获取"
-      },
+      "name": "求职推荐",
+      "path": "/recommend",
+      "example": "/nowcoder/recommend",
+      "parameters": {},
       "description": ""
     }
   },
@@ -128,15 +139,18 @@
     }
   },
   {
-    "provider_id": "pkmer",
-    "provider_name": "PKMer",
-    "route_key": "/recent",
+    "provider_id": "pincong",
+    "provider_name": "品葱",
+    "route_key": "/category/:category?/:sort?",
     "route": {
-      "name": "最近更新",
-      "path": "/recent",
-      "example": "/pkmer/recent",
-      "parameters": {},
-      "description": ""
+      "name": "发现",
+      "path": "/category/:category?/:sort?",
+      "example": "/pincong/category/1/new",
+      "parameters": {
+        "category": "分类，与官网分类 URL `category-` 后的数字对应，默认为全部",
+        "sort": "排序方式，参数可见下表，默认为推荐"
+      },
+      "description": "| 最新 | 推荐      | 热门 |\n| ---- | --------- | ---- |\n| new  | recommend | hot  |"
     }
   },
   {
@@ -154,16 +168,14 @@
     }
   },
   {
-    "provider_id": "sis001",
-    "provider_name": "第一会所",
-    "route_key": "/forum/:id?",
+    "provider_id": "trow",
+    "provider_name": "The Ring of Wonder",
+    "route_key": "/portal",
     "route": {
-      "name": "子版块",
-      "path": "/forum/:id?",
-      "example": "/sis001/forum/322",
-      "parameters": {
-        "id": "子版块 ID，可在子论坛 URL 找到，默认为 `Funny Jokes | 短篇笑话区`"
-      },
+      "name": "首页更新",
+      "path": "/portal",
+      "example": "/trow/portal",
+      "parameters": {},
       "description": ""
     }
   },
@@ -182,33 +194,6 @@
     }
   },
   {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/topics/:type",
-    "route": {
-      "name": "最热 / 最新主题",
-      "path": "/topics/:type",
-      "example": "/v2ex/topics/latest",
-      "parameters": {
-        "type": {
-          "description": "主题类型",
-          "options": [
-            {
-              "value": "hot",
-              "label": "最热主题"
-            },
-            {
-              "value": "latest",
-              "label": "最新主题"
-            }
-          ],
-          "default": "hot"
-        }
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "yamibo",
     "provider_name": "百合会",
     "route_key": "/bbs/thread/:tid",
@@ -220,18 +205,6 @@
         "tid": "讨论串 id，可从URL中提取。https://bbs.yamibo.com/forum.php?mod=viewthread&tid=xxxx中的xxx或https://bbs.yamibo.com/thread-aaa-b-c.html中的aaa部分即为tid值"
       },
       "description": "::: warning\n百合会BBS访问部分讨论串需要用户登录认证，请参考配置说明\n:::"
-    }
-  },
-  {
-    "provider_id": "zuvio",
-    "provider_name": "Zuvio",
-    "route_key": "/student5/boards",
-    "route": {
-      "name": "看板列表",
-      "path": "/student5/boards",
-      "example": "/zuvio/student5/boards",
-      "parameters": {},
-      "description": ""
     }
   }
 ]

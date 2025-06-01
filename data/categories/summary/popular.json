@@ -1,104 +1,16 @@
 [
   {
-    "provider_id": "36kr",
-    "provider_name": "36kr",
-    "route_key": "/:category/:subCategory?/:keyword?",
-    "route": {
-      "name": "资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯",
-      "path": "/:category/:subCategory?/:keyword?",
-      "example": "/36kr/newsflashes",
-      "parameters": {
-        "category": "分类，必填项",
-        "subCategory": "子分类，选填项，目的是为了兼容老逻辑",
-        "keyword": "关键词，选填项，仅搜索文章/快讯时有效"
-      },
-      "description": "| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |\n| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |\n| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |"
-    }
-  },
-  {
     "provider_id": "acfun",
     "provider_name": "AcFun",
-    "route_key": "/article/:categoryId/:sortType?/:timeRange?",
+    "route_key": "/user/video/:uid",
     "route": {
-      "name": "文章",
-      "path": "/article/:categoryId/:sortType?/:timeRange?",
-      "example": "/acfun/article/110",
+      "name": "用户投稿",
+      "path": "/user/video/:uid",
+      "example": "/acfun/user/video/6102",
       "parameters": {
-        "categoryId": {
-          "description": "分区 ID",
-          "options": [
-            {
-              "value": "73",
-              "label": "生活情感"
-            },
-            {
-              "value": "74",
-              "label": "动漫文化"
-            },
-            {
-              "value": "75",
-              "label": "漫画文学"
-            },
-            {
-              "value": "110",
-              "label": "综合"
-            },
-            {
-              "value": "164",
-              "label": "游戏"
-            },
-            {
-              "value": "184",
-              "label": "二次元画师"
-            }
-          ]
-        },
-        "sortType": {
-          "description": "排序",
-          "options": [
-            {
-              "value": "createTime",
-              "label": "最新发表"
-            },
-            {
-              "value": "lastCommentTime",
-              "label": "最新动态"
-            },
-            {
-              "value": "hotScore",
-              "label": "最热文章"
-            }
-          ],
-          "default": "createTime"
-        },
-        "timeRange": {
-          "description": "时间范围，仅在排序是 `hotScore` 有效",
-          "options": [
-            {
-              "value": "all",
-              "label": "时间不限"
-            },
-            {
-              "value": "oneDay",
-              "label": "24 小时"
-            },
-            {
-              "value": "threeDay",
-              "label": "三天"
-            },
-            {
-              "value": "oneWeek",
-              "label": "一周"
-            },
-            {
-              "value": "oneMonth",
-              "label": "一个月"
-            }
-          ],
-          "default": "all"
-        }
+        "uid": "用户 UID"
       },
-      "description": "| 二次元画师 | 综合 | 生活情感 | 游戏 | 动漫文化 | 漫画文学 |\n| ---------- | ---- | -------- | ---- | -------- | -------- |\n| 184        | 110  | 73       | 164  | 74       | 75       |\n\n| 最新发表   | 最新动态        | 最热文章 |\n| ---------- | --------------- | -------- |\n| createTime | lastCommentTime | hotScore |\n\n| 时间不限 | 24 小时 | 三天     | 一周    | 一个月   |\n| -------- | ------- | -------- | ------- | -------- |\n| all      | oneDay  | threeDay | oneWeek | oneMonth |"
+      "description": ""
     }
   },
   {
@@ -128,15 +40,17 @@
     }
   },
   {
-    "provider_id": "aibase",
-    "provider_name": "AIbase",
-    "route_key": "/news",
+    "provider_id": "agirls",
+    "provider_name": "电獭少女",
+    "route_key": "/:category?",
     "route": {
-      "name": "资讯",
-      "path": "/news",
-      "example": "/aibase/news",
-      "parameters": {},
-      "description": "获取 AI 资讯列表"
+      "name": "分类",
+      "path": "/:category?",
+      "example": "/agirls/app",
+      "parameters": {
+        "category": "分类，默认为最新文章，可在对应主题页的 URL 中找到，下表仅列出部分"
+      },
+      "description": "| App 评测 | 手机开箱 | 笔电开箱 | 3C 周边     | 教学小技巧 | 科技情报 |\n| -------- | -------- | -------- | ----------- | ---------- | -------- |\n| app      | phone    | computer | accessories | tutorial   | techlife |"
     }
   },
   {
@@ -166,53 +80,17 @@
     }
   },
   {
-    "provider_id": "aliresearch",
-    "provider_name": "阿里研究院",
-    "route_key": "/information/:type?",
+    "provider_id": "appleinsider",
+    "provider_name": "AppleInsider",
+    "route_key": "/:category?",
     "route": {
-      "name": "资讯",
-      "path": "/information/:type?",
-      "example": "/aliresearch/information",
+      "name": "Category",
+      "path": "/:category?",
+      "example": "/appleinsider",
       "parameters": {
-        "type": "类型，见下表，默认为新闻"
+        "category": "Category, see below, News by default"
       },
-      "description": "| 新闻 | 观点 | 案例 |\n| ---- | ---- | ---- |"
-    }
-  },
-  {
-    "provider_id": "apple",
-    "provider_name": "Apple",
-    "route_key": "/apps/update/:country/:id/:platform?",
-    "route": {
-      "name": "App Update",
-      "path": "/apps/update/:country/:id/:platform?",
-      "example": "/apple/apps/update/us/id408709785",
-      "parameters": {
-        "country": "App Store Country, obtain from the app URL, see below",
-        "id": "App id, obtain from the app URL",
-        "platform": {
-          "description": "App Platform, see below, all by default",
-          "options": [
-            {
-              "value": "All",
-              "label": "all"
-            },
-            {
-              "value": "iOS",
-              "label": "iOS"
-            },
-            {
-              "value": "macOS",
-              "label": "macOS"
-            },
-            {
-              "value": "tvOS",
-              "label": "tvOS"
-            }
-          ]
-        }
-      },
-      "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::"
+      "description": "| News | Reviews | How-tos |\n| ---- | ------- | ------- |\n|      | reviews | how-to  |"
     }
   },
   {
@@ -224,147 +102,6 @@
       "path": "/gushitong/index",
       "example": "/baidu/gushitong/index",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "behance",
-    "provider_name": "Behance",
-    "route_key": "/:user/:type?",
-    "route": {
-      "name": "User Works",
-      "path": "/:user/:type?",
-      "example": "/behance/mishapetrick",
-      "parameters": {
-        "user": "username",
-        "type": {
-          "description": "type",
-          "options": [
-            {
-              "value": "projects",
-              "label": "projects"
-            },
-            {
-              "value": "appreciated",
-              "label": "appreciated"
-            }
-          ],
-          "default": "projects"
-        }
-      },
-      "description": "Behance user's profile URL, like [https://www.behance.net/mishapetrick](https://www.behance.net/mishapetrick) the username will be `mishapetrick`。"
-    }
-  },
-  {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/bangumi/media/:mediaid/:embed?",
-    "route": {
-      "name": "番剧",
-      "path": "/bangumi/media/:mediaid/:embed?",
-      "example": "/bilibili/bangumi/media/9192",
-      "parameters": {
-        "mediaid": "番剧媒体 id, 番剧主页 URL 中获取",
-        "embed": "默认为开启内嵌视频, 任意值为关闭"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
-    "route": {
-      "name": "排行榜",
-      "path": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
-      "example": "/bilibili/ranking/0",
-      "parameters": {
-        "rid_index": {
-          "description": "排行榜分区 id 序号",
-          "default": "0",
-          "options": [
-            {
-              "value": "0",
-              "label": "全站"
-            },
-            {
-              "value": "3",
-              "label": "国创相关"
-            },
-            {
-              "value": "5",
-              "label": "动画"
-            },
-            {
-              "value": "6",
-              "label": "音乐"
-            },
-            {
-              "value": "7",
-              "label": "舞蹈"
-            },
-            {
-              "value": "8",
-              "label": "游戏"
-            },
-            {
-              "value": "9",
-              "label": "知识"
-            },
-            {
-              "value": "10",
-              "label": "科技"
-            },
-            {
-              "value": "11",
-              "label": "运动"
-            },
-            {
-              "value": "12",
-              "label": "汽车"
-            },
-            {
-              "value": "13",
-              "label": "生活"
-            },
-            {
-              "value": "14",
-              "label": "美食"
-            },
-            {
-              "value": "15",
-              "label": "动物圈"
-            },
-            {
-              "value": "16",
-              "label": "鬼畜"
-            },
-            {
-              "value": "17",
-              "label": "时尚"
-            },
-            {
-              "value": "18",
-              "label": "娱乐"
-            },
-            {
-              "value": "19",
-              "label": "影视"
-            },
-            {
-              "value": "23",
-              "label": "原创"
-            },
-            {
-              "value": "24",
-              "label": "新人"
-            }
-          ]
-        },
-        "embed": "默认为开启内嵌视频, 任意值为关闭",
-        "redirect1": "留空，用于兼容之前的路由",
-        "redirect2": "留空，用于兼容之前的路由"
-      },
       "description": ""
     }
   },
@@ -383,6 +120,71 @@
     }
   },
   {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/user/video/:uid/:embed?",
+    "route": {
+      "name": "UP 主投稿",
+      "path": "/user/video/:uid/:embed?",
+      "example": "/bilibili/user/video/2267573",
+      "parameters": {
+        "uid": "用户 id, 可在 UP 主主页中找到",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bjp",
+    "provider_name": "北京天文馆",
+    "route_key": "/apod",
+    "route": {
+      "name": "每日一图",
+      "path": "/apod",
+      "example": "/bjp/apod",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bookfere",
+    "provider_name": "书伴",
+    "route_key": "/:category",
+    "route": {
+      "name": "分类",
+      "path": "/:category",
+      "example": "/bookfere/skills",
+      "parameters": {
+        "category": {
+          "description": "分类名",
+          "options": [
+            {
+              "value": "weekly",
+              "label": "每周一书"
+            },
+            {
+              "value": "skills",
+              "label": "使用技巧"
+            },
+            {
+              "value": "books",
+              "label": "图书推荐"
+            },
+            {
+              "value": "news",
+              "label": "新闻速递"
+            },
+            {
+              "value": "essay",
+              "label": "精选短文"
+            }
+          ]
+        }
+      },
+      "description": "| 每周一书 | 使用技巧 | 图书推荐 | 新闻速递 | 精选短文 |\n| -------- | -------- | -------- | -------- | -------- |\n| weekly   | skills   | books    | news     | essay    |"
+    }
+  },
+  {
     "provider_id": "bsky",
     "provider_name": "Bluesky (bsky)",
     "route_key": "/profile/:handle/:routeParams?",
@@ -395,6 +197,18 @@
         "routeParams": "Filter parameter, Use filter to customize content types"
       },
       "description": "\n| Filter Value | Description |\n|--------------|-------------|\n| posts_with_replies | Includes Posts, Replies, and Reposts |\n| posts_no_replies | Includes Posts and Reposts, without Replies |\n| posts_with_media | Shows only Posts containing media |\n| posts_and_author_threads | Shows Posts and Threads, without Replies and Reposts |\n\nDefault value for filter is `posts_and_author_threads` if not specified.\n\nExample:\n- `/bsky/profile/bsky.app/filter=posts_with_replies`"
+    }
+  },
+  {
+    "provider_id": "caixin",
+    "provider_name": "财新博客",
+    "route_key": "/latest",
+    "route": {
+      "name": "最新文章",
+      "path": "/latest",
+      "example": "/caixin/latest",
+      "parameters": {},
+      "description": "说明：此 RSS feed 会自动抓取财新网的最新文章，但不包含 FM 及视频内容。订阅用户可根据文档设置环境变量后，在url传入`fulltext=`以解锁全文。"
     }
   },
   {
@@ -412,31 +226,29 @@
     }
   },
   {
-    "provider_id": "cyzone",
-    "provider_name": "创业邦",
-    "route_key": "/author/:id",
+    "provider_id": "cngal",
+    "provider_name": "CnGal",
+    "route_key": "/weekly",
     "route": {
-      "name": "作者",
-      "path": "/author/:id",
-      "example": "/cyzone/author/1225562",
-      "parameters": {
-        "id": "作者 id，可在对应作者页 URL 中找到"
-      },
+      "name": "每周速报",
+      "path": "/weekly",
+      "example": "/cngal/weekly",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "cyzone",
-    "provider_name": "创业邦",
-    "route_key": "/label/:name",
+    "provider_id": "cuilingmag",
+    "provider_name": "萃嶺网",
+    "route_key": "/:category?",
     "route": {
-      "name": "标签",
-      "path": "/label/:name",
-      "example": "/cyzone/label/创业邦周报",
+      "name": "分类",
+      "path": "/:category?",
+      "example": "/cuilingmag",
       "parameters": {
-        "name": "标签名称，可在对应标签页 URL 中找到"
+        "category": "分类，默认为空，即全部，可在对应分类页 URL 中找到"
       },
-      "description": ""
+      "description": "::: tip\n  若订阅 [#哲学·文明](https://www.cuilingmag.com/category/philosophy_civilization)，网址为 `https://www.cuilingmag.com/category/philosophy_civilization`。截取 `https://www.cuilingmag.com/category` 到末尾的部分 `philosophy_civilization` 作为参数填入，此时路由为 [`/cuilingmag/philosophy_civilization`](https://rsshub.app/cuilingmag/philosophy_civilization)。\n:::\n\n| 分类                                                                       | ID                                                                                |\n| -------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |\n| [哲学 · 文明](https://www.cuilingmag.com/category/philosophy_civilization) | [philosophy_civilization](https://rsshub.app/cuilingmag/philosophy_civilization) |\n| [艺术 · 科技](https://www.cuilingmag.com/category/art_science)             | [art_science](https://rsshub.app/cuilingmag/art_science)                         |\n| [未来 · 生命](https://www.cuilingmag.com/category/future_life)             | [future_life](https://rsshub.app/cuilingmag/future_life)                         |\n| [行星智慧](https://www.cuilingmag.com/category/planetary_wisdom)           | [planetary_wisdom](https://rsshub.app/cuilingmag/planetary_wisdom)               |\n| [数字治理](https://www.cuilingmag.com/category/digital_governance)         | [digital_governance](https://rsshub.app/cuilingmag/digital_governance)           |\n| [Noema精选](https://www.cuilingmag.com/category/selected_noema)            | [selected_noema](https://rsshub.app/cuilingmag/selected_noema)                   |\n  "
     }
   },
   {
@@ -454,31 +266,31 @@
     }
   },
   {
-    "provider_id": "dedao",
-    "provider_name": "得到",
-    "route_key": "/list/:category?",
+    "provider_id": "dcfever",
+    "provider_name": "DCFever",
+    "route_key": "/reviews/:type?",
     "route": {
-      "name": "首页",
-      "path": "/list/:category?",
-      "example": "/dedao/list/年度日更",
+      "name": "測試報告",
+      "path": "/reviews/:type?",
+      "example": "/dcfever/reviews/cameras",
       "parameters": {
-        "category": "分类名，默认为年度日更"
+        "type": "分類，預設為 `cameras`"
       },
-      "description": ""
+      "description": "| 相機及鏡頭 | 手機平板 | 試車報告 |\n| ---------- | -------- | -------- |\n| cameras    | phones   | cars     |"
     }
   },
   {
-    "provider_id": "diandong",
-    "provider_name": "电动邦",
-    "route_key": "/news/:cate?",
+    "provider_id": "dedao",
+    "provider_name": "得到",
+    "route_key": "/:category?",
     "route": {
-      "name": "资讯",
-      "path": "/news/:cate?",
-      "example": "/diandong/news",
+      "name": "文章",
+      "path": "/:category?",
+      "example": "/dedao",
       "parameters": {
-        "cate": "分类，见下表，默认为推荐"
+        "category": "分类，见下表，默认为`news`"
       },
-      "description": "分类\n\n| 推荐 | 新车 | 导购 | 试驾 | 用车 | 技术 | 政策 | 行业 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 0    | 29   | 61   | 30   | 75   | 22   | 24   | 23   |"
+      "description": "| 新闻 | 人物故事 | 视频 |\n| ---- | ---- | ---- |\n| news | figure | video |"
     }
   },
   {
@@ -491,21 +303,6 @@
       "example": "/digitalcameraworld/news",
       "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "dn",
-    "provider_name": "DN.com",
-    "route_key": "/:language/news/:category?",
-    "route": {
-      "name": "News",
-      "path": "/:language/news/:category?",
-      "example": "/dn/en-us/news",
-      "parameters": {
-        "language": "Language, see below",
-        "category": "Category, see below, The Latest by default"
-      },
-      "description": "#### Language\n\n| English | 中文  |\n| ------- | ----- |\n| en-us   | zh-cn |\n\n#### Category\n\n| English Category     | 中文分类 | Category id |\n| -------------------- | -------- | ----------- |\n| The Latest           | 最新     |             |\n| Industry Information | 行业资讯 | category-1  |\n| Knowledge            | 域名知识 | category-2  |\n| Investment           | 域名投资 | category-3  |"
     }
   },
   {
@@ -530,18 +327,6 @@
   {
     "provider_id": "dongqiudi",
     "provider_name": "懂球帝",
-    "route_key": "/daily",
-    "route": {
-      "name": "早报",
-      "path": "/daily",
-      "example": "/dongqiudi/daily",
-      "parameters": {},
-      "description": "::: tip\n部分球队和球员可能会有两个 id, 正确 id 应该由 `5000` 开头.\n:::"
-    }
-  },
-  {
-    "provider_id": "dongqiudi",
-    "provider_name": "懂球帝",
     "route_key": "/result/:team",
     "route": {
       "name": "足球赛果",
@@ -554,18 +339,70 @@
     }
   },
   {
-    "provider_id": "douban",
-    "provider_name": "豆瓣",
-    "route_key": "/topic/:id/:sort?",
+    "provider_id": "dongqiudi",
+    "provider_name": "懂球帝",
+    "route_key": "/team_news/:team",
     "route": {
-      "name": "话题",
-      "path": "/topic/:id/:sort?",
-      "example": "/douban/topic/48823",
+      "name": "球队新闻",
+      "path": "/team_news/:team",
+      "example": "/dongqiudi/team_news/50001755",
       "parameters": {
-        "id": "话题id",
-        "sort": "排序方式，hot或new，默认为new"
+        "team": "球队 id, 可在[懂球帝数据](https://www.dongqiudi.com/data)中找到"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/people/:userid/status/:routeParams?",
+    "route": {
+      "name": "用户广播",
+      "path": "/people/:userid/status/:routeParams?",
+      "example": "/douban/people/75118396/status",
+      "parameters": {
+        "userid": "整数型用户 id",
+        "routeParams": "额外参数；见下"
+      },
+      "description": "\n::: tip\n-   **目前只支持整数型 id**\n-   字母型的 id，可以通过头像图片链接来找到其整数型 id，图片命名规则`ul[userid]-*.jpg`或`u[userid]-*.jpg`，即取文件名中间的数字\n-   例如：用户 id: `MovieL`他的头像图片链接：`https://img1.doubanio.com/icon/ul1128221-98.jpg`他的整数型 id: `1128221`\n:::\n\n对于豆瓣用户广播内容，在 `routeParams` 参数中以 query string 格式设置如下选项可以控制输出的样式\n\n| 键                         | 含义                                                           | 接受的值       | 默认值 |\n| -------------------------- | -------------------------------------------------------------- | -------------- | ------ |\n| readable                   | 是否开启细节排版可读性优化                                     | 0/1/true/false | false  |\n| authorNameBold             | 是否加粗作者名字                                               | 0/1/true/false | false  |\n| showAuthorInTitle          | 是否在标题处显示作者                                           | 0/1/true/false | true   |\n| showAuthorInDesc           | 是否在正文处显示作者                                           | 0/1/true/false | false  |\n| showAuthorAvatarInDesc     | 是否在正文处显示作者头像（若阅读器会提取正文图片，不建议开启） | 0/1/true/false | false  |\n| showEmojiForRetweet        | 显示 “🔁” 取代 “Fw”（转发）                                    | 0/1/true/false | false  |\n| showRetweetTextInTitle     | 在标题出显示转发评论（置为 false 则在标题只显示被转发的广播）  | 0/1/true/false | false  |\n| addLinkForPics             | 为图片添加可点击的链接                                         | 0/1/true/false | false  |\n| showTimestampInDescription | 在正文处显示广播的时间戳                                       | 0/1/true/false | false  |\n| showComments               | 在正文处显示评论                                               | 0/1/true/false | false  |\n| widthOfPics                | 广播配图宽（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| heightOfPics               | 广播配图高（生效取决于阅读器）                                 | 不指定 / 数字  | 不指定 |\n| sizeOfAuthorAvatar         | 作者头像大小                                                   | 数字           | 48     |\n\n  指定更多与默认值不同的参数选项可以改善 RSS 的可读性，如\n\n  [https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100](https://rsshub.app/douban/people/113894409/status/readable=1&authorNameBold=1&showAuthorInTitle=1&showAuthorInDesc=1&showAuthorAvatarInDesc=1&showEmojiForRetweet=1&showRetweetTextInTitle=1&addLinkForPics=1&showTimestampInDescription=1&showComments=1&widthOfPics=100)\n\n  的效果为\n\n  <img loading=\"lazy\" src=\"/img/readable-douban.png\" alt=\"豆瓣读书的可读豆瓣广播 RSS\" />"
+    }
+  },
+  {
+    "provider_id": "eastmoney",
+    "provider_name": "东方财富",
+    "route_key": "/report/:category",
+    "route": {
+      "name": "研究报告",
+      "path": "/report/:category",
+      "example": "/eastmoney/report/strategyreport",
+      "parameters": {
+        "category": {
+          "description": "研报类型",
+          "options": [
+            {
+              "value": "strategyreport",
+              "label": "策略报告"
+            },
+            {
+              "value": "macresearch",
+              "label": "宏观研究"
+            },
+            {
+              "value": "brokerreport",
+              "label": "券商晨报"
+            },
+            {
+              "value": "industry",
+              "label": "行业研报"
+            },
+            {
+              "value": "stock",
+              "label": "个股研报"
+            }
+          ]
+        }
+      },
+      "description": "| 策略报告       | 宏观研究    | 券商晨报     | 行业研究 | 个股研报 |\n| -------------- | ----------- | ------------ | -------- | -------- |\n| strategyreport | macresearch | brokerreport | industry | stock    |"
     }
   },
   {
@@ -578,39 +415,6 @@
       "example": "/eastmoney/search/web3",
       "parameters": {
         "keyword": "关键词，可以设置为自己需要检索的关键词"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "economist",
-    "provider_name": "The Economist",
-    "route_key": "/espresso",
-    "route": {
-      "name": "Espresso",
-      "path": "/espresso",
-      "example": "/economist/espresso",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "epicgames",
-    "provider_name": "Epic Games Store",
-    "route_key": "/freegames/:locale?/:country?",
-    "route": {
-      "name": "Free games",
-      "path": "/freegames/:locale?/:country?",
-      "example": "/epicgames/freegames/en-US/US",
-      "parameters": {
-        "locale": {
-          "description": "Locale",
-          "default": "en-US"
-        },
-        "country": {
-          "description": "Country",
-          "default": "US"
-        }
       },
       "description": ""
     }
@@ -631,14 +435,37 @@
     }
   },
   {
-    "provider_id": "foresightnews",
-    "provider_name": "Foresight News",
-    "route_key": "/article",
+    "provider_id": "followin",
+    "provider_name": "Followin",
+    "route_key": "/news/:lang?",
     "route": {
-      "name": "文章",
-      "path": "/article",
-      "example": "/foresightnews/article",
-      "parameters": {},
+      "name": "News",
+      "path": "/news/:lang?",
+      "example": "/followin/news",
+      "parameters": {
+        "lang": {
+          "description": "Language",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "zh-Hans",
+              "label": "简体中文"
+            },
+            {
+              "value": "zh-Hant",
+              "label": "繁體中文"
+            },
+            {
+              "value": "vi",
+              "label": "Tiếng Việt"
+            }
+          ],
+          "default": "en"
+        }
+      },
       "description": ""
     }
   },
@@ -659,6 +486,18 @@
   {
     "provider_id": "foresightnews",
     "provider_name": "Foresight News",
+    "route_key": "/",
+    "route": {
+      "name": "精选资讯",
+      "path": "/",
+      "example": "/foresightnews",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "foresightnews",
+    "provider_name": "Foresight News",
     "route_key": "/news",
     "route": {
       "name": "快讯",
@@ -671,28 +510,29 @@
   {
     "provider_id": "furaffinity",
     "provider_name": "Furaffinity",
-    "route_key": "/search/:query/:mode?/:routeParams?",
+    "route_key": "/home/:category/:mode?",
     "route": {
-      "name": "Search",
-      "path": "/search/:query/:mode?/:routeParams?",
-      "example": "/furaffinity/search/protogen/nsfw",
+      "name": "Home",
+      "path": "/home/:category/:mode?",
+      "example": "/furaffinity/home/nsfw",
       "parameters": {
-        "query": "Query value",
-        "mode": "R18 content toggle, default value is sfw, options are sfw, nsfw",
-        "routeParams": "Additional search parameters"
+        "category": "Category, default value is artwork, options are artwork, writing, music, crafts",
+        "mode": "R18 content toggle, default value is sfw, options are sfw, nsfw"
       },
-      "description": "Additional search parameters\n| Parameter       | Description          | Default   | Options                                                        |\n|-----------------|----------------------|-----------|----------------------------------------------------------------|\n| order_by        | Sort by              | relevancy | relevancy, date, popularity                                    |\n| order_direction | Sort order           | desc      | desc, asc                                                      |\n| range           | Date range           | all       | all, 1day, 3days, 7days, 30days, 90days, 1year, 3years, 5years |\n| pattern         | Query match pattern  | extended  | all, any, extended                                             |\n| type            | Category of artworks | all       | art, flash, photo, music, story, poetry                        |\n"
+      "description": ""
     }
   },
   {
     "provider_id": "furaffinity",
     "provider_name": "Furaffinity",
-    "route_key": "/status",
+    "route_key": "/shouts/:username",
     "route": {
-      "name": "Status",
-      "path": "/status",
-      "example": "/furaffinity/status",
-      "parameters": {},
+      "name": "Shouts",
+      "path": "/shouts/:username",
+      "example": "/furaffinity/shouts/fender",
+      "parameters": {
+        "username": "Username, can find in userpage"
+      },
       "description": ""
     }
   },
@@ -719,6 +559,20 @@
       "path": "/ani/new_anime",
       "example": "/gamer/ani/new_anime",
       "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gcores",
+    "provider_name": "机核网",
+    "route_key": "/radios/:category?",
+    "route": {
+      "name": "播客",
+      "path": "/radios/:category?",
+      "example": "/gcores/radios/45",
+      "parameters": {
+        "category": "分类名，默认为全部，可在分类页面的 URL 中找到，如 Gadio News -- 45"
+      },
       "description": ""
     }
   },
@@ -758,6 +612,72 @@
         }
       },
       "description": "| 推荐            | 股票  | 基金 | 新股       | 研报     |\n| --------------- | ----- | ---- | ---------- | -------- |\n| web_home_page | stock | fund | new_stock | research |"
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/hot-article/:type?",
+    "route": {
+      "name": "最热文章",
+      "path": "/hot-article/:type?",
+      "example": "/gelonghui/hot-article",
+      "parameters": {
+        "type": {
+          "description": "`day` 为日排行，`week` 为周排行，默认为 `day`",
+          "options": [
+            {
+              "value": "day",
+              "label": "日排行"
+            },
+            {
+              "value": "week",
+              "label": "周排行"
+            }
+          ]
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/live",
+    "route": {
+      "name": "实时快讯",
+      "path": "/live",
+      "example": "/gelonghui/live",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/user/:id",
+    "route": {
+      "name": "用户文章",
+      "path": "/user/:id",
+      "example": "/gelonghui/user/5273",
+      "parameters": {
+        "id": "用户编号，可在用户页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gettr",
+    "provider_name": "GETTR",
+    "route_key": "/user/:id",
+    "route": {
+      "name": "User timeline",
+      "path": "/user/:id",
+      "example": "/gettr/user/jasonmillerindc",
+      "parameters": {
+        "id": "User id"
+      },
+      "description": ""
     }
   },
   {
@@ -809,6 +729,35 @@
     }
   },
   {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/stars/:user/:repo",
+    "route": {
+      "name": "Repo Stars",
+      "path": "/stars/:user/:repo",
+      "example": "/github/stars/DIYgod/RSSHub",
+      "parameters": {
+        "user": "GitHub username",
+        "repo": "GitHub repo name"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/citations/:id",
+    "route": {
+      "name": "Scholar Author Citations",
+      "path": "/citations/:id",
+      "example": "/google/citations/mlmE4JMAAAAJ",
+      "parameters": {
+        "id": "N"
+      },
+      "description": "The parameter id in the route is the id in the URL of the user's Google Scholar reference page, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ` to `mlmE4JMAAAAJ`.\n\n  Query parameters are also supported here, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ&sortby=pubdate` to `mlmE4JMAAAAJ&sortby=pubdate`. Please make sure that the user id (`mlmE4JMAAAAJ` in this case) should be the first parameter in the query string."
+    }
+  },
+  {
     "provider_id": "grist",
     "provider_name": "Grist",
     "route_key": "/featured",
@@ -817,32 +766,6 @@
       "path": "/featured",
       "example": "/grist/featured",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "grist",
-    "provider_name": "Grist",
-    "route_key": "/",
-    "route": {
-      "name": "Latest Articles",
-      "path": "/",
-      "example": "/grist",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "grist",
-    "provider_name": "Grist",
-    "route_key": "/series/:series",
-    "route": {
-      "name": "Series",
-      "path": "/series/:series",
-      "example": "/grist/series/best-of-grist",
-      "parameters": {
-        "series": "Find in the URL which has /series/"
-      },
       "description": ""
     }
   },
@@ -878,6 +801,119 @@
         }
       },
       "description": "Subscribe to the content of a specific user"
+    }
+  },
+  {
+    "provider_id": "harvard",
+    "provider_name": "Harvard Health Publishing",
+    "route_key": "/health/blog",
+    "route": {
+      "name": "Health Blog",
+      "path": "/health/blog",
+      "example": "/harvard/health/blog",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hellobtc",
+    "provider_name": "白话区块链",
+    "route_key": "/information/:channel?",
+    "route": {
+      "name": "首页",
+      "path": "/information/:channel?",
+      "example": "/hellobtc/information/latest",
+      "parameters": {
+        "channel": "类型，可填 `latest` 和 `application` 及最新和应用，默认为最新"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/all/:order?",
+    "route": {
+      "name": "所有周边",
+      "path": "/items/all/:order?",
+      "example": "/hpoi/items/all",
+      "parameters": {
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/character/:id/:order?",
+    "route": {
+      "name": "角色周边",
+      "path": "/items/character/:id/:order?",
+      "example": "/hpoi/items/character/1035374",
+      "parameters": {
+        "id": "角色 ID",
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
+      },
+      "description": ""
     }
   },
   {
@@ -927,35 +963,39 @@
   {
     "provider_id": "ifanr",
     "provider_name": "爱范儿",
-    "route_key": "/category/:name",
+    "route_key": "/index",
     "route": {
-      "name": "分类",
-      "path": "/category/:name",
-      "example": "/ifanr/category/早报",
+      "name": "首页",
+      "path": "/index",
+      "example": "/ifanr/index",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "infoq",
+    "provider_name": "InfoQ 中文",
+    "route_key": "/presentations/:conference?",
+    "route": {
+      "name": "Presentations",
+      "path": "/presentations/:conference?",
+      "example": "/infoq/presentations",
       "parameters": {
-        "name": {
-          "description": "分类名称",
-          "options": [
-            {
-              "value": "早报",
-              "label": "早报"
-            },
-            {
-              "value": "评测",
-              "label": "评测"
-            },
-            {
-              "value": "糖纸众测",
-              "label": "糖纸众测"
-            },
-            {
-              "value": "产品",
-              "label": "产品"
-            }
-          ]
-        }
+        "conference": "Conference, all by default, can be found in URL"
       },
-      "description": "支持分类：早报、评测、糖纸众测、产品"
+      "description": "::: tip\n  If you subscribe to [InfoQ Live Jan 2024](https://www.infoq.com/infoq-live-jan-2024/presentations/)，where the URL is `https://www.infoq.com/infoq-live-jan-2024/presentations/`, extract the part `https://www.infoq.com/` to the end, which is `/presentations/`, and use it as the parameter to fill in. Therefore, the route will be [`/infoq/presentations/infoq-live-jan-2024`](https://rsshub.app/infoq/presentations/infoq-live-jan-2024).\n:::\n    "
+    }
+  },
+  {
+    "provider_id": "jianshu",
+    "provider_name": "简书",
+    "route_key": "/home",
+    "route": {
+      "name": "首页",
+      "path": "/home",
+      "example": "/jianshu/home",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -982,15 +1022,15 @@
     }
   },
   {
-    "provider_id": "jin10",
-    "provider_name": "金十数据",
-    "route_key": "/:important?",
+    "provider_id": "jike",
+    "provider_name": "即刻",
+    "route_key": "/user/:id",
     "route": {
-      "name": "市场快讯",
-      "path": "/:important?",
-      "example": "/jin10",
+      "name": "用户动态",
+      "path": "/user/:id",
+      "example": "/jike/user/3EE02BC9-C5B3-4209-8750-4ED1EE0F67BB",
       "parameters": {
-        "important": "只看重要，任意值开启，留空关闭"
+        "id": "用户 id, 可在即刻分享出来的单条动态页点击用户头像进入个人主页，然后在个人主页的 URL 中找到，或者在单条动态页使用 RSSHub Radar 插件"
       },
       "description": ""
     }
@@ -1010,49 +1050,6 @@
     }
   },
   {
-    "provider_id": "jinse",
-    "provider_name": "金色财经",
-    "route_key": "/lives/:category?",
-    "route": {
-      "name": "快讯",
-      "path": "/lives/:category?",
-      "example": "/jinse/lives",
-      "parameters": {
-        "category": {
-          "description": "分类",
-          "options": [
-            {
-              "value": "0",
-              "label": "全部"
-            },
-            {
-              "value": "1",
-              "label": "精选"
-            },
-            {
-              "value": "2",
-              "label": "政策"
-            },
-            {
-              "value": "3",
-              "label": "数据"
-            },
-            {
-              "value": "4",
-              "label": "NFT"
-            },
-            {
-              "value": "5",
-              "label": "项目"
-            }
-          ],
-          "default": "0"
-        }
-      },
-      "description": "| 全部 | 精选 | 政策 | 数据 | NFT | 项目 |\n| ---- | ---- | ---- | ---- | --- | ---- |\n| 0    | 1    | 2    | 3    | 4   | 5    |"
-    }
-  },
-  {
     "provider_id": "jjwxc",
     "provider_name": "晋江文学城",
     "route_key": "/book/:id?",
@@ -1062,20 +1059,6 @@
       "example": "/jjwxc/book/7013024",
       "parameters": {
         "id": "作品 id，可在对应作品页中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "keep",
-    "provider_name": "Keep",
-    "route_key": "/user/:id",
-    "route": {
-      "name": "运动日记",
-      "path": "/user/:id",
-      "example": "/keep/user/556b02c1ab59390afea671ea",
-      "parameters": {
-        "id": "Keep 用户 id"
       },
       "description": ""
     }
@@ -1189,117 +1172,147 @@
     }
   },
   {
-    "provider_id": "mastodon",
-    "provider_name": "Mastodon",
-    "route_key": "/timeline/:site/:only_media?",
-    "route": {
-      "name": "Instance timeline (local)",
-      "path": "/timeline/:site/:only_media?",
-      "example": "/mastodon/timeline/pawoo.net/true",
-      "parameters": {
-        "site": "instance address, only domain, no `http://` or `https://` protocol header",
-        "only_media": {
-          "description": "whether only display media content, default to false, any value to true",
-          "options": [
-            {
-              "value": "true",
-              "label": "true"
-            },
-            {
-              "value": "false",
-              "label": "false"
-            }
-          ],
-          "default": "false"
-        }
-      },
-      "description": "If the instance address is not `mastodon.social` or `pawoo.net`, then the route requires `ALLOW_USER_SUPPLY_UNSAFE_DOMAIN` to be `true`."
-    }
-  },
-  {
-    "provider_id": "mastodon",
-    "provider_name": "Mastodon",
-    "route_key": "/remote/:site/:only_media?",
-    "route": {
-      "name": "Instance timeline (federated)",
-      "path": "/remote/:site/:only_media?",
-      "example": "/mastodon/remote/pawoo.net/true",
-      "parameters": {
-        "site": "instance address, only domain, no `http://` or `https://` protocol header",
-        "only_media": {
-          "description": "whether only display media content, default to false, any value to true",
-          "options": [
-            {
-              "value": "true",
-              "label": "true"
-            },
-            {
-              "value": "false",
-              "label": "false"
-            }
-          ],
-          "default": "false"
-        }
-      },
-      "description": "If the instance address is not `mastodon.social` or `pawoo.net`, then the route requires `ALLOW_USER_SUPPLY_UNSAFE_DOMAIN` to be `true`."
-    }
-  },
-  {
-    "provider_id": "medsci",
-    "provider_name": "梅斯医学 MedSci",
-    "route_key": "/:sid?/:tid?",
-    "route": {
-      "name": "资讯",
-      "path": "/:sid?/:tid?",
-      "example": "/medsci",
-      "parameters": {
-        "sid": "科室，见下表，默认为推荐",
-        "tid": "亚专业，可在对应科室页 URL 中找到，默认为该科室的全部"
-      },
-      "description": "::: tip\n  下表为科室对应的 sid，若想获得 tid，可以到对应科室页面 URL 中寻找 `t_id` 字段的值，下面是一个例子：\n\n  如 [肿瘤 - NSCLC](https://www.medsci.cn/department/details?s_id=5&t_id=277) 的 URL 为 `https://www.medsci.cn/department/details?s_id=5&t_id=277`，可以看到此时 `s_id` 对应 `sid` 的值为 5， `t_id` 对应 `tid` 的值为 277，所以可以得到路由 [`/medsci/5/277`](https://rsshub.app/medsci/5/277)\n:::\n\n| 心血管 | 内分泌 | 消化 | 呼吸 | 神经科 |\n| ------ | ------ | ---- | ---- | ------ |\n| 2      | 6      | 4    | 12   | 17     |\n\n| 传染科 | 精神心理 | 肾内科 | 风湿免疫 | 血液科 |\n| ------ | -------- | ------ | -------- | ------ |\n| 9      | 13       | 14     | 15       | 21     |\n\n| 老年医学 | 胃肠外科 | 血管外科 | 肝胆胰外 | 骨科 |\n| -------- | -------- | -------- | -------- | ---- |\n| 19       | 76       | 92       | 91       | 10   |\n\n| 普通外科 | 胸心外科 | 神经外科 | 泌尿外科 | 烧伤科 |\n| -------- | -------- | -------- | -------- | ------ |\n| 23       | 24       | 25       | 26       | 27     |\n\n| 整形科 | 麻醉疼痛 | 罕见病 | 康复医学 | 药械 |\n| ------ | -------- | ------ | -------- | ---- |\n| 28     | 29       | 304    | 95       | 11   |\n\n| 儿科 | 耳鼻咽喉 | 口腔科 | 眼科 | 政策人文 |\n| ---- | -------- | ------ | ---- | -------- |\n| 18   | 30       | 31     | 32   | 33       |\n\n| 营养全科 | 预防公卫 | 妇产科 | 中医科 | 急重症 |\n| -------- | -------- | ------ | ------ | ------ |\n| 34       | 35       | 36     | 37     | 38     |\n\n| 皮肤性病 | 影像放射 | 转化医学 | 检验病理 | 护理 |\n| -------- | -------- | -------- | -------- | ---- |\n| 39       | 40       | 42       | 69       | 79   |\n\n| 糖尿病 | 冠心病 | 肝病 | 乳腺癌 |\n| ------ | ------ | ---- | ------ |\n| 8      | 43     | 22   | 89     |"
-    }
-  },
-  {
-    "provider_id": "mirror",
-    "provider_name": "Mirror",
-    "route_key": "/:id",
-    "route": {
-      "name": "User",
-      "path": "/:id",
-      "example": "/mirror/tingfei.eth",
-      "parameters": {
-        "id": "user id"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "misskey",
     "provider_name": "Misskey",
-    "route_key": "/users/notes/:username/:routeParams?",
+    "route_key": "/notes/featured/:site",
     "route": {
-      "name": "User timeline",
-      "path": "/users/notes/:username/:routeParams?",
-      "example": "/misskey/users/notes/support@misskey.io",
+      "name": "Featured Notes",
+      "path": "/notes/featured/:site",
+      "example": "/misskey/notes/featured/misskey.io",
       "parameters": {
-        "username": "Misskey username in the format of username@instance.domain",
-        "routeParams": "\n| Key               | Description                             | Accepted Values | Default |\n| ----------------- | --------------------------------------- | --------------- | ------- |\n| withRenotes       | Include renotes in the timeline         | 0/1/true/false  | false   |\n| mediaOnly         | Only return posts containing media      | 0/1/true/false  | false   |\n| simplifyAuthor    | Simplify author field in feed items     | 0/1/true/false  | false   |\n\nNote: `withRenotes` and `mediaOnly` are mutually exclusive and cannot both be set to true.\n\nExamples:\n- /misskey/users/notes/mttb2ccp@misskey.io/withRenotes=true\n- /misskey/users/notes/mttb2ccp@misskey.io/mediaOnly=true"
+        "site": "instance address, domain only, without `http://` or `https://` protocol header"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "newyorker",
-    "provider_name": "New Yorker",
-    "route_key": "/:category",
+    "provider_id": "nautil",
+    "provider_name": "Nautilus",
+    "route_key": "/topic/:tid",
     "route": {
-      "name": "Articles",
-      "path": "/:category",
-      "example": "/newyorker/latest",
+      "name": "Topics",
+      "path": "/topic/:tid",
+      "example": "/nautil/topic/arts",
       "parameters": {
-        "category": "tab name. can be found at url"
+        "tid": "topic"
       },
-      "description": ""
+      "description": "This route provides a flexible plan with full text content to subscribe specific topic(s) on the Nautilus. Please visit [nautil.us](https://nautil.us) and click `Topics` to acquire whole topic list."
+    }
+  },
+  {
+    "provider_id": "notefolio",
+    "provider_name": "Notefolio",
+    "route_key": "/search/:category?/:order?/:time?/:query?",
+    "route": {
+      "name": "Works",
+      "path": "/search/:category?/:order?/:time?/:query?",
+      "example": "/notefolio/search/1/pick/all/life",
+      "parameters": {
+        "category": {
+          "description": "Category, see below",
+          "options": [
+            {
+              "value": "all",
+              "label": "All (전체)"
+            },
+            {
+              "value": "1",
+              "label": "Video / Motion Graphics (영상/모션그래픽)"
+            },
+            {
+              "value": "2",
+              "label": "Graphic Design (그래픽 디자인)"
+            },
+            {
+              "value": "3",
+              "label": "Branding / Editing (브랜딩/편집)"
+            },
+            {
+              "value": "4",
+              "label": "UI/UX (UI/UX)"
+            },
+            {
+              "value": "5",
+              "label": "Illustration (일러스트레이션)"
+            },
+            {
+              "value": "6",
+              "label": "Digital Art (디지털 아트)"
+            },
+            {
+              "value": "7",
+              "label": "Character Design (캐릭터 디자인)"
+            },
+            {
+              "value": "8",
+              "label": "Product Package Design (제품/패키지 디자인)"
+            },
+            {
+              "value": "9",
+              "label": "Photography (포토그래피)"
+            },
+            {
+              "value": "10",
+              "label": "Typography (타이포그래피)"
+            },
+            {
+              "value": "11",
+              "label": "Crafts (공예)"
+            },
+            {
+              "value": "12",
+              "label": "Fine Art (파인아트)"
+            }
+          ],
+          "default": "all"
+        },
+        "order": {
+          "description": "Order, `pick` as Notefolio Pick, `published` as Newest, `like` as like, `pick` by default",
+          "options": [
+            {
+              "value": "pick",
+              "label": "Notefolio Pick"
+            },
+            {
+              "value": "published",
+              "label": "Newest"
+            },
+            {
+              "value": "like",
+              "label": "Like"
+            }
+          ],
+          "default": "pick"
+        },
+        "time": {
+          "description": "Time",
+          "options": [
+            {
+              "value": "all",
+              "label": "All the time"
+            },
+            {
+              "value": "one-day",
+              "label": "Latest 24 hours"
+            },
+            {
+              "value": "week",
+              "label": "Latest week"
+            },
+            {
+              "value": "month",
+              "label": "Latest month"
+            },
+            {
+              "value": "three-month",
+              "label": "Latest 3 months"
+            }
+          ],
+          "default": "all"
+        },
+        "query": "Keyword, empty by default"
+      },
+      "description": "| Category | Name in Korean     | Name in English         |\n| -------- | ------------------ | ----------------------- |\n| all      | 전체               | All                     |\n| 1        | 영상/모션그래픽    | Video / Motion Graphics |\n| 2        | 그래픽 디자인      | Graphic Design          |\n| 3        | 브랜딩/편집        | Branding / Editing      |\n| 4        | UI/UX              | UI/UX                   |\n| 5        | 일러스트레이션     | Illustration            |\n| 6        | 디지털 아트        | Digital Art             |\n| 7        | 캐릭터 디자인      | Character Design        |\n| 8        | 제품/패키지 디자인 | Product Package Design  |\n| 9        | 포토그래피         | Photography             |\n| 10       | 타이포그래피       | Typography              |\n| 11       | 공예               | Crafts                  |\n| 12       | 파인아트           | Fine Art                |"
     }
   },
   {
@@ -1366,29 +1379,19 @@
     }
   },
   {
-    "provider_id": "odaily",
-    "provider_name": "Odaily 星球日报",
-    "route_key": "/newsflash",
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/rss/:cat?",
     "route": {
-      "name": "快讯",
-      "path": "/newsflash",
-      "example": "/odaily/newsflash",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "odaily",
-    "provider_name": "Odaily 星球日报",
-    "route_key": "/:id?",
-    "route": {
-      "name": "文章",
-      "path": "/:id?",
-      "example": "/odaily",
+      "name": "News",
+      "path": "/rss/:cat?",
+      "example": "/nytimes/rss/HomePage",
       "parameters": {
-        "id": "id，见下表，默认为最新"
+        "cat": {
+          "description": "Category name, corresponding to the last segment of [official feed's](https://www.nytimes.com/rss) url."
+        }
       },
-      "description": "| 最新 | 新品 | DeFi | NFT | 存储 | 波卡 | 行情 | 活动 |\n| ---- | ---- | ---- | --- | ---- | ---- | ---- | ---- |\n| 280  | 333  | 331  | 334 | 332  | 330  | 297  | 296  |"
+      "description": "Enhance the official EN RSS feed"
     }
   },
   {
@@ -1420,13 +1423,17 @@
   {
     "provider_id": "pingwest",
     "provider_name": "品玩",
-    "route_key": "/status",
+    "route_key": "/tag/:tag/:type/:option?",
     "route": {
-      "name": "实时要闻",
-      "path": "/status",
-      "example": "/pingwest/status",
-      "parameters": {},
-      "description": ""
+      "name": "话题动态",
+      "path": "/tag/:tag/:type/:option?",
+      "example": "/pingwest/tag/ChinaJoy/1",
+      "parameters": {
+        "tag": "话题名或话题id, 可从话题页url中得到",
+        "type": "内容类型",
+        "option": "参数, 默认无"
+      },
+      "description": "内容类型\n\n| 最新 | 热门 |\n| ---- | ---- |\n| 1    | 2    |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/tag/ChinaJoy/1/fulltext`\n\n::: tip\n  该路由一次最多显示 30 条文章\n:::"
     }
   },
   {
@@ -1476,55 +1483,16 @@
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
-    "route_key": "/hotlinks",
+    "route_key": "/top/:category?/:lang?",
     "route": {
-      "name": "Hotlinks",
-      "path": "/hotlinks",
-      "example": "/plurk/hotlinks",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "plurk",
-    "provider_name": "Plurk",
-    "route_key": "/news/:lang?",
-    "route": {
-      "name": "Plurk News",
-      "path": "/news/:lang?",
-      "example": "/plurk/news/:lang?",
+      "name": "Top",
+      "path": "/top/:category?/:lang?",
+      "example": "/plurk/top/topReplurks",
       "parameters": {
-        "lang": "Language, see the table above, `en` by default"
+        "category": "Category, see the table below, `topReplurks` by default",
+        "lang": "Language, see the table below, `en` by default"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "plurk",
-    "provider_name": "Plurk",
-    "route_key": "/topic/:topic",
-    "route": {
-      "name": "Topic",
-      "path": "/topic/:topic",
-      "example": "/plurk/topic/standwithukraine",
-      "parameters": {
-        "topic": "Topic ID, can be found in URL"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "plurk",
-    "provider_name": "Plurk",
-    "route_key": "/user/:user",
-    "route": {
-      "name": "User",
-      "path": "/user/:user",
-      "example": "/plurk/user/plurkoffice",
-      "parameters": {
-        "user": "User ID, can be found in URL"
-      },
-      "description": ""
+      "description": "| Top Replurks | Top Favorites | Top Responded |\n| ------------ | ------------- | ------------- |\n| topReplurks  | topFavorites  | topResponded  |\n\n| English | 中文（繁體） |\n| ------- | ------------ |\n| en      | zh           |"
     }
   },
   {
@@ -1546,27 +1514,90 @@
   {
     "provider_id": "pornhub",
     "provider_name": "PornHub",
-    "route_key": "/search/:keyword",
+    "route_key": "/pornstar/:username/:language?/:sort?",
     "route": {
-      "name": "Keyword Search",
-      "path": "/search/:keyword",
-      "example": "/pornhub/search/stepsister",
+      "name": "Pornstar",
+      "path": "/pornstar/:username/:language?/:sort?",
+      "example": "/pornhub/pornstar/june-liu/www/mr",
       "parameters": {
-        "keyword": "keyword"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "qbitai",
-    "provider_name": "量子位",
-    "route_key": "/tag/:tag",
-    "route": {
-      "name": "标签",
-      "path": "/tag/:tag",
-      "example": "/qbitai/tag/大语言模型",
-      "parameters": {
-        "tag": "标签名"
+        "username": {
+          "description": "username, part of the url e.g. `pornhub.com/pornstar/june-liu`"
+        },
+        "language": {
+          "description": "language",
+          "options": [
+            {
+              "value": "www",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "it",
+              "label": "Italiano"
+            },
+            {
+              "value": "ja",
+              "label": "日本語"
+            },
+            {
+              "value": "pt",
+              "label": "Português"
+            },
+            {
+              "value": "pl",
+              "label": "Polski"
+            },
+            {
+              "value": "rt",
+              "label": "Русский"
+            },
+            {
+              "value": "nl",
+              "label": "Dutch"
+            },
+            {
+              "value": "cs",
+              "label": "Czech"
+            },
+            {
+              "value": "cn",
+              "label": "中文（简体）"
+            }
+          ],
+          "default": "www"
+        },
+        "sort": {
+          "description": "sorting method, leave empty for `Best`",
+          "options": [
+            {
+              "label": "Most Recent",
+              "value": "mr"
+            },
+            {
+              "label": "Most Viewed",
+              "value": "mv"
+            },
+            {
+              "label": "Top Rated",
+              "value": "tr"
+            },
+            {
+              "label": "Longest",
+              "value": "lg"
+            }
+          ]
+        }
       },
       "description": ""
     }
@@ -1574,13 +1605,15 @@
   {
     "provider_id": "readhub",
     "provider_name": "Readhub",
-    "route_key": "/daily",
+    "route_key": "/:category?",
     "route": {
-      "name": "每日早报",
-      "path": "/daily",
-      "example": "/readhub/daily",
-      "parameters": {},
-      "description": ""
+      "name": "分类",
+      "path": "/:category?",
+      "example": "/readhub",
+      "parameters": {
+        "category": "分类，见下表，默认为热门话题"
+      },
+      "description": "| 热门话题 | 科技动态 | 医疗产业 | 财经快讯           |\n| -------- | -------- | -------- | ------------------ |\n|          | news     | medical  | financial_express |"
     }
   },
   {
@@ -1673,20 +1706,6 @@
   {
     "provider_id": "sspai",
     "provider_name": "少数派 sspai",
-    "route_key": "/activity/:slug",
-    "route": {
-      "name": "作者动态",
-      "path": "/activity/:slug",
-      "example": "/sspai/activity/urfp0d9i",
-      "parameters": {
-        "slug": "作者 slug，可在作者主页URL中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sspai",
-    "provider_name": "少数派 sspai",
     "route_key": "/bookmarks/:slug",
     "route": {
       "name": "用户收藏",
@@ -1715,18 +1734,6 @@
   {
     "provider_id": "sspai",
     "provider_name": "少数派 sspai",
-    "route_key": "/index",
-    "route": {
-      "name": "首页",
-      "path": "/index",
-      "example": "/sspai/index",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sspai",
-    "provider_name": "少数派 sspai",
     "route_key": "/matrix",
     "route": {
       "name": "Matrix",
@@ -1734,6 +1741,34 @@
       "example": "/sspai/matrix",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/series/:id",
+    "route": {
+      "name": "付费专栏文章更新",
+      "path": "/series/:id",
+      "example": "/sspai/series/77",
+      "parameters": {
+        "id": "专栏 id"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "startuplatte",
+    "provider_name": "創新拿鐵",
+    "route_key": "/:category?",
+    "route": {
+      "name": "分类",
+      "path": "/:category?",
+      "example": "/startuplatte",
+      "parameters": {
+        "category": "分类，见下表，默认为首頁"
+      },
+      "description": "| 首頁 | 大師智慧 | 深度分析 | 新知介紹 |\n| ---- | -------- | -------- | -------- |\n|      | quote    | analysis | trend    |"
     }
   },
   {
@@ -1761,60 +1796,31 @@
     }
   },
   {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/tv/:id/seasons/:lang?",
-    "route": {
-      "name": "TV Show Seasons",
-      "path": "/tv/:id/seasons/:lang?",
-      "example": "/themoviedb/tv/70593/seasons/en-US",
-      "parameters": {
-        "id": "TV show ID",
-        "lang": "Language"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "thepaper",
     "provider_name": "澎湃新闻",
-    "route_key": "/channel/:id",
+    "route_key": "/sidebar/:sec?",
     "route": {
-      "name": "频道",
-      "path": "/channel/:id",
-      "example": "/thepaper/channel/25950",
+      "name": "侧边栏",
+      "path": "/sidebar/:sec?",
+      "example": "/thepaper/sidebar",
       "parameters": {
-        "id": "频道 id，可在频道页 URL 中找到"
-      },
-      "description": "| 频道 ID | 频道名 |\n| ------- | ------ |\n| 26916   | 视频   |\n| 108856  | 战疫   |\n| 25950   | 时事   |\n| 25951   | 财经   |\n| 36079   | 澎湃号 |\n| 119908  | 科技   |\n| 25952   | 思想   |\n| 119489  | 智库   |\n| 25953   | 生活   |\n| 26161   | 问吧   |\n| 122908  | 国际   |\n| -21     | 体育   |\n| -24     | 评论   |"
-    }
-  },
-  {
-    "provider_id": "thepetcity",
-    "provider_name": "PetCity 毛孩日常",
-    "route_key": "/:term?",
-    "route": {
-      "name": "分類",
-      "path": "/:term?",
-      "example": "/thepetcity",
-      "parameters": {
-        "term": "見下表，留空為全部文章"
-      },
-      "description": "| Column Name       | TermID |\n| -------------------- | ------ |\n| Knowledge飼養大全     | 3      |\n| Funny News毛孩趣聞    | 2      |\n| Raise Pets 養寵物新手  | 5      |\n| Hot Spot 毛孩打卡點    | 4      |\n| Pet Staff 毛孩好物    | 1      |"
-    }
-  },
-  {
-    "provider_id": "tingtingfm",
-    "provider_name": "听听 FM",
-    "route_key": "/program/:programId",
-    "route": {
-      "name": "节目",
-      "path": "/program/:programId",
-      "example": "/tingtingfm/program/M7VJv6Jj4R",
-      "parameters": {
-        "programId": "节目 ID，可以在 URL 中找到"
+        "sec": "侧边栏 id，可选 `hotNews` 即 澎湃热榜、`financialInformationNews` 即 澎湃财讯、`morningEveningNews` 即 早晚报，默认为 `hotNews`"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "tophub",
+    "provider_name": "今日热榜",
+    "route_key": "/list/:id",
+    "route": {
+      "name": "榜单列表",
+      "path": "/list/:id",
+      "example": "/tophub/list/Om4ejxvxEN",
+      "parameters": {
+        "id": "榜单id，可在 URL 中找到"
+      },
+      "description": "::: tip\n将榜单条目集合到一个列表中，可避免推送大量条目，更符合阅读习惯且有热度排序，推荐使用。\n:::"
     }
   },
   {
@@ -1834,6 +1840,20 @@
   {
     "provider_id": "twreporter",
     "provider_name": "報導者",
+    "route_key": "/category/:category",
+    "route": {
+      "name": "分類",
+      "path": "/category/:category",
+      "example": "/twreporter/category/world",
+      "parameters": {
+        "category": "Category"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "twreporter",
+    "provider_name": "報導者",
     "route_key": "/newest",
     "route": {
       "name": "最新",
@@ -1844,132 +1864,209 @@
     }
   },
   {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/topics/:type",
+    "provider_id": "vimeo",
+    "provider_name": "Vimeo",
+    "route_key": "/user/:username/:cat?",
     "route": {
-      "name": "最热 / 最新主题",
-      "path": "/topics/:type",
-      "example": "/v2ex/topics/latest",
+      "name": "User Profile",
+      "path": "/user/:username/:cat?",
+      "example": "/vimeo/user/filmsupply/picks",
       "parameters": {
-        "type": {
-          "description": "主题类型",
-          "options": [
-            {
-              "value": "hot",
-              "label": "最热主题"
-            },
-            {
-              "value": "latest",
-              "label": "最新主题"
-            }
-          ],
-          "default": "hot"
+        "username": "In this example [https://vimeo.com/filmsupply](https://vimeo.com/filmsupply)  is `filmsupply`",
+        "cat": "deafult for all latest videos, others categories in this example such as `Docmentary`, `Narrative`, `Drama`. Set `picks` for promote orders, just orderd like web page. When `picks` added, published date won't show up"
+      },
+      "description": "::: tip Special category name attention\n  Some of the categories contain slash like `3D/CG` , must change the slash `/` to the vertical bar`|`.\n:::"
+    }
+  },
+  {
+    "provider_id": "weibo",
+    "provider_name": "微博",
+    "route_key": "/user/:uid/:routeParams?",
+    "route": {
+      "name": "博主",
+      "path": "/user/:uid/:routeParams?",
+      "example": "/weibo/user/1195230310",
+      "parameters": {
+        "uid": "用户 id, 博主主页打开控制台执行 `$CONFIG.oid` 获取",
+        "routeParams": "额外参数；请参阅上面的说明和表格；特别地，当 `routeParams=1` 时开启微博视频显示"
+      },
+      "description": "::: warning\n  部分博主仅登录可见，未提供 Cookie 的情况下不支持订阅，可以通过打开 `https://m.weibo.cn/u/:uid` 验证\n:::"
+    }
+  },
+  {
+    "provider_id": "weibo",
+    "provider_name": "微博",
+    "route_key": "/search/hot/:fulltext?",
+    "route": {
+      "name": "热搜榜",
+      "path": "/search/hot/:fulltext?",
+      "example": "/weibo/search/hot",
+      "parameters": {
+        "fulltext": {
+          "description": "\n-   使用`/weibo/search/hot`可以获取热搜条目列表；\n-   使用`/weibo/search/hot/fulltext`可以进一步获取热搜条目下的摘要信息（不含图片视频）；\n-   使用`/weibo/search/hot/fulltext?pic=true`可以获取图片缩略（但需要配合额外的手段，例如浏览器上的 Header Editor 等来修改 referer 参数为`https://weibo.com`，以规避微博的外链限制，否则图片无法显示。）\n-   使用`/weibo/search/hot/fulltext?pic=true&fullpic=true`可以获取 Original 图片（但需要配合额外的手段，例如浏览器上的 Header Editor 等来修改 referer 参数为`https://weibo.com`，以规避微博的外链限制，否则图片无法显示。）"
         }
       },
       "description": ""
     }
   },
   {
-    "provider_id": "vocus",
-    "provider_name": "方格子",
-    "route_key": "/publication/:id",
+    "provider_id": "yahoo",
+    "provider_name": "Yahoo",
+    "route_key": "/news/:region/:category?",
     "route": {
-      "name": "出版專題",
-      "path": "/publication/:id",
-      "example": "/vocus/publication/bass",
+      "name": "News",
+      "path": "/news/:region/:category?",
+      "example": "/yahoo/news/hk/world",
       "parameters": {
-        "id": "出版專題 id，可在出版專題主页的 URL 找到"
+        "region": "Region, `hk/tw/au/ca/fr/malaysia/nz/sg/uk/en(us)`, the part represented by the asterisk (*) in *.news.yahoo.com",
+        "category": "Category, The part represented by the asterisk (*) in .news.yahoo.com/rss/*, region \"hk/tw\" differs, see the description below"
       },
-      "description": ""
+      "description": "\n`Region`\n\nSupport all regions represented by the asterisk (*) in *.news.yahoo.com, such as hk/tw/au/ca/fr/malaysia/nz/sg/uk/en(us). For www.yahoo.com, use en or us. Sites with news domains other than *.news.yahoo.com, such as de.nachrichten.yahoo.com or news.yahoo.co.jp, are not supported.\n\n`Category`\n\nThe parsing method for Yahoo Hong Kong and Taiwan is quite unique. All supported categories are as follows\n\nCategory for hk.news.yahoo.com (hongkong)\n\n| 全部     | 港聞      | 兩岸國際 | 財經      | 娛樂          | 體育   | 健康   | 親子       | 副刊       |\n| ------- | --------- | -------- | -------- | ------------- | ------ | ------ | --------- | ---------- |\n| (empty) | hong-kong | world    | business | entertainment | sports | health | parenting | supplement |\n\nCategory for tw.news.yahoo.com (taiwan)\n\n| 全部     | 政治     | 財經    | 娛樂          | 運動    | 社會地方 | 國際   | 生活      | 健康   | 科技        | 品味  |\n| ------- | -------- | ------- | ------------- | ------ | -------- | ----- | --------- | ------ | ---------- | ----- |\n| (empty) | politics | finance | entertainment | sports | society  | world | lifestyle | health | technology | style |\n\nOther Yahoo news is fetched from the RSS provided by Yahoo. Please refer to the categories displayed on the pages of *.news.yahoo.com (for example, \"world\"), and try to access *.news.yahoo.com/rss/world to see if it is accessible and contains recent news (some categories exist but are not updated). If it is accessible and has recent news, then that category can be used on the corresponding site. For example, the available categories for news.yahoo.com are as follows\n\nCategory for news.yahoo.com (US)\n\n| All     | US | Politics | World | Science | Tech |\n| ------- | -- | -------- | ----- | ------- | ---- |\n| (empty) | us | politics | world | science | tech |\n\nTo give another example, since uk.news.yahoo.com/rss/ukoriginal is accessible and has recent news, /yahoo/news/uk/ukoriginal is a valid RSSHub route.\n\n`author`\n\nFor Yahoo Hong Kong and Yahoo Taiwan, please use another \"news source\" route.\n\nFor other Yahoo News, this route's RSS provides the author field. You can use RSSHub's built-in \"content filtering\" feature. For example, /yahoo-wg/news/tw/technology?filter_author=Yahoo%20Tech|Engadget can filter out news with authors containing Yahoo Tech or Engadget from Yahoo Taiwan's technology news, which is the Chinese version of Engadget.\n"
     }
   },
   {
-    "provider_id": "xiaoyuzhou",
-    "provider_name": "小宇宙",
-    "route_key": "/podcast/:id",
+    "provider_id": "yande",
+    "provider_name": "yande.re",
+    "route_key": "/post/popular_recent/:period?",
     "route": {
-      "name": "播客",
-      "path": "/podcast/:id",
-      "example": "/xiaoyuzhou/podcast/6021f949a789fca4eff4492c",
+      "name": "Popular Recent Posts",
+      "path": "/post/popular_recent/:period?",
+      "example": "/yande/post/popular_recent/1d",
       "parameters": {
-        "id": "播客 id 或单集 id，可以在小宇宙播客的 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "youzhiyouxing",
-    "provider_name": "有知有行",
-    "route_key": "/materials/:id?",
-    "route": {
-      "name": "有知文章",
-      "path": "/materials/:id?",
-      "example": "/youzhiyouxing/materials",
-      "parameters": {
-        "id": {
-          "description": "分类",
+        "period": {
+          "description": "展示时间",
           "options": [
             {
-              "value": "0",
-              "label": "全部"
+              "value": "1d",
+              "label": "最近 24 小时"
             },
             {
-              "value": "4",
-              "label": "知行小酒馆"
+              "value": "1w",
+              "label": "最近一周"
             },
             {
-              "value": "2",
-              "label": "知行黑板报"
+              "value": "1m",
+              "label": "最近一月"
             },
             {
-              "value": "10",
-              "label": "无人知晓"
-            },
-            {
-              "value": "1",
-              "label": "孟岩专栏"
-            },
-            {
-              "value": "3",
-              "label": "知行读书会"
-            },
-            {
-              "value": "11",
-              "label": "你好，同路人"
+              "value": "1y",
+              "label": "最近一年"
             }
           ],
-          "default": "0"
+          "default": "1d"
         }
       },
-      "description": "| 全部 | 知行小酒馆 | 知行黑板报 | 无人知晓 | 孟岩专栏 | 知行读书会 | 你好，同路人 |\n| :--: | :--------: | :--------: | :------: | :------: | :--------: | :----------: |\n|   0  |      4     |      2     |    10    |     1    |      3     |      11      |"
+      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |"
     }
   },
   {
     "provider_id": "yyets",
     "provider_name": "人人影视",
-    "route_key": "/today",
+    "route_key": "/article/:type?",
     "route": {
-      "name": "今日播出",
-      "path": "/today",
-      "example": "/yyets/today",
-      "parameters": {},
-      "description": ""
+      "name": "影视资讯",
+      "path": "/article/:type?",
+      "example": "/yyets/article",
+      "parameters": {
+        "type": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "news",
+              "label": "影视资讯"
+            },
+            {
+              "value": "report",
+              "label": "收视快报"
+            },
+            {
+              "value": "m_review",
+              "label": "人人影评"
+            },
+            {
+              "value": "t_review",
+              "label": "人人剧评"
+            },
+            {
+              "value": "new_review",
+              "label": "新剧评测"
+            },
+            {
+              "value": "recom",
+              "label": "片单推荐"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |"
     }
   },
   {
-    "provider_id": "zhitongcaijing",
-    "provider_name": "智通财经网",
-    "route_key": "/:id?/:category?",
+    "provider_id": "zhihu",
+    "provider_name": "知乎",
+    "route_key": "/hot/:category?",
     "route": {
-      "name": "推荐",
-      "path": "/:id?/:category?",
-      "example": "/zhitongcaijing",
+      "name": "知乎热榜",
+      "path": "/hot/:category?",
+      "example": "/zhihu/hot",
       "parameters": {
-        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 recommend，即推荐",
-        "category": "分类 id，可在对应栏目子分类页 URL 中找到，默认为全部"
+        "category": {
+          "description": "分类",
+          "default": "total",
+          "options": [
+            {
+              "value": "total",
+              "label": "全站"
+            },
+            {
+              "value": "focus",
+              "label": "国际"
+            },
+            {
+              "value": "science",
+              "label": "科学"
+            },
+            {
+              "value": "car",
+              "label": "汽车"
+            },
+            {
+              "value": "zvideo",
+              "label": "视频"
+            },
+            {
+              "value": "fashion",
+              "label": "时尚"
+            },
+            {
+              "value": "depth",
+              "label": "时事"
+            },
+            {
+              "value": "digital",
+              "label": "数码"
+            },
+            {
+              "value": "sport",
+              "label": "体育"
+            },
+            {
+              "value": "school",
+              "label": "校园"
+            },
+            {
+              "value": "film",
+              "label": "影视"
+            }
+          ]
+        }
       },
-      "description": "| id           | 栏目 |\n| ------------ | ---- |\n| recommend    | 推荐 |\n| hkstock      | 港股 |\n| meigu        | 美股 |\n| agu          | 沪深 |\n| ct           | 创投 |\n| esg          | ESG  |\n| aqs          | 券商 |\n| ajj          | 基金 |\n| focus        | 要闻 |\n| announcement | 公告 |\n| research     | 研究 |\n| shares       | 新股 |\n| bazaar       | 市场 |\n| company      | 公司 |"
+      "description": ""
     }
   }
 ]

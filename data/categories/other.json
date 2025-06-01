@@ -1,56 +1,5 @@
 [
   {
-    "provider_id": "acpaa",
-    "provider_name": "中华全国专利代理师协会",
-    "route_key": "/:id?/:name?",
-    "route": {
-      "path": "/:id?/:name?",
-      "example": "/acpaa",
-      "parameters": {
-        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
-        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
-      },
-      "name": "标签",
-      "provider_id": "acpaa",
-      "provider_name": "中华全国专利代理师协会",
-      "route_key": "/:id?/:name?"
-    }
-  },
-  {
-    "provider_id": "afdian",
-    "provider_name": "爱发电",
-    "route_key": "/explore/:type/:category?",
-    "route": {
-      "path": "/explore/:type/:category?",
-      "example": "/afdian/explore/hot/所有",
-      "parameters": {
-        "type": "分类",
-        "category": "目录类型，默认为 `所有`"
-      },
-      "name": "发现用户",
-      "description": "分类\n\n| 推荐 | 最热 |\n| ---- | ---- |\n| rec  | hot  |\n\n  目录类型\n\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |",
-      "provider_id": "afdian",
-      "provider_name": "爱发电",
-      "route_key": "/explore/:type/:category?"
-    }
-  },
-  {
-    "provider_id": "apple",
-    "provider_name": "Apple",
-    "route_key": "/exchange_repair/:country?",
-    "route": {
-      "path": "/exchange_repair/:country?",
-      "example": "/apple/exchange_repair",
-      "parameters": {
-        "country": "country code in apple.com URL (exception: for `United States` please use `us`), default to China `cn`"
-      },
-      "name": "Exchange and Repair Extension Programs",
-      "provider_id": "apple",
-      "provider_name": "Apple",
-      "route_key": "/exchange_repair/:country?"
-    }
-  },
-  {
     "provider_id": "atptour",
     "provider_name": "ATP Tour",
     "route_key": "/news/:lang?",
@@ -64,22 +13,6 @@
       "provider_id": "atptour",
       "provider_name": "ATP Tour",
       "route_key": "/news/:lang?"
-    }
-  },
-  {
-    "provider_id": "baidu",
-    "provider_name": "百度",
-    "route_key": "/search/:keyword",
-    "route": {
-      "path": "/search/:keyword",
-      "example": "/baidu/search/rss",
-      "parameters": {
-        "keyword": "搜索关键词"
-      },
-      "name": "搜索",
-      "provider_id": "baidu",
-      "provider_name": "百度",
-      "route_key": "/search/:keyword"
     }
   },
   {
@@ -117,54 +50,21 @@
     }
   },
   {
-    "provider_id": "boc",
-    "provider_name": "中国银行",
-    "route_key": "/whpj/:format?",
+    "provider_id": "clickme",
+    "provider_name": "ClickMe",
+    "route_key": "/:site/:grouping/:name",
     "route": {
-      "path": "/whpj/:format?",
-      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
+      "path": "/:site/:grouping/:name",
+      "example": "/clickme/default/category/beauty",
       "parameters": {
-        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
+        "site": "站点，`default`为普通站，`r18`为成人站，其它值默认为普通站",
+        "grouping": "分组方式，`category`为分类，`tag`为标签，其他值默认为分类",
+        "name": "分类名或标签名，分类名为英文，可以在分类 URL 中找到"
       },
-      "name": "外汇牌价",
-      "url": "boc.cn/sourcedb/whpj",
-      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |",
-      "provider_id": "boc",
-      "provider_name": "中国银行",
-      "route_key": "/whpj/:format?"
-    }
-  },
-  {
-    "provider_id": "cfachina",
-    "provider_name": "中国期货业协会",
-    "route_key": "/servicesupport/analygarden/:program?",
-    "route": {
-      "path": "/servicesupport/analygarden/:program?",
-      "example": "/cfachina/servicesupport/analygarden",
-      "parameters": {
-        "program": "分类，见下表，留空为全部"
-      },
-      "name": "分析师园地",
-      "description": "| 有色金属类 | 黑色金属类 | 能源化工类 | 贵金属类 | 农产品类 | 金融类 | 指数类 |\n| ---------- | ---------- | ---------- | -------- | -------- | ------ | ------ |\n| ysjsl      | hsjsl      | nyhgl      | gjsl     | ncpl     | jrl    | zsl    |",
-      "provider_id": "cfachina",
-      "provider_name": "中国期货业协会",
-      "route_key": "/servicesupport/analygarden/:program?"
-    }
-  },
-  {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/alerts/:keyword",
-    "route": {
-      "path": "/alerts/:keyword",
-      "example": "/google/alerts/RSSHub",
-      "parameters": {
-        "keyword": "Keyword"
-      },
-      "name": "Alerts",
-      "provider_id": "google",
-      "provider_name": "Google",
-      "route_key": "/alerts/:keyword"
+      "name": "文章",
+      "provider_id": "clickme",
+      "provider_name": "ClickMe",
+      "route_key": "/:site/:grouping/:name"
     }
   },
   {
@@ -183,21 +83,63 @@
     }
   },
   {
-    "provider_id": "icbc",
-    "provider_name": "中国工商银行",
-    "route_key": "/whpj/:format?",
+    "provider_id": "hiring.cafe",
+    "provider_name": "HiringCafe",
+    "route_key": "/jobs/:keywords",
     "route": {
-      "path": "/whpj/:format?",
-      "example": "/icbc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
+      "path": "/jobs/:keywords",
+      "example": "/hiring.cafe/jobs/sustainability",
       "parameters": {
-        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
+        "keywords": "Keywords to search for"
       },
-      "name": "外汇牌价",
-      "url": "icbc.com.cn/column/1438058341489590354.html",
-      "description": "| 短格式 | 参考价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs     | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |",
-      "provider_id": "icbc",
-      "provider_name": "中国工商银行",
-      "route_key": "/whpj/:format?"
+      "name": "Jobs",
+      "provider_id": "hiring.cafe",
+      "provider_name": "HiringCafe",
+      "route_key": "/jobs/:keywords"
+    }
+  },
+  {
+    "provider_id": "iqnew",
+    "provider_name": "爱 Q 生活网",
+    "route_key": "/latest",
+    "route": {
+      "path": "/latest",
+      "example": "/iqnew/latest",
+      "parameters": {},
+      "name": "最近更新",
+      "url": "iqnew.com/post/new_100/",
+      "provider_id": "iqnew",
+      "provider_name": "爱 Q 生活网",
+      "route_key": "/latest"
+    }
+  },
+  {
+    "provider_id": "jingzhengu",
+    "provider_name": "精真估",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/jingzhengu/news",
+      "name": "资讯",
+      "url": "www.jingzhengu.com",
+      "provider_id": "jingzhengu",
+      "provider_name": "精真估",
+      "route_key": "/news"
+    }
+  },
+  {
+    "provider_id": "piyao",
+    "provider_name": "中国互联网联合辟谣平台",
+    "route_key": "/jrpy",
+    "route": {
+      "path": "/jrpy",
+      "example": "/piyao/jrpy",
+      "parameters": {},
+      "name": "今日辟谣",
+      "url": "piyao.org.cn/jrpy/index.htm",
+      "provider_id": "piyao",
+      "provider_name": "中国互联网联合辟谣平台",
+      "route_key": "/jrpy"
     }
   },
   {
@@ -216,6 +158,36 @@
     }
   },
   {
+    "provider_id": "sogou",
+    "provider_name": "搜狗",
+    "route_key": "/search/:keyword",
+    "route": {
+      "path": "/search/:keyword",
+      "example": "/sogou/search/rss",
+      "parameters": {
+        "keyword": "搜索关键词"
+      },
+      "name": "搜索",
+      "provider_id": "sogou",
+      "provider_name": "搜狗",
+      "route_key": "/search/:keyword"
+    }
+  },
+  {
+    "provider_id": "sustainabilitymag",
+    "provider_name": "Sustainability Magazine",
+    "route_key": "/articles",
+    "route": {
+      "path": "/articles",
+      "name": "Articles",
+      "url": "sustainabilitymag.com/articles",
+      "example": "/sustainabilitymag/articles",
+      "provider_id": "sustainabilitymag",
+      "provider_name": "Sustainability Magazine",
+      "route_key": "/articles"
+    }
+  },
+  {
     "provider_id": "taiwanmobile",
     "provider_name": "台灣大哥大",
     "route_key": "/rate-plans",
@@ -227,24 +199,6 @@
       "provider_id": "taiwanmobile",
       "provider_name": "台灣大哥大",
       "route_key": "/rate-plans"
-    }
-  },
-  {
-    "provider_id": "trending",
-    "provider_name": "热搜聚合",
-    "route_key": "/:keywords/:numberOfDays?",
-    "route": {
-      "path": "/:keywords/:numberOfDays?",
-      "example": "/trending/唐山,打人/3",
-      "parameters": {
-        "keywords": "通过逗号区隔的关键词列表",
-        "numberOfDays": "向前追溯的天数，默认为3天"
-      },
-      "name": "关键词聚合追踪",
-      "description": "追踪各大热搜榜上包含特定关键词的条目。\n\n当前收录榜单：*微博热搜*、*今日头条热搜*、*知乎热搜*、*知乎热门视频*、*知乎热门话题*。\n\n数据源: [trending-in-one](https://github.com/huqi-pr/trending-in-one)",
-      "provider_id": "trending",
-      "provider_name": "热搜聚合",
-      "route_key": "/:keywords/:numberOfDays?"
     }
   },
   {
@@ -280,18 +234,20 @@
     }
   },
   {
-    "provider_id": "wfdf",
-    "provider_name": "WFDF",
-    "route_key": "/news",
+    "provider_id": "usepanda",
+    "provider_name": "Panda",
+    "route_key": "/feeds/:id",
     "route": {
-      "path": "/news",
-      "example": "/wfdf/news",
-      "parameters": {},
-      "name": "News",
-      "url": "wfdf.sport/news/",
-      "provider_id": "wfdf",
-      "provider_name": "WFDF",
-      "route_key": "/news"
+      "path": "/feeds/:id",
+      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
+      "parameters": {
+        "id": "Feed ID"
+      },
+      "name": "Feeds",
+      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |",
+      "provider_id": "usepanda",
+      "provider_name": "Panda",
+      "route_key": "/feeds/:id"
     }
   }
 ]

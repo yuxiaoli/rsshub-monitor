@@ -1,5 +1,19 @@
 [
   {
+    "provider_id": "alistapart",
+    "provider_name": "A List Apart",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "name": "Home Feed",
+      "url": "alistapart.com/articles/",
+      "example": "/alistapart",
+      "provider_id": "alistapart",
+      "provider_name": "A List Apart",
+      "route_key": "/"
+    }
+  },
+  {
     "provider_id": "anquanke",
     "provider_name": "安全客",
     "route_key": "/:category/:fulltext?",
@@ -20,26 +34,6 @@
   {
     "provider_id": "atcoder",
     "provider_name": "AtCoder",
-    "route_key": "/contest/:language?/:rated?/:category?/:keyword?",
-    "route": {
-      "path": "/contest/:language?/:rated?/:category?/:keyword?",
-      "example": "/atcoder/contest",
-      "parameters": {
-        "language": "Language, `jp` as Japanese or `en` as English, English by default",
-        "rated": "Rated Range, see below, all by default",
-        "category": "Category, see below, all by default",
-        "keyword": "Keyword"
-      },
-      "name": "Contests Archive",
-      "description": "Rated Range\n\n| ABC Class (Rated for ~1999) | ARC Class (Rated for ~2799) | AGC Class (Rated for ~9999) |\n| ---------------------------- | ---------------------------- | ---------------------------- |\n| 1                            | 2                            | 3                            |\n\n  Category\n\n| All | AtCoder Typical Contest | PAST Archive | Unofficial(unrated) |\n| --- | ----------------------- | ------------ | ------------------- |\n| 0   | 6                       | 50           | 101                 |\n\n| JOI Archive | Sponsored Tournament | Sponsored Parallel(rated) |\n| ----------- | -------------------- | ------------------------- |\n| 200         | 1000                 | 1001                      |\n\n| Sponsored Parallel(unrated) | Optimization Contest |\n| --------------------------- | -------------------- |\n| 1002                        | 1200                 |",
-      "provider_id": "atcoder",
-      "provider_name": "AtCoder",
-      "route_key": "/contest/:language?/:rated?/:category?/:keyword?"
-    }
-  },
-  {
-    "provider_id": "atcoder",
-    "provider_name": "AtCoder",
     "route_key": "/post/:language?/:keyword?",
     "route": {
       "path": "/post/:language?/:keyword?",
@@ -52,6 +46,22 @@
       "provider_id": "atcoder",
       "provider_name": "AtCoder",
       "route_key": "/post/:language?/:keyword?"
+    }
+  },
+  {
+    "provider_id": "bestblogs",
+    "provider_name": "bestblogs.dev",
+    "route_key": "/feeds/:category?",
+    "route": {
+      "path": "/feeds/:category?",
+      "example": "/bestblogs/feeds/featured",
+      "parameters": {
+        "category": "the category of articles. Can be `programming`, `ai`, `product`, `business` or `featured`. Default is `featured`"
+      },
+      "name": "文章列表",
+      "provider_id": "bestblogs",
+      "provider_name": "bestblogs.dev",
+      "route_key": "/feeds/:category?"
     }
   },
   {
@@ -89,16 +99,18 @@
     }
   },
   {
-    "provider_id": "chlinlearn",
-    "provider_name": "chlinlearn 的技术博客",
-    "route_key": "/daily-blog",
+    "provider_id": "bitmovin",
+    "provider_name": "Bitmovin",
+    "route_key": "/blog",
     "route": {
-      "path": "/daily-blog",
-      "name": "值得一读技术博客",
-      "example": "/chlinlearn/daily-blog",
-      "provider_id": "chlinlearn",
-      "provider_name": "chlinlearn 的技术博客",
-      "route_key": "/daily-blog"
+      "path": "/blog",
+      "example": "/bitmovin/blog",
+      "parameters": {},
+      "name": "Blog",
+      "url": "bitmovin.com/blog",
+      "provider_id": "bitmovin",
+      "provider_name": "Bitmovin",
+      "route_key": "/blog"
     }
   },
   {
@@ -169,35 +181,21 @@
     }
   },
   {
-    "provider_id": "dangdang",
-    "provider_name": "当当开放平台",
-    "route_key": "/notice/:type?",
+    "provider_id": "deeplearning",
+    "provider_name": "DeepLearning.AI",
+    "route_key": "/the-batch/:tag{.+}?",
     "route": {
-      "path": "/notice/:type?",
-      "example": "/dangdang/notice/1",
+      "path": "/the-batch/:tag{.+}?",
+      "name": "The Batch",
+      "url": "www.deeplearning.ai",
+      "example": "/deeplearning/the-batch",
       "parameters": {
-        "type": "公告分类，默认为全部"
+        "tag": "Tag, Weekly Issues by default"
       },
-      "name": "公告",
-      "description": "| 类型     | type |\n| -------- | ---- |\n| 全部      | 0    |\n| 其他      | 1    |\n| 规则变更   | 2    |",
-      "provider_id": "dangdang",
-      "provider_name": "当当开放平台",
-      "route_key": "/notice/:type?"
-    }
-  },
-  {
-    "provider_id": "devtrium",
-    "provider_name": "Devtrium",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/devtrium",
-      "parameters": {},
-      "name": "Official Blogs",
-      "url": "devtrium.com",
-      "provider_id": "devtrium",
-      "provider_name": "Devtrium",
-      "route_key": "/"
+      "description": "::: tip\n  If you subscribe to [Data Points](https://www.deeplearning.ai/the-batch/tag/data-points/)，where the URL is `https://www.deeplearning.ai/the-batch/tag/data-points/`, extract the part `https://www.deeplearning.ai/the-batch/tag` to the end, which is `data-points`, and use it as the parameter to fill in. Therefore, the route will be [`/deeplearning/the-batch/data-points`](https://rsshub.app/deeplearning/the-batch/data-points).\n\n:::\n\n| Tag                                                                    | ID                                                                   |\n| ---------------------------------------------------------------------- | -------------------------------------------------------------------- |\n| [Weekly Issues](https://www.deeplearning.ai/the-batch/)                | [*null*](https://rsshub.app/deeplearning/the-batch)                  |\n| [Andrew's Letters](https://www.deeplearning.ai/the-batch/tag/letters/) | [letters](https://rsshub.app/deeplearning/the-batch/letters)         |\n| [Data Points](https://www.deeplearning.ai/the-batch/tag/data-points/)  | [data-points](https://rsshub.app/deeplearning/the-batch/data-points) |\n| [ML Research](https://www.deeplearning.ai/the-batch/tag/research/)     | [research](https://rsshub.app/deeplearning/the-batch/research)       |\n| [Business](https://www.deeplearning.ai/the-batch/tag/business/)        | [business](https://rsshub.app/deeplearning/the-batch/business)       |\n| [Science](https://www.deeplearning.ai/the-batch/tag/science/)          | [science](https://rsshub.app/deeplearning/the-batch/science)         |\n| [AI & Society](https://www.deeplearning.ai/the-batch/tag/ai-society/)  | [ai-society](https://rsshub.app/deeplearning/the-batch/ai-society)   |\n| [Culture](https://www.deeplearning.ai/the-batch/tag/culture/)          | [culture](https://rsshub.app/deeplearning/the-batch/culture)         |\n| [Hardware](https://www.deeplearning.ai/the-batch/tag/hardware/)        | [hardware](https://rsshub.app/deeplearning/the-batch/hardware)       |\n| [AI Careers](https://www.deeplearning.ai/the-batch/tag/ai-careers/)    | [ai-careers](https://rsshub.app/deeplearning/the-batch/ai-careers)   |\n\n#### [Letters from Andrew Ng](https://www.deeplearning.ai/the-batch/tag/letters/)\n\n| Tag                                                                                     | ID                                                                                     |\n| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |\n| [All](https://www.deeplearning.ai/the-batch/tag/letters/)                               | [letters](https://rsshub.app/deeplearning/the-batch/letters)                           |\n| [Personal Insights](https://www.deeplearning.ai/the-batch/tag/personal-insights/)       | [personal-insights](https://rsshub.app/deeplearning/the-batch/personal-insights)       |\n| [Technical Insights](https://www.deeplearning.ai/the-batch/tag/technical-insights/)     | [technical-insights](https://rsshub.app/deeplearning/the-batch/technical-insights)     |\n| [Business Insights](https://www.deeplearning.ai/the-batch/tag/business-insights/)       | [business-insights](https://rsshub.app/deeplearning/the-batch/business-insights)       |\n| [Tech & Society](https://www.deeplearning.ai/the-batch/tag/tech-society/)               | [tech-society](https://rsshub.app/deeplearning/the-batch/tech-society)                 |\n| [DeepLearning.AI News](https://www.deeplearning.ai/the-batch/tag/deeplearning-ai-news/) | [deeplearning-ai-news](https://rsshub.app/deeplearning/the-batch/deeplearning-ai-news) |\n| [AI Careers](https://www.deeplearning.ai/the-batch/tag/ai-careers/)                     | [ai-careers](https://rsshub.app/deeplearning/the-batch/ai-careers)                     |\n| [Just For Fun](https://www.deeplearning.ai/the-batch/tag/just-for-fun/)                 | [just-for-fun](https://rsshub.app/deeplearning/the-batch/just-for-fun)                 |\n| [Learning & Education](https://www.deeplearning.ai/the-batch/tag/learning-education/)   | [learning-education](https://rsshub.app/deeplearning/the-batch/learning-education)     |\n    ",
+      "provider_id": "deeplearning",
+      "provider_name": "DeepLearning.AI",
+      "route_key": "/the-batch/:tag{.+}?"
     }
   },
   {
@@ -214,6 +212,23 @@
       "provider_id": "gihyo",
       "provider_name": "gihyo.jp",
       "route_key": "/list/group/:id"
+    }
+  },
+  {
+    "provider_id": "gitee",
+    "provider_name": "Gitee",
+    "route_key": "/releases/:owner/:repo",
+    "route": {
+      "path": "/releases/:owner/:repo",
+      "example": "/gitee/releases/y_project/RuoYi",
+      "parameters": {
+        "owner": "用户名",
+        "repo": "仓库名"
+      },
+      "name": "仓库 Releases",
+      "provider_id": "gitee",
+      "provider_name": "Gitee",
+      "route_key": "/releases/:owner/:repo"
     }
   },
   {
@@ -254,6 +269,24 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
+    "route_key": "/comments/:user/:repo/:number?",
+    "route": {
+      "path": "/comments/:user/:repo/:number?",
+      "example": "/github/comments/DIYgod/RSSHub/8116",
+      "parameters": {
+        "user": "User / Org name",
+        "repo": "Repo name",
+        "number": "Issue or pull number (if omitted: all)"
+      },
+      "name": "Issue / Pull Request comments",
+      "provider_id": "github",
+      "provider_name": "GitHub",
+      "route_key": "/comments/:user/:repo/:number?"
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
     "route_key": "/contributors/:user/:repo/:order?/:anon?",
     "route": {
       "path": "/contributors/:user/:repo/:order?/:anon?",
@@ -268,6 +301,22 @@
       "provider_id": "github",
       "provider_name": "GitHub",
       "route_key": "/contributors/:user/:repo/:order?/:anon?"
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/gist/:gistId",
+    "route": {
+      "path": "/gist/:gistId",
+      "example": "/github/gist/d2c152bb7179d07015f336b1a0582679",
+      "parameters": {
+        "gistId": "Gist ID"
+      },
+      "name": "Gist Commits",
+      "provider_id": "github",
+      "provider_name": "GitHub",
+      "route_key": "/gist/:gistId"
     }
   },
   {
@@ -347,24 +396,6 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/repos/:user/:type?/:sort?",
-    "route": {
-      "path": "/repos/:user/:type?/:sort?",
-      "example": "/github/repos/DIYgod",
-      "parameters": {
-        "user": "GitHub username",
-        "type": "Type of repository, can be `all`, `owner`, `member`, `public`, `private`, `forks`, `sources`",
-        "sort": "Sort by `created`, `updated`, `pushed`, `full_name`"
-      },
-      "name": "User Repo",
-      "provider_id": "github",
-      "provider_name": "GitHub",
-      "route_key": "/repos/:user/:type?/:sort?"
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
     "route_key": "/search/:query/:sort?/:order?",
     "route": {
       "path": "/search/:query/:sort?/:order?",
@@ -384,20 +415,19 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/topics/:name/:qs?",
+    "route_key": "/stars/:user/:repo",
     "route": {
-      "path": "/topics/:name/:qs?",
-      "example": "/github/topics/framework",
+      "path": "/stars/:user/:repo",
+      "example": "/github/stars/DIYgod/RSSHub",
+      "view": 5,
       "parameters": {
-        "name": "Topic name, which can be found in the URL of the corresponding [Topics Page](https://github.com/topics/framework)",
-        "qs": "Query string, like `l=php&o=desc&s=stars`. Details listed as follows:"
+        "user": "GitHub username",
+        "repo": "GitHub repo name"
       },
-      "name": "Topics",
-      "url": "github.com/topics",
-      "description": "| Parameter | Description      | Values                                                                                                                          |\n| --------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |\n| `l`       | Language         | For instance `php`, which can be found in the URL of the corresponding [Topics page](https://github.com/topics/framework?l=php) |\n| `o`       | Sorting Order    | `asc`, `desc`                                                                                                                   |\n| `s`       | Sorting Criteria | `stars`, `forks`, `updated`                                                                                                     |\n\n  For instance, the `/github/topics/framework/l=php&o=desc&s=stars` route will generate the RSS feed corresponding to this [page](https://github.com/topics/framework?l=php&o=desc&s=stars).",
+      "name": "Repo Stars",
       "provider_id": "github",
       "provider_name": "GitHub",
-      "route_key": "/topics/:name/:qs?"
+      "route_key": "/stars/:user/:repo"
     }
   },
   {
@@ -443,50 +473,21 @@
     }
   },
   {
-    "provider_id": "hellogithub",
-    "provider_name": "HelloGitHub",
-    "route_key": "/article/:sort?",
+    "provider_id": "infoq",
+    "provider_name": "InfoQ 中文",
+    "route_key": "/presentations/:conference?",
     "route": {
-      "path": "/article/:sort?",
-      "example": "/hellogithub/article",
+      "path": "/presentations/:conference?",
+      "name": "Presentations",
+      "url": "www.infoq.com",
+      "example": "/infoq/presentations",
       "parameters": {
-        "sort": "排序方式，见下表，默认为 `last`，即最近"
+        "conference": "Conference, all by default, can be found in URL"
       },
-      "name": "文章",
-      "description": "| 热门 | 最近 |\n| ---- | ---- |\n| hot  | last |",
-      "provider_id": "hellogithub",
-      "provider_name": "HelloGitHub",
-      "route_key": "/article/:sort?"
-    }
-  },
-  {
-    "provider_id": "huggingface",
-    "provider_name": "Huggingface",
-    "route_key": "/blog",
-    "route": {
-      "path": "/blog",
-      "example": "/huggingface/blog",
-      "parameters": {},
-      "name": "英文博客",
-      "url": "huggingface.co/blog",
-      "provider_id": "huggingface",
-      "provider_name": "Huggingface",
-      "route_key": "/blog"
-    }
-  },
-  {
-    "provider_id": "huggingface",
-    "provider_name": "Huggingface",
-    "route_key": "/daily-papers",
-    "route": {
-      "path": "/daily-papers",
-      "example": "/huggingface/daily-papers",
-      "parameters": {},
-      "name": "Daily Papers",
-      "url": "huggingface.co/papers",
-      "provider_id": "huggingface",
-      "provider_name": "Huggingface",
-      "route_key": "/daily-papers"
+      "description": "::: tip\n  If you subscribe to [InfoQ Live Jan 2024](https://www.infoq.com/infoq-live-jan-2024/presentations/)，where the URL is `https://www.infoq.com/infoq-live-jan-2024/presentations/`, extract the part `https://www.infoq.com/` to the end, which is `/presentations/`, and use it as the parameter to fill in. Therefore, the route will be [`/infoq/presentations/infoq-live-jan-2024`](https://rsshub.app/infoq/presentations/infoq-live-jan-2024).\n:::\n    ",
+      "provider_id": "infoq",
+      "provider_name": "InfoQ 中文",
+      "route_key": "/presentations/:conference?"
     }
   },
   {
@@ -542,22 +543,6 @@
   {
     "provider_id": "juejin",
     "provider_name": "掘金",
-    "route_key": "/collection/:collectionId",
-    "route": {
-      "path": "/collection/:collectionId",
-      "example": "/juejin/collection/6845243180586123271",
-      "parameters": {
-        "collectionId": "收藏夹唯一标志符, 在浏览器地址栏URL中能够找到"
-      },
-      "name": "单个收藏夹",
-      "provider_id": "juejin",
-      "provider_name": "掘金",
-      "route_key": "/collection/:collectionId"
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
     "route_key": "/column/:id",
     "route": {
       "path": "/column/:id",
@@ -569,6 +554,22 @@
       "provider_id": "juejin",
       "provider_name": "掘金",
       "route_key": "/column/:id"
+    }
+  },
+  {
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/posts/:id",
+    "route": {
+      "path": "/posts/:id",
+      "example": "/juejin/posts/3051900006845944",
+      "parameters": {
+        "id": "用户 id, 可在用户页 URL 中找到"
+      },
+      "name": "用户文章",
+      "provider_id": "juejin",
+      "provider_name": "掘金",
+      "route_key": "/posts/:id"
     }
   },
   {
@@ -592,32 +593,16 @@
   {
     "provider_id": "luogu",
     "provider_name": "洛谷",
-    "route_key": "/user/article/:uid",
+    "route_key": "/contest",
     "route": {
-      "path": "/user/article/:uid",
-      "example": "/luogu/user/article/1",
-      "parameters": {
-        "name": "用户 UID"
-      },
-      "name": "用户文章",
+      "path": "/contest",
+      "example": "/luogu/contest",
+      "parameters": {},
+      "name": "比赛列表",
+      "url": "luogu.com.cn/contest/list",
       "provider_id": "luogu",
       "provider_name": "洛谷",
-      "route_key": "/user/article/:uid"
-    }
-  },
-  {
-    "provider_id": "meituan",
-    "provider_name": "美团",
-    "route_key": "/tech",
-    "route": {
-      "path": "/tech",
-      "example": "/meituan/tech",
-      "parameters": {},
-      "name": "技术团队博客",
-      "url": "tech.meituan.com",
-      "provider_id": "meituan",
-      "provider_name": "美团",
-      "route_key": "/tech"
+      "route_key": "/contest"
     }
   },
   {
@@ -634,6 +619,21 @@
       "provider_id": "modb",
       "provider_name": "墨天轮",
       "route_key": "/topic/:id"
+    }
+  },
+  {
+    "provider_id": "modelscope",
+    "provider_name": "ModelScope 魔搭社区",
+    "route_key": "/community",
+    "route": {
+      "path": "/community",
+      "example": "/modelscope/community",
+      "parameters": {},
+      "name": "DevPress 官方社区",
+      "url": "community.modelscope.cn/",
+      "provider_id": "modelscope",
+      "provider_name": "ModelScope 魔搭社区",
+      "route_key": "/community"
     }
   },
   {
@@ -656,33 +656,14 @@
   {
     "provider_id": "ollama",
     "provider_name": "Ollama",
-    "route_key": "/library",
+    "route_key": "/blog",
     "route": {
-      "path": "/library",
-      "example": "/ollama/library",
-      "name": "Models",
+      "path": "/blog",
+      "example": "/ollama/blog",
+      "name": "Blog",
       "provider_id": "ollama",
       "provider_name": "Ollama",
-      "route_key": "/library"
-    }
-  },
-  {
-    "provider_id": "oschina",
-    "provider_name": "开源中国",
-    "route_key": "/event/:category?",
-    "route": {
-      "path": "/event/:category?",
-      "name": "活动",
-      "url": "www.oschina.net",
-      "example": "/oschina/event",
-      "parameters": {
-        "category": "分类，默认为 `latest`，即最新活动，可在对应分类页 URL 中找到"
-      },
-      "description": ":::tip\n若订阅 [强力推荐](https://www.oschina.net/event?tab=recommend)，网址为 `https://www.oschina.net/event?tab=recommend`，请截取 `https://www.oschina.net/event?tab=` 到末尾的部分 `recommend` 作为 `category` 参数填入，此时目标路由为 [`/oschina/event/recommend`](https://rsshub.app/oschina/event/recommend)。\n:::\n\n| 强力推荐  | 最新活动 |\n| --------- | -------- |\n| recommend | latest   |\n",
-      "view": 0,
-      "provider_id": "oschina",
-      "provider_name": "开源中国",
-      "route_key": "/event/:category?"
+      "route_key": "/blog"
     }
   },
   {
@@ -703,35 +684,6 @@
     }
   },
   {
-    "provider_id": "reactiflux",
-    "provider_name": "Reactiflux",
-    "route_key": "/transcripts",
-    "route": {
-      "path": "/transcripts",
-      "name": "Transcripts",
-      "url": "reactiflux.com/transcripts",
-      "example": "/reactiflux/transcripts",
-      "provider_id": "reactiflux",
-      "provider_name": "Reactiflux",
-      "route_key": "/transcripts"
-    }
-  },
-  {
-    "provider_id": "rustcc",
-    "provider_name": "Rust 语言中文社区",
-    "route_key": "/jobs",
-    "route": {
-      "path": "/jobs",
-      "example": "/rustcc/jobs",
-      "parameters": {},
-      "name": "招聘",
-      "url": "rustcc.cn/",
-      "provider_id": "rustcc",
-      "provider_name": "Rust 语言中文社区",
-      "route_key": "/jobs"
-    }
-  },
-  {
     "provider_id": "sec-wiki",
     "provider_name": "SecWiki - 安全维基",
     "route_key": "/weekly",
@@ -746,31 +698,84 @@
     }
   },
   {
-    "provider_id": "thoughtworks",
-    "provider_name": "ThoughtWorks",
-    "route_key": "/blog",
+    "provider_id": "secrss",
+    "provider_name": "安全内参",
+    "route_key": "/author/:author",
     "route": {
-      "path": "/blog",
-      "example": "/thoughtworks/blog",
-      "name": "Inside Blog",
-      "provider_id": "thoughtworks",
-      "provider_name": "ThoughtWorks",
-      "route_key": "/blog"
+      "path": "/author/:author",
+      "example": "/secrss/author/网络安全威胁和漏洞信息共享平台",
+      "parameters": {
+        "author": "N"
+      },
+      "name": "作者",
+      "provider_id": "secrss",
+      "provider_name": "安全内参",
+      "route_key": "/author/:author"
     }
   },
   {
-    "provider_id": "wechat",
-    "provider_name": "微信小程序",
-    "route_key": "/announce",
+    "provider_id": "smashingmagazine",
+    "provider_name": "Smashing Magazine",
+    "route_key": "/:category?",
     "route": {
-      "path": "/announce",
-      "example": "/wechat/announce",
+      "path": "/:category?",
+      "example": "/smashingmagazine/react",
+      "parameters": {
+        "category": "Find in URL or Table below"
+      },
+      "name": "Category",
+      "url": "smashingmagazine.com/articles/",
+      "description": "| **Category**       |                    |\n| ------------------ | ------------------ |\n| Accessibility      | accessibility      |\n| Best practices     | best-practices     |\n| Business           | business           |\n| Career             | career             |\n| Checklists         | checklists         |\n| CSS                | css                |\n| Data Visualization | data-visualization |\n| Design             | design             |\n| Design Patterns    | design-patterns    |\n| Design Systems     | design-systems     |\n| E-Commerce         | e-commerce         |\n| Figma              | figma              |\n| Freebies           | freebies           |\n| HTML               | html               |\n| Illustrator        | illustrator        |\n| Inspiration        | inspiration        |\n| JavaScript         | javascript         |\n| Mobile             | mobile             |\n| Performance        | performance        |\n| Privacy            | privacy            |\n| React              | react              |\n| Responsive Design  | responsive-design  |\n| Round-Ups          | round-ups          |\n| SEO                | seo                |\n| Typography         | typography         |\n| Tools              | tools              |\n| UI                 | ui                 |\n| Usability          | usability          |\n| UX                 | ux                 |\n| Vue                | vue                |\n| Wallpapers         | wallpapers         |\n| Web Design         | web-design         |\n| Workflow           | workflow           |",
+      "provider_id": "smashingmagazine",
+      "provider_name": "Smashing Magazine",
+      "route_key": "/:category?"
+    }
+  },
+  {
+    "provider_id": "studygolang",
+    "provider_name": "Go 语言中文网",
+    "route_key": "/go/:id?",
+    "route": {
+      "path": "/go/:id?",
+      "example": "/studygolang/go/daily",
+      "parameters": {
+        "id": "板块 id，默认为周刊"
+      },
+      "name": "板块",
+      "provider_id": "studygolang",
+      "provider_name": "Go 语言中文网",
+      "route_key": "/go/:id?"
+    }
+  },
+  {
+    "provider_id": "studygolang",
+    "provider_name": "Go 语言中文网",
+    "route_key": "/jobs",
+    "route": {
+      "path": "/jobs",
+      "example": "/studygolang/jobs",
       "parameters": {},
-      "name": "公众平台系统公告栏目",
-      "url": "mp.weixin.qq.com/cgi-bin/announce",
-      "provider_id": "wechat",
-      "provider_name": "微信小程序",
-      "route_key": "/announce"
+      "name": "招聘",
+      "provider_id": "studygolang",
+      "provider_name": "Go 语言中文网",
+      "route_key": "/jobs"
+    }
+  },
+  {
+    "provider_id": "sycl",
+    "provider_name": "SYCL",
+    "route_key": "/:feed?",
+    "route": {
+      "path": "/:feed?",
+      "example": "/sycl/news",
+      "parameters": {
+        "feed": "Feed source, defaults to news, references https://feeds.sycl.tech/"
+      },
+      "name": "Feeds",
+      "description": "|  Events  | News |    Research Paper     |  Videos  |\n| :----: | :--: | :-------------: | :----: |\n| events | news | research_papers | videos |",
+      "provider_id": "sycl",
+      "provider_name": "SYCL",
+      "route_key": "/:feed?"
     }
   }
 ]

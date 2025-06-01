@@ -1,139 +1,15 @@
 [
   {
-    "provider_id": "005",
-    "provider_name": "幻之羁绊动漫网",
-    "route_key": "/:category?",
-    "route": {
-      "name": "资讯",
-      "path": "/:category?",
-      "example": "/005/zx",
-      "parameters": {
-        "category": "分类，可在对应分类页 URL 中找到，默认为二次元资讯"
-      },
-      "description": "\n| 二次元资讯 | 慢慢说 | 道听途说 | 展会资讯 |\n| ---------- | ------ | -------- | -------- |\n| zx         | zwh    | dtts     | zh       |\n    "
-    }
-  },
-  {
     "provider_id": "acfun",
     "provider_name": "AcFun",
-    "route_key": "/article/:categoryId/:sortType?/:timeRange?",
+    "route_key": "/user/video/:uid",
     "route": {
-      "name": "文章",
-      "path": "/article/:categoryId/:sortType?/:timeRange?",
-      "example": "/acfun/article/110",
+      "name": "用户投稿",
+      "path": "/user/video/:uid",
+      "example": "/acfun/user/video/6102",
       "parameters": {
-        "categoryId": {
-          "description": "分区 ID",
-          "options": [
-            {
-              "value": "73",
-              "label": "生活情感"
-            },
-            {
-              "value": "74",
-              "label": "动漫文化"
-            },
-            {
-              "value": "75",
-              "label": "漫画文学"
-            },
-            {
-              "value": "110",
-              "label": "综合"
-            },
-            {
-              "value": "164",
-              "label": "游戏"
-            },
-            {
-              "value": "184",
-              "label": "二次元画师"
-            }
-          ]
-        },
-        "sortType": {
-          "description": "排序",
-          "options": [
-            {
-              "value": "createTime",
-              "label": "最新发表"
-            },
-            {
-              "value": "lastCommentTime",
-              "label": "最新动态"
-            },
-            {
-              "value": "hotScore",
-              "label": "最热文章"
-            }
-          ],
-          "default": "createTime"
-        },
-        "timeRange": {
-          "description": "时间范围，仅在排序是 `hotScore` 有效",
-          "options": [
-            {
-              "value": "all",
-              "label": "时间不限"
-            },
-            {
-              "value": "oneDay",
-              "label": "24 小时"
-            },
-            {
-              "value": "threeDay",
-              "label": "三天"
-            },
-            {
-              "value": "oneWeek",
-              "label": "一周"
-            },
-            {
-              "value": "oneMonth",
-              "label": "一个月"
-            }
-          ],
-          "default": "all"
-        }
+        "uid": "用户 UID"
       },
-      "description": "| 二次元画师 | 综合 | 生活情感 | 游戏 | 动漫文化 | 漫画文学 |\n| ---------- | ---- | -------- | ---- | -------- | -------- |\n| 184        | 110  | 73       | 164  | 74       | 75       |\n\n| 最新发表   | 最新动态        | 最热文章 |\n| ---------- | --------------- | -------- |\n| createTime | lastCommentTime | hotScore |\n\n| 时间不限 | 24 小时 | 三天     | 一周    | 一个月   |\n| -------- | ------- | -------- | ------- | -------- |\n| all      | oneDay  | threeDay | oneWeek | oneMonth |"
-    }
-  },
-  {
-    "provider_id": "acg17",
-    "provider_name": "ACG17",
-    "route_key": "/post/all",
-    "route": {
-      "name": "全部文章",
-      "path": "/post/all",
-      "example": "/acg17/post/all",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "agefans",
-    "provider_name": "AGE 动漫",
-    "route_key": "/detail/:id",
-    "route": {
-      "name": "番剧详情",
-      "path": "/detail/:id",
-      "example": "/agefans/detail/20200035",
-      "parameters": {
-        "id": "番剧 id，对应详情 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bangumi.online",
-    "provider_name": "アニメ新番組",
-    "route_key": "/",
-    "route": {
-      "name": "當季新番",
-      "path": "/",
-      "example": "/bangumi.online",
-      "parameters": {},
       "description": ""
     }
   },
@@ -152,13 +28,13 @@
   {
     "provider_id": "bangumi.tv",
     "provider_name": "Bangumi 番组计划",
-    "route_key": "/group/:id",
+    "route_key": "/topic/:id",
     "route": {
-      "name": "小组话题",
-      "path": "/group/:id",
-      "example": "/bangumi.tv/group/boring",
+      "name": "小组话题的新回复",
+      "path": "/topic/:id",
+      "example": "/bangumi.tv/topic/367032",
       "parameters": {
-        "id": "小组 id, 在小组页面地址栏查看"
+        "id": "话题 id, 在话题页面地址栏查看"
       },
       "description": ""
     }
@@ -175,6 +51,36 @@
         "type": "类型：anime - 动画，book - 图书，music - 音乐，game - 游戏，real - 三次元"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "bangumi.tv",
+    "provider_name": "Bangumi 番组计划",
+    "route_key": "/person/:id",
+    "route": {
+      "name": "现实人物的新作品",
+      "path": "/person/:id",
+      "example": "/bangumi.tv/person/32943",
+      "parameters": {
+        "id": "人物 id, 在人物页面的地址栏查看"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bangumi.tv",
+    "provider_name": "Bangumi 番组计划",
+    "route_key": "/subject/:id/:type?/:showOriginalName?",
+    "route": {
+      "name": "条目的通用路由格式",
+      "path": "/subject/:id/:type?/:showOriginalName?",
+      "example": "/bangumi.tv/subject/328609/ep/true",
+      "parameters": {
+        "id": "条目 id, 在条目页面的地址栏查看",
+        "type": "条目类型，可选值为 `ep`, `comments`, `blogs`, `topics`，默认为 `ep`",
+        "showOriginalName": "显示番剧标题原名，可选值 0/1/false/true，默认为 false"
+      },
+      "description": "::: warning\n  此通用路由仅用于对路由参数的描述，具体信息请查看下方与条目相关的路由\n:::"
     }
   },
   {
@@ -266,13 +172,25 @@
   {
     "provider_id": "cngal",
     "provider_name": "CnGal",
-    "route_key": "/entry/:id",
+    "route_key": "/weekly",
     "route": {
-      "name": "制作者 / 游戏新闻",
-      "path": "/entry/:id",
-      "example": "/cngal/entry/2693",
+      "name": "每周速报",
+      "path": "/weekly",
+      "example": "/cngal/weekly",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "collabo-cafe",
+    "provider_name": "コラボカフェ",
+    "route_key": "/category/:category",
+    "route": {
+      "name": "分类",
+      "path": "/category/:category",
+      "example": "/collabo-cafe/category/cafe",
       "parameters": {
-        "id": "词条ID，游戏或制作者页面URL的最后一串数字"
+        "category": "Category, refer to the original website (ジャンル別)"
       },
       "description": ""
     }
@@ -289,20 +207,6 @@
         "tag": "Tag, refer to the original website (開催地域別)"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "dmzj",
-    "provider_name": "动漫之家",
-    "route_key": "/news/:category?",
-    "route": {
-      "name": "新闻站",
-      "path": "/news/:category?",
-      "example": "/dmzj/news/donghuaqingbao",
-      "parameters": {
-        "category": "类别"
-      },
-      "description": "| 漫画情报      | 轻小说情报          | 动漫周边       | 声优情报        | 音乐资讯    | 游戏资讯   | 美图欣赏      | 漫展情报       | 大杂烩  |\n| ------------- | ------------------- | -------------- | --------------- | ----------- | ---------- | ------------- | -------------- | ------- |\n| manhuaqingbao | qingxiaoshuoqingbao | manhuazhoubian | shengyouqingbao | yinyuezixun | youxizixun | meituxinshang | manzhanqingbao | dazahui |"
     }
   },
   {
@@ -349,12 +253,130 @@
   {
     "provider_id": "hpoi",
     "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/all/:order?",
+    "route": {
+      "name": "所有周边",
+      "path": "/items/all/:order?",
+      "example": "/hpoi/items/all",
+      "parameters": {
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
     "route_key": "/bannerItem",
     "route": {
       "name": "热门推荐",
       "path": "/bannerItem",
       "example": "/hpoi/bannerItem",
       "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/character/:id/:order?",
+    "route": {
+      "name": "角色周边",
+      "path": "/items/character/:id/:order?",
+      "example": "/hpoi/items/character/1035374",
+      "parameters": {
+        "id": "角色 ID",
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/info/:type?",
+    "route": {
+      "name": "情报",
+      "path": "/info/:type?",
+      "example": "/hpoi/info/all",
+      "parameters": {
+        "type": {
+          "description": "分类",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "hobby",
+              "label": "手办"
+            },
+            {
+              "value": "model",
+              "label": "模型"
+            }
+          ],
+          "default": "all"
+        }
+      },
       "description": ""
     }
   },
@@ -403,64 +425,17 @@
     }
   },
   {
-    "provider_id": "lovelive-anime",
-    "provider_name": "Love Live! Official Website",
-    "route_key": "/news/:abbr?/:category?/:option?",
+    "provider_id": "komiic",
+    "provider_name": "Komiic",
+    "route_key": "/comic/:id",
     "route": {
-      "name": "News",
-      "path": "/news/:abbr?/:category?/:option?",
-      "example": "/lovelive-anime/news",
+      "name": "漫画更新",
+      "path": "/comic/:id",
+      "example": "/komiic/comic/533",
       "parameters": {
-        "abbr": "The path to the Love Live series of sub-projects on the official website is detailed in the table below, `abbr` is `detail` when crawling the full text",
-        "category": "The official website lists the Topics category, `category` is `detail` when crawling the full text, other categories see the following table for details",
-        "option": "Crawl full text when `option` is `detail`."
-      },
-      "description": "| Sub-project Name | All Projects | Lovelive!   | Lovelive! Sunshine!! | Lovelive! Nijigasaki High School Idol Club | Lovelive! Superstar!! | 蓮ノ空女学院 | 幻日のヨハネ | ラブライブ！スクールアイドルミュージカル |\n| -------------------------------- | -------------- | ----------- | -------------------- | ------------------------------------------ | --------------------- | ------------ | ------------ | ---------------------------------------- |\n| `abbr`parameter                  | <u>*No parameter*</u> | lovelive |     sunshine        | nijigasaki                                 | superstar              | hasunosora | yohane       | musical                                  |\n\n| Category Name       | 全てのニュース        | 音楽商品 | アニメ映像商品 | キャスト映像商品 | 劇場    | アニメ放送 / 配信 | キャスト配信 / ラジオ | ライブ / イベント | ブック | グッズ | ゲーム | メディア | ご当地情報 | キャンペーン | その他 |\n| ------------------- | --------------------- | -------- | -------------- | ---------------- | ------- | ----------------- | --------------------- | ----------------- | ------ | ------ | ------ | -------- | ---------- | ------ | ------------ |\n| `category`parameter | <u>*No parameter*</u> | music    | anime_movie   | cast_movie      | theater | onair             | radio                 | event             | books  | goods  | game   | media    | local      | campaign  | other   |"
-    }
-  },
-  {
-    "provider_id": "lovelive-anime",
-    "provider_name": "Love Live! Official Website",
-    "route_key": "/schedules/:serie?/:category?",
-    "route": {
-      "name": "Schedule",
-      "path": "/schedules/:serie?/:category?",
-      "example": "/lovelive-anime/schedules",
-      "parameters": {
-        "serie": "Love Live! Series sub-projects abbreviation, see the following table",
-        "category": "The official website lists the categories, see the following table for details"
-      },
-      "description": "| Sub-project Name (not full name) | 全シリーズ              | Lovelive!  | Lovelive! Sunshine!! | Lovelive! Nijigasaki High School Idol Club | Lovelive! Superstar!! | ラブライブ！スクールアイドルミュージカル |\n| -------------------------------- | ----------------------- | ---------- | -------------------- | ------------------------------------------ | --------------------- | ---------------------------------------- |\n| `serie` parameter                | *No parameter* or `all` | `lovelive` | `sunshine`           | `nijigasaki`                               | `superstar`           | `musical`                                |\n\n| Category Name        | 全て                    | ライブ | イベント | 生配信    |\n| -------------------- | ----------------------- | ------ | -------- | --------- |\n| `category` parameter | *No parameter* or `all` | `live` | `event`  | `haishin` |"
-    }
-  },
-  {
-    "provider_id": "qoo-app",
-    "provider_name": "QooApp",
-    "route_key": "/apps/:lang?/card/:id",
-    "route": {
-      "name": "Game Store - Cards",
-      "path": "/apps/:lang?/card/:id",
-      "example": "/qoo-app/apps/en/card/7675",
-      "parameters": {
-        "lang": "Language, see the table above, empty means `中文`",
-        "id": "Game ID, can be found in URL"
+        "id": "漫画 ID"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "qoo-app",
-    "provider_name": "QooApp",
-    "route_key": "/apps/:lang?/comment/:id",
-    "route": {
-      "name": "Game Store - Review",
-      "path": "/apps/:lang?/comment/:id",
-      "example": "/qoo-app/apps/en/comment/7675",
-      "parameters": {
-        "lang": "Language, see the table below, empty means `中文`",
-        "id": "Game ID, can be found in URL"
-      },
-      "description": "| 中文 | English | 한국어 | Español | 日本語 | ไทย | Tiếng Việt |\n| ---- | ------- | ------ | ------- | ------ | --- | ---------- |\n|      | en      | ko     | es      | ja     | th  | vi         |"
     }
   },
   {
@@ -479,28 +454,13 @@
     }
   },
   {
-    "provider_id": "qoo-app",
-    "provider_name": "QooApp",
-    "route_key": "/apps/:lang?/post/:id",
-    "route": {
-      "name": "Game Store - Article",
-      "path": "/apps/:lang?/post/:id",
-      "example": "/qoo-app/apps/en/post/7675",
-      "parameters": {
-        "lang": "Language, see the table above, empty means `中文`",
-        "id": "Game ID, can be found in URL"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "skebetter",
     "provider_name": "Skebetter",
-    "route_key": "/illust/:type",
+    "route_key": "/:type",
     "route": {
-      "name": "Illust",
-      "path": "/illust/:type",
-      "example": "/skebetter/illust/hot",
+      "name": "Hot",
+      "path": "/:type",
+      "example": "/skebetter/hot",
       "parameters": {
         "type": "Type, see below"
       },
@@ -508,15 +468,31 @@
     }
   },
   {
-    "provider_id": "ymgal",
-    "provider_name": "月幕 Galgame",
-    "route_key": "/game/release",
+    "provider_id": "skebetter",
+    "provider_name": "Skebetter",
+    "route_key": "/manga/:order",
     "route": {
-      "name": "本月新作",
-      "path": "/game/release",
-      "example": "/ymgal/game/release",
-      "parameters": {},
-      "description": ""
+      "name": "Manga",
+      "path": "/manga/:order",
+      "example": "/skebetter/manga/1",
+      "parameters": {
+        "order": "Order, see below."
+      },
+      "description": "\n| 新着 (Latest) | 人気 (Hot) |\n| ---- | ---- |\n| 1    | 2    |"
+    }
+  },
+  {
+    "provider_id": "vcb-s",
+    "provider_name": "VCB-Studio",
+    "route_key": "/category/:cate",
+    "route": {
+      "name": "分类文章",
+      "path": "/category/:cate",
+      "example": "/vcb-s/category/works",
+      "parameters": {
+        "cate": "分类"
+      },
+      "description": "| 作品项目 | 科普系列 | 计划与日志 |\n| -------- | -------- | ---------- |\n| works    | kb       | planlog    |"
     }
   }
 ]

@@ -38,17 +38,17 @@
     }
   },
   {
-    "provider_id": "cls",
-    "provider_name": "财联社",
-    "route_key": "/depth/:category?",
+    "provider_id": "chinamoney",
+    "provider_name": "中国货币网",
+    "route_key": "/:channelId?",
     "route": {
-      "name": "深度",
-      "path": "/depth/:category?",
-      "example": "/cls/depth/1000",
+      "name": "公告",
+      "path": "/:channelId?",
+      "example": "/chinamoney",
       "parameters": {
-        "category": "分类代码，可在首页导航栏的目标网址 URL 中找到"
+        "channelId": "分类，见下表，默认为 `2834`"
       },
-      "description": "| 头条 | 股市 | 港股 | 环球 | 公司 | 券商 | 基金 | 地产 | 金融 | 汽车 | 科创 | 创业版 | 品见 | 期货 | 投教 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- |\n| 1000 | 1003 | 1135 | 1007 | 1005 | 1118 | 1110 | 1006 | 1032 | 1119 | 1111 | 1127   | 1160 | 1124 | 1176 |"
+      "description": "<details>\n<summary>市场公告</summary>\n\n    外汇市场公告\n\n| 最新 | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| ---- | ------------ | ------------ | ------------ |\n| 2834 | 2835         | 2836         | 2837         |\n\n    本币市场公告\n\n| 最新           | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| -------------- | ------------ | ------------ | ------------ |\n| 2839,2840,2841 | 2839         | 2840         | 2841         |\n\n    央行业务公告\n\n| 最新      | 公开市场操作 | 中央国库现金管理 |\n| --------- | ------------ | ---------------- |\n| 2845,2846 | 2845         | 2846             |\n</details>\n\n<details>\n<summary>本币市场</summary>\n\n    贷款市场报价利率\n\n| LPR 市场公告 |\n| ------------ |\n| 3686         |\n</details>"
     }
   },
   {
@@ -80,6 +80,44 @@
   {
     "provider_id": "eastmoney",
     "provider_name": "东方财富",
+    "route_key": "/report/:category",
+    "route": {
+      "name": "研究报告",
+      "path": "/report/:category",
+      "example": "/eastmoney/report/strategyreport",
+      "parameters": {
+        "category": {
+          "description": "研报类型",
+          "options": [
+            {
+              "value": "strategyreport",
+              "label": "策略报告"
+            },
+            {
+              "value": "macresearch",
+              "label": "宏观研究"
+            },
+            {
+              "value": "brokerreport",
+              "label": "券商晨报"
+            },
+            {
+              "value": "industry",
+              "label": "行业研报"
+            },
+            {
+              "value": "stock",
+              "label": "个股研报"
+            }
+          ]
+        }
+      },
+      "description": "| 策略报告       | 宏观研究    | 券商晨报     | 行业研究 | 个股研报 |\n| -------------- | ----------- | ------------ | -------- | -------- |\n| strategyreport | macresearch | brokerreport | industry | stock    |"
+    }
+  },
+  {
+    "provider_id": "eastmoney",
+    "provider_name": "东方财富",
     "route_key": "/search/:keyword",
     "route": {
       "name": "搜索",
@@ -88,6 +126,18 @@
       "parameters": {
         "keyword": "关键词，可以设置为自己需要检索的关键词"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "finology",
+    "provider_name": "Finology Insider",
+    "route_key": "/bullets",
+    "route": {
+      "name": "Bullets",
+      "path": "/bullets",
+      "example": "/finology/bullets",
+      "parameters": {},
       "description": ""
     }
   },
@@ -102,6 +152,41 @@
       "parameters": {
         "kolId": "KOL ID, can be found in URL",
         "lang": "Language, see table above, `en` by default"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "followin",
+    "provider_name": "Followin",
+    "route_key": "/news/:lang?",
+    "route": {
+      "name": "News",
+      "path": "/news/:lang?",
+      "example": "/followin/news",
+      "parameters": {
+        "lang": {
+          "description": "Language",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "zh-Hans",
+              "label": "简体中文"
+            },
+            {
+              "value": "zh-Hant",
+              "label": "繁體中文"
+            },
+            {
+              "value": "vi",
+              "label": "Tiếng Việt"
+            }
+          ],
+          "default": "en"
+        }
       },
       "description": ""
     }
@@ -145,16 +230,66 @@
     }
   },
   {
-    "provider_id": "jin10",
-    "provider_name": "金十数据",
-    "route_key": "/:important?",
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/hot-article/:type?",
     "route": {
-      "name": "市场快讯",
-      "path": "/:important?",
-      "example": "/jin10",
+      "name": "最热文章",
+      "path": "/hot-article/:type?",
+      "example": "/gelonghui/hot-article",
       "parameters": {
-        "important": "只看重要，任意值开启，留空关闭"
+        "type": {
+          "description": "`day` 为日排行，`week` 为周排行，默认为 `day`",
+          "options": [
+            {
+              "value": "day",
+              "label": "日排行"
+            },
+            {
+              "value": "week",
+              "label": "周排行"
+            }
+          ]
+        }
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/live",
+    "route": {
+      "name": "实时快讯",
+      "path": "/live",
+      "example": "/gelonghui/live",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/user/:id",
+    "route": {
+      "name": "用户文章",
+      "path": "/user/:id",
+      "example": "/gelonghui/user/5273",
+      "parameters": {
+        "id": "用户编号，可在用户页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/pbc/goutongjiaoliu",
+    "route": {
+      "name": "沟通交流",
+      "path": "/pbc/goutongjiaoliu",
+      "example": "/gov/pbc/goutongjiaoliu",
+      "parameters": {},
       "description": ""
     }
   },
@@ -173,72 +308,114 @@
     }
   },
   {
-    "provider_id": "jinse",
-    "provider_name": "金色财经",
-    "route_key": "/lives/:category?",
+    "provider_id": "lhratings",
+    "provider_name": "联合资信评估股份有限公司",
+    "route_key": "/research/:type?",
     "route": {
-      "name": "快讯",
-      "path": "/lives/:category?",
-      "example": "/jinse/lives",
+      "name": "研究报告",
+      "path": "/research/:type?",
+      "example": "/lhratings/research/1",
       "parameters": {
-        "category": {
-          "description": "分类",
+        "type": "分类，默认为 `1`，即宏观经济，可在对应分类页 URL 中找到"
+      },
+      "description": ":::tip\n若订阅 [宏观经济](https://www.lhratings.com/research.html?type=1)，网址为 `https://www.lhratings.com/research.html?type=1`，请截取 `https://www.lhratings.com/research.html?type=` 到末尾的部分 `1` 作为 `type` 参数填入，此时目标路由为 [`/lhratings/research/1`](https://rsshub.app/lhratings/research/1)。\n:::\n\n| 宏观经济 | 债券市场 | 行业研究 | 评级理论与方法 | 国际债券市场与评级 | 评级表现 |\n| -------- | -------- | -------- | -------------- | ------------------ | -------- |\n| 1        | 2        | 3        | 4              | 5                  | 6        |\n"
+    }
+  },
+  {
+    "provider_id": "moodysmismicrosite",
+    "provider_name": "穆迪评级",
+    "route_key": "/report/:industry?",
+    "route": {
+      "name": "industry",
+      "path": "/report/:industry?",
+      "example": "/moodysmismicrosite/report/企业&金融机构",
+      "parameters": {
+        "industry": {
+          "description": "可选参数，默认为全部行业。行业选择，支持使用&连接多个。",
           "options": [
             {
               "value": "0",
-              "label": "全部"
+              "label": "企业"
             },
             {
               "value": "1",
-              "label": "精选"
+              "label": "金融机构"
             },
             {
               "value": "2",
-              "label": "政策"
+              "label": "主权"
             },
             {
               "value": "3",
-              "label": "数据"
+              "label": "地方政府及城投公司"
             },
             {
               "value": "4",
-              "label": "NFT"
+              "label": "宏观经济"
             },
             {
               "value": "5",
-              "label": "项目"
+              "label": "结构融资"
+            },
+            {
+              "value": "6",
+              "label": "基础设施及项目融资"
+            },
+            {
+              "value": "7",
+              "label": "ESG"
+            },
+            {
+              "value": "8",
+              "label": "其他"
             }
           ],
-          "default": "0"
+          "default": "全部"
         }
       },
-      "description": "| 全部 | 精选 | 政策 | 数据 | NFT | 项目 |\n| ---- | ---- | ---- | ---- | --- | ---- |\n| 0    | 1    | 2    | 3    | 4   | 5    |"
+      "description": "\n| ID | Description |\n| ---   | ---   |\n| 0 | 企业 |\n| 1 | 金融机构 |\n| 2 | 主权 |\n| 3 | 地方政府及城投公司 |\n| 4 | 宏观经济 |\n| 5 | 结构融资 |\n| 6 | 基础设施项目融资 |\n| 7 | ESG |\n| 8 | 其他 |\n    "
     }
   },
   {
-    "provider_id": "sse",
-    "provider_name": "上海证券交易所",
-    "route_key": "/disclosure/:query?",
+    "provider_id": "mrm",
+    "provider_name": "华储网",
+    "route_key": "/:category?",
     "route": {
-      "name": "上市公司信息最新公告披露",
-      "path": "/disclosure/:query?",
-      "example": "/sse/disclosure/beginDate=2018-08-18&endDate=2020-08-25&productId=600696",
+      "name": "通知",
+      "path": "/:category?",
+      "example": "/mrm",
       "parameters": {
-        "query": "筛选条件，见示例"
+        "category": "N"
       },
-      "description": ""
+      "description": "| 交易通知     | 政策规定             | 业务通知          |\n| ------------ | -------------------- | ----------------- |\n| zonghezixun3 | zhengceguiding_list | yewutongzhi_list |"
     }
   },
   {
-    "provider_id": "sse",
-    "provider_name": "上海证券交易所",
-    "route_key": "/inquire",
+    "provider_id": "qianzhan",
+    "provider_name": "前瞻网",
+    "route_key": "/analyst/column/:type?",
     "route": {
-      "name": "监管问询",
-      "path": "/inquire",
-      "example": "/sse/inquire",
-      "parameters": {},
-      "description": ""
+      "name": "文章列表",
+      "path": "/analyst/column/:type?",
+      "example": "/qianzhan/analyst/column/all",
+      "parameters": {
+        "type": "分类，见下表"
+      },
+      "description": "| 全部 | 研究员专栏 | 规划师专栏 | 观察家专栏 |\n| ---- | ---------- | ---------- | ---------- |\n| all  | 220        | 627        | 329        |"
+    }
+  },
+  {
+    "provider_id": "qianzhan",
+    "provider_name": "前瞻网",
+    "route_key": "/analyst/rank/:type?",
+    "route": {
+      "name": "排行榜",
+      "path": "/analyst/rank/:type?",
+      "example": "/qianzhan/analyst/rank/week",
+      "parameters": {
+        "type": "分类，见下表"
+      },
+      "description": "| 周排行 | 月排行 |\n| ------ | ------ |\n| week   | month  |"
     }
   },
   {
@@ -254,17 +431,43 @@
     }
   },
   {
-    "provider_id": "ulapia",
-    "provider_name": "乌拉邦",
-    "route_key": "/reports/:category?",
+    "provider_id": "szse",
+    "provider_name": "深圳证券交易所",
+    "route_key": "/inquire/:category?/:select?/:keyword?",
     "route": {
-      "name": "频道",
-      "path": "/reports/:category?",
-      "example": "/ulapia/reports/stock_research",
+      "name": "问询函件",
+      "path": "/inquire/:category?/:select?/:keyword?",
+      "example": "/szse/inquire",
       "parameters": {
-        "category": "频道类型，默认为券商晨报（今日晨报）"
+        "category": "类型，见下表，默认为 `0` 即 主板",
+        "select": "函件类别, 见下表，默认为全部函件类别",
+        "keyword": "公司代码或简称，默认为空"
       },
-      "description": "|     个股研报    |      行业研报      |      策略研报      |     宏观研报    |    新股研报   | 券商晨报（今日晨报） |\n| :-------------: | :----------------: | :----------------: | :-------------: | :-----------: | :------------------: |\n| stock_research | industry_research | strategy_research | macro_research | ipo_research |    brokerage_news   |"
+      "description": "类型\n\n| 主板 | 创业板 |\n| ---- | ------ |\n| 0    | 1      |\n\n  函件类别\n\n| 全部函件类别 | 非许可类重组问询函 | 问询函 | 违法违规线索分析报告 | 许可类重组问询函 | 监管函（会计师事务所模板） | 提请关注函（会计师事务所模板） | 年报问询函 | 向中介机构发函 | 半年报问询函 | 关注函 | 公司部函 | 三季报问询函 |\n| ------------ | ------------------ | ------ | -------------------- | ---------------- | -------------------------- | ------------------------------ | ---------- | -------------- | ------------ | ------ | -------- | ------------ |"
+    }
+  },
+  {
+    "provider_id": "szse",
+    "provider_name": "深圳证券交易所",
+    "route_key": "/notice",
+    "route": {
+      "name": "上市公告 - 可转换债券",
+      "path": "/notice",
+      "example": "/szse/notice",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "szse",
+    "provider_name": "深圳证券交易所",
+    "route_key": "/disclosure/listed/notice",
+    "route": {
+      "name": "上市公司公告",
+      "path": "/disclosure/listed/notice",
+      "example": "/szse/disclosure/listed/notice",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -276,20 +479,6 @@
       "path": "/news",
       "example": "/unusualwhales/news",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "wallstreetcn",
-    "provider_name": "华尔街见闻",
-    "route_key": "/hot/:period?",
-    "route": {
-      "name": "最热文章",
-      "path": "/hot/:period?",
-      "example": "/wallstreetcn/hot",
-      "parameters": {
-        "period": "时期，可选 `day` 即 当日 或 `week` 即 当周，默认为当日"
-      },
       "description": ""
     }
   },
@@ -309,65 +498,29 @@
     }
   },
   {
-    "provider_id": "youzhiyouxing",
-    "provider_name": "有知有行",
-    "route_key": "/materials/:id?",
+    "provider_id": "xueqiu",
+    "provider_name": "雪球",
+    "route_key": "/fund/:id",
     "route": {
-      "name": "有知文章",
-      "path": "/materials/:id?",
-      "example": "/youzhiyouxing/materials",
+      "name": "蛋卷基金净值更新",
+      "path": "/fund/:id",
+      "example": "/xueqiu/fund/040008",
       "parameters": {
-        "id": {
-          "description": "分类",
-          "options": [
-            {
-              "value": "0",
-              "label": "全部"
-            },
-            {
-              "value": "4",
-              "label": "知行小酒馆"
-            },
-            {
-              "value": "2",
-              "label": "知行黑板报"
-            },
-            {
-              "value": "10",
-              "label": "无人知晓"
-            },
-            {
-              "value": "1",
-              "label": "孟岩专栏"
-            },
-            {
-              "value": "3",
-              "label": "知行读书会"
-            },
-            {
-              "value": "11",
-              "label": "你好，同路人"
-            }
-          ],
-          "default": "0"
-        }
+        "id": "基金代码, 可在基金主页 URL 中找到. 此路由的数据为场外基金 (`F`开头)"
       },
-      "description": "| 全部 | 知行小酒馆 | 知行黑板报 | 无人知晓 | 孟岩专栏 | 知行读书会 | 你好，同路人 |\n| :--: | :--------: | :--------: | :------: | :------: | :--------: | :----------: |\n|   0  |      4     |      2     |    10    |     1    |      3     |      11      |"
+      "description": ""
     }
   },
   {
-    "provider_id": "zhitongcaijing",
-    "provider_name": "智通财经网",
-    "route_key": "/:id?/:category?",
+    "provider_id": "xueqiu",
+    "provider_name": "雪球",
+    "route_key": "/hots",
     "route": {
-      "name": "推荐",
-      "path": "/:id?/:category?",
-      "example": "/zhitongcaijing",
-      "parameters": {
-        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 recommend，即推荐",
-        "category": "分类 id，可在对应栏目子分类页 URL 中找到，默认为全部"
-      },
-      "description": "| id           | 栏目 |\n| ------------ | ---- |\n| recommend    | 推荐 |\n| hkstock      | 港股 |\n| meigu        | 美股 |\n| agu          | 沪深 |\n| ct           | 创投 |\n| esg          | ESG  |\n| aqs          | 券商 |\n| ajj          | 基金 |\n| focus        | 要闻 |\n| announcement | 公告 |\n| research     | 研究 |\n| shares       | 新股 |\n| bazaar       | 市场 |\n| company      | 公司 |"
+      "name": "热帖",
+      "path": "/hots",
+      "example": "/xueqiu/hots",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

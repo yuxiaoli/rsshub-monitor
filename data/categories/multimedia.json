@@ -2,32 +2,32 @@
   {
     "provider_id": "163",
     "provider_name": "网易公开课",
-    "route_key": "/music/playlist/:id",
+    "route_key": "/music/artist/:id",
     "route": {
-      "path": "/music/playlist/:id",
-      "example": "/163/music/playlist/35798529",
+      "path": "/music/artist/:id",
+      "example": "/163/music/artist/2116",
       "parameters": {
-        "id": "歌单 id, 可在歌单页 URL 中找到"
+        "id": "歌手 id, 可在歌手详情页 URL 中找到"
       },
-      "name": "歌单歌曲",
+      "name": "歌手专辑",
       "provider_id": "163",
       "provider_name": "网易公开课",
-      "route_key": "/music/playlist/:id"
+      "route_key": "/music/artist/:id"
     }
   },
   {
     "provider_id": "6v123",
     "provider_name": "6v 电影",
-    "route_key": "/latestMovies",
+    "route_key": "/latestTVSeries",
     "route": {
-      "path": "/latestMovies",
-      "example": "/6v123/latestMovies",
+      "path": "/latestTVSeries",
+      "example": "/6v123/latestTVSeries",
       "parameters": {},
-      "name": "最新电影",
+      "name": "最新电视剧",
       "url": "hao6v.com/",
       "provider_id": "6v123",
       "provider_name": "6v 电影",
-      "route_key": "/latestMovies"
+      "route_key": "/latestTVSeries"
     }
   },
   {
@@ -45,54 +45,6 @@
       "provider_id": "ajmide",
       "provider_name": "阿基米德 FM",
       "route_key": "/:id"
-    }
-  },
-  {
-    "provider_id": "apple",
-    "provider_name": "Apple",
-    "route_key": "/podcast/:id/:region?",
-    "route": {
-      "path": "/podcast/:id/:region?",
-      "example": "/apple/podcast/id1559695855/cn",
-      "parameters": {
-        "id": "播客id，可以在 Apple 播客app 内分享的播客的 URL 中找到",
-        "region": "地區代碼，例如 cn、us、jp，預設為 cn"
-      },
-      "name": "播客",
-      "url": "www.apple.com/apple-podcasts/",
-      "provider_id": "apple",
-      "provider_name": "Apple",
-      "route_key": "/podcast/:id/:region?"
-    }
-  },
-  {
-    "provider_id": "bandcamp",
-    "provider_name": "Bandcamp",
-    "route_key": "/live",
-    "route": {
-      "path": "/live",
-      "example": "/bandcamp/live",
-      "parameters": {},
-      "name": "Upcoming Live Streams",
-      "url": "bandcamp.com/live_schedule",
-      "provider_id": "bandcamp",
-      "provider_name": "Bandcamp",
-      "route_key": "/live"
-    }
-  },
-  {
-    "provider_id": "bandcamp",
-    "provider_name": "Bandcamp",
-    "route_key": "/weekly",
-    "route": {
-      "path": "/weekly",
-      "example": "/bandcamp/weekly",
-      "parameters": {},
-      "name": "Weekly",
-      "url": "bandcamp.com/",
-      "provider_id": "bandcamp",
-      "provider_name": "Bandcamp",
-      "route_key": "/weekly"
     }
   },
   {
@@ -115,150 +67,102 @@
   {
     "provider_id": "chikubi",
     "provider_name": "乳首ふぇち",
-    "route_key": "/nipple-video-maker/:keyword",
+    "route_key": "/tag/:keyword",
     "route": {
-      "path": "/nipple-video-maker/:keyword",
-      "example": "/chikubi/nipple-video-maker/nipple-video-maker-nh",
+      "path": "/tag/:keyword",
+      "example": "/chikubi/tag/ドリームチケット",
       "parameters": {
         "keyword": "Keyword"
       },
-      "name": "AVメーカー",
+      "name": "Tag",
       "provider_id": "chikubi",
       "provider_name": "乳首ふぇち",
-      "route_key": "/nipple-video-maker/:keyword"
+      "route_key": "/tag/:keyword"
     }
   },
   {
-    "provider_id": "cntv",
-    "provider_name": "CNTV",
-    "route_key": "/:column",
+    "provider_id": "coomer",
+    "provider_name": "Coomer",
+    "route_key": "/:source?/:id?",
     "route": {
-      "path": "/:column",
-      "example": "/cntv/TOPC1451528971114112",
+      "path": "/:source?/:id?",
+      "example": "/coomer",
       "parameters": {
-        "column": "栏目ID, 可在对应CNTV栏目页面找到"
+        "source": "Source, see below, Posts by default",
+        "id": "User id, can be found in URL"
       },
-      "name": "栏目",
-      "url": "navi.cctv.com/",
-      "description": "::: tip\n栏目 ID 查找示例:\n打开栏目具体某一期页面，F12 控制台输入`column_id`得到栏目 ID。\n:::\n\n  栏目\n\n| 新闻联播             | 新闻周刊             | 天下足球             |\n| -------------------- | -------------------- | -------------------- |\n| TOPC1451528971114112 | TOPC1451559180488841 | TOPC1451551777876756 |",
-      "provider_id": "cntv",
-      "provider_name": "CNTV",
-      "route_key": "/:column"
+      "name": "Posts",
+      "description": "Sources\n\n| Posts | OnlyFans | Fansly | CandFans |\n| ----- | -------- | ------- | -------- |\n| posts | onlyfans | fansly   | candfans |\n\n::: tip\n  When `posts` is selected as the value of the parameter **source**, the parameter **id** does not take effect.\n  There is an optinal parameter **limit** which controls the number of posts to fetch, default value is 25.\n:::",
+      "provider_id": "coomer",
+      "provider_name": "Coomer",
+      "route_key": "/:source?/:id?"
     }
   },
   {
-    "provider_id": "domp4",
-    "provider_name": "DoMP4 影视",
-    "route_key": "/detail/:id",
+    "provider_id": "iqiyi",
+    "provider_name": "爱奇艺",
+    "route_key": "/user/video/:uid",
     "route": {
-      "path": "/detail/:id",
-      "example": "/domp4/detail/LBTANI22222I",
+      "path": "/user/video/:uid",
+      "example": "/iqiyi/user/video/2289191062",
       "parameters": {
-        "id": "从剧集详情页 URL 处获取，如：`https://www.mp4kan.com/html/LBTANI22222I.html`，取 `.html` 前面部分"
+        "uid": "用户名"
       },
-      "name": "剧集订阅",
-      "description": "::: tip\n由于大部分详情页是 `/html/xxx.html`，还有部分是 `/detail/123.html`，所以此处做了兼容，id 取 `xxx` 或者 `123` 都可以。\n\n新增 `second` 参数，用于选择下载地址二（地址二不可用或者不填都默认地址一），用法: `/domp4/detail/LBTANI22222I?second=1`。\n:::",
-      "provider_id": "domp4",
-      "provider_name": "DoMP4 影视",
-      "route_key": "/detail/:id"
+      "name": "用户视频",
+      "provider_id": "iqiyi",
+      "provider_name": "爱奇艺",
+      "route_key": "/user/video/:uid"
+    }
+  },
+  {
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/makers/:id/:filter?",
+    "route": {
+      "path": "/makers/:id/:filter?",
+      "example": "/javdb/makers/7R",
+      "parameters": {
+        "id": "编号，可在片商页 URL 中找到",
+        "filter": "过滤，见下表，默认为 `全部`"
+      },
+      "name": "片商",
+      "url": "javdb.com/",
+      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有片商编号参见 [片商庫](https://javdb.com/makers)",
+      "provider_id": "javdb",
+      "provider_name": "JavDB",
+      "route_key": "/makers/:id/:filter?"
     }
   },
   {
     "provider_id": "javtiful",
     "provider_name": "Javtiful",
-    "route_key": "/actress/:id",
+    "route_key": "/channel/:id",
     "route": {
-      "path": "/actress/:id",
-      "name": "Actress",
-      "example": "/javtiful/actress/akari-tsumugi",
+      "path": "/channel/:id",
+      "name": "Channel",
+      "example": "/javtiful/channel/madonna",
       "parameters": {
-        "id": "Actress name"
+        "id": "Channel name"
       },
       "provider_id": "javtiful",
       "provider_name": "Javtiful",
-      "route_key": "/actress/:id"
+      "route_key": "/channel/:id"
     }
   },
   {
-    "provider_id": "maccms",
-    "provider_name": "通用影视采集站视频采集接口路由",
-    "route_key": "/:domain/:type?/:size?",
+    "provider_id": "javtrailers",
+    "provider_name": "JavTrailers",
+    "route_key": "/studios/:studio",
     "route": {
-      "path": "/:domain/:type?/:size?",
-      "example": "/maccms/moduzy.net/2",
+      "path": "/studios/:studio",
+      "example": "/javtrailers/studios/s1-no-1-style",
       "parameters": {
-        "domain": "采集站域名，可选值如下表",
-        "type": "类别ID，不同采集站点有不同的类别规则和ID，默认为 0，代表全部类别",
-        "size": "每次获取的数据条数，上限 100 条，默认 30 条"
+        "studio": "Studio name, can be found in the URL of the studio page"
       },
-      "name": "最新资源",
-      "description": "\n::: tip\n每个采集站提供的影视类别ID是不同的，即参数中的 `type` 是不同的。**可以先访问一次站点提供的采集接口，然后从返回结果中的 `class` 字段中的 `type_id`获取相应的类别ID**\n:::\n\n| 站名                | 域名                                             | 站名             | 域名                                               | 站名           | 域名                                            |\n| ------------------- | ------------------------------------------------ | ---------------- | -------------------------------------------------- | -------------- | ----------------------------------------------- |\n| 魔都资源网          | [moduzy.net](https://moduzy.net)                 | 华为吧影视资源站 | [hw8.live](https://hw8.live)                       | 360 资源站     | [360zy.com](https://360zy.com)                  |\n| jkun 爱坤联盟资源网 | [ikunzyapi.com](https://ikunzyapi.com)           | 奥斯卡资源站     | [aosikazy.com](https://aosikazy.com)               | 飞速资源采集网 | [www.feisuzyapi.com](http://www.feisuzyapi.com) |\n| 森林资源网          | [slapibf.com](https://slapibf.com)               | 天空资源采集网   | [api.tiankongapi.com](https://api.tiankongapi.com) | 百度云资源     | [api.apibdzy.com](https://api.apibdzy.com)      |\n| 红牛资源站          | [www.hongniuzy2.com](https://www.hongniuzy2.com) | 乐视资源网       | [leshiapi.com](https://leshiapi.com)               | 暴风资源       | [bfzyapi.com](https://bfzyapi.com)              |",
-      "provider_id": "maccms",
-      "provider_name": "通用影视采集站视频采集接口路由",
-      "route_key": "/:domain/:type?/:size?"
-    }
-  },
-  {
-    "provider_id": "mixcloud",
-    "provider_name": "Mixcloud",
-    "route_key": "/:username/:type?",
-    "route": {
-      "path": "/:username/:type?",
-      "example": "/mixcloud/dholbach/uploads",
-      "parameters": {
-        "username": "Username, can be found in URL",
-        "type": "Type, see below, uploads by default"
-      },
-      "name": "User",
-      "description": "| Shows   | Reposts | Favorites | History | Stream |\n| ------- | ------- | --------- | ------- | ------ |\n| uploads | reposts | favorites | listens | stream |",
-      "provider_id": "mixcloud",
-      "provider_name": "Mixcloud",
-      "route_key": "/:username/:type?"
-    }
-  },
-  {
-    "provider_id": "myfans",
-    "provider_name": "myfans",
-    "route_key": "/user/:username",
-    "route": {
-      "path": "/user/:username",
-      "example": "/myfans/user/secret_japan",
-      "parameters": {
-        "username": "User handle"
-      },
-      "name": "User Posts",
-      "provider_id": "myfans",
-      "provider_name": "myfans",
-      "route_key": "/user/:username"
-    }
-  },
-  {
-    "provider_id": "olevod",
-    "provider_name": "欧乐影院",
-    "route_key": "/vod/:id",
-    "route": {
-      "path": "/vod/:id",
-      "example": "/olevod/vod/202449091",
-      "parameters": {
-        "id": "视频id号"
-      },
-      "name": "视频",
-      "provider_id": "olevod",
-      "provider_name": "欧乐影院",
-      "route_key": "/vod/:id"
-    }
-  },
-  {
-    "provider_id": "olevod",
-    "provider_name": "欧乐影院",
-    "route_key": "/vodlist",
-    "route": {
-      "path": "/vodlist",
-      "example": "/olevod/vodlist",
-      "name": "最新视频",
-      "provider_id": "olevod",
-      "provider_name": "欧乐影院",
-      "route_key": "/vodlist"
+      "name": "Studios",
+      "provider_id": "javtrailers",
+      "provider_name": "JavTrailers",
+      "route_key": "/studios/:studio"
     }
   },
   {
@@ -301,18 +205,95 @@
   {
     "provider_id": "pornhub",
     "provider_name": "PornHub",
-    "route_key": "/search/:keyword",
+    "route_key": "/pornstar/:username/:language?/:sort?",
     "route": {
-      "path": "/search/:keyword",
+      "path": "/pornstar/:username/:language?/:sort?",
       "view": 3,
-      "example": "/pornhub/search/stepsister",
+      "example": "/pornhub/pornstar/june-liu/www/mr",
       "parameters": {
-        "keyword": "keyword"
+        "username": {
+          "description": "username, part of the url e.g. `pornhub.com/pornstar/june-liu`"
+        },
+        "language": {
+          "description": "language",
+          "options": [
+            {
+              "value": "www",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "it",
+              "label": "Italiano"
+            },
+            {
+              "value": "ja",
+              "label": "日本語"
+            },
+            {
+              "value": "pt",
+              "label": "Português"
+            },
+            {
+              "value": "pl",
+              "label": "Polski"
+            },
+            {
+              "value": "rt",
+              "label": "Русский"
+            },
+            {
+              "value": "nl",
+              "label": "Dutch"
+            },
+            {
+              "value": "cs",
+              "label": "Czech"
+            },
+            {
+              "value": "cn",
+              "label": "中文（简体）"
+            }
+          ],
+          "default": "www"
+        },
+        "sort": {
+          "description": "sorting method, leave empty for `Best`",
+          "options": [
+            {
+              "label": "Most Recent",
+              "value": "mr"
+            },
+            {
+              "label": "Most Viewed",
+              "value": "mv"
+            },
+            {
+              "label": "Top Rated",
+              "value": "tr"
+            },
+            {
+              "label": "Longest",
+              "value": "lg"
+            }
+          ]
+        }
       },
-      "name": "Keyword Search",
+      "name": "Pornstar",
       "provider_id": "pornhub",
       "provider_name": "PornHub",
-      "route_key": "/search/:keyword"
+      "route_key": "/pornstar/:username/:language?/:sort?"
     }
   },
   {
@@ -330,23 +311,6 @@
       "provider_id": "pornhub",
       "provider_name": "PornHub",
       "route_key": "/users/:username/:language?"
-    }
-  },
-  {
-    "provider_id": "soundon",
-    "provider_name": "SoundOn",
-    "route_key": "/p/:id",
-    "route": {
-      "path": "/p/:id",
-      "example": "/soundon/p/33a68cdc-18ad-4192-84cc-22bd7fdc6a31",
-      "parameters": {
-        "id": "Podcast ID"
-      },
-      "name": "Podcast",
-      "view": 4,
-      "provider_id": "soundon",
-      "provider_name": "SoundOn",
-      "route_key": "/p/:id"
     }
   },
   {
@@ -370,87 +334,70 @@
   {
     "provider_id": "themoviedb",
     "provider_name": "The Movie Database",
-    "route_key": "/tv/:id/seasons/:lang?",
+    "route_key": "/trending/:mediaType/:timeWindow/:lang?",
     "route": {
-      "path": "/tv/:id/seasons/:lang?",
-      "view": 5,
-      "example": "/themoviedb/tv/70593/seasons/en-US",
+      "path": "/trending/:mediaType/:timeWindow/:lang?",
+      "example": "/themoviedb/trending/tv/day/en-US",
       "parameters": {
-        "id": "TV show ID",
+        "mediaType": "`movie` or `tv`",
+        "timeWindow": "`day` or `week`",
         "lang": "Language"
       },
-      "name": "TV Show Seasons",
+      "name": "Trending",
       "provider_id": "themoviedb",
       "provider_name": "The Movie Database",
-      "route_key": "/tv/:id/seasons/:lang?"
-    }
-  },
-  {
-    "provider_id": "tingtingfm",
-    "provider_name": "听听 FM",
-    "route_key": "/program/:programId",
-    "route": {
-      "path": "/program/:programId",
-      "view": 4,
-      "example": "/tingtingfm/program/M7VJv6Jj4R",
-      "parameters": {
-        "programId": "节目 ID，可以在 URL 中找到"
-      },
-      "name": "节目",
-      "provider_id": "tingtingfm",
-      "provider_name": "听听 FM",
-      "route_key": "/program/:programId"
-    }
-  },
-  {
-    "provider_id": "xiaoyuzhou",
-    "provider_name": "小宇宙",
-    "route_key": "/podcast/:id",
-    "route": {
-      "path": "/podcast/:id",
-      "view": 4,
-      "example": "/xiaoyuzhou/podcast/6021f949a789fca4eff4492c",
-      "parameters": {
-        "id": "播客 id 或单集 id，可以在小宇宙播客的 URL 中找到"
-      },
-      "name": "播客",
-      "url": "xiaoyuzhoufm.com/",
-      "provider_id": "xiaoyuzhou",
-      "provider_name": "小宇宙",
-      "route_key": "/podcast/:id"
+      "route_key": "/trending/:mediaType/:timeWindow/:lang?"
     }
   },
   {
     "provider_id": "yyets",
     "provider_name": "人人影视",
-    "route_key": "/today",
+    "route_key": "/article/:type?",
     "route": {
-      "path": "/today",
-      "view": 5,
-      "example": "/yyets/today",
-      "parameters": {},
-      "name": "今日播出",
-      "url": "yysub.net/tv/schedule",
+      "path": "/article/:type?",
+      "view": 0,
+      "example": "/yyets/article",
+      "parameters": {
+        "type": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "news",
+              "label": "影视资讯"
+            },
+            {
+              "value": "report",
+              "label": "收视快报"
+            },
+            {
+              "value": "m_review",
+              "label": "人人影评"
+            },
+            {
+              "value": "t_review",
+              "label": "人人剧评"
+            },
+            {
+              "value": "new_review",
+              "label": "新剧评测"
+            },
+            {
+              "value": "recom",
+              "label": "片单推荐"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "name": "影视资讯",
+      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |",
       "provider_id": "yyets",
       "provider_name": "人人影视",
-      "route_key": "/today"
-    }
-  },
-  {
-    "provider_id": "zimuxia",
-    "provider_name": "FIX 字幕侠",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/zimuxia",
-      "parameters": {
-        "category": "分类，见下表，默认为 ALL"
-      },
-      "name": "分类",
-      "description": "| ALL | FIX 德语社 | 欧美剧集 | 欧美电影 | 综艺 & 纪录 | FIX 日语社 | FIX 韩语社 | FIX 法语社 |\n| --- | ---------- | -------- | -------- | ----------- | ---------- | ---------- | ---------- |\n|     | 昆仑德语社 | 欧美剧集 | 欧美电影 | 综艺纪录    | fix 日语社 | fix 韩语社 | fix 法语社 |",
-      "provider_id": "zimuxia",
-      "provider_name": "FIX 字幕侠",
-      "route_key": "/:category?"
+      "route_key": "/article/:type?"
     }
   }
 ]
