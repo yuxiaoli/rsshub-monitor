@@ -2,6 +2,20 @@
   {
     "provider_id": "163",
     "provider_name": "网易公开课",
+    "route_key": "/music/artist/songs/:id",
+    "route": {
+      "name": "歌手歌曲",
+      "path": "/music/artist/songs/:id",
+      "example": "/163/music/artist/songs/2116",
+      "parameters": {
+        "id": "歌手 id, 可在歌手详情页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
     "route_key": "/music/artist/:id",
     "route": {
       "name": "歌手专辑",
@@ -9,6 +23,20 @@
       "example": "/163/music/artist/2116",
       "parameters": {
         "id": "歌手 id, 可在歌手详情页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/music/playlist/:id",
+    "route": {
+      "name": "歌单歌曲",
+      "path": "/music/playlist/:id",
+      "example": "/163/music/playlist/35798529",
+      "parameters": {
+        "id": "歌单 id, 可在歌单页 URL 中找到"
       },
       "description": ""
     }
@@ -40,27 +68,29 @@
     }
   },
   {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/:keyword",
+    "provider_id": "asmr-200",
+    "provider_name": "ASMR Online",
+    "route_key": "/works/:order?/:subtitle?/:sort?",
     "route": {
-      "name": "Navigation",
-      "path": "/:keyword",
-      "example": "/chikubi",
+      "name": "最新收录",
+      "path": "/works/:order?/:subtitle?/:sort?",
+      "example": "/asmr-200/works",
       "parameters": {
-        "keyword": "導覽列，見下表，默認爲最新"
+        "order": "排序字段，默认按照资源的收录日期来排序，详见下表",
+        "sort": "排序方式，可选 `asc` 和 `desc` ，默认倒序",
+        "subtitle": "筛选带字幕音频，可选 `0` 和 `1` ，默认关闭"
       },
-      "description": "| 殿堂 | 動畫 | VR | 漫畫 | 音聲 | CG・イラスト |\n| ---- | ----- | -- | ----- | ----- | -- |\n| best | video | vr | comic | voice | cg |"
+      "description": "| 发售日期 | 收录日期 | 销量 | 价格 | 评价 | 随机 | RJ号 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| release | create_date | dl_count | price | rate_average_2dp | random | id |"
     }
   },
   {
     "provider_id": "chikubi",
     "provider_name": "乳首ふぇち",
-    "route_key": "/tag/:keyword",
+    "route_key": "/category/:keyword",
     "route": {
-      "name": "Tag",
-      "path": "/tag/:keyword",
-      "example": "/chikubi/tag/ドリームチケット",
+      "name": "Category",
+      "path": "/category/:keyword",
+      "example": "/chikubi/category/nipple-lesbian",
       "parameters": {
         "keyword": "Keyword"
       },
@@ -68,30 +98,71 @@
     }
   },
   {
-    "provider_id": "coomer",
-    "provider_name": "Coomer",
-    "route_key": "/:source?/:id?",
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/",
     "route": {
-      "name": "Posts",
-      "path": "/:source?/:id?",
-      "example": "/coomer",
+      "name": "最新記事",
+      "path": "/",
+      "example": "/chikubi",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/nipple-video-maker/:keyword",
+    "route": {
+      "name": "AVメーカー",
+      "path": "/nipple-video-maker/:keyword",
+      "example": "/chikubi/nipple-video-maker/nipple-video-maker-nh",
       "parameters": {
-        "source": "Source, see below, Posts by default",
-        "id": "User id, can be found in URL"
+        "keyword": "Keyword"
       },
-      "description": "Sources\n\n| Posts | OnlyFans | Fansly | CandFans |\n| ----- | -------- | ------- | -------- |\n| posts | onlyfans | fansly   | candfans |\n\n::: tip\n  When `posts` is selected as the value of the parameter **source**, the parameter **id** does not take effect.\n  There is an optinal parameter **limit** which controls the number of posts to fetch, default value is 25.\n:::"
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/search/:keyword",
+    "route": {
+      "name": "Search",
+      "path": "/search/:keyword",
+      "example": "/chikubi/search/ギャップ",
+      "parameters": {
+        "keyword": "Keyword"
+      },
+      "description": ""
     }
   },
   {
     "provider_id": "iqiyi",
     "provider_name": "爱奇艺",
-    "route_key": "/user/video/:uid",
+    "route_key": "/album/:id",
     "route": {
-      "name": "用户视频",
-      "path": "/user/video/:uid",
-      "example": "/iqiyi/user/video/2289191062",
+      "name": "剧集",
+      "path": "/album/:id",
+      "example": "/iqiyi/album/神武天尊-2020-1b4lufwxd7h",
       "parameters": {
-        "uid": "用户名"
+        "id": "剧集 id, 可在该主页 URL 中找到"
+      },
+      "description": "::: tip\n  可抓取內容根据服务器所在地区而定\n:::"
+    }
+  },
+  {
+    "provider_id": "javbus",
+    "provider_name": "JavBus",
+    "route_key": "/:path{.+}?",
+    "route": {
+      "name": "Works",
+      "path": "/:path{.+}?",
+      "example": "/javbus/star/rwt",
+      "parameters": {
+        "path": {
+          "description": "Any path of list page on javbus"
+        }
       },
       "description": ""
     }
@@ -112,60 +183,60 @@
     }
   },
   {
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/series/:id/:filter?",
+    "route": {
+      "name": "系列",
+      "path": "/series/:id/:filter?",
+      "example": "/javdb/series/1NW",
+      "parameters": {
+        "id": "编号，可在系列页 URL 中找到",
+        "filter": "过滤，见下表，默认为 `全部`"
+      },
+      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有系列编号参见 [系列庫](https://javdb.com/series)"
+    }
+  },
+  {
     "provider_id": "javtiful",
     "provider_name": "Javtiful",
-    "route_key": "/channel/:id",
+    "route_key": "/actress/:id",
     "route": {
-      "name": "Channel",
-      "path": "/channel/:id",
-      "example": "/javtiful/channel/madonna",
+      "name": "Actress",
+      "path": "/actress/:id",
+      "example": "/javtiful/actress/akari-tsumugi",
       "parameters": {
-        "id": "Channel name"
+        "id": "Actress name"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "javtrailers",
-    "provider_name": "JavTrailers",
-    "route_key": "/studios/:studio",
+    "provider_id": "maccms",
+    "provider_name": "通用影视采集站视频采集接口路由",
+    "route_key": "/:domain/:type?/:size?",
     "route": {
-      "name": "Studios",
-      "path": "/studios/:studio",
-      "example": "/javtrailers/studios/s1-no-1-style",
+      "name": "最新资源",
+      "path": "/:domain/:type?/:size?",
+      "example": "/maccms/moduzy.net/2",
       "parameters": {
-        "studio": "Studio name, can be found in the URL of the studio page"
+        "domain": "采集站域名，可选值如下表",
+        "type": "类别ID，不同采集站点有不同的类别规则和ID，默认为 0，代表全部类别",
+        "size": "每次获取的数据条数，上限 100 条，默认 30 条"
       },
-      "description": ""
+      "description": "\n::: tip\n每个采集站提供的影视类别ID是不同的，即参数中的 `type` 是不同的。**可以先访问一次站点提供的采集接口，然后从返回结果中的 `class` 字段中的 `type_id`获取相应的类别ID**\n:::\n\n| 站名                | 域名                                             | 站名             | 域名                                               | 站名           | 域名                                            |\n| ------------------- | ------------------------------------------------ | ---------------- | -------------------------------------------------- | -------------- | ----------------------------------------------- |\n| 魔都资源网          | [moduzy.net](https://moduzy.net)                 | 华为吧影视资源站 | [hw8.live](https://hw8.live)                       | 360 资源站     | [360zy.com](https://360zy.com)                  |\n| jkun 爱坤联盟资源网 | [ikunzyapi.com](https://ikunzyapi.com)           | 奥斯卡资源站     | [aosikazy.com](https://aosikazy.com)               | 飞速资源采集网 | [www.feisuzyapi.com](http://www.feisuzyapi.com) |\n| 森林资源网          | [slapibf.com](https://slapibf.com)               | 天空资源采集网   | [api.tiankongapi.com](https://api.tiankongapi.com) | 百度云资源     | [api.apibdzy.com](https://api.apibdzy.com)      |\n| 红牛资源站          | [www.hongniuzy2.com](https://www.hongniuzy2.com) | 乐视资源网       | [leshiapi.com](https://leshiapi.com)               | 暴风资源       | [bfzyapi.com](https://bfzyapi.com)              |"
     }
   },
   {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/category_url/:url?/:language?",
+    "provider_id": "myfans",
+    "provider_name": "myfans",
+    "route_key": "/user/:username",
     "route": {
-      "name": "Video List",
-      "path": "/category_url/:url?/:language?",
-      "example": "/pornhub/category_url/video%3Fc%3D15%26o%3Dmv%26t%3Dw%26cc%3Djp",
+      "name": "User Posts",
+      "path": "/user/:username",
+      "example": "/myfans/user/secret_japan",
       "parameters": {
-        "language": "language, see below",
-        "url": "relative path after `pornhub.com/`, need to be URL encoded"
-      },
-      "description": "**`language`**\n\n  Refer to [Pornhub F.A.Qs](https://help.pornhub.com/hc/en-us/articles/360044327034-How-do-I-change-the-language-), English by default. For example:\n\n  -   `cn` (Chinese), for Pornhub in China [https://cn.pornhub.com](https://cn.pornhub.com)；\n\n  -   `jp` (Japanese), for Pornhub in Japan [https://jp.pornhub.com](https://jp.pornhub.com) etc."
-    }
-  },
-  {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/model/:username/:language?/:sort?",
-    "route": {
-      "name": "Model",
-      "path": "/model/:username/:language?/:sort?",
-      "example": "/pornhub/model/stacy-starando",
-      "parameters": {
-        "language": "language, see below",
-        "username": "username, part of the url e.g. `pornhub.com/model/stacy-starando`",
-        "sort": "sorting method, see below"
+        "username": "User handle"
       },
       "description": ""
     }
@@ -262,17 +333,14 @@
     }
   },
   {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/users/:username/:language?",
+    "provider_id": "storyfm",
+    "provider_name": "故事 FM",
+    "route_key": "/episodes",
     "route": {
-      "name": "Users",
-      "path": "/users/:username/:language?",
-      "example": "/pornhub/users/pornhubmodels",
-      "parameters": {
-        "language": "language, see below",
-        "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
-      },
+      "name": "播客",
+      "path": "/episodes",
+      "example": "/storyfm/episodes",
+      "parameters": {},
       "description": ""
     }
   },
@@ -304,6 +372,34 @@
         "mediaType": "`movie` or `tv`",
         "timeWindow": "`day` or `week`",
         "lang": "Language"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "tingtingfm",
+    "provider_name": "听听 FM",
+    "route_key": "/program/:programId",
+    "route": {
+      "name": "节目",
+      "path": "/program/:programId",
+      "example": "/tingtingfm/program/M7VJv6Jj4R",
+      "parameters": {
+        "programId": "节目 ID，可以在 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "xiaoyuzhou",
+    "provider_name": "小宇宙",
+    "route_key": "/podcast/:id",
+    "route": {
+      "name": "播客",
+      "path": "/podcast/:id",
+      "example": "/xiaoyuzhou/podcast/6021f949a789fca4eff4492c",
+      "parameters": {
+        "id": "播客 id 或单集 id，可以在小宇宙播客的 URL 中找到"
       },
       "description": ""
     }
@@ -353,6 +449,18 @@
         }
       },
       "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |"
+    }
+  },
+  {
+    "provider_id": "yyets",
+    "provider_name": "人人影视",
+    "route_key": "/today",
+    "route": {
+      "name": "今日播出",
+      "path": "/today",
+      "example": "/yyets/today",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

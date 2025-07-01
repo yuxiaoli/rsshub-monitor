@@ -1,5 +1,19 @@
 [
   {
+    "provider_id": "apache",
+    "provider_name": "Apache",
+    "route_key": "/apisix/blog",
+    "route": {
+      "path": "/apisix/blog",
+      "example": "/apache/apisix/blog",
+      "parameters": {},
+      "name": "APISIX 博客",
+      "provider_id": "apache",
+      "provider_name": "Apache",
+      "route_key": "/apisix/blog"
+    }
+  },
+  {
     "provider_id": "bulianglin",
     "provider_name": "不良林",
     "route_key": "/",
@@ -31,91 +45,158 @@
     }
   },
   {
-    "provider_id": "cmu",
-    "provider_name": "Carnegie Mellon University",
-    "route_key": "/andypavlo/blog",
+    "provider_id": "cmpxchg8b",
+    "provider_name": "cmpxchg8b",
+    "route_key": "/articles",
     "route": {
-      "path": "/andypavlo/blog",
-      "example": "/cmu/andypavlo/blog",
+      "path": "/articles",
+      "example": "/cmpxchg8b/articles",
       "parameters": {},
-      "name": "Andy Pavlo Blog",
-      "provider_id": "cmu",
-      "provider_name": "Carnegie Mellon University",
-      "route_key": "/andypavlo/blog"
+      "name": "Articles",
+      "url": "lock.cmpxchg8b.com/articles",
+      "provider_id": "cmpxchg8b",
+      "provider_name": "cmpxchg8b",
+      "route_key": "/articles"
     }
   },
   {
-    "provider_id": "foreverblog",
-    "provider_name": "十年之约",
-    "route_key": "/feeds",
+    "provider_id": "dayanzai",
+    "provider_name": "大眼仔旭",
+    "route_key": "/:category/:fulltext?",
     "route": {
-      "path": "/feeds",
-      "example": "/foreverblog/feeds",
-      "parameters": {},
-      "name": "专题展示 - 文章",
-      "url": "www.foreverblog.cn/feeds.html",
-      "provider_id": "foreverblog",
-      "provider_name": "十年之约",
-      "route_key": "/feeds"
-    }
-  },
-  {
-    "provider_id": "freebuf",
-    "provider_name": "FreeBuf",
-    "route_key": "/articles/:type",
-    "route": {
-      "path": "/articles/:type",
-      "example": "/freebuf/articles/web",
+      "path": "/:category/:fulltext?",
+      "example": "/dayanzai/windows",
       "parameters": {
-        "type": "文章类别"
+        "category": "分类",
+        "fulltext": "是否获取全文，需要获取则传入参数`y`"
+      },
+      "name": "分类",
+      "description": "| 微软应用 | 安卓应用 | 教程资源 | 其他资源 |\n| -------- | -------- | -------- | -------- |\n| windows  | android  | tutorial | other    |",
+      "provider_id": "dayanzai",
+      "provider_name": "大眼仔旭",
+      "route_key": "/:category/:fulltext?"
+    }
+  },
+  {
+    "provider_id": "flashcat",
+    "provider_name": "Flashcat",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "example": "/flashcat/blog",
+      "parameters": {},
+      "name": "快猫星云博客",
+      "provider_id": "flashcat",
+      "provider_name": "Flashcat",
+      "route_key": "/blog"
+    }
+  },
+  {
+    "provider_id": "fxiaoke",
+    "provider_name": "纷享销客 CRM",
+    "route_key": "/crm/:type",
+    "route": {
+      "path": "/crm/:type",
+      "example": "/fxiaoke/crm/news",
+      "parameters": {
+        "type": "文章类型, 见下表"
       },
       "name": "文章",
-      "description": "::: tip\n  Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。\n:::",
-      "provider_id": "freebuf",
-      "provider_name": "FreeBuf",
-      "route_key": "/articles/:type"
+      "description": "| 全部文章 | 文章干货 | CRM 知识 | 纷享动态        | 签约喜报  |\n| -------- | -------- | -------- | --------------- | --------- |\n| news     | blog     | articles | about-influence | customers |",
+      "provider_id": "fxiaoke",
+      "provider_name": "纷享销客 CRM",
+      "route_key": "/crm/:type"
     }
   },
   {
-    "provider_id": "hicairo",
-    "provider_name": "HiFeng'Blog",
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/research",
+    "route": {
+      "path": "/research",
+      "example": "/google/research",
+      "name": "Research Blog",
+      "provider_id": "google",
+      "provider_name": "Google",
+      "route_key": "/research"
+    }
+  },
+  {
+    "provider_id": "gs",
+    "provider_name": "Goldman Sachs",
+    "route_key": "/developer/blog",
+    "route": {
+      "path": "/developer/blog",
+      "example": "/gs/developer/blog",
+      "parameters": {},
+      "name": "Goldman Sachs Developer Blog",
+      "zh": {
+        "name": "高盛开发者博客"
+      },
+      "provider_id": "gs",
+      "provider_name": "Goldman Sachs",
+      "route_key": "/developer/blog"
+    }
+  },
+  {
+    "provider_id": "imhcg",
+    "provider_name": "imhcg的信息站",
     "route_key": "/",
     "route": {
       "path": "/",
-      "example": "/hicairo",
-      "name": "最近发表",
-      "url": "hicairo.com/",
-      "provider_id": "hicairo",
-      "provider_name": "HiFeng'Blog",
+      "view": 5,
+      "example": "/imhcg",
+      "parameters": {},
+      "name": "Engineering blogs",
+      "url": "infos.imhcg.cn",
+      "provider_id": "imhcg",
+      "provider_name": "imhcg的信息站",
       "route_key": "/"
     }
   },
   {
-    "provider_id": "itc",
-    "provider_name": "Open Github社区",
-    "route_key": "/collection/:colType",
+    "provider_id": "ippa",
+    "provider_name": "子方有料",
+    "route_key": "/",
     "route": {
-      "path": "/collection/:colType",
-      "example": "/itc/collection/1",
-      "name": "合集",
-      "provider_id": "itc",
-      "provider_name": "Open Github社区",
-      "route_key": "/collection/:colType"
+      "path": "/",
+      "example": "/ippa",
+      "name": "最新文章",
+      "url": "ippa.top/",
+      "provider_id": "ippa",
+      "provider_name": "子方有料",
+      "route_key": "/"
     }
   },
   {
-    "provider_id": "kadokawa",
-    "provider_name": "台灣角川",
-    "route_key": "/blog",
+    "provider_id": "luxiangdong",
+    "provider_name": "土猛的员外",
+    "route_key": "/archive",
     "route": {
-      "path": "/blog",
-      "name": "角編新聞台",
-      "url": "kadokawa.com.tw",
-      "example": "/kadokawa/blog",
-      "description": "",
-      "provider_id": "kadokawa",
-      "provider_name": "台灣角川",
-      "route_key": "/blog"
+      "path": "/archive",
+      "example": "/luxiangdong/archive",
+      "parameters": {},
+      "name": "文章",
+      "url": "luxiangdong.com/",
+      "provider_id": "luxiangdong",
+      "provider_name": "土猛的员外",
+      "route_key": "/archive"
+    }
+  },
+  {
+    "provider_id": "macmenubar",
+    "provider_name": "MacMenuBar",
+    "route_key": "/recently/:category?",
+    "route": {
+      "path": "/recently/:category?",
+      "example": "/macmenubar/recently/developer-apps,system-tools",
+      "parameters": {
+        "category": "Category path name, seperate by comma, default is all categories. Category path name can be found in url"
+      },
+      "name": "Recently",
+      "provider_id": "macmenubar",
+      "provider_name": "MacMenuBar",
+      "route_key": "/recently/:category?"
     }
   },
   {
@@ -136,18 +217,108 @@
     }
   },
   {
-    "provider_id": "nielsberglund",
-    "provider_name": "Niels Berglund Blog",
+    "provider_id": "react",
+    "provider_name": "React",
     "route_key": "/blog",
     "route": {
       "path": "/blog",
-      "example": "/nielsberglund/blog",
-      "url": "nielsberglund.com/",
       "name": "Blog",
-      "description": "Niels Berglund Blog Posts",
-      "provider_id": "nielsberglund",
-      "provider_name": "Niels Berglund Blog",
+      "example": "/react/blog",
+      "provider_id": "react",
+      "provider_name": "React",
       "route_key": "/blog"
+    }
+  },
+  {
+    "provider_id": "substack",
+    "provider_name": "Substack",
+    "route_key": "/subscribe/:user",
+    "route": {
+      "path": "/subscribe/:user",
+      "view": 1,
+      "example": "/substack/subscribe/mangoread",
+      "parameters": {
+        "user": "Username of the Substack"
+      },
+      "name": "Substack Subscription",
+      "provider_id": "substack",
+      "provider_name": "Substack",
+      "route_key": "/subscribe/:user"
+    }
+  },
+  {
+    "provider_id": "thegradient",
+    "provider_name": "The Gradient",
+    "route_key": "/posts",
+    "route": {
+      "path": "/posts",
+      "example": "/thegradient/posts",
+      "url": "thegradient.pub/",
+      "name": "Posts",
+      "description": "The Gradient Blog Posts",
+      "provider_id": "thegradient",
+      "provider_name": "The Gradient",
+      "route_key": "/posts"
+    }
+  },
+  {
+    "provider_id": "xys",
+    "provider_name": "新语丝",
+    "route_key": "/new",
+    "route": {
+      "path": "/new",
+      "example": "/xys/new",
+      "parameters": {},
+      "name": "新到资料",
+      "url": "xys.org/",
+      "provider_id": "xys",
+      "provider_name": "新语丝",
+      "route_key": "/new"
+    }
+  },
+  {
+    "provider_id": "ygkkk",
+    "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "example": "/ygkkk",
+      "name": "最新发表",
+      "url": "ygkkk.blogspot.com/",
+      "provider_id": "ygkkk",
+      "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
+      "route_key": "/"
+    }
+  },
+  {
+    "provider_id": "youmemark",
+    "provider_name": "YouMeMark",
+    "route_key": "/:userid",
+    "route": {
+      "path": "/:userid",
+      "example": "/youmemark/pseudoyu",
+      "parameters": {
+        "userid": "`userid` is the user id of youmemark"
+      },
+      "name": "Bookmarks",
+      "description": "Get user's public bookmarks from YouMeMark\n::: tip\n  Add `?limit=<number>` to the end of the route to limit the number of items. Default is 10.\n:::",
+      "provider_id": "youmemark",
+      "provider_name": "YouMeMark",
+      "route_key": "/:userid"
+    }
+  },
+  {
+    "provider_id": "zhujiceping",
+    "provider_name": "国外主机测评",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "example": "/zhujiceping",
+      "name": "最新发布",
+      "url": "zhujiceping.com/",
+      "provider_id": "zhujiceping",
+      "provider_name": "国外主机测评",
+      "route_key": "/"
     }
   }
 ]

@@ -1,283 +1,488 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>简书首页</title><link>https://www.jianshu.com</link><atom:link href="http://rsshub.email-once.com/jianshu/home" rel="self" type="application/rss+xml"></atom:link><description>简书是一个优质的创作社区，在这里，你可以任性地创作，一篇短文、一张照片、一首诗、一幅画……我们相信，每个人都是生活中的艺术家，有着无穷的创造力。 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Sun, 01 Jun 2025 00:32:29 GMT</lastBuildDate><ttl>5</ttl><item><title>Android-Jetpack-ProcessLifecycIeOwner监听App的生命周期</title><description>&lt;div class=&quot;image-package&quot;&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>简书首页</title><link>https://www.jianshu.com</link><atom:link href="http://hub.slarker.me/jianshu/home" rel="self" type="application/rss+xml"></atom:link><description>简书是一个优质的创作社区，在这里，你可以任性地创作，一篇短文、一张照片、一首诗、一幅画……我们相信，每个人都是生活中的艺术家，有着无穷的创造力。 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Jul 2025 00:31:01 GMT</lastBuildDate><ttl>5</ttl><item><title>小知识点：npm install -g 遇到权限问题</title><description>&lt;blockquote&gt;
+&lt;h1&gt;前言&lt;/h1&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;来啦老铁！&lt;/h1&gt;
+&lt;p&gt;新的一年开始了，笔者在 2022 年共发表了 22 篇技术文章，与 2022 年初计划的 25 篇基本相符，由于技术类文章编写时需要大量的积累和实时记录，因此产量相对没那么多以及也没那么稳定，2022 年给自己打个合格分吧~&lt;/p&gt;
+&lt;h3&gt;新的一年，我也将持续更新技术作品，与大家共同进步！&lt;/h3&gt;
+&lt;p&gt;新年伊始，我们先来学点小知识，热热身吧~&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h1&gt;学习路径&lt;/h1&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;npm 简介；&lt;/li&gt;
+&lt;li&gt;npm 常用命令；&lt;/li&gt;
+&lt;li&gt;npm 命令近期遇到的一个问题和解决方法；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;h3&gt;1. npm 简介；&lt;/h3&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这方面可以参考网络上的资料，如：&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F362828765&quot; target=&quot;_blank&quot;&gt;https://zhuanlan.zhihu.com/p/362828765&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h3&gt;2. npm 常用命令；&lt;/h3&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5&gt;这方面，笔者经常使用的命令有：&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;// 查看 npm 版本
+npm -v
+// 更新 npm
+npm install npm@latest -g
+npm install -g npm
+// 新建 npm 管理的 node.js 项目
+npm  init
+// 安装 package.json 内声明的所有包
+npm install
+// 本地安装指定包，非全局
+npm install 包名
+// 本地安装指定包，全局
+npm install -g 包名
+// 查看本地已安装的包
+npm list
+// 开发环境下安装指定包，安装到 package.json 的 devDependencies 下
+npm install --save-dev 包名 简写npm i -D 包名
+// 生产环境下安装指定包，安装到 package.json 的 dependencies 下
+npm install --save 包名 简写npm i -S 包名
+// 从指定镜像地址安装包
+npm install --registry=XXXX
+npm install 包名 --registry=XXXX
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5&gt;关于 --save-dev 和 --save 的总结如下：&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（图片摘抄自：&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F362828765&quot; target=&quot;_blank&quot;&gt;https://zhuanlan.zhihu.com/p/362828765&lt;/a&gt;）&lt;br&gt;
+&lt;/p&gt;&lt;div class=&quot;image-package&quot;&gt;
 &lt;div class=&quot;image-container&quot;&gt;
 &lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;image-view&quot; data-width=&quot;1200&quot; data-height=&quot;787&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/25021128-c53d60a07600c7a1.png&quot; data-original-width=&quot;1200&quot; data-original-height=&quot;787&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;653651&quot; src=&quot;https://upload-images.jianshu.io/upload_images/25021128-c53d60a07600c7a1.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;2038&quot; data-height=&quot;334&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/11128110-0676afb209d36e82.png&quot; data-original-width=&quot;2038&quot; data-original-height=&quot;334&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;168081&quot; src=&quot;https://upload-images.jianshu.io/upload_images/11128110-0676afb209d36e82.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;image-caption&quot;&gt;图片来源网络&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;在日常&lt;code&gt;Android开发&lt;/code&gt;当中，我们肯定会遇到&lt;code&gt;App&lt;/code&gt;的生命周期的需求。在&lt;code&gt;lifecycle&lt;/code&gt;的扩展库当中有提供一个&lt;code&gt;ProcessLifecycIeOwner&lt;/code&gt;帮我们实现对&lt;code&gt;App&lt;/code&gt;的生命感知，这篇博客就来分享&lt;code&gt;ProcessLifecycIeOwner&lt;/code&gt;的知识，希望对看文章的小伙伴有所启发。&lt;/p&gt;
-&lt;h3&gt;导入依赖&lt;/h3&gt;
-&lt;p&gt;这个类需要我们导入一个扩展库，依赖语句如下所示：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;implementation &#39;androidx.lifecycle:lifecycle-extensions:2.2.0&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;使用代码示例&lt;/h3&gt;
-&lt;p&gt;1.创建一个&lt;code&gt;AppObserver&lt;/code&gt;实现&lt;code&gt;LifecycleObserver&lt;/code&gt;接口:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import androidx.lifecycle.LifecycleObserver
-
-class AppObserver : LifecycleObserver{
-        /**
-     * 在App的整个生命周期中只会被调用一次
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onCreate&quot;)
-    }
-
-    /**
-     * 在App在前台出现时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onStart&quot;)
-    }
-
-    /**
-     * 在App在前台出现时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onResume&quot;)
-    }
-
-    /**
-     * 在App退出到后台时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onPause&quot;)
-    }
-
-    /**
-     * 在App退出到后台时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStop(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onStop&quot;)
-    }
-
-    /**
-     * 理论上是不会触发这个事件的，因为系统不会分发，在项目当中可以不写这个事件
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onStop&quot;)
-    }
-
-    companion object {
-        const val TAG = &quot;TAG&quot;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;2.在自己的&lt;code&gt;Application&lt;/code&gt;当中绑定：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import android.app.Application
-import androidx.lifecycle.ProcessLifecycleOwner
-
-class MyApplication : Application(){
-
-    override fun onCreate() {
-        super.onCreate()
-        ProcessLifecycleOwner.get().lifecycle.addObserver(AppObserver())
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;调用就是这样的简单，刚兴趣的小伙伴可以在项目当中用起来。目前在项目当中可以获取到&lt;code&gt;App&lt;/code&gt;生命周期大概有以下几个：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Lifecycle.Event.ON_CREATE；&lt;/li&gt;
-&lt;li&gt;Lifecycle.Event.ON_START；&lt;/li&gt;
-&lt;li&gt;Lifecycle.Event.ON_RESUME；&lt;/li&gt;
-&lt;li&gt;Lifecycle.Event.ON_PAUSE；&lt;/li&gt;
-&lt;li&gt;Lifecycle.Event.ON_STOP；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在使用过程当中需要注意有以下几点：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;code&gt;Lifecycle.Event.ON_CREATE&lt;/code&gt;,只会调用一次。、&lt;/li&gt;
-&lt;li&gt;
-&lt;code&gt;Lifecycle.Event.ON_DESTROY&lt;/code&gt;，不会有响应的，别写业务代码，要不然就成为BUG了。&lt;/li&gt;
-&lt;li&gt;当我们直接通过&lt;code&gt;Home&lt;/code&gt;键或者其他方式退到后台的情况，会依次调用&lt;code&gt;Lifecycle.Event.ON_PAUSE&lt;/code&gt;和&lt;code&gt;Lifecycle.Event.ON_STOP&lt;/code&gt;，然后会出现延迟的情况。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;完整的AppObserver模板（可复制修改）&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;import android.util.Log
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
-
-class AppObserver : LifecycleObserver{
-
-    /**
-     * 在App的整个生命周期中只会被调用一次
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onCreate&quot;)
-    }
-
-    /**
-     * 在App在前台出现时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onStart&quot;)
-    }
-
-    /**
-     * 在App在前台出现时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onResume&quot;)
-    }
-
-    /**
-     * 在App退出到后台时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onPause&quot;)
-    }
-
-    /**
-     * 在App退出到后台时被调用
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStop(){
-        Log.d(TAG,&quot;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; onStop&quot;)
-    }
-
-    companion object {
-        const val TAG = &quot;TAG&quot;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description><link>https://www.jianshu.com/p/db86b09d9cb3</link><guid isPermaLink="false">https://www.jianshu.com/p/db86b09d9cb3</guid><pubDate>Sun, 01 Jun 2025 00:32:29 GMT</pubDate><author>阿博聊编程</author></item><item><title>真真假假</title><description>&lt;p&gt;经历了之后你才知道，并不是所有人说过的话别人都会当真。&lt;/p&gt;&lt;p&gt;有些话听听就可以了，自己心里知道是真是假即可。不必当众拆穿，但自己心里有杆秤，被别人忽悠了一次，不能再一次被忽悠，那样会显得自己也太没有脑子了，这应该就是女人悄无声息的成长吧！&lt;/p&gt;&lt;p&gt;经历告诉她，在这个世界上，真正靠得住的人太少，真正对你和颜悦色的人太少，只是有的人很善于和你逢场作戏而已。&lt;/p&gt;&lt;p&gt;再好听的承诺和誓言你听听就好，千万不必当真，谁当真谁就输了，因为有些话说出来是为了面子，而不是为了兑现承诺的。&lt;br&gt;&lt;/p&gt;&lt;p&gt;真真假假，自己心知肚明。&lt;/p&gt;</description><link>https://www.jianshu.com/p/5c983cf3c62b</link><guid isPermaLink="false">https://www.jianshu.com/p/5c983cf3c62b</guid><pubDate>Sun, 01 Jun 2025 00:32:28 GMT</pubDate><author>向往美好未来</author></item><item><title>哈希/求和-三数求和</title><description>&lt;p&gt;&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fleetcode.cn%2Fproblems%2F3sum%2F&quot; target=&quot;_blank&quot;&gt;题目 LeetCode15&lt;/a&gt;&lt;br&gt;
-给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。&lt;/p&gt;
-&lt;p&gt;示例 1：&lt;/p&gt;
+&lt;div class=&quot;image-caption&quot;&gt;开发环境与生产环境&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;输入：nums = [-1,0,1,2,-1,-4]&lt;br&gt;
-输出：[[-1,-1,2],[-1,0,1]]&lt;/p&gt;
+&lt;h3&gt;3. npm 命令近期遇到的一个问题和解决方法（Mac 机器）；&lt;/h3&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;解题思路&lt;/strong&gt;&lt;br&gt;
-思路1：暴力求解，3 层循环。时间复杂度 O(n&lt;em&gt;n&lt;/em&gt;n)&lt;br&gt;
-思路2：2 层循环，第 1 层循环遍历数组，作为 target，第二层循环参考&lt;a href=&quot;https://www.jianshu.com/p/7554614aa54b&quot; target=&quot;_blank&quot;&gt;两数求和&lt;/a&gt;的逻辑。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    // 待优化的代码
-    public static List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; threeSum(int[] nums) {
-        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; finalList = new ArrayList&amp;lt;&amp;gt;();
-        for (int i = 0; i &amp;lt; nums.length; i++) {
-           int target = -nums[i];
-            Set&amp;lt;Integer&amp;gt; tempSet = new HashSet&amp;lt;&amp;gt;();
-            List&amp;lt;Integer&amp;gt; tempList = new ArrayList&amp;lt;&amp;gt;();
-            // 遍历数组 nums
-            for (int j = 0; j &amp;lt; nums.length; j++) {
-                if(j == i){
-                    continue;
-                }
-                // 每个值都判断 tempSet 中是否存在 target-nums[i]
-                if (tempSet.contains(target - nums[j])) {
-                    tempList.add(nums[j]);
-                    tempList.add(target - nums[j]);
-                    tempList.add(nums[i]);
-                    boolean flag = true;
-                    // 判断 finalList 是否包含 tempList
-                    for (List&amp;lt;Integer&amp;gt; list : finalList) {
-                        if(tempList.containsAll(list) &amp;amp;&amp;amp; list.containsAll(tempList)){
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if(flag){
-                        finalList.add(tempList);
-                    }
-                    tempList = new ArrayList&amp;lt;&amp;gt;();
-                }else{
-                    // 如果不存在则将当前的 nums[i]存入 tempList 中，继续遍历直到找到为止
-                    tempSet.add(nums[j]);
-                }
-            }
-        }
-        return finalList;
-    }
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5&gt;全局安装某个包；&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;npm install -g XXX
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;思路3：先排序后查找，时间复杂度 O(n*n)&lt;/p&gt;
-&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5&gt;出现权限问题方面的报错：&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&quot;image-package&quot;&gt;
 &lt;div class=&quot;image-container&quot;&gt;
 &lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;image-view&quot; data-width=&quot;1431&quot; data-height=&quot;985&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/20099209-92387fec61026019.jpeg&quot; data-original-width=&quot;1431&quot; data-original-height=&quot;985&quot; data-original-format=&quot;image/jpeg&quot; data-original-filesize=&quot;236715&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1186&quot; data-height=&quot;796&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/11128110-96b38e0d2f498a55.png&quot; data-original-width=&quot;1186&quot; data-original-height=&quot;796&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;610004&quot; src=&quot;https://upload-images.jianshu.io/upload_images/11128110-96b38e0d2f498a55.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;image-caption&quot;&gt;79467cc6d1844a55b65e5912320650b5.jpeg&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;权限问题&lt;/div&gt;
 &lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;class Solution {
-        public static List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; threeSum(int[] nums) {
-        List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt; list = new ArrayList();
-        int len = nums.length;
-        if(nums == null || len &amp;lt; 3) return list;
-        Arrays.sort(nums); // 排序
-        for (int i = 0; i &amp;lt; len ; i++) {
-            if(nums[i] &amp;gt; 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
-            if(i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i-1]) continue; // 则说明该数字重复，会导致结果重复，所以应该跳过
-            int L = i+1;//指针从第二个数开始移动
-            int R = len-1;
-            while(L &amp;lt; R){
-                int sum = nums[i] + nums[L] + nums[R];
-                if(sum == 0){
-                    list.add(Arrays.asList(nums[i],nums[L],nums[R]));
-                    while (L&amp;lt;R &amp;amp;&amp;amp; nums[L] == nums[L+1]) L++; // 则会导致结果重复，应该跳过
-                    while (L&amp;lt;R &amp;amp;&amp;amp; nums[R] == nums[R-1]) R--; // 则会导致结果重复，应该跳过
-                    L++;
-                    R--;
-                }
-                else if (sum &amp;lt; 0) L++;
-                else if (sum &amp;gt; 0) R--;
-            }
-        }
-        return list;
-    }
-}
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5&gt;解决办法是执行以下命令：&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;sudo chown -R $USER /usr/local/lib/node_modules
 &lt;/code&gt;&lt;/pre&gt;
-</description><link>https://www.jianshu.com/p/f0f1da893fcd</link><guid isPermaLink="false">https://www.jianshu.com/p/f0f1da893fcd</guid><pubDate>Tue, 14 Jun 2022 17:04:06 GMT</pubDate><author>闲狗</author></item><item><title>第4章·粒子系统</title><description>&lt;p&gt;书名：代码本色：用编程模拟自然系统&lt;br&gt;
-作者：Daniel Shiffman&lt;br&gt;
-译者：周晗彬&lt;br&gt;
-ISBN：978-7-115-36947-5&lt;br&gt;
-&lt;a href=&quot;https://www.jianshu.com/p/cb6cd1a33a30&quot; target=&quot;_blank&quot;&gt;总目录&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h5&gt;输入密码后重新执行安装命令即可解决问题；&lt;/h5&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;npm install -g XXX
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;好了，今天就简单学习记录点小知识，浅尝辄止，下期再见~&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;h1&gt;第 4 章　粒子系统&lt;/h1&gt;
+&lt;h1&gt;如果本文对您有帮助，麻烦动动手指点点赞？&lt;/h1&gt;
+&lt;h1&gt;谢谢！&lt;/h1&gt;
 &lt;/blockquote&gt;
+</description><link>https://www.jianshu.com/p/b7554ed961bb</link><guid isPermaLink="false">https://www.jianshu.com/p/b7554ed961bb</guid><pubDate>Tue, 01 Jul 2025 00:31:01 GMT</pubDate><author>狄仁杰666</author></item><item><title>Redis 知识点全面击破，多图警告</title><description>&lt;h2&gt;什么是 Redis？&lt;/h2&gt;
+&lt;p&gt;Redis（REmote DIctionary Service）是一个开源的键值对数据库服务器。&lt;/p&gt;
+&lt;p&gt;Redis 更准确的描述是一个数据结构服务器。Redis 的这种特殊性质让它在开发人员中很受欢迎。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1080&quot; data-height=&quot;764&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-506a29a2dadd7cdc.png&quot; data-original-width=&quot;1080&quot; data-original-height=&quot;764&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;856142&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-506a29a2dadd7cdc.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Redis不是通过迭代或者排序方式处理数据，而是一开始就按照数据结构方式组织。早期，它的使用很像 Memcached，但随着 Redis 的改进，它在许多其他用例中变得可行，包括发布-订阅机制、流（streaming）和队列。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1080&quot; data-height=&quot;1433&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-cf32525c82d1314a.png&quot; data-original-width=&quot;1080&quot; data-original-height=&quot;1433&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;1223993&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-cf32525c82d1314a.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;主要来说，Redis 是一个内存数据库，用作另一个“真实”数据库（如 MySQL 或 PostgreSQL）前面的缓存，以帮助提高应用程序性能。它通过利用内存的高速访问速度，从而减轻核心应用程序数据库的负载，例如：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;“粒子系统是由许多粒子组成的用于代表模糊对象的集合。在一段特定时间内，粒子在系统中生成、移动、转化，最后消亡。”&lt;/li&gt;
-&lt;li&gt;粒子系统是计算机图形学中最常用的技术之一&lt;/li&gt;
-&lt;li&gt;粒子系统就被用于制作各种电子游戏、动画、数码艺术作品，还被用于模拟各种不规则的自然现象，比如火焰、烟雾、瀑布、草丛和泡沫。&lt;/li&gt;
-&lt;li&gt;本章讨论粒子系统的实现策略。&lt;/li&gt;
-&lt;li&gt;我们将探讨以下问题：在实现粒子系统时，如何组织代码；&lt;br&gt;
-如何存放单个粒子及整个系统的相关信息。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不经常更改且经常被请求的数据&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;任务关键性较低且经常变动的数据&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1&gt;一、目录&lt;/h1&gt;
+&lt;p&gt;上述数据的示例可以包括会话或数据缓存以及仪表板的排行榜或汇总分析。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1080&quot; data-height=&quot;596&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-d5a30d5caf3fe371.png&quot; data-original-width=&quot;1080&quot; data-original-height=&quot;596&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;526377&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-d5a30d5caf3fe371.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;但是，对于许多用例场景，Redis 都可以提供足够的保证，可以将其用作成熟的主数据库。再加上 Redis 插件及其各种高可用性（HA）设置，Redis 作为数据库对于某些场景和工作负载变得非常有用。&lt;/p&gt;
+&lt;p&gt;另一个重要方面是 Redis 模糊了缓存和数据存储之间的界限。这里要理解的重要一点是，相比于使用 SSD 或 HDD 作为存储的传统数据库，读取和操作内存中数据的速度要快得多。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1080&quot; data-height=&quot;482&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-1b1351d667bc609b.png&quot; data-original-width=&quot;1080&quot; data-original-height=&quot;482&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;450392&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-1b1351d667bc609b.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;最初，Redis 最常被比作 Memcached，后者当时缺乏任何非易失性持久化。&lt;/p&gt;
+&lt;p&gt;这是当前两个缓存之间的功能细分。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;678&quot; data-height=&quot;516&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-a50c93ef8701e50c.png&quot; data-original-width=&quot;678&quot; data-original-height=&quot;516&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;26437&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-a50c93ef8701e50c.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;虽然现在拥有多种配置方式将数据持久化到磁盘，但当时首次引入持久化时，Redis 是使用快照方式，通过异步拷贝内存中的数据方式来做持久化。不幸的是，这种机制的缺点是可能会在快照之间丢失数据。&lt;/p&gt;
+&lt;p&gt;Redis 自 2009 年成立到现在已经变的很成熟。我们将介绍它的大部分架构和拓扑，以便你可以将 Redis 添加到你的数据存储系统库中。&lt;/p&gt;
+&lt;h2&gt;Redis 架构&lt;/h2&gt;
+&lt;p&gt;在开始讨论 Redis 内部结构之前，让我们先讨论一下各种 Redis 部署及其权衡取舍。&lt;/p&gt;
+&lt;p&gt;我们将主要关注以下这些设置：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;4.1　&lt;a href=&quot;https://www.jianshu.com/p/7d3780c843ac&quot; target=&quot;_blank&quot;&gt;为什么需要粒子系统&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.2　&lt;a href=&quot;https://www.jianshu.com/p/b61023fb5b75&quot; target=&quot;_blank&quot;&gt;单个粒子&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.3　&lt;a href=&quot;https://www.jianshu.com/p/1ee04fbda247&quot; target=&quot;_blank&quot;&gt;使用ArrayList&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.4   &lt;a href=&quot;https://www.jianshu.com/p/72b999d4cddf&quot; target=&quot;_blank&quot;&gt;粒子系统类&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.5   &lt;a href=&quot;https://www.jianshu.com/p/9f32a82c535c&quot; target=&quot;_blank&quot;&gt;由系统组成的系统&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.6   &lt;a href=&quot;https://www.jianshu.com/p/706f5c6b1321&quot; target=&quot;_blank&quot;&gt;继承和多态的简介&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.7   &lt;a href=&quot;https://www.jianshu.com/p/c22f4c5674de&quot; target=&quot;_blank&quot;&gt;继承基础&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.8  &lt;a href=&quot;https://www.jianshu.com/p/d426f0dfd598&quot; target=&quot;_blank&quot;&gt;用继承实现粒子类&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.9  &lt;a href=&quot;https://www.jianshu.com/p/d426f0dfd598&quot; target=&quot;_blank&quot;&gt;多态基础&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.10 &lt;a href=&quot;https://www.jianshu.com/p/3de7e35d3a98&quot; target=&quot;_blank&quot;&gt;用多态实现粒子系统&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.11 &lt;a href=&quot;https://www.jianshu.com/p/5bb95ef38817&quot; target=&quot;_blank&quot;&gt;受力作用的粒子系统&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.12 &lt;a href=&quot;https://www.jianshu.com/p/5caa4c20d77c&quot; target=&quot;_blank&quot;&gt;带排斥对象的粒子系统&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;4.13 &lt;a href=&quot;https://www.jianshu.com/p/89b73ec1c4b7&quot; target=&quot;_blank&quot;&gt;图像纹理&lt;/a&gt;&lt;br&gt;
-&lt;a href=&quot;https://www.jianshu.com/p/65d82f720475&quot; target=&quot;_blank&quot;&gt;加法混合&lt;/a&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;单个 Redis 实例&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Redis 高可用性&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Redis 哨兵&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Redis 集群&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description><link>https://www.jianshu.com/p/c4f37cae9a01</link><guid isPermaLink="false">https://www.jianshu.com/p/c4f37cae9a01</guid><pubDate>Sat, 11 Jun 2022 06:59:57 GMT</pubDate><author>大龙10</author></item></channel></rss>
+&lt;p&gt;根据你的用例和规模，决定使用哪一种设置。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;单个 Redis 实例&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;869&quot; data-height=&quot;485&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-76022c5079c869cb.png&quot; data-original-width=&quot;869&quot; data-original-height=&quot;485&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;137613&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-76022c5079c869cb.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;单个 Redis 实例是最直接的 Redis 部署方式。它允许用户设置和运行小型实例，从而帮助他们快速发展和加速服务。但是，这种部署并非没有缺点。例如，如果此实例失败或不可用，则所有客户端对 Redis 的调用都将失败，从而降低系统的整体性能和速度。&lt;/p&gt;
+&lt;p&gt;如果有足够的内存和服务器资源，这个实例可以很强大。主要用于缓存的场景可能会以最少的设置获得显著的性能提升。给定足够的系统资源，你可以在应用程序运行的同一机器上部署此 Redis 服务。&lt;/p&gt;
+&lt;p&gt;在管理系统内的数据方面，了解一些 Redis 概念是必不可少的。发送到 Redis 的命令首先在内存中处理。然后，如果在这些实例上设置了持久性，则在某个时间间隔上会有一个fork进程，来生成数据持久化 RDB（Redis 数据的非常紧凑的时间点表示）快照或 AOF（仅附加文件）。&lt;/p&gt;
+&lt;p&gt;这两个流程可以让 Redis 拥有长期存储，支持各种复制策略，并启用更复杂的拓扑。如果 Redis 未设置为持久化数据，则在重新启动或故障转移时数据会丢失。如果在重启时启用了持久化，它会将 RDB 快照或 AOF 中的所有数据加载回内存，然后实例可以支持新的客户端请求。&lt;/p&gt;
+&lt;p&gt;话虽如此，让我们看看你可能会用到的更多分布式 Redis 设置。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Redis 高可用性&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;864&quot; data-height=&quot;476&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-2bdeb90198792dd9.png&quot; data-original-width=&quot;864&quot; data-original-height=&quot;476&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;220837&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-2bdeb90198792dd9.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Redis 的另一个流行设置是主从部署方式，从部署保持与主部署之间数据同步。当数据写入主实例时，它会将这些命令的副本发送到从部署客户端输出缓冲区，从而达到数据同步的效果。从部署可以有一个或多个实例。这些实例可以帮助扩展 Redis 的读取操作或提供故障转移，以防 main 丢失。&lt;/p&gt;
+&lt;p&gt;我们现在已经进入了一个分布式系统，因此需要在此拓扑中考虑许多新事物。以前简单的事情现在变得复杂了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Redis 复制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Redis 的每个主实例都有一个复制 ID 和一个偏移量。这两条数据对于确定副本可以继续其复制过程的时间点或确定它是否需要进行完整同步至关重要。对于主 Redis 部署上发生的每个操作，此偏移量都会增加。&lt;/p&gt;
+&lt;p&gt;更明确地说，当 Redis 副本实例仅落后于主实例几个偏移量时，它会从主实例接收剩余的命令，然后在其数据集上重放，直到同步完成。如果两个实例无法就复制 ID 达成一致，或者主实例不知道偏移量，则副本将请求全量同步。这时主实例会创建一个新的 RDB 快照并将其发送到副本。&lt;/p&gt;
+&lt;p&gt;在此传输之间，主实例会缓冲快照截止和当前偏移之间的所有中间更新指令，这样在快照同步完后，再将这些指令发送到副本实例。这样完成后，复制就可以正常继续。&lt;/p&gt;
+&lt;p&gt;如果一个实例具有相同的复制 ID 和偏移量，则它们具有完全相同的数据。现在你可能想知道为什么需要复制 ID。当 Redis 实例被提升为主实例或作为主实例从头开始重新启动时，它会被赋予一个新的复制 ID。&lt;/p&gt;
+&lt;p&gt;这用于推断此新提升的副本实例是从先前哪个主实例复制出来的。这允许它能够执行部分同步（与其他副本节点），因为新的主实例会记住其旧的复制 ID。&lt;/p&gt;
+&lt;p&gt;例如，两个实例（主实例和从实例）具有相同的复制 ID，但偏移量相差几百个命令，这意味着如果在实例上重放这些偏移量后面的命令，它们将具有相同的数据集。现在，如果复制 ID 完全不同，并且我们不知道新降级（或重新加入）从节点的先前复制 ID（没有共同祖先）。我们将需要执行昂贵的全量同步。&lt;/p&gt;
+&lt;p&gt;相反，如果我们知道以前的复制 ID，我们就可以推断如何使数据同步，因为我们能够推断出它们共享的共同祖先，并且偏移量对于部分同步再次有意义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Redis 哨兵（Sentinel）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1050&quot; data-height=&quot;1168&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-730b75d1caf8677c.png&quot; data-original-width=&quot;1050&quot; data-original-height=&quot;1168&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;546801&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-730b75d1caf8677c.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Sentinel 是一个分布式系统。与所有分布式系统一样，Sentinel 有几个优点和缺点。Sentinel 的设计方式是，一组哨兵进程协同工作以协调状态，从而为 Redis 提供高可用性。毕竟，你不希望保护你免受故障影响的系统有自己的单点故障。&lt;/p&gt;
+&lt;p&gt;Sentinel 负责一些事情。首先，它确保当前的主实例和从实例正常运行并做出响应。这是必要的，因为哨兵（与其他哨兵进程）可以在主节点和/或从节点丢失的情况下发出警报并采取行动。其次，它在服务发现中发挥作用，就像其他系统中的 Zookeeper 和 Consul 一样。所以当一个新的客户端尝试向 Redis 写东西时，Sentinel 会告诉客户端当前的主实例是什么。&lt;/p&gt;
+&lt;p&gt;因此，哨兵不断监控可用性并将该信息发送给客户端，以便他们能够在他们确实进行故障转移时对其做出反应。&lt;/p&gt;
+&lt;p&gt;以下是它的职责：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;监控——确保主从实例按预期工作。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通知——通知系统管理员 Redis 实例中的事件。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;故障转移管理——如果主实例不可用并且足够多的（法定数量）节点同意这是真的，Sentinel 节点可以启动故障转移。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;配置管理——Sentinel 节点还充当当前主 Redis 实例的发现服务。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以这种方式使用 Redis Sentinel 可以进行故障检测。此检测涉及多个哨兵进程同意当前主实例不再可用。这个协议过程称为 Quorum。这可以提高鲁棒性并防止一台机器行为异常导致无法访问主 Redis 节点。&lt;/p&gt;
+&lt;p&gt;此设置并非没有缺点，因此我们将在使用 Redis Sentinel 时介绍一些建议和最佳实践。&lt;/p&gt;
+&lt;p&gt;你可以通过多种方式部署 Redis Sentinel。老实说，要提出任何明智的建议，我需要有关你的系统的更多背景信息。作为一般指导，我建议在每个应用程序服务器旁边运行一个哨兵节点（如果可能的话），这样你也不需要考虑哨兵节点和实际使用 Redis 的客户端之间的网络可达性差异。&lt;/p&gt;
+&lt;p&gt;你可以将 Sentinel 与 Redis 实例一起运行，甚至可以在独立节点上运行，只不过它会按照别的方式处理，从而会让事情变得更复杂。我建议至少运行三个节点，并且至少具有两个法定人数（quorum）。这是一个简单的图表，分解了集群中的服务器数量以及相关的法定人数和可容忍的可持续故障。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;674&quot; data-height=&quot;350&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-d3323a57bb3a4b7d.png&quot; data-original-width=&quot;674&quot; data-original-height=&quot;350&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;14749&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-d3323a57bb3a4b7d.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这会因系统而异，但总体思路是不变的。&lt;/p&gt;
+&lt;p&gt;让我们花点时间思考一下这样的设置会出现什么问题。如果你运行这个系统足够长的时间，你会遇到所有这些。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;如果哨兵节点超出法定人数怎么办？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果网络分裂将旧的主实例置于少数群体中怎么办？这些写入会发生什么？（剧透：当系统完全恢复时它们会丢失）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果哨兵节点和客户端节点（应用程序节点）的网络拓扑错位会发生什么？&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;没有持久性保证，特别是持久化到磁盘的操作（见下文）是异步的。还有一个麻烦的问题，当客户发现新的 primary 时，我们失去了多少写给一个不知道的 primary？Redis 建议在建立新连接时查询新的主节点。根据系统配置，这可能意味着大量数据丢失。&lt;/p&gt;
+&lt;p&gt;如果你强制主实例将写入复制到至少一个副本实例，有几种方法可以减轻损失程度。请记住，所有 Redis 复制都是异步的，这是有其权衡的考虑。因此，它需要独立跟踪确认，如果至少有一个副本实例没有确认它们，主实例将停止接受写入。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Redis 集群&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1080&quot; data-height=&quot;655&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-e4d158d296eca951.png&quot; data-original-width=&quot;1080&quot; data-original-height=&quot;655&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;588820&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-e4d158d296eca951.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;我相信很多人都想过当你无法将所有数据存储在一台机器上的内存中时会发生什么。目前，单个服务器中可用的最大 RAM 为 24TIB，这是目前 AWS 线上列出来的。当然，这很多，但对于某些系统来说，这还不够，即使对于缓存层也是如此。&lt;/p&gt;
+&lt;p&gt;Redis Cluster 允许 Redis 的水平扩展。&lt;/p&gt;
+&lt;p&gt;首先，让我们摆脱一些术语约束；一旦我们决定使用 Redis 集群，我们就决定将我们存储的数据分散到多台机器上，这称为分片。所以集群中的每个 Redis 实例都被认为是整个数据的一个分片。&lt;/p&gt;
+&lt;p&gt;这带来了一个新的问题。如果我们向集群推送一个key，我们如何知道哪个 Redis 实例（分片）保存了该数据？有几种方法可以做到这一点，但 Redis Cluster 使用算法分片。&lt;/p&gt;
+&lt;p&gt;为了找到给定 key 的分片，我们对 key 进行哈希处理，并通过对总分片数量取模。然后，使用确定性哈希函数，这意味着给定的 key 将始终映射到同一个分片，我们可以推断将来读取特定 key 的位置。&lt;/p&gt;
+&lt;p&gt;当我们之后想在系统中添加一个新的分片时会发生什么？这个过程称为重新分片。&lt;/p&gt;
+&lt;p&gt;假设键 &#39;foo&#39; 之前映射到分片 0， 在引入新分片后它可能会映射到分片 5。但是，如果我们需要快速扩展系统，移动数据来达到新的分片映射，这将是缓慢且不切实际的。它还对 Redis 集群的可用性产生不利影响。&lt;/p&gt;
+&lt;p&gt;Redis Cluster 为这个问题设计了一种解决方案，称为 Hashslot，所有数据都映射到它。有 16K 哈希槽。这为我们提供了一种在集群中传播数据的合理方式，当我们添加新的分片时，我们只需在系统之间移动哈希槽。通过这样做，我们只需要将 hashlot 从一个分片移动到另一个分片，并简化将新的主实例添加到集群中的过程。&lt;/p&gt;
+&lt;p&gt;这可以在没有任何停机时间和最小的性能影响的情况下实现。让我们通过一个例子来谈谈。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;M1 包含从 0 到 8191 的哈希槽。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;M2 包含从 8192 到 16383 的哈希槽。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，为了映射 “foo”，我们采用一个确定性的键（foo）散列，并通过散列槽的数量（16K）对其进行修改，从而得到 M2 的映射。现在假设我们添加了一个新实例 M3。新的映射将是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;M1 包含从 0 到 5460 的哈希槽。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;M2 包含从 5461 到 10922 的哈希槽。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;M3 包含从 10923 到 16383 的哈希槽。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;现在映射到 M2 的 M1 中映射哈希槽的所有键都需要移动。但是散列槽的各个键的散列不需要移动，因为它们已经被划分到散列槽中。因此，这一级别的误导（misdirection）解决了算法分片的重新分片问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gossiping 协议&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Redis Cluster 使用 gossiping 来确定整个集群的健康状况。在上图中，我们有 3 个 M 个节点和 3 个 S 节点。所有这些节点不断地进行通信以了解哪些分片可用并准备好为请求提供服务。&lt;/p&gt;
+&lt;p&gt;如果足够多的分片同意 M1 没有响应，他们可以决定将 M1 的副本 S1 提升为主节点以保持集群健康。触发此操作所需的节点数量是可配置的，并且必须正确执行此操作。如果操作不当并且在分区的两边相等时无法打破平局，则可能会导致集群被拆分。这种现象称为裂脑。作为一般规则，必须拥有奇数个主节点和两个副本，以实现最稳健的设置。&lt;/p&gt;
+&lt;h2&gt;Redis 持久化模型&lt;/h2&gt;
+&lt;p&gt;如果我们要使用 Redis 存储任何类型的数据同时要求安全保存，了解 Redis 是如何做到这一点很重要。在许多用例中，如果你丢失了 Redis 存储的数据，这并不是世界末日。将其用作缓存或在其支持实时分析的情况下，如果发生数据丢失，则并非世界末日。&lt;/p&gt;
+&lt;p&gt;在其他场景中，我们希望围绕数据持久性和恢复有一些保证。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1080&quot; data-height=&quot;224&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-a494e3a1a372326a.png&quot; data-original-width=&quot;1080&quot; data-original-height=&quot;224&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;238771&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-a494e3a1a372326a.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;无持久化&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;无持久化：如果你愿意，可以完全禁用持久化。这是运行 Redis 的最快方式，并且没有持久性保证。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RDB文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;RDB（Redis 数据库）：RDB 持久化以指定的时间间隔执行数据集的时间点快照。&lt;/p&gt;
+&lt;p&gt;这种机制的主要缺点是快照之间的数据会丢失。此外，这种存储机制还依赖于主进程的 fork，在更大的数据集中，这可能会导致服务请求的瞬间延迟。话虽如此，RDB 文件在内存中的加载速度要比 AOF 快得多。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AOF&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;AOF（Append Only File）：AOF 持久化记录服务器接收到的每个写入操作，这些操作将在服务器启动时再次被执行，重建原始数据集。&lt;/p&gt;
+&lt;p&gt;这种持久性的方法能够确保比 RDB 快照更持久，因为它是一个仅附加文件。随着操作的发生，我们将它们缓冲到日志中，但它们还没有被持久化。该日志与我们运行的实际命令一致，以便在需要时进行重放。&lt;/p&gt;
+&lt;p&gt;然后，如果可能，我们使用 fsync 将其刷新到磁盘（当此运行可配置时），它将被持久化。缺点是格式不紧凑，并且比 RDB 文件使用更多的磁盘。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;为什么不兼得？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;RDB + AOF：可以将 AOF 和 RDB 组合在同一个 Redis 实例中。如果你愿意的话，可以以速度换取持久化是一种折衷方法。我认为这是设置 Redis 的一种可接受的方式。在重启的情况下，请记住如果两者都启用，Redis 将使用 AOF 来重建数据，因为它是最完整的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Forking&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;现在我们了解了持久化的类型，让我们讨论一下我们如何在像 Redis 这样的单线程应用程序中实际执行它。&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;1080&quot; data-height=&quot;808&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/27937678-44fd8c498c02aaea.png&quot; data-original-width=&quot;1080&quot; data-original-height=&quot;808&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;570940&quot; src=&quot;https://upload-images.jianshu.io/upload_images/27937678-44fd8c498c02aaea.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;在我看来，Redis 最酷的部分是它如何利用 forking 和写时复制来高效地促进数据持久化。&lt;/p&gt;
+&lt;p&gt;Forking 是操作系统通过创建自身副本来创建新进程的一种方式。这样，你将获得一个新的进程 ID 和一些其他信息和句柄，因此新 forking 的进程（子进程）可以与原始进程父进程通信。&lt;/p&gt;
+&lt;p&gt;现在事情变得有趣了。Redis 是一个分配了大量内存的进程，那么它如何在不耗尽内存的情况下进行复制呢？&lt;/p&gt;
+&lt;p&gt;当你 fork 一个进程时，父进程和子进程共享内存，并且在该子进程中 Redis 开始快照（Redis）进程。这是通过一种称为写时复制的内存共享技术实现的——该技术在创建分叉时传递对内存的引用。如果在子进程持久化到磁盘时没有发生任何更改，则不会进行新的分配。&lt;/p&gt;
+&lt;p&gt;在发生更改的情况下，内核会跟踪对每个页面的引用，如果某个页面有多个更改，则将更改写入新页面。子进程完全不知道更改以及具有一致的内存快照的事情。因此，在只使用了一小部分内存的情况下，我们能够非常快速有效地获得潜在千兆字节内存的时间点快照！&lt;/p&gt;
+</description><link>https://www.jianshu.com/p/9a6a38201f07</link><guid isPermaLink="false">https://www.jianshu.com/p/9a6a38201f07</guid><pubDate>Tue, 01 Jul 2025 00:31:00 GMT</pubDate><author>Java码农</author></item><item><title>官员合照小事</title><description>&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;6720&quot; data-height=&quot;4480&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/17299994-24bc5fd200c5400b.JPG&quot; data-original-width=&quot;6720&quot; data-original-height=&quot;4480&quot; data-original-format=&quot;image/jpeg&quot; data-original-filesize=&quot;6804209&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;说起来，这已经是第三次官员合照。第一次是我刚加入头马的时候，第二次是我正好卸任不做官员的时候，第三次是卸任主席的时候。想来也凑巧，正好都都是不做官员的时候拍的官员照片。&lt;/p&gt;&lt;p&gt;想来，许多还是蛮值得回顾的。拍合照也多了几分意义。第一次拍的时候，我刚加进来，算是有一个很好的融入。毕竟没有去拍过，顺便有一张官员照片，一张个人照片，想来也是不错的。那样算是融入了这样一个团队。&lt;/p&gt;&lt;p&gt;第二次是因为我去别的俱乐部做主席了。而那时候与没有做任何官员角色的俱乐部有些关联，还是蛮有意思的。如此拍了合影，多了几分留念。那样，也算是这个俱乐部的一员。&lt;/p&gt;&lt;p&gt;这一次就是新的官员团队了。我做主席的时候其实很想去拍一张官员团队照片。可惜的是，我们的团队人并不齐。周末嘛，起码三个人遇不到，平时聚齐大家也很难，最终不了了之了。多少是一份遗憾。那谁说不是呢。&lt;/p&gt;&lt;p&gt;这次的官员团队，人心还是很齐的。一说，都参与了，加上前主席和俱乐部教练，都有八个人了。凑一个晚上的时间，就此来拍照。地方是凤起路。&lt;/p&gt;&lt;p&gt;每次拍团体照，首要的是选衣服和化妆。选择衣服都已经是很大的苦恼，每次都很难挑选我适合穿的衣服，毕竟我长得不高，许多衣服是不太合身的。这样多了些压力。看别的伙伴，旭翔、迟墨和汪扬平时都是穿正装或西装的，那好一些。选了上衣还有裤子，之后是鞋子。当然还有领带。我不太会系，还是得旭翔会。果然用多就是不一样。&lt;/p&gt;&lt;p&gt;女生嘛，汪鸿就穿平时的衣服，那就已经很好看了；Xuelin穿一套白色的西装，显得很酷；天天是穿一条白色的裙子，显得很淑女；而季菲是穿一条黑色的裙子，加上一根脖子上的绑带，看着尤其霸气，一看就是女强人。&lt;/p&gt;&lt;p&gt;之后又是化妆。我算是第三次化妆了。都是拍官员照的时候呢。其实也就是涂一层粉，之后整理一下头马，其他也不怎么需要了。&lt;/p&gt;&lt;p&gt;这样之后，就是拍团队照。Xuelin站中间，右手边是季菲和天天，左手边是汪鸿和我。后面分别是汪扬、迟默和旭翔。&lt;/p&gt;&lt;p&gt;灯光足够，按照摄影师的要求，我们就这样开始了拍照。每次都不知道怎么拍才好。而汪鸿很会玩，表情尤其丰富，而且也是比较逗趣。其他人还是中规中矩的。&lt;/p&gt;&lt;p&gt;拍了一轮，又换一个动作拍一轮。之后来一份坐凳子的。中间高一些的凳子是雪霖坐，左边是我坐，右边是季菲坐，其他站着，摆各种的动作。就这样拍了起来。&lt;/p&gt;&lt;p&gt;拍过几轮。我们还是去拍了相关道具的。拿了小熊、蛋糕等的道具，看着都较为好看、有趣。旭翔甚至还躺下来拍呢。&lt;/p&gt;&lt;p&gt;之后又换了凳子，搬来个柜坐。这时是Xuelin季菲和汪鸿坐，我移动到了天天边上。汪扬和旭翔坐前面去。就这样拍过。拍了许多照片，我们就可以选择了。&lt;/p&gt;&lt;p&gt;趁着有时间，我们又单独拍了照片。给季菲、给Xuelin、给汪扬、给迟墨、给旭翔都拍过。而后也给我拍。我很嫌弃自己啊。真的有些丑呢。&lt;/p&gt;&lt;p&gt;之后去选照片。Xuelin选了，到季菲，之后是到迟墨。最终总算是选出了照片。&lt;/p&gt;&lt;p&gt;旭翔已经回去了，我们也相继离开照相馆。去了旁边吃炒菜去了。大家一起吃饭，一起讨论。趁着拍照的余温，让大家又多了几分熟悉。原来一切是那样美好！&lt;/p&gt;&lt;p&gt;又一次官员照了，正好是不当官员的时候。又见证新一轮的成长。相信拍过照片，一切会更好，相信这个团队，会创造出更好的俱乐部！&lt;/p&gt;&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;4032&quot; data-height=&quot;3024&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/17299994-72671712dfc0a695.jpg&quot; data-original-width=&quot;4032&quot; data-original-height=&quot;3024&quot; data-original-format=&quot;image/jpeg&quot; data-original-filesize=&quot;3973514&quot; src=&quot;https://upload-images.jianshu.io/upload_images/17299994-72671712dfc0a695.jpg&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;br&gt;</description><link>https://www.jianshu.com/p/1265e9079c51</link><guid isPermaLink="false">https://www.jianshu.com/p/1265e9079c51</guid><pubDate>Thu, 26 Jun 2025 23:40:48 GMT</pubDate><author>遇梦四叶草</author></item><item><title>网络面试-0x03http 有哪些常见的请求头以及作用</title><description>&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;339&quot; data-height=&quot;301&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/1205674-431cd62421330cea.png&quot; data-original-width=&quot;339&quot; data-original-height=&quot;301&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;29623&quot; src=&quot;https://upload-images.jianshu.io/upload_images/1205674-431cd62421330cea.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1&gt;一、是什么？&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定义：http头字段【http header fields】，指的是在超文本传输协议（http）的请求和响应消息中的消息头部分；&lt;br&gt;&lt;br&gt;
+它们定义了一个超文本传输协议事务中的操作参数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;GET /home.html HTTP/1.1
+Host: developer.mozilla.org
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101 Firefox/50.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: https://developer.mozilla.org/testpage.html
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+If-Modified-Since: Mon, 18 Jul 2016 02:36:04 GMT
+If-None-Match: &quot;c561c68d0ba92bbeb8b0fff2a9199f722e3a621a&quot;
+Cache-Control: max-age=0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;分类&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通用首部字段、请求首部字段、响应首部字段、实体首部字段、为cookie服务的首部字段、 其他首部字段&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段名&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Accept&lt;/td&gt;
+&lt;td&gt;能够接受的回应内容类型&lt;/td&gt;
+&lt;td&gt;Accept: text/plain&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Accept-Charset&lt;/td&gt;
+&lt;td&gt;能够接受的字符集&lt;/td&gt;
+&lt;td&gt;Accept-Charset: utf-8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Accept-Encoding&lt;/td&gt;
+&lt;td&gt;能够接受的编码方式列表&lt;/td&gt;
+&lt;td&gt;Accept-Encoding: gzip, deflate&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Accept-Language&lt;/td&gt;
+&lt;td&gt;能够接受的回应内容的自然语言列表&lt;/td&gt;
+&lt;td&gt;Accept-Language: en-US&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Authorization&lt;/td&gt;
+&lt;td&gt;用于超文本传输协议的认证的认证信息&lt;/td&gt;
+&lt;td&gt;Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Cache-Control&lt;/td&gt;
+&lt;td&gt;用来指定在这次的请求/响应链中的所有缓存机制都必须遵守的指令&lt;/td&gt;
+&lt;td&gt;Cache-Control: no-cache&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Connection&lt;/td&gt;
+&lt;td&gt;该浏览器想要优先使用的连接类型&lt;/td&gt;
+&lt;td&gt;Connection: keep-alive Connection: Upgrade&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Cookie&lt;/td&gt;
+&lt;td&gt;服务器通过Set-Cookie发送的一个超文本传输协议Cookie&lt;/td&gt;
+&lt;td&gt;Cookie: $Version=1; Skin=new;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Length&lt;/td&gt;
+&lt;td&gt;以8字节数组 （8位的字节）表示的请求体的长度&lt;/td&gt;
+&lt;td&gt;Content-Length: 348&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Type&lt;/td&gt;
+&lt;td&gt;请求体的多媒体类型&lt;/td&gt;
+&lt;td&gt;Content-Type: application/x-www-form-urlencoded&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Date&lt;/td&gt;
+&lt;td&gt;发送该消息的日期和时间&lt;/td&gt;
+&lt;td&gt;Date: Tue, 15 Nov 1994 08:12:31 GMT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Expect&lt;/td&gt;
+&lt;td&gt;表明客户端要求服务器做出特定的行为&lt;/td&gt;
+&lt;td&gt;Expect: 100-continue&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Host&lt;/td&gt;
+&lt;td&gt;服务器的域名(用于虚拟主机 )，以及服务器所监听的传输控制协议端口号&lt;/td&gt;
+&lt;td&gt;Host: en.wikipedia.org:80 Host: en.wikipedia.org&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;If-Match&lt;/td&gt;
+&lt;td&gt;仅当客户端提供的实体与服务器上对应的实体相匹配时，才进行对应的操作。主要作用:用作像 PUT 这样的方法中，仅当从用户上次更新某个资源以来，该资源未被修改的情况下，才更新该资源&lt;/td&gt;
+&lt;td&gt;If-Match: &quot;737060cd8c284d8af7ad3082f209582d&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;If-Modified-Since&lt;/td&gt;
+&lt;td&gt;用于确认代理或客户端拥有的本地资源的有效性；指定的时间早于更新资源的时间，则有效处理，否则，返回304 Not modified的响应&lt;/td&gt;
+&lt;td&gt;if-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;If-None-Match&lt;/td&gt;
+&lt;td&gt;允许在对应的内容未被修改的情况下返回304未修改&lt;/td&gt;
+&lt;td&gt;If-None-Match: &quot;737060cd8c284d8af7ad3082f209582d&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;If-Range&lt;/td&gt;
+&lt;td&gt;如果该实体未被修改过，则向我发送我所缺少的那一个或多个部分；否则，发送整个新的实体&lt;/td&gt;
+&lt;td&gt;If-Range: &quot;737060cd8c284d8af7ad3082f209582d&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Range&lt;/td&gt;
+&lt;td&gt;仅请求某个实体的一部分&lt;/td&gt;
+&lt;td&gt;Range: bytes=500-999&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;User-Agent&lt;/td&gt;
+&lt;td&gt;浏览器的浏览器身份标识字符串&lt;/td&gt;
+&lt;td&gt;User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/21.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Origin&lt;/td&gt;
+&lt;td&gt;发起一个针对 跨来源资源共享 的请求&lt;/td&gt;
+&lt;td&gt;Origin: &lt;a href=&quot;https://links.jianshu.com/go?to=http%3A%2F%2Fwww.example-social-network.com&quot; target=&quot;_blank&quot;&gt;http://www.example-social-network.com&lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1&gt;三、使用场景 —— 协商缓存&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;利用【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对请求头响应头来管理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Last-Modified 表示本地文件最后修改日期，浏览器会在request header加上If-Modified-Since（上次返回的Last-Modified的值），询问服务器在该日期后资源是否有更新，有更新的话就会将新的资源发送回来&lt;/p&gt;
+&lt;p&gt;Etag就像一个指纹，资源变化都会导致ETag变化，跟最后修改时间没有关系，ETag可以保证每一个资源是唯一的&lt;/p&gt;
+&lt;p&gt;If-None-Match的header会将上次返回的Etag发送给服务器，询问该资源的Etag是否有更新，有变动就会发送新的资源回来&lt;/p&gt;
+&lt;p&gt;而强制缓存不需要发送请求到服务端，根据请求头expires和cache-control判断是否命中强缓存&lt;/p&gt;
+&lt;div class=&quot;image-package&quot;&gt;
+&lt;div class=&quot;image-container&quot;&gt;
+&lt;div class=&quot;image-container-fill&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;image-view&quot; data-width=&quot;583&quot; data-height=&quot;548&quot;&gt;&lt;img data-original-src=&quot;//upload-images.jianshu.io/upload_images/1205674-e5c739c5c2e20d55.png&quot; data-original-width=&quot;583&quot; data-original-height=&quot;548&quot; data-original-format=&quot;image/png&quot; data-original-filesize=&quot;118540&quot; src=&quot;https://upload-images.jianshu.io/upload_images/1205674-e5c739c5c2e20d55.png&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;会话状态&lt;/h3&gt;
+&lt;p&gt;cookie，类型为「小型文本文件」，指某些网站为了辨别用户身份而储存在用户本地终端上的数据，通过响应头set-cookie决定&lt;/p&gt;
+&lt;p&gt;作为一段一般不超过 4KB 的小型文本数据，它由一个名称（Name）、一个值（Value）和其它几个用于控制 Cookie 有效期、安全性、使用范围的可选属性组成&lt;/p&gt;
+&lt;p&gt;Cookie 主要用于以下三个方面：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息）&lt;/li&gt;
+&lt;li&gt;个性化设置（如用户自定义设置、主题等）&lt;/li&gt;
+&lt;li&gt;浏览器行为跟踪（如跟踪分析用户行为等&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;br&gt;
+公众号：&lt;code&gt;技术小难&lt;/code&gt; &lt;br&gt;&lt;br&gt;
+&lt;a href=&quot;https://www.jianshu.com/u/1851ec413025&quot; target=&quot;_blank&quot;&gt;简书&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Faccount.cnblogs.com%2Fblog-apply&quot; target=&quot;_blank&quot;&gt;博客园&lt;/a&gt;  链接需要替换&lt;br&gt;&lt;br&gt;
+&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2Fu012496940%3Fspm%3D1000.2115.3001.5343&quot; target=&quot;_blank&quot;&gt;CSDN&lt;/a&gt; &lt;br&gt;&lt;br&gt;
+&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fwww.zhihu.com%2Fpeople%2Fgu-han-90-61&quot; target=&quot;_blank&quot;&gt;知乎&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fjuejin.cn%2Fuser%2F1943592286824333&quot; target=&quot;_blank&quot;&gt;掘金&lt;/a&gt; &lt;br&gt;&lt;br&gt;
+&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fsegmentfault.com%2Fu%2Fnatqeeak%2Farticles&quot; target=&quot;_blank&quot;&gt;segmentfault&lt;/a&gt;&lt;br&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;本文由&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fmdnice.com%2F%3Fplatform%3D6&quot; target=&quot;_blank&quot;&gt;mdnice&lt;/a&gt;多平台发布&lt;/p&gt;
+</description><link>https://www.jianshu.com/p/d214bd59cf6f</link><guid isPermaLink="false">https://www.jianshu.com/p/d214bd59cf6f</guid><pubDate>Thu, 03 Nov 2022 10:57:54 GMT</pubDate><author>helinyu</author></item></channel></rss>

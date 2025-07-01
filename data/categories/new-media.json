@@ -1,35 +1,90 @@
 [
   {
-    "provider_id": "52hrtt",
-    "provider_name": "52hrtt 华人头条",
-    "route_key": "/:area?/:type?",
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/exclusive/:id?",
     "route": {
-      "path": "/:area?/:type?",
-      "example": "/52hrtt/global",
+      "path": "/exclusive/:id?",
+      "example": "/163/exclusive/qsyk",
       "parameters": {
-        "area": "地区，默认为全球",
-        "type": "分类，默认为新闻"
+        "id": "栏目, 默认为首页"
       },
-      "name": "新闻",
-      "description": "地区和分类皆可在浏览器地址栏中找到，下面是一个例子。\n\n  访问华人头条全球站的国际分类，会跳转到 `https://www.52hrtt.com/global/n/w?infoTypeId=A1459145516533`。其中 `global` 即为 **全球** 对应的地区代码，`A1459145516533` 即为 **国际** 对应的分类代码。",
-      "provider_id": "52hrtt",
-      "provider_name": "52hrtt 华人头条",
-      "route_key": "/:area?/:type?"
+      "name": "栏目",
+      "description": "| 分类     | 编号 |\n| -------- | ---- |\n| 首页     |      |\n| 轻松一刻 | qsyk |\n| 槽值     | cz   |\n| 人间     | rj   |\n| 大国小民 | dgxm |\n| 三三有梗 | ssyg |\n| 数读     | sd   |\n| 看客     | kk   |\n| 下划线   | xhx  |\n| 谈心社   | txs  |\n| 哒哒     | dd   |\n| 胖编怪聊 | pbgl |\n| 曲一刀   | qyd  |\n| 今日之声 | jrzs |\n| 浪潮     | lc   |\n| 沸点     | fd   |",
+      "provider_id": "163",
+      "provider_name": "网易公开课",
+      "route_key": "/exclusive/:id?"
     }
   },
   {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/topic_list",
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/renjian/:category?",
     "route": {
-      "path": "/topic_list",
-      "example": "/agirls/topic_list",
-      "parameters": {},
-      "name": "当前精选主题列表",
-      "url": "agirls.aotter.net/",
-      "provider_id": "agirls",
-      "provider_name": "电獭少女",
-      "route_key": "/topic_list"
+      "path": "/renjian/:category?",
+      "example": "/163/renjian/texie",
+      "parameters": {
+        "category": "分类，见下表，默认为特写"
+      },
+      "name": "人间",
+      "description": "| 特写  | 记事  | 大写  | 好读  | 看客  |\n| ----- | ----- | ----- | ----- | ----- |\n| texie | jishi | daxie | haodu | kanke |",
+      "provider_id": "163",
+      "provider_name": "网易公开课",
+      "route_key": "/renjian/:category?"
+    }
+  },
+  {
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/today/:need_content?",
+    "route": {
+      "path": "/today/:need_content?",
+      "example": "/163/today",
+      "parameters": {
+        "need_content": "需要获取全文，填写 true/yes 表示需要，默认需要"
+      },
+      "name": "今日关注",
+      "url": "wp.m.163.com/163/html/newsapp/todayFocus/index.html",
+      "description": "::: tip\n  参数 **需要获取全文** 设置为 `true` `yes` `t` `y` 等值后，RSS 会携带该新闻条目的对应全文。\n:::",
+      "provider_id": "163",
+      "provider_name": "网易公开课",
+      "route_key": "/today/:need_content?"
+    }
+  },
+  {
+    "provider_id": "36kr",
+    "provider_name": "36kr",
+    "route_key": "/hot-list/:category?",
+    "route": {
+      "path": "/hot-list/:category?",
+      "example": "/36kr/hot-list",
+      "parameters": {
+        "category": "分类，默认为24小时热榜"
+      },
+      "name": "资讯热榜",
+      "description": "| 24 小时热榜 | 资讯人气榜 | 资讯综合榜 | 资讯收藏榜 |\n| ----------- | ---------- | ---------- | ---------- |\n| 24          | renqi      | zonghe     | shoucang   |",
+      "provider_id": "36kr",
+      "provider_name": "36kr",
+      "route_key": "/hot-list/:category?"
+    }
+  },
+  {
+    "provider_id": "36kr",
+    "provider_name": "36kr",
+    "route_key": "/:category/:subCategory?/:keyword?",
+    "route": {
+      "path": "/:category/:subCategory?/:keyword?",
+      "example": "/36kr/newsflashes",
+      "parameters": {
+        "category": "分类，必填项",
+        "subCategory": "子分类，选填项，目的是为了兼容老逻辑",
+        "keyword": "关键词，选填项，仅搜索文章/快讯时有效"
+      },
+      "name": "资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯",
+      "description": "| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |\n| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |\n| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |",
+      "provider_id": "36kr",
+      "provider_name": "36kr",
+      "route_key": "/:category/:subCategory?/:keyword?"
     }
   },
   {
@@ -49,123 +104,72 @@
     }
   },
   {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/:category?",
+    "provider_id": "aliresearch",
+    "provider_name": "阿里研究院",
+    "route_key": "/information/:type?",
     "route": {
-      "path": "/:category?",
-      "example": "/agirls/app",
+      "path": "/information/:type?",
+      "example": "/aliresearch/information",
       "parameters": {
-        "category": "分类，默认为最新文章，可在对应主题页的 URL 中找到，下表仅列出部分"
+        "type": "类型，见下表，默认为新闻"
       },
-      "name": "分类",
-      "description": "| App 评测 | 手机开箱 | 笔电开箱 | 3C 周边     | 教学小技巧 | 科技情报 |\n| -------- | -------- | -------- | ----------- | ---------- | -------- |\n| app      | phone    | computer | accessories | tutorial   | techlife |",
-      "provider_id": "agirls",
-      "provider_name": "电獭少女",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "appleinsider",
-    "provider_name": "AppleInsider",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/appleinsider",
-      "parameters": {
-        "category": "Category, see below, News by default"
-      },
-      "name": "Category",
-      "description": "| News | Reviews | How-tos |\n| ---- | ------- | ------- |\n|      | reviews | how-to  |",
-      "provider_id": "appleinsider",
-      "provider_name": "AppleInsider",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "baijing",
-    "provider_name": "白鲸出海",
-    "route_key": "/article",
-    "route": {
-      "path": "/article",
-      "example": "/baijing/article",
-      "url": "www.baijing.cn/article/",
       "name": "资讯",
-      "provider_id": "baijing",
-      "provider_name": "白鲸出海",
-      "route_key": "/article"
+      "url": "aliresearch.com/cn/information",
+      "description": "| 新闻 | 观点 | 案例 |\n| ---- | ---- | ---- |",
+      "provider_id": "aliresearch",
+      "provider_name": "阿里研究院",
+      "route_key": "/information/:type?"
     }
   },
   {
-    "provider_id": "c114",
-    "provider_name": "C114 通信网",
-    "route_key": "/roll/:original?",
+    "provider_id": "amz123",
+    "provider_name": "Amz123",
+    "route_key": "/kx",
     "route": {
-      "path": "/roll/:original?",
-      "name": "滚动资讯",
-      "url": "c114.com.cn",
-      "example": "/c114/roll",
-      "parameters": {
-        "original": "只看原创，可选 true 和 false，默认为 false"
-      },
-      "description": "",
-      "provider_id": "c114",
-      "provider_name": "C114 通信网",
-      "route_key": "/roll/:original?"
-    }
-  },
-  {
-    "provider_id": "cahkms",
-    "provider_name": "全国港澳研究会",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/cahkms",
-      "parameters": {
-        "category": "分类，见下表，默认为重要新闻"
-      },
-      "name": "分类",
-      "url": "cahkms.org/",
-      "description": "| 关于我们 | 港澳新闻 | 重要新闻 | 顾问点评、会员观点 | 专题汇总 |\n| -------- | -------- | -------- | ------------------ | -------- |\n| 01       | 02       | 03       | 04                 | 05       |\n\n| 港澳时评 | 图片新闻 | 视频中心 | 港澳研究 | 最新书讯 | 研究资讯 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n| 06       | 07       | 08       | 09       | 10       | 11       |",
-      "provider_id": "cahkms",
-      "provider_name": "全国港澳研究会",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "cccmc",
-    "provider_name": "中国五矿化工进出口商会",
-    "route_key": "/:category{.+}?",
-    "route": {
-      "path": "/:category{.+}?",
-      "name": "通用",
-      "url": "www.cccmc.org.cn",
-      "example": "/cccmc/ywgg/tzgg",
-      "parameters": {
-        "category": "分类，默认为 `ywgg/tzgg`，即通知公告，可在对应分类页 URL 中找到, Category, `ywgg/tzgg`，即通知公告  by default"
-      },
-      "description": ":::tip\n若订阅 [综合政策](https://www.cccmc.org.cn/zcfg/zhzc/)，网址为 `https://www.cccmc.org.cn/zcfg/zhzc/`，请截取 `https://www.cccmc.org.cn/` 到末尾的部分 `zcfg/zhzc` 作为 `category` 参数填入，此时目标路由为 [`/cccmc/zcfg/zhzc`](https://rsshub.app/cccmc/zcfg/zhzc)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### [会员之家](https://www.cccmc.org.cn/hyzj)\n\n| [会员之声](https://www.cccmc.org.cn/hyzj/hyzs/) | [会员动态](https://www.cccmc.org.cn/hyzj/hydt/) | [会员推介](https://www.cccmc.org.cn/hyzj/hytj/) |\n| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |\n| [hyzj/hyzs](https://rsshub.app/cccmc/hyzj/hyzs) | [hyzj/hydt](https://rsshub.app/cccmc/hyzj/hydt) | [hyzj/hytj](https://rsshub.app/cccmc/hyzj/hytj) |\n\n#### [政策法规](https://www.cccmc.org.cn/zcfg)\n\n| [综合政策](https://www.cccmc.org.cn/zcfg/zhzc/) | [国内贸易](https://www.cccmc.org.cn/zcfg/gnmy/) | [对外贸易](https://www.cccmc.org.cn/zcfg/dwmy/) | [投资合作](https://www.cccmc.org.cn/zcfg/tzhz/) |\n| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |\n| [zcfg/zhzc](https://rsshub.app/cccmc/zcfg/zhzc) | [zcfg/gnmy](https://rsshub.app/cccmc/zcfg/gnmy) | [zcfg/dwmy](https://rsshub.app/cccmc/zcfg/dwmy) | [zcfg/tzhz](https://rsshub.app/cccmc/zcfg/tzhz) |\n\n#### [行业资讯](https://www.cccmc.org.cn/hyzx)\n\n| [统计分析](https://www.cccmc.org.cn/hyzx/tjfx/) | [石油化工](https://www.cccmc.org.cn/hyzx/syhg/) | [金属矿产](https://www.cccmc.org.cn/hyzx/jskc/) | [五金建材](https://www.cccmc.org.cn/hyzx/wjjc/) |\n| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |\n| [hyzx/tjfx](https://rsshub.app/cccmc/hyzx/tjfx) | [hyzx/syhg](https://rsshub.app/cccmc/hyzx/syhg) | [hyzx/jskc](https://rsshub.app/cccmc/hyzx/jskc) | [hyzx/wjjc](https://rsshub.app/cccmc/hyzx/wjjc) |\n\n#### [商业机会](https://www.cccmc.org.cn/syjh/)+\n\n| [供应信息](https://www.cccmc.org.cn/syjh/gyxx/) | [需求信息](https://www.cccmc.org.cn/syjh/xqxx/) | [合作信息](https://www.cccmc.org.cn/syjh/hzxx/) |\n| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |\n| [syjh/gyxx](https://rsshub.app/cccmc/syjh/gyxx) | [syjh/xqxx](https://rsshub.app/cccmc/syjh/xqxx) | [syjh/hzxx](https://rsshub.app/cccmc/syjh/hzxx) |\n\n#### [商会党建](https://www.cccmc.org.cn/shdj)\n\n| [党群动态](https://www.cccmc.org.cn/shdj/dqdt/) | [党内法规](https://www.cccmc.org.cn/shdj/dnfg/) | [青年工作](https://www.cccmc.org.cn/shdj/qngz/) |\n| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |\n| [shdj/dqdt](https://rsshub.app/cccmc/shdj/dqdt) | [shdj/dnfg](https://rsshub.app/cccmc/shdj/dnfg) | [shdj/qngz](https://rsshub.app/cccmc/shdj/qngz) |\n</details>\n",
+      "path": "/kx",
+      "example": "/amz123/kx",
+      "parameters": {},
+      "name": "AMZ123 快讯",
+      "url": "amz123.com/kx",
       "view": 0,
-      "provider_id": "cccmc",
-      "provider_name": "中国五矿化工进出口商会",
-      "route_key": "/:category{.+}?"
+      "provider_id": "amz123",
+      "provider_name": "Amz123",
+      "route_key": "/kx"
     }
   },
   {
-    "provider_id": "chiculture",
-    "provider_name": "通識・現代中國",
-    "route_key": "/topic/:category?",
+    "provider_id": "byteclicks",
+    "provider_name": "字节点击",
+    "route_key": "/tag/:tag",
     "route": {
-      "path": "/topic/:category?",
-      "example": "/chiculture/topic",
+      "path": "/tag/:tag",
+      "example": "/byteclicks/tag/人工智能",
       "parameters": {
-        "category": "分类，见下表，默认为全部"
+        "tag": "标签，可在URL中找到"
       },
-      "name": "議題熱話",
-      "description": "| 全部 | 現代中國 | 今日香港 | 全球化 | 一周時事通識 |\n| ---- | -------- | -------- | ------ | ------------ |\n|      | 76       | 479      | 480    | 379          |",
-      "provider_id": "chiculture",
-      "provider_name": "通識・現代中國",
-      "route_key": "/topic/:category?"
+      "name": "标签",
+      "url": "byteclicks.com/",
+      "provider_id": "byteclicks",
+      "provider_name": "字节点击",
+      "route_key": "/tag/:tag"
+    }
+  },
+  {
+    "provider_id": "ccfa",
+    "provider_name": "中国连锁经营协会",
+    "route_key": "/:type?",
+    "route": {
+      "path": "/:type?",
+      "name": "分类",
+      "url": "www.ccfa.org.cn",
+      "example": "/ccfa/1",
+      "parameters": {
+        "category": "分类，默认为 `1`，即协会动态，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [协会动态](https://www.ccfa.org.cn/portal/cn/xiehui_list.jsp?type=1)，网址为 `https://www.ccfa.org.cn/portal/cn/xiehui_list.jsp?type=1`。截取 `https://www.ccfa.org.cn/portal/cn/xiehui_list.jsp?type=` 到末尾的部分 `1` 作为参数填入，此时路由为 [`/ccfa/1`](https://rsshub.app/ccfa/1)。\n:::\n\n| 分类                                                                      | ID                                     |\n| ------------------------------------------------------------------------- | -------------------------------------- |\n| [协会动态](http://www.ccfa.org.cn/portal/cn/xiehui_list.jsp?type=1)       | [1](https://rsshub.app/ccfa/1)         |\n| [行业动态](http://www.ccfa.org.cn/portal/cn/xiehui_list.jsp?type=2)       | [2](https://rsshub.app/ccfa/2)         |\n| [政策/报告/标准](http://www.ccfa.org.cn/portal/cn/hybz_list.jsp?type=33)  | [33](https://rsshub.app/ccfa/33)       |\n| [行业统计](http://www.ccfa.org.cn/portal/cn/lsbq.jsp?type=10003)          | [10003](https://rsshub.app/ccfa/10003) |\n| [创新案例](http://www.ccfa.org.cn/portal/cn/hybzs_list.jsp?type=10004)    | [10004](https://rsshub.app/ccfa/10004) |\n| [党建工作](http://www.ccfa.org.cn/portal/cn/xiehui_list.jsp?type=7)       | [7](https://rsshub.app/ccfa/7)         |\n| [新消费论坛](http://www.ccfa.org.cn/portal/cn/xiehui_list.jsp?type=10005) | [10005](https://rsshub.app/ccfa/10005) |\n\n#### [政策/报告/标准](http://www.ccfa.org.cn/portal/cn/hybz_list.jsp?type=33)\n\n| 分类                                                                            | ID                               |\n| ------------------------------------------------------------------------------- | -------------------------------- |\n| [行业报告](http://www.ccfa.org.cn/portal/cn/hybz_list.jsp?type=33)              | [33](https://rsshub.app/ccfa/33) |\n| [行业标准](http://www.ccfa.org.cn/portal/cn/hybz_list.jsp?type=34)              | [34](https://rsshub.app/ccfa/34) |\n| [行业政策](http://www.ccfa.org.cn/portal/cn/fangyizhuanqu_list.jsp?type=39)     | [39](https://rsshub.app/ccfa/39) |\n| [政策权威解读](http://www.ccfa.org.cn/portal/cn/fangyizhuanqu_list.jsp?type=40) | [40](https://rsshub.app/ccfa/40) |\n    ",
+      "provider_id": "ccfa",
+      "provider_name": "中国连锁经营协会",
+      "route_key": "/:type?"
     }
   },
   {
@@ -233,39 +237,79 @@
     }
   },
   {
-    "provider_id": "cngold",
-    "provider_name": "中国黄金协会",
-    "route_key": "/:category?",
+    "provider_id": "chub",
+    "provider_name": "Chub",
+    "route_key": "/characters",
     "route": {
-      "path": "/:category?",
-      "name": "分类",
-      "url": "www.cngold.org.cn",
-      "example": "/cngold/news-325",
-      "parameters": {
-        "category": "分类，默认为 `news-325`，即行业资讯，可在对应分类页 URL 中找到, Category, `news-325`，即行业资讯by default"
-      },
-      "description": "::: tip\n  若订阅 [行业资讯](https://www.cngold.org.cn/news-325.html)，网址为 `https://www.cngold.org.cn/news-325.html`。截取 `https://www.cngold.org.cn/` 到末尾 `.html` 的部分 `news-325` 作为参数填入，此时路由为 [`/cngold/news-325`](https://rsshub.app/cngold/news-325)。\n:::\n\n#### 资讯中心\n\n| [图片新闻](https://www.cngold.org.cn/news-323.html) | [通知公告](https://www.cngold.org.cn/news-324.html) | [党建工作](https://www.cngold.org.cn/news-326.html) | [行业资讯](https://www.cngold.org.cn/news-325.html) | [黄金矿业](https://www.cngold.org.cn/news-327.html) | [黄金消费](https://www.cngold.org.cn/news-328.html) |\n| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |\n| [news-323](https://rsshub.app/cngold/news-323)      | [news-324](https://rsshub.app/cngold/news-324)      | [news-326](https://rsshub.app/cngold/news-326)      | [news-325](https://rsshub.app/cngold/news-325)      | [news-327](https://rsshub.app/cngold/news-327)      | [news-328](https://rsshub.app/cngold/news-328)      |\n\n| [黄金市场](https://www.cngold.org.cn/news-329.html) | [社会责任](https://www.cngold.org.cn/news-330.html) | [黄金书屋](https://www.cngold.org.cn/news-331.html) | [工作交流](https://www.cngold.org.cn/news-332.html) | [黄金统计](https://www.cngold.org.cn/news-333.html) | [协会动态](https://www.cngold.org.cn/news-334.html) |\n| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |\n| [news-329](https://rsshub.app/cngold/news-329)      | [news-330](https://rsshub.app/cngold/news-330)      | [news-331](https://rsshub.app/cngold/news-331)      | [news-332](https://rsshub.app/cngold/news-332)      | [news-333](https://rsshub.app/cngold/news-333)      | [news-334](https://rsshub.app/cngold/news-334)      |\n\n<details>\n<summary>更多分类</summary>\n\n#### [政策法规](https://www.cngold.org.cn/policies.html)\n\n| [法律法规](https://www.cngold.org.cn/policies-245.html) | [产业政策](https://www.cngold.org.cn/policies-262.html) | [黄金标准](https://www.cngold.org.cn/policies-281.html) |\n| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |\n| [policies-245](https://rsshub.app/cngold/policies-245)  | [policies-262](https://rsshub.app/cngold/policies-262)  | [policies-281](https://rsshub.app/cngold/policies-281)  |\n\n#### [行业培训](https://www.cngold.org.cn/training.html)\n\n| [黄金投资分析师](https://www.cngold.org.cn/training-242.html) | [教育部1+X](https://www.cngold.org.cn/training-246.html) | [矿业权评估师](https://www.cngold.org.cn/training-338.html) | [其他培训](https://www.cngold.org.cn/training-247.html) |\n| ------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |\n| [training-242](https://rsshub.app/cngold/training-242)        | [training-246](https://rsshub.app/cngold/training-246)   | [training-338](https://rsshub.app/cngold/training-338)      | [training-247](https://rsshub.app/cngold/training-247)  |\n\n#### [黄金科技](https://www.cngold.org.cn/technology.html)\n\n| [黄金协会科学技术奖](https://www.cngold.org.cn/technology-318.html) | [科学成果评价](https://www.cngold.org.cn/technology-319.html) | [新技术推广](https://www.cngold.org.cn/technology-320.html) | [黄金技术大会](https://www.cngold.org.cn/technology-350.html) |\n| ------------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------- |\n| [technology-318](https://rsshub.app/cngold/technology-318)          | [technology-319](https://rsshub.app/cngold/technology-319)    | [technology-320](https://rsshub.app/cngold/technology-320)  | [technology-350](https://rsshub.app/cngold/technology-350)    |\n\n</details>\n    ",
-      "provider_id": "cngold",
-      "provider_name": "中国黄金协会",
-      "route_key": "/:category?"
+      "path": "/characters",
+      "example": "/chub/characters",
+      "name": "Characters",
+      "provider_id": "chub",
+      "provider_name": "Chub",
+      "route_key": "/characters"
     }
   },
   {
-    "provider_id": "cuilingmag",
-    "provider_name": "萃嶺网",
-    "route_key": "/:category?",
+    "provider_id": "cn-healthcare",
+    "provider_name": "健康界",
+    "route_key": "/index",
     "route": {
-      "path": "/:category?",
-      "name": "分类",
-      "url": "cuilingmag.com",
-      "example": "/cuilingmag",
+      "path": "/index",
+      "example": "/cn-healthcare/index",
+      "parameters": {},
+      "name": "首页",
+      "url": "cn-healthcare.com/",
+      "provider_id": "cn-healthcare",
+      "provider_name": "健康界",
+      "route_key": "/index"
+    }
+  },
+  {
+    "provider_id": "coindesk",
+    "provider_name": "CoinDesk",
+    "route_key": "/consensus-magazine",
+    "route": {
+      "path": "/consensus-magazine",
+      "example": "/coindesk/consensus-magazine",
+      "parameters": {},
+      "name": "新闻周刊",
+      "url": "coindesk.com/",
+      "provider_id": "coindesk",
+      "provider_name": "CoinDesk",
+      "route_key": "/consensus-magazine"
+    }
+  },
+  {
+    "provider_id": "cyzone",
+    "provider_name": "创业邦",
+    "route_key": "/author/:id",
+    "route": {
+      "path": "/author/:id",
+      "example": "/cyzone/author/1225562",
       "parameters": {
-        "category": "分类，默认为空，即全部，可在对应分类页 URL 中找到"
+        "id": "作者 id，可在对应作者页 URL 中找到"
       },
-      "description": "::: tip\n  若订阅 [#哲学·文明](https://www.cuilingmag.com/category/philosophy_civilization)，网址为 `https://www.cuilingmag.com/category/philosophy_civilization`。截取 `https://www.cuilingmag.com/category` 到末尾的部分 `philosophy_civilization` 作为参数填入，此时路由为 [`/cuilingmag/philosophy_civilization`](https://rsshub.app/cuilingmag/philosophy_civilization)。\n:::\n\n| 分类                                                                       | ID                                                                                |\n| -------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |\n| [哲学 · 文明](https://www.cuilingmag.com/category/philosophy_civilization) | [philosophy_civilization](https://rsshub.app/cuilingmag/philosophy_civilization) |\n| [艺术 · 科技](https://www.cuilingmag.com/category/art_science)             | [art_science](https://rsshub.app/cuilingmag/art_science)                         |\n| [未来 · 生命](https://www.cuilingmag.com/category/future_life)             | [future_life](https://rsshub.app/cuilingmag/future_life)                         |\n| [行星智慧](https://www.cuilingmag.com/category/planetary_wisdom)           | [planetary_wisdom](https://rsshub.app/cuilingmag/planetary_wisdom)               |\n| [数字治理](https://www.cuilingmag.com/category/digital_governance)         | [digital_governance](https://rsshub.app/cuilingmag/digital_governance)           |\n| [Noema精选](https://www.cuilingmag.com/category/selected_noema)            | [selected_noema](https://rsshub.app/cuilingmag/selected_noema)                   |\n  ",
-      "provider_id": "cuilingmag",
-      "provider_name": "萃嶺网",
-      "route_key": "/:category?"
+      "name": "作者",
+      "provider_id": "cyzone",
+      "provider_name": "创业邦",
+      "route_key": "/author/:id"
+    }
+  },
+  {
+    "provider_id": "dahecube",
+    "provider_name": "大河财立方",
+    "route_key": "/:type?",
+    "route": {
+      "path": "/:type?",
+      "example": "/dahecube",
+      "parameters": {
+        "type": "板块，见下表，默认为推荐"
+      },
+      "name": "新闻",
+      "description": "| 推荐      | 党史    | 豫股  | 财经     | 投教      | 金融    | 科创    | 投融   | 专栏   |\n| --------- | ------- | ----- | -------- | --------- | ------- | ------- | ------ | ------ |\n| recommend | history | stock | business | education | finance | science | invest | column |",
+      "provider_id": "dahecube",
+      "provider_name": "大河财立方",
+      "route_key": "/:type?"
     }
   },
   {
@@ -286,37 +330,21 @@
     }
   },
   {
-    "provider_id": "dcfever",
-    "provider_name": "DCFever",
-    "route_key": "/reviews/:type?",
+    "provider_id": "diandong",
+    "provider_name": "电动邦",
+    "route_key": "/news/:cate?",
     "route": {
-      "path": "/reviews/:type?",
-      "example": "/dcfever/reviews/cameras",
+      "path": "/news/:cate?",
+      "example": "/diandong/news",
       "parameters": {
-        "type": "分類，預設為 `cameras`"
+        "cate": "分类，见下表，默认为推荐"
       },
-      "name": "測試報告",
-      "description": "| 相機及鏡頭 | 手機平板 | 試車報告 |\n| ---------- | -------- | -------- |\n| cameras    | phones   | cars     |",
-      "provider_id": "dcfever",
-      "provider_name": "DCFever",
-      "route_key": "/reviews/:type?"
-    }
-  },
-  {
-    "provider_id": "dedao",
-    "provider_name": "得到",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "name": "文章",
-      "example": "/dedao",
-      "parameters": {
-        "category": "分类，见下表，默认为`news`"
-      },
-      "description": "| 新闻 | 人物故事 | 视频 |\n| ---- | ---- | ---- |\n| news | figure | video |",
-      "provider_id": "dedao",
-      "provider_name": "得到",
-      "route_key": "/:category?"
+      "name": "资讯",
+      "url": "diandong.com/news",
+      "description": "分类\n\n| 推荐 | 新车 | 导购 | 试驾 | 用车 | 技术 | 政策 | 行业 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 0    | 29   | 61   | 30   | 75   | 22   | 24   | 23   |",
+      "provider_id": "diandong",
+      "provider_name": "电动邦",
+      "route_key": "/news/:cate?"
     }
   },
   {
@@ -336,33 +364,65 @@
   {
     "provider_id": "dongqiudi",
     "provider_name": "懂球帝",
-    "route_key": "/result/:team",
+    "route_key": "/special/:id",
     "route": {
-      "path": "/result/:team",
-      "example": "/dongqiudi/result/50001755",
+      "path": "/special/:id",
+      "example": "/dongqiudi/special/41",
       "parameters": {
-        "team": "球队 id, 可在[懂球帝数据](https://www.dongqiudi.com/data)中找到"
+        "id": "专题 id, 可自行通过 https://www.dongqiudi.com/special/+数字匹配"
       },
-      "name": "足球赛果",
+      "name": "专题",
+      "description": "| 新闻大爆炸 | 懂球帝十佳球 | 懂球帝本周 MVP |\n| ---------- | ------------ | -------------- |\n| 41         | 52           | 53             |",
       "provider_id": "dongqiudi",
       "provider_name": "懂球帝",
-      "route_key": "/result/:team"
+      "route_key": "/special/:id"
     }
   },
   {
     "provider_id": "dongqiudi",
     "provider_name": "懂球帝",
-    "route_key": "/team_news/:team",
+    "route_key": "/top_news/:id?",
     "route": {
-      "path": "/team_news/:team",
-      "example": "/dongqiudi/team_news/50001755",
+      "path": "/top_news/:id?",
+      "example": "/dongqiudi/top_news/1",
       "parameters": {
-        "team": "球队 id, 可在[懂球帝数据](https://www.dongqiudi.com/data)中找到"
+        "id": "类别 id，不填默认头条新闻"
       },
-      "name": "球队新闻",
+      "name": "新闻",
+      "description": "| 头条 | 深度 | 闲情 | D 站 | 中超 | 国际 | 英超 | 西甲 | 意甲 | 德甲 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 1    | 55   | 37   | 219  | 56   | 120  | 3    | 5    | 4    | 6    |",
       "provider_id": "dongqiudi",
       "provider_name": "懂球帝",
-      "route_key": "/team_news/:team"
+      "route_key": "/top_news/:id?"
+    }
+  },
+  {
+    "provider_id": "dushu",
+    "provider_name": "樊登读书",
+    "route_key": "/fuzhou",
+    "route": {
+      "path": "/fuzhou",
+      "example": "/dushu/fuzhou",
+      "parameters": {},
+      "name": "樊登福州运营中心",
+      "url": "www.dushu365.com*",
+      "provider_id": "dushu",
+      "provider_name": "樊登读书",
+      "route_key": "/fuzhou"
+    }
+  },
+  {
+    "provider_id": "egsea",
+    "provider_name": "e 公司",
+    "route_key": "/flash",
+    "route": {
+      "path": "/flash",
+      "example": "/egsea/flash",
+      "parameters": {},
+      "name": "快讯",
+      "url": "egsea.com/news/flash",
+      "provider_id": "egsea",
+      "provider_name": "e 公司",
+      "route_key": "/flash"
     }
   },
   {
@@ -380,70 +440,6 @@
       "provider_id": "eprice",
       "provider_name": "ePrice",
       "route_key": "/:region?"
-    }
-  },
-  {
-    "provider_id": "esquirehk",
-    "provider_name": "Esquire Hong Kong",
-    "route_key": "/tag/:id?",
-    "route": {
-      "path": "/tag/:id?",
-      "example": "/esquirehk/tag/Fashion",
-      "parameters": {
-        "id": "标签，可在对应标签页 URL 中找到"
-      },
-      "name": "Tag",
-      "provider_id": "esquirehk",
-      "provider_name": "Esquire Hong Kong",
-      "route_key": "/tag/:id?"
-    }
-  },
-  {
-    "provider_id": "focustaiwan",
-    "provider_name": "Focus Taiwan",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/focustaiwan",
-      "parameters": {
-        "category": "分类，见下表，默认为 news"
-      },
-      "name": "Category",
-      "description": "| Latest | Editor's Picks | Photos of the Day |\n| ------ | -------------- | ----------------- |\n| news   | editorspicks   | photos            |\n\n| Politics | Cross-strait | Business | Society | Science & Tech | Culture | Sports |\n| -------- | ------------ | -------- | ------- | -------------- | ------- | ------ |\n| politics | cross-strait | business | society | science & tech | culture | sports |",
-      "provider_id": "focustaiwan",
-      "provider_name": "Focus Taiwan",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "foodtalks",
-    "provider_name": "FoodTalks全球食品资讯网",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/foodtalks",
-      "name": "FoodTalks global food information network",
-      "url": "www.foodtalks.cn",
-      "provider_id": "foodtalks",
-      "provider_name": "FoodTalks全球食品资讯网",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "foresightnews",
-    "provider_name": "Foresight News",
-    "route_key": "/column/:id",
-    "route": {
-      "path": "/column/:id",
-      "example": "/foresightnews/column/1",
-      "parameters": {
-        "id": "专栏 id, 可在对应专栏页 URL 中找到"
-      },
-      "name": "专栏",
-      "url": "foresightnews.pro/",
-      "provider_id": "foresightnews",
-      "provider_name": "Foresight News",
-      "route_key": "/column/:id"
     }
   },
   {
@@ -508,6 +504,21 @@
     }
   },
   {
+    "provider_id": "grist",
+    "provider_name": "Grist",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "name": "Latest Articles",
+      "example": "/grist",
+      "parameters": {},
+      "url": "grist.org/articles/",
+      "provider_id": "grist",
+      "provider_name": "Grist",
+      "route_key": "/"
+    }
+  },
+  {
     "provider_id": "guancha",
     "provider_name": "观察者网",
     "route_key": "/headline",
@@ -525,19 +536,19 @@
   {
     "provider_id": "guancha",
     "provider_name": "观察者网",
-    "route_key": "/member/:category?",
+    "route_key": "/:category?",
     "route": {
-      "path": "/member/:category?",
-      "example": "/guancha/member/recommend",
+      "path": "/:category?",
+      "example": "/guancha",
       "parameters": {
-        "category": "分类，见下表"
+        "category": "分类，见下表，默认为全部"
       },
-      "name": "观学院",
+      "name": "首页",
       "url": "guancha.cn/",
-      "description": "| 精选      | 观书堂 | 在线课  | 观学院   |\n| --------- | ------ | ------- | -------- |\n| recommend | books  | courses | huodongs |",
+      "description": "| 全部 | 评论 & 研究 | 要闻  | 风闻    | 热点新闻 | 滚动新闻 |\n| ---- | ----------- | ----- | ------- | -------- | -------- |\n| all  | review      | story | fengwen | redian   | gundong  |\n\n  home = 评论 & 研究 + 要闻 + 风闻\n\n  others = 热点新闻 + 滚动新闻\n\n::: tip\n  观察者网首页左中右的三个 column 分别对应 **评论 & 研究**、**要闻**、**风闻** 三个部分。\n:::",
       "provider_id": "guancha",
       "provider_name": "观察者网",
-      "route_key": "/member/:category?"
+      "route_key": "/:category?"
     }
   },
   {
@@ -559,6 +570,24 @@
   {
     "provider_id": "guokr",
     "provider_name": "果壳网",
+    "route_key": "/column/:channel",
+    "route": {
+      "path": "/column/:channel",
+      "example": "/guokr/column/calendar",
+      "parameters": {
+        "channel": "专栏类别"
+      },
+      "name": "果壳网专栏",
+      "url": "guokr.com/",
+      "description": "| 物种日历 | 吃货研究所 | 美丽也是技术活 |\n| -------- | ---------- | -------------- |\n| calendar | institute  | beauty         |",
+      "provider_id": "guokr",
+      "provider_name": "果壳网",
+      "route_key": "/column/:channel"
+    }
+  },
+  {
+    "provider_id": "guokr",
+    "provider_name": "果壳网",
     "route_key": "/scientific",
     "route": {
       "path": "/scientific",
@@ -571,34 +600,33 @@
     }
   },
   {
-    "provider_id": "harvard",
-    "provider_name": "Harvard Health Publishing",
-    "route_key": "/health/blog",
+    "provider_id": "hk01",
+    "provider_name": "香港 01",
+    "route_key": "/hot",
     "route": {
-      "path": "/health/blog",
-      "example": "/harvard/health/blog",
+      "path": "/hot",
+      "example": "/hk01/hot",
       "parameters": {},
-      "name": "Health Blog",
-      "url": "www.health.harvard.edu/blog",
-      "provider_id": "harvard",
-      "provider_name": "Harvard Health Publishing",
-      "route_key": "/health/blog"
+      "name": "热门",
+      "url": "hk01.com/hot",
+      "provider_id": "hk01",
+      "provider_name": "香港 01",
+      "route_key": "/hot"
     }
   },
   {
-    "provider_id": "hellobtc",
-    "provider_name": "白话区块链",
-    "route_key": "/information/:channel?",
+    "provider_id": "hk01",
+    "provider_name": "香港 01",
+    "route_key": "/latest",
     "route": {
-      "path": "/information/:channel?",
-      "example": "/hellobtc/information/latest",
-      "parameters": {
-        "channel": "类型，可填 `latest` 和 `application` 及最新和应用，默认为最新"
-      },
-      "name": "首页",
-      "provider_id": "hellobtc",
-      "provider_name": "白话区块链",
-      "route_key": "/information/:channel?"
+      "path": "/latest",
+      "example": "/hk01/latest",
+      "parameters": {},
+      "name": "即時",
+      "url": "hk01.com/latest",
+      "provider_id": "hk01",
+      "provider_name": "香港 01",
+      "route_key": "/latest"
     }
   },
   {
@@ -619,17 +647,18 @@
     }
   },
   {
-    "provider_id": "houxu",
-    "provider_name": "后续",
-    "route_key": "/memory",
+    "provider_id": "huxiu",
+    "provider_name": "虎嗅",
+    "route_key": "/moment",
     "route": {
-      "path": "/memory",
-      "example": "/houxu/memory",
-      "name": "跟踪",
-      "url": "houxu.app/memory",
-      "provider_id": "houxu",
-      "provider_name": "后续",
-      "route_key": "/memory"
+      "path": "/moment",
+      "example": "/huxiu/moment",
+      "parameters": {},
+      "name": "24 小时",
+      "url": "huxiu.com/moment",
+      "provider_id": "huxiu",
+      "provider_name": "虎嗅",
+      "route_key": "/moment"
     }
   },
   {
@@ -653,6 +682,21 @@
   {
     "provider_id": "ifanr",
     "provider_name": "爱范儿",
+    "route_key": "/digest",
+    "route": {
+      "path": "/digest",
+      "name": "快讯",
+      "url": "www.ifanr.com",
+      "example": "/ifanr/digest",
+      "view": 0,
+      "provider_id": "ifanr",
+      "provider_name": "爱范儿",
+      "route_key": "/digest"
+    }
+  },
+  {
+    "provider_id": "ifanr",
+    "provider_name": "爱范儿",
     "route_key": "/index",
     "route": {
       "path": "/index",
@@ -669,137 +713,187 @@
   {
     "provider_id": "ithome",
     "provider_name": "iThome 台灣",
-    "route_key": "/ranking/:type",
+    "route_key": "/:caty",
     "route": {
-      "path": "/ranking/:type",
-      "example": "/ithome/ranking/24h",
+      "path": "/:caty",
+      "example": "/ithome/it",
       "parameters": {
-        "type": "类别"
+        "caty": "类别"
       },
-      "name": "热榜",
-      "description": "| 24h           | 7days    | monthly |\n| ------------- | -------- | ------- |\n| 24 小时阅读榜 | 7 天最热 | 月榜    |",
+      "name": "分类资讯",
+      "description": "| it      | soft     | win10      | win11      | iphone      | ipad      | android      | digi     | next     |\n| ------- | -------- | ---------- | ---------- | ----------- | --------- | ------------ | -------- | -------- |\n| IT 资讯 | 软件之家 | win10 之家 | win11 之家 | iphone 之家 | ipad 之家 | android 之家 | 数码之家 | 智能时代 |",
       "provider_id": "ithome",
       "provider_name": "iThome 台灣",
-      "route_key": "/ranking/:type"
+      "route_key": "/:caty"
     }
   },
   {
-    "provider_id": "ithome",
-    "provider_name": "iThome 台灣",
-    "route_key": "/tw/feeds/:category",
+    "provider_id": "joneslanglasalle",
+    "provider_name": "Jones Lang LaSalle",
+    "route_key": "/:language?/:category{.+}?",
     "route": {
-      "path": "/tw/feeds/:category",
-      "example": "/ithome/tw/feeds/news",
+      "path": "/:language?/:category{.+}?",
+      "name": "Trends & Insights",
+      "url": "joneslanglasalle.com.cn",
+      "example": "/joneslanglasalle/en/trends-and-insights",
       "parameters": {
-        "category": "類別"
+        "language": "Language, `zh` by default",
+        "category": "Category, `trends-and-insights` by default"
       },
-      "name": "Feeds",
-      "description": "| 新聞 | AI       | Cloud | DevOps | 資安     |\n| ---- | -------- | ----- | ------ | -------- |\n| news | big-data | cloud | devops | security |",
-      "provider_id": "ithome",
-      "provider_name": "iThome 台灣",
-      "route_key": "/tw/feeds/:category"
+      "description": "::: tip\nIf you subscribe to [Trends & Insights](https://www.joneslanglasalle.com.cn/en/trends-and-insights)，where the URL is `https://www.joneslanglasalle.com.cn/en/trends-and-insights`, extract the part `https://joneslanglasalle.com.cn/` to the end. Use `zh` and `trends-and-insights` as the parameters to fill in. Therefore, the route will be [`/joneslanglasalle/en/trends-and-insights`](https://rsshub.app/joneslanglasalle/en/trends-and-insights).\n:::\n\n| Category  | ID                            |\n| --------- | ----------------------------- |\n| Latest    | trends-and-insights           |\n| Workplace | trends-and-insights/workplace |\n| Investor  | trends-and-insights/investor  |\n| Cities    | trends-and-insights/cities    |\n| Research  | trends-and-insights/research  |\n",
+      "view": 0,
+      "zh": {
+        "path": "/:language?/:category{.+}?",
+        "name": "房地产趋势与洞察",
+        "url": "joneslanglasalle.com.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/joneslanglasalle/zh/trends-and-insights",
+        "parameters": {
+          "language": "语言，默认为 `zh`，可在对应分类页 URL 中找到",
+          "category": "分类，默认为 `trends-and-insights`，可在对应分类页 URL 中找到"
+        },
+        "description": "::: tip\n若订阅 [房地产趋势与洞察](https://www.joneslanglasalle.com.cn/zh/trends-and-insights)，网址为 `https://www.joneslanglasalle.com.cn/zh/trends-and-insights`，请截取 `https://joneslanglasalle.com.cn/` 到末尾的部分 `zh` 和 `trends-and-insights` 作为 `language` 和 `category` 参数填入，此时目标路由为 [`/joneslanglasalle/zh/trends-and-insights`](https://rsshub.app/joneslanglasalle/zh/trends-and-insights)。\n:::\n\n| 分类名称   | 分类 ID                       |\n| ---------- | ----------------------------- |\n| 趋势及洞察 | trends-and-insights           |\n| 办公空间   | trends-and-insights/workplace |\n| 投资者     | trends-and-insights/investor  |\n| 城市       | trends-and-insights/cities    |\n| 研究报告   | trends-and-insights/research  |\n"
+      },
+      "provider_id": "joneslanglasalle",
+      "provider_name": "Jones Lang LaSalle",
+      "route_key": "/:language?/:category{.+}?"
     }
   },
   {
-    "provider_id": "kelownacapnews",
-    "provider_name": "Kelowna Capital News",
-    "route_key": "/:type",
+    "provider_id": "line",
+    "provider_name": "LINE",
+    "route_key": "/today/:edition?/:tab?",
     "route": {
-      "path": "/:type",
-      "example": "/kelownacapnews/local-news",
+      "path": "/today/:edition?/:tab?",
+      "example": "/line/today",
       "parameters": {
-        "type": "Type of news"
+        "edition": "Edition, see below, Taiwan by default",
+        "tab": "Tag, can be found in URL, `top` by default"
+      },
+      "name": "TODAY",
+      "url": "today.line.me/",
+      "description": "Edition\n\n| Taiwan | Thailand | Hong Kong |\n| ------ | -------- | --------- |\n| tw     | th       | hk        |",
+      "provider_id": "line",
+      "provider_name": "LINE",
+      "route_key": "/today/:edition?/:tab?"
+    }
+  },
+  {
+    "provider_id": "lvv2",
+    "provider_name": "LVV2",
+    "route_key": "/news/:channel/:sort?",
+    "route": {
+      "path": "/news/:channel/:sort?",
+      "example": "/lvv2/news/sort-score",
+      "parameters": {
+        "channel": "频道，见下表",
+        "sort": "排序方式，仅得分和24小时榜可选填该参数，见下表"
+      },
+      "name": "频道",
+      "description": "|   热门   |   最新   |    得分    |   24 小时榜   |\n| :------: | :------: | :--------: | :-----------: |\n| sort-hot | sort-new | sort-score | sort-realtime |\n\n| 排序方式 | 一小时内 | 一天内 | 一个周内 | 一个月内 |\n| :------: | :------: | :----: | :------: | :------: |\n|          |  t-hour  |  t-day |  t-week  |  t-month |",
+      "provider_id": "lvv2",
+      "provider_name": "LVV2",
+      "route_key": "/news/:channel/:sort?"
+    }
+  },
+  {
+    "provider_id": "macfilos",
+    "provider_name": "Macfilos",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "example": "/macfilos/blog",
+      "parameters": {},
+      "name": "Blog",
+      "url": "macfilos.com/blog",
+      "provider_id": "macfilos",
+      "provider_name": "Macfilos",
+      "route_key": "/blog"
+    }
+  },
+  {
+    "provider_id": "meishichina",
+    "provider_name": "美食天下",
+    "route_key": "/recipe/:category{.+}?",
+    "route": {
+      "path": "/recipe/:category{.+}?",
+      "name": "菜谱",
+      "url": "home.meishichina.com",
+      "example": "/meishichina/recipe",
+      "parameters": {
+        "category": "分类，默认为最新推荐，见下表"
+      },
+      "description": "::: tip\n  若订阅 [菜谱大全](https://home.meishichina.com/recipe.html) 中的 `最新推荐` 分类，将 `最新推荐` 作为参数填入，此时路由为 [`/meishichina/recipe/最新推荐/`](https://rsshub.app/meishichina/recipe/最新推荐)。\n\n  若订阅 [菜谱大全](https://home.meishichina.com/recipe.html) 中的 `自制食材` 分类，将 `自制食材` 作为参数填入，此时路由为 [`/meishichina/recipe/自制食材/`](https://rsshub.app/meishichina/recipe/自制食材)。\n:::\n\n| [最新推荐](https://home.meishichina.com/recipe.html) | [最新发布](https://home.meishichina.com/recipe.html) | [热菜](https://home.meishichina.com/recipe.html) | [凉菜](https://home.meishichina.com/recipe.html) | [汤羹](https://home.meishichina.com/recipe.html) | [主食](https://home.meishichina.com/recipe.html) | [小吃](https://home.meishichina.com/recipe.html) | [西餐](https://home.meishichina.com/recipe.html) | [烘焙](https://home.meishichina.com/recipe.html) | [自制食材](https://home.meishichina.com/recipe.html) |\n| ---------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------------- |\n\n::: tip\n  若订阅 [全部分类](https://home.meishichina.com/recipe-type.html) 中的对应分类页，见下方说明。\n\n  若订阅 [热菜最新菜谱](https://home.meishichina.com/recipe/recai/)，网址为 `https://home.meishichina.com/recipe/recai/`。截取 `https://home.meishichina.com/recipe/` 到末尾 `/` 的部分 `recai` 作为参数填入，此时路由为 [`/meishichina/recipe/recai/`](https://rsshub.app/meishichina/recipe/recai)。\n  \n  若订阅 [米饭最热菜谱](https://home.meishichina.com/recipe/mifan/hot/)，网址为 `https://home.meishichina.com/recipe/mifan/hot/`。截取 `https://home.meishichina.com/recipe/` 到末尾 `/` 的部分 `mifan/hot` 作为参数填入，此时路由为 [`/meishichina/recipe/mifan/hot/`](https://rsshub.app/meishichina/recipe/mifan/hot)。\n  \n  若订阅 [制作难度简单菜谱](https://home.meishichina.com/recipe-type-do-level-view-1.html)，网址为 `https://home.meishichina.com/recipe-type-do-level-view-1.html`。截取 `https://home.meishichina.com/` 到末尾 `.html` 的部分 `recipe-type-do-level-view-1` 作为参数填入，此时路由为 [`/meishichina/recipe/recipe-type-do-level-view-1/`](https://rsshub.app/meishichina/recipe/recipe-type-do-level-view-1)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### 常见菜式\n\n| [热菜](https://home.meishichina.com/recipe/recai/)   | [凉菜](https://home.meishichina.com/recipe/liangcai/)      | [汤羹](https://home.meishichina.com/recipe/tanggeng/)      | [主食](https://home.meishichina.com/recipe/zhushi/)    | [小吃](https://home.meishichina.com/recipe/xiaochi/)     | [家常菜](https://home.meishichina.com/recipe/jiachang/)    |\n| ---------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------- | ---------------------------------------------------------- |\n| [recai](https://rsshub.app/meishichina/recipe/recai) | [liangcai](https://rsshub.app/meishichina/recipe/liangcai) | [tanggeng](https://rsshub.app/meishichina/recipe/tanggeng) | [zhushi](https://rsshub.app/meishichina/recipe/zhushi) | [xiaochi](https://rsshub.app/meishichina/recipe/xiaochi) | [jiachang](https://rsshub.app/meishichina/recipe/jiachang) |\n\n| [泡酱腌菜](https://home.meishichina.com/recipe/jiangpaoyancai/)        | [西餐](https://home.meishichina.com/recipe/xican/)   | [烘焙](https://home.meishichina.com/recipe/hongbei/)     | [烤箱菜](https://home.meishichina.com/recipe/kaoxiangcai/)       | [饮品](https://home.meishichina.com/recipe/yinpin/)    | [零食](https://home.meishichina.com/recipe/lingshi/)     |\n| ---------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------- |\n| [jiangpaoyancai](https://rsshub.app/meishichina/recipe/jiangpaoyancai) | [xican](https://rsshub.app/meishichina/recipe/xican) | [hongbei](https://rsshub.app/meishichina/recipe/hongbei) | [kaoxiangcai](https://rsshub.app/meishichina/recipe/kaoxiangcai) | [yinpin](https://rsshub.app/meishichina/recipe/yinpin) | [lingshi](https://rsshub.app/meishichina/recipe/lingshi) |\n\n| [火锅](https://home.meishichina.com/recipe/huoguo/)    | [自制食材](https://home.meishichina.com/recipe/zizhishicai/)     | [海鲜](https://home.meishichina.com/recipe/haixian/)     | [宴客菜](https://home.meishichina.com/recipe/yankecai/)    |\n| ------------------------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------- |\n| [huoguo](https://rsshub.app/meishichina/recipe/huoguo) | [zizhishicai](https://rsshub.app/meishichina/recipe/zizhishicai) | [haixian](https://rsshub.app/meishichina/recipe/haixian) | [yankecai](https://rsshub.app/meishichina/recipe/yankecai) |\n\n#### 主食/小吃\n\n| [米饭](https://home.meishichina.com/recipe/mifan/)   | [炒饭](https://home.meishichina.com/recipe/chaofan/)     | [面食](https://home.meishichina.com/recipe/mianshi/)     | [包子](https://home.meishichina.com/recipe/baozi/)   | [饺子](https://home.meishichina.com/recipe/jiaozi/)    | [馒头花卷](https://home.meishichina.com/recipe/mantou/) |\n| ---------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |\n| [mifan](https://rsshub.app/meishichina/recipe/mifan) | [chaofan](https://rsshub.app/meishichina/recipe/chaofan) | [mianshi](https://rsshub.app/meishichina/recipe/mianshi) | [baozi](https://rsshub.app/meishichina/recipe/baozi) | [jiaozi](https://rsshub.app/meishichina/recipe/jiaozi) | [mantou](https://rsshub.app/meishichina/recipe/mantou)  |\n\n| [面条](https://home.meishichina.com/recipe/miantiao/)      | [饼](https://home.meishichina.com/recipe/bing/)    | [粥](https://home.meishichina.com/recipe/zhou/)    | [馄饨](https://home.meishichina.com/recipe/hundun/)    | [五谷杂粮](https://home.meishichina.com/recipe/wuguzaliang/)     | [北京小吃](https://home.meishichina.com/recipe/beijingxiaochi/)        |\n| ---------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------------------------- |\n| [miantiao](https://rsshub.app/meishichina/recipe/miantiao) | [bing](https://rsshub.app/meishichina/recipe/bing) | [zhou](https://rsshub.app/meishichina/recipe/zhou) | [hundun](https://rsshub.app/meishichina/recipe/hundun) | [wuguzaliang](https://rsshub.app/meishichina/recipe/wuguzaliang) | [beijingxiaochi](https://rsshub.app/meishichina/recipe/beijingxiaochi) |\n\n| [陕西小吃](https://home.meishichina.com/recipe/shanxixiaochi/)       | [广东小吃](https://home.meishichina.com/recipe/guangdongxiaochi/)          | [四川小吃](https://home.meishichina.com/recipe/sichuanxiaochi/)        | [重庆小吃](https://home.meishichina.com/recipe/chongqingxiaochi/)          | [天津小吃](https://home.meishichina.com/recipe/tianjinxiaochi/)        | [上海小吃](https://home.meishichina.com/recipe/shanghaixiochi/)        |\n| -------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |\n| [shanxixiaochi](https://rsshub.app/meishichina/recipe/shanxixiaochi) | [guangdongxiaochi](https://rsshub.app/meishichina/recipe/guangdongxiaochi) | [sichuanxiaochi](https://rsshub.app/meishichina/recipe/sichuanxiaochi) | [chongqingxiaochi](https://rsshub.app/meishichina/recipe/chongqingxiaochi) | [tianjinxiaochi](https://rsshub.app/meishichina/recipe/tianjinxiaochi) | [shanghaixiochi](https://rsshub.app/meishichina/recipe/shanghaixiochi) |\n\n| [福建小吃](https://home.meishichina.com/recipe/fujianxiaochi/)       | [湖南小吃](https://home.meishichina.com/recipe/hunanxiaochi/)      | [湖北小吃](https://home.meishichina.com/recipe/hubeixiaochi/)      | [江西小吃](https://home.meishichina.com/recipe/jiangxixiaochi/)        | [山东小吃](https://home.meishichina.com/recipe/shandongxiaochi/)         | [山西小吃](https://home.meishichina.com/recipe/jinxiaochi/)    |\n| -------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------- |\n| [fujianxiaochi](https://rsshub.app/meishichina/recipe/fujianxiaochi) | [hunanxiaochi](https://rsshub.app/meishichina/recipe/hunanxiaochi) | [hubeixiaochi](https://rsshub.app/meishichina/recipe/hubeixiaochi) | [jiangxixiaochi](https://rsshub.app/meishichina/recipe/jiangxixiaochi) | [shandongxiaochi](https://rsshub.app/meishichina/recipe/shandongxiaochi) | [jinxiaochi](https://rsshub.app/meishichina/recipe/jinxiaochi) |\n\n| [河南小吃](https://home.meishichina.com/recipe/henanxiaochi/)      | [台湾小吃](https://home.meishichina.com/recipe/taiwanxiaochi/)       | [江浙小吃](https://home.meishichina.com/recipe/jiangzhexiaochi/)         | [云贵小吃](https://home.meishichina.com/recipe/yunguixiaochi/)       | [东北小吃](https://home.meishichina.com/recipe/dongbeixiaochi/)        | [西北小吃](https://home.meishichina.com/recipe/xibeixiaochi/)      |\n| ------------------------------------------------------------------ | -------------------------------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------ |\n| [henanxiaochi](https://rsshub.app/meishichina/recipe/henanxiaochi) | [taiwanxiaochi](https://rsshub.app/meishichina/recipe/taiwanxiaochi) | [jiangzhexiaochi](https://rsshub.app/meishichina/recipe/jiangzhexiaochi) | [yunguixiaochi](https://rsshub.app/meishichina/recipe/yunguixiaochi) | [dongbeixiaochi](https://rsshub.app/meishichina/recipe/dongbeixiaochi) | [xibeixiaochi](https://rsshub.app/meishichina/recipe/xibeixiaochi) |\n\n#### 甜品/饮品\n\n| [甜品](https://home.meishichina.com/recipe/tianpin/)     | [冰品](https://home.meishichina.com/recipe/bingpin/)     | [果汁](https://home.meishichina.com/recipe/guozhi/)    | [糖水](https://home.meishichina.com/recipe/tangshui/)      | [布丁](https://home.meishichina.com/recipe/buding/)    | [果酱](https://home.meishichina.com/recipe/guojiang/)      |\n| -------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- |\n| [tianpin](https://rsshub.app/meishichina/recipe/tianpin) | [bingpin](https://rsshub.app/meishichina/recipe/bingpin) | [guozhi](https://rsshub.app/meishichina/recipe/guozhi) | [tangshui](https://rsshub.app/meishichina/recipe/tangshui) | [buding](https://rsshub.app/meishichina/recipe/buding) | [guojiang](https://rsshub.app/meishichina/recipe/guojiang) |\n\n| [果冻](https://home.meishichina.com/recipe/guodong/)     | [酸奶](https://home.meishichina.com/recipe/suannai/)     | [鸡尾酒](https://home.meishichina.com/recipe/jiweijiu/)    | [咖啡](https://home.meishichina.com/recipe/kafei/)   | [豆浆](https://home.meishichina.com/recipe/doujiang/)      | [奶昔](https://home.meishichina.com/recipe/naixi/)   |\n| -------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------- |\n| [guodong](https://rsshub.app/meishichina/recipe/guodong) | [suannai](https://rsshub.app/meishichina/recipe/suannai) | [jiweijiu](https://rsshub.app/meishichina/recipe/jiweijiu) | [kafei](https://rsshub.app/meishichina/recipe/kafei) | [doujiang](https://rsshub.app/meishichina/recipe/doujiang) | [naixi](https://rsshub.app/meishichina/recipe/naixi) |\n\n| [冰淇淋](https://home.meishichina.com/recipe/bingqilin/)     |\n| ------------------------------------------------------------ |\n| [bingqilin](https://rsshub.app/meishichina/recipe/bingqilin) |\n\n#### 适宜人群\n\n| [孕妇](https://home.meishichina.com/recipe/yunfu/)   | [产妇](https://home.meishichina.com/recipe/chanfu/)    | [婴儿](https://home.meishichina.com/recipe/yinger/)    | [儿童](https://home.meishichina.com/recipe/ertong/)    | [老人](https://home.meishichina.com/recipe/laoren/)    | [幼儿](https://home.meishichina.com/recipe/youer/)   |\n| ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------- |\n| [yunfu](https://rsshub.app/meishichina/recipe/yunfu) | [chanfu](https://rsshub.app/meishichina/recipe/chanfu) | [yinger](https://rsshub.app/meishichina/recipe/yinger) | [ertong](https://rsshub.app/meishichina/recipe/ertong) | [laoren](https://rsshub.app/meishichina/recipe/laoren) | [youer](https://rsshub.app/meishichina/recipe/youer) |\n\n| [哺乳期](https://home.meishichina.com/recipe/buruqi/)  | [青少年](https://home.meishichina.com/recipe/qingshaonian/)        |\n| ------------------------------------------------------ | ------------------------------------------------------------------ |\n| [buruqi](https://rsshub.app/meishichina/recipe/buruqi) | [qingshaonian](https://rsshub.app/meishichina/recipe/qingshaonian) |\n\n#### 食疗食补\n\n| [健康食谱](https://home.meishichina.com/recipe/jiankangshipu/)       | [减肥瘦身](https://home.meishichina.com/recipe/shoushen/)  | [贫血](https://home.meishichina.com/recipe/pinxue/)    | [痛经](https://home.meishichina.com/recipe/tongjing/)      | [清热祛火](https://home.meishichina.com/recipe/qingrequhuo/)     | [滋阴](https://home.meishichina.com/recipe/ziyin/)   |\n| -------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------- |\n| [jiankangshipu](https://rsshub.app/meishichina/recipe/jiankangshipu) | [shoushen](https://rsshub.app/meishichina/recipe/shoushen) | [pinxue](https://rsshub.app/meishichina/recipe/pinxue) | [tongjing](https://rsshub.app/meishichina/recipe/tongjing) | [qingrequhuo](https://rsshub.app/meishichina/recipe/qingrequhuo) | [ziyin](https://rsshub.app/meishichina/recipe/ziyin) |\n\n| [壮阳](https://home.meishichina.com/recipe/zhuangyang/)        | [便秘](https://home.meishichina.com/recipe/bianmi/)    | [排毒养颜](https://home.meishichina.com/recipe/paiduyangyan/)      | [滋润补水](https://home.meishichina.com/recipe/ziyinbushuui/)      | [健脾养胃](https://home.meishichina.com/recipe/jianbiyangwei/)       | [护肝明目](https://home.meishichina.com/recipe/huganmingmu/)     |\n| -------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | -------------------------------------------------------------------- | ---------------------------------------------------------------- |\n| [zhuangyang](https://rsshub.app/meishichina/recipe/zhuangyang) | [bianmi](https://rsshub.app/meishichina/recipe/bianmi) | [paiduyangyan](https://rsshub.app/meishichina/recipe/paiduyangyan) | [ziyinbushuui](https://rsshub.app/meishichina/recipe/ziyinbushuui) | [jianbiyangwei](https://rsshub.app/meishichina/recipe/jianbiyangwei) | [huganmingmu](https://rsshub.app/meishichina/recipe/huganmingmu) |\n\n| [清肺止咳](https://home.meishichina.com/recipe/qingfeizhike/)      | [下奶](https://home.meishichina.com/recipe/xianai/)    | [补钙](https://home.meishichina.com/recipe/bugai/)   | [醒酒](https://home.meishichina.com/recipe/xingjiu/)     | [抗过敏](https://home.meishichina.com/recipe/kangguomin/)      | [防辐射](https://home.meishichina.com/recipe/fangfushe/)     |\n| ------------------------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------ |\n| [qingfeizhike](https://rsshub.app/meishichina/recipe/qingfeizhike) | [xianai](https://rsshub.app/meishichina/recipe/xianai) | [bugai](https://rsshub.app/meishichina/recipe/bugai) | [xingjiu](https://rsshub.app/meishichina/recipe/xingjiu) | [kangguomin](https://rsshub.app/meishichina/recipe/kangguomin) | [fangfushe](https://rsshub.app/meishichina/recipe/fangfushe) |\n\n| [提高免疫力](https://home.meishichina.com/recipe/tigaomianyili/)     | [流感](https://home.meishichina.com/recipe/liugan/)    | [驱寒暖身](https://home.meishichina.com/recipe/quhannuanshen/)       | [秋冬进补](https://home.meishichina.com/recipe/qiudongjinbu/)      | [消暑解渴](https://home.meishichina.com/recipe/xiaoshujieke/)      |\n| -------------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |\n| [tigaomianyili](https://rsshub.app/meishichina/recipe/tigaomianyili) | [liugan](https://rsshub.app/meishichina/recipe/liugan) | [quhannuanshen](https://rsshub.app/meishichina/recipe/quhannuanshen) | [qiudongjinbu](https://rsshub.app/meishichina/recipe/qiudongjinbu) | [xiaoshujieke](https://rsshub.app/meishichina/recipe/xiaoshujieke) |\n\n#### 场景\n\n| [早餐](https://home.meishichina.com/recipe/zaocan/)    | [下午茶](https://home.meishichina.com/recipe/xiawucha/)    | [二人世界](https://home.meishichina.com/recipe/erren/) | [野餐](https://home.meishichina.com/recipe/yecan/)   | [开胃菜](https://home.meishichina.com/recipe/kaiweicai/)     | [私房菜](https://home.meishichina.com/recipe/sifangcai/)     |\n| ------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |\n| [zaocan](https://rsshub.app/meishichina/recipe/zaocan) | [xiawucha](https://rsshub.app/meishichina/recipe/xiawucha) | [erren](https://rsshub.app/meishichina/recipe/erren)   | [yecan](https://rsshub.app/meishichina/recipe/yecan) | [kaiweicai](https://rsshub.app/meishichina/recipe/kaiweicai) | [sifangcai](https://rsshub.app/meishichina/recipe/sifangcai) |\n\n| [快餐](https://home.meishichina.com/recipe/kuaican/)     | [快手菜](https://home.meishichina.com/recipe/kuaishoucai/)       | [宿舍时代](https://home.meishichina.com/recipe/susheshidai/)     | [中式宴请](https://home.meishichina.com/recipe/zhongshiyanqing/)         | [西式宴请](https://home.meishichina.com/recipe/xishiyanqing/)      |\n| -------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------ |\n| [kuaican](https://rsshub.app/meishichina/recipe/kuaican) | [kuaishoucai](https://rsshub.app/meishichina/recipe/kuaishoucai) | [susheshidai](https://rsshub.app/meishichina/recipe/susheshidai) | [zhongshiyanqing](https://rsshub.app/meishichina/recipe/zhongshiyanqing) | [xishiyanqing](https://rsshub.app/meishichina/recipe/xishiyanqing) |\n\n#### 饮食方式\n\n| [素食](https://home.meishichina.com/recipe/sushi/)   | [素菜](https://home.meishichina.com/recipe/sucai2/)    | [清真菜](https://home.meishichina.com/recipe/qingzhencai/)       | [春季食谱](https://home.meishichina.com/recipe/chunji/) | [夏季食谱](https://home.meishichina.com/recipe/xiaji/) | [秋季食谱](https://home.meishichina.com/recipe/qiuji/) |\n| ---------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |\n| [sushi](https://rsshub.app/meishichina/recipe/sushi) | [sucai2](https://rsshub.app/meishichina/recipe/sucai2) | [qingzhencai](https://rsshub.app/meishichina/recipe/qingzhencai) | [chunji](https://rsshub.app/meishichina/recipe/chunji)  | [xiaji](https://rsshub.app/meishichina/recipe/xiaji)   | [qiuji](https://rsshub.app/meishichina/recipe/qiuji)   |\n\n| [冬季食谱](https://home.meishichina.com/recipe/dongji/) | [小清新](https://home.meishichina.com/recipe/xiaoqingxin/)       | [高颜值](https://home.meishichina.com/recipe/gaoyanzhi/)     |\n| ------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------ |\n| [dongji](https://rsshub.app/meishichina/recipe/dongji)  | [xiaoqingxin](https://rsshub.app/meishichina/recipe/xiaoqingxin) | [gaoyanzhi](https://rsshub.app/meishichina/recipe/gaoyanzhi) |\n\n#### 中式菜系\n\n| [川菜](https://home.meishichina.com/recipe/chuancai/)      | [鲁菜](https://home.meishichina.com/recipe/lucai/)   | [闽菜](https://home.meishichina.com/recipe/mincai/)    | [粤菜](https://home.meishichina.com/recipe/yuecai/)    | [苏菜](https://home.meishichina.com/recipe/sucai/)   | [浙菜](https://home.meishichina.com/recipe/zhecai/)    |\n| ---------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------- | ------------------------------------------------------ |\n| [chuancai](https://rsshub.app/meishichina/recipe/chuancai) | [lucai](https://rsshub.app/meishichina/recipe/lucai) | [mincai](https://rsshub.app/meishichina/recipe/mincai) | [yuecai](https://rsshub.app/meishichina/recipe/yuecai) | [sucai](https://rsshub.app/meishichina/recipe/sucai) | [zhecai](https://rsshub.app/meishichina/recipe/zhecai) |\n\n| [湘菜](https://home.meishichina.com/recipe/xiangcai/)      | [徽菜](https://home.meishichina.com/recipe/huicai/)    | [淮扬菜](https://home.meishichina.com/recipe/huaiyangcai/)       | [豫菜](https://home.meishichina.com/recipe/yucai/)   | [晋菜](https://home.meishichina.com/recipe/jincai/)    | [鄂菜](https://home.meishichina.com/recipe/ecai/)  |\n| ---------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------- |\n| [xiangcai](https://rsshub.app/meishichina/recipe/xiangcai) | [huicai](https://rsshub.app/meishichina/recipe/huicai) | [huaiyangcai](https://rsshub.app/meishichina/recipe/huaiyangcai) | [yucai](https://rsshub.app/meishichina/recipe/yucai) | [jincai](https://rsshub.app/meishichina/recipe/jincai) | [ecai](https://rsshub.app/meishichina/recipe/ecai) |\n\n| [云南菜](https://home.meishichina.com/recipe/yunnancai/)     | [北京菜](https://home.meishichina.com/recipe/beijingcai/)      | [东北菜](https://home.meishichina.com/recipe/dongbeicai/)      | [西北菜](https://home.meishichina.com/recipe/xibeicai/)    | [贵州菜](https://home.meishichina.com/recipe/guizhoucai/)      | [上海菜](https://home.meishichina.com/recipe/shanghaicai/)       |\n| ------------------------------------------------------------ | -------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------- |\n| [yunnancai](https://rsshub.app/meishichina/recipe/yunnancai) | [beijingcai](https://rsshub.app/meishichina/recipe/beijingcai) | [dongbeicai](https://rsshub.app/meishichina/recipe/dongbeicai) | [xibeicai](https://rsshub.app/meishichina/recipe/xibeicai) | [guizhoucai](https://rsshub.app/meishichina/recipe/guizhoucai) | [shanghaicai](https://rsshub.app/meishichina/recipe/shanghaicai) |\n\n| [新疆菜](https://home.meishichina.com/recipe/xinjiangcai/)       | [客家菜](https://home.meishichina.com/recipe/kejiacai/)    | [台湾美食](https://home.meishichina.com/recipe/taiwancai/)   | [香港美食](https://home.meishichina.com/recipe/xianggangcai/)      | [澳门美食](https://home.meishichina.com/recipe/aomeicai/)  | [赣菜](https://home.meishichina.com/recipe/gancai/)    |\n| ---------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------ |\n| [xinjiangcai](https://rsshub.app/meishichina/recipe/xinjiangcai) | [kejiacai](https://rsshub.app/meishichina/recipe/kejiacai) | [taiwancai](https://rsshub.app/meishichina/recipe/taiwancai) | [xianggangcai](https://rsshub.app/meishichina/recipe/xianggangcai) | [aomeicai](https://rsshub.app/meishichina/recipe/aomeicai) | [gancai](https://rsshub.app/meishichina/recipe/gancai) |\n\n| [中式菜系](https://home.meishichina.com/recipe/zhongshicaixi/)       |\n| -------------------------------------------------------------------- |\n| [zhongshicaixi](https://rsshub.app/meishichina/recipe/zhongshicaixi) |\n\n#### 外国美食\n\n| [日本料理](https://home.meishichina.com/recipe/ribencai/)  | [韩国料理](https://home.meishichina.com/recipe/hanguocai/)   | [泰国菜](https://home.meishichina.com/recipe/taiguocai/)     | [印度菜](https://home.meishichina.com/recipe/yiducai/)   | [法国菜](https://home.meishichina.com/recipe/faguocai/)    | [意大利菜](https://home.meishichina.com/recipe/yidalicai/)   |\n| ---------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |\n| [ribencai](https://rsshub.app/meishichina/recipe/ribencai) | [hanguocai](https://rsshub.app/meishichina/recipe/hanguocai) | [taiguocai](https://rsshub.app/meishichina/recipe/taiguocai) | [yiducai](https://rsshub.app/meishichina/recipe/yiducai) | [faguocai](https://rsshub.app/meishichina/recipe/faguocai) | [yidalicai](https://rsshub.app/meishichina/recipe/yidalicai) |\n\n| [西班牙菜](https://home.meishichina.com/recipe/xibanya/) | [英国菜](https://home.meishichina.com/recipe/yingguocai/)      | [越南菜](https://home.meishichina.com/recipe/yuenancai/)     | [墨西哥菜](https://home.meishichina.com/recipe/moxigecai/)   | [外国美食](https://home.meishichina.com/recipe/waiguomeishi/)      |\n| -------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------ |\n| [xibanya](https://rsshub.app/meishichina/recipe/xibanya) | [yingguocai](https://rsshub.app/meishichina/recipe/yingguocai) | [yuenancai](https://rsshub.app/meishichina/recipe/yuenancai) | [moxigecai](https://rsshub.app/meishichina/recipe/moxigecai) | [waiguomeishi](https://rsshub.app/meishichina/recipe/waiguomeishi) |\n\n#### 烘焙\n\n| [蛋糕](https://home.meishichina.com/recipe/dangao/)    | [面包](https://home.meishichina.com/recipe/mianbao/)     | [饼干](https://home.meishichina.com/recipe/binggan/)     | [派塔](https://home.meishichina.com/recipe/paita/)   | [吐司](https://home.meishichina.com/recipe/tusi/)  | [戚风蛋糕](https://home.meishichina.com/recipe/qifeng/) |\n| ------------------------------------------------------ | -------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------- |\n| [dangao](https://rsshub.app/meishichina/recipe/dangao) | [mianbao](https://rsshub.app/meishichina/recipe/mianbao) | [binggan](https://rsshub.app/meishichina/recipe/binggan) | [paita](https://rsshub.app/meishichina/recipe/paita) | [tusi](https://rsshub.app/meishichina/recipe/tusi) | [qifeng](https://rsshub.app/meishichina/recipe/qifeng)  |\n\n| [纸杯蛋糕](https://home.meishichina.com/recipe/zhibei/) | [蛋糕卷](https://home.meishichina.com/recipe/dangaojuan/)      | [玛芬蛋糕](https://home.meishichina.com/recipe/mafen/) | [乳酪蛋糕](https://home.meishichina.com/recipe/rulao/) | [芝士蛋糕](https://home.meishichina.com/recipe/zhishi/) | [奶油蛋糕](https://home.meishichina.com/recipe/naiyou/) |\n| ------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------- |\n| [zhibei](https://rsshub.app/meishichina/recipe/zhibei)  | [dangaojuan](https://rsshub.app/meishichina/recipe/dangaojuan) | [mafen](https://rsshub.app/meishichina/recipe/mafen)   | [rulao](https://rsshub.app/meishichina/recipe/rulao)   | [zhishi](https://rsshub.app/meishichina/recipe/zhishi)  | [naiyou](https://rsshub.app/meishichina/recipe/naiyou)  |\n\n| [批萨](https://home.meishichina.com/recipe/pisa/)  | [慕斯](https://home.meishichina.com/recipe/musi/)  | [曲奇](https://home.meishichina.com/recipe/quqi/)  | [翻糖](https://home.meishichina.com/recipe/fantang/)     |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------- |\n| [pisa](https://rsshub.app/meishichina/recipe/pisa) | [musi](https://rsshub.app/meishichina/recipe/musi) | [quqi](https://rsshub.app/meishichina/recipe/quqi) | [fantang](https://rsshub.app/meishichina/recipe/fantang) |\n\n#### 传统美食\n\n| [粽子](https://home.meishichina.com/recipe/zongzi/)    | [月饼](https://home.meishichina.com/recipe/yuebing/)     | [春饼](https://home.meishichina.com/recipe/chunbing/)      | [元宵](https://home.meishichina.com/recipe/yuanxiao/)      | [汤圆](https://home.meishichina.com/recipe/tangyuan/)      | [青团](https://home.meishichina.com/recipe/qingtuan/)      |\n| ------------------------------------------------------ | -------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |\n| [zongzi](https://rsshub.app/meishichina/recipe/zongzi) | [yuebing](https://rsshub.app/meishichina/recipe/yuebing) | [chunbing](https://rsshub.app/meishichina/recipe/chunbing) | [yuanxiao](https://rsshub.app/meishichina/recipe/yuanxiao) | [tangyuan](https://rsshub.app/meishichina/recipe/tangyuan) | [qingtuan](https://rsshub.app/meishichina/recipe/qingtuan) |\n\n| [腊八粥](https://home.meishichina.com/recipe/labazhou/)    | [春卷](https://home.meishichina.com/recipe/chunjuan/)      | [传统美食](https://home.meishichina.com/recipe/chuantongmeishi/)         |\n| ---------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------ |\n| [labazhou](https://rsshub.app/meishichina/recipe/labazhou) | [chunjuan](https://rsshub.app/meishichina/recipe/chunjuan) | [chuantongmeishi](https://rsshub.app/meishichina/recipe/chuantongmeishi) |\n\n#### 节日食俗\n\n| [立冬](https://home.meishichina.com/recipe/lidong/)    | [冬至](https://home.meishichina.com/recipe/dongzhi/)     | [腊八](https://home.meishichina.com/recipe/laba/)  | [端午节](https://home.meishichina.com/recipe/duanwu/)  | [中秋](https://home.meishichina.com/recipe/zhongqiu/)      | [立春](https://home.meishichina.com/recipe/lichun/)    |\n| ------------------------------------------------------ | -------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------ |\n| [lidong](https://rsshub.app/meishichina/recipe/lidong) | [dongzhi](https://rsshub.app/meishichina/recipe/dongzhi) | [laba](https://rsshub.app/meishichina/recipe/laba) | [duanwu](https://rsshub.app/meishichina/recipe/duanwu) | [zhongqiu](https://rsshub.app/meishichina/recipe/zhongqiu) | [lichun](https://rsshub.app/meishichina/recipe/lichun) |\n\n| [元宵节](https://home.meishichina.com/recipe/yuanxiaojie/)       | [贴秋膘](https://home.meishichina.com/recipe/tieqiubiao/)      | [清明](https://home.meishichina.com/recipe/qingming/)      | [年夜饭](https://home.meishichina.com/recipe/nianyefan/)     | [圣诞节](https://home.meishichina.com/recipe/shengdanjie/)       | [感恩节](https://home.meishichina.com/recipe/ganenjie/)    |\n| ---------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------------- |\n| [yuanxiaojie](https://rsshub.app/meishichina/recipe/yuanxiaojie) | [tieqiubiao](https://rsshub.app/meishichina/recipe/tieqiubiao) | [qingming](https://rsshub.app/meishichina/recipe/qingming) | [nianyefan](https://rsshub.app/meishichina/recipe/nianyefan) | [shengdanjie](https://rsshub.app/meishichina/recipe/shengdanjie) | [ganenjie](https://rsshub.app/meishichina/recipe/ganenjie) |\n\n| [万圣节](https://home.meishichina.com/recipe/wanshengjie/)       | [情人节](https://home.meishichina.com/recipe/qingrenjie/)      | [复活节](https://home.meishichina.com/recipe/fuhuojie/)    | [雨水](https://home.meishichina.com/recipe/yushui/)    | [惊蛰](https://home.meishichina.com/recipe/jingzhi/)     | [春分](https://home.meishichina.com/recipe/chunfen/)     |\n| ---------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------- | -------------------------------------------------------- |\n| [wanshengjie](https://rsshub.app/meishichina/recipe/wanshengjie) | [qingrenjie](https://rsshub.app/meishichina/recipe/qingrenjie) | [fuhuojie](https://rsshub.app/meishichina/recipe/fuhuojie) | [yushui](https://rsshub.app/meishichina/recipe/yushui) | [jingzhi](https://rsshub.app/meishichina/recipe/jingzhi) | [chunfen](https://rsshub.app/meishichina/recipe/chunfen) |\n\n| [谷雨](https://home.meishichina.com/recipe/guyu/)  | [立夏](https://home.meishichina.com/recipe/lixia/)   | [小满](https://home.meishichina.com/recipe/xiaoman/)     | [芒种](https://home.meishichina.com/recipe/mangzhong/)       | [夏至](https://home.meishichina.com/recipe/xiazhi/)    | [小暑](https://home.meishichina.com/recipe/xiaoshu/)     |\n| -------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ | -------------------------------------------------------- |\n| [guyu](https://rsshub.app/meishichina/recipe/guyu) | [lixia](https://rsshub.app/meishichina/recipe/lixia) | [xiaoman](https://rsshub.app/meishichina/recipe/xiaoman) | [mangzhong](https://rsshub.app/meishichina/recipe/mangzhong) | [xiazhi](https://rsshub.app/meishichina/recipe/xiazhi) | [xiaoshu](https://rsshub.app/meishichina/recipe/xiaoshu) |\n\n| [大暑](https://home.meishichina.com/recipe/dashu/)   | [立秋](https://home.meishichina.com/recipe/xiqiu/)   | [处暑](https://home.meishichina.com/recipe/chushu/)    | [白露](https://home.meishichina.com/recipe/bailu/)   | [秋分](https://home.meishichina.com/recipe/qiufen/)    | [寒露](https://home.meishichina.com/recipe/hanlu/)   |\n| ---------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- |\n| [dashu](https://rsshub.app/meishichina/recipe/dashu) | [xiqiu](https://rsshub.app/meishichina/recipe/xiqiu) | [chushu](https://rsshub.app/meishichina/recipe/chushu) | [bailu](https://rsshub.app/meishichina/recipe/bailu) | [qiufen](https://rsshub.app/meishichina/recipe/qiufen) | [hanlu](https://rsshub.app/meishichina/recipe/hanlu) |\n\n| [霜降](https://home.meishichina.com/recipe/shuangjiang/)         | [小雪](https://home.meishichina.com/recipe/xiaoxue/)     | [大雪](https://home.meishichina.com/recipe/daxue/)   | [小寒](https://home.meishichina.com/recipe/xiaohan/)     | [大寒](https://home.meishichina.com/recipe/dahan/)   | [二月二](https://home.meishichina.com/recipe/eryueer/)   |\n| ---------------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------- |\n| [shuangjiang](https://rsshub.app/meishichina/recipe/shuangjiang) | [xiaoxue](https://rsshub.app/meishichina/recipe/xiaoxue) | [daxue](https://rsshub.app/meishichina/recipe/daxue) | [xiaohan](https://rsshub.app/meishichina/recipe/xiaohan) | [dahan](https://rsshub.app/meishichina/recipe/dahan) | [eryueer](https://rsshub.app/meishichina/recipe/eryueer) |\n\n| [母亲节](https://home.meishichina.com/recipe/muqinjie/)    | [父亲节](https://home.meishichina.com/recipe/fuqinjie/)    | [儿童节](https://home.meishichina.com/recipe/ertongjie/)     | [七夕](https://home.meishichina.com/recipe/qixi/)  | [重阳节](https://home.meishichina.com/recipe/chongyangjie/)        | [节日习俗](https://home.meishichina.com/recipe/jierixisu/)   |\n| ---------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |\n| [muqinjie](https://rsshub.app/meishichina/recipe/muqinjie) | [fuqinjie](https://rsshub.app/meishichina/recipe/fuqinjie) | [ertongjie](https://rsshub.app/meishichina/recipe/ertongjie) | [qixi](https://rsshub.app/meishichina/recipe/qixi) | [chongyangjie](https://rsshub.app/meishichina/recipe/chongyangjie) | [jierixisu](https://rsshub.app/meishichina/recipe/jierixisu) |\n\n#### 按制作难度\n\n| [简单](https://home.meishichina.com/recipe-type-do-level-view-1.html)                            | [普通](https://home.meishichina.com/recipe-type-do-level-view-2.html)                            | [高级](https://home.meishichina.com/recipe-type-do-level-view-3.html)                            | [神级](https://home.meishichina.com/recipe-type-do-level-view-4.html)                            |\n| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-level-view-1](https://rsshub.app/meishichina/recipe/recipe-type-do-level-view-1) | [recipe-type-do-level-view-2](https://rsshub.app/meishichina/recipe/recipe-type-do-level-view-2) | [recipe-type-do-level-view-3](https://rsshub.app/meishichina/recipe/recipe-type-do-level-view-3) | [recipe-type-do-level-view-4](https://rsshub.app/meishichina/recipe/recipe-type-do-level-view-4) |\n\n#### 按所需时间\n\n| [十分钟](https://home.meishichina.com/recipe-type-do-during-view-1.html)                           | [廿分钟](https://home.meishichina.com/recipe-type-do-during-view-2.html)                           | [半小时](https://home.meishichina.com/recipe-type-do-during-view-3.html)                           | [三刻钟](https://home.meishichina.com/recipe-type-do-during-view-4.html)                           | [一小时](https://home.meishichina.com/recipe-type-do-during-view-5.html)                           | [数小时](https://home.meishichina.com/recipe-type-do-during-view-6.html)                           |\n| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-during-view-1](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-1) | [recipe-type-do-during-view-2](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-2) | [recipe-type-do-during-view-3](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-3) | [recipe-type-do-during-view-4](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-4) | [recipe-type-do-during-view-5](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-5) | [recipe-type-do-during-view-6](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-6) |\n\n| [一天](https://home.meishichina.com/recipe-type-do-during-view-7.html)                             | [数天](https://home.meishichina.com/recipe-type-do-during-view-8.html)                             |\n| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-during-view-7](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-7) | [recipe-type-do-during-view-8](https://rsshub.app/meishichina/recipe/recipe-type-do-during-view-8) |\n\n#### 按菜品口味\n\n| [微辣](https://home.meishichina.com/recipe-type-do-cuisine-view-1.html)                              | [中辣](https://home.meishichina.com/recipe-type-do-cuisine-view-2.html)                              | [超辣](https://home.meishichina.com/recipe-type-do-cuisine-view-3.html)                              | [麻辣](https://home.meishichina.com/recipe-type-do-cuisine-view-4.html)                              | [酸辣](https://home.meishichina.com/recipe-type-do-cuisine-view-5.html)                              | [甜辣](https://home.meishichina.com/recipe-type-do-cuisine-view-29.html)                               |\n| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-cuisine-view-1](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-1) | [recipe-type-do-cuisine-view-2](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-2) | [recipe-type-do-cuisine-view-3](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-3) | [recipe-type-do-cuisine-view-4](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-4) | [recipe-type-do-cuisine-view-5](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-5) | [recipe-type-do-cuisine-view-29](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-29) |\n\n| [香辣](https://home.meishichina.com/recipe-type-do-cuisine-view-31.html)                               | [酸甜](https://home.meishichina.com/recipe-type-do-cuisine-view-6.html)                              | [酸咸](https://home.meishichina.com/recipe-type-do-cuisine-view-7.html)                              | [咸鲜](https://home.meishichina.com/recipe-type-do-cuisine-view-8.html)                              | [咸甜](https://home.meishichina.com/recipe-type-do-cuisine-view-9.html)                              | [甜味](https://home.meishichina.com/recipe-type-do-cuisine-view-10.html)                               |\n| ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-cuisine-view-31](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-31) | [recipe-type-do-cuisine-view-6](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-6) | [recipe-type-do-cuisine-view-7](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-7) | [recipe-type-do-cuisine-view-8](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-8) | [recipe-type-do-cuisine-view-9](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-9) | [recipe-type-do-cuisine-view-10](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-10) |\n\n| [苦味](https://home.meishichina.com/recipe-type-do-cuisine-view-11.html)                               | [原味](https://home.meishichina.com/recipe-type-do-cuisine-view-12.html)                               | [清淡](https://home.meishichina.com/recipe-type-do-cuisine-view-13.html)                               | [五香](https://home.meishichina.com/recipe-type-do-cuisine-view-14.html)                               | [鱼香](https://home.meishichina.com/recipe-type-do-cuisine-view-15.html)                               | [葱香](https://home.meishichina.com/recipe-type-do-cuisine-view-16.html)                               |\n| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-cuisine-view-11](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-11) | [recipe-type-do-cuisine-view-12](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-12) | [recipe-type-do-cuisine-view-13](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-13) | [recipe-type-do-cuisine-view-14](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-14) | [recipe-type-do-cuisine-view-15](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-15) | [recipe-type-do-cuisine-view-16](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-16) |\n\n| [蒜香](https://home.meishichina.com/recipe-type-do-cuisine-view-17.html)                               | [奶香](https://home.meishichina.com/recipe-type-do-cuisine-view-18.html)                               | [酱香](https://home.meishichina.com/recipe-type-do-cuisine-view-19.html)                               | [糟香](https://home.meishichina.com/recipe-type-do-cuisine-view-20.html)                               | [咖喱](https://home.meishichina.com/recipe-type-do-cuisine-view-21.html)                               | [孜然](https://home.meishichina.com/recipe-type-do-cuisine-view-22.html)                               |\n| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-cuisine-view-17](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-17) | [recipe-type-do-cuisine-view-18](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-18) | [recipe-type-do-cuisine-view-19](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-19) | [recipe-type-do-cuisine-view-20](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-20) | [recipe-type-do-cuisine-view-21](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-21) | [recipe-type-do-cuisine-view-22](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-22) |\n\n| [果味](https://home.meishichina.com/recipe-type-do-cuisine-view-23.html)                               | [香草](https://home.meishichina.com/recipe-type-do-cuisine-view-24.html)                               | [怪味](https://home.meishichina.com/recipe-type-do-cuisine-view-25.html)                               | [咸香](https://home.meishichina.com/recipe-type-do-cuisine-view-26.html)                               | [甜香](https://home.meishichina.com/recipe-type-do-cuisine-view-27.html)                               | [麻香](https://home.meishichina.com/recipe-type-do-cuisine-view-28.html)                               |\n| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-cuisine-view-23](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-23) | [recipe-type-do-cuisine-view-24](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-24) | [recipe-type-do-cuisine-view-25](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-25) | [recipe-type-do-cuisine-view-26](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-26) | [recipe-type-do-cuisine-view-27](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-27) | [recipe-type-do-cuisine-view-28](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-28) |\n\n| [其他](https://home.meishichina.com/recipe-type-do-cuisine-view-50.html)                               |\n| ------------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-cuisine-view-50](https://rsshub.app/meishichina/recipe/recipe-type-do-cuisine-view-50) |\n\n#### 按主要工艺\n\n| [烧](https://home.meishichina.com/recipe-type-do-technics-view-1.html)                                 | [炒](https://home.meishichina.com/recipe-type-do-technics-view-2.html)                                 | [爆](https://home.meishichina.com/recipe-type-do-technics-view-3.html)                                 | [焖](https://home.meishichina.com/recipe-type-do-technics-view-4.html)                                 | [炖](https://home.meishichina.com/recipe-type-do-technics-view-5.html)                                 | [蒸](https://home.meishichina.com/recipe-type-do-technics-view-6.html)                                 |\n| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |\n| [recipe-type-do-technics-view-1](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-1) | [recipe-type-do-technics-view-2](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-2) | [recipe-type-do-technics-view-3](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-3) | [recipe-type-do-technics-view-4](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-4) | [recipe-type-do-technics-view-5](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-5) | [recipe-type-do-technics-view-6](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-6) |\n\n| [煮](https://home.meishichina.com/recipe-type-do-technics-view-7.html)                                 | [拌](https://home.meishichina.com/recipe-type-do-technics-view-8.html)                                 | [烤](https://home.meishichina.com/recipe-type-do-technics-view-9.html)                                 | [炸](https://home.meishichina.com/recipe-type-do-technics-view-10.html)                                  | [烩](https://home.meishichina.com/recipe-type-do-technics-view-11.html)                                  | [溜](https://home.meishichina.com/recipe-type-do-technics-view-12.html)                                  |\n| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-technics-view-7](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-7) | [recipe-type-do-technics-view-8](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-8) | [recipe-type-do-technics-view-9](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-9) | [recipe-type-do-technics-view-10](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-10) | [recipe-type-do-technics-view-11](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-11) | [recipe-type-do-technics-view-12](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-12) |\n\n| [氽](https://home.meishichina.com/recipe-type-do-technics-view-13.html)                                  | [腌](https://home.meishichina.com/recipe-type-do-technics-view-14.html)                                  | [卤](https://home.meishichina.com/recipe-type-do-technics-view-15.html)                                  | [炝](https://home.meishichina.com/recipe-type-do-technics-view-16.html)                                  | [煎](https://home.meishichina.com/recipe-type-do-technics-view-17.html)                                  | [酥](https://home.meishichina.com/recipe-type-do-technics-view-18.html)                                  |\n| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-technics-view-13](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-13) | [recipe-type-do-technics-view-14](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-14) | [recipe-type-do-technics-view-15](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-15) | [recipe-type-do-technics-view-16](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-16) | [recipe-type-do-technics-view-17](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-17) | [recipe-type-do-technics-view-18](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-18) |\n\n| [扒](https://home.meishichina.com/recipe-type-do-technics-view-19.html)                                  | [熏](https://home.meishichina.com/recipe-type-do-technics-view-20.html)                                  | [煨](https://home.meishichina.com/recipe-type-do-technics-view-21.html)                                  | [酱](https://home.meishichina.com/recipe-type-do-technics-view-22.html)                                  | [煲](https://home.meishichina.com/recipe-type-do-technics-view-30.html)                                  | [烘焙](https://home.meishichina.com/recipe-type-do-technics-view-23.html)                                |\n| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-technics-view-19](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-19) | [recipe-type-do-technics-view-20](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-20) | [recipe-type-do-technics-view-21](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-21) | [recipe-type-do-technics-view-22](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-22) | [recipe-type-do-technics-view-30](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-30) | [recipe-type-do-technics-view-23](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-23) |\n\n| [火锅](https://home.meishichina.com/recipe-type-do-technics-view-24.html)                                | [砂锅](https://home.meishichina.com/recipe-type-do-technics-view-25.html)                                | [拔丝](https://home.meishichina.com/recipe-type-do-technics-view-26.html)                                | [生鲜](https://home.meishichina.com/recipe-type-do-technics-view-27.html)                                | [调味](https://home.meishichina.com/recipe-type-do-technics-view-28.html)                                | [技巧](https://home.meishichina.com/recipe-type-do-technics-view-29.html)                                |\n| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-technics-view-24](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-24) | [recipe-type-do-technics-view-25](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-25) | [recipe-type-do-technics-view-26](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-26) | [recipe-type-do-technics-view-27](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-27) | [recipe-type-do-technics-view-28](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-28) | [recipe-type-do-technics-view-29](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-29) |\n\n| [烙](https://home.meishichina.com/recipe-type-do-technics-view-31.html)                                  | [榨汁](https://home.meishichina.com/recipe-type-do-technics-view-32.html)                                | [冷冻](https://home.meishichina.com/recipe-type-do-technics-view-33.html)                                | [焗](https://home.meishichina.com/recipe-type-do-technics-view-34.html)                                  | [焯](https://home.meishichina.com/recipe-type-do-technics-view-35.html)                                  | [干煸](https://home.meishichina.com/recipe-type-do-technics-view-36.html)                                |\n| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-technics-view-31](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-31) | [recipe-type-do-technics-view-32](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-32) | [recipe-type-do-technics-view-33](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-33) | [recipe-type-do-technics-view-34](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-34) | [recipe-type-do-technics-view-35](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-35) | [recipe-type-do-technics-view-36](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-36) |\n\n| [干锅](https://home.meishichina.com/recipe-type-do-technics-view-37.html)                                | [铁板](https://home.meishichina.com/recipe-type-do-technics-view-38.html)                                | [微波](https://home.meishichina.com/recipe-type-do-technics-view-39.html)                                | [其他](https://home.meishichina.com/recipe-type-do-technics-view-50.html)                                |\n| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |\n| [recipe-type-do-technics-view-37](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-37) | [recipe-type-do-technics-view-38](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-38) | [recipe-type-do-technics-view-39](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-39) | [recipe-type-do-technics-view-50](https://rsshub.app/meishichina/recipe/recipe-type-do-technics-view-50) |\n\n</details>\n  ",
+      "provider_id": "meishichina",
+      "provider_name": "美食天下",
+      "route_key": "/recipe/:category{.+}?"
+    }
+  },
+  {
+    "provider_id": "mirror",
+    "provider_name": "Mirror",
+    "route_key": "/:id",
+    "route": {
+      "path": "/:id",
+      "example": "/mirror/tingfei.eth",
+      "parameters": {
+        "id": "user id"
+      },
+      "name": "User",
+      "provider_id": "mirror",
+      "provider_name": "Mirror",
+      "route_key": "/:id"
+    }
+  },
+  {
+    "provider_id": "newsmarket",
+    "provider_name": "上下游 News&Market",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "example": "/newsmarket",
+      "parameters": {
+        "category": "分类，见下表，默认为首页"
+      },
+      "name": "分類",
+      "description": "| 時事。政策  | 食安        | 新知      | 愛地方       | 種好田       | 好吃。好玩    |\n| ----------- | ----------- | --------- | ------------ | ------------ | ------------- |\n| news-policy | food-safety | knowledge | country-life | good-farming | good-food-fun |\n\n| 食農教育       | 人物               | 漁業。畜牧           | 綠生活。國際        | 評論    |\n| -------------- | ------------------ | -------------------- | ------------------- | ------- |\n| food-education | people-and-history | raising-and-breeding | living-green-travel | opinion |",
+      "provider_id": "newsmarket",
+      "provider_name": "上下游 News&Market",
+      "route_key": "/:category?"
+    }
+  },
+  {
+    "provider_id": "nltimes",
+    "provider_name": "NL Times",
+    "route_key": "/news/:category?",
+    "route": {
+      "path": "/news/:category?",
+      "example": "/nltimes/news/top-stories",
+      "parameters": {
+        "category": "category"
       },
       "name": "News",
-      "url": "www.kelownacapnews.com",
-      "description": "`type` is as follows:\n  \n| News type     | Value         | News type    | Value        |\n| ------------- | ------------- | ------------ | ------------ |\n| News          | news          | Sports       | sports       |\n| Local News    | local-news    | Business     | business     |\n| Canadian News | national-news | Trending Now | trending-now |\n| World News    | world-news    | Opinion      | opinion      |\n| Entertainment | entertainment |              |              |",
-      "provider_id": "kelownacapnews",
-      "provider_name": "Kelowna Capital News",
-      "route_key": "/:type"
+      "description": "| Top Stories (default) | Health | Crime | Politics | Business | Tech | Culture | Sports | Weird | 1-1-2 |\n| --------------------- | ------ | ----- | -------- | -------- | ---- | ------- | ------ | ----- | ----- |\n| top-stories           | health | crime | politics | business | tech | culture | sports | weird | 1-1-2 |",
+      "provider_id": "nltimes",
+      "provider_name": "NL Times",
+      "route_key": "/news/:category?"
     }
   },
   {
-    "provider_id": "kepu",
-    "provider_name": "中国科普博览",
-    "route_key": "/live",
+    "provider_id": "odaily",
+    "provider_name": "Odaily 星球日报",
+    "route_key": "/activity",
     "route": {
-      "path": "/live",
-      "example": "/kepu/live",
+      "path": "/activity",
+      "example": "/odaily/activity",
       "parameters": {},
-      "name": "直播回看",
-      "url": "live.kepu.net.cn/replay/index",
-      "provider_id": "kepu",
-      "provider_name": "中国科普博览",
-      "route_key": "/live"
-    }
-  },
-  {
-    "provider_id": "latepost",
-    "provider_name": "晚点 LatePost",
-    "route_key": "/:proma?",
-    "route": {
-      "path": "/:proma?",
-      "example": "/latepost",
-      "parameters": {
-        "proma": "栏目 id，见下表，默认为最新报道"
-      },
-      "name": "报道",
-      "description": "| 最新报道 | 晚点独家 | 人物访谈 | 晚点早知道 | 长报道 |\n| -------- | -------- | -------- | ---------- | ------ |\n|          | 1        | 2        | 3          | 4      |",
-      "provider_id": "latepost",
-      "provider_name": "晚点 LatePost",
-      "route_key": "/:proma?"
-    }
-  },
-  {
-    "provider_id": "nautil",
-    "provider_name": "Nautilus",
-    "route_key": "/topic/:tid",
-    "route": {
-      "path": "/topic/:tid",
-      "example": "/nautil/topic/arts",
-      "parameters": {
-        "tid": "topic"
-      },
-      "name": "Topics",
-      "description": "This route provides a flexible plan with full text content to subscribe specific topic(s) on the Nautilus. Please visit [nautil.us](https://nautil.us) and click `Topics` to acquire whole topic list.",
-      "provider_id": "nautil",
-      "provider_name": "Nautilus",
-      "route_key": "/topic/:tid"
-    }
-  },
-  {
-    "provider_id": "niaogebiji",
-    "provider_name": "鸟哥笔记",
-    "route_key": "/cat/:cat",
-    "route": {
-      "path": "/cat/:cat",
-      "example": "/niaogebiji/cat/103",
-      "parameters": {
-        "cat": "如 https://www.niaogebiji.com/cat/103，最后的数字就是id"
-      },
-      "name": "分类目录",
-      "url": "niaogebiji.com/",
-      "provider_id": "niaogebiji",
-      "provider_name": "鸟哥笔记",
-      "route_key": "/cat/:cat"
-    }
-  },
-  {
-    "provider_id": "nogizaka46",
-    "provider_name": "Sakamichi Series 坂道系列官网资讯",
-    "route_key": "/blog/:id?",
-    "route": {
-      "path": "/blog/:id?",
-      "example": "/nogizaka46/blog",
-      "parameters": {
-        "id": "Member ID, see below, `all` by default"
-      },
-      "name": "Nogizaka46 Blog 乃木坂 46 博客",
-      "url": "blog.nogizaka46.com/s/n46/diary/MEMBER",
-      "description": "Member ID\n\n| Member ID | Name                  |\n| --------- | --------------------- |\n| 55401     | 岡本 姫奈             |\n| 55400     | 川﨑 桜               |\n| 55397     | 池田 瑛紗             |\n| 55396     | 五百城 茉央           |\n| 55395     | 中西 アルノ           |\n| 55394     | 奥田 いろは           |\n| 55393     | 冨里 奈央             |\n| 55392     | 小川 彩               |\n| 55391     | 菅原 咲月             |\n| 55390     | 一ノ瀬 美空           |\n| 55389     | 井上 和               |\n| 55387     | 弓木 奈於             |\n| 55386     | 松尾 美佑             |\n| 55385     | 林 瑠奈               |\n| 55384     | 佐藤 璃果             |\n| 55383     | 黒見 明香             |\n| 48014     | 清宮 レイ             |\n| 48012     | 北川 悠理             |\n| 48010     | 金川 紗耶             |\n| 48019     | 矢久保 美緒           |\n| 48018     | 早川 聖来             |\n| 48009     | 掛橋 沙耶香           |\n| 48008     | 賀喜 遥香             |\n| 48017     | 筒井 あやめ           |\n| 48015     | 田村 真佑             |\n| 48013     | 柴田 柚菜             |\n| 48006     | 遠藤 さくら           |\n| 36760     | 与田 祐希             |\n| 36759     | 吉田 綾乃クリスティー |\n| 36758     | 山下 美月             |\n| 36757     | 向井 葉月             |\n| 36756     | 中村 麗乃             |\n| 36755     | 佐藤 楓               |\n| 36754     | 阪口 珠美             |\n| 36753     | 久保 史緒里           |\n| 36752     | 大園 桃子             |\n| 36751     | 梅澤 美波             |\n| 36750     | 岩本 蓮加             |\n| 36749     | 伊藤 理々杏           |\n| 264       | 齋藤 飛鳥             |",
-      "provider_id": "nogizaka46",
-      "provider_name": "Sakamichi Series 坂道系列官网资讯",
-      "route_key": "/blog/:id?"
+      "name": "活动",
+      "url": "0daily.com/activityPage",
+      "provider_id": "odaily",
+      "provider_name": "Odaily 星球日报",
+      "route_key": "/activity"
     }
   },
   {
@@ -819,25 +913,6 @@
     }
   },
   {
-    "provider_id": "oilchem",
-    "provider_name": "隆众资讯",
-    "route_key": "/:type?/:category?/:subCategory?",
-    "route": {
-      "path": "/:type?/:category?/:subCategory?",
-      "example": "/oilchem/list/140/18263",
-      "parameters": {
-        "type": "类别 id，可在对应类别页中找到，默认为首页",
-        "category": "分类 id，可在对应分类页中找到",
-        "subCategory": "子分类 id，可在对应分类页中找到"
-      },
-      "name": "资讯",
-      "description": "以下是几个例子：\n\n  [**化工**](https://chem.oilchem.net) `https://chem.oilchem.net` 中，类别 id 为 `chem`，分类 id 为空，子分类 id 为空，对应路由即为 [`/oilchem/chem`](https://rsshub.app/oilchem/list/140/18263)\n\n  [**甲醇**](https://chem.oilchem.net/chemical/methanol.shtml) 的相关资讯有两个页面入口：其一 `https://chem.oilchem.net/chemical/methanol.shtml` 中，类别 id 为 `chem`，分类 id 为 `chemical`，子分类 id 为 `methanol`，对应路由即为 [`/oilchem/chem/chemical/methanol`](https://rsshub.app/oilchem/chem/chemical/methanol) 或其二 `https://list.oilchem.net/140` 中，类别 id 为 `list`，分类 id 为 `140`，子分类 id 为空，对应路由即为 [`/oilchem/list/140`](https://rsshub.app/oilchem/list/140)；\n\n  [**甲醇热点聚焦**](https://list.oilchem.net/140/18263) `https://list.oilchem.net/140/18263` 中，类别 id 为 `list`，分类 id 为 `140`，子分类 id 为 `18263`，对应路由即为 [`/oilchem/list/140/18263`](https://rsshub.app/oilchem/list/140/18263)",
-      "provider_id": "oilchem",
-      "provider_name": "隆众资讯",
-      "route_key": "/:type?/:category?/:subCategory?"
-    }
-  },
-  {
     "provider_id": "panewslab",
     "provider_name": "PANews",
     "route_key": "/news",
@@ -852,161 +927,51 @@
     }
   },
   {
-    "provider_id": "pingwest",
-    "provider_name": "品玩",
-    "route_key": "/tag/:tag/:type/:option?",
+    "provider_id": "qq",
+    "provider_name": "腾讯网",
+    "route_key": "/weread/:category",
     "route": {
-      "path": "/tag/:tag/:type/:option?",
-      "example": "/pingwest/tag/ChinaJoy/1",
+      "path": "/weread/:category",
+      "example": "/qq/weread/newbook",
       "parameters": {
-        "tag": "话题名或话题id, 可从话题页url中得到",
-        "type": "内容类型",
-        "option": "参数, 默认无"
+        "category": "榜单名，见下表"
       },
-      "name": "话题动态",
-      "description": "内容类型\n\n| 最新 | 热门 |\n| ---- | ---- |\n| 1    | 2    |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/tag/ChinaJoy/1/fulltext`\n\n::: tip\n  该路由一次最多显示 30 条文章\n:::",
-      "provider_id": "pingwest",
-      "provider_name": "品玩",
-      "route_key": "/tag/:tag/:type/:option?"
+      "name": "微信读书榜单",
+      "description": "| 榜单                  | 榜单名     |\n| ---------------------- | ---------- |\n| Top50飙升榜           | rising     |\n| Top50热搜榜           | hot_search |\n| Top50新书榜           | newbook    |\n| Top50小说榜           | general_novel_rising |\n| Top200总榜            | all        |\n| 神作榜                 | newrating_publish |\n| 神作潜力榜            | newrating_potential_publish |\n| 精品小说              | 100000     |\n| 历史                  | 200000     |\n| 文学                  | 300000     |\n| 艺术                  | 400000     |\n| 人物传记              | 500000     |\n| 哲学宗教              | 600000     |\n| 计算机                | 700000     |\n| 心理                  | 800000     |\n| 社会文化              | 900000     |\n| 个人成长              | 1000000    |\n| 经济理财              | 1100000    |\n| 政治军事              | 1200000    |\n| 童书                  | 1300000    |\n| 教育学习              | 1400000    |\n| 科学技术              | 1500000    |\n| 生活百科              | 1600000    |\n| 期刊杂志              | 1700000    |\n| 原版书                | 1800000    |\n| 男生小说              | 1900000    |\n| 女生小说              | 2000000    |\n| 医学健康              | 2100000    |\n\n还可以分得更细 见 https://weread.qq.com/web/category/100000 的小标题栏\n",
+      "provider_id": "qq",
+      "provider_name": "腾讯网",
+      "route_key": "/weread/:category"
     }
   },
   {
-    "provider_id": "pingwest",
-    "provider_name": "品玩",
-    "route_key": "/user/:uid/:type?/:option?",
+    "provider_id": "samsung",
+    "provider_name": "Samsung",
+    "route_key": "/research/blog",
     "route": {
-      "path": "/user/:uid/:type?/:option?",
-      "example": "/pingwest/user/7781550877/article",
-      "parameters": {
-        "uid": "用户id, 可从用户主页中得到",
-        "type": "内容类型, 默认为`article`",
-        "option": "参数"
-      },
-      "name": "用户",
-      "description": "内容类型\n\n| 文章    | 动态  |\n| ------- | ----- |\n| article | state |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/user/7781550877/article/fulltext`",
-      "provider_id": "pingwest",
-      "provider_name": "品玩",
-      "route_key": "/user/:uid/:type?/:option?"
-    }
-  },
-  {
-    "provider_id": "qqorw",
-    "provider_name": "早报网",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/qqorw",
-      "parameters": {
-        "category": "分类，见下表，默认为首页"
-      },
-      "name": "每日早报",
-      "description": "| 首页 | 每日早报 | 国际早报 | 生活冷知识 |\n| ---- | -------- | -------- | ---------- |\n|      | mrzb     | zbapp    | zbzzd      |",
-      "provider_id": "qqorw",
-      "provider_name": "早报网",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "readhub",
-    "provider_name": "Readhub",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "example": "/readhub",
-      "parameters": {
-        "category": "分类，见下表，默认为热门话题"
-      },
-      "name": "分类",
-      "description": "| 热门话题 | 科技动态 | 医疗产业 | 财经快讯           |\n| -------- | -------- | -------- | ------------------ |\n|          | news     | medical  | financial_express |",
-      "provider_id": "readhub",
-      "provider_name": "Readhub",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "sakurazaka46",
-    "provider_name": "Sakamichi Series 坂道系列官网资讯",
-    "route_key": "/blog/:id?/:page?",
-    "route": {
-      "path": "/blog/:id?/:page?",
-      "example": "/sakurazaka46/blog",
-      "parameters": {
-        "id": "Member ID, see below, `all` by default",
-        "page": "Page, `0` by default"
-      },
-      "name": "Sakurazaka46 Blog 櫻坂 46 博客",
-      "description": "Member ID\n\n| Member ID | Name         |\n| --------- | ------------ |\n| 2000      | 三期生リレー |\n| 69        | 山下 瞳月    |\n| 68        | 村山 美羽    |\n| 67        | 村井 優      |\n| 66        | 向井 純葉    |\n| 65        | 的野 美青    |\n| 64        | 中嶋 優月    |\n| 63        | 谷口 愛季    |\n| 62        | 小島 凪紗    |\n| 61        | 小田倉 麗奈  |\n| 60        | 遠藤 理子    |\n| 59        | 石森 璃花    |\n| 58        | 守屋 麗奈    |\n| 57        | 増本 綺良    |\n| 56        | 幸阪 茉里乃  |\n| 55        | 大沼 晶保    |\n| 54        | 大園 玲      |\n| 53        | 遠藤 光莉    |\n| 51        | 山﨑 天      |\n| 50        | 森田 ひかる  |\n| 48        | 松田 里奈    |\n| 47        | 藤吉 夏鈴    |\n| 46        | 田村 保乃    |\n| 45        | 武元 唯衣    |\n| 44        | 関 有美子    |\n| 43        | 井上 梨名    |\n| 15        | 原田 葵      |\n| 14        | 土生 瑞穂    |\n| 11        | 菅井 友香    |\n| 08        | 齋藤 冬優花  |\n| 07        | 小林 由依    |\n| 06        | 小池 美波    |\n| 04        | 尾関 梨香    |\n| 03        | 上村 莉菜    |",
-      "provider_id": "sakurazaka46",
-      "provider_name": "Sakamichi Series 坂道系列官网资讯",
-      "route_key": "/blog/:id?/:page?"
-    }
-  },
-  {
-    "provider_id": "sina",
-    "provider_name": "新浪",
-    "route_key": "/finance/china/:lid?",
-    "route": {
-      "path": "/finance/china/:lid?",
-      "example": "/sina/finance/china",
-      "parameters": {
-        "lid": "分区 id，见下表，默认为 `1686`"
-      },
-      "name": "财经－国內",
-      "url": "finance.sina.com.cn/china",
-      "description": "| 国内滚动 | 宏观经济 | 金融新闻 | 地方经济 | 部委动态 | 今日财经 TOP10 |\n| -------- | -------- | -------- | -------- | -------- | -------------- |\n| 1686     | 1687     | 1690     | 1688     | 1689     | 3231           |",
-      "provider_id": "sina",
-      "provider_name": "新浪",
-      "route_key": "/finance/china/:lid?"
-    }
-  },
-  {
-    "provider_id": "sina",
-    "provider_name": "新浪",
-    "route_key": "/finance/stock/usstock/:cids?",
-    "route": {
-      "path": "/finance/stock/usstock/:cids?",
-      "example": "/sina/finance/stock/usstock",
-      "parameters": {
-        "cids": "分区 id，见下表，默认为 `57045`"
-      },
-      "name": "美股",
-      "url": "finance.sina.com.cn/stock/usstock",
-      "description": "| 最新报道 | 中概股 | 国际财经 | 互联网 |\n| -------- | ------ | -------- | ------ |\n| 57045    | 57046  | 56409    | 40811  |",
-      "provider_id": "sina",
-      "provider_name": "新浪",
-      "route_key": "/finance/stock/usstock/:cids?"
+      "path": "/research/blog",
+      "example": "/samsung/research/blog",
+      "parameters": {},
+      "name": "Research Blog",
+      "url": "research.samsung.com/blog",
+      "provider_id": "samsung",
+      "provider_name": "Samsung",
+      "route_key": "/research/blog"
     }
   },
   {
     "provider_id": "sspai",
     "provider_name": "少数派 sspai",
-    "route_key": "/bookmarks/:slug",
+    "route_key": "/author/:id",
     "route": {
-      "path": "/bookmarks/:slug",
-      "example": "/sspai/bookmarks/urfp0d9i",
+      "path": "/author/:id",
+      "example": "/sspai/author/796518",
       "parameters": {
-        "slug": "用户 slug，可在个人主页URL中找到"
+        "id": "作者 slug 或 id，slug 可在作者主页URL中找到，id 不易查找，仅作兼容"
       },
-      "name": "用户收藏",
+      "name": "作者",
       "provider_id": "sspai",
       "provider_name": "少数派 sspai",
-      "route_key": "/bookmarks/:slug"
-    }
-  },
-  {
-    "provider_id": "sspai",
-    "provider_name": "少数派 sspai",
-    "route_key": "/column/:id",
-    "route": {
-      "path": "/column/:id",
-      "example": "/sspai/column/262",
-      "parameters": {
-        "id": "专栏 id"
-      },
-      "name": "专栏",
-      "provider_id": "sspai",
-      "provider_name": "少数派 sspai",
-      "route_key": "/column/:id"
+      "route_key": "/author/:id"
     }
   },
   {
@@ -1025,54 +990,69 @@
     }
   },
   {
-    "provider_id": "sspai",
-    "provider_name": "少数派 sspai",
-    "route_key": "/series/:id",
+    "provider_id": "tencent",
+    "provider_name": "腾讯",
+    "route_key": "/news/author/:mid",
     "route": {
-      "path": "/series/:id",
-      "example": "/sspai/series/77",
+      "path": "/news/author/:mid",
+      "example": "/tencent/news/author/5933889",
       "parameters": {
-        "id": "专栏 id"
+        "mid": "企鹅号 ID"
       },
-      "name": "付费专栏文章更新",
-      "url": "sspai.com/series",
-      "provider_id": "sspai",
-      "provider_name": "少数派 sspai",
-      "route_key": "/series/:id"
+      "name": "作者",
+      "provider_id": "tencent",
+      "provider_name": "腾讯",
+      "route_key": "/news/author/:mid"
     }
   },
   {
-    "provider_id": "startuplatte",
-    "provider_name": "創新拿鐵",
-    "route_key": "/:category?",
+    "provider_id": "the",
+    "provider_name": "The.bi",
+    "route_key": "/:filter{.+}?",
     "route": {
-      "path": "/:category?",
-      "example": "/startuplatte",
-      "parameters": {
-        "category": "分类，见下表，默认为首頁"
-      },
+      "path": "/:filter{.+}?",
       "name": "分类",
-      "description": "| 首頁 | 大師智慧 | 深度分析 | 新知介紹 |\n| ---- | -------- | -------- | -------- |\n|      | quote    | analysis | trend    |",
-      "provider_id": "startuplatte",
-      "provider_name": "創新拿鐵",
-      "route_key": "/:category?"
+      "url": "the.bi",
+      "example": "/the",
+      "parameters": {
+        "filter": "过滤器，见下方描述"
+      },
+      "description": "::: tip\n  如果你想订阅特定类别或标签，可以在路由中填写 filter 参数。`/category/rawmw7dsta2jew` 可以实现订阅 [剩余价值](https://the.bi/s/rawmw7dsta2jew) 类别。此时，路由是 [`/the/category/rawmw7dsta2jew/`](https://rsshub.app/the/category/rawmw7dsta2jew).\n\n  你还可以订阅多个类别。`/category/rawmw7dsta2jew,rawbcvxkktdkq8/` 可以实现同时订阅 [剩余价值](https://the.bi/s/rawmw7dsta2jew) 和 [打江山](https://the.bi/s/rawbcvxkktdkq8) 两个类别。此时，路由是 [`/the/category/rawmw7dsta2jew,rawbcvxkktdkq8`](https://rsshub.app/the/category/rawmw7dsta2jew,rawbcvxkktdkq8).\n\n  类别和标签也可以合并订阅。`/category/rawmw7dsta2jew/tag/raweekl3na8trq` 订阅 [剩余价值](https://the.bi/s/rawmw7dsta2jew) 类别和 [动物](https://the.bi/s/raweekl3na8trq) 标签。此时，路由是 [`/the/category/rawmw7dsta2jew/tag/raweekl3na8trq`](https://rsshub.app/the/category/rawmw7dsta2jew/tag/raweekl3na8trq).\n\n  你还可以搜索关键字。`/search/中国` 搜索关键字 [中国](https://the.bi/s/?s=中国)。在这种情况下，路径是 [`/the/search/中国`](https://rsshub.app/the/search/中国).\n:::\n\n| 分类                                           | ID                                                               |\n| ---------------------------------------------- | ---------------------------------------------------------------- |\n| [时局图](https://the.bi/s/rawj7o4ypewv94)      | [rawj7o4ypewv94](https://rsshub.app/the/category/rawj7o4ypewv94) |\n| [剩余价值](https://the.bi/s/rawmw7dsta2jew)    | [rawmw7dsta2jew](https://rsshub.app/the/category/rawmw7dsta2jew) |\n| [打江山](https://the.bi/s/rawbcvxkktdkq8)      | [rawbcvxkktdkq8](https://rsshub.app/the/category/rawbcvxkktdkq8) |\n| [中国经济](https://the.bi/s/raw4krvx85dh27)    | [raw4krvx85dh27](https://rsshub.app/the/category/raw4krvx85dh27) |\n| [水深火热](https://the.bi/s/rawtn8jpsc6uvv)    | [rawtn8jpsc6uvv](https://rsshub.app/the/category/rawtn8jpsc6uvv) |\n| [东升西降](https://the.bi/s/rawai5kd4z15il)    | [rawai5kd4z15il](https://rsshub.app/the/category/rawai5kd4z15il) |\n| [大局 & 大棋](https://the.bi/s/raw2efkzejrsx8) | [raw2efkzejrsx8](https://rsshub.app/the/category/raw2efkzejrsx8) |\n| [境外势力](https://the.bi/s/rawmpalhnlphuc)    | [rawmpalhnlphuc](https://rsshub.app/the/category/rawmpalhnlphuc) |\n| [副刊](https://the.bi/s/rawxght2jr2u5z)        | [rawxght2jr2u5z](https://rsshub.app/the/category/rawxght2jr2u5z) |\n| [天高地厚](https://the.bi/s/rawrsnh9zakqdx)    | [rawrsnh9zakqdx](https://rsshub.app/the/category/rawrsnh9zakqdx) |\n| [Oyster](https://the.bi/s/rawdhl9hugdfn9)      | [rawdhl9hugdfn9](https://rsshub.app/the/category/rawdhl9hugdfn9) |\n  ",
+      "provider_id": "the",
+      "provider_name": "The.bi",
+      "route_key": "/:filter{.+}?"
     }
   },
   {
     "provider_id": "thepaper",
     "provider_name": "澎湃新闻",
-    "route_key": "/sidebar/:sec?",
+    "route_key": "/factpaper/:status?",
     "route": {
-      "path": "/sidebar/:sec?",
-      "name": "侧边栏",
-      "example": "/thepaper/sidebar",
+      "path": "/factpaper/:status?",
+      "example": "/thepaper/factpaper",
       "parameters": {
-        "sec": "侧边栏 id，可选 `hotNews` 即 澎湃热榜、`financialInformationNews` 即 澎湃财讯、`morningEveningNews` 即 早晚报，默认为 `hotNews`"
+        "status": "状态 id，可选 `1` 即 有定论 或 `0` 即 核查中，默认为 `1`"
       },
+      "name": "明查",
+      "url": "factpaper.cn/",
+      "provider_id": "thepaper",
+      "provider_name": "澎湃新闻",
+      "route_key": "/factpaper/:status?"
+    }
+  },
+  {
+    "provider_id": "thepaper",
+    "provider_name": "澎湃新闻",
+    "route_key": "/featured",
+    "route": {
+      "path": "/featured",
+      "example": "/thepaper/featured",
+      "parameters": {},
+      "name": "首页头条",
       "url": "thepaper.cn/",
       "provider_id": "thepaper",
       "provider_name": "澎湃新闻",
-      "route_key": "/sidebar/:sec?"
+      "route_key": "/featured"
     }
   },
   {
@@ -1112,23 +1092,6 @@
   {
     "provider_id": "twreporter",
     "provider_name": "報導者",
-    "route_key": "/category/:category",
-    "route": {
-      "path": "/category/:category",
-      "example": "/twreporter/category/world",
-      "parameters": {
-        "category": "Category"
-      },
-      "name": "分類",
-      "url": "twreporter.org/",
-      "provider_id": "twreporter",
-      "provider_name": "報導者",
-      "route_key": "/category/:category"
-    }
-  },
-  {
-    "provider_id": "twreporter",
-    "provider_name": "報導者",
     "route_key": "/newest",
     "route": {
       "path": "/newest",
@@ -1142,54 +1105,87 @@
     }
   },
   {
-    "provider_id": "wikinews",
-    "provider_name": "维基新闻",
-    "route_key": "/latest",
+    "provider_id": "wanqu",
+    "provider_name": "湾区日报",
+    "route_key": "/news",
     "route": {
-      "path": "/latest",
-      "example": "/wikinews/latest",
+      "path": "/news",
+      "example": "/wanqu/news",
       "parameters": {},
-      "name": "最新新闻",
-      "description": "根据维基新闻的[sitemap](https://zh.wikinews.org/wiki/Special:%E6%96%B0%E9%97%BB%E8%AE%A2%E9%98%85)获取新闻全文。目前仅支持中文维基新闻。",
-      "provider_id": "wikinews",
-      "provider_name": "维基新闻",
-      "route_key": "/latest"
+      "name": "最新推荐",
+      "url": "wanqu.co/",
+      "provider_id": "wanqu",
+      "provider_name": "湾区日报",
+      "route_key": "/news"
     }
   },
   {
-    "provider_id": "wufazhuce",
-    "provider_name": "「ONE · 一个」",
-    "route_key": "/one",
+    "provider_id": "wechat",
+    "provider_name": "微信小程序",
+    "route_key": "/sogou/:id",
     "route": {
-      "path": "/one",
-      "example": "/wufazhuce/one",
-      "name": "「ONE · 一个」",
-      "provider_id": "wufazhuce",
-      "provider_name": "「ONE · 一个」",
-      "route_key": "/one"
+      "path": "/sogou/:id",
+      "example": "/wechat/sogou/qimao0908",
+      "parameters": {
+        "id": "公众号 id, 打开 weixin.sogou.com 并搜索相应公众号， 在 URL 中找到 id"
+      },
+      "name": "公众号（搜狗来源）",
+      "provider_id": "wechat",
+      "provider_name": "微信小程序",
+      "route_key": "/sogou/:id"
+    }
+  },
+  {
+    "provider_id": "wechat",
+    "provider_name": "微信小程序",
+    "route_key": "/tgchannel/:id/:mpName?/:searchQueryType?",
+    "route": {
+      "path": "/tgchannel/:id/:mpName?/:searchQueryType?",
+      "example": "/wechat/tgchannel/lifeweek",
+      "parameters": {
+        "id": "公众号绑定频道 id",
+        "mpName": "欲筛选的公众号全名（URL-encoded，精确匹配），在频道订阅了多个公众号时可选用",
+        "searchQueryType": "搜索查询类型，见下表"
+      },
+      "name": "公众号（Telegram 频道来源）",
+      "description": "| 搜索查询类型 | 将使用的搜索关键字 |            适用于           |\n| :----------: | :----------------: | :-------------------------: |\n|      `0`     |     (禁用搜索)     |       所有情况 (默认)       |\n|      `1`     |     公众号全名     | 未启用 efb-patch-middleware |\n|      `2`     |     #公众号全名    | 已启用 efb-patch-middleware |\n\n::: tip\n  启用搜索有助于在订阅了过多公众号的频道里有效筛选，不易因为大量公众号同时推送导致一些公众号消息被遗漏，但必须正确选择搜索查询类型，否则会搜索失败。\n:::\n\n::: warning\n  该方法需要通过 efb 进行频道绑定，具体操作见 [https://github.com/DIYgod/RSSHub/issues/2172](https://github.com/DIYgod/RSSHub/issues/2172)\n:::",
+      "provider_id": "wechat",
+      "provider_name": "微信小程序",
+      "route_key": "/tgchannel/:id/:mpName?/:searchQueryType?"
+    }
+  },
+  {
+    "provider_id": "x6d",
+    "provider_name": "小刀娱乐网",
+    "route_key": "/:id?",
+    "route": {
+      "path": "/:id?",
+      "name": "分类",
+      "url": "xd.x6d.com",
+      "example": "/x6d/34",
+      "parameters": {
+        "id": "分类 id，可在对应分类页面的 URL 中找到，默认为首页最近更新"
+      },
+      "description": "| 技巧分享 | QQ 技巧 | 微信技巧 | 其他教程 | 其他分享 |\n| -------- | ------- | -------- | -------- | -------- |\n| 31       | 55      | 112      | 33       | 88       |\n\n| 宅家自学 | 健身养生 | 摄影剪辑 | 长点知识 | 自我提升 | 两性相关 | 编程办公 | 职场关系 | 新媒体运营 | 其他教程 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | ---------- | -------- |\n| 18       | 98       | 94       | 93       | 99       | 100      | 21       | 22       | 19         | 44       |\n\n| 活动线报 | 流量话费 | 免费会员 | 实物活动 | 游戏活动 | 红包活动 | 空间域名 | 其他活动 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| 34       | 35       | 91       | 92       | 39       | 38       | 37       | 36       |\n\n| 值得一看 | 找点乐子 | 热门事件 | 节目推荐 |\n| -------- | -------- | -------- | -------- |\n| 65       | 50       | 77       | 101      |\n\n| 值得一听 | 每日一听 | 歌单推荐 |\n| -------- | -------- | -------- |\n| 71       | 87       | 79       |\n\n| 资源宝库 | 书籍资料 | 设计资源 | 剪辑资源 | 办公资源 | 壁纸资源 | 编程资源 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| 106      | 107      | 108      | 109      | 110      | 111      | 113      |",
+      "provider_id": "x6d",
+      "provider_name": "小刀娱乐网",
+      "route_key": "/:id?"
     }
   },
   {
     "provider_id": "yahoo",
     "provider_name": "Yahoo",
-    "route_key": "/news/:region/:category?",
+    "route_key": "/news/providers/:region/list",
     "route": {
-      "path": "/news/:region/:category?",
-      "example": "/yahoo/news/hk/world",
+      "path": "/news/providers/:region/list",
+      "example": "/yahoo/news/providers/tw/list",
       "parameters": {
-        "region": "Region, `hk/tw/au/ca/fr/malaysia/nz/sg/uk/en(us)`, the part represented by the asterisk (*) in *.news.yahoo.com",
-        "category": "Category, The part represented by the asterisk (*) in .news.yahoo.com/rss/*, region \"hk/tw\" differs, see the description below"
+        "region": "地区, 同路由\"新闻来源\"中的支持地区, 即 hk 或 tw"
       },
-      "name": "News",
-      "url": "news.yahoo.com/",
-      "description": "\n`Region`\n\nSupport all regions represented by the asterisk (*) in *.news.yahoo.com, such as hk/tw/au/ca/fr/malaysia/nz/sg/uk/en(us). For www.yahoo.com, use en or us. Sites with news domains other than *.news.yahoo.com, such as de.nachrichten.yahoo.com or news.yahoo.co.jp, are not supported.\n\n`Category`\n\nThe parsing method for Yahoo Hong Kong and Taiwan is quite unique. All supported categories are as follows\n\nCategory for hk.news.yahoo.com (hongkong)\n\n| 全部     | 港聞      | 兩岸國際 | 財經      | 娛樂          | 體育   | 健康   | 親子       | 副刊       |\n| ------- | --------- | -------- | -------- | ------------- | ------ | ------ | --------- | ---------- |\n| (empty) | hong-kong | world    | business | entertainment | sports | health | parenting | supplement |\n\nCategory for tw.news.yahoo.com (taiwan)\n\n| 全部     | 政治     | 財經    | 娛樂          | 運動    | 社會地方 | 國際   | 生活      | 健康   | 科技        | 品味  |\n| ------- | -------- | ------- | ------------- | ------ | -------- | ----- | --------- | ------ | ---------- | ----- |\n| (empty) | politics | finance | entertainment | sports | society  | world | lifestyle | health | technology | style |\n\nOther Yahoo news is fetched from the RSS provided by Yahoo. Please refer to the categories displayed on the pages of *.news.yahoo.com (for example, \"world\"), and try to access *.news.yahoo.com/rss/world to see if it is accessible and contains recent news (some categories exist but are not updated). If it is accessible and has recent news, then that category can be used on the corresponding site. For example, the available categories for news.yahoo.com are as follows\n\nCategory for news.yahoo.com (US)\n\n| All     | US | Politics | World | Science | Tech |\n| ------- | -- | -------- | ----- | ------- | ---- |\n| (empty) | us | politics | world | science | tech |\n\nTo give another example, since uk.news.yahoo.com/rss/ukoriginal is accessible and has recent news, /yahoo/news/uk/ukoriginal is a valid RSSHub route.\n\n`author`\n\nFor Yahoo Hong Kong and Yahoo Taiwan, please use another \"news source\" route.\n\nFor other Yahoo News, this route's RSS provides the author field. You can use RSSHub's built-in \"content filtering\" feature. For example, /yahoo-wg/news/tw/technology?filter_author=Yahoo%20Tech|Engadget can filter out news with authors containing Yahoo Tech or Engadget from Yahoo Taiwan's technology news, which is the Chinese version of Engadget.\n",
-      "zh": {
-        "name": "新闻",
-        "description": "\n`区域 Region`\n\n支持所有 *.news.yahoo.com 中*号所代表的区域, 例如`hk/tw/au/ca/fr/malaysia/nz/sg/uk/en(us)`, 其中 www.yahoo.com 用 en 或 us 来表示。不支持新闻域名不为 *.news.yahoo.com 的站点如 de.nachrichten.yahoo.com 或 news.yahoo.co.jp。\n\n`分类 Category`\n\n香港和台湾雅虎的读取方式比较特别, 所有支持的 category 如下\n\nhk.news.yahoo.com (香港) 所支持的分类\n\n| 全部     | 港聞      | 兩岸國際 | 財經      | 娛樂          | 體育   | 健康   | 親子       | 副刊       |\n| ------- | --------- | -------- | -------- | ------------- | ------ | ------ | --------- | ---------- |\n| （留空） | hong-kong | world    | business | entertainment | sports | health | parenting | supplement |\n\ntw.news.yahoo.com (台湾) 所支持的分类\n\n| 全部     | 政治     | 財經    | 娛樂          | 運動    | 社會地方 | 國際   | 生活      | 健康   | 科技        | 品味  |\n| ------- | -------- | ------- | ------------- | ------ | -------- | ----- | --------- | ------ | ---------- | ----- |\n| （留空） | politics | finance | entertainment | sports | society  | world | lifestyle | health | technology | style |\n\n其他雅虎新闻读取自 yahoo 提供的 RSS, 请根据 *.news.yahoo.com 的页面上展示的分类(例如 world ), 尝试 *.news.yahoo.com/rss/world 能否访问并且有近期的新闻(有些分类存在但未更新), 如果可以的话则该分类可以用在相应站点, 例如 news.yahoo.com 可用的分类如下\n\nnews.yahoo.com (美国) 所支持的分类\n\n| All     | US | Politics | World | Science | Tech |\n| ------- | -- | -------- | ----- | ------- | ---- |\n| (留空)  | us | politics | world | science | tech |\n\n再举例, 由于 uk.news.yahoo.com/rss/ukoriginal 可以访问并且有较新的新闻, 所以 /yahoo/news/uk/ukoriginal 是一个有效的RSSHub路由。\n\n`作者 author`\n\n对于香港和台湾雅虎, 请使用另一个\"新聞來源\"路由。\n\n对于其他雅虎新闻, 本路由的 RSS 中提供了 author 字段, 可使用 RSSHub 的内置\"内容过滤\"功能, 例如 /yahoo-wg/news/tw/technology?filter_author=Yahoo%20Tech|Engadget 可从台湾雅虎的科技新闻中过滤出作者名称中包含 Yahoo Tech 或者 Engadget 的新闻, 即瘾科技中文版。\n"
-      },
+      "name": "新聞來源列表",
       "provider_id": "yahoo",
       "provider_name": "Yahoo",
-      "route_key": "/news/:region/:category?"
+      "route_key": "/news/providers/:region/list"
     }
   }
 ]

@@ -1,5 +1,34 @@
 [
   {
+    "provider_id": "acpaa",
+    "provider_name": "中华全国专利代理师协会",
+    "route_key": "/:id?/:name?",
+    "route": {
+      "name": "标签",
+      "path": "/:id?/:name?",
+      "example": "/acpaa",
+      "parameters": {
+        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
+        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/dynamic/:uid?",
+    "route": {
+      "name": "用户动态",
+      "path": "/dynamic/:uid?",
+      "example": "/afdian/dynamic/@afdian",
+      "parameters": {
+        "uid": "用户id，用户动态页面url里可找到"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "atptour",
     "provider_name": "ATP Tour",
     "route_key": "/news/:lang?",
@@ -16,15 +45,15 @@
   {
     "provider_id": "baidu",
     "provider_name": "百度",
-    "route_key": "/top/:board?",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "热搜榜单",
-      "path": "/top/:board?",
-      "example": "/baidu/top",
+      "name": "搜索",
+      "path": "/search/:keyword",
+      "example": "/baidu/search/rss",
       "parameters": {
-        "board": "榜单，默认为 `realtime`"
+        "keyword": "搜索关键词"
       },
-      "description": "| 热搜榜   | 小说榜 | 电影榜 | 电视剧榜 | 汽车榜 | 游戏榜 |\n| -------- | ------ | ------ | -------- | ------ | ------ |\n| realtime | novel  | movie  | teleplay | car    | game   |"
+      "description": ""
     }
   },
   {
@@ -42,17 +71,55 @@
     }
   },
   {
-    "provider_id": "clickme",
-    "provider_name": "ClickMe",
-    "route_key": "/:site/:grouping/:name",
+    "provider_id": "boc",
+    "provider_name": "中国银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "name": "文章",
-      "path": "/:site/:grouping/:name",
-      "example": "/clickme/default/category/beauty",
+      "name": "外汇牌价",
+      "path": "/whpj/:format?",
+      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
       "parameters": {
-        "site": "站点，`default`为普通站，`r18`为成人站，其它值默认为普通站",
-        "grouping": "分组方式，`category`为分类，`tag`为标签，其他值默认为分类",
-        "name": "分类名或标签名，分类名为英文，可以在分类 URL 中找到"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
+      },
+      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
+    }
+  },
+  {
+    "provider_id": "cfachina",
+    "provider_name": "中国期货业协会",
+    "route_key": "/servicesupport/analygarden/:program?",
+    "route": {
+      "name": "分析师园地",
+      "path": "/servicesupport/analygarden/:program?",
+      "example": "/cfachina/servicesupport/analygarden",
+      "parameters": {
+        "program": "分类，见下表，留空为全部"
+      },
+      "description": "| 有色金属类 | 黑色金属类 | 能源化工类 | 贵金属类 | 农产品类 | 金融类 | 指数类 |\n| ---------- | ---------- | ---------- | -------- | -------- | ------ | ------ |\n| ysjsl      | hsjsl      | nyhgl      | gjsl     | ncpl     | jrl    | zsl    |"
+    }
+  },
+  {
+    "provider_id": "easynomad",
+    "provider_name": "轻松游牧-远程工作聚集地",
+    "route_key": "/",
+    "route": {
+      "name": "远程工作列表",
+      "path": "/",
+      "example": "/easynomad",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/alerts/:keyword",
+    "route": {
+      "name": "Alerts",
+      "path": "/alerts/:keyword",
+      "example": "/google/alerts/RSSHub",
+      "parameters": {
+        "keyword": "Keyword"
       },
       "description": ""
     }
@@ -70,17 +137,31 @@
     }
   },
   {
-    "provider_id": "hiring.cafe",
-    "provider_name": "HiringCafe",
-    "route_key": "/jobs/:keywords",
+    "provider_id": "hostmonit",
+    "provider_name": "全球主机监控",
+    "route_key": "/cloudflareyes/:type?",
     "route": {
-      "name": "Jobs",
-      "path": "/jobs/:keywords",
-      "example": "/hiring.cafe/jobs/sustainability",
+      "name": "CloudFlareYes",
+      "path": "/cloudflareyes/:type?",
+      "example": "/hostmonit/cloudflareyes",
       "parameters": {
-        "keywords": "Keywords to search for"
+        "type": "类型，见下表，默认为 v4"
       },
-      "description": ""
+      "description": "| v4 | v6 |\n| -- | -- |\n|    | v6 |"
+    }
+  },
+  {
+    "provider_id": "instructables",
+    "provider_name": "Instructables",
+    "route_key": "/projects/:category?",
+    "route": {
+      "name": "Projects",
+      "path": "/projects/:category?",
+      "example": "/instructables/projects/circuits",
+      "parameters": {
+        "category": "Category, empty by default, can be found in URL or see the table below"
+      },
+      "description": "| All | Circuits | Workshop | Craft | Cooking | Living | Outside | Teachers |\n| --- | -------- | -------- | ----- | ------- | ------ | ------- | -------- |\n|     | circuits | workshop | craft | cooking | living | outside | teachers |"
     }
   },
   {
@@ -96,18 +177,6 @@
     }
   },
   {
-    "provider_id": "jingzhengu",
-    "provider_name": "精真估",
-    "route_key": "/news",
-    "route": {
-      "name": "资讯",
-      "path": "/news",
-      "example": "/jingzhengu/news",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
     "provider_id": "piyao",
     "provider_name": "中国互联网联合辟谣平台",
     "route_key": "/jrpy",
@@ -115,82 +184,6 @@
       "name": "今日辟谣",
       "path": "/jrpy",
       "example": "/piyao/jrpy",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "qq",
-    "provider_name": "腾讯网",
-    "route_key": "/fact",
-    "route": {
-      "name": "最新辟谣",
-      "path": "/fact",
-      "example": "/qq/fact",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sogou",
-    "provider_name": "搜狗",
-    "route_key": "/search/:keyword",
-    "route": {
-      "name": "搜索",
-      "path": "/search/:keyword",
-      "example": "/sogou/search/rss",
-      "parameters": {
-        "keyword": "搜索关键词"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sustainabilitymag",
-    "provider_name": "Sustainability Magazine",
-    "route_key": "/articles",
-    "route": {
-      "name": "Articles",
-      "path": "/articles",
-      "example": "/sustainabilitymag/articles",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "taiwanmobile",
-    "provider_name": "台灣大哥大",
-    "route_key": "/rate-plans",
-    "route": {
-      "name": "資費公告",
-      "path": "/rate-plans",
-      "example": "/taiwanmobile/rate-plans",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "tvtropes",
-    "provider_name": "TV Tropes",
-    "route_key": "/featured/:category?",
-    "route": {
-      "name": "Featured",
-      "path": "/featured/:category?",
-      "example": "/tvtropes/featured/today",
-      "parameters": {
-        "category": "Category, see below, Today's Featured Trope by default"
-      },
-      "description": "| Today's Featured Trope | Newest Trope |\n| ---------------------- | ------------ |\n| today                  | newest       |"
-    }
-  },
-  {
-    "provider_id": "urbandictionary",
-    "provider_name": "Urban Dictionary",
-    "route_key": "/random",
-    "route": {
-      "name": "Random words",
-      "path": "/random",
-      "example": "/urbandictionary/random",
       "parameters": {},
       "description": ""
     }

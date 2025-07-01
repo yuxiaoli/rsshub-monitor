@@ -15,79 +15,43 @@
     }
   },
   {
-    "provider_id": "howtoforge",
-    "provider_name": "Howtoforge Linux Tutorials",
-    "route_key": "/",
+    "provider_id": "chsi",
+    "provider_name": "中国研究生招生信息网",
+    "route_key": "/hotnews",
     "route": {
-      "name": "Tutorials",
-      "path": "/",
-      "example": "/howtoforge",
+      "name": "考研热点新闻",
+      "path": "/hotnews",
+      "example": "/chsi/hotnews",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "kimlaw",
-    "provider_name": "The Korea Institute of Marine Law",
-    "route_key": "/thesis",
+    "provider_id": "cssn",
+    "provider_name": "Chinese Social Science Net",
+    "route_key": "/iolaw/:section?",
     "route": {
-      "name": "Thesis",
-      "path": "/thesis",
-      "example": "/kimlaw/thesis",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ncpssd",
-    "provider_name": "国家哲学社会科学文献中心",
-    "route_key": "/newlist",
-    "route": {
-      "name": "最新文献",
-      "path": "/newlist",
-      "example": "/ncpssd/newlist",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "orcid",
-    "provider_name": "ORCID",
-    "route_key": "/:id",
-    "route": {
-      "name": "Works List",
-      "path": "/:id",
-      "example": "/orcid/0000-0002-4731-9700",
+      "name": "Institute of Law",
+      "path": "/iolaw/:section?",
+      "example": "/cssn/iolaw/zxzp",
       "parameters": {
-        "id": "Open Researcher and Contributor ID"
+        "section": "Section ID, can be found in the URL. For example, the Section ID of URL `http://iolaw.cssn.cn/zxzp/` is `zxzp`. The default value is `zxzp`"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "ruankao",
-    "provider_name": "中国计算机职业技术资格考试",
-    "route_key": "/news",
+    "provider_id": "dblp",
+    "provider_name": "DBLP",
+    "route_key": "/:field",
     "route": {
-      "name": "软考动态",
-      "path": "/news",
-      "example": "/ruankao/news",
-      "parameters": {},
-      "description": "**注意：** 官方网站限制了国外网络请求，可能需要通过部署在中国大陆内的 RSSHub 实例访问。"
-    }
-  },
-  {
-    "provider_id": "shmeea",
-    "provider_name": "上海市教育考试院",
-    "route_key": "/:id?",
-    "route": {
-      "name": "消息",
-      "path": "/:id?",
-      "example": "/shmeea/08000",
+      "name": "Keyword Search",
+      "path": "/:field",
+      "example": "/dblp/knowledge%20tracing",
       "parameters": {
-        "id": "页面 ID，可在 URL 中找到，默认为消息速递"
+        "field": "Research field"
       },
-      "description": "::: tip\n  例如：消息速递的网址为 `https://www.shmeea.edu.cn/page/08000/index.html`，则页面 ID 为 `08000`。\n:::\n\n::: warning\n  暂不支持大类分类和[院内动态](https://www.shmeea.edu.cn/page/19000/index.html)\n:::"
+      "description": ""
     }
   }
 ]

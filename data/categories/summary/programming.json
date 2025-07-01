@@ -1,5 +1,17 @@
 [
   {
+    "provider_id": "51cto",
+    "provider_name": "51CTO",
+    "route_key": "/index/recommend",
+    "route": {
+      "name": "推荐",
+      "path": "/index/recommend",
+      "example": "/51cto/index/recommend",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "alistapart",
     "provider_name": "A List Apart",
     "route_key": "/",
@@ -29,29 +41,29 @@
   {
     "provider_id": "atcoder",
     "provider_name": "AtCoder",
-    "route_key": "/post/:language?/:keyword?",
+    "route_key": "/contest/:language?/:rated?/:category?/:keyword?",
     "route": {
-      "name": "Posts",
-      "path": "/post/:language?/:keyword?",
-      "example": "/atcoder/post",
+      "name": "Contests Archive",
+      "path": "/contest/:language?/:rated?/:category?/:keyword?",
+      "example": "/atcoder/contest",
       "parameters": {
         "language": "Language, `jp` as Japanese or `en` as English, English by default",
+        "rated": "Rated Range, see below, all by default",
+        "category": "Category, see below, all by default",
         "keyword": "Keyword"
       },
-      "description": ""
+      "description": "Rated Range\n\n| ABC Class (Rated for ~1999) | ARC Class (Rated for ~2799) | AGC Class (Rated for ~9999) |\n| ---------------------------- | ---------------------------- | ---------------------------- |\n| 1                            | 2                            | 3                            |\n\n  Category\n\n| All | AtCoder Typical Contest | PAST Archive | Unofficial(unrated) |\n| --- | ----------------------- | ------------ | ------------------- |\n| 0   | 6                       | 50           | 101                 |\n\n| JOI Archive | Sponsored Tournament | Sponsored Parallel(rated) |\n| ----------- | -------------------- | ------------------------- |\n| 200         | 1000                 | 1001                      |\n\n| Sponsored Parallel(unrated) | Optimization Contest |\n| --------------------------- | -------------------- |\n| 1002                        | 1200                 |"
     }
   },
   {
-    "provider_id": "bestblogs",
-    "provider_name": "bestblogs.dev",
-    "route_key": "/feeds/:category?",
+    "provider_id": "baai",
+    "provider_name": "北京智源人工智能研究院",
+    "route_key": "/hub/events",
     "route": {
-      "name": "文章列表",
-      "path": "/feeds/:category?",
-      "example": "/bestblogs/feeds/featured",
-      "parameters": {
-        "category": "the category of articles. Can be `programming`, `ai`, `product`, `business` or `featured`. Default is `featured`"
-      },
+      "name": "智源社区 - 活动",
+      "path": "/hub/events",
+      "example": "/baai/hub/events",
+      "parameters": {},
       "description": ""
     }
   },
@@ -86,29 +98,32 @@
     }
   },
   {
-    "provider_id": "bitmovin",
-    "provider_name": "Bitmovin",
-    "route_key": "/blog",
+    "provider_id": "bugzilla",
+    "provider_name": "Bugzilla",
+    "route_key": "/bug/:site/:bugId",
     "route": {
-      "name": "Blog",
-      "path": "/blog",
-      "example": "/bitmovin/blog",
-      "parameters": {},
-      "description": ""
+      "name": "bugs",
+      "path": "/bug/:site/:bugId",
+      "example": "/bugzilla/bug/webkit/251528",
+      "parameters": {
+        "site": "site identifier",
+        "bugId": "numeric identifier of the bug in the site"
+      },
+      "description": "Supported site identifiers: [`apache`](https://bz.apache.org/bugzilla), [`apache.ooo`](https://bz.apache.org/ooo), [`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin), [`kernel`](https://bugzilla.kernel.org), [`mozilla`](https://bugzilla.mozilla.org), [`webkit`](https://bugs.webkit.org)."
     }
   },
   {
-    "provider_id": "codeforces",
-    "provider_name": "Codeforces",
-    "route_key": "/recent-actions/:minrating?",
+    "provider_id": "cncf",
+    "provider_name": "CNCF",
+    "route_key": "/:cate?",
     "route": {
-      "name": "Recent actions",
-      "path": "/recent-actions/:minrating?",
-      "example": "/codeforces/recent-actions",
+      "name": "Category",
+      "path": "/:cate?",
+      "example": "/cncf",
       "parameters": {
-        "minrating": "The minimum blog/comment rating required. Default: 1"
+        "cate": "blog by default"
       },
-      "description": ""
+      "description": "| Blog | News | Announcements | Reports |\n| ---- | ---- | ------------- | ------- |\n| blog | news | announcements | reports |"
     }
   },
   {
@@ -159,6 +174,32 @@
     }
   },
   {
+    "provider_id": "dangdang",
+    "provider_name": "当当开放平台",
+    "route_key": "/notice/:type?",
+    "route": {
+      "name": "公告",
+      "path": "/notice/:type?",
+      "example": "/dangdang/notice/1",
+      "parameters": {
+        "type": "公告分类，默认为全部"
+      },
+      "description": "| 类型     | type |\n| -------- | ---- |\n| 全部      | 0    |\n| 其他      | 1    |\n| 规则变更   | 2    |"
+    }
+  },
+  {
+    "provider_id": "dbaplus",
+    "provider_name": "dbaplus社群",
+    "route_key": "/",
+    "route": {
+      "name": "最新文章",
+      "path": "/",
+      "example": "/dbaplus",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "deeplearning",
     "provider_name": "DeepLearning.AI",
     "route_key": "/the-batch/:tag{.+}?",
@@ -173,6 +214,18 @@
     }
   },
   {
+    "provider_id": "devtrium",
+    "provider_name": "Devtrium",
+    "route_key": "/",
+    "route": {
+      "name": "Official Blogs",
+      "path": "/",
+      "example": "/devtrium",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "gihyo",
     "provider_name": "gihyo.jp",
     "route_key": "/list/group/:id",
@@ -182,50 +235,6 @@
       "example": "/gihyo/list/group/Ubuntu-Weekly-Recipe",
       "parameters": {
         "id": "Series"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "gitee",
-    "provider_name": "Gitee",
-    "route_key": "/releases/:owner/:repo",
-    "route": {
-      "name": "仓库 Releases",
-      "path": "/releases/:owner/:repo",
-      "example": "/gitee/releases/y_project/RuoYi",
-      "parameters": {
-        "owner": "用户名",
-        "repo": "仓库名"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/activity/:user",
-    "route": {
-      "name": "User Activities",
-      "path": "/activity/:user",
-      "example": "/github/activity/DIYgod",
-      "parameters": {
-        "user": "GitHub username"
-      },
-      "description": "Get the activities of a user on GitHub, based on the GitHub official RSS feed"
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/branches/:user/:repo",
-    "route": {
-      "name": "Repo Branches",
-      "path": "/branches/:user/:repo",
-      "example": "/github/branches/DIYgod/RSSHub",
-      "parameters": {
-        "user": "User name",
-        "repo": "Repo name"
       },
       "description": ""
     }
@@ -249,23 +258,6 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/contributors/:user/:repo/:order?/:anon?",
-    "route": {
-      "name": "Repo Contributors",
-      "path": "/contributors/:user/:repo/:order?/:anon?",
-      "example": "/github/contributors/DIYgod/RSSHub",
-      "parameters": {
-        "user": "User name",
-        "repo": "Repo name",
-        "order": "Sort order by commit numbers, desc and asc (descending by default)",
-        "anon": "Show anonymous users. Defaults to no, use any values for yes."
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
     "route_key": "/gist/:gistId",
     "route": {
       "name": "Gist Commits",
@@ -273,57 +265,6 @@
       "example": "/github/gist/d2c152bb7179d07015f336b1a0582679",
       "parameters": {
         "gistId": "Gist ID"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/issue/:user/:repo/:state?/:labels?",
-    "route": {
-      "name": "Repo Issues",
-      "path": "/issue/:user/:repo/:state?/:labels?",
-      "example": "/github/issue/DIYgod/RSSHub/open",
-      "parameters": {
-        "user": "GitHub username",
-        "repo": "GitHub repo name",
-        "state": {
-          "description": "the state of the issues.",
-          "default": "open",
-          "options": [
-            {
-              "label": "Open",
-              "value": "open"
-            },
-            {
-              "label": "Closed",
-              "value": "closed"
-            },
-            {
-              "label": "All",
-              "value": "all"
-            }
-          ]
-        },
-        "labels": "a list of comma separated label names"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/pull/:user/:repo/:state?/:labels?",
-    "route": {
-      "name": "Repo Pull Requests",
-      "path": "/pull/:user/:repo/:state?/:labels?",
-      "example": "/github/pull/DIYgod/RSSHub",
-      "parameters": {
-        "user": "User name",
-        "repo": "Repo name",
-        "state": "the state of pull requests. Can be either `open`, `closed`, or `all`. Default: `open`.",
-        "labels": "a list of comma separated label names"
       },
       "description": ""
     }
@@ -347,6 +288,22 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
+    "route_key": "/repos/:user/:type?/:sort?",
+    "route": {
+      "name": "User Repo",
+      "path": "/repos/:user/:type?/:sort?",
+      "example": "/github/repos/DIYgod",
+      "parameters": {
+        "user": "GitHub username",
+        "type": "Type of repository, can be `all`, `owner`, `member`, `public`, `private`, `forks`, `sources`",
+        "sort": "Sort by `created`, `updated`, `pushed`, `full_name`"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
     "route_key": "/search/:query/:sort?/:order?",
     "route": {
       "name": "Search Result",
@@ -363,15 +320,26 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/stars/:user/:repo",
+    "route_key": "/starred_repos/:user",
     "route": {
-      "name": "Repo Stars",
-      "path": "/stars/:user/:repo",
-      "example": "/github/stars/DIYgod/RSSHub",
+      "name": "User Starred Repositories",
+      "path": "/starred_repos/:user",
+      "example": "/github/starred_repos/DIYgod",
       "parameters": {
-        "user": "GitHub username",
-        "repo": "GitHub repo name"
+        "user": "User name"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gitpod",
+    "provider_name": "Gitpod",
+    "route_key": "/changelog",
+    "route": {
+      "name": "Changelog",
+      "path": "/changelog",
+      "example": "/gitpod/changelog",
+      "parameters": {},
       "description": ""
     }
   },
@@ -412,17 +380,53 @@
     }
   },
   {
-    "provider_id": "infoq",
-    "provider_name": "InfoQ 中文",
-    "route_key": "/presentations/:conference?",
+    "provider_id": "hellogithub",
+    "provider_name": "HelloGitHub",
+    "route_key": "/article/:sort?",
     "route": {
-      "name": "Presentations",
-      "path": "/presentations/:conference?",
-      "example": "/infoq/presentations",
+      "name": "文章",
+      "path": "/article/:sort?",
+      "example": "/hellogithub/article",
       "parameters": {
-        "conference": "Conference, all by default, can be found in URL"
+        "sort": "排序方式，见下表，默认为 `last`，即最近"
       },
-      "description": "::: tip\n  If you subscribe to [InfoQ Live Jan 2024](https://www.infoq.com/infoq-live-jan-2024/presentations/)，where the URL is `https://www.infoq.com/infoq-live-jan-2024/presentations/`, extract the part `https://www.infoq.com/` to the end, which is `/presentations/`, and use it as the parameter to fill in. Therefore, the route will be [`/infoq/presentations/infoq-live-jan-2024`](https://rsshub.app/infoq/presentations/infoq-live-jan-2024).\n:::\n    "
+      "description": "| 热门 | 最近 |\n| ---- | ---- |\n| hot  | last |"
+    }
+  },
+  {
+    "provider_id": "hex-rays",
+    "provider_name": "Hex-Rays",
+    "route_key": "/news",
+    "route": {
+      "name": "Hex-Rays News",
+      "path": "/news",
+      "example": "/hex-rays/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "huggingface",
+    "provider_name": "Huggingface",
+    "route_key": "/blog",
+    "route": {
+      "name": "英文博客",
+      "path": "/blog",
+      "example": "/huggingface/blog",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "huggingface",
+    "provider_name": "Huggingface",
+    "route_key": "/daily-papers",
+    "route": {
+      "name": "Daily Papers",
+      "path": "/daily-papers",
+      "example": "/huggingface/daily-papers",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -441,176 +445,59 @@
     }
   },
   {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/books",
+    "provider_id": "joshwcomeau",
+    "provider_name": "Josh W Comeau",
+    "route_key": "/popular",
     "route": {
-      "name": "小册",
-      "path": "/books",
-      "example": "/juejin/books",
+      "name": "Popular Content",
+      "path": "/popular",
+      "example": "/joshwcomeau/popular",
       "parameters": {},
-      "description": "> 掘金小册需要付费订阅，RSS 仅做更新提醒，不含付费内容."
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/category/:category",
-    "route": {
-      "name": "分类",
-      "path": "/category/:category",
-      "example": "/juejin/category/frontend",
-      "parameters": {
-        "category": "分类名"
-      },
-      "description": "| 后端    | 前端     | Android | iOS | 人工智能 | 开发工具 | 代码人生 | 阅读    |\n| ------- | -------- | ------- | --- | -------- | -------- | -------- | ------- |\n| backend | frontend | android | ios | ai       | freebie  | career   | article |"
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/column/:id",
-    "route": {
-      "name": "专栏",
-      "path": "/column/:id",
-      "example": "/juejin/column/6960559453037199391",
-      "parameters": {
-        "id": "专栏 id, 可在专栏页 URL 中找到"
-      },
       "description": ""
     }
   },
   {
     "provider_id": "juejin",
     "provider_name": "掘金",
-    "route_key": "/posts/:id",
+    "route_key": "/collections/:userId",
     "route": {
-      "name": "用户文章",
-      "path": "/posts/:id",
-      "example": "/juejin/posts/3051900006845944",
+      "name": "收藏集",
+      "path": "/collections/:userId",
+      "example": "/juejin/collections/1697301682482439",
       "parameters": {
-        "id": "用户 id, 可在用户页 URL 中找到"
+        "userId": "用户唯一标志符, 在浏览器地址栏URL中能够找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/trending/:category/:type",
+    "provider_id": "lanqiao",
+    "provider_name": "蓝桥云课",
+    "route_key": "/courses/:sort/:tag",
     "route": {
-      "name": "热门",
-      "path": "/trending/:category/:type",
-      "example": "/juejin/trending/ios/monthly",
+      "name": "全站发布的课程",
+      "path": "/courses/:sort/:tag",
+      "example": "/lanqiao/courses/latest/all",
       "parameters": {
-        "category": "分类名",
-        "type": "类型"
-      },
-      "description": "| category | 标签     |\n| -------- | -------- |\n| android  | Android  |\n| frontend | 前端     |\n| ios      | iOS      |\n| backend  | 后端     |\n| design   | 设计     |\n| product  | 产品     |\n| freebie  | 工具资源 |\n| article  | 阅读     |\n| ai       | 人工智能 |\n| devops   | 运维     |\n| all      | 全部     |\n\n| type       | 类型     |\n| ---------- | -------- |\n| weekly     | 本周最热 |\n| monthly    | 本月最热 |\n| historical | 历史最热 |"
-    }
-  },
-  {
-    "provider_id": "luogu",
-    "provider_name": "洛谷",
-    "route_key": "/contest",
-    "route": {
-      "name": "比赛列表",
-      "path": "/contest",
-      "example": "/luogu/contest",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "modb",
-    "provider_name": "墨天轮",
-    "route_key": "/topic/:id",
-    "route": {
-      "name": "合辑",
-      "path": "/topic/:id",
-      "example": "/modb/topic/44158",
-      "parameters": {
-        "id": "合辑序号"
+        "sort": "排序规则 sort, 默认(`default`)、最新(`latest`)、最热(`hotest`)",
+        "tag": "课程标签 `tag`，可在该页面找到：https://www.lanqiao.cn/courses/"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "modelscope",
-    "provider_name": "ModelScope 魔搭社区",
-    "route_key": "/community",
+    "provider_id": "learnblockchain",
+    "provider_name": "登链社区",
+    "route_key": "/posts/:cid/:sort?",
     "route": {
-      "name": "DevPress 官方社区",
-      "path": "/community",
-      "example": "/modelscope/community",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nosec",
-    "provider_name": "NOSEC 安全讯息平台",
-    "route_key": "/:keykind?",
-    "route": {
-      "name": "Posts",
-      "path": "/:keykind?",
-      "example": "/nosec/hole",
+      "name": "文章",
+      "path": "/posts/:cid/:sort?",
+      "example": "/learnblockchain/posts/DApp/newest",
       "parameters": {
-        "keykind": "对应文章分类"
+        "cid": "分类id,更多分类可以论坛的URL找到",
+        "sort": "排序方式，默认精选"
       },
-      "description": "| 分类     | 标识       |\n| :------- | :--------- |\n| 威胁情报 | `threaten` |\n| 安全动态 | `security` |\n| 漏洞预警 | `hole`     |\n| 数据泄露 | `leakage`  |\n| 专题报告 | `speech`   |\n| 技术分析 | `skill`    |\n| 安全工具 | `tool`     |"
-    }
-  },
-  {
-    "provider_id": "ollama",
-    "provider_name": "Ollama",
-    "route_key": "/blog",
-    "route": {
-      "name": "Blog",
-      "path": "/blog",
-      "example": "/ollama/blog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "oschina",
-    "provider_name": "开源中国",
-    "route_key": "/news/:category?",
-    "route": {
-      "name": "资讯",
-      "path": "/news/:category?",
-      "example": "/oschina/news/project",
-      "parameters": {
-        "category": "板块名"
-      },
-      "description": "| [综合资讯][osc_gen] | [软件更新资讯][osc_proj] | [行业资讯][osc_ind] | [编程语言资讯][osc_pl] |\n| ------------------- | ------------------------ | ------------------- | ---------------------- |\n| industry            | project                  | industry-news       | programming            |\n\n  订阅 [全部板块资讯][osc_all] 可以使用 [https://rsshub.app/oschina/news](https://rsshub.app/oschina/news)\n\n  [osc_all]: https://www.oschina.net/news \"开源中国 - 全部资讯\"\n\n  [osc_gen]: https://www.oschina.net/news/industry \"开源中国 - 综合资讯\"\n\n  [osc_proj]: https://www.oschina.net/news/project \"开源中国 - 软件更新资讯\"\n\n  [osc_ind]: https://www.oschina.net/news/industry-news \"开源中国 - 行业资讯\"\n\n  [osc_pl]: https://www.oschina.net/news/programming \"开源中国 - 编程语言资讯\""
-    }
-  },
-  {
-    "provider_id": "sec-wiki",
-    "provider_name": "SecWiki - 安全维基",
-    "route_key": "/weekly",
-    "route": {
-      "name": "最新周刊",
-      "path": "/weekly",
-      "example": "/sec-wiki/weekly",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "secrss",
-    "provider_name": "安全内参",
-    "route_key": "/author/:author",
-    "route": {
-      "name": "作者",
-      "path": "/author/:author",
-      "example": "/secrss/author/网络安全威胁和漏洞信息共享平台",
-      "parameters": {
-        "author": "N"
-      },
-      "description": ""
+      "description": "| id       | 分类         |\n| -------- | ------------ |\n| all      | 全部         |\n| DApp     | 去中心化应用 |\n| chains   | 公链         |\n| 联盟链   | 联盟链       |\n| scaling  | Layer2       |\n| langs    | 编程语言     |\n| security | 安全         |\n| dst      | 存储         |\n| basic    | 理论研究     |\n| other    | 其他         |\n\n| id       | 排序方式    |\n| -------- | ----------- |\n| newest   | 最新        |\n| featured | 精选 (默认) |\n| featured | 最赞        |\n| hottest  | 最热        |"
     }
   },
   {
@@ -628,32 +515,6 @@
     }
   },
   {
-    "provider_id": "studygolang",
-    "provider_name": "Go 语言中文网",
-    "route_key": "/go/:id?",
-    "route": {
-      "name": "板块",
-      "path": "/go/:id?",
-      "example": "/studygolang/go/daily",
-      "parameters": {
-        "id": "板块 id，默认为周刊"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "studygolang",
-    "provider_name": "Go 语言中文网",
-    "route_key": "/jobs",
-    "route": {
-      "name": "招聘",
-      "path": "/jobs",
-      "example": "/studygolang/jobs",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
     "provider_id": "sycl",
     "provider_name": "SYCL",
     "route_key": "/:feed?",
@@ -665,6 +526,18 @@
         "feed": "Feed source, defaults to news, references https://feeds.sycl.tech/"
       },
       "description": "|  Events  | News |    Research Paper     |  Videos  |\n| :----: | :--: | :-------------: | :----: |\n| events | news | research_papers | videos |"
+    }
+  },
+  {
+    "provider_id": "thoughtworks",
+    "provider_name": "ThoughtWorks",
+    "route_key": "/blog",
+    "route": {
+      "name": "Inside Blog",
+      "path": "/blog",
+      "example": "/thoughtworks/blog",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

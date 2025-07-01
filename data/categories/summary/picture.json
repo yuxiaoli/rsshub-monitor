@@ -1,92 +1,40 @@
 [
   {
-    "provider_id": "1x",
-    "provider_name": "1x.com",
-    "route_key": "/:category{.+}?",
+    "provider_id": "artstation",
+    "provider_name": "ArtStation",
+    "route_key": "/:handle",
     "route": {
-      "name": "Gallery",
-      "path": "/:category{.+}?",
-      "example": "/1x/latest/awarded",
+      "name": "Artist Profolio",
+      "path": "/:handle",
+      "example": "/artstation/wlop",
       "parameters": {
-        "category": "Category, Latest Awarded by default"
+        "handle": "Artist handle, can be found in URL"
       },
-      "description": "::: tip\nFill in the field in the path with the part of the corresponding page URL after `https://1x.com/gallery/` or `https://1x.com/photo/`. Here are the examples:\n\nIf you subscribe to [Abstract Awarded](https://1x.com/gallery/abstract/awarded), you should fill in the path with the part `abstract/awarded` from the page URL `https://1x.com/gallery/abstract/awarded`. In this case, the route will be [`/1x/abstract/awarded`](https://rsshub.app/1x/abstract/awarded).\n    \nIf you subscribe to [Wildlife Published](https://1x.com/gallery/wildlife/published), you should fill in the path with the part `wildlife/published` from the page URL `https://1x.com/gallery/wildlife/published`. In this case, the route will be [`/1x/wildlife/published`](https://rsshub.app/1x/wildlife/published).\n:::"
-    }
-  },
-  {
-    "provider_id": "4khd",
-    "provider_name": "4KHD",
-    "route_key": "/",
-    "route": {
-      "name": "Latest",
-      "path": "/",
-      "example": "/4khd",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "4kup",
-    "provider_name": "4KUP",
-    "route_key": "/category/:category",
-    "route": {
-      "name": "Category",
-      "path": "/category/:category",
-      "example": "/4kup/category/coser",
-      "parameters": {
-        "category": "Category"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "4kup",
-    "provider_name": "4KUP",
-    "route_key": "/tag/:tag",
-    "route": {
-      "name": "Tag",
-      "path": "/tag/:tag",
-      "example": "/4kup/tag/asian",
-      "parameters": {
-        "tag": "Tag"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bjp",
-    "provider_name": "北京天文馆",
-    "route_key": "/apod",
-    "route": {
-      "name": "每日一图",
-      "path": "/apod",
-      "example": "/bjp/apod",
-      "parameters": {},
       "description": ""
     }
   },
   {
     "provider_id": "cosplaytele",
     "provider_name": "CosplayTele",
-    "route_key": "/category/:category",
+    "route_key": "/popular/:period",
     "route": {
-      "name": "Category",
-      "path": "/category/:category",
-      "example": "/cosplaytele/category/cosplay",
+      "name": "Popular",
+      "path": "/popular/:period",
+      "example": "/cosplaytele/popular/3",
       "parameters": {
-        "category": "Category"
+        "period": "Days"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "magnumphotos",
-    "provider_name": "Magnum Photos",
-    "route_key": "/magazine",
+    "provider_id": "dapenti",
+    "provider_name": "喷嚏",
+    "route_key": "/tugua",
     "route": {
-      "name": "Magazine",
-      "path": "/magazine",
-      "example": "/magnumphotos/magazine",
+      "name": "图卦",
+      "path": "/tugua",
+      "example": "/dapenti/tugua",
       "parameters": {},
       "description": ""
     }
@@ -94,23 +42,11 @@
   {
     "provider_id": "nasa",
     "provider_name": "NASA",
-    "route_key": "/apod-cn",
+    "route_key": "/apod",
     "route": {
-      "name": "NASA 中文",
-      "path": "/apod-cn",
-      "example": "/nasa/apod-cn",
-      "parameters": {},
-      "description": "::: tip\n  [NASA 中文](https://www.nasachina.cn/) 提供了每日天文图的中英双语图文说明，但在更新上偶尔略有一两天的延迟。\n:::"
-    }
-  },
-  {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod-ncku",
-    "route": {
-      "name": "Cheng Kung University Mirror",
-      "path": "/apod-ncku",
-      "example": "/nasa/apod-ncku",
+      "name": "Astronomy Picture of the Day",
+      "path": "/apod",
+      "example": "/nasa/apod",
       "parameters": {},
       "description": ""
     }
@@ -124,34 +60,6 @@
       "path": "/dailyphoto",
       "example": "/natgeo/dailyphoto",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pinterest",
-    "provider_name": "Pinterest",
-    "route_key": "/user/:username/:type?",
-    "route": {
-      "name": "User",
-      "path": "/user/:username/:type?",
-      "example": "/pinterest/user/howieserious",
-      "parameters": {
-        "username": "Username",
-        "type": {
-          "description": "Type, default to `_created`",
-          "default": "_created",
-          "options": [
-            {
-              "value": "_created",
-              "label": "Created"
-            },
-            {
-              "value": "_saved",
-              "label": "Saved"
-            }
-          ]
-        }
-      },
       "description": ""
     }
   },
