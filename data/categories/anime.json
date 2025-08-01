@@ -2,6 +2,96 @@
   {
     "provider_id": "acfun",
     "provider_name": "AcFun",
+    "route_key": "/article/:categoryId/:sortType?/:timeRange?",
+    "route": {
+      "path": "/article/:categoryId/:sortType?/:timeRange?",
+      "view": 0,
+      "example": "/acfun/article/110",
+      "parameters": {
+        "categoryId": {
+          "description": "分区 ID",
+          "options": [
+            {
+              "value": "73",
+              "label": "生活情感"
+            },
+            {
+              "value": "74",
+              "label": "动漫文化"
+            },
+            {
+              "value": "75",
+              "label": "漫画文学"
+            },
+            {
+              "value": "110",
+              "label": "综合"
+            },
+            {
+              "value": "164",
+              "label": "游戏"
+            },
+            {
+              "value": "184",
+              "label": "二次元画师"
+            }
+          ]
+        },
+        "sortType": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "createTime",
+              "label": "最新发表"
+            },
+            {
+              "value": "lastCommentTime",
+              "label": "最新动态"
+            },
+            {
+              "value": "hotScore",
+              "label": "最热文章"
+            }
+          ],
+          "default": "createTime"
+        },
+        "timeRange": {
+          "description": "时间范围，仅在排序是 `hotScore` 有效",
+          "options": [
+            {
+              "value": "all",
+              "label": "时间不限"
+            },
+            {
+              "value": "oneDay",
+              "label": "24 小时"
+            },
+            {
+              "value": "threeDay",
+              "label": "三天"
+            },
+            {
+              "value": "oneWeek",
+              "label": "一周"
+            },
+            {
+              "value": "oneMonth",
+              "label": "一个月"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "name": "文章",
+      "description": "| 二次元画师 | 综合 | 生活情感 | 游戏 | 动漫文化 | 漫画文学 |\n| ---------- | ---- | -------- | ---- | -------- | -------- |\n| 184        | 110  | 73       | 164  | 74       | 75       |\n\n| 最新发表   | 最新动态        | 最热文章 |\n| ---------- | --------------- | -------- |\n| createTime | lastCommentTime | hotScore |\n\n| 时间不限 | 24 小时 | 三天     | 一周    | 一个月   |\n| -------- | ------- | -------- | ------- | -------- |\n| all      | oneDay  | threeDay | oneWeek | oneMonth |",
+      "provider_id": "acfun",
+      "provider_name": "AcFun",
+      "route_key": "/article/:categoryId/:sortType?/:timeRange?"
+    }
+  },
+  {
+    "provider_id": "acfun",
+    "provider_name": "AcFun",
     "route_key": "/user/video/:uid",
     "route": {
       "path": "/user/video/:uid",
@@ -52,19 +142,89 @@
     }
   },
   {
-    "provider_id": "collabo-cafe",
-    "provider_name": "コラボカフェ",
-    "route_key": "/tag/:tag",
+    "provider_id": "bangumi.tv",
+    "provider_name": "Bangumi 番组计划",
+    "route_key": "/group/:id",
     "route": {
-      "path": "/tag/:tag",
-      "example": "/collabo-cafe/tag/ikebukuro",
+      "path": "/group/:id",
+      "example": "/bangumi.tv/group/boring",
       "parameters": {
-        "tag": "Tag, refer to the original website (開催地域別)"
+        "id": "小组 id, 在小组页面地址栏查看"
       },
-      "name": "标签",
-      "provider_id": "collabo-cafe",
-      "provider_name": "コラボカフェ",
-      "route_key": "/tag/:tag"
+      "name": "小组话题",
+      "provider_id": "bangumi.tv",
+      "provider_name": "Bangumi 番组计划",
+      "route_key": "/group/:id"
+    }
+  },
+  {
+    "provider_id": "cartoonmad",
+    "provider_name": "動漫狂",
+    "route_key": "/comic/:id",
+    "route": {
+      "path": "/comic/:id",
+      "example": "/cartoonmad/comic/5827",
+      "parameters": {
+        "id": "漫画ID"
+      },
+      "name": "漫画更新",
+      "provider_id": "cartoonmad",
+      "provider_name": "動漫狂",
+      "route_key": "/comic/:id"
+    }
+  },
+  {
+    "provider_id": "dlsite",
+    "provider_name": "DLsite",
+    "route_key": "/new/:type",
+    "route": {
+      "path": "/new/:type",
+      "view": 0,
+      "example": "/dlsite/new/home",
+      "parameters": {
+        "type": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "home",
+              "label": "「DLsite 同人」"
+            },
+            {
+              "value": "comic",
+              "label": "「DLsite コミック」"
+            },
+            {
+              "value": "soft",
+              "label": "「DLsite PCソフト」"
+            },
+            {
+              "value": "maniax",
+              "label": "「DLsite 同人 - R18」"
+            },
+            {
+              "value": "books",
+              "label": "「DLsite 成年コミック - R18」"
+            },
+            {
+              "value": "pro",
+              "label": "「DLsite 美少女ゲーム」"
+            },
+            {
+              "value": "girls",
+              "label": "「DLsite 乙女」"
+            },
+            {
+              "value": "bl",
+              "label": "「DLsite BL」"
+            }
+          ]
+        }
+      },
+      "name": "Current Release",
+      "description": "| Doujin | Comics | PC Games | Doujin (R18) | Adult Comics | H Games | Otome | BL |\n| ------ | ------ | -------- | ------------ | ------------ | ------- | ----- | -- |\n| home   | comic  | soft     | maniax       | books        | pro     | girls | bl |",
+      "provider_id": "dlsite",
+      "provider_name": "DLsite",
+      "route_key": "/new/:type"
     }
   },
   {
@@ -82,22 +242,6 @@
       "provider_id": "gamer",
       "provider_name": "巴哈姆特電玩資訊站",
       "route_key": "/ani/anime/:sn"
-    }
-  },
-  {
-    "provider_id": "gamer",
-    "provider_name": "巴哈姆特電玩資訊站",
-    "route_key": "/ani/new_anime",
-    "route": {
-      "path": "/ani/new_anime",
-      "view": 3,
-      "example": "/gamer/ani/new_anime",
-      "parameters": {},
-      "name": "動畫瘋 - 最後更新",
-      "url": "ani.gamer.com.tw/",
-      "provider_id": "gamer",
-      "provider_name": "巴哈姆特電玩資訊站",
-      "route_key": "/ani/new_anime"
     }
   },
   {
@@ -149,68 +293,19 @@
     }
   },
   {
-    "provider_id": "hpoi",
-    "provider_name": "Hpoi 手办维基",
-    "route_key": "/items/work/:id/:order?",
+    "provider_id": "idolypride",
+    "provider_name": "IDOLY PRIDE 偶像荣耀",
+    "route_key": "/news",
     "route": {
-      "path": "/items/work/:id/:order?",
-      "view": 2,
-      "example": "/hpoi/items/work/4117491",
-      "parameters": {
-        "id": "作品 ID",
-        "order": {
-          "description": "排序",
-          "options": [
-            {
-              "value": "release",
-              "label": "发售"
-            },
-            {
-              "value": "add",
-              "label": "入库"
-            },
-            {
-              "value": "hits",
-              "label": "总热度"
-            },
-            {
-              "value": "hits7Day",
-              "label": "一周热度"
-            },
-            {
-              "value": "hitsDay",
-              "label": "一天热度"
-            },
-            {
-              "value": "rating",
-              "label": "评价"
-            }
-          ],
-          "default": "add"
-        }
-      },
-      "name": "作品周边",
-      "provider_id": "hpoi",
-      "provider_name": "Hpoi 手办维基",
-      "route_key": "/items/work/:id/:order?"
-    }
-  },
-  {
-    "provider_id": "lovelive-anime",
-    "provider_name": "Love Live! Official Website",
-    "route_key": "/schedules/:serie?/:category?",
-    "route": {
-      "path": "/schedules/:serie?/:category?",
-      "parameters": {
-        "serie": "Love Live! Series sub-projects abbreviation, see the following table",
-        "category": "The official website lists the categories, see the following table for details"
-      },
-      "name": "Schedule",
-      "example": "/lovelive-anime/schedules",
-      "description": "| Sub-project Name (not full name) | 全シリーズ              | Lovelive!  | Lovelive! Sunshine!! | Lovelive! Nijigasaki High School Idol Club | Lovelive! Superstar!! | ラブライブ！スクールアイドルミュージカル |\n| -------------------------------- | ----------------------- | ---------- | -------------------- | ------------------------------------------ | --------------------- | ---------------------------------------- |\n| `serie` parameter                | *No parameter* or `all` | `lovelive` | `sunshine`           | `nijigasaki`                               | `superstar`           | `musical`                                |\n\n| Category Name        | 全て                    | ライブ | イベント | 生配信    |\n| -------------------- | ----------------------- | ------ | -------- | --------- |\n| `category` parameter | *No parameter* or `all` | `live` | `event`  | `haishin` |",
-      "provider_id": "lovelive-anime",
-      "provider_name": "Love Live! Official Website",
-      "route_key": "/schedules/:serie?/:category?"
+      "path": "/news",
+      "view": 0,
+      "example": "/idolypride/news",
+      "parameters": {},
+      "name": "News",
+      "url": "idolypride.jp/news",
+      "provider_id": "idolypride",
+      "provider_name": "IDOLY PRIDE 偶像荣耀",
+      "route_key": "/news"
     }
   },
   {
@@ -244,54 +339,6 @@
       "provider_id": "qoo-app",
       "provider_name": "QooApp",
       "route_key": "/apps/:lang?/note/:id"
-    }
-  },
-  {
-    "provider_id": "toranoana",
-    "provider_name": "とらのあな",
-    "route_key": "/news/:category?",
-    "route": {
-      "path": "/news/:category?",
-      "example": "/toranoana/news/toragen",
-      "parameters": {
-        "category": "category"
-      },
-      "name": "Category",
-      "description": "\n::: warning TIP\n[総合新着記事](https://news.toranoana.jp)→`/toranoana/news`  \n[女性向け](https://news.toranoana.jp/joshi)→`/toranoana/news/joshi`  \n[イラスト展](https://news.toranoana.jp/exhibitions)→`/toranoana/news/exhibition`  \n[`https://news.toranoana.jp/category/media`](https://news.toranoana.jp/category/media)→`/toranoana/news/media`\n:::",
-      "provider_id": "toranoana",
-      "provider_name": "とらのあな",
-      "route_key": "/news/:category?"
-    }
-  },
-  {
-    "provider_id": "xmanhua",
-    "provider_name": "X 漫画",
-    "route_key": "/:uid",
-    "route": {
-      "path": "/:uid",
-      "example": "/xmanhua/73xm",
-      "parameters": {
-        "uid": "漫画 id,在浏览器中可见，例如鬼灭之刃对应的 id 为 `73xm`"
-      },
-      "name": "最新动态",
-      "provider_id": "xmanhua",
-      "provider_name": "X 漫画",
-      "route_key": "/:uid"
-    }
-  },
-  {
-    "provider_id": "ymgal",
-    "provider_name": "月幕 Galgame",
-    "route_key": "/game/release",
-    "route": {
-      "path": "/game/release",
-      "example": "/ymgal/game/release",
-      "parameters": {},
-      "name": "本月新作",
-      "url": "ymgal.games/",
-      "provider_id": "ymgal",
-      "provider_name": "月幕 Galgame",
-      "route_key": "/game/release"
     }
   }
 ]

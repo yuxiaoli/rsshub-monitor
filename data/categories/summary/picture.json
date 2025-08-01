@@ -1,15 +1,27 @@
 [
   {
-    "provider_id": "artstation",
-    "provider_name": "ArtStation",
-    "route_key": "/:handle",
+    "provider_id": "4kup",
+    "provider_name": "4KUP",
+    "route_key": "/tag/:tag",
     "route": {
-      "name": "Artist Profolio",
-      "path": "/:handle",
-      "example": "/artstation/wlop",
+      "name": "Tag",
+      "path": "/tag/:tag",
+      "example": "/4kup/tag/asian",
       "parameters": {
-        "handle": "Artist handle, can be found in URL"
+        "tag": "Tag"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bjp",
+    "provider_name": "北京天文馆",
+    "route_key": "/apod",
+    "route": {
+      "name": "每日一图",
+      "path": "/apod",
+      "example": "/bjp/apod",
+      "parameters": {},
       "description": ""
     }
   },
@@ -28,91 +40,29 @@
     }
   },
   {
-    "provider_id": "dapenti",
-    "provider_name": "喷嚏",
-    "route_key": "/tugua",
+    "provider_id": "ehentai",
+    "provider_name": "E-Hentai",
+    "route_key": "/tag/:tag/:page?/:routeParams?",
     "route": {
-      "name": "图卦",
-      "path": "/tugua",
-      "example": "/dapenti/tugua",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod",
-    "route": {
-      "name": "Astronomy Picture of the Day",
-      "path": "/apod",
-      "example": "/nasa/apod",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "natgeo",
-    "provider_name": "National Geographic",
-    "route_key": "/dailyphoto",
-    "route": {
-      "name": "Daily Photo",
-      "path": "/dailyphoto",
-      "example": "/natgeo/dailyphoto",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pixabay",
-    "provider_name": "Pixabay",
-    "route_key": "/search/:q/:order?",
-    "route": {
-      "name": "Search",
-      "path": "/search/:q/:order?",
-      "example": "/pixabay/search/cat",
+      "name": "Tag",
+      "path": "/tag/:tag/:page?/:routeParams?",
+      "example": "/ehentai/tag/language:chinese/0/bittorrent=true&embed_thumb=false",
       "parameters": {
-        "q": "Search term",
-        "order": {
-          "description": "Order",
-          "options": [
-            {
-              "value": "popular",
-              "label": "popular"
-            },
-            {
-              "value": "latest",
-              "label": "latest"
-            }
-          ],
-          "default": "latest"
-        }
+        "tag": "Tag",
+        "page": "Page number, set 0 to get latest",
+        "routeParams": "Additional parameters, see the table above"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "skeb",
-    "provider_name": "Skeb",
-    "route_key": "/search/:keyword",
-    "route": {
-      "name": "Search Results",
-      "path": "/search/:keyword",
-      "example": "/skeb/search/初音ミク",
-      "parameters": {
-        "keyword": "Search keyword"
-      },
-      "description": "Get the search results for works on Skeb"
-    }
-  },
-  {
-    "provider_id": "yande",
-    "provider_name": "yande.re",
+    "provider_id": "konachan",
+    "provider_name": "Konachan.com Anime Wallpapers",
     "route_key": "/post/popular_recent/:period?",
     "route": {
       "name": "Popular Recent Posts",
       "path": "/post/popular_recent/:period?",
-      "example": "/yande/post/popular_recent/1d",
+      "example": "/konachan/post/popular_recent/1d",
       "parameters": {
         "period": {
           "description": "展示时间",
@@ -138,6 +88,56 @@
         }
       },
       "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |"
+    }
+  },
+  {
+    "provider_id": "magnumphotos",
+    "provider_name": "Magnum Photos",
+    "route_key": "/magazine",
+    "route": {
+      "name": "Magazine",
+      "path": "/magazine",
+      "example": "/magnumphotos/magazine",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nasa",
+    "provider_name": "NASA",
+    "route_key": "/apod-cn",
+    "route": {
+      "name": "NASA 中文",
+      "path": "/apod-cn",
+      "example": "/nasa/apod-cn",
+      "parameters": {},
+      "description": "::: tip\n  [NASA 中文](https://www.nasachina.cn/) 提供了每日天文图的中英双语图文说明，但在更新上偶尔略有一两天的延迟。\n:::"
+    }
+  },
+  {
+    "provider_id": "nasa",
+    "provider_name": "NASA",
+    "route_key": "/apod-ncku",
+    "route": {
+      "name": "Cheng Kung University Mirror",
+      "path": "/apod-ncku",
+      "example": "/nasa/apod-ncku",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "skeb",
+    "provider_name": "Skeb",
+    "route_key": "/:category",
+    "route": {
+      "name": "Skeb",
+      "path": "/:category",
+      "example": "/skeb/new_art_works",
+      "parameters": {
+        "category": "Category, the div id of the section title on the homepage."
+      },
+      "description": ""
     }
   }
 ]

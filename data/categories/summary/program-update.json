@@ -1,32 +1,5 @@
 [
   {
-    "provider_id": "alpinelinux",
-    "provider_name": "Alpine Linux",
-    "route_key": "/pkgs/:name/:routeParams?",
-    "route": {
-      "name": "Packages",
-      "path": "/pkgs/:name/:routeParams?",
-      "example": "/alpinelinux/pkgs/nodejs",
-      "parameters": {
-        "name": "Packages name",
-        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
-      },
-      "description": "Alpine Linux packages update"
-    }
-  },
-  {
-    "provider_id": "android",
-    "provider_name": "Android",
-    "route_key": "/platform-tools-releases",
-    "route": {
-      "name": "SDK Platform Tools release notes",
-      "path": "/platform-tools-releases",
-      "example": "/android/platform-tools-releases",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
     "provider_id": "apple",
     "provider_name": "Apple",
     "route_key": "/apps/update/:country/:id/:platform?",
@@ -65,12 +38,28 @@
   {
     "provider_id": "asus",
     "provider_name": "ASUS",
-    "route_key": "/gpu-tweak",
+    "route_key": "/bios/:model/:lang?",
     "route": {
-      "name": "GPU Tweak",
-      "path": "/gpu-tweak",
-      "example": "/asus/gpu-tweak",
-      "parameters": {},
+      "name": "BIOS",
+      "path": "/bios/:model/:lang?",
+      "example": "/asus/bios/RT-AX88U/zh",
+      "parameters": {
+        "model": "Model, can be found in product page",
+        "lang": {
+          "description": "Language, provide access routes for other parts of the world",
+          "options": [
+            {
+              "label": "Chinese",
+              "value": "zh"
+            },
+            {
+              "label": "Global",
+              "value": "en"
+            }
+          ],
+          "default": "en"
+        }
+      },
       "description": ""
     }
   },
@@ -82,6 +71,18 @@
       "name": "Release Notes",
       "path": "/latest",
       "example": "/brave/latest",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "civitai",
+    "provider_name": "Civitai",
+    "route_key": "/models",
+    "route": {
+      "name": "Latest models",
+      "path": "/models",
+      "example": "/civitai/models",
       "parameters": {},
       "description": ""
     }
@@ -141,20 +142,6 @@
     }
   },
   {
-    "provider_id": "gofans",
-    "provider_name": "GoFans",
-    "route_key": "/:kind?",
-    "route": {
-      "name": "最新限免 / 促销应用",
-      "path": "/:kind?",
-      "example": "/gofans",
-      "parameters": {
-        "kind": "Platform, either `macos` or `ios`, empty means both (default)"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "ipsw.dev",
     "provider_name": "IPSW.dev",
     "route_key": "/index/:productID",
@@ -184,53 +171,51 @@
     }
   },
   {
-    "provider_id": "mi",
-    "provider_name": "小米",
-    "route_key": "/golden",
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/edge/addon/:crxid",
     "route": {
-      "name": "小米应用商店金米奖",
-      "path": "/golden",
-      "example": "/mi/golden",
+      "name": "Addons Update",
+      "path": "/edge/addon/:crxid",
+      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
+      "parameters": {
+        "crxid": "Addon id, can be found in addon url"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "notateslaapp",
+    "provider_name": "Not a Tesla App",
+    "route_key": "/ota",
+    "route": {
+      "name": "Tesla Software Updates",
+      "path": "/ota",
+      "example": "/notateslaapp/ota",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "neatdownloadmanager",
-    "provider_name": "Neat Download Manager",
-    "route_key": "/download/:os?",
+    "provider_id": "postman",
+    "provider_name": "Postman",
+    "route_key": "/release-notes",
     "route": {
-      "name": "Download",
-      "path": "/download/:os?",
-      "example": "/neatdownloadmanager/download",
-      "parameters": {
-        "os": "Operating system, windows or macos, all by default"
-      },
+      "name": "Release Notes",
+      "path": "/release-notes",
+      "example": "/postman/release-notes",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "oo-software",
-    "provider_name": "O&O Software",
-    "route_key": "/changelog/:id",
+    "provider_id": "remnote",
+    "provider_name": "RemNote",
+    "route_key": "/changelog",
     "route": {
       "name": "Changelog",
-      "path": "/changelog/:id",
-      "example": "/oo-software/changelog/shutup10",
-      "parameters": {
-        "id": "Software id, see below, shutup10 by default, can be found in URL"
-      },
-      "description": "| Software        | Id          |\n| --------------- | ----------- |\n| O&O ShutUp10++ | shutup10    |\n| O&O AppBuster  | ooappbuster |\n| O&O Lanytix    | oolanytix   |\n| O&O DeskInfo   | oodeskinfo  |"
-    }
-  },
-  {
-    "provider_id": "qbittorrent",
-    "provider_name": "qBittorrent",
-    "route_key": "/news",
-    "route": {
-      "name": "News",
-      "path": "/news",
-      "example": "/qbittorrent/news",
+      "path": "/changelog",
+      "example": "/remnote/changelog",
       "parameters": {},
       "description": ""
     }
@@ -251,39 +236,25 @@
     }
   },
   {
-    "provider_id": "sourceforge",
-    "provider_name": "SourceForge",
-    "route_key": "/:routeParams?",
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
     "route": {
-      "name": "Software",
-      "path": "/:routeParams?",
-      "example": "/sourceforge/topic=artificial-intelligence&os=windows",
-      "parameters": {
-        "routeParams": "route params, see below"
-      },
-      "description": "For some URL like [https://sourceforge.net/directory/artificial-intelligence/windows/](https://sourceforge.net/directory/artificial-intelligence/windows/), it is equal to [https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows\"](https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows), thus subscribing to `/sourceforge/topic=artificial-intelligence&os=windows`.\n\n  URL params can duplicate, such as `/sourceforge/topic=artificial-intelligence&os=windows&os=linux`."
-    }
-  },
-  {
-    "provider_id": "typora",
-    "provider_name": "Typora",
-    "route_key": "/changelog/dev",
-    "route": {
-      "name": "Dev Release Changelog",
-      "path": "/changelog/dev",
-      "example": "/typora/changelog/dev",
+      "name": "Desktop releases and release notes",
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "unraid",
-    "provider_name": "Unraid",
-    "route_key": "/community-apps",
+    "provider_id": "webcatalog",
+    "provider_name": "WebCatalog",
+    "route_key": "/changelog",
     "route": {
-      "name": "Community Apps",
-      "path": "/community-apps",
-      "example": "/unraid/community-apps",
+      "name": "Changelog",
+      "path": "/changelog",
+      "example": "/webcatalog/changelog",
       "parameters": {},
       "description": ""
     }
@@ -296,18 +267,6 @@
       "name": "Version History",
       "path": "/updates",
       "example": "/wizfile/updates",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "zotero",
-    "provider_name": "Zotero",
-    "route_key": "/versions",
-    "route": {
-      "name": "Version History",
-      "path": "/versions",
-      "example": "/zotero/versions",
       "parameters": {},
       "description": ""
     }

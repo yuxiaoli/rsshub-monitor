@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>硬核JS - isboyjc的专栏 - 掘金</title><link>https://juejin.cn/column/6960559453037199391</link><atom:link href="http://rsshub.email-once.com/juejin/column/6960559453037199391" rel="self" type="application/rss+xml"></atom:link><description>硬核JS - isboyjc的专栏 - 掘金 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><image><url>https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/19738f61da7748ac9b1415a436580610~tplv-k3u1fbpfcp-watermark.image</url><title>硬核JS - isboyjc的专栏 - 掘金</title><link>https://juejin.cn/column/6960559453037199391</link></image><lastBuildDate>Sun, 01 Jun 2025 00:33:04 GMT</lastBuildDate><ttl>5</ttl><item><title>「硬核JS」图解Promise迷惑行为｜运行机制补充</title><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>硬核JS - isboyjc的专栏 - 掘金</title><link>https://juejin.cn/column/6960559453037199391</link><atom:link href="http://127.0.0.1/juejin/column/6960559453037199391" rel="self" type="application/rss+xml"></atom:link><description>硬核JS - isboyjc的专栏 - 掘金 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><image><url>https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/19738f61da7748ac9b1415a436580610~tplv-k3u1fbpfcp-watermark.image</url><title>硬核JS - isboyjc的专栏 - 掘金</title><link>https://juejin.cn/column/6960559453037199391</link></image><lastBuildDate>Fri, 01 Aug 2025 00:33:02 GMT</lastBuildDate><ttl>5</ttl><item><title>「硬核JS」图解Promise迷惑行为｜运行机制补充</title><description>&lt;blockquote&gt;
 &lt;p&gt;声明：本文为掘金首发签约文章，未经授权禁止转载。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 data-id=&quot;heading-0&quot;&gt;写在前面&lt;/h2&gt;
@@ -3047,7 +3047,7 @@ p.then(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-par
 &lt;p&gt;输出结果先走了&lt;code&gt;catch&lt;/code&gt;然后走了最后一个&lt;code&gt;then&lt;/code&gt;，第一个&lt;code&gt;then&lt;/code&gt;中抛出错误并跳过了第二个&lt;code&gt;then&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;也就是说如果我们没有处理这个错误(无catch)的话，就不会往下执行了&lt;/p&gt;
 &lt;p&gt;可参考下图&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041c4ba347afe2~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041c4ba347afe2~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;promise的缺点之一就是无法让promise中断，利用这个特性可以让Promise中断执行，也算一种办法吧&lt;/p&gt;
 &lt;h4 class=&quot;heading&quot; data-id=&quot;heading-27&quot;&gt;异步回调中抛错catch捕捉不到&lt;/h4&gt;
 &lt;p&gt;首先我们看在Promise对象的处理器函数中直接抛出错误&lt;/p&gt;
@@ -3601,7 +3601,7 @@ p.then(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-par
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;执行测试&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs js&quot; lang=&quot;js&quot;&gt;npx promises-aplus-tests &lt;span class=&quot;hljs-built_in&quot;&gt;Promise&lt;/span&gt;.js
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;静等片刻，如果控制台没有爆红就是成功了，符合规范，如图所示&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041c7556d22836~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041c7556d22836~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;h4 class=&quot;heading&quot; data-id=&quot;heading-39&quot;&gt;完整代码&lt;/h4&gt;
 &lt;p&gt;篇幅已经很长了，后续还有其他内容，所以就实现了比较核心的Promise及then和catch方法&lt;/p&gt;
 &lt;p&gt;其他的resolve/reject/race/all等比较简单，不在这里描述了&lt;/p&gt;
@@ -3836,7 +3836,7 @@ it.next(&lt;span class=&quot;hljs-string&quot;&gt;&quot;我是b&quot;&lt;/span&g
 &lt;span class=&quot;hljs-comment&quot;&gt;// 3&lt;/span&gt;
 &lt;span class=&quot;hljs-comment&quot;&gt;// {value: undefined, done: true}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通过&lt;code&gt;next&lt;/code&gt;调用我们可以看到，第一次调用就输出了&lt;code&gt;start &amp;amp; 1&lt;/code&gt; ，意味着&lt;code&gt;yield&lt;/code&gt;停止时，后面代码是执行了的&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041c882e38cca6~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041c882e38cca6~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;如上图所示，如果将说&lt;code&gt;yield&lt;/code&gt;比做一道墙，那么墙右边和上面是一块，墙左边和下面是一块，这样说应该够直白了吧&lt;/p&gt;
 &lt;h4 class=&quot;heading&quot; data-id=&quot;heading-52&quot;&gt;for..of 遍历Generator&lt;/h4&gt;
 &lt;p&gt;上文我们就知道了&lt;code&gt;for...of&lt;/code&gt;内部实现就是在使用迭代器迭代，那么&lt;code&gt;for...of&lt;/code&gt;循环直接用在Generator遍历器上岂不是完美&lt;/p&gt;
@@ -4328,7 +4328,7 @@ asyncAjax()
 &lt;p&gt;本文结合上一篇文章 &lt;a target=&quot;_blank&quot; href=&quot;https://juejin.cn/user/2999123452373735&quot; title=&quot;https://juejin.cn/user/2999123452373735&quot;&gt;「硬核JS」一次搞懂JS运行机制&lt;/a&gt; 一块阅读，会对JS异步编程理解更加深刻，推荐阅读&lt;/p&gt;
 &lt;p&gt;搜索【不正经的前端】或直接扫码可以关注公众号看到更多的精彩文章，也有一些群友提供的学习视频、资源干货什么的免费拿&lt;/p&gt;
 &lt;p&gt;也可以直接加我微信，进交流群学习交流&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041ca06e9dc237~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/2/14/17041ca06e9dc237~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;参考&lt;/p&gt;
 &lt;ol&gt;
@@ -4535,7 +4535,7 @@ ajax.get(&lt;span class=&quot;hljs-string&quot;&gt;&#39;/info&#39;&lt;/span&gt;,
 &lt;p&gt;事件触发线程只关心异步回调入事件队列&lt;/p&gt;
 &lt;p&gt;而我们JS引擎线程只会执行执行栈中的事件，执行栈中的代码执行完毕，就会读取事件队列中的事件并添加到执行栈中继续执行，这样反反复复就是我们所谓的&lt;strong&gt;事件循环(Event Loop)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;图解&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7acab03b35fa~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7acab03b35fa~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;首先，执行栈开始顺序执行&lt;/p&gt;
 &lt;p&gt;判断是否为同步，异步则进入异步线程，最终事件回调给事件触发线程的任务队列等待执行，同步继续执行&lt;/p&gt;
 &lt;p&gt;执行栈空，询问任务队列中是否有事件回调&lt;/p&gt;
@@ -4577,14 +4577,14 @@ ajax.get(&lt;span class=&quot;hljs-string&quot;&gt;&#39;/info&#39;&lt;/span&gt;,
 &lt;span class=&quot;hljs-built_in&quot;&gt;document&lt;/span&gt;.body.style = &lt;span class=&quot;hljs-string&quot;&gt;&#39;background:red&#39;&lt;/span&gt;;
 &lt;span class=&quot;hljs-built_in&quot;&gt;document&lt;/span&gt;.body.style = &lt;span class=&quot;hljs-string&quot;&gt;&#39;background:blue&#39;&lt;/span&gt;;
 &lt;span class=&quot;hljs-built_in&quot;&gt;document&lt;/span&gt;.body.style = &lt;span class=&quot;hljs-string&quot;&gt;&#39;background:pink&#39;&lt;/span&gt;;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7c7576f1e3b1~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7c7576f1e3b1~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;我们看到上面动图背景直接渲染了粉红色，根据上文里讲浏览器会先执行完一个宏任务，再执行当前执行栈的所有微任务，然后移交GUI渲染，上面四行代码均属于同一次宏任务，全部执行完才会执行渲染，渲染时&lt;code&gt;GUI线程&lt;/code&gt;会将所有UI改动优化合并，所以视觉上，只会看到页面变成粉红色&lt;/p&gt;
 &lt;p&gt;再接着看&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs js&quot; lang=&quot;js&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;document&lt;/span&gt;.body.style = &lt;span class=&quot;hljs-string&quot;&gt;&#39;background:blue&#39;&lt;/span&gt;;
 setTimeout(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt;=&amp;gt;&lt;/span&gt;{
     &lt;span class=&quot;hljs-built_in&quot;&gt;document&lt;/span&gt;.body.style = &lt;span class=&quot;hljs-string&quot;&gt;&#39;background:black&#39;&lt;/span&gt;
 },&lt;span class=&quot;hljs-number&quot;&gt;200&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7c81efff6db0~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7c81efff6db0~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;上述代码中，页面会先卡一下蓝色，再变成黑色背景，页面上写的是200毫秒，大家可以把它当成0毫秒，因为0毫秒的话由于浏览器渲染太快，录屏不好捕捉，我又没啥录屏慢放的工具，大家可以自行测试的，结果也是一样，最安全的方法是写一个&lt;code&gt;index.html&lt;/code&gt;文件，在这个文件中插入上面的js脚本，然后浏览器打开，谷歌下使用控制台中&lt;code&gt;performance&lt;/code&gt;功能查看一帧一帧的加载最为恰当，不过这样录屏不好录所以。。。&lt;/p&gt;
 &lt;p&gt;回归正题，之所以会卡一下蓝色，是因为以上代码属于两次&lt;code&gt;宏任务&lt;/code&gt;，第一次&lt;code&gt;宏任务&lt;/code&gt;执行的代码是将背景变成蓝色，然后触发渲染，将页面变成蓝色，再触发第二次宏任务将背景变成黑色&lt;/p&gt;
 &lt;p&gt;再来看&lt;/p&gt;
@@ -4595,7 +4595,7 @@ setTimeout(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs
     &lt;span class=&quot;hljs-built_in&quot;&gt;document&lt;/span&gt;.body.style = &lt;span class=&quot;hljs-string&quot;&gt;&#39;background:pink&#39;&lt;/span&gt;
 });
 &lt;span class=&quot;hljs-built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7c909570edd9~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7c909570edd9~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;控制台输出 1 3 2 , 是因为 promise 对象的 then 方法的回调函数是异步执行，所以 2 最后输出&lt;/p&gt;
 &lt;p&gt;页面的背景色直接变成粉色，没有经过蓝色的阶段，是因为，我们在宏任务中将背景设置为蓝色，但在进行渲染前执行了微任务， 在微任务中将背景变成了粉色，然后才执行的渲染&lt;/p&gt;
 &lt;h3 class=&quot;heading&quot; data-id=&quot;heading-24&quot;&gt;微任务宏任务注意点&lt;/h3&gt;
@@ -4611,12 +4611,12 @@ setTimeout(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs
 &lt;/ul&gt;
 &lt;p&gt;此时，你可能还很迷惑，没关系，请接着往下看&lt;/p&gt;
 &lt;h3 class=&quot;heading&quot; data-id=&quot;heading-25&quot;&gt;图解宏任务和微任务&lt;/h3&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7adf5afc036d~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7adf5afc036d~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;首先执行一个宏任务，执行结束后判断是否存在微任务&lt;/p&gt;
 &lt;p&gt;有微任务先执行所有的微任务，再渲染，没有微任务则直接渲染&lt;/p&gt;
 &lt;p&gt;然后再接着执行下一个宏任务&lt;/p&gt;
 &lt;h2 class=&quot;heading&quot; data-id=&quot;heading-26&quot;&gt;图解完整的Event Loop&lt;/h2&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7ae3b678f1ea~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7ae3b678f1ea~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;首先，整体的script(作为第一个宏任务)开始执行的时候，会把所有代码分为&lt;code&gt;同步任务&lt;/code&gt;、&lt;code&gt;异步任务&lt;/code&gt;两部分&lt;/p&gt;
 &lt;p&gt;同步任务会直接进入主线程依次执行&lt;/p&gt;
 &lt;p&gt;异步任务会再分为宏任务和微任务&lt;/p&gt;
@@ -4654,7 +4654,7 @@ test()
 &lt;p&gt;可以理解为，&lt;code&gt;await&lt;/code&gt; 以前的代码，相当于与 &lt;code&gt;new Promise&lt;/code&gt; 的同步代码，&lt;code&gt;await&lt;/code&gt; 以后的代码相当于 &lt;code&gt;Promise.then&lt;/code&gt;的异步&lt;/p&gt;
 &lt;h2 class=&quot;heading&quot; data-id=&quot;heading-29&quot;&gt;举栗印证&lt;/h2&gt;
 &lt;p&gt;首先给大家来一个比较直观的动图&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7d0f356a33a4~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7d0f356a33a4~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;之所以放这个动图，就是为了向大家推荐这篇好文，动图录屏自参考链接【1】&lt;/p&gt;
 &lt;p&gt;极力推荐大家看看这篇帖子，非常nice，分步动画生动且直观，有时间的话可以自己去体验下&lt;/p&gt;
 &lt;p&gt;不过在看这个帖子之前你要先了解下运行机制会更好读懂些&lt;/p&gt;
@@ -4714,7 +4714,7 @@ setTimeout(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs
 &lt;p&gt;虽然NodeJS中的JavaScript运行环境也是V8，也是单线程，但是，还是有一些与浏览器中的表现是不一样的&lt;/p&gt;
 &lt;p&gt;其实nodejs与浏览器的区别，就是nodejs的宏任务分好几种类型，而这好几种又有不同的任务队列，而不同的任务队列又有顺序区别，而微任务是穿插在每一种宏任务之间的&lt;/p&gt;
 &lt;p&gt;在node环境下，process.nextTick的优先级高于Promise，可以简单理解为在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的Promise部分&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7aed8db21b8d~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7aed8db21b8d~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;上图来自NodeJS官网&lt;/p&gt;
 &lt;p&gt;如上图所示，nodejs的宏任务分好几种类型，我们只简单介绍大体内容了解，不详细解释，不然又是啰哩啰嗦一大篇&lt;/p&gt;
 &lt;p&gt;NodeJS的Event Loop相对比较麻烦&lt;/p&gt;
@@ -4747,7 +4747,7 @@ setTimeout(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs
 &lt;p&gt;看完这篇帖子推荐看下 &lt;a target=&quot;_blank&quot; href=&quot;https://juejin.cn/post/6844904064614924302&quot; title=&quot;https://juejin.cn/post/6844904064614924302&quot;&gt;硬核JS」深入了解异步解决方案&lt;/a&gt; 一文，会对JS异步编程理解更加深刻&lt;/p&gt;
 &lt;p&gt;最近拾起了一个被冻结的公众号，又重新搞了下&lt;/p&gt;
 &lt;p&gt;欢迎大家关注【不正经的前端】，加我，加群，或者拿一些资料都可以的，时不时发一些优质原创&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7af179c4cec0~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;figure&gt;&lt;img src=&quot;https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/18/16fb7af179c4cec0~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;作者：isboyjc&lt;/p&gt;
 &lt;p&gt;邮箱：214930661@qq.com&lt;/p&gt;

@@ -1,72 +1,20 @@
 [
   {
-    "provider_id": "bjsk",
-    "provider_name": "北京社科网",
-    "route_key": "/:path?",
+    "provider_id": "beijingprice",
+    "provider_name": "北京价格",
+    "route_key": "/:category{.+}?",
     "route": {
-      "path": "/:path?",
-      "example": "/bjsk/newslist-1394-1474-0",
+      "path": "/:category{.+}?",
+      "name": "资讯",
+      "url": "beijingprice.cn",
+      "example": "/beijingprice/jgzx/xwzx",
       "parameters": {
-        "path": "路径，默认为 `newslist-1486-0-0`"
+        "category": "分类，默认为 `jgzx/xwzx` 即新闻资讯，可在对应分类页 URL 中找到"
       },
-      "name": "通用",
-      "description": "::: tip\n  路径处填写对应页面 URL 中 `https://www.bjsk.org.cn/` 和 `.html` 之间的字段。下面是一个例子。\n\n  若订阅 [社科资讯 > 社科要闻](https://www.bjsk.org.cn/newslist-1394-1474-0.html) 则将对应页面 URL `https://www.bjsk.org.cn/newslist-1394-1474-0.html` 中 `https://www.bjsk.org.cn/` 和 `.html` 之间的字段 `newslist-1394-1474-0` 作为路径填入。此时路由为 [`/bjsk/newslist-1394-1474-0`](https://rsshub.app/bjsk/newslist-1394-1474-0)\n:::",
-      "provider_id": "bjsk",
-      "provider_name": "北京社科网",
-      "route_key": "/:path?"
-    }
-  },
-  {
-    "provider_id": "bjsk",
-    "provider_name": "北京社科网",
-    "route_key": "/keti/:id?",
-    "route": {
-      "path": "/keti/:id?",
-      "example": "/bjsk/keti",
-      "parameters": {
-        "id": "分类 id，见下表，默认为通知公告"
-      },
-      "name": "基金项目管理平台",
-      "url": "keti.bjsk.org.cn/indexAction!to_index.action",
-      "description": "| 通知公告                         | 资料下载                         |\n| -------------------------------- | -------------------------------- |\n| 402881027cbb8c6f017cbb8e17710002 | 2c908aee818e04f401818e08645c0002 |",
-      "provider_id": "bjsk",
-      "provider_name": "北京社科网",
-      "route_key": "/keti/:id?"
-    }
-  },
-  {
-    "provider_id": "cast",
-    "provider_name": "中国科学技术协会",
-    "route_key": "/:column/:subColumn/:category?",
-    "route": {
-      "path": "/:column/:subColumn/:category?",
-      "example": "/cast/xw/tzgg/ZH",
-      "parameters": {
-        "column": "栏目编号，见下表",
-        "subColumn": "二级栏目编号",
-        "category": "分类"
-      },
-      "name": "通用",
-      "description": "::: tip\n  在路由末尾处加上 `?limit=限制获取数目` 来限制获取条目数量，默认值为`10`\n:::\n\n| 分类     | 编码 |\n| -------- | ---- |\n| 全景科协 | qjkx |\n| 智库     | zk   |\n| 学术     | xs   |\n| 科普     | kp   |\n| 党建     | dj   |\n| 数据     | sj   |\n| 新闻     | xw   |",
-      "provider_id": "cast",
-      "provider_name": "中国科学技术协会",
-      "route_key": "/:column/:subColumn/:category?"
-    }
-  },
-  {
-    "provider_id": "cffex",
-    "provider_name": "中国金融期货交易所",
-    "route_key": "/announcement",
-    "route": {
-      "path": "/announcement",
-      "name": "交易所公告",
-      "url": "www.cffex.com.cn",
-      "example": "/cffex/announcement",
-      "parameters": {},
-      "description": "",
-      "provider_id": "cffex",
-      "provider_name": "中国金融期货交易所",
-      "route_key": "/announcement"
+      "description": "::: tip\n  若订阅 [新闻资讯](https://www.beijingprice.cn/jgzx/xwzx/)，网址为 `https://www.beijingprice.cn/jgzx/xwzx/`。截取 `https://beijingprice.cn/` 到末尾 `/` 的部分 `jgzx/xwzx` 作为参数填入，此时路由为 [`/beijingprice/jgzx/xwzx`](https://rsshub.app/beijingprice/jgzx/xwzx)。\n:::\n\n#### [价格资讯](https://www.beijingprice.cn/jgzx/xwzx/)\n\n| [新闻资讯](https://www.beijingprice.cn/jgzx/xwzx/)     | [工作动态](https://www.beijingprice.cn/jgzx/gzdt/)     | [各区动态](https://www.beijingprice.cn/jgzx/gqdt/)     | [通知公告](https://www.beijingprice.cn/jgzx/tzgg/)     | [价格早报](https://www.beijingprice.cn/jgzx/jgzb/)     |\n| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n| [jgzx/xwzx](https://rsshub.app/beijingprice/jgzx/xwzx) | [jgzx/gzdt](https://rsshub.app/beijingprice/jgzx/gzdt) | [jgzx/gqdt](https://rsshub.app/beijingprice/jgzx/gqdt) | [jgzx/tzgg](https://rsshub.app/beijingprice/jgzx/tzgg) | [jgzx/jgzb](https://rsshub.app/beijingprice/jgzx/jgzb) |\n\n#### [综合信息](https://www.beijingprice.cn/zhxx/cbjs/)\n\n| [价格听证](https://www.beijingprice.cn/zhxx/jgtz/)     | [价格监测定点单位名单](https://www.beijingprice.cn/zhxx/jgjcdddwmd/) | [部门预算决算](https://www.beijingprice.cn/bmys/) |\n| ------------------------------------------------------ | -------------------------------------------------------------------- | ------------------------------------------------- |\n| [zhxx/jgtz](https://rsshub.app/beijingprice/zhxx/jgtz) | [zhxx/jgjcdddwmd](https://rsshub.app/beijingprice/zhxx/jgjcdddwmd)   | [bmys](https://rsshub.app/beijingprice/bmys)      |\n    ",
+      "provider_id": "beijingprice",
+      "provider_name": "北京价格",
+      "route_key": "/:category{.+}?"
     }
   },
   {
@@ -105,35 +53,18 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/maonan/:category",
+    "route_key": "/cn/news/:uid",
     "route": {
-      "path": "/maonan/:category",
-      "example": "/gov/maonan/zwgk",
+      "path": "/cn/news/:uid",
+      "example": "/gov/cn/news/bm",
       "parameters": {
-        "category": "分类名"
+        "uid": "分类名"
       },
-      "name": "茂名市茂南区人民政府",
-      "description": "| 政务公开 | 政务新闻 | 茂南动态 | 重大会议 | 公告公示 | 招录信息 | 政策解读 |\n| :------: | :------: | :------: | :------: | :------: | :------: | :------: |\n|   zwgk   |   zwxw   |   mndt   |   zdhy   |   tzgg   |   zlxx   |   zcjd   |",
+      "name": "政府新闻",
+      "description": "| 政务部门 | 滚动新闻 | 新闻要闻 | 国务院新闻 | 国务院工作会议 | 政策文件 |\n| :------: | :------: | :------: | :--------: | :------------: | :------: |\n|    bm    |    gd    |    yw    |     gwy    |     gwyzzjg    |  zhengce |",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/maonan/:category"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/mee/ywdt/:category?",
-    "route": {
-      "path": "/mee/ywdt/:category?",
-      "example": "/gov/mee/ywdt/hjywnews",
-      "parameters": {
-        "category": "分类名，预设 `szyw`"
-      },
-      "name": "要闻动态",
-      "description": "| 时政要闻 | 环境要闻 | 地方快讯 | 新闻发布 | 视频新闻 | 公示公告 |\n| :------: | :------: | :------: | :------: | :------: | :------: |\n|   szyw   | hjywnews |  dfnews  |   xwfb   |   spxw   |   gsgg   |",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/mee/ywdt/:category?"
+      "route_key": "/cn/news/:uid"
     }
   },
   {
@@ -153,38 +84,6 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/moa/szcpxx",
-    "route": {
-      "path": "/moa/szcpxx",
-      "name": "中华人民共和国农业农村部生猪专题重要政策",
-      "url": "www.moa.gov.cn",
-      "example": "/gov/moa/szcpxx",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/moa/szcpxx"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/moa/zdscxx/:category{.+}?",
-    "route": {
-      "path": "/moa/zdscxx/:category{.+}?",
-      "name": "中华人民共和国农业农村部数据",
-      "url": "www.moa.gov.cn",
-      "example": "/gov/moa/zdscxx",
-      "parameters": {
-        "category": "分类，默认为全部，见下表"
-      },
-      "description": "::: tip\n  若订阅 [中华人民共和国农业农村部数据](http://zdscxx.moa.gov.cn:8080/nyb/pc/messageList.jsp) 的 `价格指数` 报告主题。此时路由为 [`/gov/moa/zdscxx/价格指数`](https://rsshub.app/gov/moa/zdscxx/价格指数)。\n  \n  若订阅 `央视网` 报告来源 的 `蔬菜生产` 报告主题。此时路由为 [`/gov/moa/zdscxx/央视网/蔬菜生产`](https://rsshub.app/gov/moa/zdscxx/央视网/蔬菜生产)。\n:::\n\n| 价格指数 | 供需形势 | 分析报告周报 | 分析报告日报 | 日历信息 | 蔬菜生产 |\n| -------- | -------- | ------------ | ------------ | -------- | -------- |\n    ",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/moa/zdscxx/:category{.+}?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
     "route_key": "/mof/bond/:category?",
     "route": {
       "path": "/mof/bond/:category?",
@@ -197,71 +96,6 @@
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
       "route_key": "/mof/bond/:category?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/moj/lfyjzj",
-    "route": {
-      "path": "/moj/lfyjzj",
-      "example": "/gov/moj/lfyjzj",
-      "parameters": {},
-      "name": "立法意见征集",
-      "url": "www.moj.gov.cn/lfyjzj/lflfyjzj/*",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/moj/lfyjzj"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/ndrc/xwdt/:category{.+}?",
-    "route": {
-      "path": "/ndrc/xwdt/:category{.+}?",
-      "name": "新闻动态",
-      "example": "/gov/ndrc/xwdt",
-      "parameters": {
-        "category": "分类，见下表，默认为新闻发布"
-      },
-      "description": "| 新闻发布 | 通知通告 | 委领导动态 | 司局动态 | 地方动态 |\n| -------- | -------- | ---------- | -------- | -------- |\n| xwfb     | tzgg     | wlddt      | sjdt     | dfdt     |",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/ndrc/xwdt/:category{.+}?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/nrta/dsj/:category?",
-    "route": {
-      "path": "/nrta/dsj/:category?",
-      "example": "/gov/nrta/dsj",
-      "parameters": {
-        "category": "分类，见下表，默认为备案公示"
-      },
-      "name": "电视剧政务平台",
-      "description": "| 备案公示 | 发行许可通告 | 重大题材立项     | 重大题材摄制    | 变更通报 |\n| -------- | ------------ | ---------------- | --------------- | -------- |\n| note     | announce     | importantLixiang | importantShezhi | changing |",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/nrta/dsj/:category?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/safe/business/:site?",
-    "route": {
-      "path": "/safe/business/:site?",
-      "example": "/gov/safe/business/beijing",
-      "parameters": {
-        "site": "站点，见上表，默认为 beijing"
-      },
-      "name": "业务咨询",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/safe/business/:site?"
     }
   },
   {
@@ -286,125 +120,34 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/xuzhou/hrss/:category?",
+    "route_key": "/wuhan/sy/whyw",
     "route": {
-      "path": "/xuzhou/hrss/:category?",
-      "example": "/gov/xuzhou/hrss",
-      "parameters": {
-        "category": "分类，见下表，默认为通知公告"
-      },
-      "name": "徐州市人力资源和社会保障局",
-      "description": "| 通知公告 | 要闻动态 | 县区动态 | 事业招聘 | 企业招聘 | 政声传递 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n|          | 001001   | 001002   | 001004   | 001005   | 001006   |",
+      "path": "/wuhan/sy/whyw",
+      "example": "/gov/wuhan/sy/whyw",
+      "parameters": {},
+      "name": "武汉要闻",
+      "url": "wuhan.gov.cn/sy/whyw/",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/xuzhou/hrss/:category?"
+      "route_key": "/wuhan/sy/whyw"
     }
   },
   {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/zj/ningbogzw-notice/:colId?",
+    "provider_id": "qiche365",
+    "provider_name": "汽车召回网",
+    "route_key": "/recall/:channel",
     "route": {
-      "path": "/zj/ningbogzw-notice/:colId?",
-      "example": "/gov/zj/ningbogzw-notice/1229116730",
+      "path": "/recall/:channel",
+      "name": "汽车召回",
+      "example": "/qiche365/recall/1",
       "parameters": {
-        "colId": "公告分类id、详细信息点击源网站http://gzw.ningbo.gov.cn/请求中寻找"
+        "channel": "频道，见下表"
       },
-      "name": "宁波市国资委-公告",
-      "url": "gzw.ningbo.gov.cn",
-      "description": "\n| 公告类别         | colId |\n| ------------ | -- |\n| 首页-市属国企招聘信息-招聘公告     | 1229116730  |\n    ",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/zj/ningbogzw-notice/:colId?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/zj/ningborsjnotice/:colId?",
-    "route": {
-      "path": "/zj/ningborsjnotice/:colId?",
-      "example": "/gov/zj/ningborsjnotice/1229676740",
-      "parameters": {
-        "colId": "公告分类id、详细信息点击源网站http://rsj.ningbo.gov.cn/请求中寻找"
-      },
-      "name": "宁波市人力资源和社会保障局-公告",
-      "url": "rsj.ningbo.gov.cn",
-      "description": "\n| 公告类别         | colId |\n| ------------ | -- |\n| 事业单位进人公告     | 1229676740  |\n    ",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/zj/ningborsjnotice/:colId?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/zj/search/:websiteid?/:word/:cateid?",
-    "route": {
-      "path": "/zj/search/:websiteid?/:word/:cateid?",
-      "example": "/gov/zj/search",
-      "parameters": {
-        "websiteid": "搜索范围-全省、各市各区、详细信息点击源网站https://www.zj.gov.cn/请求中寻找",
-        "word": "搜索关键词-默认：人才",
-        "cateid": "信息分类-默认：658（全部）",
-        "sortType": "排序类型-默认：2（按时间）"
-      },
-      "name": "浙江省人民政府-全省政府网站统一搜索",
-      "url": "search.zj.gov.cn/jsearchfront/search.do",
-      "description": "\n| 行政区域         | websiteid |\n| ------------ | -- |\n| 宁波市本级     | 330201000000000  |\n\n| 搜索关键词         | word    |\n\n| 信息分类         | cateid    |\n\n| 排序类型         | sortType    |\n| ------------ | -- |\n| 按相关度     | 1  |\n| 按时间     | 2  |\n    ",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/zj/search/:websiteid?/:word/:cateid?"
-    }
-  },
-  {
-    "provider_id": "parliament",
-    "provider_name": "Thailand Parliament",
-    "route_key": "/section77/:type?",
-    "route": {
-      "path": "/section77/:type?",
-      "example": "/parliament/section77",
-      "parameters": {
-        "type": "Type of hearing status, see below"
-      },
-      "name": "Thailand Parliament Draft of Law's public hearing system",
-      "description": "| Presented by MP *       | Presented by People * | Hearing Ongoing     | Hearing ended   | Hearing result reported  | Waiting for PM approval | Assigned into the session | Processed  | PM Rejected   |\n| ------------------------ | ---------------------- | ------------------- | --------------- | ------------------------ | ----------------------- | ------------------------- | ---------- | ------------- |\n| presentbymp              | presentbyperson        | openwsu             | closewsu        | reportwsu                | substatus1              | substatus2                | substatus3 | closewsubypm  |\n| เสนอโดยสมาชิกสภาผู้แทนราษฏร | เสนอโดยประชาชน         | กำลังเปิดรับฟังความคิดเห็น | ปิดรับฟังความคิดเห็น | รายงานผลการรับฟังความคิดเห็น | รอคำรับรองจากนายกรัฐมนตรี   | บรรจุเข้าระเบียบวาระ         | พิจารณาแล้ว  | นายกฯ ไม่รับรอง |\n\n  *Note:* For `presentbymp` and `presentbyperson`, it can also add:\n\n  -   `-m` for the draft which Speaker of Parliament considered as a monetary draft (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า เป็นร่างการเงิน), or\n  -   `-nm` for non-monetary one (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า ไม่เป็นร่างการเงิน).",
-      "provider_id": "parliament",
-      "provider_name": "Thailand Parliament",
-      "route_key": "/section77/:type?"
-    }
-  },
-  {
-    "provider_id": "parliament.uk",
-    "provider_name": "UK Parliament",
-    "route_key": "/commonslibrary/type/:topic?",
-    "route": {
-      "path": "/commonslibrary/type/:topic?",
-      "example": "/parliament.uk/commonslibrary/type/research-briefing",
-      "parameters": {
-        "topic": "research by topic, string, example: [research-briefing|data-dashboard]"
-      },
-      "name": "Commonlibrary",
-      "provider_id": "parliament.uk",
-      "provider_name": "UK Parliament",
-      "route_key": "/commonslibrary/type/:topic?"
-    }
-  },
-  {
-    "provider_id": "sara",
-    "provider_name": "上海业余无线电协会",
-    "route_key": "/:type",
-    "route": {
-      "path": "/:type",
-      "example": "/sara/announcement",
-      "parameters": {
-        "type": "dynamic | announcement | industry"
-      },
-      "description": "| 协会动态 | 通知公告 |行业动态 |\n| -------- | ------------ | -------- |\n| dynamic | announcement | industry |",
-      "name": "新闻资讯",
-      "provider_id": "sara",
-      "provider_name": "上海业余无线电协会",
-      "route_key": "/:type"
+      "description": "| 国内召回新闻 | 国内召回公告 | 国外召回新闻 | 国外召回公告 |\n| ------------ | ------------ | ------------ | ------------ |\n| 1            | 2            | 3            | 4            |",
+      "url": "qiche365.org.cn/index/recall/index.html",
+      "provider_id": "qiche365",
+      "provider_name": "汽车召回网",
+      "route_key": "/recall/:channel"
     }
   }
 ]

@@ -14,20 +14,6 @@
     }
   },
   {
-    "provider_id": "douyin",
-    "provider_name": "抖音直播",
-    "route_key": "/live/:rid",
-    "route": {
-      "name": "直播间开播",
-      "path": "/live/:rid",
-      "example": "/douyin/live/685317364746",
-      "parameters": {
-        "rid": "直播间 id, 可在主播直播间页 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "douyu",
     "provider_name": "斗鱼直播",
     "route_key": "/room/:id",
@@ -68,15 +54,33 @@
     }
   },
   {
-    "provider_id": "yoasobi-music",
-    "provider_name": "Yoasobi Official",
-    "route_key": "/info/:category?",
+    "provider_id": "twitch",
+    "provider_name": "Twitch",
+    "route_key": "/video/:login/:filter?",
     "route": {
-      "name": "News & Biography",
-      "path": "/info/:category?",
-      "example": "/yoasobi-music/info/news",
+      "name": "Channel Video",
+      "path": "/video/:login/:filter?",
+      "example": "/twitch/video/riotgames/highlights",
       "parameters": {
-        "category": "`news`, `biography`"
+        "login": "Twitch username",
+        "filter": {
+          "description": "Video type, Default to all",
+          "options": [
+            {
+              "value": "archive",
+              "label": "Archive"
+            },
+            {
+              "value": "highlights",
+              "label": "Highlights"
+            },
+            {
+              "value": "all",
+              "label": "All"
+            }
+          ],
+          "default": "all"
+        }
       },
       "description": ""
     }

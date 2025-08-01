@@ -1,4 +1,790 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>BLOG | Samsung Research</title><link>https://research.samsung.com/blog</link><atom:link href="http://rsshub.isrss.com/samsung/research/blog" rel="self" type="application/rss+xml"></atom:link><description>BLOG | Samsung Research - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Jul 2025 00:38:19 GMT</lastBuildDate><ttl>5</ttl><item><title>Physical-Layer Innovations Driving 6G Evolution</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1. Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>BLOG | Samsung Research</title><link>https://research.samsung.com/blog</link><atom:link href="http://rss.owo.nz/samsung/research/blog" rel="self" type="application/rss+xml"></atom:link><description>BLOG | Samsung Research - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Fri, 01 Aug 2025 00:40:05 GMT</lastBuildDate><ttl>5</ttl><item><title>Energy Saving for 6G Network: Part II, From Always-ON to Smart-ON</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;
+The transition from 5G to 6G marks a significant improvement, emphasizing sustainability, operational efficiency, and intelligence along with advancements in data rates and latency [1]. With the Radio Access Network (RAN) consuming about 73% of a cellular network&#39;s energy [2] and incessant demand for longer battery life for devices, energy efficiency has become a cornerstone of 6G design. This article analyzes energy-saving mechanisms in 5G higher-layer protocols and outlines research directions for enhancing energy efficiency in 6G systems, which are expected to adopt complex architectures and integrate AI technologies. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Building on the physical layer innovations discussed in Part 1 [3], this work expands its focus to explore protocol and system-level strategies, aiming to provide a holistic approach to energy efficiency. By bridging these layers, the article highlights the importance of comprehensive research and development in 6G energy-saving technologies to ensure both network and device performance while promoting environmental sustainability.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5thMKAX4AUGrV.png&quot; width=&quot;55%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; 5G Network’s Energy Consumption [2]&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Energy-Saving Technologies in 5G&lt;/h2&gt;
+
+&lt;p&gt;
+5G has introduced a range of advanced energy-saving technologies designed to optimize energy efficiency across both user equipment (UE) and network infrastructure (NG-RAN). These innovations represent a significant step forward in reducing energy consumption while maintaining high performance. This section delves into the key energy-saving mechanisms in 5G from a protocol and system perspective, complementing the detailed physical-layer discussions in Part 1 [3]. 
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5tyi6AYEAUGrV.png&quot; width=&quot;95%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; Overview of Energy-Saving Technologies in 5G&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Figure 2 provides an overview of UE and network (NW) energy-saving techniques in 5G, showing their evolution across various releases. Notably, these technologies have been developed independently, without joint optimization among UEs and gNBs (5G NodeBs).
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5t2laAYQAUGrV.png&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; (a) 5G UE Discontinuous Reception (DRX) and (b) Bandwidth Adaptation&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Discontinuous Reception (DRX)&lt;/h2&gt;
+
+&lt;p&gt;
+DRX has been one of the most prominent techniques for reducing UE power consumption. By controlling PDCCH (Physical Downlink Control Channel) monitoring activities, UEs can minimize their active states. This approach significantly cuts down on energy usage during idle periods, allowing devices to go into light and deep sleep states. 5G NR introduces configurations tailored for latency-sensitive services like XR (Extended Reality), by aligning DRX cycles with video frame rates to optimize performance and battery efficiency. For UEs in RRC_IDLE or INACTIVE mode, 5G introduced Extended DRX (eDRX) to cater Machine Type Communication (MTC) and Internet of Things (IoT) devices. Furthermore, DRX functionality is expanded in 5G to encompass Non-Terrestrial Network (NTN), sidelink communications, and broadcast/multicast services, broadening its applicability across diverse use cases.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Bandwidth Adaptation (BA)&lt;/h2&gt;
+
+&lt;p&gt;
+Bandwidth Adaptation allows UEs to dynamically adjust their active bandwidth parts (BWP) in accordance with the fluctuating data rate requirements, reducing unnecessary wideband monitoring. Through the reporting of bandwidth preferences via UE Assistance Information (UAI) messages, this mechanism ensures efficient resource allocation without overburdening the device.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5t7naAYcAUGrV.png&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 4.&lt;/b&gt; (a) 5G RRM Measurement Relaxation and (b) Low-Power Wake-Up Signals&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Relaxed RRM Measurements&lt;/h2&gt;
+
+&lt;p&gt;
+For low mobility or not-cell-edge UEs, Radio Resource Management (RRM) Measurement Relaxation offers a straightforward way to conserve UE power. By easing the frequent adjacent cell measurements, UEs can enter lower-power consumption states without compromising network performance. 
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Low-Power Wake-Up Signal (LP-WUS)&lt;/h2&gt;
+
+&lt;p&gt;
+In a 5G-Advanced NR network, the Low-Power Wake-Up Signal (LP-WUS) enables UEs to remain in deep sleep states. UEs wake up only when triggered by a dedicated low-power signal, eliminating the need for continuous monitoring of common signals like paging and other PDCCH signals. 
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5t_yKAYoAUGrV.png&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 5.&lt;/b&gt; (a) Cell DTX/DRX and (b) Reduced SSB/SIB1 Transmission&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Cell Discontinuous Transmission/Reception (DTX/DRX)&lt;/h2&gt;
+
+&lt;p&gt;
+On the network side, Cell DTX/DRX plays a pivotal role in reducing energy consumption. By configuring periodic DTX/DRX patterns commonly to all RRC_CONNECTED state UEs in the radio cell, gNBs can minimize downlink transmission and uplink reception activity times, particularly in low-traffic scenarios. 
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Reduced Broadcasting Signals&lt;/h2&gt;
+
+&lt;p&gt;
+5G-Advanced NR network can reduce unnecessary transmissions required for sending Synchronization Signal Blocks (SSBs) and System Information Block 1 (SIB1). SSB-less operation is introduced for a secondary cell (SCell) in a carrier aggregation (CA) scenario, while on-demand SIB1 request is being introduced for RRC_IDLE/INACTIVE state UE. Unlike early 5G NR networks, where base stations continuously transmit SSBs and SIB1, these methods improve energy efficiency by eliminating redundant broadcasts, making them available on-demand and extending base station sleep periods during low traffic loads.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Challenges in 5G Energy Saving&lt;/h2&gt;
+
+&lt;p&gt;
+Despite significant advancements, 5G networks face multiple challenges in implementing energy-efficient solutions:
+&lt;/p&gt;
+
+&lt;p&gt;
+First, the fundamental trade-off between energy efficiency and network performance. Operators must carefully balance power savings with critical QoS requirements including low latency and reliable coverage, while simultaneously managing different optimization parameters across various UEs in different operational states.
+&lt;/p&gt;
+
+&lt;p&gt;
+Second, periodic and always-on signaling requirements. Essential network operations such as synchronization signals, reference signals, and system information updates prevent both UEs and gNBs from entering deeper, more efficient sleep states, creating inherent limitations in power saving capabilities.
+&lt;/p&gt;
+
+&lt;p&gt;
+Third, the lack of harmonization between different power-saving technologies. Energy-efficient solutions for UEs and networks have been developed separately without proper coordination, resulting in limited system-level efficiency.
+&lt;/p&gt;
+
+&lt;p&gt;
+Fourth, the increasing network complexity. Modern deployments face coordination challenges in mixed macro/small cell scenarios, coexistence issues in unlicensed spectrum bands, and unique synchronization requirements when integrating NTN and diverse IoT devices - all of which complicate energy optimization efforts.
+&lt;/p&gt;
+
+&lt;p&gt;
+Finally, the gradual development of new features creates challenges in adaptation. The gradual rollout of energy-saving technologies across different 5G releases creates compatibility gaps, preventing early-generation devices from utilizing newer power-saving features.
+&lt;/p&gt;
+
+&lt;p&gt;
+These challenges collectively impact the real-world effectiveness of 5G energy-saving technologies and highlight areas requiring further research and development.
+&lt;/p&gt;
+
+&lt;p&gt;
+In contrast, 6G aims to overcome these limitations through more innovative and integrated approaches. While 5G relies on technologies like massive MIMO and sleep modes, 6G emphasizes AI/ML-based predictive technologies and energy-efficient network architectures from the beginning. These advancements reflect 6G’s broader goal of building a more sustainable and environmental friendly network compared to its predecessor, setting a new benchmark for energy efficiency in wireless communication.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Next-Gen Energy Savings: The 6G Vision&lt;/h2&gt;
+
+&lt;p&gt;
+Energy efficiency is a critical focus in 6G networks due to the environmental and economic impacts of excessive energy consumption. The &quot;always-on&quot; nature of existing networks leads to continuous energy consumption, increasing operational costs and carbon emissions. To address this, innovative technologies such as dynamic network activation/deactivation and spatial/temporal adaptations are being explored. Building on 5G advancements, 6G aims to integrate innovative architectures, energy-efficient hardware, and AI-driven optimization to balance performance and sustainability. 
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Core Principles of 6G Energy Optimization&lt;/h2&gt;
+
+&lt;p&gt;
+6G energy optimization is built upon several core principles aimed at minimizing power consumption across the entire network lifecycle, from design and deployment to operation. These principles prioritize energy efficiency, simplicity, and scalability to meet future demands while achieving environmental sustainability and maintaining a balance between network performance and coverage. The guiding philosophy of 6G energy saving is centered around the principle of &#39;Less ON, More OFF,&#39; which systematically reduces transmission and reception activities through context-aware, on-demand signaling [3].
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Maximizing the Deep Sleep Periods in 6G&lt;/h2&gt;
+
+&lt;p&gt;
+To maximize energy efficiency in the design of 6G networks, it is crucial to minimize power consumption by relieving the &quot;always-on&quot; characteristics of networks. To achieve this, 6G plans to manage energy consumption more efficiently than 5G by shortening carrier activation times and utilizing adaptive techniques across time, frequency, space, and power domains.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5uEh6AY0AUGrV.png&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 6.&lt;/b&gt; (a) 6G Dynamic Cell On/Off Utilizing Upink WUS and (b) Coordinated UE DRX and Cell DTX/DRX&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Dynamic Cell ON/OFF with Carrier Separation – Separating coverage carriers from capacity carriers and operating them independently helps reduce unnecessary power consumption and improve network energy efficiency, by dynamically turning on/off the capacity carriers when necessary. This technology maximizes the deep sleep periods of network nodes and user equipment (UE), significantly enhancing the energy efficiency of the network by reducing unnecessary active states and optimizing power consumption during idle periods. Both Network-initiated and UE-initiated/assisted strategies for dynamic cell on/off can be exploited.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Synchronizing Active and Inactive durations of UEs and 6G NBs – Building on existing cell DRX/DRX and UE DRX, allowing UEs to propose cell DTX/DRX patterns to the network could enable coordinated and simultaneous energy savings on both UEs and 6G NBs.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Low-Power Wake-up Signals by Necessity – Low-power wake-up radio (LP-WUR) and wake-up signal (WUS) technologies allow UEs and base stations to remain in deep sleep states until absolutely necessary, further reducing power consumption. Beyond 5G’s downlink LP-WUS, for 6G, this technology can be further extended and optimized to support both downlink and uplink transmission/ reception of wake-up signals. By enabling bidirectional WUS communication, 6G can enhance network responsiveness and energy efficiency simultaneously by extending the UE and base station’s deep sleep durations. Additionally, integrating LP-WUS with other advanced technologies like AI-driven traffic prediction and on-demand signaling can create a more cohesive, contextual and intelligent energy-saving ecosystem. 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Minimizing Always-On Signals&lt;/h2&gt;
+
+&lt;p&gt;
+Strategies to reduce network energy consumption by optimizing system information transmission are gaining traction as key technologies in 6G networks. In particular, extending the periodicity of SSBs increases base station sleep times while maximizing energy-saving effects. Meanwhile, on-demand signal transmission technology reduces unnecessary power consumption by transmitting signals only when needed by UEs.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5uKuKAZAAUGrV.png&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 7.&lt;/b&gt; (a) 6G Extended SSB Periodicity and (b) On-demand Broadcasting Signals&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Longer SSB Cycles for Greater Efficiency – Extending the periodicity for SSB transmission from 20 ms in 5G to 160 ms or much longer can provide significant energy savings for 6G network. This technology maximizes the deep sleep periods of network nodes and UE, significantly enhancing the energy efficiency of the network by reducing unnecessary active states and optimizing power consumption during idle periods. However, increasing the SSB periodicity may introduce synchronization signal reception delays at the UE. To address this challenge, an on-demand SSB signaling approach can be utilized as a complementary solution.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+On-Demand Signaling for Reduced Power Consumption – Beyond SSB and SIB1, 6G may move towards a more &quot;on-demand&quot; approach for other control plane signaling and resource allocations. Instead of broadcasting certain system information or control messages continuously, any signals would be transmitted when explicitly requested by a UE or when a specific event triggers their necessity. This dynamic, event-driven signaling reduces the constant energy drain associated with always-on broadcasts. For instance, paging and random access procedures could also be optimized to allow network nodes to &quot;sleep&quot; more often during periods of low activity. 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;AI-Driven Energy Optimization in 6G&lt;/h2&gt;
+
+&lt;p&gt;
+AI/ML are envisioned to become foundational pillars for energy optimization in 6G networks, enabling unprecedented levels of real-time adaptability and intelligent resource management. By leveraging predictive analytics and advanced algorithms, AI minimizes unnecessary energy consumption by optimizing network transmission activities. 
+&lt;/p&gt;
+
+&lt;p&gt;
+The pervasive adoption of AI in 6G networks is expected to yield significant energy savings across various operational domains. Key applications include predictive network management, dynamic resource allocation, and intelligent sleep mode optimization. For example, 6G RAN may utilize AI-driven SSB adaptation, RACH allocation, DTX/DRX pattern selection, and so on. These technologies go beyond classic rule-based approaches, offering a new paradigm suited to solving nonlinear and complex problems. These innovations collectively contribute to a substantial reduction in energy consumption, aligning with 6G&#39;s sustainability goals.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5uOj6AZMAUGrV.png&quot; width=&quot;75%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 1.&lt;/b&gt; Directions for AI-driven energy optimization in 6G&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Evaluating 6G’s Energy-Saving Potential&lt;/h2&gt;
+
+&lt;p&gt;
+The energy-saving potential of 6G networks is projected to be substantial, driven by a combination of architectural innovations, advanced hardware, and intelligent software. A key target is a 50% reduction in overall energy consumption compared to 5G baseline levels [3, 8]. Additionally, 6G aims for a 100-fold enhancement in energy efficiency per bit compared to 5G, meaning that 6G will be able to transmit 100 times more data for the same amount of energy [9, 10]. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Beyond per-bit efficiency, 6G aims for significant reductions in the absolute power consumption of network components. For instance, the power consumption of a RAN site, which currently averages around 2.4 – 4.8 kW for 5G, is expected to decrease by 40 – 50% to 1.2 – 2.4 kW for 6G [3, 6, 11, 12]. This reduction is largely attributed to technological advancements in Power Amplifiers (PAs) and AI-native network management, which may contribute 20 – 30% site-wide energy savings through optimized resource allocation and dynamic sleep modes [6].
+&lt;/p&gt;
+
+&lt;p&gt;
+For user equipment, connected UEs could achieve up to 35% energy savings [12, 13], while idle UEs may see reductions exceeding 80% by minimizing always-on signaling [14]. Further efficiency gains are expected from extending SSB periodicity from 20 ms to 160 ms (8x) or longer [12, 15], reducing synchronization signal overhead.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg5uSPqAZYAUGrV.png&quot; width=&quot;75%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 2.&lt;/b&gt; Potential energy saving gains for 6G&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;
+The evolution of energy efficiency from 5G NR to future 6G technology underscores the importance of integrating innovative power-saving mechanisms into network design. While 5G has laid a strong foundation with technologies like DRX, LP-WUS, and cell DTX/DRX, 6G aims to build upon these advancements with principles such as carrier separation, on-demand signaling, and AI-driven optimization. We believe that the energy saving in 6G has the potential to revolutionize energy efficiency in wireless communication systems. Continued research and standardization efforts will be critical to realizing this vision and ensuring a sustainable future for global society. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Samsung has been playing a pivotal role in wireless communication standardization and is committed to the further advancements of energy saving in 6G. 
+&lt;/p&gt;
+
+&lt;div class=&quot;referInfo&quot;&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
+[1] 6GWS-250036, Vision and Technologies for 6G Radio, Samsung
+&lt;/p&gt;
+
+&lt;p&gt;
+[2] GSMA, &quot;5G Going green, benchmarking the energy efficiency in Mobile, &quot; NGMN, 5G White Paper 1, 2021
+&lt;/p&gt;
+
+&lt;p&gt;
+[3] Samsung, &quot;Energy Saving for 6G Network: Part I, &quot; July 8, 2025, &lt;a href=&quot;https://research.samsung.com/blog/Energy-Saving-for-6G-Network-Part-I&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[4] Nokia, “Controlling energy use: the role of AI-based solutions, ” White Paper, March 2023, &lt;a href=&quot;https://pf.content.nokia.com/t007f4-ava-energy/Controlling-energy-use-the-role-of-AI-based-solutions-white-paper?lb-mode=overlay&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[5] Qualcomm, &quot;Digital-Twin assisted Network Energy Optimization during Low Traffic Hours,&quot; arXiv, 2023.
+&lt;/p&gt;
+
+&lt;p&gt;
+[6] Samsung, &quot;AI-Native &amp;amp; Sustainable Communication,&quot; Samsung 6G Vision White Paper, SAMSUNG Research, 2025, &lt;a href=&quot;https://cdn.codeground.org/nsr/downloads/researchareas/Samsung_6G_Vision_2025.pdf&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[7] Vodafone &amp;amp; Ericsson, “Vodafone UK and Ericsson trial AI solutions for improved 5G energy efficiency’, 2025, &lt;a href=&quot;https://www.ericsson.com/en/press-releases/3/2025/vodafone-uk-and-ericsson-trial-ai-solutions-for-improved-5g-energy-efficiency&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[8] Nokia, “Energy Efficient Design of Extreme Massive MIMO, “ 2023, &lt;a href=&quot;https://arxiv.org/pdf/2301.01119v2.pdf&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt; 
+&lt;/p&gt;
+
+&lt;p&gt;
+[9] Huawei, “The Next Horizon: What Lies Beneath the 6 Pillars of 6G?,” 2023. &lt;a href=&quot;https://www-file.huawei.com/-/media/corp2020/pdf/tech-insights/1/6g-white-paper-en.pdf?la=en&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[10] Hamed Ahmadi et al., &quot;Towards Sustainability in 6G and beyond: Challenges and Opportunities of Open RAN.&quot; arXiv, March 11, 2025 
+&lt;/p&gt;
+
+&lt;p&gt;
+[11] Ericsson, &quot;Energy performance of 6G Radio Access Networks: A once in a decade opportunity, &quot; Whitepaper, 2024, &lt;a href=&quot;https://www.ericsson.com/en/reports-and-papers/white-papers/energy-performance-of-6g-ran&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[12] Nokia, &quot;The path to 6G with unparalleled energy savings: A 3GPP standardization perspective, White paper,&quot; February 22, 2025, &lt;a href=&quot;https://www.researchgate.net/publication/387823951_The_path_to_6G_with_unparalleled_energy_savings_A_3GPP_standardization_perspective_White_paper&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[13] Ericsson, “6G - Taking radio access technologies to the next level,” Ericsson Blog, June 6, 2025. &lt;a href=&quot;https://www.ericsson.com/en/blog/2025/6/6g-rat-performance-potential&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[14] MediaTek, “6G Technology White Paper: Sustainable Mobile Communications,” MediaTek, 2024. &lt;a href=&quot;https://mediatek-marketing.files.svdcdn.com/production/documents/6G-Sustainability-for-Mobile_Whitepaper_Final.pdf?dm=1712529120&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+[15] Ailin Deng et al., “An ultra energy-saving mechanism based on beacon signals for 6G networks, ” 2025, &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S2352864825000677&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;Link&lt;/u&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+</description><link>https://research.samsung.com/blog/Energy-Saving-for-6G-Network-Part-II-From-Always-ON-to-Smart-ON</link><guid isPermaLink="false">https://research.samsung.com/blog/Energy-Saving-for-6G-Network-Part-II-From-Always-ON-to-Smart-ON</guid><pubDate>Mon, 28 Jul 2025 16:00:00 GMT</pubDate><author>Byounghoon Jung|Vinay Kumar Shrivastava|Hyunjeong Kang|Jaehyuk Jang</author><category>Communications</category><category>6G</category><category>Sustainability</category></item><item><title>6G MIMO: Toward Intelligent and Energy-Efficient Radio</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;
+Massive MIMO, as shown in Figure 1, has been a core enabler of 5G, providing dramatic gains in capacity and coverage through spatial multiplexing and beamforming [1] over the legacy antenna. However, as 5G commercial deployment becomes more widespread, its limitations also became apparent. The most prominent issue was energy consumption. Operating large-scale antenna arrays around the clock requires constant activation of multiple RF chains, leading to high energy consumption and thermal load. This is particularly problematic in dense urban deployments or edge nodes with limited energy budgets.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg0zA66ASkAUGrV.png&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Comparison between legacy antenna and Massive MIMO&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+In addition, while 5G Massive MIMO has provided significantly improved spectral efficiency compared to the previous generations, the following pain points have been identified related to its implementation and radio unit design:
+&lt;/p&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Energy Consumption: Early 5G massive MIMO deployments pose a significant energy consumption challenge due to the use of hundreds of antennas elements along with their respective power amplifiers and LNAs. This leads to high operational expenses.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Hardware Complexity &amp;amp; Cost: Large-scale antenna arrays require sophisticated hardware, including high-performance RF frontends, signal processing capabilities, and complex interconnections. This leads to high capital expenses.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Interference Management: While beamforming reduces interference, the complexity of managing a large number of beams across diverse environments still presents challenges. Dynamic environments with rapidly changing user locations and channel conditions require sophisticated algorithms to minimize interference.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+High Overhead: As the number of antennas is increased, the overhead required for transmitting and receiving reference signals, as well as for corresponding CSI reporting and control signaling, scales considerably. This imposes a significant load on both uplink and downlink channels, thereby increasing system complexity and reducing spectral efficiency.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;p&gt;
+In light of the above issues, 6G MIMO must be envisioned based on the two complementary axes: “Energy-efficient operation” at the physical layer, and “AI-assisted, multi-faceted optimization involving feedback, beam management, and scheduling” as shown in Figure 2 [2].
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg0zGxKASwAUGrV.png&quot; width=&quot;55%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; 6G MIMO Vision&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Key Drivers in 6G MIMO&lt;/h2&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Axis 1: Smarter, Energy-Aware Transceiver Operation&lt;/h2&gt;
+
+&lt;p&gt;
+In 6G MIMO, energy efficiency must be a core design principle rather than a secondary consideration. As the number of antennas is increased, the number of power amplifiers increases proportionally, thereby increasing energy consumption for both network and user. While larger antenna arrays enhance spectral efficiency and capacity, leaving all antennas always on—regardless of traffic demand—leads to inefficient energy utilization.
+&lt;/p&gt;
+
+&lt;p&gt;
+To address this, adaptive RF chain activation based on real-time traffic and channel conditions should be introduced. For instance, all the RF chains are utilized in high traffic scenarios, while a smaller subset of RF chains are activated when the traffic is low. This adaptability becomes critical in upper-mid band frequencies (&amp;gt;6 GHz) with even larger antenna arrays for mitigating more severe path loss. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Key Technical Focus:
+&lt;/p&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Adaptive RF Chain Activation: Implement control over RF chains to activate/deactivate RF chains 
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Traffic/Channel-Driven Optimization: Utilize predictive algorithms to align antenna operation with traffic patterns and/or channel conditions.
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Band-Specific Design: Tailor array configurations to compensate for path loss in higher-frequency bands.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;p&gt;
+By prioritizing energy-aware protocols, 6G MIMO can balance spectral efficiency gains with sustainable operational efficiency.
+&lt;/p&gt;
+
+&lt;p&gt;
+Furthermore, radio unit (i.e., TRP, transmission and reception point) can also be selected adaptively for the same motivation. Multi-TRP CJT (coherent joint transmission) can expand dimension of arrays which multiple arrays can transmit signals coherently. It can provide more spectral efficiency based on diversity and beamforming gain. To maximize benefit from CJT, some radio units are turned on and remaining could be turned off to increase energy-efficiency. An algorithm for selecting the radio units dynamically is required and UE-aided calibration for the selected radio units can help to implement energy-efficient joint transmission.
+&lt;/p&gt;
+
+&lt;p&gt;
+To further reduce unnecessary energy consumption, reference signal transmission (CSI-RS, DMRS) can be event-triggered or have a longer periodicity. If spatial channels are stable or user mobility is low, the system can omit certain measurements. This leads to saving not only in energy but also in air-interface resources.
+&lt;/p&gt;
+
+&lt;p&gt;
+These mechanisms—dynamic RF control, Multi-TRP adaptation, and reference signal reduction—are designed to work without the artificial intelligent (AI) technology. They form the baseline efficiency mode that ensures that all devices, including low-end or legacy UEs, can benefit from improved energy efficiency. Further improved efficiency can of course be attained with AI.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Axis 2: AI-assisted MIMO Intelligence&lt;/h2&gt;
+
+&lt;p&gt;
+Energy efficiency is essential for sustainable operation; however AI primarily targets enhanced performance and scalability in 6G systems [1]. Our envisioned 6G architecture integrates AI extensively across all massive MIMO components. 
+&lt;/p&gt;
+
+&lt;p&gt;
+A key application is AI-assisted CSI feedback. Traditional codebook-based feedback mechanisms become increasingly burdensome with increased antenna counts, resulting in prohibitive overhead while simultaneously limiting achievable performance. Consequently, a novel CSI framework leverages machine learning models—specifically neural networks—deployed both at the network infrastructure and within UE. These models compress high-dimensional channel information significantly more efficiently than current 5G eType II codebooks, thereby reducing uplink feedback overhead by a substantial margin. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Beyond CSI compression, AI offers potential improvements in beam prediction accuracy, user scheduling algorithms, interference mitigation techniques, antenna subset selection processes, and the development of flexible bases for adaptive channel representations. While acknowledging that AI is not a panacea, its strategic implementation provides enhanced adaptation capabilities, improved spectrum utilization, and scalable performance commensurate with increasing network complexity; these benefits are contingent upon a robust physical layer design incorporating energy-aware principles. 
+&lt;/p&gt;
+
+&lt;p&gt;
+To ensure operational resilience, 6G must support both AI-native functionality and non-AI fallback pathways. In addition, deploying ML models on UEs presents challenges such as constrained computational resources, limited memory capacity, and strict power consumption budgets. These can severely restrict model size and complexity. Therefore, AI serves as a complementary technology to well-engineered MIMO components, enabling a more favorable cost-performance trade-off and facilitating a future-proof evolutionary path for 6G massive MIMO.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Research Areas for 6G MIMO&lt;/h2&gt;
+
+&lt;p&gt;
+&lt;b&gt;Scalable Codebook for CSI Framework&lt;/b&gt;: In New Radio (NR), Channel State Information (CSI) codebooks were optimized to minimize signaling overhead and accommodate diverse deployment scenarios. However, the proliferation of distinct codebook types arose due to inherent scalability constraints in their design. For 6G, a scalable and future-proof CSI codebook framework emerges as a compelling solution, characterized by two fundamental operational modes (Figure 3). 
+&lt;/p&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+The first mode, known as the &lt;b&gt;Fixed Basis Mode&lt;/b&gt;, is specifically designed for structured antenna arrays, such as those with uniform configurations. This mode features two sub-modes: the Low-Resolution Sub-Mode (L=1), which utilizes one spatial-domain basis per layer to ensure minimal overhead while delivering moderate beamforming gains, and the High-Resolution Sub-Mode (L&amp;gt;1), which employs multiple bases per layer to achieve higher beamforming gains at the cost of increased signaling overhead. 
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+The second mode, referred to as the &lt;b&gt;Downloadable Basis Mode&lt;/b&gt;, leverages advanced Artificial Intelligence (AI) and Machine Learning (ML) training methodologies, such as one-sided or two-sided models, to enable site-specific and location-specific optimization. This mode is particularly effective in addressing challenges posed by non-uniform antenna arrays, distributed radio unit deployments, and near-field propagation effects. 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;p&gt;
+By integrating these two modes, the proposed framework ensures unprecedented adaptability and scalability across a wide range of antenna architectures. It effectively balances the trade-off between system performance and signaling overhead, paving the way for robust and efficient 6G wireless communication systems.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg0zXy6ATAAUGrV.png&quot; width=&quot;95%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; Scalable codebook and preliminary evaluation results&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+&lt;b&gt;SRS-less channel reciprocity for DL and UL&lt;/b&gt;: Recent advancements in UE implementation have heightened expectations for downlink-uplink channel reciprocity in TDD systems. However, uplink RS face significant coverage constraints due to the inherently limited transmit power of UEs. To mitigate this issue, uplink channels can be estimated using downlink RS-reported CSI, thereby conserving UE power and reserving uplink resources for other critical functionalities. For downlink CSI acquisition, Sounding Reference Signals (SRS) traditionally rely on reciprocity principles. However, they are susceptible to power imbalances across UE antennas, a phenomenon often caused by hardware imperfections, which leads to distorted channel estimates and subsequently degrades system throughput (Figure 4). 
+&lt;/p&gt;
+
+&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;div style=&quot;padding-right: 20px;&quot;&gt;· &lt;/div&gt;
+&lt;div&gt;
+Hybrid SRS + CSI:  SRS measurements, which remain unaffected by power imbalances, are used to estimate a subset of channels, while supplementary CSI-RS feedback provides the remaining CSI. This strategy enhances estimation accuracy by intelligently combining unquantized SRS measurements with quantized CSI-RS data. By doing so, it improves coverage and overall system efficiency without imposing additional overhead on the UE. 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;p&gt;
+This innovative methodology represents a significant step forward in optimizing channel estimation processes for next-generation wireless communication systems.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/410bca8eee/AZg0zb36ATMAUGrV.png&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 4.&lt;/b&gt; Reciprocity based DL CSI acquisition and UL transmission&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+&lt;b&gt;Reference signal reduction&lt;/b&gt;: To support upper mid-band frequencies in 6G, the deployment of up to 256 antenna ports is anticipated to significantly enhance Multiple Input Multiple Output (MIMO) beamforming gains and effectively mitigate path loss challenges associated with higher frequency bands. However, the substantial increase in the number of antenna ports introduces a corresponding rise in CSI-RS overhead, which poses a risk to spectral efficiency. 
+&lt;/p&gt;
+
+&lt;p&gt;
+AI-driven and non-AI-based CSI-RS reduction techniques are essential to maintain robust channel estimation performance while minimizing unnecessary signaling overhead. Furthermore, the scalability of spatial multiplexing demands Demodulation Reference Signal (DMRS) enhancements, particularly for orthogonal port allocation in Multi-User MIMO (MU-MIMO) scenarios. 
+&lt;/p&gt;
+
+&lt;p&gt;
+These enhancements aim to optimize resource utilization and improve demodulation performance, all while keeping overhead to a minimum. Collectively, these advancements represent a strategic balance between antenna scalability and spectral efficiency, ensuring that 6G systems can deliver high-performance wireless communication without compromising on resource efficiency or network capacity.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;UL MIMO Enhancement for FWA/CPE&lt;/b&gt;: Legacy TDD systems were designed to support asymmetric DL and UL throughput, primarily due to disparities in resource allocation and power distribution favoring the downlink. This asymmetry has driven the development of UL MIMO enhancements to improve spectral efficiency and address the growing demand for balanced bidirectional communication. 
+&lt;/p&gt;
+
+&lt;p&gt;
+With the recent commercialization of UEs equipped with multiple UL transmit antennas and the expanding markets for Customer Premises Equipment (CPE) and Fixed Wireless Access (FWA)—which often feature specialized hardware—there is an increasing need for advanced UL MIMO schemes to fully exploit the potential of multi-antenna technologies. To maximize precoding gains within limited resource blocks, particularly under conditions of high channel frequency selectivity, the deployment of subband-specific precoders has become critical. Looking ahead to 6G, the development of device-specific UL codebooks tailored to varying form factors (e.g., handheld devices versus CPE/FWA units) and diverse antenna structures warrants further investigation. Additionally, the standardization of precoder signaling mechanisms is essential to streamline deployment and enhance UL efficiency across heterogeneous device ecosystems. 
+&lt;/p&gt;
+
+&lt;p&gt;
+These advancements collectively aim to unlock the full potential of UL MIMO, ensuring that 6G systems can deliver superior performance, flexibility, and resource utilization in increasingly complex and dynamic wireless environments.
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;b&gt;Multi-variate TCI state for flexible beam management&lt;/b&gt;:  In 5G, the process of spatial beam indication encountered inefficiencies stemming from misalignment between antenna port definitions and Transmission Configuration Indication (TCI)-based beam signaling. While antenna ports are designed to facilitate consistent channel inference across multiple symbols, TCI states serve to specify RS and quasi-co-location (QCL) parameters for effective beam management. 
+&lt;/p&gt;
+
+&lt;p&gt;
+To resolve this disconnect, a novel concept of a spatial resource unit—modeled as a single logical port—has been proposed. This unified unit encapsulates both the conveyance of channel information and the associated beam-related parameters, such as downlink reception and uplink transmission filters. By consolidating these functionalities, this approach simplifies beam indication procedures and reinforces port-channel consistency, thereby enhancing system efficiency and reliability.
+&lt;/p&gt;
+
+&lt;p&gt;
+For scenarios involving multi-beam operations—such as those encountered in CSI-RS beam management—a multi-variate TCI state (mv-TCI) mechanism has been introduced. This innovation enables the signaling of N (&amp;gt;1) TCI states within a single indication instance, offering greater flexibility in handling complex multi-path environments and multi-Transmission Reception Point (mTRP) operations. In such scenarios, UEs may dynamically connect to multiple TRPs, necessitating more sophisticated resource allocation and beam coordination strategies. The mv-TCI approach addresses these challenges by streamlining signaling processes and optimizing multi-beam coordination, ultimately paving the way for more robust and adaptive beam management in advanced 6G networks.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;
+The evolution from 5G to 6G MIMO necessitates a paradigm shift to address critical limitations in energy efficiency, hardware complexity, and signaling overhead. By integrating energy-aware operations—such as dynamic RF control and Multi-TRP adaptation—with AI-driven optimization across beam management and CSI frameworks, 6G aims to harmonize spectral efficiency with sustainability. Key innovations like scalable codebooks (AI/ML-enhanced and fixed bases), hybrid SRS/CSI-RS channel acquisition, and device-specific UL MIMO enhancements for FWA/CPE will enable adaptable, high-efficiency networks. Further advancements in multi-variate TCI states and reference signal overhead minimization will ensure scalable, interference-resilient systems. Collectively, these strategies forge a path toward intelligent, sustainable, and future-proof wireless connectivity for diverse 6G deployment scenarios.
+&lt;/p&gt;
+
+&lt;div class=&quot;referInfo&quot;&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
+[1] Recommendation ITU-R M.2160-0, Framework and overall objectives of the future development of IMT for 2030 and beyond, Nov 2023
+&lt;/p&gt;
+&lt;p&gt;
+[2] 6GWS-250036, Vision and Technologies for 6G Radio, Samsung
+&lt;/p&gt;
+&lt;/div&gt;
+
+</description><link>https://research.samsung.com/blog/6G-MIMO-Toward-Intelligent-and-Energy-Efficient-Radio</link><guid isPermaLink="false">https://research.samsung.com/blog/6G-MIMO-Toward-Intelligent-and-Energy-Efficient-Radio</guid><pubDate>Thu, 24 Jul 2025 16:00:00 GMT</pubDate><author>Seongmok Lim|Eko Onggosanusi|Hyoungju Ji|Dalin Zhu|Youngrok Jang</author><category>Communications</category><category>6G</category><category>MIMO</category></item><item><title>Energy Saving for 6G Network: Part I</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;
+Mobile operators and infrastructure vendors face growing pressure to reduce network energy consumption due to environmental regulations, rising operational costs, and sustainability initiatives. With wireless infrastructure accounting for the majority of power consumption in mobile networks, designs of wireless infrastructure need to increasingly emphasize energy savings at both the network and the device. In Recommendation ITU-R M.2160 “IMT-2030 (6G) Framework” [1], sustainability is considered as a foundational aspiration of future International Mobile Telecommunications (IMT) systems: 
+&lt;i&gt;“6G is expected to help address the need for increased environmental, social, and economic sustainability, and also support the goals of the Paris Agreement of the United Nations Framework Convention on Climate Change. IMT-2030 implementations are expected to be designed to achieve the least possible environmental impact and to use resources efficiently by minimizing power consumption, using energy efficiently and reducing greenhouse gas emissions, …, IMT-2030 may allow for efficient deployments and operation, thereby improving both environmental sustainability and the affordability necessary to support social sustainability.”&lt;/i&gt;
+With this, the transition from 5G to 6G needs to not only introduce faster speeds and greater capacity, but also a foundational shift toward sustainable, energy-efficient mobile networks. 
+&lt;/p&gt;
+
+&lt;p&gt;6G presents a unique opportunity to design energy-efficiency into the system from day one [2]. While energy savings were a significant focus in the development of 5G networks, which was not a primary consideration from the outset. Nevertheless, numerous energy-saving features have been integrated into 5G systems to optimize power usage. Energy Saving architecture outlines a comprehensive roadmap for achieving 30% or more power reduction compared to 5G.&lt;/p&gt;
+
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Energy Saving Features in 3GPP 5G NR&lt;/h2&gt;
+
+&lt;p&gt;
+5G NR introduced several energy-saving features designed to reduce the power consumption of both user equipment (UE) and base station (BS). While these innovations provided significant improvements compared to 4G LTE, limitations exist as some features were not introduced from the beginning of 5G NR and fragmented throughout the 5G NR enhancements. 
+&lt;/p&gt;
+
+&lt;p&gt;
+To enhance UE power efficiency, 5G introduced specific low-power modes, such as the RRC_INACTIVE state, tailored to individual devices. Furthermore, Idle Mode Signaling Reduction was implemented to minimize the need for frequent signaling when UEs are inactive, reducing overall energy consumption. Building on these advancements, &lt;i&gt;Discontinuous Reception (DRX) adopted &lt;/i&gt;as one of key features, allowing UEs to power down their receivers during idle periods. 5G introduced both short and long DRX cycles to strike a balance between latency and energy efficiency. Complementing DRX, &lt;i&gt;Discontinuous Transmission (DTX)&lt;/i&gt; enables BSs to skip transmissions during periods of low or no traffic, further conserving energy. Additionally, Carrier Aggregation allows for the selective activation or deactivation of secondary carriers, optimizing energy use by ensuring resources are only utilized when necessary. Together, these mechanisms collectively contribute to significant improvements in energy efficiency across 5G networks. 
+&lt;/p&gt;
+
+&lt;p&gt;
+While these features have improved energy efficiency in 5G networks, ongoing advancements are necessary to address remaining limitations and achieve even greater sustainability in future network generations. Later releases of 5G further strengthened energy-saving capabilities.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Enabled dynamic transmission control of synchronization signals and broadcast channel (SSB), including adaptation of 
+the SSB transmission periodicity, based on cell load conditions.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Introduced On-Demand SIB1 (OD-SIB1) transmission, allowing system information to be broadcast only when necessary. 
+This eliminated the need for continuous SIB1 broadcast in idle networks.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Implemented network energy saving techniques like cell switch-off and micro-sleep for base stations, suitable for low 
+traffic scenarios.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Improved RRC_INACTIVE mobility handling to minimize state transitions and signaling.&lt;br&gt;
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Introduced channel measurement of partial antenna port to minimize active antenna ports for connected UEs.&lt;br&gt;
+&lt;/p&gt;
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Enabled PRACH resource allocation, allowing configurations of PRACH occasions to be sparse or denser depending on traffic load.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Enabled bandwidth part (BWP) operation, allowing UEs to operate within a configured bandwidth to save energy.&lt;br&gt;
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Introduced dynamic control of PDCCH monitoring, including search space set group (SSSG) switching and PDCCH skipping, to adapt the PDCCH monitoring in according to traffic.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Enhanced carrier aggregation with secondary cell (SCell) dormancy, allowing reduction of UE operation on the SCell with low traffic.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px; padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; • Introduced low-power-receiver with significantly lower processing power than the legacy 5G receiver, allowing a UE to operate with the low-power-receiver for energy saving and to wake up the legacy 5G receiver when needed.&lt;br&gt;
+&lt;/p&gt;
+
+
+&lt;p&gt;
+Despite these advancements, structural limitations such as frequent SSB bursts and persistent antenna activation remained unresolved, creating the need for a more fundamental redesign in 6G. Key limitations of 5G energy-saving mechanisms include the fact that many components of the network remained in an always-on state due to coverage and mobility requirements, or due to the need to serve legacy UEs that do not support enhancements for energy savings that were introduced in later releases. Frequent periodic SSB transmission, typically occurring every 20ms, prevents base stations from entering deep sleep modes, further hindering energy efficiency. Additionally, all antenna ports often remain active even during low traffic periods, limiting the potential for significant power reduction. Further, no meaningful mechanisms for network energy savings are supported when traffic on a cell is not low/none. These inherent constraints highlight the necessity for more aggressive and innovative energy-saving strategies in the design of 6G networks.
+&lt;/p&gt;
+
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Design Principles of 6G Energy Saving&lt;/h2&gt;
+
+&lt;p&gt;
+In contrast to incremental energy-saving add-ons in 5G, 6G reimagines the air interface, network structure, and signaling behavior from the ground up. The guiding philosophy of 6G energy saving is built on the principle of &quot;Less ON, More OFF&quot;, that is a systematic reduction of transmission and reception activities through context-aware, on-demand signaling [3].
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://gcg-stage-cdn-v2.stage.codeground.org/resources/93fdf44c4b/AZfN5Rd6AC4AUF8_.png&quot; width=&quot;75%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Design principles for 6G Energy Saving&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+In 6G, energy efficiency is not treated as a supplementary feature but as a foundational design objective. We identified three key enablers that drive network-wide energy savings through a unified and adaptive architecture (Figure 1):
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px;  /* text-indent : -50%; */  padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1. Carrier-dependent capabilities and characteristics&lt;br&gt;&lt;br&gt;
+In the 6G green network vision, carriers are divided into distinct layers: low-frequency carriers handle synchronization, paging, and control with minimal frequency, while high-frequency carriers manage bursty data with energy-efficient, quick on/off control. This differentiation optimizes spectrum use and dynamically deactivates unused resources. Most functionalities exist in 5G except for SSB period adaptation, delaying the real-world deployment of this energy-saving network access (ENA).
+6G ENA dynamically adjusts the transmission periodicity and transmission occasion of Synchronization Signal Blocks (SSBs) based on network load conditions. In low-traffic or idle scenarios, SSB transmissions can be muted or less frequent, enabling deeper sleep states for base stations. This approach significantly reduces unnecessary broadcast activity, unlike 5G&#39;s rigid always-on SSB transmission.
+One of the key enablers in this architecture is the multi-type Synchronization Signal Block (SSB), which can have three types: Normal (NM-SSB), Energy-Saving (ES-SSB), and On-Demand (OD-SSB). While NM-SSB operates as in 5G, ES-SSB allows for much longer periodicity (e.g., 160ms), substantially reducing standby energy, and OD-SSB is transmitted only when the network needed, enabling highly efficient measurements.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px;  /* text-indent : -50%; */  padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 2. Less ON and more OFF with time/frequency/spatial/power adaptation&lt;br&gt;&lt;br&gt;
+Dynamic spatial and power adaptation is central to 6G energy savings strategy for the connected UEs. By actively adjusting the number of transmit antennas and their beam directions based on current traffic demands, the system avoids over-provisioning and reduces idle energy usage.
+Especially, dynamic spatial adaptation (DSA) optimizes the spatial domain by dynamically adjusting the number of active transmit antenna ports and beam directions according to real-time traffic demand. By scaling down antenna usage, the system can avoid excessive power consumption associated with full-array MIMO operations. This technique is particularly effective for high-frequency bands where power usage scales with antenna density.
+&lt;/p&gt;
+
+&lt;p style=&quot;text-indent : -50px;  /* text-indent : -50%; */  padding-left: 50px;&quot;&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 3. Network-aware management and exposure &lt;br&gt;&lt;br&gt;
+Energy-aware network function (EANF) continuously monitors the power consumption status of the network and applies real-time policies for power-aware scheduling and resource control. It enables intelligent decisions on carrier activation, transmission scheduling, and load balancing based on energy metrics. EANF serves as the orchestration layer for integrating energy-saving intelligence across the RAN and core network.
+&lt;/p&gt;
+
+&lt;p&gt;
+Beyond these features, 6G integrates AI as a core engine for energy efficiency. Through AI-RAN, the network can infer optimal beam configurations, compress CSI feedback, and predict traffic behavior, all of which contribute to reduce signaling overhead and intelligent control. AI also replaces periodic measurements with event-driven decisions, allowing both UEs and BSs to sleep more often without compromising performance. 
+&lt;/p&gt;
+
+&lt;p&gt;
+The design of power-saving mechanisms for UE in 6G networks is also a critical area of innovation, driven by the need to enhance energy efficiency while maintaining high performance and connectivity. One of the core design principles revolves around the concept of network-UE joint power saving, which emphasizes collaboration between the network and the UE to optimize energy consumption dynamically. This approach leverages the network&#39;s ability to predict UE behavior, traffic patterns, and environmental conditions to proactively manage power-saving strategies, ensuring that UEs can operate efficiently without compromising user experience.
+&lt;/p&gt;
+
+&lt;p&gt;
+A key innovation in this domain is the introduction of advanced wake-up signal mechanisms. Traditional wake-up signals have limitations in terms of granularity, latency, and adaptability, which can hinder effective power saving. In 6G, wake-up signals must evolve to become more intelligent and context-aware, enabling precise control over UE activation and deactivation. This involves the development of ultra-low-power wake-up receivers capable of detecting signals with minimal energy overhead, as well as the integration of machine learning algorithms to predict optimal wake-up times based on user behavior and network conditions.
+&lt;/p&gt;
+
+&lt;p&gt;
+The joint optimization between the network and UE is essential for achieving significant power savings. For instance, the network can dynamically adjust wake-up intervals and signal parameters based on real-time data, such as traffic load, user activity, and battery levels. This collaborative approach ensures that UEs are only active when necessary, reducing idle power consumption. 
+&lt;/p&gt;
+
+&lt;p&gt;
+In Figure 2, the relative energy saving gain is shown versus the user perceived throughput gain relative to the network traffic load. For the evaluation, the daily traffic load shown in the most right has been used.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://gcg-stage-cdn-v2.stage.codeground.org/resources/93fdf44c4b/AZfN5UdaADEAUF8_.png&quot; width=&quot;75%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; Energy Saving Gain&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;
+The central objective of the 6G energy-saving design is to achieve significant reductions in network energy consumption without compromising service quality. This is possible through the combined application of key enabling technologies; specifically, ENA and DSA. These features are designed to reduce transmission activity in both time and spatial domains, allowing the network to operate in a more energy-conscious and adaptive manner.
+&lt;/p&gt;
+
+&lt;p&gt;
+Our internal evaluations using realistic 24-hour traffic profiles show the clear benefits of this method. By selectively cutting active SSB transmissions according to traffic load, ENA achieves a reduction of 43.37% for low traffic and a decrease of 20.3% in average energy saving gain. DSA, by dynamically reducing the number of active antenna ports based on traffic demand, achieves an additional 14.4% power reduction. With DSA, antennas can be turned off for low- to medium-traffic loads if UPT levels are maintained as in high traffic conditions. Combined, ENA and DSA provide about a 21.2% total energy saving, showcasing the complementary nature of time- and space-domain energy control. In addition to cutting energy use, these methods improve system performance in high-load scenarios. Our simulations reveal that the ENA+DSA framework boosts user-perceived throughput (UPT) by up to 8.4% through more efficient resource use and reduced signaling overhead. These findings affirm that 6G energy-saving strategy is not merely about power reduction, but about intelligent resource orchestration. By enabling adaptive control over synchronization, transmission timing, and antenna activation, 6G provides a scalable and future-proof path to sustainability, while ensuring that performance and responsiveness to traffic are not sacrificed.
+&lt;/p&gt;
+
+&lt;p&gt;
+In totality, 6G energy saving vision is not a patch on existing designs but a paradigm shift—combining hardware flexibility, spectral agility, signaling redesign, and AI-native intelligence to deliver sustainable connectivity for the next decade and beyond. Together, these three enablers—ENA, DSA, and EANF—work in synergy to realize the philosophy of “Less ON, More OFF” by enabling both the base station and UE to transition more frequently into low-power states. They collectively represent a paradigm shift in physical and system-layer energy management that defines the 6G era.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;
+The design principles of 6G energy saving focus on optimizing network resources through dynamic adaptation and intelligent control mechanisms. By leveraging techniques such as carrier separation, multi-type SSBs, dynamic spatial adaptation, and energy-aware network functions, 6G networks aim to achieve significant improvements in energy efficiency compared to previous generations. These advancements not only reduce power consumption but also enhance overall network performance and sustainability.
+&lt;/p&gt;
+
+
+&lt;div class=&quot;referInfo&quot;&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;[1] Recommendation ITU-R M.2160-0, Framework and overall objectives of the future development of IMT for 2030 and beyond, Nov 2023&lt;/p&gt;
+&lt;p&gt;[2] RP-251881, New SID: Study on 6G Radio, NTT Docomo&lt;/p&gt;
+&lt;p&gt;[3] 6GWS-250036, Vision and Technologies for 6G Radio, Samsung&lt;/p&gt;
+&lt;/div&gt;
+
+</description><link>https://research.samsung.com/blog/Energy-Saving-for-6G-Network-Part-I</link><guid isPermaLink="false">https://research.samsung.com/blog/Energy-Saving-for-6G-Network-Part-I</guid><pubDate>Mon, 07 Jul 2025 16:00:00 GMT</pubDate><author>Hyoungju Ji|Younbum Kim|Hongbo Si|Aris Papasakellariou</author><category>Communications</category><category>6G</category><category>Sustainability</category></item><item><title>Quantum Security for Future Communication Networks: Standards Perspective</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;
+Mobile communication networks are becoming more ubiquitous than ever, and evolving rapidly with increasing adoption beyond traditional services such as voice and data. With 5G, and emerging 6G standards, wireless communication networks are expected to play a critical role in various domains including AI-enabled services, robotics, industrial automation and human critical services. In this context, it is also critical to ensure that mobile networks are well-protected, and designed with a security-first approach. Present classical cryptosystems used in communication networks rely on the computational difficulty to solve mathematical problems, such as factoring large numbers (e.g., Rivest-Shamir-Adleman (RSA)) or solving discrete logarithm problem (e.g., Elliptic Curve cryptography (ECC)). It takes astronomical amounts of time for classical computers to solve the problems, making it practically impossible to crack them. With recent advancements in quantum computers, which exploits quantum mechanical phenomena such as superposition and entanglement to perform these kinds of calculations exponentially faster, they have an inherent potential to crack the existing asymmetric cryptographic algorithms such as RSA and ECC as shown in Figure 1. To mitigate the threats from the quantum computing, there are solutions like Quantum Key Distribution (QKD) and Post-Quantum Cryptography (PQC) algorithms, which make telecommunications quantum-resilient.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/93fdf44c4b/AZfJVNTqALEAUGrV.jpg&quot; width=&quot;95%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Need for Quantum security to protect future communication systems&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;QKD: Quantum Key Distribution&lt;/h2&gt;
+
+&lt;p&gt;
+QKD is a method that utilizes the principles of quantum mechanics and entangled particles to generate and distribute secret keys for encryption and decryption.  Any attempt to measure these particles will disturb their entangled state, making eavesdropping detectable. Hence, it provides a theoretical guarantee of security, making it a potential replacement for traditional encryption methods that are susceptible to attacks from quantum computers. However, this solution needs a hardware upgrade such as dedicated fiber optic cables and specialized equipment to generate, transmit, and detect quantum states, which is heavier on service provider’s pockets. Therefore, the monetization needs of network operators, vendors, and OEMs (Original Equipment Manufacturers) represent a notable barrier to the widespread adoption of QKD in telecommunication networks, paving the cryptographic migration path towards PQC, which can be run on classical machines so does not require a hardware upgrade. 
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;PQC: NIST Standardization&lt;/h2&gt;
+
+&lt;p&gt;
+PQC is a cryptosystem which relies on the difficulty of solving certain mathematical problems whose efficient solutions by quantum computers are not yet known. National Institute of Standards and Technology (NIST) [1] has been actively working on developing the PQC algorithms from 2016 and released final versions of the first three Post Quantum Crypto Standards: FIPS 203 (ML-KEM) [2], FIPS 204 (ML-DSA), and FIPS 205 (SLH-DSA), which specify algorithms derived from CRYSTALS-Dilithium, CRYSTALS-KYBER and SPHINCS+, in August 2024. ML-KEM and ML-DSA are based on complex mathematical concepts like lattice-based cryptography, where lattice grids-a repeating pattern of points in space are used to create complex and hard-to-break encryption schemes. NIST has recently announced a new non-lattice and code-based algorithm for PQC called HQC (Hamming Quasi-Cyclic) for which a finalized standard is expected in 2027. Active studies have started in standards bodies such as 3GPP and IETF to integrate the recommendations of NIST on the usage of PQC algorithms.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Study of Impact of PQC on 3GPP procedures&lt;/h2&gt;
+
+&lt;p&gt;
+In the context of post-quantum cryptography (PQC), standardization efforts are crucial to ensure seamless integration into future communication networks, particularly within the 3GPP framework. To kick off the process, 3GPP TR 33.938 [3] provides a comprehensive inventory of security protocols that leverage cryptography within 3GPP specifications. This document meticulously outlines the applications of asymmetric cryptography across existing 3GPP systems, serving as a foundational reference for understanding the current landscape and identifying areas for PQC integration. For the next step, key focus would be the evaluation of hybrid, which combines PQC with classical cryptography, and standalone PQC algorithms, assessing their impact on existing 3GPP procedures. This includes evaluating the impacts due to the significantly larger key sizes, signatures, and message lengths inherent in PQC compared to traditional cryptographic methods, which may require procedural modifications to accommodate them. Additionally, determining the appropriate security levels (Level I to Level V) is essential to align with the assurance levels already established in 3GPP standards, ensuring robust protection against both classical and quantum threats. Furthermore, the suitability of various post-quantum signature algorithm classes, such as lattice-based and hash-based schemes, needs to be thoroughly assessed to identify their compatibility with 3GPP procedures. These efforts collectively aim to establish a secure and efficient framework for next-generation communication systems, leveraging the strengths of PQC while maintaining interoperability and efficiency.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Use cases&lt;/h2&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;a)User Identity Security: SUCI Calculation&lt;/h2&gt;
+
+&lt;p&gt;
+The Fifth Generation (5G) wireless communication system has taken significant steps to address the issue of UE&#39;s permanent identity protection against IMSI catchers. This is achieved through the processes of Subscription Permanent Identifier (SUPI) encryption to Subscription Concealed Identifier (SUCI) known as SUPI concealment. A key component of this process is the Elliptic Curve Integrated Encryption Scheme (ECIES) which facilitates secure authentication of the User Equipment (UE) by the Home Network (HN). ECIES is an encryption scheme that combines asymmetric key establishment, symmetric key encryption, and hashing functions. This asymmetric key establishment based on elliptical curve cryptography, is prone to attacks from quantum machines and the identity theft can be a threat to subscriber tracking and privacy. Therefore, it needs to be replaced with Post quantum secure ML-KEM [2] method as depicted in Figure 2.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/93fdf44c4b/AZfJVUbaALQAUGrV.jpg&quot; width=&quot;75%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; SUPI concealment with EC-based shared key generation in present 5G systems&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;b)Mission Critical Services: MIKEY-SAKKE&lt;/h2&gt;
+
+&lt;p&gt;
+MIKEY-SAKKE is used in the 5G system to securely transport cryptographic keys for Mission Critical Services for various scenarios such as Private Call Keys (PCKs) between Mission Critical (MC) UEs, Group Master Keys (GMKs) from a Group Management Server to a Group Management Client on a MC UE, Client-Server keys (CSKs) between MCX Server and MC client. The security mechanism as described in 3GPP TS 33.180 [4] allows a key, K, to be distributed from an initiating party to a receiving party. It provides confidentiality of the key, and integrity and authenticity of the payload. As the classical cryptographic methods SAKKE and ECCSI used are elliptical curve cryptography based and are at quantum risk, it jeopardizes the communication for mission critical system. To make it quantum safe, it is recommended to replace SAKKE (ID based encryption scheme) with ML-KEM and ECCSI with ML-DSA or SLH-DSA as illustrated in Figure 3. To achieve backward compatibility with the legacy mission critical devices, it is suggested to use the hybrid key exchange mechanism (ML-KEM+SAKKE, ML-DSA+ECCSI). However, the key and signature sizes for PQC poses implementation challenges compared to classical cryptography, which may require optimization of mission critical services bandwidth.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/93fdf44c4b/AZfJVbaqALoAUGrV.jpg&quot; width=&quot;85%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; Common key distribution mechanism using MIKEY-SAKKE in Mission Critical Services&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;c)RAN and Core Network Security &lt;/h2&gt;
+
+&lt;p&gt;
+In current 3GPP systems, IKEv2 is primarily utilized for establishing and managing Security Associations (SAs) within IPsec, a critical component for securing Internet Protocol (IP) communications. The 3GPP IKEv2 profile, as outlined in 3GPP TS 33.210, defines Network Domain Security and IP network layer security (NDS/IP). However, these implementations are not resistant to quantum attacks. Similarly, TLS and DTLS provide essential security features such as mutual authentication, integrity protection, replay protection, and confidentiality. Their implementation adheres to the TLS profile in TS 33.210 and the certificate profile in TS 33.310. Currently, communication between Network Functions (NFs) employs mTLS, which also lacks quantum resistance. To address these vulnerabilities, the Internet Engineering Task Force (IETF) is actively developing Post-Quantum Transport Layer Security (PQ-TLS) and Post-Quantum Internet Protocol Security (PQ-IPSec) solutions. These solutions aim to leverage homogeneous and hybrid post-quantum cryptographic algorithms, ensuring secure and quantum-safe communication across the future RAN and Core networks as depicted in Figure 4.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/93fdf44c4b/AZfJVfwKAL0AUGrV.jpg&quot; width=&quot;75%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 4.&lt;/b&gt; Security crypto algorithms in RAN and Core Networks&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;d)Protection of unsecured lower layers&lt;/h2&gt;
+
+&lt;p&gt;
+To provide security for wireless telecommunication systems, 3GPP standards have introduced encryption and integrity protection to both control and user plane data between UE and RAN. So upper layers of protocol stack including, RRC and PDCP layers, are cryptographically protected and safe from adversaries. To meet the stringent latency demands, numerous control plane functionalities have been moved to the unsecured lower layers of the protocol stack i.e., MAC and PHY layers. The lack of security for RLC headers, MAC subheaders, and MAC CEs makes them vulnerable to various attacks, such as out of service and throughput degradation as shown in Figure 5. Among them, MAC CE is used to convey control information between the base station (e.g., eNodeB in LTE or gNB in 5G) and the user equipment (UE), so unprotected MAC CE possesses the major security threat.  For illustration considering the 5G system, Figure 5 shows the unprotected lower layers (below PDCP) for control plane signalling, which are potential for security threats. While designing security for lower layers of future wireless communication systems like 6G, quantum-safe communications as discussed above is one of key points to consider. One of the major challenges in PQC adoption for lower layer security is its additional overhead on latency and utilization of network resources due to encryption-decryption time and increased size of key/ciphered text respectively, and needs further exploration.
+&lt;/p&gt;
+
+&lt;div class=&quot;news-imgWrap&quot;&gt;
+&lt;img src=&quot;https://cdn.codeground.org/resources/93fdf44c4b/AZfJVj5qAMAAUGrV.jpg&quot; width=&quot;75%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 5.&lt;/b&gt; Lower layer attacks on present wireless communication systems &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Challenges, Considerations &amp;amp; Conclusion:&lt;/h2&gt;
+
+&lt;p&gt;
+The transition from classical cryptography to post-quantum security in telecommunications is not merely an enhancement—it is an essential step to protect against the upcoming threats posed by advancements in quantum computing. One of the major challenges in PQC adoption for future communication system is its additional overhead on latency and utilization of network resources due to encryption-decryption time and increased size of key/ciphered text respectively. Hybrid solutions can be an option for seamless transition to quantum safe telecommunications. In conclusion, the integration of post-quantum cryptography will be essential in ensuring the security and dependability of our telecommunications systems for which standards bodies are actively working towards the goal.
+&lt;/p&gt;
+
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Disclaimer&lt;/h2&gt;
+
+&lt;p&gt;
+The views and opinions expressed in this article are solely those of the authors. These do not necessarily represent those of Samsung Research and its affiliates.
+&lt;/p&gt;
+
+&lt;div class=&quot;referInfo&quot;&gt;
+&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
+[1] NIST Post-Quantum Cryptography | CSRC (nist.gov) 
+https://www.nist.gov/pqcrypto 
+&lt;/p&gt;
+&lt;p&gt;
+[2] FIPS 203: Module-Lattice-Based Key-Encapsulation Mechanism Standard 
+https://nvlpubs.nist.gov/nistpubs/fips/nist.fips.203.pdf
+&lt;/p&gt;
+&lt;p&gt;
+[3] 3GPP TR 33.938: 3GPP Cryptographic Inventory, Release 19 
+https://www.3gpp.org/ftp/Specs/archive/33_series/33.938/33938-j00.zip
+&lt;/p&gt;
+&lt;p&gt;
+[4] 3GPP TS 33.180: Security of the Mission Critical (MC) service 
+https://www.3gpp.org/ftp/Specs/archive/33_series/33.180/33180-j10.zip
+&lt;/p&gt;
+&lt;/div&gt;
+
+</description><link>https://research.samsung.com/blog/Quantum-Security-for-Future-Communication-Networks-Standards-Perspective</link><guid isPermaLink="false">https://research.samsung.com/blog/Quantum-Security-for-Future-Communication-Networks-Standards-Perspective</guid><pubDate>Tue, 01 Jul 2025 16:00:00 GMT</pubDate><author>Ramesh Chandra Vuppala|R Bharath Kumar|Hongjin Choi|R Rohini|Rajavelsamy R</author><category>Communications</category><category>PQC</category><category>6G</category></item><item><title>Physical-Layer Innovations Driving 6G Evolution</title><description>&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1. Introduction&lt;/h2&gt;
 
 &lt;p&gt;
 Since the advent of mobile communication systems, each successive generation has marked a significant leap in technology, driving profound changes in how people connect, communicate, and access information. Among these advancements, core physical-layer (PHY) technologies—such as channel coding, modulation, and waveform—have continuously evolved, reaching near-Shannon capacity [1] in the current fifth-generation (5G) networks. Consequently, mere incremental improvements in link-level performance no longer represent meaningful value propositions for consumers, telecom operators, or equipment vendors. 
@@ -207,6 +993,14 @@ Fig. 10 presents the block error rate (BLER) performance of a 256-ary modulation
 &lt;p&gt;
 To realize the full promise of sixth-generation (6G) wireless networks, fundamental innovations in physical-layer technologies are no longer optional—they are essential. In this work, we proposed a cohesive set of forward-looking advancements in channel coding, modulation, and waveform design, each tailored to address emerging challenges in energy efficiency, scalability, and uplink coverage. These innovations are not only technically sound but also practically impactful, paving the way for more flexible, sustainable, and cost-effective system architectures. Our vision sets the foundation for building smarter, greener, and more resilient communication infrastructures that will extend the boundaries of connectivity and create transformative value for industry and society alike. With bold yet feasible innovation, we aim to grow the pie for all stakeholders in the 6G era.
 &lt;/p&gt;
+
+&lt;div class=&quot;referInfo&quot;&gt;
+&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Link to the paper&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://ieeexplore.ieee.org/document/9691350&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;[1] https://ieeexplore.ieee.org/document/9691350&lt;/u&gt;&lt;/a&gt;&lt;br&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ieeexplore.ieee.org/document/9393971&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;[2] https://ieeexplore.ieee.org/document/9393971&lt;/u&gt;&lt;/a&gt;&lt;br&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ieeexplore.ieee.org/document/10279091&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;[3] https://ieeexplore.ieee.org/document/10279091&lt;/u&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;/div&gt;
 
 &lt;div class=&quot;referInfo&quot;&gt;
 &lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
@@ -1194,960 +1988,4 @@ Our paper “Scene Text Recognition with Efficient Model Scaling and Cloze Self-
 &lt;/p&gt;
 &lt;/div&gt;
 
-</description><link>https://research.samsung.com/blog/Accurate-Scene-Text-Recognition-with-Efficient-Model-Scaling-and-Cloze-Self-Distillation</link><guid isPermaLink="false">https://research.samsung.com/blog/Accurate-Scene-Text-Recognition-with-Efficient-Model-Scaling-and-Cloze-Self-Distillation</guid><pubDate>Mon, 16 Jun 2025 16:00:00 GMT</pubDate><author>Andrea Maracani|Savas Ozkan|Mete Ozay|Siejoon Cho|Hyowon Kim|Jeongwon Min|Jung Min Cho|Eunchung Noh</author><category>AI</category><category>CVPR</category><category>scenetextrecognition</category></item><item><title>VladVA: Discriminative Fine-tuning of LVLMs</title><description>&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;width: 96.5222%;display:table-cell;vertical-align:middle;position:relative;width:55.882%;height:21.429em;padding:0 2.857em;border:1px solid #e4e4e4;box-sizing:border-box&quot;&gt;
-&lt;font color=&quot;navy&quot;&gt;&lt;b&gt;
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-The Conference on Computer Vision and Pattern Recognition (CVPR) is one of the most prestigious annual conferences in the field of computer vision and pattern recognition. It serves as a premier platform for researchers and practitioners to present cutting-edge advancements across a broad spectrum of topics, including object recognition, image segmentation, motion estimation, 3D reconstruction, and deep learning. As a cornerstone of the computer vision community, CVPR fosters innovation and collaboration, driving the field forward with groundbreaking research.
-&lt;/p&gt;
-
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-In this blog series, we delve into the latest research contributions featured in CVPR 2025, offering insights into groundbreaking studies that are shaping the future of computer vision. Each post will explore key findings, methodologies, and implications of selected papers, providing readers with a comprehensive understanding of the innovations driving the field forward. Stay tuned as we uncover the transformative potential of these advancements in our series.
-&lt;/p&gt;
-
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-Here is a list of them.
-&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;&lt;a href=&quot;https://research.samsung.com/blog/FAM-Diffusion-Frequency-and-Attention-Modulation-for-High-Resolution-Image-Generation-with-Stable-Diffusion&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;#1. FAM Diffusion: Frequency and Attention Modulation for High-Resolution Image Generation with Stable Diffusion (AI Center - Cambridge)&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;&lt;a href=&quot;https://research.samsung.com/blog/Augmenting-Perceptual-Super-Resolution-via-Image-Quality-Predictors&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;#2. Augmenting Perceptual Super-Resolution via Image Quality Predictors (AI Center - Toronto)&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;#3. VladVA: Discriminative Fine-tuning of LVLMs (AI Center - Cambridge)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#4. Accurate Scene Text Recognition with Efficient Model Scaling and Cloze Self-Distillation (Samsung R&amp;amp;D Institute United Kingdom)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#5. Edge-SD-SR: Low Latency and Parameter Efficient On-device Super-Resolution with Stable Diffusion via Bidirectional Conditioning (AI Center - Cambridge)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 2em; color: grey;&quot;&gt;#6. DreamCache: Finetuning-Free Lightweight Personalized Image Generation via Feature Caching (Samsung R&amp;amp;D Institute United Kingdom)&lt;/p&gt;
-&lt;/b&gt;&lt;/font&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;
-Large-scale contrastive image-text pre-training has become the foundation for training Vision-Language Models (VLMs), with models such as CLIP [1] serving as the gold standard for discriminative vision-language tasks like image-text retrieval. These models demonstrate remarkable zero-shot capabilities across various classification benchmarks. However, they suffer from a critical limitation: contrastively-trained models have limited language understanding capabilities and exhibit a bag of words behavior. This bag of words behavior means that models treat text as an unordered collection of words, failing to understand word order, spatial relationships, and compositional meaning. For example, a model might consider &quot;a red car next to a blue house&quot; and &quot;a blue car next to a red house&quot; as nearly identical, ignoring the crucial positional and color-object relationships. This problem persists even when scaling up model and dataset sizes, revealing fundamental compositional understanding deficits.
-&lt;/p&gt;
-
-&lt;p&gt;
-On the other hand, Large Vision-Language Models (LVLMs) that combine vision encoders with powerful large language models (LLMs) have emerged as capable multimodal assistants. These models excel at detailed vision-language reasoning and provide fine-grained responses, demonstrating strong understanding of spatial relationships and compositional concepts. However, their autoregressive training makes them unsuitable for direct use in discriminative tasks like image-text retrieval. This creates a fundamental trade-off: discriminative models like CLIP are efficient for retrieval but lack compositional understanding, while LVLMs have strong vision-language understanding and reasoning capabilities but aren&#39;t designed for discriminative tasks.
-&lt;/p&gt;
-
-&lt;p&gt;
-In our paper published at the &lt;a href=&quot;https://cvpr.thecvf.com/&quot;&gt;Conference on Computer Vision and Pattern Recognition (CVPR)&lt;/a&gt;, we propose VladVA, a method that solves this by developing a novel training framework that adapts generative LVLMs into discriminative models, combining the efficiency of two-tower architectures with the compositional understanding of large language models
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Zero-Shot Discriminative LVLMs&lt;/h2&gt;
-
-&lt;p&gt;
-Before diving into our training approach, it&#39;s crucial to understand if and how a LVLM can function as a discriminative model. Previous works [2] showed that through careful prompting, LVLMs can indeed act as zero-shot discriminative models despite being trained only with autoregressive next-token prediction.
-&lt;/p&gt;
-
-&lt;p&gt;
-For a model to function as a discriminative model, we need to extract summary tokens, which are the representations that compress image or text information into a single embedding vector that can then be used downstream. For images, this involves passing the image through the entire LVLM with a prompt like &quot;summarize the provided image in one word&quot; and taking the output representation of the last token. Similarly, for text, we pass the text through the LLM component with prompts like &quot;summarize the provided text in one word&quot; and extract the final token representation.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdXkFk6AOIAUGon.png&quot; width=&quot;90%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Analysis of the image-text embeddings.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-To understand what makes effective prompts for this zero-shot adaptation, we first start with a simple analysis. Using 1000 image-caption pairs from Flickr30k and testing 50 different prompt pairs with LLaVA-1.5-7B, and as shown in Figure 1 above, we observed that prompts containing keywords like &quot;in a few words&quot; or &quot;in one word&quot; push the model to condense information into the next token, resulting in 1) &lt;b&gt;high entropy output distributions&lt;/b&gt; and 2) &lt;b&gt;high-ranks embedding&lt;/b&gt;, indicating the model produces image/text representation that encode rich and diverse information about the inputs, which is necessary for discriminative tasks.
-&lt;/p&gt;
-
-&lt;p&gt;
-Based on the above analysis that indicates that LVLMs can indeed function as discriminative models with careful prompting. Next, we present our training approach for adapting LVLMs to discriminative tasks with the appropriate training setup and objective, so that we can both maintain their strong compositional abilities while unlocking their discriminative capabilities.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Our Solution: VladVA&lt;/h2&gt;
-
-&lt;p&gt;
-VladVA (&lt;b&gt;V&lt;/b&gt;ision-&lt;b&gt;L&lt;/b&gt;anguage &lt;b&gt;A&lt;/b&gt;daptation for &lt;b&gt;D&lt;/b&gt;iscriminative &lt;b&gt;V&lt;/b&gt;isual &lt;b&gt;A&lt;/b&gt;ssistant) converts generative LVLMs into powerful discriminative models through a carefully designed optimization framework. The VladVA training framework addresses a fundamental challenge in adapting LVLMs for discriminative tasks: how to effectively adapt LVLMs for discriminative tasks without losing their original strong vision-language understanding and compositional abilities. With VladVA, we achieve this by training on diverse set of captions across different lengths and granularity to both adapt the model to discriminative tasks and preserve its compositional understanding and avoid training collapse.
-&lt;/p&gt;
-
-&lt;p&gt;
-Specifically, the core innovation of VladVA lies in recognizing that different caption types require different training strategies:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Short captions&lt;/b&gt; (&amp;lt;30 tokens) capture coarse details and work well with contrastive learning, and will be used for discriminative training,
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Long captions&lt;/b&gt; (30-500 tokens) capture fine-grained details but cause contrastive training to collapse, and will be used for autoregressive/generative training.
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdXkPKqAOUAUGon.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; &lt;b&gt;VladVA framework&lt;/b&gt;: a LVLM is adapted into a discriminative model with the help of (1) a contrastive training loss, and (2) an autoregressive loss. The first loss one is applied on image-text pairs with short(er) captions, encouraging the last token produced by both modalities to be discriminative. The second loss one, jointly optimized with the first one, is applied only on longer captions and allows the model to learn fine-grained details.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-As such, we design our VladVA hybrid training framework consisting of the following key contributions:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;1.&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Hybrid training pipeline&lt;/b&gt;: we combine contrastive loss for short captions with next-token prediction loss for long captions, allowing us to adapt the model for discriminative tasks while preserving its compositional abilities.
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;2.&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Parameter-efficient adaptation&lt;/b&gt;: we use soft prompting combined with LoRA adapters to make training computationally feasible while maintaining performance.
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;3.&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Significant performance gains&lt;/b&gt;: we achieve +4.7-7.0% absolute improvements over state-of-the-art CLIP-like models on standard retrieval benchmarks, plus notable gains (up to +15%) on compositionality tasks.
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Method Details&lt;/h2&gt;
-
-&lt;p&gt;
-VladVA addresses a key challenge: how to adapt LVLMs for discriminative tasks while keeping their original vision-language understanding and compositional abilities. We achieve this by training on both short and long captions using different strategies for each type.
-&lt;/p&gt;
-
-&lt;p&gt;
-Our approach uses short captions with contrastive learning to teach the model discrimination, while long captions are used for autoregressive training to preserve the model&#39;s generative capabilities. This hybrid strategy is necessary because we found that contrastive loss works well for short captions but causes training collapse when applied to longer descriptions. The high specificity of long captions makes the contrastive task too easy, causing the loss to drop to zero within a few hundred iterations. By matching each caption type with its appropriate training objective, VladVA successfully adapts LVLMs for discrimination without losing their compositional understanding.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Training data&lt;/h2&gt;
-
-&lt;p&gt;
-As previously mentioned, to both adapt the model for discriminative tasks and preserve its compositional abilities, our training data is composed of two types of captions:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Short captions&lt;/b&gt; (&amp;lt;30 tokens): they capture coarse details and summarize image content, teaching the model to discriminate with regard to high-level image information. These mirror the type of captions typically used in CLIP pre-training and are essential for learning broad visual-semantic associations, 
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Long captions&lt;/b&gt; (30-500 tokens): they capture finer image details and promote a better understanding of language concepts such as spatial relationships and compositionality. These detailed descriptions, similar to those used in LLaVA-style training, help the model develop nuanced understanding of visual scenes and their linguistic descriptions.
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;p&gt;
-Thus, our training will consist of LLaVA [3,8]  training data that provides long captions, plus CC3M data that provides short captions. For the portion of our training data that lacks long captions, we use BLIP2 to generate short captions for images that lack them. As for the portion of our training data that lacks short captions, we use ShareGPT-4V to generate detailed them.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Training loss&lt;/h2&gt;
-
-&lt;p&gt;
-After data pre-processing and annotations (i.e., generation of either a short caption or a long caption if one is missing), each input image from the training data is associated with two corresponding captions: one short caption and one long caption. As such, for each training iteration and a given batch of image-text pairs, the model is trained on a combination of two loss functions:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Contrastive loss over the short captions&lt;/b&gt;: We compute the well-established symmetric image-text contrastive loss to short captions of CLIP [1] over the image-short caption pairs in the batch. This encourages the model to learn that semantically similar image-text pairs should have similar representations while pushing dissimilar pairs apart in the embedding space.
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Autoregressive cross-entropy loss over the long captions&lt;/b&gt;: For long captions, we employ next-token prediction loss, which offers multiple critical advantages. First, predicting each token correctly remains challenging, unlike the trivial contrastive task on long captions. Second, this formulation encourages the condensation of information into the starting token used as a feature embedding, as the model must compress all relevant information to successfully predict subsequent tokens. Third, guarantees the preservation of the pre-trained LVLM original generative and compositional abilities.
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Model adaptation&lt;/h2&gt;
-
-&lt;p&gt;
-Given the computational expense of full model fine-tuning, particularly when maintaining reasonably large batch sizes for effective contrastive learning, we adopt a parameter-efficient training strategy that combines two complementary techniques:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Soft Prompting&lt;/b&gt;: Rather than relying on handcrafted prompts, we define learnable vectors that replace the tokens belonging to hard prompts. These modality-specific learnable vectors are initialized with embeddings from the original handcrafted prompts (i.e. &quot;summarize the provided image/text in one word&quot;) but can adapt during training. Our analysis reveals that these learned prompts remain semantically similar to their handcrafted origins while developing specializations that mark tokens for discriminative tasks.
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;LoRA Adapters&lt;/b&gt;: We attach Low-Rank Adaptation (LoRA) adapters to linear layers within the language model component. These adapters provide significant advantages: reduced memory requirements, lower overfitting risk, and no additional computational overhead during inference.
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;p&gt;
-While soft prompting alone shows surprising effectiveness, the combination with LoRA adapters provides optimal performance by offering greater representational capacity.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Implementation Details&lt;/h2&gt;
-
-&lt;p&gt;
-&lt;b&gt;Training template&lt;/b&gt;: Our training implementation uses carefully designed multi-turn conversation templates that integrates both captions and to be able to compute both loss functions with a single forward pass. Specifically, the templates presented to the LVLM take the following form:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;&lt;/div&gt;
-&lt;div style=&quot;color: #908f8f;&quot;&gt;
-USER: [Image Prompt] &amp;lt;image&amp;gt; &lt;br&gt;
-ASSISTANT: &amp;lt;out_token&amp;gt; &lt;br&gt;
-USER: Describe the image in detail. &lt;br&gt;
-ASSISTANT: &amp;lt;long_caption&amp;gt; &lt;br&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;p&gt;
-The contrastive loss is applied on the output representations &amp;lt;out_token&amp;gt; for both image and text modalities. Concomitantly, the next-token prediction loss is applied on the tokens of the &amp;lt;long_caption&amp;gt;. This template design allows the contrastive loss to operate on the summary token &amp;lt;out_token&amp;gt; representations while the autoregressive loss applies to the detailed caption tokens. 
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Training hyperparameters&lt;/b&gt;: We use LLaVA-1.5 (7B) [3] as our base model. For LoRA adapters, we set the rank and alpha to 16. The number of soft prompts is aligned to the length of the tokenized hand-crafted prompt. We train the models for 7 epochs using a batch size of 1024, a learning rate of 1e-4, no weight decay, and AdamW optimizer with default values for β₁ and β₂. The learning rate is decayed according to a cosine scheduler. Depending on the data configuration, we use up to 32 A100 GPUs.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Experimental Results and Comparisons&lt;/h2&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Zero-Shot Image-Text Retrieval&lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdXkmfKAOkAUGon.png&quot; width=&quot;80%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-We evaluate on standard benchmarks: Flickr30k [4] (1,000 test samples), MS-COCO [5] (5,000 test samples), and nocaps [6] (15,100 test samples). Figure above shows recall at 1 (R@1) results, which demonstrate that VladVA provides significant improvements across all datasets:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Flickr30k R@1 Image Retrieval&lt;/b&gt;: 85.0% vs. 83.3% (EVA-CLIP 18B)
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;MS-COCO R@1 Image Retrieval&lt;/b&gt;: 59.0% vs. 55.6% (EVA-CLIP 18B)  
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;nocaps R@1 Image Retrieval&lt;/b&gt;: 72.3% vs. 69.3% (EVA-CLIP 18B)
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Compositionality Understanding&lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdXkvA6AOwAUGon.png&quot; width=&quot;80%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-We evaluate on challenging compositionality SugarCrepe benchmark. This dataset specifically measures the understanding of spatial relationships, object-attribute bindings, and word order, which are areas where traditional contrastive models struggle. The results shown in the figure above shows that our method excels in these tasks by leveraging the compositional understanding of large language models, specifically: 
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Object Swap&lt;/b&gt;: 79.0% vs. 65.3% (EVA-CLIP 18B)
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Relation Replacement&lt;/b&gt;: 86.8% vs. 76.1% (EVA-CLIP 18B)
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Attribute Adding&lt;/b&gt;: 95.8% vs. 85.0% (EVA-CLIP 18B)
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;Qualitative Analyses&lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdXk09KAO8AUGon.png&quot; width=&quot;80%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-&lt;b&gt;Attention patterns evolution&lt;/b&gt;: As show figure above, post-training attention maps between summary tokens and vision tokens become significantly denser compared to the original LVLM. This densification reflects the model&#39;s adaptation to discriminative tasks. While generative models can selectively attend to relevant image regions at each generation step, discriminative models must compress all relevant visual information into the summary token, necessitating attention to all potentially relevant image regions.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Representation quality enhancement&lt;/b&gt;: As shown in Figure 1, our training produces models with output distributions exhibiting higher entropy and embeddings with more spread-out cumulative variance. This translates to richer, better-aligned representations that capture fine-grained details while maintaining the diversity necessary for effective discrimination.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;
-VladVA represents a paradigm shift in vision-language model training, successfully converting generative LVLMs into powerful discriminative models. By recognizing that different caption types require different training strategies, we developed a hybrid approach that leverages both contrastive and autoregressive objectives. Combined with parameter-efficient adaptation techniques, this approach achieves substantial improvements over state-of-the-art models while using significantly fewer parameters. Importantly, our results demonstrate that it&#39;s possible to have the best of both worlds: the efficiency and discriminative power of two-tower architectures combined with the compositional understanding and reasoning capabilities of large language models. This opens new directions for building more capable and efficient vision-language models that excel at both discriminative tasks and complex reasoning.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Link to the paper&lt;/h2&gt;
-
-&lt;p&gt;
-&lt;a href=&quot;https://arxiv.org/abs/2412.04378&quot; target=&quot;_blank&quot;&gt;VladVA: Discriminative Fine-tuning of LVLMs.&lt;/a&gt;
-Yassine Ouali, Adrian Bulat, Alexandros Xenos, Anestis Zaganidis, Ioannis Maniadis Metaxas, Brais Martinez, Georgios Tzimiropoulos.
-&lt;a href=&quot;https://cvpr.thecvf.com/&quot; target=&quot;_blank&quot;&gt;Conference on Computer Vision and Pattern Recognition (CVPR), 2025.&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;div class=&quot;referInfo&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;
-[1] Radford, A. et al. (2021). Learning transferable visual models from natural language supervision. International conference on machine learning.
-&lt;/p&gt;
-&lt;p&gt;
-[2] Jiang, T. et al. (2024). E5-v: Universal embeddings with multimodal large language models. arXiv preprint arXiv:2407.12580.
-&lt;/p&gt;
-&lt;p&gt;
-[3] Liu, H. et al. (2024). Improved baselines with visual instruction tuning. Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
-&lt;/p&gt;
-&lt;p&gt;
-[4] Young, P. et al. (2014). From image descriptions to visual denotations: New similarity metrics for semantic inference over event descriptions. Transactions of the Association for Computational Linguistics.
-&lt;/p&gt;
-&lt;p&gt;
-[5] Lin, T. Y. et al. (2014). Microsoft coco: Common objects in context. Computer Vision--ECCV 2014.
-&lt;/p&gt;
-&lt;p&gt;
-[6] Agrawal, H. et al. (2019). Nocaps: Novel object captioning at scale. Proceedings of the IEEE/CVF international conference on computer vision.
-&lt;/p&gt;
-&lt;p&gt;
-[7] Hsieh, C. Y. et al. (2024). Sugarcrepe: Fixing hackable benchmarks for vision-language compositionality. Advances in neural information processing systems.
-&lt;/p&gt;
-&lt;p&gt;
-[8] Sun, Q. et al. (2023) Visual Instruction Tuning. Advances in neural information processing systems.
-&lt;/p&gt;
-&lt;p&gt;
-[9] Sun, Q. et al. (2024). Eva-clip-18b: Scaling clip to 18 billion parameters. arXiv preprint arXiv:2402.04252.
-&lt;/p&gt;
-&lt;/div&gt;
-
-
-</description><link>https://research.samsung.com/blog/VladVA-Discriminative-Fine-tuning-of-LVLMs</link><guid isPermaLink="false">https://research.samsung.com/blog/VladVA-Discriminative-Fine-tuning-of-LVLMs</guid><pubDate>Sun, 15 Jun 2025 16:00:00 GMT</pubDate><author>Yassine Ouali|Adrian Bulat|Anestis Zaganidis|Ioannis Maniadis Metaxas|Brais Martinez|Georgios Tzimiropoulos</author><category>AI</category><category>CVPR</category><category>GenerativeAI</category></item><item><title>Augmenting Perceptual Super-Resolution via Image Quality Predictors</title><description>&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;width: 96.5222%;display:table-cell;vertical-align:middle;position:relative;width:55.882%;height:21.429em;padding:0 2.857em;border:1px solid #e4e4e4;box-sizing:border-box&quot;&gt;
-&lt;font color=&quot;navy&quot;&gt;&lt;b&gt;
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-The Conference on Computer Vision and Pattern Recognition (CVPR) is one of the most prestigious annual conferences in the field of computer vision and pattern recognition. It serves as a premier platform for researchers and practitioners to present cutting-edge advancements across a broad spectrum of topics, including object recognition, image segmentation, motion estimation, 3D reconstruction, and deep learning. As a cornerstone of the computer vision community, CVPR fosters innovation and collaboration, driving the field forward with groundbreaking research.
-&lt;/p&gt;
-
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-In this blog series, we delve into the latest research contributions featured in CVPR 2025, offering insights into groundbreaking studies that are shaping the future of computer vision. Each post will explore key findings, methodologies, and implications of selected papers, providing readers with a comprehensive understanding of the innovations driving the field forward. Stay tuned as we uncover the transformative potential of these advancements in our series.
-&lt;/p&gt;
-
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-Here is a list of them.
-&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;&lt;a href=&quot;https://research.samsung.com/blog/FAM-Diffusion-Frequency-and-Attention-Modulation-for-High-Resolution-Image-Generation-with-Stable-Diffusion&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;#1. FAM Diffusion: Frequency and Attention Modulation for High-Resolution Image Generation with Stable Diffusion (AI Center - Cambridge)&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;#2. Augmenting Perceptual Super-Resolution via Image Quality Predictors (AI Center - Toronto)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#3. VladVA: Discriminative Fine-tuning of LVLMs (AI Center - Cambridge)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#4. Accurate Scene Text Recognition with Efficient Model Scaling and Cloze Self-Distillation (Samsung R&amp;amp;D Institute United Kingdom)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#5. Edge-SD-SR: Low Latency and Parameter Efficient On-device Super-Resolution with Stable Diffusion via Bidirectional Conditioning (AI Center - Cambridge)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 2em; color: grey;&quot;&gt;#6. DreamCache: Finetuning-Free Lightweight Personalized Image Generation via Feature Caching (Samsung R&amp;amp;D Institute United Kingdom)&lt;/p&gt;
-&lt;/b&gt;&lt;/font&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1. Introduction&lt;/h2&gt;
-
-&lt;p&gt;
-We are excited to share our research in improving perceptual quality of super-resolved images. Digital Super-Resolution (SR) is an important task arising in a variety of applications, such as smartphone camera zoom and TV display. In simple terms, the goal of SR is a meaningful increase in the resolution (number of pixels) of an image, by adding details that appear natural and improve visual quality. Since SR images are usually produced to improve the user experience, we believe incorporating human preferences in SR is crucial. In this blog post, we discuss various strategies to achieve this stated goal, using automated models of human image quality judgments, instead of direct feedback from humans. We find this approach is not only more scalable for training SR models, but it also enables novel algorithmic techniques that improve SR outputs.
-&lt;/p&gt;
-
-&lt;p&gt;
-SR, a classical inverse problem in computer vision, is inherently ill-posed, inducing a distribution of plausible solutions for every input [1]. Imagine increasing the resolution of a photograph of a faraway grassy hill – many possible patterns of grass could have induced the resulting blurry green image. Thus, the fundamental challenge of SR is to find a perceptually plausible sample from a distribution of high-resolution (HR) images that could have given rise to the associated low resolution (LR) image. Early models (e.g. [2, 3]), trained with pixel-wise losses, produce ‘average’ and thus blurry HR images with a high peak signal-to-noise ratio (PSNR). However, humans prefer HR images with high perceptual fidelity. A variety of techniques, from perceptual metrics [4] to adversarial losses [5], are employed to this end. The challenge of such methods, however, is to produce perceptually plausible outputs without introducing high-frequency artifacts or straying too far from the true signal [6], a balance studied theoretically under the ‘perception–distortion tradeoff’ [7].
-&lt;/p&gt;
-
-&lt;p&gt;
-With the motivation of incorporating human feedback in the SR process, in this work, we explore the use of No-Reference Image Quality Assessment (NR-IQA) metrics, which are powerful models designed to emulate human preferences for image quality. Recently, Ding et al. [8] attempt to use various full-reference (FR) IQA metrics for SR model finetuning, and HGGT [9] proposes to use human guidance in the GT selection process. Unlike these works, we attempt to assess the ability of NR-IQA metrics to provide automatic and precise guidance in agreement with humans.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;1.1 Our Approach&lt;/h2&gt;
-
-&lt;p&gt;
-We begin with a comprehensive analysis of NR-IQA metrics on human-derived SR data, identifying human alignment of different metrics. Then, we explore two methods of applying NR-IQA models to SR learning (see Figure 1): (i) altering data sampling, by building on an existing multi-ground-truth SR framework, and (ii) directly optimizing a differentiable quality score. Our results demonstrate a more human-centric perception-distortion tradeoff, focusing less on non-perceptual pixelwise distortion, and instead improving the balance between perceptual fidelity and human-tuned NR-IQA measures.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;1.2 Our contributions&lt;/h2&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-We present a detailed analysis of NR-IQA on two human-derived SR datasets, thus identifying metrics that are generally useful for improving SR image quality. 
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-We explore the application of NR-IQA to SR via two approaches: sampling across multiple GTs weighted by NR-IQA, and direct optimization of NR-IQA. 
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;•&lt;/div&gt;
-&lt;div&gt;
-We achieve SR results that are perceptually on par or better than SR finetuned with human feedback, but using an automatic NR-IQA measure instead, which is far more efficient and easily scalable.
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdTcC1KAMkAUGon.jpg&quot; width=&quot;90%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Schematics for improving perceptual super-resolution (SR). Perceptual quality of SR can be improved in two ways: (Left) providing supervision through multiple enhanced ground-truths (EGT) or (Right) direct optimization for the quality of the super-resolved image. In both cases, human-in-the-loop can greatly improve performance. However, manual annotation is tedious, imprecise, and nondifferentiable. An IQA metric can replace a human in rating the enhanced ground-truths or can directly act as a differentiable optimization objective. In this paper, we specifically assess whether more practical no-reference (NR) IQA metrics can replace human raters for SR. We find that combining NR-IQA-based sampling and regularized optimization is sufficient to attain state-of-the-art perceptual image quality, without requiring human ratings.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;2. Analysis of NR-IQA metrics&lt;/h2&gt;
-
-&lt;p&gt;
-We analyze the alignment between various NR-IQA metrics and human judgements for assessing the aesthetic quality of SR images on two publicly available datasets:
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;SBS180K&lt;/b&gt; [10]: The dataset consists of pairs of SR images generated using different SR models for the same LR images, and scores depicting the fraction of annotators preferring the aesthetic quality of the second image over the first one. Due to the large size of the dataset, we analyze the metrics in two phases. In phase I, we analyze 20 NR-IQA metrics and their variants (total 42 metrics) on a small subset of the train set. We identify the top seven metrics with high alignment with human judgements: PaQ-2-PiQ, NIMA, MUSIQ, LIQE, ARNIQA, QAlign, and TOPIQ-NR. In phase II, we analyze the top seven NR-IQA metrics from phase I on the complete train and test sets. We observe that MUSIQ [11] has relatively higher accuracy on both train and test sets compared to other six metrics.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;HGGT&lt;/b&gt; [9]: The dataset contains quintuplets of an original HR ground-truth (GT) patch and four enhanced GTs with annotations of being better than (‘positive’), similar to (‘similar’), or worse than (‘negative’) the original GT. We analyze the seven selected metrics of phase I above on this dataset. Once again, we find that MUSIQ aligns with human preferences the most among the seven contestants.
-&lt;/p&gt;
-
-&lt;p&gt;
-Note, while humans can only provide coarse annotations, MUSIQ provides more fine-grained scores in agreement with human judgments (see Figure 2).
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdTbI-KALcAUGon.jpg&quot; width=&quot;50%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; MUSIQ can differentiate the quality of two images, both marked as “positive” by human annotators. Higher MUSIQ indicates higher quality (zoom for details). &lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;3. Methods&lt;/h2&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3.1 Background&lt;/h2&gt;
-
-&lt;p&gt;
-HGGT demonstrates the effectiveness of training SR models using multiple GTs per input, with the straightforward approach of sampling uniformly randomly from the positives (we call this strategy ‘UPos’). Then, they train their models using a standard SR loss:
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdTbTHKALoAUGon.jpg&quot; width=&quot;40%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-where I&lt;sup style=&quot;margin-left: -2px;&quot;&gt; ̂&lt;/sup&gt; is the predicted SR image, I is the chosen GT, d&lt;sub&gt;P&lt;/sub&gt; is a perceptual loss, and D is an adversarial discriminator.
-&lt;/p&gt;
-
-&lt;p&gt;
-However, HGGT requires human labels, which are difficult to scale and often domain dependent. In contrast, we explore the opportunities afforded by NR-IQA models, which not only eschew human labels, but also confer additional capabilities – namely, the ability to provide more fine-grained non-uniform sampling weights and to enable direct optimization via differentiability.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3.2 Proposed Approach&lt;/h2&gt;
-
-&lt;p&gt;
-3.2.1 Reweighted Sampling
-&lt;/p&gt;
-
-&lt;p&gt;
-Here, we explore straightforward alternatives to UPos of the following form, with Q being MUSIQㅡan NR-IQA metric:
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdTd0h6AMwAUGon.jpg&quot; width=&quot;25%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-&lt;b&gt;Softmax-All (SMA)&lt;/b&gt;. Let S&lt;sub&gt;I&lt;/sub&gt; be a set of all pseudo-GTs. This setting uses no human annotation.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Softmax-Positives (SMP)&lt;/b&gt;. Let S&lt;sub&gt;I&lt;/sub&gt; be a set of positives only. This setting is close to HGGT, just with non-uniform weights.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Argmax-online (AMO)&lt;/b&gt;. In above strategies, we first select a full GT image and then extract a training patch from that GT. In contrast, for this strategy, we sample one patch from the same random location in each GT, then run Q on each patch, and choose the best one (i.e., argmax). Since quality is computed at the patch level (which may disagree with quality assessments at the full image level), this enables a more fine-grained judgment compared to human annotations.
-&lt;/p&gt;
-
-&lt;p&gt;
-3.2.2 Direct Optimization (Fine-Tunning)
-&lt;/p&gt;
-
-&lt;p&gt;
-Another obvious approach to improving our SR model without human labels is to simply include Q in our objective function. Since NR-IQA models are large neural networks, it is possible for direct optimization to induce artifacts that fool Q into providing a high score, similar to the well-known phenomenon of adversarial attacks. To mitigate such artifacts, we finetune the SR model using LoRA [12] weights (ϕ), which reduce the optimized network capacity. Thus, we include NR-IQA as an additional regularizing loss term, added to the one in HGGT, as follows:
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdTbfiaAMAAUGon.jpg&quot; width=&quot;25%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Results&lt;/h2&gt;
-
-&lt;p&gt;
-We evaluate proposed approaches on the HGGT Test-100 using two low-level distortion metrics, three mid-level full-reference visual metrics, and four NR-IQA metrics. We include two human-annotation-free baselines that do not incorporate NR-IQA: “OrigsOnly”, which trains only with original (non-enhanced) GT, and “Rand”, which randomly chooses a supervisory image from among all potential GTs. Brief results are shown in Table 1 and Figure 3. Refer to our paper for complete results.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdTbkxKAMMAUGon.jpg&quot; width=&quot;90%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Table 1.&lt;/b&gt; Evaluation on the held-out HGGT Test-100. Second column indicates that a method works with no human GT (✓) or requires human GT (✗). * indicates previous SoTA (namely, HGGT [9]).&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-&lt;b&gt;Neural IQA Sampling Outperforms Human Rankings&lt;/b&gt;. In general, we find AMO is consistently superior to both SMA and SMP, which suggests that selecting for quality (especially at the fine-grained level demanded in the online setting) is more important than simply having multiple GTs; AMO is also measurably better than UPos in terms of perceptual quality, despite the lack of access to human annotation.  
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;IQA Fine-tuning Improves Human Sampling&lt;/b&gt;. We examine the impact of fine-tuning (FT) on NR-IQA, when used on top of human data (denoted as UPos+FT). Overall, we observe performance boosts with FT, suggesting that useful information can be extracted from neural NR-IQA models, even on top of a model with access to human annotations, providing a simple mechanism for improving image quality in SR models.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Superior Perceptual Quality via Neural Sampling and Fine-Tuning&lt;/b&gt;. Finally, we test the natural unification of IQA-based neural sampling and finetuning, denoted by the AMO+FT. We find that this combination surpasses the SoTA HGGT approach (UPos), in terms of perceptual quality, despite not using any human annotations.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Upper-bounding NR-IQA Evaluation Performance&lt;/b&gt;. In addition, we compute “gold standard” NR-IQA values for the GT Test data, taking the best score among the available pseudo-GT alternatives. We find that altered sampling generally does not reach these values, but FT is able to reach and even surpass them in several scenarios.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/6081aa81de/AZdTbp0KAMYAUGon.jpg&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; Qualitative Results with corresponding MUSIQ scores. &lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Conclusions&lt;/h2&gt;
-
-&lt;p&gt;
-While prior research in super resolution utilizes human annotations and trades reference fidelity for perceptual quality, we improve perceptual quality without sacrificing fidelity in an annotation-free manner via neural NR-IQA. We hope this enables future investigation into NR-IQA for SR in the context of domain shift, as NR-IQA does not need paired GT.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Link to the paper&lt;/h2&gt;
-
-&lt;p&gt;
-&lt;a href=&quot;https://arxiv.org/abs/2504.18524&quot; target=&quot;_blank&quot;&gt;https://arxiv.org/abs/2504.18524&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;div class=&quot;referInfo&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;
-[1]Simon Baker and Takeo Kanade. Limits on super-resolution and how to break them. IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), 2002.
-&lt;/p&gt;
-&lt;p&gt;
-[2]Chao Dong, Chen Change Loy, Kaiming He, and Xiaoou Tang. Learning a deep convolutional network for image super-resolution. In European Conference on Computer Vision (ECCV), 2014.
-&lt;/p&gt;
-&lt;p&gt;
-[3]Chao Dong, Chen Change Loy, and Xiaoou Tang. Accelerating the super-resolution convolutional neural network. In European Conference on Computer Vision (ECCV), 2016.
-&lt;/p&gt;
-&lt;p&gt;
-[4]Justin Johnson, Alexandre Alahi, and Li Fei-Fei. Perceptual losses for real-time style transfer and super-resolution. In European Conference on Computer Vision (ECCV), 2016.
-&lt;/p&gt;
-&lt;p&gt;
-[5]Divya Saxena and Jiannong Cao. Generative adversarial networks (GANs) challenges, solutions, and future directions. ACM Computing Surveys (CSUR), 2021.
-&lt;/p&gt;
-&lt;p&gt;
-[6]Jie Liang, Hui Zeng, and Lei Zhang. Details or artifacts: A locally discriminative learning approach to realistic image super-resolution. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2022.
-&lt;/p&gt;
-&lt;p&gt;
-[7]Yochai Blau and Tomer Michaeli. The perception-distortion tradeoff. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2018.
-&lt;/p&gt;
-&lt;p&gt;
-[8]Keyan Ding, Kede Ma, ShiqiWang, and Eero P Simoncelli. Comparison of full-reference image quality models for optimization of image processing systems. International Journal of Computer Vision (IJCV), 2021.
-&lt;/p&gt;
-&lt;p&gt;
-[9]Du Chen, Jie Liang, Xindong Zhang, Ming Liu, Hui Zeng, and Lei Zhang. Human guided ground-truth generation for realistic image super-resolution. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2023.
-&lt;/p&gt;
-&lt;p&gt;
-[10]Xiaoming Li, Wangmeng Zuo, and Chen Change Loy. Learning generative structure prior for blind text image super-resolution. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2023.
-&lt;/p&gt;
-&lt;p&gt;
-[11]Junjie Ke, Qifei Wang, Yilin Wang, Peyman Milanfar, and Feng Yang. MUSIQ: Multi-scale image quality transformer. In International Conference on Computer Vision (ICCV), 2021.
-&lt;/p&gt;
-&lt;p&gt;
-[12]Edward J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. LoRA: Low-rank adaptation of large language models. International Conference on Learning Representations (ICLR), 2022.
-&lt;/p&gt;
-&lt;/div&gt;
-
-
-</description><link>https://research.samsung.com/blog/Augmenting-Perceptual-Super-Resolution-via-Image-Quality-Predictors</link><guid isPermaLink="false">https://research.samsung.com/blog/Augmenting-Perceptual-Super-Resolution-via-Image-Quality-Predictors</guid><pubDate>Thu, 12 Jun 2025 16:00:00 GMT</pubDate><author>Fengjia Zhang|Samrudhdhi B. Rangrej|Tristan Aumentado-Armstrong|Alex Levinshtein</author><category>AI</category><category>CVPR</category><category>SuperResolution</category></item><item><title>FAM Diffusion: Frequency and Attention Modulation for High-Resolution Image Generation with Stable Diffusion</title><description>&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;width: 96.5222%;display:table-cell;vertical-align:middle;position:relative;width:55.882%;height:21.429em;padding:0 2.857em;border:1px solid #e4e4e4;box-sizing:border-box&quot;&gt;
-&lt;font color=&quot;navy&quot;&gt;&lt;b&gt;
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-The Conference on Computer Vision and Pattern Recognition (CVPR) is one of the most prestigious annual conferences in the field of computer vision and pattern recognition. It serves as a premier platform for researchers and practitioners to present cutting-edge advancements across a broad spectrum of topics, including object recognition, image segmentation, motion estimation, 3D reconstruction, and deep learning. As a cornerstone of the computer vision community, CVPR fosters innovation and collaboration, driving the field forward with groundbreaking research.
-&lt;/p&gt;
-
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-In this blog series, we delve into the latest research contributions featured in CVPR 2025, offering insights into groundbreaking studies that are shaping the future of computer vision. Each post will explore key findings, methodologies, and implications of selected papers, providing readers with a comprehensive understanding of the innovations driving the field forward. Stay tuned as we uncover the transformative potential of these advancements in our series.
-&lt;/p&gt;
-
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-Here is a list of them.
-&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;#1. FAM Diffusion: Frequency and Attention Modulation for High-Resolution Image Generation with Stable Diffusion (AI Center - Cambridge)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#2. Augmenting Perceptual Super-Resolution via Image Quality Predictors (AI Center - Toronto)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#3. VladVA: Discriminative Fine-tuning of LVLMs (AI Center - Cambridge)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#4. Accurate Scene Text Recognition with Efficient Model Scaling and Cloze Self-Distillation (Samsung R&amp;amp;D Institute United Kingdom)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#5. Edge-SD-SR: Low Latency and Parameter Efficient On-device Super-Resolution with Stable Diffusion via Bidirectional Conditioning (AI Center - Cambridge)&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 2em; color: grey;&quot;&gt;#6. DreamCache: Finetuning-Free Lightweight Personalized Image Generation via Feature Caching (Samsung R&amp;amp;D Institute United Kingdom)&lt;/p&gt;
-
-&lt;/b&gt;&lt;/font&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Generating Stunning High-Resolution Images: Introducing FAM Diffusion&lt;/h2&gt;
-
-&lt;p&gt;
-In the rapidly evolving field of artificial intelligence, diffusion models have emerged as powerful tools for generating high-quality images. However, a significant hurdle has been their inability to produce images at resolutions higher than those they were trained on without encountering issues like repetitive patterns or distorted structures. Retraining these models for higher resolutions is often computationally prohibitive. This blog post delves into a novel solution, FAM Diffusion, a method designed to enable pre-existing diffusion models to generate superior high-resolution images with flexible test-time resolutions, all without requiring additional training. We will explore the background of this challenge, the innovative methodology behind FAM Diffusion, the results, both qualitatively and quantitatively, discussing its significance in the landscape of image generation.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;The Challenge of High-Resolution Image Generation: Background and Previous Efforts&lt;/h2&gt;
-
-&lt;p&gt;
-Diffusion models excel at creating images by progressively removing noise from an initial random signal, guided by a learned process. While effective at their native training resolutions (e.g., 512×512 or 1024×1024 pixels), directly attempting to generate images at, for instance, 4K resolution often leads to severe object repetition and unrealistic local patterns.
-&lt;/p&gt;
-
-&lt;p&gt;
-Previous attempts to overcome this limitation can be broadly categorized:
-&lt;/p&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;1. &lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Patch-based approaches&lt;/b&gt;: These methods generate high-resolution images piece by piece and then stitch them together. While some techniques improved global structure consistency using the native resolution image as a guide, they often suffered from poor detail quality, inconsistent local textures, and persistent repetitions. Furthermore, these methods typically involve redundant computations, leading to significant latency overheads. Examples include DemoFusion and AccDiffusion.
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;2. &lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Architecture-modifying approaches&lt;/b&gt;: This group aimed for faster, single-pass generation by altering the model&#39;s architecture, for example, by using dilated convolutions or dynamically adjusting feature map sizes. However, this speed often came at the cost of image quality, with results showing various distortions. Examples include ScaleCrafter and HiDiffusion.
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div style=&quot;font-size: 1.47em;display: flex;flex-direction: row; margin-bottom:10px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;div style=&quot;padding-right: 20px;&quot;&gt;3. &lt;/div&gt;
-&lt;div&gt;
-&lt;b&gt;Frequency-domain methods&lt;/b&gt;: Some prior works have explored using the Fourier domain to manage structural consistency, such as FouriScale, HiPrompt, and ResMaster. However, these methods had their own limitations, including unrealistic image generation, reliance on redundant operations leading to high latencies, or inefficient patch-based denoising.
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/bd4ee23f52/AZc4PMraAIMAUGon.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Comparison at 3x higher resolution than native, i.e. 3072 x 3072px between our approach and prior state-of-the-art. Notice that prior work suffers from repetitive patterns, unnatural texture and structure.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-FAM Diffusion aims to take the best of these worlds: a single-pass generation strategy for low latency, while effectively leveraging the native resolution generation to guide the high-resolution process, and critically, addressing both global and local consistency issues often overlooked. See Figure 1 for a visualisation of some of these problems and the result of our approach, which largely alleviates these challenges.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Our approach, FAM Diffusion: A Two-Pronged Approach to High-Resolution Synthesis&lt;/h2&gt;
-
-&lt;p&gt;
-FAM Diffusion introduces two simple yet effective modules - Frequency Modulation (FM) and Attention Modulation (AM) - that can be seamlessly integrated into any latent diffusion model without additional training or architectural changes. The process generally follows a test-time diffuse-denoise strategy: an image is first generated at the model&#39;s native resolution, then upsampled, noise is added, and finally, a denoising process generates the high-resolution output.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;1. Frequency Modulation (FM) for Global Consistency&lt;/h2&gt;
-
-&lt;p&gt;
-When upscaling images, maintaining global structural integrity is paramount. Simply steering the high-resolution denoising process with an upsampled low-resolution image (as done by &quot;skip residuals&quot; in some prior work) can indiscriminately force features, potentially harming high-frequency details.
-&lt;/p&gt;
-
-&lt;p&gt;
-The FM module uses the Fourier domain, where global structure is represented by low frequencies and finer details by high frequencies. During the high-resolution denoising stage, the FM module selectively conditions the low-frequency components of the image being generated using the low-frequency information from the diffused, upsampled native-resolution image. Crucially, it allows the denoising process full control over the high-frequency components, enabling the generation of new, sharp details.
-&lt;/p&gt;
-
-&lt;p&gt;
-In essence, high frequencies from the ongoing denoising are combined with low frequencies from the guidance image. In the time domain, this operation is equivalent to adding a low-frequency update to the denoised latent, directed towards the diffused latent, effectively giving the UNet a global receptive field without architectural changes.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;2. Attention Modulation (AM) for Local Texture Consistency&lt;/h2&gt;
-
-&lt;p&gt;
-While FM effectively handles global structure and prevents issues like object duplication, inconsistencies in local textures can still arise. For example, fur texture might incorrectly appear on a shirt collar, or facial features might be distorted compared to the native resolution image. We hypothesize this stems from incorrect attention maps during high-resolution denoising.
-&lt;/p&gt;
-
-&lt;p&gt;
-To address this, the AM module leverages attention maps from the denoising process at the native resolution to guide the attention maps at the high resolution. Since native resolution attention maps encode semantic relationships between image regions, they can regularize the high-resolution denoising towards generating consistent finer textures.
-&lt;/p&gt;
-
-&lt;p&gt;
-The self-attention mechanism in diffusion models computes an attention matrix M from query (Q), key (K), and value (V) projections of an input tensor. AM modifies the attention matrix of the high-resolution denoising process at specific UNet layers (primarily up-blocks known to preserve layout information). This helps preserve local structures and semantic consistency.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/bd4ee23f52/AZc4PV3KAIYAUGon.png&quot; width=&quot;70%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; Overview of the FAM diffusion. (a) We first generate an image at native resolution, followed by a test-time diffuse-denoise process. We incorporate our Frequency Modulation module and Attention Modulation during highres denoising to control global structure and fine local texture, respectively. (b) Details of the Frequency Modulation, where we use the Fourier domain to selectively condition low-frequency components during high-res denoising while leaving high-frequency components fully controllable. (c) Details of Attention Modulation, where attention maps from the native image denoising are used to correct the highres denoising.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Results: State-of-the-Art Performance and Efficiency&lt;/h2&gt;
-
-&lt;p&gt;
-Across various scaling factors and base models (including SDXL and HiDiffusion), FAM Diffusion consistently achieved state-of-the-art performance on. Crucially, FAM Diffusion achieves these quality gains with only negligible latency overheads compared to direct inference at the target resolution. For SDXL, this was approximately 0.2, 0.3, and 0.7 minutes extra for 2×, 3×, and 4× scales, respectively. This is a stark contrast to methods like DemoFusion, which added significantly more latency (e.g., 14.2 minutes more than direct SDXL inference at 4×). FAM Diffusion was also shown to enhance the performance of single-pass methods like HiDiffusion while maintaining fast generation.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/bd4ee23f52/AZc4Pa9qAIkAUGon.png&quot; width=&quot;60%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; Qualitive comparison with prior state-of-the-art approaches. Note, that FAMFusion results in consistent and realistic structure, avoiding over sharpening and spurious artifacts.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Discussion: FAM Diffusion – toward highly accurate training free high resolution image generation&lt;/h2&gt;
-
-&lt;p&gt;
-While previous methods often focused more on global consistency, sometimes neglecting local texture artifacts or introducing significant computational costs. FAM Diffusion&#39;s FM module directly targets global consistency by leveraging the robust low-frequency information from the native resolution image in the Fourier domain. The AM module is a specifically addresses the often-overlooked problem of inconsistent local textures by using attention maps from the native resolution to guide the high-resolution generation.
-&lt;/p&gt;
-
-&lt;p&gt;
-Additionally, unlike methods requiring retraining or complex architectural modifications, FAM Diffusion is training-free and integrates seamlessly into existing latent diffusion models. Its single-pass nature and the computational efficiency of its modules result in negligible latency overhead, making it a practical solution for generating very high-resolution images. This contrasts sharply with patch-based methods that suffer from high latency due to redundant forward passes.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Conclusion: A New State-of-the-Art in High-Resolution Image Generation&lt;/h2&gt;
-
-&lt;p&gt;
-Generating high-resolution images with diffusion models without sacrificing quality or incurring prohibitive costs has been a significant challenge. FAM Diffusion presents a compelling, training-free solution by introducing two key innovations: Frequency Modulation (FM) for robust global structure consistency and Attention Modulation (AM) for coherent local texture patterns.
-&lt;/p&gt;
-
-&lt;p&gt;
-This method allows existing, powerful diffusion models to operate at flexible, much higher resolutions than they were trained for, producing images with superior qualitative and quantitative results compared to previous state-of-the-art techniques. Its ability to achieve this with negligible latency overhead and without any need for retraining or architectural modifications makes FAM Diffusion a highly practical and impactful advancement in the field of generative AI. It sets a new standard for high-resolution image generation, opening up new possibilities for applications requiring large-scale, detailed visual content.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;Link to the paper&lt;/h2&gt;
-
-&lt;p&gt;
-&lt;a href=&quot;https://arxiv.org/pdf/2411.18552&quot; target=&quot;_blank&quot;&gt;https://arxiv.org/pdf/2411.18552&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;div class=&quot;referInfo&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;[1] Omer Bar-Tal, Lior Yariv, Yaron Lipman, and Tali Dekel.MultiDiffusion: fusing diffusion paths for controlled image generation.In International Conference on Machine Learning, 2023.&lt;/p&gt;
-&lt;p&gt;[2] Mikołaj Bińkowski, Danica J Sutherland, Michael Arbel, and Arthur Gretton.Demystifying MMD GANs.International Conference on Learning Representations, 2018.&lt;/p&gt;
-&lt;p&gt;[3] Ruoyi Du, Dongliang Chang, Timothy Hospedales, Yi-Zhe Song, and Zhanyu Ma.DemoFusion: Democratising high-resolution image generation with no $$$.In IEEE Conference on Computer Vision and Pattern Recognition, 2024.&lt;/p&gt;
-&lt;p&gt;[4] Jing Gu, Yilin Wang, Nanxuan Zhao, Tsu-Jui Fu, Wei Xiong, Qing Liu, Zhifei Zhang, He Zhang, Jianming Zhang, HyunJoon Jung, and Xin Eric Wang.Photoswap: Personalized subject swapping in images.Neural Information Processing Systems, 2023.&lt;/p&gt;
-&lt;p&gt;[5] Jing Gu, Nanxuan Zhao, Wei Xiong, Qing Liu, Zhifei Zhang, He Zhang, Jianming Zhang, HyunJoon Jung, Yilin Wang, and Xin Eric Wang.SwapAnything: Enabling arbitrary object swapping in personalized image editing.European Conference on Computer Vision, 2024.&lt;/p&gt;
-&lt;p&gt;[6] Yingqing He, Tianyu Yang, Yong Zhang, Ying Shan, and Qifeng Chen.Latent video diffusion models for high-fidelity long video generation.arXiv preprint arXiv:2211.13221, 2022.&lt;/p&gt;
-&lt;p&gt;[7] Yingqing He, Shaoshu Yang, Haoxin Chen, Xiaodong Cun, Menghan Xia, Yong Zhang, Xintao Wang, Ran He, Qifeng Chen, and Ying Shan.Scalecrafter: Tuning-free higher-resolution visual generation with diffusion models.In International Conference on Learning Representations, 2024.&lt;/p&gt;
-&lt;p&gt;[8] Amir Hertz, Ron Mokady, Jay Tenenbaum, Kfir Aberman, Yael Pritch, and Daniel Cohen-Or.Prompt-to-prompt image editing with cross attention control.arXiv preprint arXiv:2208.01626, 2022.&lt;/p&gt;
-&lt;p&gt;[9] Martin Heusel, Hubert Ramsauer, Thomas Unterthiner, Bernhard Nessler, and Sepp Hochreiter.GANs trained by a two time-scale update rule converge to a local Nash equilibrium.Neural Information Processing Systems, 2017.&lt;/p&gt;
-&lt;p&gt;[10] Jonathan Ho, Ajay Jain, and Pieter Abbeel.Denoising diffusion probabilistic models.In Neural Information Processing Systems, 2020.&lt;/p&gt;
-&lt;div id=&quot;viewMoreRef&quot;&gt;
-&lt;p&gt;[11] Linjiang Huang, Rongyao Fang, Aiping Zhang, Guanglu Song, Si Liu, Yu Liu, and Hongsheng Li.FouriScale: A frequency perspective on training-free high-resolution image synthesis.In European Conference on Computer Vision, 2024a.&lt;/p&gt;
-&lt;p&gt;[12] Linjiang Huang, Rongyao Fang, Aiping Zhang, Guanglu Song, Si Liu, Yu Liu, and Hongsheng Li.FouriScale: A frequency perspective on training-free high-resolution image synthesis.arXiv preprint arXiv:2403.12963, 2024b.&lt;/p&gt;
-&lt;p&gt;[13] Jaeseok Jeong, Junho Kim, Yunjey Choi, Gayoung Lee, and Youngjung Uh.Visual style prompting with swapping self-attention.arXiv preprint arXiv:2402.12974, 2024.&lt;/p&gt;
-&lt;p&gt;[14] Yuseung Lee, Kunho Kim, Hyunjin Kim, and Minhyuk Sung.SyncDiffusion: Coherent montage via synchronized joint diffusions.In Neural Information Processing Systems, 2023.&lt;/p&gt;
-&lt;p&gt;[15] Zhihang Lin, Mingbao Lin, Zhao Meng, and Rongrong Ji.AccDiffusion: An accurate method for higher-resolution image generation.In European Conference on Computer Vision, 2024.&lt;/p&gt;
-&lt;p&gt;[16] Xinyu Liu, Yingqing He, Lanqing Guo, Xiang Li, Bu Jin, Peng Li, Yan Li, Chi-Min Chan, Qifeng Chen, Wei Xue, Wenhan Luo, Qifeng Liu, and Yike Guo.HiPrompt: Tuning-free higher-resolution generation with hierarchical MLLM prompts.arXiv preprint arXiv:2409.02919, 2024.&lt;/p&gt;
-&lt;p&gt;[17] David Marr and Ellen Hildreth.Theory of edge detection.Proceedings of the Royal Society of London. Series B. Biological Sciences, 207(1167):187–217, 1980.&lt;/p&gt;
-&lt;p&gt;[18] Mehdi Noroozi, Isma Hadji, Brais Martinez, Adrian Bulat, and Georgios Tzimiropoulos.You only need one step: Fast super-resolution with stable diffusion via scale distillation.European Conference on Computer Vision, 2024.&lt;/p&gt;
-&lt;p&gt;[19] Dustin Podell, Zion English, Kyle Lacey, Andreas Blattmann, Tim Dockhorn, Jonas Müller, Joe Penna, and Robin Rombach.SDXL: Improving latent diffusion models for high-resolution image synthesis.In International Conference on Learning Representations, 2024.&lt;/p&gt;
-&lt;p&gt;[20] Ben Poole, Ajay Jain, Jonathan T Barron, and Ben Mildenhall.Dreamfusion: Text-to-3D using 2D diffusion.arXiv preprint arXiv:2209.14988, 2022.&lt;/p&gt;
-&lt;p&gt;[21] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, et al.Learning transferable visual models from natural language supervision.In International conference on machine learning, pages 8748–8763. PMLR, 2021.&lt;/p&gt;
-&lt;p&gt;[22] Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Björn Ommer.High-resolution image synthesis with latent diffusion models.In IEEE Conference on Computer Vision and Pattern Recognition, 2022.&lt;/p&gt;
-&lt;p&gt;[23] Nataniel Ruiz, Yuanzhen Li, Varun Jampani, Yael Pritch, Michael Rubinstein, and Kfir Aberman.DreamBooth: Fine tuning text-to-image diffusion models for subject-driven generation.In IEEE Conference on Computer Vision and Pattern Recognition, 2023.&lt;/p&gt;
-&lt;p&gt;[24] Christoph Schuhmann, Romain Beaumont, Richard Vencu, Cade W Gordon, Ross Wightman, Mehdi Cherti, Theo Coombes, Aarush Katta, Clayton Mullis, Mitchell Wortsman, Patrick Schramowski, Srivatsa R Kundurthy, Katherine Crowson, Ludwig Schmidt, Robert Kaczmarczyk, and Jenia Jitsev.LAION-5B: An open large-scale dataset for training next generation image-text models.In Neural Information Processing Systems - Datasets and Benchmarks Track, 2022.&lt;/p&gt;
-&lt;p&gt;[25] Shuwei Shi, Wenbo Li, Yuechen Zhang, Jingwen He, Biao Gong, and Yinqiang Zheng.ResMaster: Mastering high-resolution image generation via structural and fine-grained guidance.arXiv preprint arXiv:2406.16476, 2024.&lt;/p&gt;
-&lt;p&gt;[26] Chenyang Si, Ziqi Huang, Yuming Jiang, and Ziwei Liu.FreeU: Free lunch in diffusion U-Net.In IEEE Conference on Computer Vision and Pattern Recognition, 2024.&lt;/p&gt;
-&lt;p&gt;[27] Jiaming Song, Chenlin Meng, and Stefano Ermon.Denoising diffusion implicit models.In International Conference on Learning Representations, 2021.&lt;/p&gt;
-&lt;p&gt;[28] BA Wandell.Foundations of vision, 1995.&lt;/p&gt;
-&lt;p&gt;[29] Wenqing Wang, Haosen Yang, Josef Kittler, and Xiatian Zhu.Single image, any face: Generalisable 3D face generation.arXiv preprint arXiv:2409.16990, 2024.&lt;/p&gt;
-&lt;p&gt;[30] Jay Zhangjie Wu, Yixiao Ge, Xintao Wang, Stan Weixian Lei, Yuchao Gu, Yufei Shi, Wynne Hsu, Ying Shan, Xiaohu Qie, and Mike Zheng Shou.Tune-a-video: One-shot tuning of image diffusion models for text-to-video generation.In IEEE International Conference on Computer Vision, 2023.&lt;/p&gt;
-&lt;p&gt;[31] Kai Xu, Minghai Qin, Fei Sun, Yuhao Wang, Yen-Kuang Chen, and Fengbo Ren.Learning in the frequency domain.In IEEE Conference on Computer Vision and Pattern Recognition, 2020.&lt;/p&gt;
-&lt;p&gt;[32] Kai Zhang, Jingyun Liang, Luc Van Gool, and Radu Timofte.Designing a practical degradation model for deep blind image super-resolution.In IEEE International Conference on Computer Vision, 2021.&lt;/p&gt;
-&lt;p&gt;[33] Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.Adding conditional control to text-to-image diffusion models.In IEEE International Conference on Computer Vision, 2023.&lt;/p&gt;
-&lt;p&gt;[34] Shen Zhang, Zhaowei Chen, Zhenyu Zhao, Yuhao Chen, Yao Tang, and Jiajun Liang.HiDiffusion: Unlocking higher-resolution creativity and efficiency in pretrained diffusion models.In European Conference on Computer Vision, 2024.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p id=&quot;viewMoreBtn&quot; style=&quot;text-align: center; font-size: 14px;&quot;&gt;
-&lt;a href=&quot;https://research.samsung.com/blog/FAM-Diffusion-Frequency-and-Attention-Modulation-for-High-Resolution-Image-Generation-with-Stable-Diffusion#none&quot;&gt;View More&lt;/a&gt;
-&lt;/p&gt;
-&lt;p id=&quot;refCloseBtn&quot; style=&quot;text-align: center; font-size: 14px;&quot;&gt;
-&lt;a href=&quot;https://research.samsung.com/blog/FAM-Diffusion-Frequency-and-Attention-Modulation-for-High-Resolution-Image-Generation-with-Stable-Diffusion#none&quot;&gt;Close&lt;/a&gt;
-&lt;/p&gt;
-
-</description><link>https://research.samsung.com/blog/FAM-Diffusion-Frequency-and-Attention-Modulation-for-High-Resolution-Image-Generation-with-Stable-Diffusion</link><guid isPermaLink="false">https://research.samsung.com/blog/FAM-Diffusion-Frequency-and-Attention-Modulation-for-High-Resolution-Image-Generation-with-Stable-Diffusion</guid><pubDate>Wed, 11 Jun 2025 16:00:00 GMT</pubDate><author>Adrian Bulat|Isma Hadji|Hai X. Pham|Georgios Tzimiropoulos|Brais Martinez</author><category>AI</category><category>CVPR</category><category>GenerativeAI</category></item><item><title>From AI Concept to Real World: AI-powered Modem for Next Samsung Cellular Networks</title><description>&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;width: 96.5222%;display:table-cell;vertical-align:middle;position:relative;width:55.882%;height:21.429em;padding:0 2.857em;border:1px solid #e4e4e4;box-sizing:border-box&quot;&gt;
-&lt;font color=&quot;navy&quot;&gt;&lt;b&gt;
-&lt;p style=&quot;margin-top: 2em;&quot;&gt;
-Samsung Research is preparing for future wireless technologies with convergence research of AI and communications, in which AI-native approaches drive designing and operations of entire RAN (Radio Access Network) and CN (Core Network). In the blog series of Communications-AI Convergence, we are planning to introduce various research topics of this application:
-&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;&lt;a href=&quot;https://research.samsung.com/blog/-Blog-AI-Driven-Modem-Innovations-for-Shaping-the-Future-RAN&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;#1. Modem I&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em;&quot;&gt;#2. Modem II &lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#3. Protocol/Networking &amp;amp; Operation&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#4. L1 Software&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 0.5em; color: grey;&quot;&gt;#5. Air Interface&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 2em; color: grey;&quot;&gt;#6. Connectivity&lt;/p&gt;
-&lt;p style=&quot;margin-bottom: 2em;&quot;&gt;
-This blog will cover AI applications to channel estimation, channel prediction, and signal validation, which have significant impacts on spectral efficiency and transmission performance.
-&lt;/p&gt;
-&lt;/b&gt;&lt;/font&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;1. Introduction of AI-powered Cellular Network&lt;/h2&gt;
-
-&lt;p&gt;
-In recent years, artificial intelligence (AI) has emerged as a promising tool for advancing the performance of wireless communication systems. Numerous studies have outlined the necessity of AI-native architectures in future 5G Advanced and 6G networks, highlighting AI’s ability to address long-standing issues in efficiency, reliability, and sustainability [1, 2]. Samsung has taken early steps to explore this potential by launching pilot projects centered on applying AI at the cell site. This blog presents one of the first testbeds for cell site AI applications, designed to fill the gap in real-time AI deployments that yield tangible benefits.
-&lt;/p&gt;
-
-&lt;p&gt;
-Our discussion focuses on two main areas. First, we introduce Samsung’s virtualized RAN (vRAN) infrastructure equipped with AI engine for AI evaluation. Second, we implement and evaluate an AI-based L1 function of channel estimation (CE) within the vRAN to evaluate its performance. Although AI continues to attract attention across the wireless domain, its practical integration at L1/L2 still raises questions regarding feasibility and measurable gains in real-world networks. Through this blog, we propose a field-driven approach to accelerate AI adoption in RAN, and showcase a complete workflow from model design to deployment in a commercial system. The AI engine is embedded in a commercial virtual distributed unit (vDU), and its effectiveness is validated through end-to-end (E2E) over-the-air (OTA) testing.
-&lt;/p&gt;
-
-&lt;p&gt;
-In MWC 25, Samsung showcased a virtualized network architecture enhanced with AI capabilities [3]. As part of this initiative, our testbed demonstrates the feasibility of deploying AI-driven L1 functions at the cell site using a vDU equipped with an AI engine. This setup shows that AI models can be seamlessly integrated into the network elements’ processing pipeline, enabling direct validation of their performance and practical benefits within the live network infrastructure.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/12b634256a/AZcKEycaADkAUGon.png&quot; width=&quot;60%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 1.&lt;/b&gt; Samsung’s virtualized network deployment with AI processing&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-Figure 1 illustrates how AI processing is integrated across the virtualized network—from centralized to edge and cell-site levels—each playing a critical role in realizing intelligent RAN behavior. At the cell site—closest to end users—there is a growing demand for AI solutions capable of improving air-link performance with millisecond speeds, enabled by accurate channel condition estimation. Centralized architectures, however, often face challenges in meeting these real-time requirements, particularly when AI interface is involved. To address this, Samsung adopts a distributed network design in which AI acceleration hardware is deployed not only at central data centers but also at the edge and cell site levels. Once a virtualized platform is established on a given network element, it can flexibly host AI-driven functionalities—whether for service optimization or internal RAN data processing.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;2. AI-powered Samsung Network for vRAN &lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/12b634256a/AZcKE396ADwAUGon.png&quot; width=&quot;80%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 2.&lt;/b&gt; AI powered Samsung network diagram for AI RAN&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-Figure 2 presents Samsung’s cell site AI RAN testbed, built on commercial network infrastructure and augmented with an AI engine to enable AI-based L1/L2 processing. In this setup, AI workloads are offloaded to the AI processor, allowing the AI-CE function to run in real time. This on-site architecture offers a realistic testbed for evaluating AI-driven features under real-world network conditions. To assess its performance, we conduct E2E evaluations using traffic between a 64-TRX MMU and S24 user equipment (UE). The framework supports streamlined deployment, testing, and optimization of AI models across both physical and virtualized environments, helping accelerate innovation throughout the RAN stack.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;3. AI-based Downlink Enhancement&lt;/h2&gt;
-
-&lt;p&gt;
-With the architectural foundation in place, we go down to a concrete example of AI deployed at the cell site: improving real-time uplink CE and downlink beamforming using Sounding Reference Signals (SRSs). SRS serves as a key uplink reference, enabling the base station to gather channel information critical for downlink precoding and beamforming, and its function directly affects overall system performance and reliability. However, conventional CE techniques often struggle in realistic scenarios due to noise, interference, and the fast-changing nature of wireless channels. To address these challenges, we leverage AI methods improving the accuracy and robustness of SRS-CE.
-&lt;/p&gt;
-
-&lt;p&gt;
-Our main approach centers on AI-based denoising of the instantaneous SRS signal to recover a cleaner and more reliable representation of the channel. This improves the precision of downlink beamforming, which in turn contributes to increased throughput. While additional AI functions like channel prediction can complement this, our focus in this blog is on the enhancement of real-time CE through AI-driven denoising.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3-1. AI based SRS Channel Estimation &lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/12b634256a/AZcKE9gqAD8AUGon.png&quot; width=&quot;60%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 3.&lt;/b&gt; An illustration of AI-SRS-CE solution&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-Denoising plays a pivotal role in SRS-CE, as noise can severely reduce the accuracy of the estimated channel and negatively affect beamforming performance. Interestingly, the problem of denoising SRS signals shares many similarities with image denoising—an area where AI has shown remarkable success [4]. In multiple-input multiple-output (MIMO)-based wireless systems, channel responses are often impaired by multiple noise sources, including thermal noise, interference, and multipath effects. Extracting accurate channel information from such noisy SRS input is conceptually similar to reconstructing clean images from degraded ones. This parallel serves as a strong rationale for applying AI-powered denoising methods—originally developed for image restoration—to the SRS-CE domain.
-&lt;/p&gt;
-
-&lt;p&gt;
-As shown in Figure 3, our AI-SRS-CE architecture is composed of three key blocks: a pre-processing module, an AI-based channel estimator, and a post-processing module. The pre- and post-processing components are responsible for addressing RF distortions and mitigating interference, while the AI estimator functions as the denoising mechanism. This structure supports more accurate reconstruction of the wireless channel and contributes to improved downlink performance in practical scenarios.
-&lt;/p&gt;
-
-&lt;p&gt;
-To bring this denoising-based framework into real-world use, we train an AI model tailored to capture the distinct properties of wireless signals. Specifically, we apply domain insights that wireless propagation typically involves only a few dominant paths, leading to sparse representations of the channel in the space-delay domain. This sparsity allows the AI model to concentrate on significant signal features while effectively filtering out noise and irrelevant artifacts.
-&lt;/p&gt;
-
-&lt;p&gt;
-To ensure robustness across diverse channel conditions, we adopt a dual-loss training strategy: the loss function encourages precision in high-SNR regimes using normalized root mean squared error (NRMSE), while promoting stability in low-SNR case using normalized mean squared error (NMSE). This combination balances learning across signal quality variations and prevents the model from overfitting to either extreme.
-&lt;/p&gt;
-
-&lt;p&gt;
-After training, the AI model is optimized and converted into a lightweight software module capable of executing SRS-CE in real time. This module is integrated into the vDU, where it works in tandem with the massive MIMO unit (MMU) to facilitate downlink precoding. Figure 4 outlines the key operations carried out by the vDU and MMU in the downlink chain, ranging from AI-powered CE to zero-forcing precoding for the S24 UE.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/12b634256a/AZcKFDuqAEIAUGon.png&quot; width=&quot;60%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 4.&lt;/b&gt; AI-SRS-CE application &amp;amp; DL beamforming&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot; style=&quot;font-size: 1.47em; margin-top: -0.1px;&quot;&gt;3-2. AI based SRS Channel Estimation Performance Evaluation&lt;/h2&gt;
-
-&lt;p&gt;
-After integrating the AI-based channel estimator into the software stack, we conduct a performance evaluation using Samsung’s commercial-grade lab testbed, as illustrated in Figure 2. The lab assessment includes both conducted testing and NMSE analysis using captured SRS signals. The testbed operates in C-band allocation within the campus, with a bandwidth of 100MHz for the experiments.
-&lt;/p&gt;
-
-&lt;p&gt;
-To assess the effectiveness of the AI-SRS-CE method, we measure NMSE performance using conducted tests based on CDL-C and CDL-D channel profiles. Using channel samples collected in the receiver, we compare the CE accuracy between link-level simulation (LLS) outcomes and real-time measurements. As shown in Figure 5, the AI-SRS-CE implemented in the testbed from Figure 2 delivers up to 12dB NMSE improvement in the CDL-D scenario and 10dB gain in CDL-C. These results align closely with simulation trends, confirming the consistency of the AI model across both emulated and physical layers.
-&lt;/p&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/12b634256a/AZcKFJkaAEUAUGon.png&quot; width=&quot;60%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 5.&lt;/b&gt; NMSE improvement from AI SRS CE (lab signal samples &amp;amp; comparison with LLS simulation)&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;4. AI-based Uplink Enhancement&lt;/h2&gt;
-
-&lt;div class=&quot;news-imgWrap&quot;&gt;
-&lt;img src=&quot;https://cdn.codeground.org/resources/12b634256a/AZcKFQeKAEgAUGon.png&quot; width=&quot;60%&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;b&gt;Figure 6.&lt;/b&gt; Application of AI-SRS-CE for UL pre-combining&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;
-In addition to downlink enhancement, we can also apply AI-SRS-CE to uplink signal processing purpose—specifically to enable more efficient uplink pre-combining at the cell site. As illustrated in Figure 6, based on the denoised SRS signal, the MMU can perform RX port adaptation and uplink pre-combining before forwarding the full-port (i.e., burdensome) signal to vDU. This approach significantly reduces the number of active RX ports and the data volume sent over the fronthaul, which is particularly important in massive MIMO systems where high antenna counts can otherwise create substantial transport and processing overhead. By executing intelligent pre-combining near the edge, the network offloads computational burden from the vDU and enables scalable, AI-assisted uplink processing. 
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;5. AI Channel Estimation to Real World &lt;/h2&gt;
-
-&lt;p&gt;
-To assess the real-world effectiveness of AI-SRS-CE, we extend our evaluation beyond controlled lab environments and perform outdoor OTA field measurements using Samsung’s commercial-grade testbed. OTA measurements offer a more direct reflection of system behavior and facilitate the continuous refinement of the AI model through multiple test trials. Since SRS-CE directly impacts downlink beamforming quality, its accuracy plays a vital role in determining user throughput. Thus far, we have seen that AI-SRS-CE has outperformed traditional SRS-CE for both LoS and non-line-of-sight (NLoS) channel conditions, particularly achieving a substantial 23% increase in throughput under NLoS conditions in low SNR regions.
-&lt;/p&gt;
-
-&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;6. Conclusions&lt;/h2&gt;
-
-&lt;p&gt;
-In order to move toward AI-native RAN, real deployment and validation of AI features in the network are essential—not just simulations or isolated demos. This blog explored one such effort: applying AI to real-time CE at the cell site. Through the development and test of AI-SRS-CE, we showed measurable gains in both lab and field settings, confirming that AI can bring practical benefits even at the physical layer. It is a small but concrete step in making AI-native RAN a reality. In addition to downlink processing, AI-based uplink enhancement such as pre-combining has also been researched. We expect further validation through over-the-air tests to help accelerate their integration into real-world deployments, bringing the AI-native RAN vision closer to commercialization.
-&lt;/p&gt;
-
-&lt;div class=&quot;referInfo&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;h2 class=&quot;tit-newsSection blue-txt tit-big&quot;&gt;References&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;
-[1] Y. Li, Y. Hu, K. Min. H. Park, H. Yang, T. Wang, J. Sung, J.-Y. Seol, C. J. Zhang, “Artificial intelligence augmentation for channel state information in 5G and 6G,” IEEE Wireless Communications, vol. 30, no. 1, pp. 104-110, Feb. 2023.
-&lt;/p&gt;
-&lt;p&gt;
-[2] M. Soltani, V. Pourahmadi, A. Mirzaei, and H. Sheikhzadeh, “Deep learning-based channel estimation,” IEEE Commun. Lett., vol. 23, no. 4, pp. 652-655, Apr. 2019.
-&lt;/p&gt;
-&lt;p&gt;
-[3] Samsung Networks YouTube, “Unleash the full power of AI and automation with Samsung&#39;s AI-powered Network l” in MWC 2025 https://www.youtube.com/watch?v=_To_XytB6nw 
-&lt;/p&gt;
-&lt;p&gt;
-[4] L. Li, H. Chen, H.-H. Chang, L. Lio, “Deep residual learning meets OFDM channel estimation,” IEEE Wireless Commun. Lett., vol. 9, no. 5, pp. 615-618, May. 2020.
-&lt;/p&gt;
-&lt;/div&gt;
-
-</description><link>https://research.samsung.com/blog/From-AI-Concept-to-Real-World-AI-powered-Modem-for-Next-Samsung-Cellular-Networks</link><guid isPermaLink="false">https://research.samsung.com/blog/From-AI-Concept-to-Real-World-AI-powered-Modem-for-Next-Samsung-Cellular-Networks</guid><pubDate>Sun, 25 May 2025 16:00:00 GMT</pubDate><author>Daejung DJ Yoon|Jaedong Yang|Jongmin Shin|Yang Li|Min Jang|Kyounghak Mun|Jiyeong Yang|William Xia</author><category>Communications</category><category>Communications&amp;AI Convergence</category><category>Modem</category></item></channel></rss>
+</description><link>https://research.samsung.com/blog/Accurate-Scene-Text-Recognition-with-Efficient-Model-Scaling-and-Cloze-Self-Distillation</link><guid isPermaLink="false">https://research.samsung.com/blog/Accurate-Scene-Text-Recognition-with-Efficient-Model-Scaling-and-Cloze-Self-Distillation</guid><pubDate>Mon, 16 Jun 2025 16:00:00 GMT</pubDate><author>Andrea Maracani|Savas Ozkan|Mete Ozay|Siejoon Cho|Hyowon Kim|Jeongwon Min|Jung Min Cho|Eunchung Noh</author><category>AI</category><category>CVPR</category><category>scenetextrecognition</category></item></channel></rss>

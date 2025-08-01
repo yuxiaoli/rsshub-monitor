@@ -1,248 +1,307 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>LA UOSC-最新帖子</title><link>https://bbs.loongarch.org/api/discussions</link><atom:link href="http://rsshub.henry.wang/loongarch/post/newest" rel="self" type="application/rss+xml"></atom:link><description>LA UOSC-最新帖子 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Apr 2025 00:31:05 GMT</lastBuildDate><ttl>14</ttl><item><title>能用GTA5 泄漏源代码把游戏编译移植到龙架构Loongarch 的本地系统吗？</title><description>&lt;p&gt;&lt;a href=&quot;https://forum.gtaos.com/threads/624/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;教程 - GTA5 源代码编译教程 | GTAOS.COM&amp;lt;论坛&amp;gt;&lt;/a&gt;&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/552-gta5-loongarch</link><guid isPermaLink="false">https://bbs.loongarch.org/d/552-gta5-loongarch</guid><pubDate>Mon, 31 Mar 2025 09:27:04 GMT</pubDate><author>allenfeld</author><category>编程开发</category></item><item><title>求助：Veyon无LoongArch架构安装包</title><description>&lt;p&gt;尊敬的各位开发者与技术达人，本人目前遇到一个棘手的问题，特来此求教求助。实验室新近购置了50台国产信创台式计算机组建新机房，其中有10台是装有LoongArch64架构的台式机，其余是Arm架构与x86架构（后续还会采购一些鸿蒙PC）。所有机器预装的系统是银河麒麟V10。龙芯架构计算机的CPU型号是 3A5000。&lt;/p&gt;
-
-&lt;p&gt;为了管理方便，选择了电子教室管理软件 Veyon的最新版 4.9.x, 下载链接为 &lt;a href=&quot;https://veyon.io/en/download/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://veyon.io/en/download/&lt;/a&gt; 官网上提供的是针对x86架构的安装包，我们也找到了合适的arm架构安装包（能成功安装并使用），但是缺少针对龙芯架构的安装包。官网上有Veyon的源代码可以下载，不过本人尚无编译出适合龙芯架构安装包的能力。针对由不同类型国产信创计算机系统组成的机房，目前尚无合适的电子教室管理软件(当前比较流行的极域只适用于Windows系统)， Veyon是较为理想的管理软件，但是缺少针对龙芯架构的安装包。期待开发人员能早日编译出适合龙芯架构的Veyon安装包(deb/rpm/…), 本人邮箱: &lt;a href=&quot;mailto:hongyan@hainnu.edu.cn&quot; rel=&quot;&quot; target=&quot;&quot;&gt;hongyan@hainnu.edu.cn&lt;/a&gt;, 期待您的建议与好消息！&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/551-veyonloongarch</link><guid isPermaLink="false">https://bbs.loongarch.org/d/551-veyonloongarch</guid><pubDate>Sat, 29 Mar 2025 17:58:13 GMT</pubDate><author>qubitzhy</author><category>意见反馈</category></item><item><title>Qemu in loong64 does not boot Linux x86_64 ISO</title><description>&lt;p&gt;Hello again.&lt;/p&gt;
-
-&lt;p&gt;I&#39;m trying to emulate some Linux ISOs with Qemu in my loong64, but it does not boot, not Debian or Archlinux.&lt;/p&gt;
-
-&lt;p&gt;It fails when it tries to load the initramfs image.&lt;/p&gt;
-
-&lt;p&gt;This the command I run:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;qemu-system-x86_64 &amp;nbsp;-display none -vnc :0 &amp;nbsp;-m 4G -smp 2 &amp;nbsp;-drive if=virtio,format=qcow2,file=/home/loongson/debian/debian12.qcow2 -boot d -cdrom /home/loongson/debian/debian-12.10.0-amd64-netinst.iso&lt;/code&gt;&lt;br&gt;
- or&lt;code&gt;qemu-system-x86_64 &amp;nbsp;-display none -vnc :0 &amp;nbsp;-m 4G -smp 2 &amp;nbsp;-drive if=virtio,format=qcow2,file=/home/loongson/debian/debian12.qcow2 -boot d -cdrom /home/loongson/debian/archlinux-2025.03.01-x86_64.iso&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;But it just loads the kernel image and I can see the CPU is used but never boots.&lt;/p&gt;
-
-&lt;p&gt;I Debian looks like it loads initrd.gz in expert mode, but nothing else.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;-`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;loongson&lt;/strong&gt;@&lt;strong&gt;loongson01&lt;/strong&gt; &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;.o+`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;------------------- &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`ooo/&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;OS&lt;/strong&gt;: Arch Linux loongarch64 &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`+oooo:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Host&lt;/strong&gt;: Loongson-3A6000-HV-7A2000-1w-V0.1-EVB &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`+oooooo:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Kernel&lt;/strong&gt;: 6.6.45-2-lts &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;-+oooooo+:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Uptime&lt;/strong&gt;: 26 mins &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/:-:++oooo+:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Packages&lt;/strong&gt;: 989 (pacman) &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/++++/+++++++:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Shell&lt;/strong&gt;: bash 5.2.32 &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/++++++++++++++:&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Terminal&lt;/strong&gt;: /dev/pts/1 &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;`/+++ooooooooooooo/`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;CPU&lt;/strong&gt;: Loongson-3A6000-HV (8) &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;./ooosssso++osssssso+`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;GPU&lt;/strong&gt;: 00:06.1 Loongson Technology LLC Display Controller &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;.oossssso-````/ossssss+`&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Memory&lt;/strong&gt;: 1077MiB / 16143MiB &amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;-osssssso. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;:ssssssso.&lt;/strong&gt; &lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;:osssssss/ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;osssso+++.&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;/ossssssss/ &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;+ssssooo/-&lt;/strong&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br&gt;
- &amp;nbsp;&amp;nbsp;&lt;strong&gt;`/ossssso+/:- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;-:/+osssso+-&lt;/strong&gt; &lt;br&gt;
- &amp;nbsp;&lt;strong&gt;`+sso+:-` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`.-/+oso:&lt;/strong&gt; &lt;br&gt;
- &lt;strong&gt;`++:. &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`-/+/&lt;/strong&gt; &lt;br&gt;
- &lt;strong&gt;.` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;`/&lt;/strong&gt;&lt;/p&gt; 
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>LA UOSC-最新帖子</title><link>https://bbs.loongarch.org/api/discussions</link><atom:link href="http://rsshub.pseudoyu.com/loongarch/post/newest" rel="self" type="application/rss+xml"></atom:link><description>LA UOSC-最新帖子 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Fri, 01 Aug 2025 00:34:08 GMT</lastBuildDate><ttl>5</ttl><item><title>ACE容器兼容环境使用教程</title><description>&lt;p&gt;1.什么是ACE？&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161425-144779-screenshot-20250328-122615.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;ACE（Amber CE,琥珀）兼容环境是一款基于bubblewrap的容器化应用打包和分发方案。是一个极轻量的系统容器。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161433-206824-screenshot-20250328-122646.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2.ACE能做什么？&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161436-681501-screenshot-20250328-122816.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;举例说明：比如你使用了AOSC OS,想玩最新版的韦诺之战（wesnoth），可是你却发现AOSC仓库含有的版本不是最新版本，也联系不到人来维护编译，正在这时，你发现debian的仓库里有最新版的韦诺之战，你正在想办法下载deb包时，却发现AOSC OS其实根本就不是debian的子发行版，依赖结构完全不同，就算你从debian的仓库里扒出了所有的依赖包并且安装到AOSC OS上，你又开始担心外来的依赖包会污染原本系统的依赖，造成整个系统故障。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-28/1743161440-43856-screenshot-20250328-122900.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这时候就轮到Amber CE出场了，ACE会在AOSC OS中创建一个容器，模拟一个debian12或者debian13,你就可以在这个容器中，直接从debian仓库中下载并安装最新的韦诺之战，容器会自动将所需的依赖包下载并安装到这个容器内，你就不用再担心自己的原本的系统依赖环境被污染了。&lt;/p&gt;
 
-&lt;hr&gt;
+&lt;p&gt;书面描述是：用极为轻量的容器方案让你可以在几乎任何的Linux发行版上运行一个操作系统容器。在应用无法启动或者打包的时候，使用ACE兼容环境来打包可以让你在使用最新的环境的同时在更多的发行版上运行，是一个很好的选择。&lt;/p&gt;
 
-&lt;p&gt;Any ideas? someone managed to boot ISO images with qemu?&lt;/p&gt;
+&lt;p&gt;3.如何安装？&lt;/p&gt;
 
-&lt;p&gt;Thanks!&lt;/p&gt;
+&lt;p&gt;官方项目地址：&lt;strong&gt;&lt;a href=&quot;https://gitee.com/amber-ce&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://gitee.com/amber-ce&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+官方安装指南和网盘下载地址：&lt;strong&gt;&lt;a href=&quot;https://gitee.com/amber-ce/amber-ce-bookworm&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://gitee.com/amber-ce/amber-ce-bookworm&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
+&lt;p&gt;不过个人建议这样的安装方式，以x86版AOSC为例：&lt;/p&gt;
 
+&lt;p&gt;从星火应用商店官网：&lt;strong&gt;&lt;a href=&quot;https://gitee.com/spark-store-project/spark-store/releases/tag/4.8.0&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://gitee.com/spark-store-project/spark-store/releases/tag/4.8.0&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+下载并安装命令行版的星火应用商店：spark-store-console_4.8.0-console1_all.deb&lt;/p&gt;
 
-</description><link>https://bbs.loongarch.org/d/550-qemu-in-loong64-does-not-boot-linux-x86-64-iso</link><guid isPermaLink="false">https://bbs.loongarch.org/d/550-qemu-in-loong64-does-not-boot-linux-x86-64-iso</guid><pubDate>Fri, 28 Mar 2025 11:32:59 GMT</pubDate><author>MaxHeadroom</author><category>*nix</category><category>Archlinux</category></item><item><title>联想开天 N60d G1d 笔记本 展示分享</title><description>&lt;ul&gt;&lt;li&gt;&lt;p&gt;基本信息&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;CPU：3A6000M 2.0Ghz
-桥片：7A2000
-显卡：LG110 4G
-内存：江波龙 DDR4 16G 3200
-硬盘：佰维 PCIE3.0 NVME 512G
-有线网卡：裕太微 TY6801
-无线网卡：瑞昱 8852BE
-电池：70wh
-电源：65W PD
-接口：HDMI，2A3C，3.5mm音频&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;p&gt;然后在终端执行：&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;整机功率&lt;/p&gt;
-    &lt;ul&gt;&lt;li&gt;空载：22W&lt;/li&gt;
-    &lt;li&gt;满载：41W&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;p&gt;$$&lt;br&gt;
+sudo aptss update&lt;br&gt;
+sudo aptss install amber-ce-trixie&lt;br&gt;
+$$&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;硬件更换&lt;/p&gt;
-    &lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;内存升级为 32G&lt;/li&gt;
-    &lt;li&gt;硬盘升级为 1T&lt;/li&gt;
-    &lt;li&gt;无线网卡升级为 8852CE&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;***需要注意的是，这里的 &#39;amber-ce-trixie&#39; 指的是安装debian13的虚拟环境，你要是要debian12,那就该改成&#39;amber-ce-bookworm&#39;，要是要模拟deepin V23的环境，那就该改成&#39;amber-ce-deepin23&#39;&lt;br&gt;
+***另外安装命令行版的星火应用商店，本质是向系统引入了一个新的软件源，只不过这个软件源没有注册到apt,而是用了专用的aptss（类似AOSC OS主要用oma而不是apt），所以出于避免系统被污染的目的，请尽量避免使用aptss ，尤其是upgrade。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085641-771275-img-20250327-221457.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085642-355793-img-20250327-222357.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085641-181200-img-20250327-2214191.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085641-486555-img-20250327-2214311.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085640-319259-img-20250326-201113.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085642-57265-img-20250327-222242.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085640-41511-img-20250326-195852.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085639-174206-img-20250326-194842.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085639-745360-img-20250326-195434.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085639-458155-img-20250326-195150.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085871-123801-img-20250327-223046.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-27/1743085773-62266-photo-2025-03-27-20-04-44.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-</description><link>https://bbs.loongarch.org/d/549-n60d-g1d</link><guid isPermaLink="false">https://bbs.loongarch.org/d/549-n60d-g1d</guid><pubDate>Thu, 27 Mar 2025 14:37:31 GMT</pubDate><author>Katyusha</author><category>日知录</category><category>开箱专场</category></item><item><title>Loongnix25 编译 latx 1.6 成功</title><description>&lt;p&gt;代码仓库：&lt;br&gt;
-&lt;a href=&quot;https://github.com/lat-opensource/lat&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/lat-opensource/lat&lt;/a&gt;&lt;br&gt;
-使用了如下补丁：&lt;br&gt;
-&lt;a href=&quot;https://github.com/lat-opensource/lat/pull/5/commits/27026fb60dc1707962539d8887ee4a9e4fb7d3ed&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/lat-opensource/lat/pull/5/commits/27026fb60dc1707962539d8887ee4a9e4fb7d3ed&lt;/a&gt;&lt;br&gt;
-编译通过&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Installing latx-i386 to /home/dbhrscom/mysdk/lat/lat-Loongnix-nw/bin
-Stripping target &#39;latx-i386&#39; using strip.
--e 
+&lt;p&gt;安装完成后，请重启电脑或注销重新登录，ACE的图标就会出现在你的菜单栏中，你就可以快乐的使用了。&lt;/p&gt;
 
+&lt;p&gt;4.如何使用？&lt;/p&gt;
 
-////////////////////// Loongnix on Loongson-3A6000 //////////////////////
+&lt;p&gt;一种方法是直接点击菜单栏中的ACE-trixie图标。&lt;br&gt;
+一种方式是在命令行输入trixie-run。&lt;br&gt;
+上述方法对于别的容器同理，例如‘bookworm-run’，‘deepin23-run’&lt;/p&gt;
 
-Linux xlnotes 6.6.52-loong64 #1 SMP Debian 6.6.52-1.3 (2025-01-10) loongarch64 GNU/Linux
--e
--e Compiler Information:
-gcc (Debian 14.2.0-4) 14.2.0
--e
--e latx-x86_64:
-         before strip: 7.5M      after strip: 6.7M
-         MD5: 3657e6c6f57395faf97fb065b6ee9b6c /home/dbhrscom/mysdk/lat/build64-release-nw/latx-x86_64
-         VERSION: lat-x86_64 unknown
+&lt;p&gt;然后你就：&lt;/p&gt;
 
--e
--e latx-i386:
-         before strip: 7.0M      after strip: 6.2M
-         MD5: 0c2d50178060ea8c4b574f104452e05b /home/dbhrscom/mysdk/lat/build32-release-nw/latx-i386
-         VERSION: lat-i386 unknown
+&lt;p&gt;$$&lt;br&gt;
+sudo apt update&lt;br&gt;
+sudo apt upgrade&lt;br&gt;
+sudo apt install wesnote&lt;br&gt;
+$$&lt;/p&gt;
 
-lat-Loongnix-nw/
-lat-Loongnix-nw/bin/
-lat-Loongnix-nw/bin/latx-i386
-lat-Loongnix-nw/bin/latx-x86_64
-lat-Loongnix-nw/README&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装好wesnote&lt;/p&gt;
 
-&lt;p&gt;编译结果打包：&lt;/p&gt;
+&lt;p&gt;然后在菜单栏里找到韦诺之战的启动快捷方式，打开，开始愉快的玩耍吧。&lt;/p&gt;
 
-&lt;div class=&quot;ButtonGroup&quot; data-fof-upload-download-uuid=&quot;12d843a9-e7e8-4be2-ba83-96ce225ec439&quot;&gt;&lt;div class=&quot;Button hasIcon Button--icon Button--primary&quot;&gt;&lt;i class=&quot;fas fa-download&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;lat-loongnix-nw.zip&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;4MB&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;5.就这些？&lt;/p&gt;
 
+&lt;p&gt;当然不止，能模拟debian,理论上就能模拟别的系统，这样一个linux系统就能解决跨发行版的依赖问题，本质上和flatpak等等一系列容器打包方案是一样的。&lt;/p&gt;
 
-&lt;p&gt;构建记录：&lt;/p&gt;
+&lt;p&gt;不过ACE的玩法还不止于此，比如龙芯平台，就可以通过和liblol结合，liblol负责翻译，ACE负责解决旧世界依赖，可以更好地让旧世界应用跑在新世界系统上，基于这个想法的ACE-loongnix已经上架了deepin平台的星火应用商店，并成功解决了多个因缺乏相关依赖而跑不起来的问题。liblol+ACE的结合，很像是ABI-compat的一种解耦的实现。&lt;/p&gt;
 
-&lt;div class=&quot;ButtonGroup&quot; data-fof-upload-download-uuid=&quot;788eb73f-63c2-4b3b-9398-e3c25b3315c7&quot;&gt;&lt;div class=&quot;Button hasIcon Button--icon Button--primary&quot;&gt;&lt;i class=&quot;fas fa-download&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;nw-build-success.zip&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;24kB&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://bbs.loongarch.org/d/396-deepin-23ace-loongnix&quot; rel=&quot;ugc noopener&quot; target=&quot;_self&quot;&gt;https://bbs.loongarch.org/d/396-deepin-23ace-loongnix&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;甚至于，靠着latx二进制翻译x86,理论上可以让一个x86平台的debian,跑在龙芯处理器上，这样就可以绕过wine环境，不用忍受wine缓慢的等待，直接跑一些x86上就有的linux原生应用，比如Steam linux版，战争雷霆Linux客户端。基于此想法的ACE-x86虽然搞了出来，却面临着各种奇怪的Bug,也许要等到latx逐步完善，这个路线才能跑通了。&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/578-ace</link><guid isPermaLink="false">https://bbs.loongarch.org/d/578-ace</guid><pubDate>Mon, 28 Jul 2025 08:47:51 GMT</pubDate><author>杀毒软件吧</author><category>日知录</category><category>开源生态</category><category>资源专区</category><category>新世界</category><category>旧世界</category></item><item><title>最新版QQ频繁崩溃的临时解决办法</title><description>&lt;p&gt;消息源：&lt;strong&gt;&lt;a href=&quot;https://github.com/AOSC-Dev/liblol/issues/19&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/AOSC-Dev/liblol/issues/19&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;p&gt;这个问题我们先前做了分析，发现是腾讯对内置 libvips 的构建方法发生了变化（实际上是腾讯的问题，正在尝试联系解决）：腾讯在 37xxx 版本开始在 libvips 中静态链接了 GLib，而静态链接的老版本 GLib 和新世界系统中的新版 GTK 交互时触发了 assert&lt;/p&gt;
 
-</description><link>https://bbs.loongarch.org/d/548-loongnix25-latx-16</link><guid isPermaLink="false">https://bbs.loongarch.org/d/548-loongnix25-latx-16</guid><pubDate>Wed, 26 Mar 2025 13:39:21 GMT</pubDate><author>杜比</author><category>日知录</category><category>开源生态</category><category>新世界</category></item><item><title>求助大佬重新编译LA 仿真运行x86 docker 镜像</title><description>&lt;h2&gt;&lt;/h2&gt;
+&lt;p&gt;临时解决方法：&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
 
-&lt;p&gt;ABI 1.0 仿真运行x86 docker镜像失效了麻烦大佬重新编译下&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo rm -v /opt/QQ/resources/app/sharp-lib/libvips-cpp.so.42&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;sudo apt install libvips42&lt;/code&gt;&lt;/p&gt;
 
-&lt;h3&gt;仿真运行的镜像和二进制地址&lt;/h3&gt;
+&lt;p&gt;经验证，AOSC OS上这个方法有效。但deepin v25上，缺乏libvips42这个依赖，只能寻求一个旧版的QQ使用。&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/577-qq</link><guid isPermaLink="false">https://bbs.loongarch.org/d/577-qq</guid><pubDate>Sun, 27 Jul 2025 16:39:16 GMT</pubDate><author>杀毒软件吧</author><category>天南海北</category><category>新世界</category></item><item><title>nvm在loong64架构上无法安装nodejs的问题已找到</title><description>&lt;p&gt;每次安装总是会报这个错：“unrecognized command line option &#39;-m64&#39;”，原因就是openssl默认使用asm模式，但龙架构的openssl不支持这个模式，编译脚本找不到相关的配置转去加载了X86_64的编译参数，解决方法就是编译时加入选项--openssl-no-asm&lt;/p&gt;
 
-&lt;ul&gt;&lt;li&gt;ABI 1.0：&lt;br&gt;
+&lt;p&gt;改从源码手动编译&lt;/p&gt;
 
-  &lt;ul&gt;&lt;li&gt;镜像：&lt;code&gt;cr.loongnix.cn/tonistiigi/binfmt:loongarch64_other_arch&lt;/code&gt;&lt;/li&gt;
+&lt;p&gt;./configure --prefix /opt/nodejs/node-v22.17.1 --dest-cpu loong64 --openssl-no-asm&lt;br&gt;
+make&lt;br&gt;
+make install&lt;/p&gt;
 
-  &lt;li&gt;二进制：&lt;a href=&quot;https://github.com/Loongson-Cloud-Community/qemu-user-static/releases/download/abi1.0/qemu-static-abi1.0.tar.gz&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</description><link>https://bbs.loongarch.org/d/547-la-x86-docker</link><guid isPermaLink="false">https://bbs.loongarch.org/d/547-la-x86-docker</guid><pubDate>Mon, 24 Mar 2025 08:48:59 GMT</pubDate><author>david95</author><category>代码库</category><category>虚拟化</category><category>开源生态</category><category>资源专区</category><category>编程开发</category><category>旧世界</category></item><item><title>求助论坛大佬旧世界龙芯怎么运行docker x86版本镜像</title><description>&lt;p&gt;大佬们旧世界龙芯怎么运行docker x86版本镜像现在不能下载镜像仓库 binfmt镜像，有其它方法吗，docker pull cr.loongnix.cn/tonistiigi/binfmt&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/546-docker-x86</link><guid isPermaLink="false">https://bbs.loongarch.org/d/546-docker-x86</guid><pubDate>Fri, 21 Mar 2025 10:11:28 GMT</pubDate><author>david95</author><category>问答集</category><category>开源生态</category><category>旧世界</category></item><item><title>记录一下debian安装时遇到的问题</title><description>&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-19/1742395152-594316-5.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-19/1742395152-636213-2.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-关闭图中选项  就可以引导U盘安装&lt;a href=&quot;https://cdimage.debian.org/cdimage/ports/snapshots/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;Debian&lt;/a&gt;下载最新日期的ISO镜像安装&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/545-debian</link><guid isPermaLink="false">https://bbs.loongarch.org/d/545-debian</guid><pubDate>Wed, 19 Mar 2025 14:45:07 GMT</pubDate><author>loong64</author><category>*nix</category><category>新世界</category><category>Debian系</category></item><item><title>想问一下坛友关于3A6000的超频参数</title><description>&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-18/1742288251-81176-image.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以成功编译&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/576-nvmloong64nodejs</link><guid isPermaLink="false">https://bbs.loongarch.org/d/576-nvmloong64nodejs</guid><pubDate>Sat, 26 Jul 2025 13:57:40 GMT</pubDate><author>EMCA</author><category>日知录</category><category>开源生态</category><category>编程开发</category><category>新世界</category></item><item><title>关闭kde-plama登陆界面虚拟（触摸）键盘</title><description>&lt;p&gt;电脑不支持触控，但是选择用户名或者秘密的时候会弹出虚拟键盘。&lt;br&gt;
+&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-07-25/1753459224-982260-image-1753459042426.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+如上图所示：kde-plama登陆界面弹出虚拟（触摸）键盘，这是因为配置文件输入中打开了虚拟键盘，我们打开sddm.conf配置文件删除对应选项即可。&lt;br&gt;
+&lt;code&gt;sudo nano /etc/sddm.conf&lt;/code&gt;&lt;br&gt;
+删除&lt;code&gt;InputMethod=qtvirtualkeyboard&lt;/code&gt;这一行的&lt;code&gt;qtvirtualkeyboard&lt;/code&gt;改为&lt;code&gt;InputMethod=&lt;/code&gt;&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/575-kde-plama</link><guid isPermaLink="false">https://bbs.loongarch.org/d/575-kde-plama</guid><pubDate>Fri, 25 Jul 2025 16:12:43 GMT</pubDate><author>leesin</author><category>*nix</category><category>AOSC OS</category></item><item><title>UOS 25 Snipe版 龙芯新世界 下载链接</title><description>&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://qfile.qq.com/q/7CoUrHg8eI&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://qfile.qq.com/q/7CoUrHg8eI&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+上面的链接具有时效性，如果挂了，试试这个BT磁链或者种子文件：&lt;br&gt;
+magnet:?xt=urn:btih:cc36f54f131c6f745e4c535b8adbc5a8834ac88f&amp;amp;xt=urn:btmh:12203f4402df7ef8451427d99f944be235b468b6458db8da03a4291738365cfb1c4e&amp;amp;dn=uos-v25-snipe-loong64-20250315-014300.iso&amp;amp;xl=4756514816&amp;amp;tr=https%3A%2F%2Ftracker2.ctix.cn%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker1.520.jp%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.moeblog.cn%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftr.burnabyhighstar.com%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.kuroy.me%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.imgoingto.icu%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Fwww.peckservers.com%3A9443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.lilithraws.org%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.ipfsscan.io%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.cloudit.top%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftr.ready4.icu%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ft1.hloli.org%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ft.zerg.pw%2Fannounce&amp;amp;tr=https%3A%2F%2F1337.abcvg.info%3A443%2Fannounce&amp;amp;tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounc&lt;/p&gt;
 
-&lt;p&gt;这两天在琢磨给3A6000超频，2.65 GHz 运行xhpl会报 Bus Error，目前以 1.15V, 2.6GHz（Node@2.6 Ghz, HT@975 MHz） 运行，压测全部能过。&lt;/p&gt;
+&lt;div class=&quot;ButtonGroup&quot; data-fof-upload-download-uuid=&quot;8ff952ab-c20c-40f4-a11d-f6bf70bcea65&quot;&gt;&lt;div class=&quot;Button hasIcon Button--icon Button--primary&quot;&gt;&lt;i class=&quot;fas fa-download&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;uos-v25-snipe-loong64-20250315-014300.zip&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;231kB&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;但是这两天日常使用的时候遇到了很严重的掉机问题，怀疑是否是超频导致的，想问问大家如果有在超频使用3A6000，能否分享一下参数配置（频率，核心电压，内存频率）？&lt;/p&gt;
 
-&lt;p&gt;谢谢！&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/544-3a6000</link><guid isPermaLink="false">https://bbs.loongarch.org/d/544-3a6000</guid><pubDate>Tue, 18 Mar 2025 08:58:28 GMT</pubDate><author>Resbi</author><category>天南海北</category><category>新世界</category><category>旧世界</category></item><item><title>请问Loongson-3A R4 (3A4000)可以安装Loong Arch Linux吗？</title><description></description><link>https://bbs.loongarch.org/d/543-loongson-3a-r4-3a4000loong-arch-linux</link><guid isPermaLink="false">https://bbs.loongarch.org/d/543-loongson-3a-r4-3a4000loong-arch-linux</guid><pubDate>Mon, 17 Mar 2025 09:12:06 GMT</pubDate><author>Z-Y</author><category>问答集</category></item><item><title>ArchLinux重置root密码</title><description>&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-16/1742130209-944540-img-20250316-203908.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+</description><link>https://bbs.loongarch.org/d/574-uos-25-snipe</link><guid isPermaLink="false">https://bbs.loongarch.org/d/574-uos-25-snipe</guid><pubDate>Mon, 21 Jul 2025 12:50:29 GMT</pubDate><author>杀毒软件吧</author><category>*nix</category><category>新世界</category></item><item><title>升级到loongnix25后体验到的第一个好处</title><description>&lt;p&gt;玩游戏不死机了，开机两天断断续续的玩游戏没死机过，不知道是系统、内核、xorg还是编译器带来的改进，还是移植loonggpu驱动过程中修复了某些bug&lt;/p&gt;
 
-&lt;p&gt;选择ArchLinux Linux按e&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-07-19/1752916488-912740-screenshot1.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-16/1742130501-271201-f6b99008-e664-4268-b0f9-d98fce970faa.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;在linux开头的行的行尾，输入空格以及init=/bin/bash，然后按Ctrl+x&lt;/p&gt;
+</description><link>https://bbs.loongarch.org/d/572-loongnix25</link><guid isPermaLink="false">https://bbs.loongarch.org/d/572-loongnix25</guid><pubDate>Sat, 19 Jul 2025 09:19:53 GMT</pubDate><author>EMCA</author><category>日知录</category><category>开源生态</category><category>新世界</category></item><item><title>大佬，请教一下audio驱动的问题？</title><description>&lt;p&gt;最近在看audio驱动，对snd_pcm_update_hw_ptr0函数表示疑惑：&lt;br&gt;
+if (in_interrupt) {&lt;br&gt;
+/* we know that one period was processed */&lt;br&gt;
+/* delta = &quot;expected next hw_ptr&quot; for in_interrupt != 0 */&lt;br&gt;
+delta = runtime-&amp;gt;hw_ptr_interrupt + runtime-&amp;gt;period_size;&lt;br&gt;
+if (delta &amp;gt; new_hw_ptr) {&lt;br&gt;
+/* check for double acknowledged interrupts */&lt;br&gt;
+hdelta = curr_jiffies - runtime-&amp;gt;hw_ptr_jiffies;&lt;br&gt;
+if (hdelta &amp;gt; runtime-&amp;gt;hw_ptr_buffer_jiffies/2 + 1) {&lt;br&gt;
+hw_base += runtime-&amp;gt;buffer_size;&lt;br&gt;
+if (hw_base &amp;gt;= runtime-&amp;gt;boundary) {&lt;br&gt;
+hw_base = 0;&lt;br&gt;
+crossed_boundary++;&lt;br&gt;
+}&lt;br&gt;
+new_hw_ptr = hw_base + pos;&lt;br&gt;
+goto __delta;&lt;br&gt;
+}&lt;br&gt;
+}&lt;br&gt;
+}&lt;br&gt;
+有大佬知道if (hdelta &amp;gt; runtime-&amp;gt;hw_ptr_buffer_jiffies/2 + 1)条件表示的是情景吗？runtime-&amp;gt;hw_ptr_buffer_jiffies/2 + 1这个值是怎么得出来的？可以详细说说吗？&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/571-audio</link><guid isPermaLink="false">https://bbs.loongarch.org/d/571-audio</guid><pubDate>Fri, 11 Jul 2025 03:38:01 GMT</pubDate><author>shp1234</author><category>问答集</category></item><item><title>请问怎么给loongnix25提交软件包？</title><description>&lt;p&gt;请问如何给loongnix25提交软件包？是否有渠道提交给loongnix？还是需要先提交给Debian？&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-16/1742130614-91386-img-20250316-204053.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;多谢了&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/570-loongnix25</link><guid isPermaLink="false">https://bbs.loongarch.org/d/570-loongnix25</guid><pubDate>Thu, 10 Jul 2025 10:49:18 GMT</pubDate><author>EMCA</author><category>问答集</category><category>开源生态</category><category>编程开发</category><category>新世界</category></item><item><title>龙芯新款 Loongson-debugger</title><description>&lt;p&gt;这个Loongson-debugger其实是个jtag调试器，通过jtag协议，支持龙芯LoongArch CPU 硬件调试和固件维护，使用的是2K0300主芯片，通过USB-C和上位机通讯，使用2x4 Pin和龙芯开发板连接，兼容龙芯之前的龙芯中科 ” USB EJTAG 仿真器“方案，实测支持龙芯早期部分Mips处理器和LoongArch处理器硬件调试。&lt;/p&gt;
 
-&lt;p&gt;直接输入passwd root，回车，后输入新密码&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-07-10/1752122889-140820-loongson-debugger-new-001.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-07-10/1752122902-800307-loongson-debugger-new-002.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-07-10/1752122914-564661-loongson-debugger-new-003.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-</description><link>https://bbs.loongarch.org/d/541-archlinuxroot</link><guid isPermaLink="false">https://bbs.loongarch.org/d/541-archlinuxroot</guid><pubDate>Sun, 16 Mar 2025 13:11:05 GMT</pubDate><author>rlg</author><category>*nix</category><category>Archlinux</category></item><item><title>docker</title><description>&lt;p&gt;How to register &lt;a href=&quot;https://cr.loongnix.cn/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://cr.loongnix.cn/&lt;/a&gt;?  ( My sogou input is not ready , sorry)&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-07-10/1752124000-497030-loongson-debugger-new-005.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;I want to support the community, and want to upload more docker to cr.loonginx.cn, but how to register/signup? thanks&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/540-docker</link><guid isPermaLink="false">https://bbs.loongarch.org/d/540-docker</guid><pubDate>Sun, 16 Mar 2025 07:34:56 GMT</pubDate><author>sg552</author><category>问答集</category><category>虚拟化</category><category>编程开发</category></item><item><title>3a6000可用的模拟器列表</title><description>&lt;p&gt;3a6000主机，显卡是rx580，内存64G，256GSSD。系统环境是kernel6.12.18+gcc 15.0.1+glibc 2.41+wayland+kde6。可原生编译的模拟器（部分需要略修改源码，所有的源码均可以在https://apt.linuxfans.org/magic5/找到）。&lt;/p&gt;
 
-&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;&lt;p&gt;dosbox，可以在3a6000上模拟dos环境，可以运行仙剑等经典dos游戏。仙剑&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-07-10/1752123014-285878-loongson-debugger-new-004.jpg&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+</description><link>https://bbs.loongarch.org/d/569-loongson-debugger</link><guid isPermaLink="false">https://bbs.loongarch.org/d/569-loongson-debugger</guid><pubDate>Thu, 10 Jul 2025 04:50:17 GMT</pubDate><author>杜比</author><category>日知录</category><category>开源生态</category><category>IT资讯</category><category>开箱专场</category><category>嵌入式</category></item><item><title>从 https://pypi.loongnix.cn/loongson/pypi 安装的python包缺少C 扩展</title><description>&lt;p&gt;从官方源下载的python包，numpy， shapely等都缺少C 扩展，系统信息是：4.19.0-loongson-3-desktop #7108.loong8 SMP Fri Mar 28 14:23:27 CST 2025 loongarch64 GNU/Linux&lt;/p&gt;
 
-   &lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-12/1741772592-477859-20250312-173859.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;具体numpy异常是：Original error was: No module named &#39;numpy.core._multiarray_umath&#39;&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;raine，街机模拟器，可模拟雪人兄弟、街霸2等经典游戏（mame有问题，可编译暂时不能运行，先用这个顶一下吧）&lt;/p&gt;
+&lt;p&gt;shapely异常：ModuleNotFoundError: No module named &#39;shapely.lib&#39;&lt;/p&gt;
 
-   &lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-12/1741765454-174047-1741765254589.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;麻烦大神帮忙看下&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/568-httpspypiloongnixcnloongsonpypi-pythonc</link><guid isPermaLink="false">https://bbs.loongarch.org/d/568-httpspypiloongnixcnloongsonpypi-pythonc</guid><pubDate>Tue, 08 Jul 2025 03:44:46 GMT</pubDate><author>gmj</author><category>日知录</category></item><item><title>Loong Arch ABI2.0系统，常用软件仓库</title><description>&lt;p&gt;1、electron二进制下载地址：&lt;strong&gt;&lt;a href=&quot;https://github.com/loongson/electron/releases&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/loongson/electron/releases&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
-   &lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-12/1741765443-287739-1741765295983.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;2、npm仓库地址：&lt;strong&gt;&lt;a href=&quot;https://registry.loongnix.cn:5873/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://registry.loongnix.cn:5873&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;dgen，MD模拟器，基本可完美运行。下面是幽游白书-魔强统一战（中文版）&lt;/p&gt;
+&lt;p&gt;3、python仓库地址：&lt;strong&gt;&lt;a href=&quot;https://lpypi.loongnix.cn/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://lpypi.loongnix.cn/&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
-   &lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-03-14/1741927804-610354-20250314-124610.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;4、maven常用地址：&lt;strong&gt;&lt;a href=&quot;https://maven.loongnix.cn/loongarch/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://maven.loongnix.cn/loongarch/&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;fcuex&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;5、容器镜像仓库地址：&lt;a href=&quot;https://lcr.loongnix.cn/search/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://lcr.loongnix.cn/search/&lt;/a&gt;&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;mupen64plus&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;dolphin-emu&lt;/p&gt;&lt;/li&gt;
+</description><link>https://bbs.loongarch.org/d/567-loong-arch-abi20</link><guid isPermaLink="false">https://bbs.loongarch.org/d/567-loong-arch-abi20</guid><pubDate>Fri, 27 Jun 2025 08:44:42 GMT</pubDate><author>aqz</author><category>编程开发</category><category>软件移植</category></item><item><title>LATA已开源，欢迎大家参与开源软件建设</title><description>&lt;p&gt;&lt;a href=&quot;https://github.com/lat-opensource/lata&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/lat-opensource/lata&lt;/a&gt;&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;mednafen&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</description><link>https://bbs.loongarch.org/d/539-3a6000</link><guid isPermaLink="false">https://bbs.loongarch.org/d/539-3a6000</guid><pubDate>Wed, 12 Mar 2025 07:46:02 GMT</pubDate><author>liudidi</author><category>*nix</category><category>开源生态</category><category>游戏娱乐</category><category>新世界</category><category>RedHat系</category></item><item><title>新世界显卡驱动程序</title><description>&lt;p&gt;自从deepin和aosc更新到Linux 6.6内核以后，没有任何一款国产显卡可以在arm64电脑上亮屏，可能因为显卡都没有公开efifb（EFI framebuffer）‌基础驱动代码，而且没有适配dkms（Dynamic Kernel Module Support），可变范围极和适用范围小，社区版linux系统普遍支持不了国产显卡，很是无奈。&lt;/p&gt;
+&lt;p&gt;LATA（Loongson Architecture Translator for ARM）即龙芯ARM架构转译器 ，是 一个面向 LoongArch 架构的高性能用户级二进制翻译器，用于在龙芯（龙架构） 系统上高效地运行ARM应用程序。&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/564-lata</link><guid isPermaLink="false">https://bbs.loongarch.org/d/564-lata</guid><pubDate>Fri, 13 Jun 2025 11:59:17 GMT</pubDate><author>杀毒软件吧</author><category>代码库</category><category>开源生态</category><category>编程开发</category></item><item><title>请问,哪里能找到7A2000的驱动代码</title><description>&lt;p&gt;请问群里的技术大神们,哪里能找到龙芯集显7A2000的驱动代码,希望用龙芯做全国产,但苦于找不到合适的GPU资料,没办法做显示加速&lt;/p&gt;
 
-&lt;p&gt;虽然陆陆续续有国产显卡适配了linux 6.6以上内核，但是基本上都是绑定特定内核的驱动，只要系统有升级或者发布新版本，显卡驱动就会失效，比如芯动科技的风华二号出过arch linux 6.7内核的驱动和slackware 6.6内核的驱动，由于系统变化和无法移植到其他更流行的系统而消失的无影无踪。&lt;/p&gt;
+&lt;p&gt;看了loongnix的内核代码,似乎没有对2D进行加速,DC和GPU的驱动代码中都找不到对framebuffer的支持&lt;br&gt;
+我主要是希望实现图像放大和混合的加速,比如BitBlt,但看了内核驱动的代码这部分好像纯粹用CPU计算的.&lt;/p&gt;
 
-&lt;p&gt;现在芯瞳再次适配了linux 6.6 内核的loongnix和openkylin 2.0驱动，仍然是绑定内核的驱动，真心希望有一款独显驱动可以公开efifb和适配dkms。&lt;/p&gt;
+&lt;p&gt;如果能够有7A2000的编程指南文档就太好了,就像全志的riscv的soc的图形编程指南一样&lt;/p&gt;
 
-&lt;p&gt;目前国产显卡唯一支持dkms的是龙芯GPU, 只有在龙芯电脑选用核显时才可用，同一套驱动已经动态支持linux 6.6, 6.12, 6.13, 6.14内核，loongnix, deepin和aosc三个系统，驱动文件列举如下：&lt;/p&gt;
 
-&lt;p&gt;loonggl:loong641.0.1-alpha-lnd25.5&lt;/p&gt;
+</description><link>https://bbs.loongarch.org/d/563-7a2000</link><guid isPermaLink="false">https://bbs.loongarch.org/d/563-7a2000</guid><pubDate>Mon, 09 Jun 2025 08:19:38 GMT</pubDate><author>zxddesk</author><category>开源生态</category><category>新世界</category><category>旧世界</category><category>嵌入式</category></item><item><title>请问loongnix20.6的源代码如何下载，</title><description>&lt;p&gt;请问，loongnix20.6的源代码如何下载，&lt;/p&gt;
 
-&lt;p&gt;loonggpu-driver1.0.1-alpha-lnd25.5&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://pkg.loongnix.cn/loongnix/25/dists/loongnix/main/source/&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://pkg.loongnix.cn/loongnix/25/dists/loongnix/main/source/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;loonggpu-kernel-dkms1.0.1-alpha-lnd25.5&lt;/p&gt;
+&lt;p&gt;龙芯开源社区的源代码下载下来后不知道Sources.gz里面那个sources如何解压&lt;/p&gt;
 
-&lt;p&gt;loonggpu-settings1.0.1-alpha-lnd25.5&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/538</link><guid isPermaLink="false">https://bbs.loongarch.org/d/538</guid><pubDate>Wed, 05 Mar 2025 14:33:33 GMT</pubDate><author>flowas</author><category>资源专区</category><category>编程开发</category><category>新世界</category></item><item><title>装完loongnix 25, 原来的旧世界不能用了</title><description>&lt;p&gt;装完loongnix 25, 原来的旧世界不能用了。 loongnix25的efi目录 和boot目录选的是原来的旧世界的。是不是就是现在两个世界还是不兼容的状态？&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/537-loongnix-25</link><guid isPermaLink="false">https://bbs.loongarch.org/d/537-loongnix-25</guid><pubDate>Thu, 27 Feb 2025 16:04:02 GMT</pubDate><author>XiaOaiX</author><category>问答集</category><category>新世界</category></item><item><title>loongnix 25 有能用的 Latx 包吗</title><description>&lt;p&gt;貌似 apt search 没有找到呢？&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/536-loongnix-25-latx</link><guid isPermaLink="false">https://bbs.loongarch.org/d/536-loongnix-25-latx</guid><pubDate>Thu, 27 Feb 2025 14:42:35 GMT</pubDate><author>XiaOaiX</author><category>问答集</category><category>新世界</category></item><item><title>龙芯3A5000+统信操作系统编译Qt5.15.2报段错误？</title><description>&lt;p&gt;执行： ./configure -prefix /zhy/Qt5.15.2 -opensource -confirm-license -nomake examples -nomake tests -skip qtwebengine时候报错：Segmentation fault。什么原因？也没日志&lt;/p&gt;
 
+</description><link>https://bbs.loongarch.org/d/562-loongnix206</link><guid isPermaLink="false">https://bbs.loongarch.org/d/562-loongnix206</guid><pubDate>Sun, 08 Jun 2025 14:17:38 GMT</pubDate><author>zxddesk</author><category>新世界</category><category>旧世界</category><category>嵌入式</category></item><item><title>AOSC新世界运行原生旧世界北太天元所必需的改动及教程</title><description>&lt;p&gt;1. 摘要&lt;/p&gt;
 
-</description><link>https://bbs.loongarch.org/d/535-3a5000qt5152</link><guid isPermaLink="false">https://bbs.loongarch.org/d/535-3a5000qt5152</guid><pubDate>Mon, 10 Feb 2025 08:36:48 GMT</pubDate><author>coderzhy</author><category>问答集</category></item><item><title>使用主板带的 loongson3_spi 刷固件</title><description>&lt;h3&gt;前言&lt;/h3&gt;
+&lt;p&gt;作为Matlab的国产化平替，北太天元积极适配了龙芯平台，但只给出了UOS旧世界的版本，并且需要移除部分其自带的旧世界库（libopenblas.so.0 以及 libffi.so.6），使用oma下载的新世界库，才能完美运行起来。&lt;/p&gt;
 
-&lt;p&gt;本贴分享旨在减少编程器的购买,建议购买适用于自己主板的flash芯片,以免刷砖&lt;/p&gt;
+&lt;p&gt;本人的硬件平台为3A6000-7A2000，LibLoL版本0.1.9，AOSC版本12.2.0，Linux内核版本6.14.9-aosc-main，北太天元软件版本为4.0.0_dev0。&lt;/p&gt;
 
-&lt;h3&gt;准备&lt;/h3&gt;
+&lt;p&gt;2. 正文&lt;/p&gt;
 
-&lt;p&gt;需要自己编译flashrom&lt;/p&gt;
+&lt;p&gt;2.1 下载安装&lt;/p&gt;
 
-&lt;p&gt;参考于 &lt;a href=&quot;https://github.com/loongarchlinux/extra/tree/main/flashrom&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;ArchLinux::flashrom&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;于&lt;a href=&quot;https://www.baltamatica.com/community/sposts/detail/2bfab4ae-ef40-8a54-af77-2cf310d29b1c.html&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;北太天元官网&lt;/a&gt;&lt;em&gt;花点时间&lt;/em&gt;注册下载最新的loongarch架构安装包，&lt;/p&gt;
 
-&lt;p&gt;感谢  &lt;a href=&quot;https://bbs.loongarch.org/u/79&quot; class=&quot;UserMention&quot; rel=&quot;&quot; target=&quot;&quot;&gt;@yetist&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748937845-385557-screenshot-20250603-160351.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/flashrom/flashrom.git -b v1.2
-$ cd flashrom
-$ curl -L &quot;https://raw.githubusercontent.com/loongarchlinux/extra/refs/heads/main/flashrom/0001-Loongson-3-SPI-tmp.patch&quot; &amp;gt; 1.patch
-$ curl -L &quot;https://raw.githubusercontent.com/loongarchlinux/extra/refs/heads/main/flashrom/0002-Speed-up.patch&quot; &amp;gt; 2.patch
-$ curl -L &quot;https://raw.githubusercontent.com/loongarchlinux/extra/refs/heads/main/flashrom/0003-Add-support-for-loongarch64.patch&quot; &amp;gt; 3.patch
-$ git am 1.patch
-$ git am 2.patch
-$ git am 3.patch&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;直接双击下载到的包文件 baltamatica_999-4.0.0-dev0_uos20_loongarch64.deb 进行安装，或者在命令行中运行 &lt;code&gt;sudo dpkg -i baltamatica_999-4.0.0-dev0_uos20_loongarch64.deb&lt;/code&gt; 进行安装。&lt;/p&gt;
 
-&lt;p&gt;编译 flashrom 需要一些依赖,如在 Loongnix20 上需要 libusb-1.0-0-dev libpci-dev&lt;/p&gt;
+&lt;p&gt;待安装完毕，会看到在开始菜单的“Science &amp;amp; Math”一栏出现一个baltamatica软件，此即北太天元。&lt;/p&gt;
 
-&lt;h3&gt;编译&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748938115-581509-screenshot-20250603-160726.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;在flashrom的目录中make时不报错即可 &lt;code&gt;$ make -j4&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;此时若点击运行，可能会有一些buggy的情况出现（窗口无法拖动，程序无法运行，库加载不上来，提示缺少组件等），在命令行中运行 &lt;code&gt;baltamaticaC.sh&lt;/code&gt; 启动北太天元的CLI界面，命令窗口里会提示&lt;/p&gt;
 
-&lt;h3&gt;注意事项&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748938441-660041-screenshot-20250603-161353.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;刷固件是非常危险的事, 得益于龙芯提供的固件很稳定, 加上自己买了一些flash芯片备份, 在龙芯机器上未有实际的变砖案例。&lt;br&gt;
-笔者认知, flash分两种, 分别是 25Q64 (3V) 和 25LQ64 (1.8V), 可以取下flash芯片看下芯片丝印。笔者使用的板子是 3A5000-7A2000-EVB, flash芯片上写明的是 25Q64 , 实际测试出来的电压是 1.8V, 因此使用了一些 3V 的flash发现写入失败。&lt;br&gt;
-通常我是不会刷现有的flash芯片的,而是购入flash芯片后,刷入新的flash芯片, 避免flash无效导致变砖, 因此未有实际变砖案例。&lt;/p&gt;
+&lt;p&gt;这告诉我们它的 libopenblas.so.0 有问题。在解决这个之后还会发现 libffi.so.6 有问题，下面一并进行修复。&lt;/p&gt;
 
-&lt;h3&gt;读取和写入&lt;/h3&gt;
+&lt;p&gt;2.2. 修复&lt;/p&gt;
 
-&lt;p&gt;因为 3a5000 与 3a6000 的 SPICTRL 偏移与 3a4000 一致, 因此参数使用 cpu=3a4000 即可.&lt;br&gt;
-读取固件备份&lt;br&gt;
-&lt;code&gt;$ sudo ./flashrom -p loongson3_spi:cpu=3a4000 -r backup.fd&lt;/code&gt;&lt;br&gt;
-这条命令将读取固件并保存为 backup.fd, 先备份, 即便是变砖后仍然可以通过编程器刷回来&lt;/p&gt;
+&lt;p&gt;2.2.1. 安装组件&lt;/p&gt;
 
-&lt;p&gt;写入固件：&lt;br&gt;
-首先取下旧flash芯片,开机状态下取下flash芯片&lt;strong&gt;一般&lt;/strong&gt;是没问题的,再从 &lt;a href=&quot;https://github.com/loongson/Firmware.git&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;Firmware&lt;/a&gt; 中找到自己所需要的固件文件, 例如我需要的是 1.fd&lt;br&gt;
-&lt;code&gt;$ sudo ./flashrom -p loongson3_spi:cpu=3a4000 -w 1.fd&lt;/code&gt;&lt;br&gt;
-写入后重启即可, 在本机上成功重启&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/534-loongson3-spi</link><guid isPermaLink="false">https://bbs.loongarch.org/d/534-loongson3-spi</guid><pubDate>Sat, 08 Feb 2025 02:00:50 GMT</pubDate><author>Sunny</author><category>天南海北</category></item><item><title>loongarch版安卓已经发布</title><description>&lt;p&gt;&lt;a href=&quot;https://github.com/android-la64/docs&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/android-la64/docs&lt;/a&gt;   有人试过效果如何吗？&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/533-loongarch</link><guid isPermaLink="false">https://bbs.loongarch.org/d/533-loongarch</guid><pubDate>Thu, 06 Feb 2025 03:21:42 GMT</pubDate><author>rrrqq</author><category>开源生态</category><category>IT资讯</category><category>编程开发</category></item><item><title>旧世界的能安装Loongnix25吗</title><description>&lt;p&gt;请问一下，旧世界的3A5000能安装Loongnix25吗？我买的笔记本好像无法升级固件&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/532-loongnix25</link><guid isPermaLink="false">https://bbs.loongarch.org/d/532-loongnix25</guid><pubDate>Tue, 21 Jan 2025 02:12:25 GMT</pubDate><author>Heaven_XyZ</author><category>*nix</category><category>Loongnix</category><category>旧世界</category></item></channel></rss>
+&lt;p&gt;首先在 oma 中确保系统安装了 openblas 库和 libffi 库&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748938738-832713-screenshot-20250603-161850.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748938766-390420-screenshot-20250603-161919.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;并且确认这两个库在 &lt;code&gt;/lib&lt;/code&gt; 中有链接&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748938856-769230-screenshot-20250603-162016.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;2.2.2. 修改北太天元&lt;/p&gt;
+
+&lt;p&gt;可以在北太天元的安装目录里的 &lt;code&gt;lib&lt;/code&gt; 文件夹下找到对应的两个库文件，安装目录一般默认为 &lt;code&gt;/opt/Baltamatica&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748938983-702935-screenshot-20250603-162253.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;这两个是北太天元自带的旧世界库，将他们&lt;strong&gt;删除&lt;/strong&gt;或&lt;strong&gt;改名&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo mv /opt/Baltamatica/lib/libffi.so.6 /opt/Baltamatica/lib/libffi.so.6-backup&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo mv /opt/Baltamatica/lib/libopenblas.so.0 /opt/Baltamatica/lib/libopenblas.so.0-backup&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;此时再运行北太天元软件，就可以正常使用了，在组件一栏打开关闭组件也不会遇到“组件开启失败”的问题，但依旧会提示“当前网络未链接”，这个不用理会。&lt;/p&gt;
+
+&lt;p&gt;3. 性能&lt;/p&gt;
+
+&lt;p&gt;我手上没有很好的跑分代码，找朋友要了一段Matlab写的科研代码，可以直接跑。朋友说这个速度还不错，我想应该还可以吧。后续或许会补充一些基准测试，UU们也可以给一些建议。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.loongbbs.cn/assets/files/2025-06-03/1748939170-406336-screenshot-20250603-154634.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;4. 谢谢&lt;/p&gt;
+
+&lt;p&gt;谢谢！&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/561-aosccny</link><guid isPermaLink="false">https://bbs.loongarch.org/d/561-aosccny</guid><pubDate>Tue, 03 Jun 2025 08:54:44 GMT</pubDate><author>Resbi</author><category>日知录</category><category>新世界</category><category>旧世界</category></item><item><title>哪位大神可以出一个关于debian-ports下的打包教程么？</title><description>&lt;p&gt;按照debian官方打包教程打包， packaging-tutorial.zh_CN.pdf&lt;/p&gt;
+
+&lt;p&gt;用的阿里云的源，没找到源码。帮忙看下或者出个debian-ports下的打包教程，谢谢&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-05-25/1748167219-765202-a0b34cc2-4815-45ef-a5ea-d7e709d761ff.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-05-25/1748167030-910024-4fe72ff2-fecb-4e6c-a35a-d36d5ea18381.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/560-debian-ports</link><guid isPermaLink="false">https://bbs.loongarch.org/d/560-debian-ports</guid><pubDate>Sun, 25 May 2025 09:59:32 GMT</pubDate><author>rlg</author><category>*nix</category><category>Debian系</category></item><item><title>总算跑起来了</title><description>&lt;p&gt;MAME由于delegate.h触发龙芯内存保护的问题暂时没法运行，但是基于MAME旧版本代码的FBNeo可以跑起来，最大的问题是多任务时容易死机，连和WPS同时开都不行，看来龙芯用户玩游戏的人太少，这么大的问题没人注意&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-05-01/1746089517-150861-rayforce.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/559</link><guid isPermaLink="false">https://bbs.loongarch.org/d/559</guid><pubDate>Thu, 01 May 2025 08:57:47 GMT</pubDate><author>EMCA</author><category>日知录</category><category>开源生态</category><category>旧世界</category></item><item><title>龙架构eclipse移植</title><description>&lt;p&gt;本次移植的补丁包只在deepin23上测试过，uos  20 1070和kylin 24.04因为glibc版本太低无法使用&lt;/p&gt;
+
+&lt;p&gt;代码仓库：&lt;a href=&quot;https://gitee.com/flowas/eclipe-for-loong64&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://gitee.com/flowas/eclipe-for-loong64&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1&gt;&lt;strong&gt;eclipeForLoong64&lt;/strong&gt;&lt;/h1&gt;
+
+&lt;h2&gt;&lt;strong&gt;download source code&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;$$&lt;br&gt;
+git clone &lt;a href=&quot;https://github.com/eclipse-platform/eclipse.platform.releng.aggregator.git&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/eclipse-platform/eclipse.platform.releng.aggregator.git&lt;/a&gt;&lt;br&gt;
+cd eclipse.platform.releng.aggregator&lt;br&gt;
+git submodule update --init --recursive&lt;br&gt;
+$$&lt;/p&gt;
+
+&lt;h2&gt;&lt;strong&gt;build executable&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;sudo apt-get install gtk+-3.0&lt;/p&gt;
+
+&lt;p&gt;cd eclipse.platform.releng.aggregator/equinox/features/org.eclipse.equinox.executable.feature/library/gtk&lt;/p&gt;
+
+&lt;p&gt;./build.sh&lt;/p&gt;
+
+&lt;p&gt;执行 ./build.sh install 会自动复制.so文件到eclipse.platform.releng.aggregator/equinox.binaries目录下的 org.eclipse.equinox.launcher.gtk.linux.loongarch64和org.eclipse.equinox.executable目录&lt;/p&gt;
+
+&lt;h2&gt;&lt;strong&gt;build swt&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;在工程eclipse.platform.releng.aggregator/eclipse.platform.swt/bundles/org.eclipse.swt中 按照配置文件nativeSourceFolders.properties中目录信息，复制src_common和src_gtk类型目录下的文件到bin/library 或者Eclipse正确倒入swt工程后会生成bin/library目录， 也可以复制eclipeForLoong64/copy/org.eclipse.swt/*到eclipse.platform.releng.aggregator/eclipse.platform.swt/bundles/org.eclipse.swt目录，然后执行python3 copy_files.py自动复制&lt;/p&gt;
+
+&lt;p&gt;在bin/library目录下执行命令&lt;/p&gt;
+
+&lt;p&gt;$$&lt;br&gt;
+export SWT_JAVA_HOME=${JAVA_HOME}&lt;br&gt;
+./build.sh -gtk3 install&lt;br&gt;
+$$&lt;/p&gt;
+
+&lt;p&gt;然后会生成很多.so文件，会自动复制到eclipse.platform.releng.aggregator/eclipse.platform.swt/binaries/org.eclipse.swt.gtk.linux.loongarch64目录&lt;/p&gt;
+
+&lt;h2&gt;&lt;strong&gt;repackage jar&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;复制以下目录&lt;/p&gt;
+
+&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;&lt;p&gt;eclipse.platform.releng.aggregator/eclipse.platform/resources/bundles/org.eclipse.core.filesystem.linux.loongarch64&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;eclipse.platform.releng.aggregator/equinox/bundles/org.eclipse.equinox.launcher.gtk.linux.loongarch64&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;eclipse.platform.releng.aggregator/eclipse.platform.swt/binaries/org.eclipse.swt.gtk.linux.loongarch64&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;eclipse.platform.releng.aggregator/equinox.binaries 到eclipeForLoong64/resources目录下&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;p&gt;从eclipse-jee-2025-03-R-linux-gtk-aarch64.tar.gz中复制 plugins/org.eclipse.core.filesystem.linux.aarch64_1.4.200.v20220812-1420.jar plugins/org.eclipse.equinox.launcher.gtk.linux.aarch64_1.2.1300.v20250212-0927 plugins/org.eclipse.swt.gtk.linux.aarch64_3.129.0.v20250221-1734.jar 文件到eclipeForLoong64/resources目录&lt;/p&gt;
+
+&lt;p&gt;把eclipeForLoong64中resources和shells目录下文件复制到build目录&lt;/p&gt;
+
+&lt;p&gt;执行 ./build.sh 会执行如下工作：&lt;/p&gt;
+
+&lt;p&gt;修改 org.eclipse.core.filesystem.linux.loongarch64/META-INF/MANIFEST.MF Bundle-Version: 1.4.200.v20220812-1420 org.eclipse.equinox.launcher.gtk.linux.loongarch64/META-INF/MANIFEST.MF Bundle-Version: 1.2.1300.v20250212-0927 org.eclipse.swt.gtk.linux.loongarch64_3.129.0.v20250221-1734/META-INF/MANIFEST.MF Bundle-Version: 3.129.0.v20250221-1734 复制equinox.binaries/org.eclipse.equinox.launcher.gtk.linux.loongarch64/eclipse_11909.so到build/org.eclipse.equinox.launcher.gtk.linux.loongarch64目录&lt;/p&gt;
+
+&lt;p&gt;重新生成jar包，并将所有eclipse中loong64相关内容放在eclipeForLoong64/binary/replace目录下&lt;/p&gt;
+
+&lt;h2&gt;&lt;strong&gt;替换eclipse中aarch64相关内容为loong64相关内容&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;复制eclipeForLoong64/binary/replace目录和replace.sh文件到aarch64版eclipse安装目录，执行./replace.sh脚本即可替换相关文件，成功后执行./eclipse启动eclipse&lt;/p&gt;
+
+&lt;div class=&quot;ButtonGroup&quot; data-fof-upload-download-uuid=&quot;21369799-ba81-4577-9858-e30dfa246a3c&quot;&gt;&lt;div class=&quot;Button hasIcon Button--icon Button--primary&quot;&gt;&lt;i class=&quot;fas fa-download&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;eclipse-jee-25-03-loong64-patch.zip&lt;/div&gt;&lt;div class=&quot;Button&quot;&gt;2MB&lt;/div&gt;&lt;/div&gt;</description><link>https://bbs.loongarch.org/d/558-eclipse</link><guid isPermaLink="false">https://bbs.loongarch.org/d/558-eclipse</guid><pubDate>Sat, 26 Apr 2025 14:27:45 GMT</pubDate><author>flowas</author><category>编程开发</category><category>新世界</category><category>软件移植</category></item><item><title>请问各位大佬有没有龙芯ACPI MADT的手册？</title><description>&lt;p&gt;最新的ACPI规范里面规定了龙芯中断的各项数据，但是根据搜索引擎和龙芯官网的搜索结果，搜不到类似于龙芯ACPI MADT的说明，请问各位大佬如果有龙芯ACPI MADT的手册，去哪里能够找到？&lt;/p&gt;
+
+
+</description><link>https://bbs.loongarch.org/d/557-acpi-madt</link><guid isPermaLink="false">https://bbs.loongarch.org/d/557-acpi-madt</guid><pubDate>Wed, 09 Apr 2025 07:35:02 GMT</pubDate><author>TYDQ</author><category>编程开发</category></item><item><title>龙芯上的EFI文件怎么指定启用双精度浮点数？</title><description>&lt;p&gt;我最近碰到了一个有关EFI的问题，就是使用自制转换器转换ELF文件到EFI文件时，在运行到如图所示时&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-04-08/1744091567-246553-qq20250408-135206.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;会报如下错误:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://bbs.loongarch.org/assets/files/2025-04-08/1744091625-255514-qq20250408-135336.png&quot; title=&quot;&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;请问我没有关闭浮点指令，为什么还会出现这个异常？&lt;/p&gt;
+
+&lt;p&gt;（这是转换之前的原来的elf文件的汇编代码，不知道哪里出了问题导致抛出浮点指令禁用异常，我是用fpc进行编译的）&lt;/p&gt;</description><link>https://bbs.loongarch.org/d/556-efi</link><guid isPermaLink="false">https://bbs.loongarch.org/d/556-efi</guid><pubDate>Tue, 08 Apr 2025 05:54:46 GMT</pubDate><author>TYDQ</author><category>编程开发</category></item></channel></rss>
