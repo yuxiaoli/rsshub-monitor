@@ -1,214 +1,53 @@
 [
   {
-    "provider_id": "douyu",
-    "provider_name": "斗鱼直播",
-    "route_key": "/group/:id/:sort?",
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/thread/:type?/:order?",
     "route": {
-      "path": "/group/:id/:sort?",
-      "example": "/douyu/group/1011",
+      "path": "/thread/:type?/:order?",
+      "example": "/1point3acres/thread/hot",
       "parameters": {
-        "id": "鱼吧 id，可在鱼吧页 URL 中找到",
-        "sort": "排序方式，见下表，默认为发布时间排序"
+        "type": "帖子分类, 见下表，默认为 hot，即热门帖子",
+        "order": "排序方式，见下表，默认为空，即最新回复"
       },
-      "name": "鱼吧帖子",
-      "description": "| 回复时间排序 | 发布时间排序 |\n| ------------ | ------------ |\n| 1            | 2            |",
-      "provider_id": "douyu",
-      "provider_name": "斗鱼直播",
-      "route_key": "/group/:id/:sort?"
+      "name": "帖子",
+      "url": "instant.1point3acres.com/",
+      "description": "分类\n\n| 热门帖子 | 最新帖子 |\n| -------- | -------- |\n| hot      | new      |\n\n  排序方式\n\n| 最新回复 | 最新发布 |\n| -------- | -------- |\n|          | post     |",
+      "provider_id": "1point3acres",
+      "provider_name": "一亩三分地",
+      "route_key": "/thread/:type?/:order?"
     }
   },
   {
-    "provider_id": "douyu",
-    "provider_name": "斗鱼直播",
-    "route_key": "/post/:id",
+    "provider_id": "flyert",
+    "provider_name": "飞客茶馆",
+    "route_key": "/forum/:params{.+}?",
     "route": {
-      "path": "/post/:id",
-      "example": "/douyu/post/631737151576473201",
+      "path": "/forum/:params{.+}?",
+      "name": "会员说",
+      "url": "www.flyert.com.cn",
+      "example": "/flyert/forum",
       "parameters": {
-        "id": "帖子 id，可在帖子页 URL 中找到"
+        "params": "参数，默认为空，可在对应分类页 URL 中找到"
       },
-      "name": "鱼吧跟帖",
-      "provider_id": "douyu",
-      "provider_name": "斗鱼直播",
-      "route_key": "/post/:id"
+      "description": "::: tip\n  若订阅 [酒店集团优惠](https://www.flyert.com.cn/forum.php?mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19)，网址为 `https://www.flyert.com.cn/forum.php?mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19`。截取 `https://www.flyert.com.cn/forum.php?` 到末尾的部分 `mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19` **进行 UrlEncode 编码** 后作为参数填入，此时路由为 [`/flyert/forum/mod%3Dforumdisplay%26sum%3Dall%26fid%3Dall%26catid%3D322%26filter%3Dsortid%26sortid%3D144%26searchsort%3D1%26youhui_type%3D226`](https://rsshub.app/flyert/forum/mod%3Dforumdisplay%26sum%3Dall%26fid%3Dall%26catid%3D322%26filter%3Dsortid%26sortid%3D144%26searchsort%3D1%26youhui_type%3D226)。\n:::\n    ",
+      "provider_id": "flyert",
+      "provider_name": "飞客茶馆",
+      "route_key": "/forum/:params{.+}?"
     }
   },
   {
-    "provider_id": "feng",
-    "provider_name": "威锋",
-    "route_key": "/forum/:id/:type?",
+    "provider_id": "zuvio",
+    "provider_name": "Zuvio",
+    "route_key": "/student5/boards",
     "route": {
-      "path": "/forum/:id/:type?",
-      "example": "/feng/forum/1",
-      "parameters": {
-        "id": "版块 ID，可在版块 URL 找到",
-        "type": "排序，见下表，默认为 `all`"
-      },
-      "name": "社区",
-      "description": "| 最新回复 | 最新发布 | 热门 | 精华    |\n| -------- | -------- | ---- | ------- |\n| newest   | all      | hot  | essence |",
-      "provider_id": "feng",
-      "provider_name": "威锋",
-      "route_key": "/forum/:id/:type?"
-    }
-  },
-  {
-    "provider_id": "huoxian",
-    "provider_name": "火线",
-    "route_key": "/zone",
-    "route": {
-      "path": "/zone",
-      "example": "/huoxian/zone",
+      "path": "/student5/boards",
+      "example": "/zuvio/student5/boards",
       "parameters": {},
-      "name": "Zone",
-      "provider_id": "huoxian",
-      "provider_name": "火线",
-      "route_key": "/zone"
-    }
-  },
-  {
-    "provider_id": "loongarch",
-    "provider_name": "LA UOSC社区",
-    "route_key": "/post/:type?",
-    "route": {
-      "path": "/post/:type?",
-      "example": "/loongarch/post/newest",
-      "parameters": {
-        "type": "top 或 newest"
-      },
-      "name": "最热 / 最新帖子",
-      "url": "bbs.loongarch.org/",
-      "provider_id": "loongarch",
-      "provider_name": "LA UOSC社区",
-      "route_key": "/post/:type?"
-    }
-  },
-  {
-    "provider_id": "nowcoder",
-    "provider_name": "牛客网",
-    "route_key": "/schedule/:propertyId?/:typeId?",
-    "route": {
-      "path": "/schedule/:propertyId?/:typeId?",
-      "example": "/nowcoder/schedule",
-      "parameters": {
-        "propertyId": "行业, 在控制台中抓取接口，可获得行业id，默认0",
-        "typeId": "类别，同上"
-      },
-      "name": "校招日程",
-      "url": "nowcoder.com/",
-      "provider_id": "nowcoder",
-      "provider_name": "牛客网",
-      "route_key": "/schedule/:propertyId?/:typeId?"
-    }
-  },
-  {
-    "provider_id": "playno1",
-    "provider_name": "PLAYNO.1 玩樂達人",
-    "route_key": "/av/:catid?",
-    "route": {
-      "path": "/av/:catid?",
-      "example": "/playno1/av",
-      "parameters": {
-        "catid": "分类，见下表，默认为全部文章"
-      },
-      "name": "AV",
-      "description": "::: warning\n目前观测到该博客可能禁止日本 IP 访问。建议部署在日本区以外的服务器上。\n:::\n\n| 全部文章 | AV 新聞 | AV 導覽 |\n| -------- | ------- | ------- |\n| 78       | 3       | 5       |",
-      "provider_id": "playno1",
-      "provider_name": "PLAYNO.1 玩樂達人",
-      "route_key": "/av/:catid?"
-    }
-  },
-  {
-    "provider_id": "right",
-    "provider_name": "恩山无线论坛",
-    "route_key": "/forum/:id?",
-    "route": {
-      "path": "/forum/:id?",
-      "example": "/right/forum/31",
-      "parameters": {
-        "id": "板块 id，可在板块页 URL 中找到，默认为新手入门及其它(硬件)"
-      },
-      "name": "板块",
-      "provider_id": "right",
-      "provider_name": "恩山无线论坛",
-      "route_key": "/forum/:id?"
-    }
-  },
-  {
-    "provider_id": "sis001",
-    "provider_name": "第一会所",
-    "route_key": "/forum/:id?",
-    "route": {
-      "path": "/forum/:id?",
-      "example": "/sis001/forum/322",
-      "parameters": {
-        "id": "子版块 ID，可在子论坛 URL 找到，默认为 `Funny Jokes | 短篇笑话区`"
-      },
-      "name": "子版块",
-      "provider_id": "sis001",
-      "provider_name": "第一会所",
-      "route_key": "/forum/:id?"
-    }
-  },
-  {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/tab/:tabid",
-    "route": {
-      "path": "/tab/:tabid",
-      "view": 0,
-      "example": "/v2ex/tab/hot",
-      "parameters": {
-        "tabid": "tab标签ID,在 URL 可以找到"
-      },
-      "name": "标签",
-      "provider_id": "v2ex",
-      "provider_name": "V2EX",
-      "route_key": "/tab/:tabid"
-    }
-  },
-  {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/topics/:type",
-    "route": {
-      "path": "/topics/:type",
-      "view": 0,
-      "example": "/v2ex/topics/latest",
-      "parameters": {
-        "type": {
-          "description": "主题类型",
-          "options": [
-            {
-              "value": "hot",
-              "label": "最热主题"
-            },
-            {
-              "value": "latest",
-              "label": "最新主题"
-            }
-          ],
-          "default": "hot"
-        }
-      },
-      "name": "最热 / 最新主题",
-      "provider_id": "v2ex",
-      "provider_name": "V2EX",
-      "route_key": "/topics/:type"
-    }
-  },
-  {
-    "provider_id": "xiaote",
-    "provider_name": "小特社区",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/xiaote/news",
-      "parameters": {},
-      "name": "首页帖子",
-      "url": "xiaote.com/",
-      "provider_id": "xiaote",
-      "provider_name": "小特社区",
-      "route_key": "/news"
+      "name": "看板列表",
+      "provider_id": "zuvio",
+      "provider_name": "Zuvio",
+      "route_key": "/student5/boards"
     }
   }
 ]

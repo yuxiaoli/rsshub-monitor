@@ -1,19 +1,5 @@
 [
   {
-    "provider_id": "apache",
-    "provider_name": "Apache",
-    "route_key": "/apisix/blog",
-    "route": {
-      "path": "/apisix/blog",
-      "example": "/apache/apisix/blog",
-      "parameters": {},
-      "name": "APISIX 博客",
-      "provider_id": "apache",
-      "provider_name": "Apache",
-      "route_key": "/apisix/blog"
-    }
-  },
-  {
     "provider_id": "cmpxchg8b",
     "provider_name": "cmpxchg8b",
     "route_key": "/articles",
@@ -29,76 +15,53 @@
     }
   },
   {
-    "provider_id": "daoxuan",
-    "provider_name": "道宣的窝",
-    "route_key": "/",
+    "provider_id": "geocaching",
+    "provider_name": "Geocaching",
+    "route_key": "/blogs/:language?",
     "route": {
-      "path": "/",
-      "example": "/daoxuan",
-      "name": "推荐阅读文章",
-      "url": "daoxuan.cc/",
-      "provider_id": "daoxuan",
-      "provider_name": "道宣的窝",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "deltaio",
-    "provider_name": "Delta Lake",
-    "route_key": "/blog",
-    "route": {
-      "path": "/blog",
-      "example": "/deltaio/blog",
-      "parameters": {},
-      "name": "Blogs",
-      "url": "delta.io/blog",
-      "provider_id": "deltaio",
-      "provider_name": "Delta Lake",
-      "route_key": "/blog"
-    }
-  },
-  {
-    "provider_id": "freebuf",
-    "provider_name": "FreeBuf",
-    "route_key": "/articles/:type",
-    "route": {
-      "path": "/articles/:type",
-      "example": "/freebuf/articles/web",
+      "path": "/blogs/:language?",
+      "example": "/geocaching/blogs/en",
       "parameters": {
-        "type": "文章类别"
+        "language": {
+          "description": "language",
+          "default": "en",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "nl",
+              "label": "Nederlands"
+            },
+            {
+              "value": "cs",
+              "label": "Čeština"
+            },
+            {
+              "value": "all",
+              "label": "Not Specified"
+            }
+          ]
+        }
       },
-      "name": "文章",
-      "description": "::: tip\n  Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。\n:::",
-      "provider_id": "freebuf",
-      "provider_name": "FreeBuf",
-      "route_key": "/articles/:type"
-    }
-  },
-  {
-    "provider_id": "hicairo",
-    "provider_name": "HiFeng'Blog",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/hicairo",
-      "name": "最近发表",
-      "url": "hicairo.com/",
-      "provider_id": "hicairo",
-      "provider_name": "HiFeng'Blog",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "itc",
-    "provider_name": "Open Github社区",
-    "route_key": "/collection/:colType",
-    "route": {
-      "path": "/collection/:colType",
-      "example": "/itc/collection/1",
-      "name": "合集",
-      "provider_id": "itc",
-      "provider_name": "Open Github社区",
-      "route_key": "/collection/:colType"
+      "name": "Official Blogs",
+      "url": "geocaching.com/blog/",
+      "provider_id": "geocaching",
+      "provider_name": "Geocaching",
+      "route_key": "/blogs/:language?"
     }
   },
   {
@@ -128,22 +91,6 @@
       "provider_id": "luxiangdong",
       "provider_name": "土猛的员外",
       "route_key": "/archive"
-    }
-  },
-  {
-    "provider_id": "macmenubar",
-    "provider_name": "MacMenuBar",
-    "route_key": "/recently/:category?",
-    "route": {
-      "path": "/recently/:category?",
-      "example": "/macmenubar/recently/developer-apps,system-tools",
-      "parameters": {
-        "category": "Category path name, seperate by comma, default is all categories. Category path name can be found in url"
-      },
-      "name": "Recently",
-      "provider_id": "macmenubar",
-      "provider_name": "MacMenuBar",
-      "route_key": "/recently/:category?"
     }
   },
   {
@@ -180,18 +127,35 @@
     }
   },
   {
-    "provider_id": "xunhupay",
-    "provider_name": "虎皮椒",
-    "route_key": "/blog",
+    "provider_id": "obsidian",
+    "provider_name": "Obsidian",
+    "route_key": "/publish/:id",
     "route": {
-      "path": "/blog",
-      "example": "/xunhupay/blog",
+      "path": "/publish/:id",
+      "example": "/obsidian/publish/marshallontheroad",
+      "parameters": {
+        "id": "网站 id，由Publish持有者自定义"
+      },
+      "name": "Publish",
+      "url": "publish.obsidian.md/",
+      "provider_id": "obsidian",
+      "provider_name": "Obsidian",
+      "route_key": "/publish/:id"
+    }
+  },
+  {
+    "provider_id": "xys",
+    "provider_name": "新语丝",
+    "route_key": "/new",
+    "route": {
+      "path": "/new",
+      "example": "/xys/new",
       "parameters": {},
-      "name": "文章",
-      "url": "www.xunhupay.com/blog",
-      "provider_id": "xunhupay",
-      "provider_name": "虎皮椒",
-      "route_key": "/blog"
+      "name": "新到资料",
+      "url": "xys.org/",
+      "provider_id": "xys",
+      "provider_name": "新语丝",
+      "route_key": "/new"
     }
   }
 ]

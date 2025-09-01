@@ -2,61 +2,27 @@
   {
     "provider_id": "atcoder",
     "provider_name": "AtCoder",
-    "route_key": "/contest/:language?/:rated?/:category?/:keyword?",
+    "route_key": "/post/:language?/:keyword?",
     "route": {
-      "name": "Contests Archive",
-      "path": "/contest/:language?/:rated?/:category?/:keyword?",
-      "example": "/atcoder/contest",
+      "name": "Posts",
+      "path": "/post/:language?/:keyword?",
+      "example": "/atcoder/post",
       "parameters": {
         "language": "Language, `jp` as Japanese or `en` as English, English by default",
-        "rated": "Rated Range, see below, all by default",
-        "category": "Category, see below, all by default",
         "keyword": "Keyword"
       },
-      "description": "Rated Range\n\n| ABC Class (Rated for ~1999) | ARC Class (Rated for ~2799) | AGC Class (Rated for ~9999) |\n| ---------------------------- | ---------------------------- | ---------------------------- |\n| 1                            | 2                            | 3                            |\n\n  Category\n\n| All | AtCoder Typical Contest | PAST Archive | Unofficial(unrated) |\n| --- | ----------------------- | ------------ | ------------------- |\n| 0   | 6                       | 50           | 101                 |\n\n| JOI Archive | Sponsored Tournament | Sponsored Parallel(rated) |\n| ----------- | -------------------- | ------------------------- |\n| 200         | 1000                 | 1001                      |\n\n| Sponsored Parallel(unrated) | Optimization Contest |\n| --------------------------- | -------------------- |\n| 1002                        | 1200                 |"
-    }
-  },
-  {
-    "provider_id": "bestblogs",
-    "provider_name": "bestblogs.dev",
-    "route_key": "/feeds/:category?",
-    "route": {
-      "name": "文章列表",
-      "path": "/feeds/:category?",
-      "example": "/bestblogs/feeds/featured",
-      "parameters": {
-        "category": "the category of articles. Can be `programming`, `ai`, `product`, `business` or `featured`. Default is `featured`"
-      },
       "description": ""
     }
   },
   {
-    "provider_id": "bitbucket",
-    "provider_name": "Bitbucket",
-    "route_key": "/commits/:workspace/:repo_slug",
+    "provider_id": "baai",
+    "provider_name": "北京智源人工智能研究院",
+    "route_key": "/hub/events",
     "route": {
-      "name": "Commits",
-      "path": "/commits/:workspace/:repo_slug",
-      "example": "/bitbucket/commits/blaze-lib/blaze",
-      "parameters": {
-        "workspace": "Workspace",
-        "repo_slug": "Repository"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bitbucket",
-    "provider_name": "Bitbucket",
-    "route_key": "/tags/:workspace/:repo_slug",
-    "route": {
-      "name": "Tags",
-      "path": "/tags/:workspace/:repo_slug",
-      "example": "/bitbucket/tags/blaze-lib/blaze",
-      "parameters": {
-        "workspace": "Workspace",
-        "repo_slug": "Repository"
-      },
+      "name": "智源社区 - 活动",
+      "path": "/hub/events",
+      "example": "/baai/hub/events",
+      "parameters": {},
       "description": ""
     }
   },
@@ -77,27 +43,26 @@
   {
     "provider_id": "codeforces",
     "provider_name": "Codeforces",
-    "route_key": "/recent-actions/:minrating?",
+    "route_key": "/contests",
     "route": {
-      "name": "Recent actions",
-      "path": "/recent-actions/:minrating?",
-      "example": "/codeforces/recent-actions",
-      "parameters": {
-        "minrating": "The minimum blog/comment rating required. Default: 1"
-      },
+      "name": "Latest contests",
+      "path": "/contests",
+      "example": "/codeforces/contests",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "gihyo",
-    "provider_name": "gihyo.jp",
-    "route_key": "/list/group/:id",
+    "provider_id": "gitee",
+    "provider_name": "Gitee",
+    "route_key": "/releases/:owner/:repo",
     "route": {
-      "name": "Series",
-      "path": "/list/group/:id",
-      "example": "/gihyo/list/group/Ubuntu-Weekly-Recipe",
+      "name": "仓库 Releases",
+      "path": "/releases/:owner/:repo",
+      "example": "/gitee/releases/y_project/RuoYi",
       "parameters": {
-        "id": "Series"
+        "owner": "用户名",
+        "repo": "仓库名"
       },
       "description": ""
     }
@@ -150,15 +115,86 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/repos/:user/:type?/:sort?",
+    "route_key": "/issue/:user/:repo/:state?/:labels?",
     "route": {
-      "name": "User Repo",
-      "path": "/repos/:user/:type?/:sort?",
-      "example": "/github/repos/DIYgod",
+      "name": "Repo Issues",
+      "path": "/issue/:user/:repo/:state?/:labels?",
+      "example": "/github/issue/DIYgod/RSSHub/open",
       "parameters": {
         "user": "GitHub username",
-        "type": "Type of repository, can be `all`, `owner`, `member`, `public`, `private`, `forks`, `sources`",
-        "sort": "Sort by `created`, `updated`, `pushed`, `full_name`"
+        "repo": "GitHub repo name",
+        "state": {
+          "description": "the state of the issues.",
+          "default": "open",
+          "options": [
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Closed",
+              "value": "closed"
+            },
+            {
+              "label": "All",
+              "value": "all"
+            }
+          ]
+        },
+        "labels": "a list of comma separated label names"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/pulse/:user/:repo/:period?",
+    "route": {
+      "name": "Repo Pulse",
+      "path": "/pulse/:user/:repo/:period?",
+      "example": "/github/pulse/DIYgod/RSSHub",
+      "parameters": {
+        "user": "User name",
+        "repo": "Repo name",
+        "period": "Time frame, selected from a repository's Pulse/Insights page. Possible values are: `daily`, `halfweekly`, `weekly`, or `monthly`. Default: `weekly`. If your RSS client supports it, consider aligning the polling frequency of the feed to the period."
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/trending/:since/:language/:spoken_language?",
+    "route": {
+      "name": "Trending",
+      "path": "/trending/:since/:language/:spoken_language?",
+      "example": "/github/trending/daily/javascript/en",
+      "parameters": {
+        "since": {
+          "description": "time range",
+          "options": [
+            {
+              "value": "daily",
+              "label": "Today"
+            },
+            {
+              "value": "weekly",
+              "label": "This week"
+            },
+            {
+              "value": "monthly",
+              "label": "This month"
+            }
+          ]
+        },
+        "language": {
+          "description": "the feed language, available in [Trending page](https://github.com/trending/javascript?since=monthly) 's URL, don't filter option is `any`",
+          "default": "any"
+        },
+        "spoken_language": {
+          "description": "natural language, available in [Trending page](https://github.com/trending/javascript?since=monthly) 's URL"
+        }
       },
       "description": ""
     }
@@ -180,41 +216,42 @@
     }
   },
   {
-    "provider_id": "hex-rays",
-    "provider_name": "Hex-Rays",
-    "route_key": "/news",
-    "route": {
-      "name": "Hex-Rays News",
-      "path": "/news",
-      "example": "/hex-rays/news",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
     "provider_id": "huggingface",
     "provider_name": "Huggingface",
-    "route_key": "/daily-papers",
+    "route_key": "/blog",
     "route": {
-      "name": "Daily Papers",
-      "path": "/daily-papers",
-      "example": "/huggingface/daily-papers",
+      "name": "英文博客",
+      "path": "/blog",
+      "example": "/huggingface/blog",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "jinritemai",
-    "provider_name": "抖店开放平台",
-    "route_key": "/docs/:dirId?",
+    "provider_id": "issuehunt",
+    "provider_name": "Issue Hunt",
+    "route_key": "/funded/:username/:repo",
     "route": {
-      "name": "平台公告",
-      "path": "/docs/:dirId?",
-      "example": "/jinritemai/docs/19",
+      "name": "Project Funded",
+      "path": "/funded/:username/:repo",
+      "example": "/issuehunt/funded/DIYgod/RSSHub",
       "parameters": {
-        "dirId": "公告分类, 可在页面URL获取 默认为全部"
+        "username": "Github user/org",
+        "repo": "Repository name"
       },
-      "description": "| 类型    | type    |\n| --------- | ---------- |\n| 全部公告    | 5    |\n| 产品发布    | 19   |\n| 规则变更    | 21   |\n| 维护公告    | 20   |\n| 其他公告    | 22   |"
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "joshwcomeau",
+    "provider_name": "Josh W Comeau",
+    "route_key": "/popular",
+    "route": {
+      "name": "Popular Content",
+      "path": "/popular",
+      "example": "/joshwcomeau/popular",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -234,26 +271,28 @@
   {
     "provider_id": "juejin",
     "provider_name": "掘金",
-    "route_key": "/column/:id",
+    "route_key": "/collections/:userId",
     "route": {
-      "name": "专栏",
-      "path": "/column/:id",
-      "example": "/juejin/column/6960559453037199391",
+      "name": "收藏集",
+      "path": "/collections/:userId",
+      "example": "/juejin/collections/1697301682482439",
       "parameters": {
-        "id": "专栏 id, 可在专栏页 URL 中找到"
+        "userId": "用户唯一标志符, 在浏览器地址栏URL中能够找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "konghq",
-    "provider_name": "Kong API 网关平台",
-    "route_key": "/blog-posts",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/posts/:id",
     "route": {
-      "name": "博客最新文章",
-      "path": "/blog-posts",
-      "example": "/konghq/blog-posts",
-      "parameters": {},
+      "name": "用户文章",
+      "path": "/posts/:id",
+      "example": "/juejin/posts/3051900006845944",
+      "parameters": {
+        "id": "用户 id, 可在用户页 URL 中找到"
+      },
       "description": ""
     }
   },
@@ -273,79 +312,31 @@
     }
   },
   {
-    "provider_id": "luogu",
-    "provider_name": "洛谷",
-    "route_key": "/user/article/:uid",
+    "provider_id": "oschina",
+    "provider_name": "开源中国",
+    "route_key": "/topic/:topic",
     "route": {
-      "name": "用户文章",
-      "path": "/user/article/:uid",
-      "example": "/luogu/user/article/1",
+      "name": "问答主题",
+      "path": "/topic/:topic",
+      "example": "/oschina/topic/weekly-news",
       "parameters": {
-        "name": "用户 UID"
+        "topic": "主题名，可从 [全部主题](https://www.oschina.net/question/topics) 进入主题页，在 URL 中找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "ollama",
-    "provider_name": "Ollama",
-    "route_key": "/blog",
+    "provider_id": "smashingmagazine",
+    "provider_name": "Smashing Magazine",
+    "route_key": "/:category?",
     "route": {
-      "name": "Blog",
-      "path": "/blog",
-      "example": "/ollama/blog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ollama",
-    "provider_name": "Ollama",
-    "route_key": "/library",
-    "route": {
-      "name": "Models",
-      "path": "/library",
-      "example": "/ollama/library",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "rustcc",
-    "provider_name": "Rust 语言中文社区",
-    "route_key": "/jobs",
-    "route": {
-      "name": "招聘",
-      "path": "/jobs",
-      "example": "/rustcc/jobs",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sec-wiki",
-    "provider_name": "SecWiki - 安全维基",
-    "route_key": "/weekly",
-    "route": {
-      "name": "最新周刊",
-      "path": "/weekly",
-      "example": "/sec-wiki/weekly",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "tencent",
-    "provider_name": "腾讯",
-    "route_key": "/cloud/developer/column/:categoryId?",
-    "route": {
-      "name": "腾讯云开发者社区专栏",
-      "path": "/cloud/developer/column/:categoryId?",
-      "example": "/tencent/cloud/developer/column/1",
+      "name": "Category",
+      "path": "/:category?",
+      "example": "/smashingmagazine/react",
       "parameters": {
-        "categoryId": "categoryId from page url"
+        "category": "Find in URL or Table below"
       },
-      "description": ""
+      "description": "| **Category**       |                    |\n| ------------------ | ------------------ |\n| Accessibility      | accessibility      |\n| Best practices     | best-practices     |\n| Business           | business           |\n| Career             | career             |\n| Checklists         | checklists         |\n| CSS                | css                |\n| Data Visualization | data-visualization |\n| Design             | design             |\n| Design Patterns    | design-patterns    |\n| Design Systems     | design-systems     |\n| E-Commerce         | e-commerce         |\n| Figma              | figma              |\n| Freebies           | freebies           |\n| HTML               | html               |\n| Illustrator        | illustrator        |\n| Inspiration        | inspiration        |\n| JavaScript         | javascript         |\n| Mobile             | mobile             |\n| Performance        | performance        |\n| Privacy            | privacy            |\n| React              | react              |\n| Responsive Design  | responsive-design  |\n| Round-Ups          | round-ups          |\n| SEO                | seo                |\n| Typography         | typography         |\n| Tools              | tools              |\n| UI                 | ui                 |\n| Usability          | usability          |\n| UX                 | ux                 |\n| Vue                | vue                |\n| Wallpapers         | wallpapers         |\n| Web Design         | web-design         |\n| Workflow           | workflow           |"
     }
   }
 ]

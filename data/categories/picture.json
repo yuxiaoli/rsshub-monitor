@@ -2,171 +2,94 @@
   {
     "provider_id": "4kup",
     "provider_name": "4KUP",
-    "route_key": "/tag/:tag",
+    "route_key": "/",
     "route": {
-      "path": "/tag/:tag",
-      "example": "/4kup/tag/asian",
-      "parameters": {
-        "tag": "Tag"
-      },
-      "name": "Tag",
+      "path": "/",
+      "example": "/4kup",
+      "parameters": {},
+      "name": "Latest",
       "url": "4kup.net/",
       "provider_id": "4kup",
       "provider_name": "4KUP",
-      "route_key": "/tag/:tag"
-    }
-  },
-  {
-    "provider_id": "bjp",
-    "provider_name": "北京天文馆",
-    "route_key": "/apod",
-    "route": {
-      "path": "/apod",
-      "view": 2,
-      "example": "/bjp/apod",
-      "parameters": {},
-      "name": "每日一图",
-      "url": "bjp.org.cn/APOD/today.shtml",
-      "provider_id": "bjp",
-      "provider_name": "北京天文馆",
-      "route_key": "/apod"
+      "route_key": "/"
     }
   },
   {
     "provider_id": "cosplaytele",
     "provider_name": "CosplayTele",
-    "route_key": "/popular/:period",
+    "route_key": "/",
     "route": {
-      "path": "/popular/:period",
-      "example": "/cosplaytele/popular/3",
-      "parameters": {
-        "period": "Days"
-      },
-      "name": "Popular",
+      "path": "/",
+      "example": "/cosplaytele",
+      "parameters": {},
+      "name": "Latest",
       "url": "cosplaytele.com/",
       "provider_id": "cosplaytele",
       "provider_name": "CosplayTele",
-      "route_key": "/popular/:period"
+      "route_key": "/"
     }
   },
   {
-    "provider_id": "ehentai",
-    "provider_name": "E-Hentai",
-    "route_key": "/tag/:tag/:page?/:routeParams?",
+    "provider_id": "natgeo",
+    "provider_name": "National Geographic",
+    "route_key": "/dailyphoto",
     "route": {
-      "path": "/tag/:tag/:page?/:routeParams?",
-      "example": "/ehentai/tag/language:chinese/0/bittorrent=true&embed_thumb=false",
-      "parameters": {
-        "tag": "Tag",
-        "page": "Page number, set 0 to get latest",
-        "routeParams": "Additional parameters, see the table above"
-      },
-      "name": "Tag",
-      "provider_id": "ehentai",
-      "provider_name": "E-Hentai",
-      "route_key": "/tag/:tag/:page?/:routeParams?"
-    }
-  },
-  {
-    "provider_id": "konachan",
-    "provider_name": "Konachan.com Anime Wallpapers",
-    "route_key": "/post/popular_recent/:period?",
-    "route": {
-      "path": "/post/popular_recent/:period?",
+      "path": "/dailyphoto",
       "view": 2,
-      "example": "/konachan/post/popular_recent/1d",
+      "example": "/natgeo/dailyphoto",
+      "parameters": {},
+      "name": "Daily Photo",
+      "url": "nationalgeographic.com/photo-of-the-day/*",
+      "provider_id": "natgeo",
+      "provider_name": "National Geographic",
+      "route_key": "/dailyphoto"
+    }
+  },
+  {
+    "provider_id": "pinterest",
+    "provider_name": "Pinterest",
+    "route_key": "/user/:username/:type?",
+    "route": {
+      "path": "/user/:username/:type?",
+      "example": "/pinterest/user/howieserious",
       "parameters": {
-        "period": {
-          "description": "展示时间",
+        "username": "Username",
+        "type": {
+          "description": "Type, default to `_created`",
+          "default": "_created",
           "options": [
             {
-              "value": "1d",
-              "label": "最近 24 小时"
+              "value": "_created",
+              "label": "Created"
             },
             {
-              "value": "1w",
-              "label": "最近一周"
-            },
-            {
-              "value": "1m",
-              "label": "最近一月"
-            },
-            {
-              "value": "1y",
-              "label": "最近一年"
+              "value": "_saved",
+              "label": "Saved"
             }
-          ],
-          "default": "1d"
+          ]
         }
       },
-      "name": "Popular Recent Posts",
-      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |",
-      "provider_id": "konachan",
-      "provider_name": "Konachan.com Anime Wallpapers",
-      "route_key": "/post/popular_recent/:period?"
-    }
-  },
-  {
-    "provider_id": "magnumphotos",
-    "provider_name": "Magnum Photos",
-    "route_key": "/magazine",
-    "route": {
-      "path": "/magazine",
-      "view": 2,
-      "example": "/magnumphotos/magazine",
-      "parameters": {},
-      "name": "Magazine",
-      "url": "magnumphotos.com/",
-      "provider_id": "magnumphotos",
-      "provider_name": "Magnum Photos",
-      "route_key": "/magazine"
-    }
-  },
-  {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod-cn",
-    "route": {
-      "path": "/apod-cn",
-      "example": "/nasa/apod-cn",
-      "parameters": {},
-      "name": "NASA 中文",
-      "url": "apod.nasa.govundefined",
-      "description": "::: tip\n  [NASA 中文](https://www.nasachina.cn/) 提供了每日天文图的中英双语图文说明，但在更新上偶尔略有一两天的延迟。\n:::",
-      "provider_id": "nasa",
-      "provider_name": "NASA",
-      "route_key": "/apod-cn"
-    }
-  },
-  {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod-ncku",
-    "route": {
-      "path": "/apod-ncku",
-      "example": "/nasa/apod-ncku",
-      "parameters": {},
-      "name": "Cheng Kung University Mirror",
-      "url": "apod.nasa.govundefined",
-      "provider_id": "nasa",
-      "provider_name": "NASA",
-      "route_key": "/apod-ncku"
+      "name": "User",
+      "provider_id": "pinterest",
+      "provider_name": "Pinterest",
+      "route_key": "/user/:username/:type?"
     }
   },
   {
     "provider_id": "skeb",
     "provider_name": "Skeb",
-    "route_key": "/:category",
+    "route_key": "/search/:keyword",
     "route": {
-      "path": "/:category",
-      "example": "/skeb/new_art_works",
+      "path": "/search/:keyword",
+      "example": "/skeb/search/初音ミク",
       "parameters": {
-        "category": "Category, the div id of the section title on the homepage."
+        "keyword": "Search keyword"
       },
-      "name": "Skeb",
+      "name": "Search Results",
+      "description": "Get the search results for works on Skeb",
       "provider_id": "skeb",
       "provider_name": "Skeb",
-      "route_key": "/:category"
+      "route_key": "/search/:keyword"
     }
   }
 ]

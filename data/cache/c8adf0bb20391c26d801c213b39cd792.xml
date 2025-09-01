@@ -1,58 +1,407 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>cmpxchg8b</title><link>https://lock.cmpxchg8b.com/#articles</link><atom:link href="http://127.0.0.1/cmpxchg8b/articles" rel="self" type="application/rss+xml"></atom:link><description>cmpxchg8b - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Fri, 01 Aug 2025 00:23:15 GMT</lastBuildDate><ttl>5</ttl><item><title>Troubleshooting a slow terminal startup issue.</title><description>&lt;header id=&quot;title-block-header&quot;&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>cmpxchg8b</title><link>https://lock.cmpxchg8b.com/#articles</link><atom:link href="http://rss.wudifeixue.com/cmpxchg8b/articles" rel="self" type="application/rss+xml"></atom:link><description>cmpxchg8b - Made with love by RSSHub(https://github.com/DIYgod/RSSHub)</description><generator>RSSHub</generator><webMaster>i@diygod.me (DIYgod)</webMaster><language>en</language><lastBuildDate>Mon, 01 Sep 2025 00:20:58 GMT</lastBuildDate><ttl>5</ttl><item><title>Hey… quick question, why are anime catgirls blocking access to the Linux kernel?</title><description>&lt;header id=&quot;title-block-header&quot;&gt;
+&lt;h1 class=&quot;title&quot;&gt;Anubis.&lt;/h1&gt;
+&lt;p class=&quot;author&quot;&gt;Tavis Ormandy&lt;/p&gt;
+&lt;p class=&quot;date&quot;&gt;$Id: f0cc50a6fc6a5dd652c2b96ca9c1779f763fd6b1 $&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;p&gt;&lt;em&gt;Hey… quick question, why are anime catgirls blocking my access to
+the Linux kernel?&lt;/em&gt;&lt;/p&gt;
+&lt;section id=&quot;intro&quot; class=&quot;level2&quot;&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;I’ve started running into more sites recently that deploy &lt;a href=&quot;https://github.com/TecharoHQ/anubis&quot;&gt;Anubis&lt;/a&gt;, a sort of hybrid
+art project slash network countermeasure. The project “weighs the souls”
+of HTTP requests to help protect the web from AI crawlers.&lt;/p&gt;
+&lt;p&gt;If you’ve seen anime catgirl avatars when visiting a new website,
+that’s Anubis.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;figure&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/anubis.png&quot; class=&quot;bare&quot; style=&quot;width:75.0%&quot; alt=&quot;A website blocked with Anubis&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;A website blocked with
+Anubis&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I’m sympathetic to the cause – I host this blog on a single core
+128MB VPS, I can tell you some stories about aggressive crawlers!&lt;/p&gt;
+&lt;p&gt;Anubis recently started blocking how I access &lt;a href=&quot;https://git.kernel.org/&quot;&gt;git.kernel.org&lt;/a&gt; and &lt;a href=&quot;https://lore.kernel.org/&quot;&gt;lore.kernel.org&lt;/a&gt;. Those sites host the
+&lt;a href=&quot;https://en.wikipedia.org/wiki/LKML&quot;&gt;Linux Kernel Mailing
+List&lt;/a&gt; archive and the kernel git repositories. As far as I know I do
+have a soul, I just wasn’t using a desktop browser… so how exactly is my
+soul being weighed?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Linux has Tux 🐧, OpenBSD has Puffy 🐡, SuSE has Geeko 🦎 and
+Microsoft has Bob 🤓… nothing wrong with mascots! 😸&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/section&gt;
+&lt;section id=&quot;problem&quot; class=&quot;level2&quot;&gt;
+&lt;h2&gt;Problem&lt;/h2&gt;
+&lt;p&gt;The traditional solution to blocking nuisance crawlers is to use a
+combination of &lt;a href=&quot;https://en.wikipedia.org/wiki/Rate_limiting&quot;&gt;rate limiting&lt;/a&gt; and
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Captcha&quot;&gt;CAPTCHAs&lt;/a&gt;. The
+CAPTCHA forces vistors to solve a problem designed to be very difficult
+for computers but trivial for humans. This isn’t perfect of course, we
+can debate the accessibility tradeoffs and weaknesses, but conceptually
+the idea makes some sense.&lt;/p&gt;
+&lt;p&gt;Anubis – confusingly – inverts this idea. It insists visitors solve a
+problem trivial for computers, but impossible for humans. Visitors are
+asked to brute force a value that when appended to a challenge string,
+causes it’s SHA-256 to begin with a few zero nibbles.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb1&quot;&gt;&lt;pre class=&quot;sourceCode go&quot;&gt;&lt;code class=&quot;sourceCode go&quot;&gt;&lt;span id=&quot;cb1-1&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-1&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    calcString &lt;span class=&quot;op&quot;&gt;:=&lt;/span&gt; fmt&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Sprintf&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&quot;%s%d&quot;&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; challenge&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; nonce&lt;span class=&quot;op&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-2&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-2&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    calculated &lt;span class=&quot;op&quot;&gt;:=&lt;/span&gt; internal&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;SHA256sum&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;calcString&lt;span class=&quot;op&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-3&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-3&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-4&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-4&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;cf&quot;&gt;if&lt;/span&gt; subtle&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;ConstantTimeCompare&lt;span class=&quot;op&quot;&gt;([]&lt;/span&gt;&lt;span class=&quot;dt&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;response&lt;span class=&quot;op&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;dt&quot;&gt;byte&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;calculated&lt;span class=&quot;op&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-5&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-5&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;co&quot;&gt;// ...&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-6&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-6&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;op&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-7&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-7&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-8&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-8&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;co&quot;&gt;// compare the leading zeroes&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-9&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-9&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;cf&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;!&lt;/span&gt;strings&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;HasPrefix&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;response&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; strings&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Repeat&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; rule&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Challenge&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Difficulty&lt;span class=&quot;op&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-10&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-10&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;co&quot;&gt;// ...&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb1-11&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb1-11&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;op&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;source: &lt;a href=&quot;https://github.com/TecharoHQ/anubis/blob/e8dfff635015d6c906dddd49cb0eaf591326092a/lib/challenge/proofofwork/proofofwork.go#L66&quot;&gt;lib/challenge/proofofwork/proofofwork.go#L66&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If that sounds familiar, it’s because it’s similar to how bitcoin
+mining works. Anubis is not literally mining cryptocurrency, but it
+&lt;em&gt;is&lt;/em&gt; similar in concept to other projects that do exactly that,
+perhaps most famously &lt;a href=&quot;https://torrentfreak.com/the-pirate-bay-website-runs-a-cryptocurrency-miner-170916/&quot;&gt;Coinhive&lt;/a&gt;
+and &lt;a href=&quot;https://github.com/JSEcoin/website/blob/master/README.md&quot;&gt;JSECoin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So how do some useless SHA-256 operations prove you’re not a bot? The
+argument goes that this simply makes it too expensive to crawl your
+website.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/datacenter.png&quot; class=&quot;clear&quot; alt=&quot;The typical datacenter used by an AI crawler&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;The typical datacenter used by an AI
+crawler&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;This… makes no sense to me. Almost by definition, an AI vendor will
+have a datacenter full of compute capacity. It feels like this solution
+has the problem backwards, effectively only limiting access to those
+&lt;em&gt;without&lt;/em&gt; resources or trying to conserve them.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id=&quot;numbers&quot; class=&quot;level2&quot;&gt;
+&lt;h2&gt;Numbers&lt;/h2&gt;
+&lt;p&gt;Let’s assume the argument has some merit and math out the claims.&lt;/p&gt;
+&lt;p&gt;We can see that with the default Anubis configuration, a typical
+website visitor will have to solve a challenge with a difficulty of
+4.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb2&quot;&gt;&lt;pre class=&quot;sourceCode go&quot;&gt;&lt;code class=&quot;sourceCode go&quot;&gt;&lt;span id=&quot;cb2-1&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb2-1&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;// DefaultDifficulty is the default &quot;difficulty&quot; (number of leading zeroes)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb2-2&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb2-2&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;// that must be met by the client in order to pass the challenge.&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb2-3&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb2-3&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;kw&quot;&gt;const&lt;/span&gt; DefaultDifficulty &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;source: &lt;a href=&quot;https://github.com/TecharoHQ/anubis/blob/main/anubis.go#L32&quot;&gt;anubis.go&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This means that a visitor must make the first 4 hex digits of the
+challenge hash be zero, so 16 bits (4 digits, one nibble each).
+Therefore, you can expect to mine a suitable &lt;code&gt;nonce&lt;/code&gt; within
+2^16 SHA-256 operations.&lt;/p&gt;
+&lt;p&gt;If every single github star on the anubis project represents a
+website that has deployed Anubis, how much would the cloud services bill
+be to mine enough tokens to crawl every single website?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;figure&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/anubisgithub.png&quot; class=&quot;bare&quot; alt=&quot;Anubis Project Stars&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;Anubis Project Stars&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb3&quot;&gt;&lt;pre class=&quot;sourceCode go&quot;&gt;&lt;code class=&quot;sourceCode go&quot;&gt;&lt;span id=&quot;cb3-1&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb3-1&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;// CookieDefaultExpirationTime is the amount of time before the cookie/JWT expires.&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb3-2&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb3-2&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;kw&quot;&gt;const&lt;/span&gt; CookieDefaultExpirationTime &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;24&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;*&lt;/span&gt; time&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Hour&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;source: &lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.go&quot;&gt;https://github.com/TecharoHQ/anubis/blob/main/anubis.go#L32&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At the time of writing, Anubis has 11,508 github stars.&lt;/p&gt;
+&lt;p&gt;The default configuration means mining one token gets you access for
+7 days &lt;small&gt;(although I think this expiration check is broken, see
+below)&lt;/small&gt;, so we need 11,508 * 2^16 SHA-256 operations per week,
+how expensive is that?&lt;/p&gt;
+&lt;p&gt;To get some numbers, I started an &lt;code&gt;e2-micro&lt;/code&gt; vm on Google
+Compute Engine, and ran &lt;code&gt;openssl speed&lt;/code&gt;. This is what you get
+in the &lt;a href=&quot;https://cloud.google.com/free/docs/free-cloud-features#compute&quot;&gt;free
+tier&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ openssl speed sha256
+Doing sha256 for 3s on 16 size blocks: 6915549 sha256&#39;s in 3.00s
+Doing sha256 for 3s on 64 size blocks: 4631718 sha256&#39;s in 3.00s
+Doing sha256 for 3s on 256 size blocks: 393694 sha256&#39;s in 3.21s
+Doing sha256 for 3s on 1024 size blocks: 100123 sha256&#39;s in 3.00s
+Doing sha256 for 3s on 8192 size blocks: 13300 sha256&#39;s in 2.98s
+Doing sha256 for 3s on 16384 size blocks: 7137 sha256&#39;s in 2.99s
+version: 3.0.17
+built on: Tue Aug  5 07:09:41 2025 UTC
+options: bn(64,64)
+compiler: gcc -fPIC -pthread -m64 ...
+The &#39;numbers&#39; are in 1000s of bytes per second processed.
+type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes  16384 bytes
+sha256           36882.93k    98809.98k    31397.40k    34175.32k    36561.61k    39107.90k&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It looks like we can test about 2^21 every second, perhaps a bit more
+if we used both SMT sibling cores. This amount of compute is simply too
+cheap to even be worth billing for.&lt;/p&gt;
+&lt;p&gt;So (11508 websites * 2^16 sha256 operations) / 2^21, that’s about 6
+minutes to mine enough tokens for every single Anubis deployment in the
+world. That means the cost of unrestricted crawler access to the
+internet for a week is approximately $0.&lt;/p&gt;
+&lt;p&gt;In fact, I don’t think we reach a single cent per month in compute
+costs until several million sites have deployed Anubis.&lt;/p&gt;
+&lt;p&gt;I’m just not convinced this math works… this is &lt;em&gt;literally&lt;/em&gt;
+nothing for a souless AI vendor with a monthly cloud services budget in
+the 8 figures. However, the cost for real soul-owning humans with
+limited access to compute is high – the Anubis forums are full of
+complaints like these:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;figure&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/anubisslow.png&quot; class=&quot;bare&quot; alt=&quot;The discussion forums are full of users on limited devices complaining&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;The discussion forums are full of users
+on limited devices complaining&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;/section&gt;
+&lt;section id=&quot;alternatives&quot; class=&quot;level2&quot;&gt;
+&lt;h2&gt;Alternatives&lt;/h2&gt;
+&lt;p&gt;Anubis cites &lt;a href=&quot;https://en.wikipedia.org/wiki/Hashcash#Applications&quot;&gt;hashcash&lt;/a&gt;
+as the primary inspiration for their design, an anti-spam solution from
+the 90s that was never widely adopted.&lt;/p&gt;
+&lt;p&gt;The idea of “weighing souls” reminded me of another anti-spam
+solution from the 90s… believe it or not, there was once a company that
+used poetry to block spam!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://web.archive.org/web/20030210085930/http://habeas.com/services/swe.htm&quot;&gt;Habeas&lt;/a&gt;
+would license short haikus to companies to embed in email headers. They
+would then aggressively sue anyone who reproduced their poetry &lt;a href=&quot;https://web.archive.org/web/20030207155559/http://www.habeas.com/faq/index.htm#5&quot;&gt;without
+a license&lt;/a&gt;. The idea was you can safely deliver any email with their
+header, because it was too legally risky to use it in spam.&lt;/p&gt;
+&lt;p&gt;Here’s a &lt;a href=&quot;https://web.archive.org/web/20021220112749/http://www.habeas.com/about/haiku.htm&quot;&gt;sample
+haiku&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;winter into spring &lt;br&gt; brightly anticipated &lt;br&gt; like Habeas SWE
+(tm)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Was this a good idea? I don’t know, but they really did &lt;a href=&quot;https://www.theregister.com/2003/04/04/habeas_sues_haiku_abusers/&quot;&gt;sue
+a few spammers&lt;/a&gt;!&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id=&quot;workarounds&quot; class=&quot;level2&quot;&gt;
+&lt;h2&gt;Workarounds&lt;/h2&gt;
+&lt;p&gt;So you’re trying to read LKML, but catgirl says no… is there a
+solution?&lt;/p&gt;
+&lt;p&gt;My issue is I don’t want to use a desktop browser to mine the
+required value, so how can I get the auth cookie?&lt;/p&gt;
+&lt;p&gt;If we look at the response with &lt;code&gt;curl&lt;/code&gt;, we can see the
+challenge in the HTTP headers:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ curl -I https://lore.kernel.org/
+HTTP/2 200
+server: nginx
+set-cookie: techaro.lol-anubis-auth=; Path=/
+set-cookie: techaro.lol-anubis-cookie-test-if-you-block-this-anubis-wont-work=5d737f0600ff2dd; Path=/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That &lt;code&gt;techaro.lol-anubis-cookie&lt;/code&gt; is the challenge, here is
+a quick C program to mine an acceptable token:&lt;/p&gt;
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb6&quot;&gt;&lt;pre class=&quot;sourceCode c&quot;&gt;&lt;code class=&quot;sourceCode c&quot;&gt;&lt;span id=&quot;cb6-1&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-1&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;pp&quot;&gt;#include &lt;/span&gt;&lt;span class=&quot;im&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-2&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-2&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;pp&quot;&gt;#include &lt;/span&gt;&lt;span class=&quot;im&quot;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-3&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-3&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;pp&quot;&gt;#include &lt;/span&gt;&lt;span class=&quot;im&quot;&gt;&amp;lt;openssl/sha.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-4&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-4&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-5&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-5&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;pp&quot;&gt;#pragma GCC diagnostic ignored &quot;-Wdeprecated-declarations&quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-6&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-6&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-7&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-7&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; main&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; argc&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;**&lt;/span&gt;argv&lt;span class=&quot;op&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-8&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-8&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;dt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;dt&quot;&gt;char&lt;/span&gt; hash&lt;span class=&quot;op&quot;&gt;[&lt;/span&gt;SHA256_DIGEST_LENGTH&lt;span class=&quot;op&quot;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-9&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-9&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; difficulty &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-10&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-10&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;dt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;*&lt;/span&gt;message&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-11&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-11&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    SHA256_CTX base&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-12&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-12&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-13&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-13&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;cf&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;argc &lt;span class=&quot;op&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-14&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-14&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        fprintf&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;stderr&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;st&quot;&gt;&quot;usage: &lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;%s&lt;/span&gt;&lt;span class=&quot;st&quot;&gt; challenge&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;*&lt;/span&gt;argv&lt;span class=&quot;op&quot;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-15&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-15&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;cf&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-16&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-16&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;op&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-17&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-17&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-18&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-18&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    message &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; argv&lt;span class=&quot;op&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-19&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-19&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    SHA256_Init&lt;span class=&quot;op&quot;&gt;(&amp;amp;&lt;/span&gt;base&lt;span class=&quot;op&quot;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-20&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-20&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    SHA256_Update&lt;span class=&quot;op&quot;&gt;(&amp;amp;&lt;/span&gt;base&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; message&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; strlen&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;message&lt;span class=&quot;op&quot;&gt;));&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-21&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-21&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-22&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-22&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;cf&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; i &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;op&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;op&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-23&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-23&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;dt&quot;&gt;char&lt;/span&gt; nonce&lt;span class=&quot;op&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dv&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;];&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-24&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-24&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-25&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-25&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        SHA256_CTX ctx &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; base&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-26&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-26&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        SHA256_Update&lt;span class=&quot;op&quot;&gt;(&amp;amp;&lt;/span&gt;ctx&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; nonce&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; snprintf&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;nonce&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kw&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;nonce&lt;span class=&quot;op&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;st&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;%d&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; i&lt;span class=&quot;op&quot;&gt;));&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-27&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-27&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        SHA256_Final&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;hash&lt;span class=&quot;op&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;&amp;amp;&lt;/span&gt;ctx&lt;span class=&quot;op&quot;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-28&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-28&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-29&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-29&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;cf&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; j &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;op&quot;&gt;&amp;lt;&lt;/span&gt; SHA256_DIGEST_LENGTH&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt; j&lt;span class=&quot;op&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-30&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-30&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;            &lt;span class=&quot;cf&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;hash&lt;span class=&quot;op&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;op&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-31&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-31&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;                &lt;span class=&quot;cf&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-32&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-32&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;            &lt;span class=&quot;cf&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;j &lt;span class=&quot;op&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;difficulty &lt;span class=&quot;op&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-33&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-33&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;                &lt;span class=&quot;cf&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-34&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-34&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-35&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-35&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;            &lt;span class=&quot;co&quot;&gt;// Looks good&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-36&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-36&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;            puts&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;nonce&lt;span class=&quot;op&quot;&gt;);&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-37&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-37&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;            &lt;span class=&quot;cf&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-38&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-38&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;op&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-39&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-39&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;op&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-40&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-40&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;cf&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb6-41&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb6-41&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;op&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let’s run that and see what it says…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ gcc -Ofast -march=native anubis-miner.c -lcrypto -o anubis-miner
+$ time ./anubis-miner 5d737f0600ff2dd
+47224
+
+real    0m0.017s
+user    0m0.016s
+sys     0m0.000s&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looks okay, let’s verify that solution is correct:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ printf &quot;5d737f0600ff2dd%d&quot; 47224 | sha256sum
+000043f7c4392a781a04419a7cb503089ebcf3164e2b1d4258b3e6c15b8b07f1  -&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It seems valid, so now we can get a signed auth cookie by sending
+back the value we mined:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ curl -I --cookie &quot;techaro.lol-anubis-cookie-test-if-you-block-this-anubis-wont-work=5d737f0600ff2dd&quot; \
+    &#39;https://lore.kernel.org/.within.website/x/cmd/anubis/api/pass-challenge?response=000043f7c4392a781a04419a7
+cb503089ebcf3164e2b1d4258b3e6c15b8b07f1&amp;amp;nonce=47224&amp;amp;redir=/&amp;amp;elapsedTime=0&#39;
+HTTP/2 302
+server: nginx
+location: /
+set-cookie: techaro.lol-anubis-auth=eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhY3Rpb24iO...OTYifQ...;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Success, this cookie is now valid for 1 week of access. Let’s
+validate what it sent us, the actual schema is visible in the code:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb10&quot;&gt;&lt;pre class=&quot;sourceCode go&quot;&gt;&lt;code class=&quot;sourceCode go&quot;&gt;&lt;span id=&quot;cb10-1&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb10-1&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    claims&lt;span class=&quot;op&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&quot;iat&quot;&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; time&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Now&lt;span class=&quot;op&quot;&gt;().&lt;/span&gt;Unix&lt;span class=&quot;op&quot;&gt;()&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb10-2&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb10-2&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    claims&lt;span class=&quot;op&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&quot;nbf&quot;&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; time&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Now&lt;span class=&quot;op&quot;&gt;().&lt;/span&gt;Add&lt;span class=&quot;op&quot;&gt;(-&lt;/span&gt;&lt;span class=&quot;dv&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;*&lt;/span&gt; time&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Minute&lt;span class=&quot;op&quot;&gt;).&lt;/span&gt;Unix&lt;span class=&quot;op&quot;&gt;()&lt;/span&gt;&lt;/span&gt;
+&lt;span id=&quot;cb10-3&quot;&gt;&lt;a href=&quot;https://lock.cmpxchg8b.com/anubis.html#cb10-3&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;    claims&lt;span class=&quot;op&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;st&quot;&gt;&quot;exp&quot;&lt;/span&gt;&lt;span class=&quot;op&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;=&lt;/span&gt; time&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;Now&lt;span class=&quot;op&quot;&gt;().&lt;/span&gt;Add&lt;span class=&quot;op&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;opts&lt;span class=&quot;op&quot;&gt;.&lt;/span&gt;CookieExpiration&lt;span class=&quot;op&quot;&gt;).&lt;/span&gt;Unix&lt;span class=&quot;op&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;source: &lt;a href=&quot;https://github.com/TecharoHQ/anubis/blob/e8dfff635015d6c906dddd49cb0eaf591326092a/lib/http.go#L312&quot;&gt;lib/http.go&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We can examine this auth token and see what Anubis gave us…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ base64 -d &amp;lt;&amp;lt;&amp;lt; eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9 | jq
+{
+  &quot;alg&quot;: &quot;EdDSA&quot;,
+  &quot;typ&quot;: &quot;JWT&quot;
+}
+$ base64 -d &amp;lt;&amp;lt;&amp;lt; eyJhY3Rpb24iO...OTYifQ== | jq
+{
+  &quot;action&quot;: &quot;CHALLENGE&quot;,
+  &quot;challenge&quot;: &quot;5d737f0600ff2dd&quot;,
+  &quot;exp&quot;: 1756185722,
+  &quot;iat&quot;: 1755580922,
+  &quot;method&quot;: &quot;fast&quot;,
+  &quot;nbf&quot;: 1755580862,
+  &quot;policyRule&quot;: &quot;dbf942088788cc96&quot;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It looks like &lt;code&gt;exp&lt;/code&gt; is the expiry date, so
+&lt;code&gt;1756185722&lt;/code&gt;, which is…&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ date --date @1756185722
+Mon Aug 25 22:22:02 PDT 2025&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Yep, about 7 days from the date I requested it. You can now place
+that into a cookie file for &lt;code&gt;curl&lt;/code&gt;,&lt;code&gt;lynx&lt;/code&gt; etc.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Interestingly, sending the same request the next day got me a new
+signed cookie!?&lt;/p&gt;
+&lt;p&gt;This seems like a bug – exchanging a mined token for an auth cookie
+should immediately remove the challenge from the store, or there is a &lt;a href=&quot;https://en.wikipedia.org/wiki/Double-spending&quot;&gt;double spend&lt;/a&gt;
+vulnerability.&lt;/p&gt;
+&lt;p&gt;This error benefits me, I have to mine less tokens, but I’ll open an
+issue 😇&lt;/p&gt;
+&lt;p&gt;Update: wow, &lt;a href=&quot;https://github.com/TecharoHQ/anubis/pull/1003&quot;&gt;fixed&lt;/a&gt; just a
+few minutes after opening an issue by the maintainer!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This dance to get access is just a minor annoyance for me, but I
+question how it proves I’m not a bot. These steps can be trivially and
+cheaply automated.&lt;/p&gt;
+&lt;p&gt;I think the end result is just an internet resource I need is a
+little harder to access, and we have to waste a small amount of
+energy.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id=&quot;notes&quot; class=&quot;level2&quot;&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;I wrote this article with my own puny brain, I didn’t use any AI. I
+know there are &lt;em&gt;endashes&lt;/em&gt; (they’re &lt;strong&gt;not&lt;/strong&gt;
+emdashes!) – I have a habit of writing two consecutive dashes, which &lt;a href=&quot;https://pandoc.org/demo/example33/7.1-typography.html&quot;&gt;pandoc&lt;/a&gt;
+converts into &lt;a href=&quot;https://unicode-explorer.com/c/2013&quot;&gt;U+2013&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;This post is a bit critical of a small well-intentioned project, so
+I felt obliged to email the maintainer to discuss it before posting it
+online. I didn’t hear back.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+
+
+
+</description><link>https://lock.cmpxchg8b.com/anubis.html</link><guid isPermaLink="false">https://lock.cmpxchg8b.com/anubis.html</guid><author>Tavis Ormandy</author></item><item><title>Troubleshooting a slow terminal startup issue.</title><description>&lt;header id=&quot;title-block-header&quot;&gt;
 &lt;h1 class=&quot;title&quot;&gt;Troubleshooting: Terminal Lag&lt;/h1&gt;
 &lt;p class=&quot;author&quot;&gt;Tavis Ormandy&lt;/p&gt;
 &lt;p class=&quot;date&quot;&gt;$Id: a07cf90837a3c4373b82d6724b97593810766af7 $&lt;/p&gt;
 &lt;/header&gt;
 
-&lt;p&gt;I think I should blog more about random troubleshooting sessions, if nothing else it will remind me what steps I took when it inevitably happens again!&lt;/p&gt;
-&lt;p&gt;Okay, here is the first one – why is my &lt;code&gt;xterm&lt;/code&gt; opening so slowly?&lt;/p&gt;
+&lt;p&gt;I think I should blog more about random troubleshooting sessions, if
+nothing else it will remind me what steps I took when it inevitably
+happens again!&lt;/p&gt;
+&lt;p&gt;Okay, here is the first one – why is my &lt;code&gt;xterm&lt;/code&gt; opening so
+slowly?&lt;/p&gt;
 &lt;section id=&quot;background&quot; class=&quot;level2&quot;&gt;
 &lt;h2&gt;Background&lt;/h2&gt;
-&lt;p&gt;I have two similarly specced machines at my desk – my primary workstation running Fedora Linux, and a Windows 11 machine. They share the same monitor and input devices, and I switch between them with an iogear KVM.&lt;/p&gt;
-&lt;p&gt;I do the bulk of my work in either a browser or a terminal. This is true even on Windows, where I rely heavily on &lt;abbr title=&quot;Windows Subsystem for Linux&quot;&gt; WSL&lt;/abbr&gt;.&lt;/p&gt;
+&lt;p&gt;I have two similarly specced machines at my desk – my primary
+workstation running Fedora Linux, and a Windows 11 machine. They share
+the same monitor and input devices, and I switch between them with an
+iogear KVM.&lt;/p&gt;
+&lt;p&gt;I do the bulk of my work in either a browser or a terminal. This is
+true even on Windows, where I rely heavily on
+&lt;abbr title=&quot;Windows Subsystem for Linux&quot;&gt; WSL&lt;/abbr&gt;.&lt;/p&gt;
 &lt;p&gt;This works well for me, and I’m happy enough with the setup.&lt;/p&gt;
 &lt;section id=&quot;issue&quot; class=&quot;level4&quot;&gt;
 &lt;h4&gt;Issue&lt;/h4&gt;
-&lt;p&gt;I have the shortcut &lt;kbd&gt;&lt;abbr title=&quot;Windows Key&quot;&gt;Super&lt;/abbr&gt;&lt;/kbd&gt;+&lt;kbd&gt;1&lt;/kbd&gt; bound to &lt;code&gt;xterm&lt;/code&gt; on both machines, and I probably use this hundreds of times per day.&lt;/p&gt;
+&lt;p&gt;I have the shortcut
+&lt;kbd&gt;&lt;abbr title=&quot;Windows Key&quot;&gt;Super&lt;/abbr&gt;&lt;/kbd&gt;+&lt;kbd&gt;1&lt;/kbd&gt; bound to
+&lt;code&gt;xterm&lt;/code&gt; on both machines, and I probably use this hundreds of
+times per day.&lt;/p&gt;
 &lt;p&gt;Here is how that looks on Fedora:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;https://lock.cmpxchg8b.com/img/fedora_terminal_open.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;Fedora Terminal&lt;/figcaption&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/fedora_terminal_open.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;Fedora Terminal&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;Fedora Terminal&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;It takes about &lt;abbr title=&quot;9 frames @ 30fps&quot;&gt;300ms&lt;/abbr&gt; from key activation to a terminal being ready. This is fine, I’ve never noticed any problem.&lt;/p&gt;
+&lt;p&gt;It takes about &lt;abbr title=&quot;9 frames @ 30fps&quot;&gt;300ms&lt;/abbr&gt; from key
+activation to a terminal being ready. This is fine, I’ve never noticed
+any problem.&lt;/p&gt;
 &lt;p&gt;However, let’s compare that to Windows:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_terminal_open.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;Windows Terminal&lt;/figcaption&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_terminal_open.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;Windows Terminal&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;Windows Terminal&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;That’s about &lt;abbr title=&quot;48 frames @ 30fps&quot;&gt;1600ms&lt;/abbr&gt; before I can type, over 5 times slower! This &lt;em&gt;is&lt;/em&gt; slow enough that it bothers me, and I use this shortcut so often that I want to solve it.&lt;/p&gt;
-&lt;p&gt;I don’t think many people care about &lt;code&gt;xterm&lt;/code&gt; performance on Windows, so I guess that means it’s up to me to solve this 🙂&lt;/p&gt;
+&lt;p&gt;That’s about &lt;abbr title=&quot;48 frames @ 30fps&quot;&gt;1600ms&lt;/abbr&gt; before I
+can type, over 5 times slower! This &lt;em&gt;is&lt;/em&gt; slow enough that it
+bothers me, and I use this shortcut so often that I want to solve
+it.&lt;/p&gt;
+&lt;p&gt;I don’t think many people care about &lt;code&gt;xterm&lt;/code&gt; performance
+on Windows, so I guess that means it’s up to me to solve this 🙂&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id=&quot;window-effects&quot; class=&quot;level2&quot;&gt;
 &lt;h2&gt;Window Effects&lt;/h2&gt;
-&lt;p&gt;Hey, wait a minute… &lt;big&gt;&lt;em&gt;&lt;strong&gt;ENHANCE!&lt;/strong&gt;&lt;/em&gt;&lt;/big&gt; 👀&lt;/p&gt;
+&lt;p&gt;Hey, wait a minute… &lt;big&gt;&lt;em&gt;&lt;strong&gt;ENHANCE!&lt;/strong&gt;&lt;/em&gt;&lt;/big&gt;
+👀&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_terminal_fade.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;Windows Fading Effect&lt;/figcaption&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_terminal_fade.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;Windows Fading Effect&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;Windows Fading Effect&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Why does the window fade in like that? It looks like the Window is ready when the effect starts, but I can’t interact with it until it completes. If I count those frames, this animation must be costing me ~200ms! 🤬&lt;/p&gt;
-&lt;p&gt;I always disable anything like animation or compositing effects, so I’m confused where this is coming from.&lt;/p&gt;
+&lt;p&gt;Why does the window fade in like that? It looks like the Window is
+ready when the effect starts, but I can’t interact with it until it
+completes. If I count those frames, this animation must be costing me
+~200ms! 🤬&lt;/p&gt;
+&lt;p&gt;I always disable anything like animation or compositing effects, so
+I’m confused where this is coming from.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_performance.png&quot; class=&quot;bare&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;Windows Performance Settings&lt;/figcaption&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_performance.png&quot; class=&quot;bare&quot; alt=&quot;Windows Performance Settings&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;Windows Performance Settings&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I tested with some native windows programs like &lt;code&gt;notepad&lt;/code&gt; and &lt;code&gt;calc&lt;/code&gt; – they just appear instantly… so what is causing that?&lt;/p&gt;
-&lt;p&gt;I experimented with it a bit, I can see other windows behind it as it fades in, so I think something must be changing the opacity. Searching msdn, it looks like the function for that is &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setlayeredwindowattributes&quot;&gt;&lt;code&gt;SetLayeredWindowAttributes()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I tested with some native windows programs like &lt;code&gt;notepad&lt;/code&gt;
+and &lt;code&gt;calc&lt;/code&gt; – they just appear instantly… so what is causing
+that?&lt;/p&gt;
+&lt;p&gt;I experimented with it a bit, I can see other windows behind it as it
+fades in, so I think something must be changing the opacity. Searching
+msdn, it looks like the function for that is &lt;a href=&quot;https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setlayeredwindowattributes&quot;&gt;&lt;code&gt;SetLayeredWindowAttributes()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Could something be calling that, is my X server betraying me?&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ dumpbin /imports X410.exe  | grep SetLayeredWindowAttributes
                          33A SetLayeredWindowAttributes&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This looks like the culprit!! I’m using a server called &lt;a href=&quot;https://x410.dev/&quot;&gt;X410&lt;/a&gt;, it seems like it’s adding it’s own animation effects, and doesn’t have any way to disable it. I’m reluctant to switch to an alternative – that could just replace this issue with a different issue to troubleshoot.&lt;/p&gt;
-&lt;p&gt;Is it possible I can just stop it from doing that with a debugger?&lt;/p&gt;
+&lt;p&gt;This looks like the culprit!! I’m using a server called &lt;a href=&quot;https://x410.dev/&quot;&gt;X410&lt;/a&gt;, it seems like it’s adding it’s own
+animation effects, and doesn’t have any way to disable it. I’m reluctant
+to switch to an alternative – that could just replace this issue with a
+different issue to troubleshoot.&lt;/p&gt;
+&lt;p&gt;Is it possible I can just stop it from doing that with a
+debugger?&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ cdb -p 6624
 (19e0.2ad0): Break instruction exception - code 80000003 (first chance)
 ntdll!DbgBreakPoint:
@@ -63,21 +412,28 @@ Detached
 NoTarget&amp;gt; q
 quit:&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ah-ha, that actually worked!!!&lt;/p&gt;
-&lt;p&gt;I’ve added that &lt;code&gt;cdb&lt;/code&gt; command into my xinit initialization, and it looks a lot snappier. That saved nearly 300ms, so we’re down to just 4 times slower than Fedora!&lt;/p&gt;
+&lt;p&gt;I’ve added that &lt;code&gt;cdb&lt;/code&gt; command into my xinit
+initialization, and it looks a lot snappier. That saved nearly 300ms, so
+we’re down to just 4 times slower than Fedora!&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id=&quot;profiling&quot; class=&quot;level1&quot;&gt;
 &lt;h1&gt;Profiling&lt;/h1&gt;
-&lt;p&gt;Okay, let’s try get some real numbers. I like the tool &lt;a href=&quot;https://github.com/sharkdp/hyperfine&quot;&gt;hyperfine&lt;/a&gt; for this, here are the initial results:&lt;/p&gt;
+&lt;p&gt;Okay, let’s try get some real numbers. I like the tool &lt;a href=&quot;https://github.com/sharkdp/hyperfine&quot;&gt;hyperfine&lt;/a&gt; for this, here
+are the initial results:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;https://lock.cmpxchg8b.com/img/hyperfine_windows.png&quot; class=&quot;bare&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;Hyperfine Windows&lt;/figcaption&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/hyperfine_windows.png&quot; class=&quot;bare&quot; alt=&quot;Hyperfine Windows&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;Hyperfine Windows&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;If we run it under optimal conditions, it takes about 900ms on Windows, and about 100ms on Fedora.&lt;/p&gt;
-&lt;p&gt;Now that I can reproduce the delay reliably, I can start exploring some theories…&lt;/p&gt;
+&lt;p&gt;If we run it under optimal conditions, it takes about 900ms on
+Windows, and about 100ms on Fedora.&lt;/p&gt;
+&lt;p&gt;Now that I can reproduce the delay reliably, I can start exploring
+some theories…&lt;/p&gt;
 &lt;section id=&quot;filesystem&quot; class=&quot;level4&quot;&gt;
 &lt;h4&gt;Filesystem&lt;/h4&gt;
-&lt;p&gt;My first thought is that filesystem performance under WSL can be very slow, could that explain the difference?&lt;/p&gt;
+&lt;p&gt;My first thought is that filesystem performance under WSL can be very
+slow, could that explain the difference?&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;taviso@WORKSTATION:~$ strace -wc -efile xterm -e true
 % time     seconds  usecs/call     calls    errors syscall
 ------ ----------- ----------- --------- --------- ----------------
@@ -88,22 +444,31 @@ quit:&lt;/code&gt;&lt;/pre&gt;
   4.72    0.001596        1596         1           execve
 ------ ----------- ----------- --------- --------- ----------------
 100.00    0.033845          40       830       155 total&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Nope, it’s actually a bit faster on Windows! If I browse the logs, it looks related to fonts, and I do have fewer fonts installed on Windows. I suspect that causes &lt;code&gt;fontconfig&lt;/code&gt; to query less files on initialization.&lt;/p&gt;
-&lt;p&gt;Whatever the reason, I concluded it wasn’t a big proportion of startup time, so it doesn’t seem worth worrying about.&lt;/p&gt;
+&lt;p&gt;Nope, it’s actually a bit faster on Windows! If I browse the logs, it
+looks related to fonts, and I do have fewer fonts installed on Windows.
+I suspect that causes &lt;code&gt;fontconfig&lt;/code&gt; to query less files on
+initialization.&lt;/p&gt;
+&lt;p&gt;Whatever the reason, I concluded it wasn’t a big proportion of
+startup time, so it doesn’t seem worth worrying about.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id=&quot;x-server&quot; class=&quot;level4&quot;&gt;
 &lt;h4&gt;X Server&lt;/h4&gt;
-&lt;p&gt;The issue must be the X server, how fast is a very simple X client?&lt;/p&gt;
+&lt;p&gt;The issue must be the X server, how fast is a very simple X
+client?&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;taviso@fedora:~$ hyperfine xdpyinfo
 Benchmark 1: xdpyinfo
   Time (mean ± σ):       4.6 ms ±   0.8 ms    [User: 1.9 ms, System: 1.6 ms]
   Range (min … max):     3.1 ms …   9.4 ms    317 runs
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That &lt;em&gt;does&lt;/em&gt; run slower on Windows, but not significantly slower – perhaps I actually need to create a window to see a difference?&lt;/p&gt;
+&lt;p&gt;That &lt;em&gt;does&lt;/em&gt; run slower on Windows, but not significantly
+slower – perhaps I actually need to create a window to see a
+difference?&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;taviso@fedora:~$ x11perf -repeat 1 -subs 8 -popup
     5600000 reps @   0.0010 msec (1040000.0/sec): Hide/expose window via popup (8 kids)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That is also slower on Windows – this is understandable, it has to translate from X11 to win32 – but not so slow that it adequately explains the problem alone.&lt;/p&gt;
+&lt;p&gt;That is also slower on Windows – this is understandable, it has to
+translate from X11 to win32 – but not so slow that it adequately
+explains the problem alone.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id=&quot;freetype&quot; class=&quot;level4&quot;&gt;
 &lt;h4&gt;FreeType&lt;/h4&gt;
@@ -123,7 +488,8 @@ executing tests:
   Stroke                        24.663 us/op      69690 done
   Get_BBox                       0.865 us/op     487830 done
   Get_CBox                       0.679 us/op     506010 done&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Loading fonts is slightly slower, but the other numbers seem fine, and it’s not &lt;em&gt;that&lt;/em&gt; much slower. I don’t think it’s this.&lt;/p&gt;
+&lt;p&gt;Loading fonts is slightly slower, but the other numbers seem fine,
+and it’s not &lt;em&gt;that&lt;/em&gt; much slower. I don’t think it’s this.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id=&quot;features&quot; class=&quot;level3&quot;&gt;
 &lt;h3&gt;Features&lt;/h3&gt;
@@ -143,7 +509,8 @@ executing tests:
   1.51    0.111306      111306         1 XpmReadFileToPixmap
   1.48    0.109486      109486         1 XtOpenApplication
   1.44    0.106786         203       524 malloc&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This &lt;code&gt;XtRealizeWidget&lt;/code&gt; call does seem slow, and I don’t see that on Fedora, what is calling that?&lt;/p&gt;
+&lt;p&gt;This &lt;code&gt;XtRealizeWidget&lt;/code&gt; call does seem slow, and I don’t
+see that on Fedora, what is calling that?&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ gdb --args ./xterm -e true
 Reading symbols from ./xterm...
 (gdb) b XtRealizeWidget
@@ -157,12 +524,17 @@ Breakpoint 1, 0x00007fffff43d940 in XtRealizeWidget () from /lib/x86_64-linux-gn
 #5  0x0000000008086683 in UpdateMenuItem (menu=0x811c5c0 &amp;lt;mainMenuEntries&amp;gt;, which=0, val=1)
     at ./menu.c:1026
 #6  0x000000000808a763 in update_toolbar () at ./menu.c:3366&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ah-ha – it’s the toolbar feature. It’s disabled at compile time on Fedora, but I quite like it and enable it on Windows.&lt;/p&gt;
-&lt;p&gt;If I disable that, startup is a little faster, I wonder if there are any other features that are slowing down initialization…?&lt;/p&gt;
+&lt;p&gt;Ah-ha – it’s the toolbar feature. It’s disabled at compile time on
+Fedora, but I quite like it and enable it on Windows.&lt;/p&gt;
+&lt;p&gt;If I disable that, startup is a little faster, I wonder if there are
+any other features that are slowing down initialization…?&lt;/p&gt;
 &lt;section id=&quot;parameter-scanning&quot; class=&quot;level4&quot;&gt;
 &lt;h4&gt;Parameter Scanning&lt;/h4&gt;
-&lt;p&gt;The &lt;code&gt;hyperfine&lt;/code&gt; utility has a feature called &lt;em&gt;parameter scan&lt;/em&gt;, where it it will try a bunch of settings for you and tell you which one is fastest.&lt;/p&gt;
-&lt;p&gt;Let’s ask XTerm what features are available, and toggle each one on and off.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;hyperfine&lt;/code&gt; utility has a feature called &lt;em&gt;parameter
+scan&lt;/em&gt;, where it it will try a bunch of settings for you and tell you
+which one is fastest.&lt;/p&gt;
+&lt;p&gt;Let’s ask XTerm what features are available, and toggle each one on
+and off.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ xterm -report-xres -e true
 activeIcon              : default
 allowBoldFonts          : true
@@ -175,9 +547,11 @@ allowMouseOps           : true
 &lt;pre&gt;&lt;code&gt;$ xterm -report-xres -e true | grep -Po &#39;^\S+(?=\s+: (true|false))&#39; | tr &#39;\n&#39; &#39;,&#39;
 allowBoldFonts,allowColorOps,allowMouseOps...&lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note: &lt;code&gt;xterm&lt;/code&gt; has a &lt;em&gt;lot&lt;/em&gt; of features, I’m truncating the list for brevity!&lt;/p&gt;
+&lt;p&gt;Note: &lt;code&gt;xterm&lt;/code&gt; has a &lt;em&gt;lot&lt;/em&gt; of features, I’m
+truncating the list for brevity!&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Now we can give each of those to &lt;code&gt;hyperfine&lt;/code&gt;, and let it figure out which settings have the most noticable effect.&lt;/p&gt;
+&lt;p&gt;Now we can give each of those to &lt;code&gt;hyperfine&lt;/code&gt;, and let it
+figure out which settings have the most noticable effect.&lt;/p&gt;
 &lt;p&gt;That took about 20 minutes to run, and reports:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ hyperfine --parameter-list res allowBoldFonts,allow... \
             --parameter-list bool true,false \
@@ -191,44 +565,72 @@ Summary
   xterm -xrm &#39;XTerm*tekInhibit: true&#39; -e true ran
     1.01 ± 0.08 times faster than xterm -xrm &#39;XTerm*allowSendEvents: false&#39; -e true
     ...&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This helped a little, I found a combination of options that saved around 200ms total. One example was &lt;code&gt;tekInhibit&lt;/code&gt;, which disables the Tektronix emulation. That’s usually used as a graphing mode – it’s actually &lt;a href=&quot;https://web.archive.org/web/20100305175059/http://dim13.org/tek/&quot;&gt;pretty cool&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Still, it isn’t a big enough difference, and this is as far as I was able to get through tweaking settings.&lt;/p&gt;
-&lt;p&gt;I’m starting to think that this is just death by a thousand cuts, everything just has some small overhead on Windows and it adds up…&lt;/p&gt;
+&lt;p&gt;This helped a little, I found a combination of options that saved
+around 200ms total. One example was &lt;code&gt;tekInhibit&lt;/code&gt;, which
+disables the Tektronix emulation. That’s usually used as a graphing mode
+– it’s actually &lt;a href=&quot;https://web.archive.org/web/20100305175059/http://dim13.org/tek/&quot;&gt;pretty
+cool&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Still, it isn’t a big enough difference, and this is as far as I was
+able to get through tweaking settings.&lt;/p&gt;
+&lt;p&gt;I’m starting to think that this is just death by a thousand cuts,
+everything just has some small overhead on Windows and it adds up…&lt;/p&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 &lt;section id=&quot;caching&quot; class=&quot;level1&quot;&gt;
 &lt;h1&gt;Caching&lt;/h1&gt;
-&lt;p&gt;There’s a simple generic solution to slow startup performance: server mode.&lt;/p&gt;
-&lt;p&gt;The idea is to cache a few processes in the background, then all the slow stuff will already be done, ready for you to start working immediately.&lt;/p&gt;
-&lt;p&gt;XTerm doesn’t have this feature natively, but it’s not complicated, I can add it.&lt;/p&gt;
-&lt;p&gt;To do this, I will use &lt;em&gt;deferred mapping&lt;/em&gt; – that just means that a program is running, but the window is not visible yet.&lt;/p&gt;
-&lt;p&gt;I tried a few solutions and found one that works well, an &lt;code&gt;LD_PRELOAD&lt;/code&gt; library. All it does is intercept any toplevel &lt;a href=&quot;https://linux.die.net/man/3/xmapwindow&quot;&gt;&lt;code&gt;XMapWindow()&lt;/code&gt;&lt;/a&gt; calls, then pause execution until it receives a signal.&lt;/p&gt;
-&lt;p&gt;It’s a bit hacky, but my code is &lt;a href=&quot;https://github.com/taviso/defermap&quot;&gt;here&lt;/a&gt;, if you’re interested.&lt;/p&gt;
-&lt;p&gt;To use it, you need something to manage the cache for you in the background, &lt;code&gt;xargs&lt;/code&gt; will work!&lt;/p&gt;
+&lt;p&gt;There’s a simple generic solution to slow startup performance: server
+mode.&lt;/p&gt;
+&lt;p&gt;The idea is to cache a few processes in the background, then all the
+slow stuff will already be done, ready for you to start working
+immediately.&lt;/p&gt;
+&lt;p&gt;XTerm doesn’t have this feature natively, but it’s not complicated, I
+can add it.&lt;/p&gt;
+&lt;p&gt;To do this, I will use &lt;em&gt;deferred mapping&lt;/em&gt; – that just means
+that a program is running, but the window is not visible yet.&lt;/p&gt;
+&lt;p&gt;I tried a few solutions and found one that works well, an
+&lt;code&gt;LD_PRELOAD&lt;/code&gt; library. All it does is intercept any toplevel
+&lt;a href=&quot;https://linux.die.net/man/3/xmapwindow&quot;&gt;&lt;code&gt;XMapWindow()&lt;/code&gt;&lt;/a&gt;
+calls, then pause execution until it receives a signal.&lt;/p&gt;
+&lt;p&gt;It’s a bit hacky, but my code is &lt;a href=&quot;https://github.com/taviso/defermap&quot;&gt;here&lt;/a&gt;, if you’re
+interested.&lt;/p&gt;
+&lt;p&gt;To use it, you need something to manage the cache for you in the
+background, &lt;code&gt;xargs&lt;/code&gt; will work!&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ xargs --null --arg-file=/dev/zero --max-procs=3 --replace -- \
      env LD_PRELOAD=defermap.so xterm -display :0 [PARAMS...]&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This will keep three xterms running in the background.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note: If you often rapidly start terminals in quick succession, increase &lt;code&gt;max-procs&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Note: If you often rapidly start terminals in quick succession,
+increase &lt;code&gt;max-procs&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;When you want a new terminal, instead of running &lt;code&gt;xterm&lt;/code&gt; as you normally would, do this instead:&lt;/p&gt;
+&lt;p&gt;When you want a new terminal, instead of running &lt;code&gt;xterm&lt;/code&gt;
+as you normally would, do this instead:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ pkill --oldest --signal SIGUSR1 xtermserver&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A terminal should appear near-instantly. You can now execute that instead of &lt;code&gt;xterm&lt;/code&gt;, and startup performance should be solved.&lt;/p&gt;
+&lt;p&gt;A terminal should appear near-instantly. You can now execute that
+instead of &lt;code&gt;xterm&lt;/code&gt;, and startup performance should be
+solved.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id=&quot;conclusion&quot; class=&quot;level1&quot;&gt;
 &lt;h1&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;This whole process took a while! Now I need to adjust my shortcuts to run &lt;code&gt;pkill&lt;/code&gt; instead of &lt;code&gt;xterm&lt;/code&gt;, and I can compare the results.&lt;/p&gt;
+&lt;p&gt;This whole process took a while! Now I need to adjust my shortcuts to
+run &lt;code&gt;pkill&lt;/code&gt; instead of &lt;code&gt;xterm&lt;/code&gt;, and I can compare
+the results.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;figure&gt;
-&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_terminal_fixed.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;Windows Terminal&lt;/figcaption&gt;
+&lt;img src=&quot;https://lock.cmpxchg8b.com/img/windows_terminal_fixed.gif&quot; class=&quot;bare&quot; style=&quot;width:100.0%&quot; alt=&quot;Windows Terminal&quot; referrerpolicy=&quot;no-referrer&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;Windows Terminal&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Counting the frames in that video, it’s down to about &lt;abbr title=&quot;11 frames @
-30fps&quot;&gt;366ms&lt;/abbr&gt;, just 60ms slower than Fedora, this is totally acceptable!&lt;/p&gt;
-&lt;p&gt;I’ve been using this configuration for a few days, so far it’s working great. I haven’t noticed any issues running it this way.&lt;/p&gt;
-&lt;p&gt;I highly doubt anyone else will find this useful, who else is using XTerm on Windows? 😆&lt;/p&gt;
-&lt;p&gt;Nevertheless, if you have a better solution, or can think of something else I can try, let me know!&lt;/p&gt;
+&lt;p&gt;Counting the frames in that video, it’s down to about
+&lt;abbr title=&quot;11 frames @
+30fps&quot;&gt;366ms&lt;/abbr&gt;, just 60ms slower than Fedora, this is totally
+acceptable!&lt;/p&gt;
+&lt;p&gt;I’ve been using this configuration for a few days, so far it’s
+working great. I haven’t noticed any issues running it this way.&lt;/p&gt;
+&lt;p&gt;I highly doubt anyone else will find this useful, who else is using
+XTerm on Windows? 😆&lt;/p&gt;
+&lt;p&gt;Nevertheless, if you have a better solution, or can think of
+something else I can try, let me know!&lt;/p&gt;
 &lt;/section&gt;
 
 

@@ -1,5 +1,17 @@
 [
   {
+    "provider_id": "android",
+    "provider_name": "Android",
+    "route_key": "/platform-tools-releases",
+    "route": {
+      "name": "SDK Platform Tools release notes",
+      "path": "/platform-tools-releases",
+      "example": "/android/platform-tools-releases",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "apple",
     "provider_name": "Apple",
     "route_key": "/apps/update/:country/:id/:platform?",
@@ -36,151 +48,86 @@
     }
   },
   {
-    "provider_id": "asus",
-    "provider_name": "ASUS",
-    "route_key": "/bios/:model/:lang?",
+    "provider_id": "appstore",
+    "provider_name": "App Store/Mac App Store",
+    "route_key": "/price/:country/:type/:id",
     "route": {
-      "name": "BIOS",
-      "path": "/bios/:model/:lang?",
-      "example": "/asus/bios/RT-AX88U/zh",
+      "name": "Price Drop",
+      "path": "/price/:country/:type/:id",
+      "example": "/appstore/price/us/mac/id1152443474",
       "parameters": {
-        "model": "Model, can be found in product page",
-        "lang": {
-          "description": "Language, provide access routes for other parts of the world",
-          "options": [
-            {
-              "label": "Chinese",
-              "value": "zh"
-            },
-            {
-              "label": "Global",
-              "value": "en"
-            }
-          ],
-          "default": "en"
-        }
+        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
+        "type": "App type，either `iOS` or `mac`",
+        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "brave",
-    "provider_name": "Brave",
-    "route_key": "/latest",
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/app/:id?",
+    "route": {
+      "name": "更新情报",
+      "path": "/app/:id?",
+      "example": "/bilibili/app/android",
+      "parameters": {
+        "id": "客户端 id，见下表，默认为安卓版"
+      },
+      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |"
+    }
+  },
+  {
+    "provider_id": "firecore",
+    "provider_name": "Infuse",
+    "route_key": "/:os",
     "route": {
       "name": "Release Notes",
-      "path": "/latest",
-      "example": "/brave/latest",
+      "path": "/:os",
+      "example": "/firecore/ios",
+      "parameters": {
+        "os": "`ios`,`tvos`,`macos`"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gofans",
+    "provider_name": "GoFans",
+    "route_key": "/:kind?",
+    "route": {
+      "name": "最新限免 / 促销应用",
+      "path": "/:kind?",
+      "example": "/gofans",
+      "parameters": {
+        "kind": "Platform, either `macos` or `ios`, empty means both (default)"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "greasyfork",
+    "provider_name": "Greasy Fork",
+    "route_key": "/scripts/:script/versions",
+    "route": {
+      "name": "Script Version History",
+      "path": "/scripts/:script/versions",
+      "example": "/greasyfork/scripts/431691-bypass-all-shortlinks/versions",
+      "parameters": {
+        "script": "Script id, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nextjs",
+    "provider_name": "Next.js",
+    "route_key": "/blog",
+    "route": {
+      "name": "Blog",
+      "path": "/blog",
+      "example": "/nextjs/blog",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "civitai",
-    "provider_name": "Civitai",
-    "route_key": "/models",
-    "route": {
-      "name": "Latest models",
-      "path": "/models",
-      "example": "/civitai/models",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "diskanalyzer",
-    "provider_name": "WizTree",
-    "route_key": "/whats-new",
-    "route": {
-      "name": "What's New",
-      "path": "/whats-new",
-      "example": "/diskanalyzer/whats-new",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "f-droid",
-    "provider_name": "F-Droid",
-    "route_key": "/apprelease/:app",
-    "route": {
-      "name": "App Update",
-      "path": "/apprelease/:app",
-      "example": "/f-droid/apprelease/com.termux",
-      "parameters": {
-        "app": "App's package name"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "firefox",
-    "provider_name": "Mozilla",
-    "route_key": "/addons/:id",
-    "route": {
-      "name": "Add-ons Update",
-      "path": "/addons/:id",
-      "example": "/firefox/addons/rsshub-radar",
-      "parameters": {
-        "id": "Add-ons id, can be found in add-ons url"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "fosshub",
-    "provider_name": "FossHub",
-    "route_key": "/:id",
-    "route": {
-      "name": "Software Update",
-      "path": "/:id",
-      "example": "/fosshub/qBittorrent",
-      "parameters": {
-        "id": "Software id, can be found in URL"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ipsw.dev",
-    "provider_name": "IPSW.dev",
-    "route_key": "/index/:productID",
-    "route": {
-      "name": "Apple latest beta firmware",
-      "path": "/index/:productID",
-      "example": "/ipsw.dev/index/iPhone16,1",
-      "parameters": {
-        "productID": "Product ID"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "macupdate",
-    "provider_name": "MacUpdate",
-    "route_key": "/app/:appId/:appSlug?",
-    "route": {
-      "name": "Update",
-      "path": "/app/:appId/:appSlug?",
-      "example": "/macupdate/app/11942",
-      "parameters": {
-        "appId": "Application unique ID, can be found in URL",
-        "appSlug": "Application slug, can be found in URL"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "microsoft",
-    "provider_name": "Microsoft",
-    "route_key": "/edge/addon/:crxid",
-    "route": {
-      "name": "Addons Update",
-      "path": "/edge/addon/:crxid",
-      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
-      "parameters": {
-        "crxid": "Addon id, can be found in addon url"
-      },
       "description": ""
     }
   },
@@ -197,76 +144,39 @@
     }
   },
   {
-    "provider_id": "postman",
-    "provider_name": "Postman",
-    "route_key": "/release-notes",
-    "route": {
-      "name": "Release Notes",
-      "path": "/release-notes",
-      "example": "/postman/release-notes",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "remnote",
-    "provider_name": "RemNote",
-    "route_key": "/changelog",
+    "provider_id": "oo-software",
+    "provider_name": "O&O Software",
+    "route_key": "/changelog/:id",
     "route": {
       "name": "Changelog",
-      "path": "/changelog",
-      "example": "/remnote/changelog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sony",
-    "provider_name": "Sony",
-    "route_key": "/downloads/:productType/:productId",
-    "route": {
-      "name": "Software Downloads",
-      "path": "/downloads/:productType/:productId",
-      "example": "/sony/downloads/product/nw-wm1am2",
+      "path": "/changelog/:id",
+      "example": "/oo-software/changelog/shutup10",
       "parameters": {
-        "productType": "product type",
-        "productId": "product id"
+        "id": "Software id, see below, shutup10 by default, can be found in URL"
       },
-      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
+      "description": "| Software        | Id          |\n| --------------- | ----------- |\n| O&O ShutUp10++ | shutup10    |\n| O&O AppBuster  | ooappbuster |\n| O&O Lanytix    | oolanytix   |\n| O&O DeskInfo   | oodeskinfo  |"
     }
   },
   {
-    "provider_id": "tradingview",
-    "provider_name": "TradingView",
-    "route_key": "/desktop",
+    "provider_id": "putty",
+    "provider_name": "PuTTY",
+    "route_key": "/changes",
     "route": {
-      "name": "Desktop releases and release notes",
-      "path": "/desktop",
-      "example": "/tradingview/desktop",
+      "name": "Change Log",
+      "path": "/changes",
+      "example": "/putty/changes",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "webcatalog",
-    "provider_name": "WebCatalog",
-    "route_key": "/changelog",
+    "provider_id": "unraid",
+    "provider_name": "Unraid",
+    "route_key": "/community-apps",
     "route": {
-      "name": "Changelog",
-      "path": "/changelog",
-      "example": "/webcatalog/changelog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "wizfile",
-    "provider_name": "WziFile",
-    "route_key": "/updates",
-    "route": {
-      "name": "Version History",
-      "path": "/updates",
-      "example": "/wizfile/updates",
+      "name": "Community Apps",
+      "path": "/community-apps",
+      "example": "/unraid/community-apps",
       "parameters": {},
       "description": ""
     }

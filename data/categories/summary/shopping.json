@@ -17,136 +17,32 @@
     }
   },
   {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/archive/:lang?",
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/brand/:id",
     "route": {
-      "name": "已经出售的角色列表",
-      "path": "/archive/:lang?",
-      "example": "/furstar/archive/cn",
+      "name": "按厂牌 - 演出更新",
+      "path": "/brand/:id",
+      "example": "/showstart/brand/34707",
       "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
+        "id": "厂牌 ID"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/characters/:lang?",
-    "route": {
-      "name": "最新售卖角色列表",
-      "path": "/characters/:lang?",
-      "example": "/furstar/characters/cn",
-      "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "guangdiu",
-    "provider_name": "逛丢",
-    "route_key": "/rank",
-    "route": {
-      "name": "一小时风云榜",
-      "path": "/rank",
-      "example": "/guangdiu/rank",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ktown4u",
-    "provider_name": "Ktown4u",
-    "route_key": "/artistBrandlist/:grpNo/:grpNo2?",
-    "route": {
-      "name": "Get the products on sale",
-      "path": "/artistBrandlist/:grpNo/:grpNo2?",
-      "example": "/ktown4u/artistBrandlist/234590/1723449",
-      "parameters": {
-        "grpNo": "artist id (Get in url)",
-        "grpNo2": "product category id (Get in url), empty for all categories"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "shopback",
-    "provider_name": "ShopBack",
-    "route_key": "/:store",
-    "route": {
-      "name": "Store",
-      "path": "/:store",
-      "example": "/shopback/shopee-mart",
-      "parameters": {
-        "store": "Store, can be found in URL"
-      },
-      "description": ""
+      "description": "::: tip\n厂牌 ID 查询: `/showstart/search/brand/:keyword`，如: [https://rsshub.app/showstart/search/brand/声场](https://rsshub.app/showstart/search/brand/声场)\n:::"
     }
   },
   {
     "provider_id": "showstart",
     "provider_name": "秀动网",
-    "route_key": "/site/:siteId",
+    "route_key": "/event/:cityCode/:showStyle?",
     "route": {
-      "name": "按场地 - 演出更新",
-      "path": "/site/:siteId",
-      "example": "/showstart/site/3583",
+      "name": "按城市 - 演出更新",
+      "path": "/event/:cityCode/:showStyle?",
+      "example": "/showstart/event/571/3",
       "parameters": {
-        "siteId": "演出场地 (编号)"
+        "cityCode": "演出城市 (编号)",
+        "showStyle": "演出风格 (编号)"
       },
-      "description": "::: tip\n-   演出场地 ID 查询: `/showstart/search/site/:keyword`, 如: [https://rsshub.app/showstart/search/site/酒球会](https://rsshub.app/showstart/search/site/酒球会)\n:::"
-    }
-  },
-  {
-    "provider_id": "snowpeak",
-    "provider_name": "Snow Peak",
-    "route_key": "/us/new-arrivals",
-    "route": {
-      "name": "New Arrivals(USA)",
-      "path": "/us/new-arrivals",
-      "example": "/snowpeak/us/new-arrivals",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "taobao",
-    "provider_name": "淘宝众筹",
-    "route_key": "/zhongchou/:type?",
-    "route": {
-      "name": "众筹项目",
-      "path": "/zhongchou/:type?",
-      "example": "/taobao/zhongchou/all",
-      "parameters": {
-        "type": "类型, 默认为 `all` 全部"
-      },
-      "description": "| 全部 | 科技 | 食品        | 动漫 | 设计   | 公益 | 娱乐 | 影音  | 书籍 | 游戏 | 其他  |\n| ---- | ---- | ----------- | ---- | ------ | ---- | ---- | ----- | ---- | ---- | ----- |\n| all  | tech | agriculture | acg  | design | love | tele | music | book | game | other |"
-    }
-  },
-  {
-    "provider_id": "tesla",
-    "provider_name": "特斯拉中国",
-    "route_key": "/price",
-    "route": {
-      "name": "价格",
-      "path": "/price",
-      "example": "/tesla/price",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "xiaomiyoupin",
-    "provider_name": "小米有品",
-    "route_key": "/crowdfunding",
-    "route": {
-      "name": "小米有品众筹",
-      "path": "/crowdfunding",
-      "example": "/xiaomiyoupin/crowdfunding",
-      "parameters": {},
-      "description": ""
+      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::"
     }
   }
 ]

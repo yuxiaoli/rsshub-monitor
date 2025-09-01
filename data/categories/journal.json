@@ -17,67 +17,18 @@
     }
   },
   {
-    "provider_id": "caareviews",
-    "provider_name": "caa.reviews",
-    "route_key": "/book",
+    "provider_id": "ieee-security",
+    "provider_name": "IEEE Computer Society",
+    "route_key": "/security-privacy",
     "route": {
-      "path": "/book",
-      "example": "/caareviews/book",
-      "parameters": {},
-      "name": "Book Reviews",
-      "url": "caareviews.org/reviews/book",
-      "provider_id": "caareviews",
-      "provider_name": "caa.reviews",
-      "route_key": "/book"
-    }
-  },
-  {
-    "provider_id": "caareviews",
-    "provider_name": "caa.reviews",
-    "route_key": "/exhibition",
-    "route": {
-      "path": "/exhibition",
-      "example": "/caareviews/exhibition",
-      "parameters": {},
-      "name": "Exhibition Reviews",
-      "url": "caareviews.org/reviews/exhibition",
-      "provider_id": "caareviews",
-      "provider_name": "caa.reviews",
-      "route_key": "/exhibition"
-    }
-  },
-  {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/citations/:id",
-    "route": {
-      "path": "/citations/:id",
-      "example": "/google/citations/mlmE4JMAAAAJ",
-      "parameters": {
-        "id": "N"
-      },
-      "name": "Scholar Author Citations",
-      "description": "The parameter id in the route is the id in the URL of the user's Google Scholar reference page, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ` to `mlmE4JMAAAAJ`.\n\n  Query parameters are also supported here, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ&sortby=pubdate` to `mlmE4JMAAAAJ&sortby=pubdate`. Please make sure that the user id (`mlmE4JMAAAAJ` in this case) should be the first parameter in the query string.",
-      "provider_id": "google",
-      "provider_name": "Google",
-      "route_key": "/citations/:id"
-    }
-  },
-  {
-    "provider_id": "ieee",
-    "provider_name": "IEEE Xplore",
-    "route_key": "/journal/:punumber/:earlyAccess?",
-    "route": {
-      "name": "IEEE Journal Articles",
-      "path": "/journal/:punumber/:earlyAccess?",
-      "parameters": {
-        "punumber": "Publication Number, look for `punumber` in the URL",
-        "earlyAccess": "Optional, set any value to get early access articles"
-      },
-      "example": "/ieee/journal/6287639/preprint",
-      "provider_id": "ieee",
-      "provider_name": "IEEE Xplore",
-      "route_key": "/journal/:punumber/:earlyAccess?"
+      "path": "/security-privacy",
+      "example": "/ieee-security/security-privacy",
+      "name": "IEEE Symposium on Security and Privacy",
+      "url": "ieee-security.org/TC/SP-Index.html",
+      "description": "Return results from 2020",
+      "provider_id": "ieee-security",
+      "provider_name": "IEEE Computer Society",
+      "route_key": "/security-privacy"
     }
   },
   {
@@ -95,38 +46,6 @@
       "provider_id": "nature",
       "provider_name": "Nature Journal",
       "route_key": "/highlight/:journal?"
-    }
-  },
-  {
-    "provider_id": "nymity",
-    "provider_name": "nymity",
-    "route_key": "/censorbib",
-    "route": {
-      "path": "/censorbib",
-      "example": "/nymity/censorbib",
-      "name": "CensorBib Updates",
-      "url": "censorbib.nymity.ch/",
-      "provider_id": "nymity",
-      "provider_name": "nymity",
-      "route_key": "/censorbib"
-    }
-  },
-  {
-    "provider_id": "papers",
-    "provider_name": "Cool Papers",
-    "route_key": "/query/:keyword{.+}?",
-    "route": {
-      "path": "/query/:keyword{.+}?",
-      "name": "Topic",
-      "url": "papers.cool",
-      "example": "/papers/query/Detection",
-      "parameters": {
-        "keyword": "Keyword to search for papers, e.g., Detection, Segmentation, etc."
-      },
-      "description": "::: tip\n  If you subscibe to [arXiv Paper queryed by Detection](https://papers.cool/arxiv/search?highlight=1&query=Detection), where the URL is `https://papers.cool/arxiv/search?highlight=1&query=Detection`, extract the part `https://papers.cool/` to the end, and use it as the parameter to fill in. Therefore, the route will be [`/papers/query/Detection`](https://rsshub.app/papers/query/Detection).\n:::\n\n| Category                                              | id                  |\n| ----------------------------------------------------- | ------------------- |\n| arXiv Paper queryed by Detection                      | query/Detection     |\n| arXiv Paper queryed by Segmentation                   | query/Segmentation  |\n  ",
-      "provider_id": "papers",
-      "provider_name": "Cool Papers",
-      "route_key": "/query/:keyword{.+}?"
     }
   }
 ]

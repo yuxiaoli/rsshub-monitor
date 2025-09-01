@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Mashiro&#39;s Baumkuchen</title><link>https://mashiro.best/archives/</link><atom:link href="http://rss.datuan.dev/mashiro/en" rel="self" type="application/rss+xml"></atom:link><description>Mashiro&#39;s Baumkuchen - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Fri, 01 Aug 2025 00:34:29 GMT</lastBuildDate><ttl>5</ttl><item><title>Thoughts After Reading - How to Read a Book</title><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Mashiro&#39;s Baumkuchen</title><link>https://mashiro.best/archives/</link><atom:link href="http://holoxx.f5.si/mashiro/en" rel="self" type="application/rss+xml"></atom:link><description>Mashiro&#39;s Baumkuchen - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Mon, 01 Sep 2025 00:28:25 GMT</lastBuildDate><ttl>5</ttl><item><title>Preconditions to Accelerate Software Development Using AI</title><description>&lt;p&gt;It has been three weeks since I started my new role at a company that actively embraces AI for productivity improvement and niche technologies. I would like to share some insights I’ve gained recently on AI-supported efficiency improvement as a software engineer. The main topic of this post is to introduce three preconditions to accelerate software development using AI. In other words, you need to meet these preconditions to make AI serve you better in your software development job.&lt;/p&gt;
+&lt;h2 id=&quot;ai-friendly-codebase&quot;&gt;AI-friendly Codebase
+&lt;/h2&gt;&lt;p&gt;The first precondition is an AI-friendly codebase. This ensures the AI builds upon your intentions instead of generating random ideas.&lt;/p&gt;
+&lt;h3 id=&quot;introduce-rules--context&quot;&gt;Introduce Rules &amp;amp; Context
+&lt;/h3&gt;&lt;p&gt;If you’ve used Cursor or a similar code editor, you already understand what I mean. You need to provide global rules that apply to the whole project, acting as a guide or a long-term prompt to require the AI to think within a certain framework.&lt;/p&gt;
+&lt;p&gt;In this rules file, you need to introduce at least the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Business scope: What is the project for? What is its functionality boundary? (Although this might change, you can update it as you go).&lt;/li&gt;
+&lt;li&gt;Project context: What kind of application are you building (web, iOS, etc.), and what are your technical choices?&lt;/li&gt;
+&lt;li&gt;Your vision: Ideally, what should the project look like?&lt;/li&gt;
+&lt;li&gt;Best practices: Specify tasks you want the AI to follow (e.g., for every API implemented, you must also write the relevant OpenAPI documentation).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;code-comments--documentation&quot;&gt;Code Comments &amp;gt; Documentation
+&lt;/h3&gt;&lt;p&gt;In short, there are two reasons for this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Compared to plain text, AI can understand code better because code is unambiguous.&lt;/li&gt;
+&lt;li&gt;Code is always up-to-date, while documentation can become stale.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Therefore, never regard the comments in your codebase as merely unused code or simple functional introductions. They can contain critical business logic as well. You can use comments to explain the reasoning behind a block of code, like why the workflow is designed a certain way, what it used to be, and even who made the decision for these changes. While Git records changes, these in-code comments provide explicit, informative clues for both AI and human developers.&lt;/p&gt;
+&lt;p&gt;Another reason I think documentation for a code maintainer is becoming less important is because of AI. You can question the AI about anything you need to know as a new code maintainer. Don’t get me wrong, I’m talking about maintainers, not project users or other developers who rely on this project. You still need documentation for those audiences, but it will be much lighter since they don’t care about implementation details. Again, for this to work, you need sufficient contextual comments.&lt;/p&gt;
+&lt;h3 id=&quot;clean--semantic-codesstructure&quot;&gt;Clean &amp;amp; Semantic Codes/Structure
+&lt;/h3&gt;&lt;p&gt;Just like a human developer, AI prefers code with high cohesion and low coupling so it can add or edit code confidently. No one likes chaos, so this rule is really a code quality concern, regardless of whether you use AI. The code an AI generates will heavily rely on the existing code: garbage in, garbage out. This should be a concern from the commencement of the project and should be maintained at all times. Once the codebase becomes an AI-assisted “shit-mountain,” believe me, nobody will want to touch it.&lt;/p&gt;
+&lt;h3 id=&quot;strong-build-in-checks&quot;&gt;Strong Build-in Checks
+&lt;/h3&gt;&lt;p&gt;AI has very low retry costs, especially for parallel coding AI tools. Human engineers have limited energy and might forget to perform cumbersome checks that identify minor glitches. This is where strong, built-in checks come in handy. For example, in NodeJS projects, these checks should be configured by developers during project initialization.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Linting: Checks code style and prevents unsafe code with bad practices.&lt;/li&gt;
+&lt;li&gt;Formatting: Enforces consistent code format (e.g., indentation).&lt;/li&gt;
+&lt;li&gt;Type Checking: Ensures type safety if TypeScript is used.&lt;/li&gt;
+&lt;li&gt;Testing: Automated tests that indicate logic or functional issues.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These checks must provide feedback with specific file names and line numbers to help the AI locate the cause of a problem, so it can keep retrying until the problem is solved. You are helping the AI increase the quality bar for its output. The most fabulous part is that the human engineer won’t be disturbed, allowing you to plan your next move. You see? Efficiency improved.&lt;/p&gt;
+&lt;h2 id=&quot;domain-knowledge&quot;&gt;Domain Knowledge
+&lt;/h2&gt;&lt;p&gt;The more I work, the more I realize that technical skill isn’t everything for a software engineer, even if you are responsible for key components that are highly sensitive to performance metrics. Product Mindset and Own Your Product are two qualities mentioned frequently. The key principle to gain trust from your project managers is to ensure your delivery meets their expectations, which requires you both to be on the same page. This is why domain knowledge is so highly valued.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Shared terminology brings consensus and efficiency.&lt;/li&gt;
+&lt;li&gt;You can identify gaps in understanding between you and your PM early on.&lt;/li&gt;
+&lt;li&gt;It’s beneficial for long-term thinking, especially when you are responsible for system design.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Yes, these principles existed long before AI was invented, but they shine even brighter in the AI era.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;div class=&quot;chroma&quot;&gt;
+&lt;table class=&quot;lntable&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;lntd&quot;&gt;
+&lt;pre tabindex=&quot;0&quot; class=&quot;chroma&quot;&gt;&lt;code&gt;&lt;span class=&quot;lnt&quot;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&quot;lntd&quot;&gt;
+&lt;pre tabindex=&quot;0&quot; class=&quot;chroma&quot;&gt;&lt;code class=&quot;language-fallback&quot; data-lang=&quot;fallback&quot;&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;cl&quot;&gt;Product Manager ----&amp;gt; Human Engineer ----&amp;gt; AI
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The human engineer now acts more like an interpreter: you rephrase requirements from the PM, add your technical insights, and communicate this to the AI through your prompt. Obviously, the better your understanding of the domain knowledge, the more accurate and effective your prompts will be. Your domain knowledge also helps you break down work into a feasible action plan with clear priorities. Once the scope and context are clear, it’s time to ask the AI to do your tasks simultaneously in the background.&lt;/p&gt;
+&lt;h2 id=&quot;technical-review&quot;&gt;Technical Review
+&lt;/h2&gt;&lt;p&gt;Just like any other skill, the more you work with AI, the better you understand how to work with it. No one will condemn you for having AI generate your code, but the baseline is that you must always know what it is doing. Therefore, the technical requirements for software engineers still remain. Junior software engineers must now inevitably review AI-generated code, a task that was previously beyond their typical scope. Your role shifts to controlling the direction and system design, rather than focusing solely on implementation.&lt;/p&gt;
+&lt;p&gt;AI is like a performance scaler—a coefficient in your performance formula. The more and deeper your technical knowledge, the more you can drive and the faster your pace. I won’t be surprised to hear the concept of a &lt;strong&gt;50x software engineer&lt;/strong&gt; in the future. &lt;a class=&quot;link&quot; href=&quot;https://www.youtube.com/watch?v=RNJCfif1dPY&amp;amp;t=1046s&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Professor Andrew Ng made an interesting new finding&lt;/a&gt;: the ratio of Product Managers (PMs) to Software Development Engineers (SDEs) in Silicon Valley has shifted from the traditional 1:4 to as much as 1:0.5, implicitly proving my point.&lt;/p&gt;
+&lt;h2 id=&quot;are-software-engineers-cooked&quot;&gt;Are Software Engineers Cooked?
+&lt;/h2&gt;&lt;p&gt;In short, no—if you adapt to the changes.&lt;br&gt;
+AI is changing the way we work, but it’s still far from becoming fully autonomous, which means AI still plays an assistant’s role in software engineering. AI significantly improves delivery speed, so there might be fewer positions in the job market. On the other hand, the emergence of AI flattens the technical gap between people, allowing anybody to create their own product and potentially fill these missing positions with new ventures.&lt;/p&gt;
+&lt;p&gt;Suddenly I recalled words said by Jacky Zeng (Former CEO of SAGI GAMES): When you plan to replace carriages with cars, have you ever asked opinion from horses?&lt;/p&gt;
+
+</description><link>https://mashiro.best/p/preconditions-to-accelerate-sd-using-ai/</link><guid isPermaLink="false">https://mashiro.best/p/preconditions-to-accelerate-sd-using-ai/</guid><pubDate>Sat, 16 Aug 2025 00:39:15 GMT</pubDate></item><item><title>Thoughts After Reading - How to Read a Book</title><description>&lt;blockquote&gt;
 &lt;p&gt;The story of cover: a Chinese podcast called “纵横四海”, which also introduced the book &lt;code&gt;How to Read a Book&lt;/code&gt; by Mortimer J. Adler. This post is following the content frame of the podcast.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;This post is more about the process/instructions of reading a book that I should follow afterward, rather than the summary of the book, so the post itself might not fully align with the original content.&lt;/p&gt;
 &lt;h2 id=&quot;the-purposes-of-reading&quot;&gt;The purposes of Reading
@@ -262,55 +318,4 @@ Thanks for your reading.&lt;/p&gt;
 &lt;li&gt;Osmani, A., &amp;amp; Miller, J. (2024). Rendering on the web. web.dev.&lt;/li&gt;
 &lt;/ul&gt;
 
-</description><link>https://mashiro.best/p/evo-of-frontend/</link><guid isPermaLink="false">https://mashiro.best/p/evo-of-frontend/</guid><pubDate>Sun, 31 Mar 2024 12:10:00 GMT</pubDate></item><item><title>How to Pass AWS Solution Architect Associate Quickly</title><description>&lt;h2 id=&quot;intro&quot;&gt;Intro
-&lt;/h2&gt;&lt;p&gt;Yesterday, I successfully passed AWS Solution Architecture Associate (SAA-C03) exam. As an intermediate level certificate, the certificate is valuable but also challenge for graduates or new comers of cloud computing fields. In this post, I will introduce:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;my thoughts about the exam&lt;/li&gt;
-&lt;li&gt;how I prepare the exam&lt;/li&gt;
-&lt;li&gt;other important things that you need to know about the exam&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;know-the-exam&quot;&gt;Know the Exam
-&lt;/h2&gt;&lt;h3 id=&quot;what-it-is&quot;&gt;What it is
-&lt;/h3&gt;&lt;p&gt;In my opinion, SAA-C03 includes various AWS services, examining the candidate to leverage them to design secure, high-performance, resilient and cost-effective solutions for different scenarios. The exam focus more on width rather than depth, which means you need to know many services of AWS and their use cases, but no much requirement about technical details. If you have no idea about AWS services, I highly recommend you to watch &lt;a class=&quot;link&quot; href=&quot;https://www.youtube.com/watch?v=JIbIYCM48to&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;this video&lt;/a&gt; to form basic understanding of AWS products.&lt;/p&gt;
-&lt;h3 id=&quot;exam-spec&quot;&gt;Exam Spec
-&lt;/h3&gt;&lt;p&gt;The exam is consist of 65 multiple choice questions, and questions may have single or multiple selections. To be noticed, every question will tell you how many correct options it has, while questions with multiple selection value more than others and there is no points for any partial correct selection, so please be careful when you face them. Since all questions are multiple choice questions, making sure that you answer all of them even you don’t know the correct answers. Later on, I will teach you how to guess the correct option when you have no idea.&lt;/p&gt;
-&lt;p&gt;The exam period is 130 minutes. If English is not your primary language, you can apply for extra 30 minutes when you book the exam so that you will have 160 minutes for 65 questions. However, questions of SAA-C03 always provide a background story making both the question and option long, unless your reading speed is good, your time won’t be that adequate. As a non-native speaker, sometimes I have to read the same sentence for couple of times to understand it, if you have the same condition, no worries.&lt;/p&gt;
-&lt;h2 id=&quot;how-i-prepare&quot;&gt;How I Prepare
-&lt;/h2&gt;&lt;p&gt;In this section, I will introduce how I made my plan for learning. Everyone has their own approach and my plan is just for reference, so you can adjust your plan based on your pace.&lt;/p&gt;
-&lt;h3 id=&quot;the-range-of-the-exam&quot;&gt;The Range of the Exam
-&lt;/h3&gt;&lt;p&gt;Obviously, the first step is to figure out the range of knowledge points. In the appendix part of &lt;a class=&quot;link&quot; href=&quot;https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Exam-Guide.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;the official exam guide&lt;/a&gt;, it has listed all services might appear in the exam. By the way, I also highly recommend you to read the full exam guide to acquire more details about the exam. The appendix is 5 pages long, including 123 kinds of services spanning 16 fields. To clarify which services of them should be focused on, I referred outlines of the two most reputative paid online courses – &lt;a class=&quot;link&quot; href=&quot;https://learn.cantrill.io/p/aws-certified-solutions-architect-associate-saa-c03&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Cantril&lt;/a&gt; and &lt;a class=&quot;link&quot; href=&quot;https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/?couponCode=OPPPOT42722&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Stephane&lt;/a&gt;. Fortunately, they post their outline to public, so for this step, no charge required.&lt;/p&gt;
-&lt;h3 id=&quot;which-parts-are-important&quot;&gt;Which Parts are Important
-&lt;/h3&gt;&lt;p&gt;The principle is pretty clear and simple:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If a service has been introduced by both courses, you should know its purpose, usage and use case.&lt;/li&gt;
-&lt;li&gt;If a service has only been introduced by one of them, you should know its purpose.&lt;/li&gt;
-&lt;li&gt;If a service hasn’t been introduced by any of them, you can ignore it for now.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I have made an Excel to organize them, feel free to use it: &lt;a class=&quot;link&quot; href=&quot;https://mashiro.best/p/how-to-pass-saa-quickly/SAA.xlsx&quot;&gt;SAA.xlsx&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;learning-materials&quot;&gt;Learning Materials
-&lt;/h3&gt;&lt;p&gt;My learning materials are quite simple: &lt;a class=&quot;link&quot; href=&quot;https://portal.tutorialsdojo.com/product/aws-certified-solutions-architect-associate-practice-exams/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;the mock test&lt;/a&gt; and &lt;a class=&quot;link&quot; href=&quot;https://tutorialsdojo.com/aws-cheat-sheets/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;the cheatsheet&lt;/a&gt; from Tutorial Dojo.&lt;/p&gt;
-&lt;p&gt;My suggestion is to do the mock tests directly, following the order below:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;div class=&quot;chroma&quot;&gt;
-&lt;table class=&quot;lntable&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;lntd&quot;&gt;
-&lt;pre tabindex=&quot;0&quot; class=&quot;chroma&quot;&gt;&lt;code&gt;&lt;span class=&quot;lnt&quot;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&quot;lntd&quot;&gt;
-&lt;pre tabindex=&quot;0&quot; class=&quot;chroma&quot;&gt;&lt;code class=&quot;language-fallback&quot; data-lang=&quot;fallback&quot;&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;cl&quot;&gt;Topic Based -&amp;gt; Section Based -&amp;gt; Review Based -&amp;gt; Timed Mode -&amp;gt; Final
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;At first, there must be a lot of things you don’t know, but the only thing you need to do on this stage is to check the explanation and the cheatsheet frequently and carefully. After you finished the &lt;code&gt;Review Based&lt;/code&gt; part, you should have mastered around 90% of concepts that will appear in the real exam. Don’t be panic or anxious during the preparation, just take your time, trust me, that’s how I made it. Making sure that you can get 80+ from each questionnaire to get in next stage.&lt;/p&gt;
-&lt;h3 id=&quot;before-the-exam&quot;&gt;Before the Exam
-&lt;/h3&gt;&lt;p&gt;Once you finished all instructions above, congrats, you are almost ready to take the test. To be perfectly safe, you need to take a &lt;a class=&quot;link&quot; href=&quot;https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Sample-Questions.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;tiny quiz&lt;/a&gt; from official sample questions before booking your test. If you can get 80+ in this stage as well, you are ready to go.&lt;/p&gt;
-&lt;h2 id=&quot;what-if-i-dont-understand-options&quot;&gt;What if I don’t Understand Options
-&lt;/h2&gt;&lt;p&gt;Although you thought that you are fully prepared, it’s inevitable that you still have no idea for several questions in the exam. Here, I am going to share some guess tips that I used. They are only helpful when you have no idea, and it can lead to wrong answer.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Cost-effective, simple application and elasticity required, then Lambda is preferred.&lt;/li&gt;
-&lt;li&gt;When you can accomplish the goal of the question using multiple way, manual operation is never the option.&lt;/li&gt;
-&lt;li&gt;Aurora can do everything that RDS can do, so Aurora is preferred unless cost-sensitive.&lt;/li&gt;
-&lt;li&gt;This test is for solution architect, X-RAY is not preferred (but in DVA-C02, it’s preferred).&lt;/li&gt;
-&lt;li&gt;Persistent data is never stored in EBS/EFS.&lt;/li&gt;
-&lt;li&gt;Choose FSx for Windows when you see the keyword &lt;code&gt;Windows&lt;/code&gt;/&lt;code&gt;SMB&lt;/code&gt;/&lt;code&gt;Active Directory&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Just try your best, I hope you can get the ideal grade you want, :)&lt;/p&gt;
-
-</description><link>https://mashiro.best/p/how-to-pass-saa-quickly/</link><guid isPermaLink="false">https://mashiro.best/p/how-to-pass-saa-quickly/</guid><pubDate>Fri, 23 Feb 2024 13:14:44 GMT</pubDate></item></channel></rss>
+</description><link>https://mashiro.best/p/evo-of-frontend/</link><guid isPermaLink="false">https://mashiro.best/p/evo-of-frontend/</guid><pubDate>Sun, 31 Mar 2024 12:10:00 GMT</pubDate></item></channel></rss>
