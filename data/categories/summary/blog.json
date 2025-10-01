@@ -1,71 +1,52 @@
 [
   {
-    "provider_id": "cmpxchg8b",
-    "provider_name": "cmpxchg8b",
-    "route_key": "/articles",
+    "provider_id": "bulianglin",
+    "provider_name": "不良林",
+    "route_key": "/",
     "route": {
-      "name": "Articles",
-      "path": "/articles",
-      "example": "/cmpxchg8b/articles",
+      "name": "全部文章",
+      "path": "/",
+      "example": "/bulianglin",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "geocaching",
-    "provider_name": "Geocaching",
-    "route_key": "/blogs/:language?",
+    "provider_id": "ceph",
+    "provider_name": "Ceph",
+    "route_key": "/blog/:topic?",
     "route": {
-      "name": "Official Blogs",
-      "path": "/blogs/:language?",
-      "example": "/geocaching/blogs/en",
+      "name": "Blog",
+      "path": "/blog/:topic?",
+      "example": "/ceph/blog/a11y",
       "parameters": {
-        "language": {
-          "description": "language",
-          "default": "en",
-          "options": [
-            {
-              "value": "en",
-              "label": "English"
-            },
-            {
-              "value": "de",
-              "label": "Deutsch"
-            },
-            {
-              "value": "fr",
-              "label": "Français"
-            },
-            {
-              "value": "es",
-              "label": "Español"
-            },
-            {
-              "value": "nl",
-              "label": "Nederlands"
-            },
-            {
-              "value": "cs",
-              "label": "Čeština"
-            },
-            {
-              "value": "all",
-              "label": "Not Specified"
-            }
-          ]
-        }
+        "category": "filter blog post by category, return all posts if not specified"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "lala",
-    "provider_name": "荒岛",
-    "route_key": "/",
+    "provider_id": "ddosi",
+    "provider_name": "雨苁博客",
+    "route_key": "/category/:category?",
     "route": {
-      "name": "最新发布",
-      "path": "/",
-      "example": "/lala",
+      "name": "分类",
+      "path": "/category/:category?",
+      "example": "/ddosi/category/黑客工具",
+      "parameters": {
+        "category": "N"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "flashcat",
+    "provider_name": "Flashcat",
+    "route_key": "/blog",
+    "route": {
+      "name": "快猫星云博客",
+      "path": "/blog",
+      "example": "/flashcat/blog",
       "parameters": {},
       "description": ""
     }
@@ -79,20 +60,6 @@
       "path": "/archive",
       "example": "/luxiangdong/archive",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "mashiro",
-    "provider_name": "Mashiro's Baumkuchen",
-    "route_key": "/:lang",
-    "route": {
-      "name": "Blog",
-      "path": "/:lang",
-      "example": "/mashiro/en",
-      "parameters": {
-        "lang": "the language of the site. Can be either `en` or `zh-cn`. Default: `en`"
-      },
       "description": ""
     }
   },
@@ -111,27 +78,40 @@
     }
   },
   {
-    "provider_id": "obsidian",
-    "provider_name": "Obsidian",
-    "route_key": "/publish/:id",
+    "provider_id": "medium",
+    "provider_name": "Medium",
+    "route_key": "/list/:user/:catalogId",
     "route": {
-      "name": "Publish",
-      "path": "/publish/:id",
-      "example": "/obsidian/publish/marshallontheroad",
+      "name": "List",
+      "path": "/list/:user/:catalogId",
+      "example": "/medium/list/imsingee/f2d8d48096a9",
       "parameters": {
-        "id": "网站 id，由Publish持有者自定义"
+        "user": "Username",
+        "catalogId": "List ID"
       },
-      "description": ""
+      "description": "The List ID is the last part of the URL after `-`, for example, the username in [https://medium.com/@imsingee/list/collection-7e67004f23f9](https://medium.com/@imsingee/list/collection-7e67004f23f9) is `imsingee`, and the ID is `7e67004f23f9`.\n\n::: warning\n  To access private lists, only self-hosting is supported.\n:::"
     }
   },
   {
-    "provider_id": "xys",
-    "provider_name": "新语丝",
-    "route_key": "/new",
+    "provider_id": "nielsberglund",
+    "provider_name": "Niels Berglund Blog",
+    "route_key": "/blog",
     "route": {
-      "name": "新到资料",
-      "path": "/new",
-      "example": "/xys/new",
+      "name": "Blog",
+      "path": "/blog",
+      "example": "/nielsberglund/blog",
+      "parameters": {},
+      "description": "Niels Berglund Blog Posts"
+    }
+  },
+  {
+    "provider_id": "njuferret",
+    "provider_name": "njuferret",
+    "route_key": "/blog",
+    "route": {
+      "name": "Blogs",
+      "path": "/blog",
+      "example": "/njuferret/blog",
       "parameters": {},
       "description": ""
     }

@@ -1,36 +1,37 @@
 [
   {
-    "provider_id": "jimmyspa",
-    "provider_name": "幾米 JIMMY S.P.A. Official Website",
-    "route_key": "/books/:language",
+    "provider_id": "1x",
+    "provider_name": "1x.com",
+    "route_key": "/:category{.+}?",
     "route": {
-      "path": "/books/:language",
-      "view": 0,
-      "example": "/jimmyspa/books/tw",
+      "path": "/:category{.+}?",
+      "name": "Gallery",
+      "url": "1x.com",
+      "example": "/1x/latest/awarded",
       "parameters": {
-        "language": {
-          "description": "语言",
-          "options": [
-            {
-              "value": "tw",
-              "label": "臺灣正體"
-            },
-            {
-              "value": "en",
-              "label": "English"
-            },
-            {
-              "value": "jp",
-              "label": "日本語"
-            }
-          ]
-        }
+        "category": "Category, Latest Awarded by default"
       },
-      "name": "Books",
-      "description": "\n| language | Description |\n| ---   | ---   |\n| tw | 臺灣正體 |\n| en | English |\n| jp | 日本語 |\n    ",
-      "provider_id": "jimmyspa",
-      "provider_name": "幾米 JIMMY S.P.A. Official Website",
-      "route_key": "/books/:language"
+      "description": "::: tip\nFill in the field in the path with the part of the corresponding page URL after `https://1x.com/gallery/` or `https://1x.com/photo/`. Here are the examples:\n\nIf you subscribe to [Abstract Awarded](https://1x.com/gallery/abstract/awarded), you should fill in the path with the part `abstract/awarded` from the page URL `https://1x.com/gallery/abstract/awarded`. In this case, the route will be [`/1x/abstract/awarded`](https://rsshub.app/1x/abstract/awarded).\n    \nIf you subscribe to [Wildlife Published](https://1x.com/gallery/wildlife/published), you should fill in the path with the part `wildlife/published` from the page URL `https://1x.com/gallery/wildlife/published`. In this case, the route will be [`/1x/wildlife/published`](https://rsshub.app/1x/wildlife/published).\n:::",
+      "provider_id": "1x",
+      "provider_name": "1x.com",
+      "route_key": "/:category{.+}?"
+    }
+  },
+  {
+    "provider_id": "bossdesign",
+    "provider_name": "Boss 设计",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "example": "/bossdesign",
+      "parameters": {
+        "category": "分类，可在对应分类页 URL 中找到，留空为全部"
+      },
+      "name": "分类",
+      "description": "| Boss 笔记 | 电脑日志        | 素材资源         | 设计师神器      | 设计教程        | 设计资讯            |\n| --------- | --------------- | ---------------- | --------------- | --------------- | ------------------- |\n| note      | computer-skills | design-resources | design-software | design-tutorial | design_information |",
+      "provider_id": "bossdesign",
+      "provider_name": "Boss 设计",
+      "route_key": "/:category?"
     }
   },
   {

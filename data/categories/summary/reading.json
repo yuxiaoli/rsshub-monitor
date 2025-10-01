@@ -1,91 +1,54 @@
 [
   {
-    "provider_id": "inoreader",
-    "provider_name": "Inoreader",
-    "route_key": "/html_clip/:user/:tag",
+    "provider_id": "56kog",
+    "provider_name": "明月中文网",
+    "route_key": "/class/:category?",
     "route": {
-      "name": "HTML Clip",
-      "path": "/html_clip/:user/:tag",
-      "example": "/inoreader/html_clip/1005137674/user-favorites",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "linovelib",
-    "provider_name": "哔哩轻小说",
-    "route_key": "/novel/:id",
-    "route": {
-      "name": "小说更新",
-      "path": "/novel/:id",
-      "example": "/linovelib/novel/2547",
+      "name": "分类",
+      "path": "/class/:category?",
+      "example": "/56kog/class/1_1",
       "parameters": {
-        "id": "小说 id，对应书架开始阅读 URL 中找到"
+        "category": "分类，见下表，默认为玄幻魔法"
       },
-      "description": ""
+      "description": "| [玄幻魔法](https://www.56kog.com/class/1_1.html) | [武侠修真](https://www.56kog.com/class/2_1.html) | [历史军事](https://www.56kog.com/class/4_1.html) | [侦探推理](https://www.56kog.com/class/5_1.html) | [网游动漫](https://www.56kog.com/class/6_1.html) |\n| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |\n| 1_1                                             | 2_1                                             | 4_1                                             | 5_1                                             | 6_1                                             |\n\n| [恐怖灵异](https://www.56kog.com/class/8_1.html) | [都市言情](https://www.56kog.com/class/3_1.html) | [科幻](https://www.56kog.com/class/7_1.html) | [女生小说](https://www.56kog.com/class/9_1.html) | [其他](https://www.56kog.com/class/10_1.html) |\n| ------------------------------------------------ | ------------------------------------------------ | -------------------------------------------- | ------------------------------------------------ | --------------------------------------------- |\n| 8_1                                             | 3_1                                             | 7_1                                         | 9_1                                             | 10_1                                         |"
     }
   },
   {
-    "provider_id": "qidian",
-    "provider_name": "起点",
-    "route_key": "/chapter/:id",
+    "provider_id": "bookfere",
+    "provider_name": "书伴",
+    "route_key": "/:category",
     "route": {
-      "name": "作品章节",
-      "path": "/chapter/:id",
-      "example": "/qidian/chapter/1010400217",
+      "name": "分类",
+      "path": "/:category",
+      "example": "/bookfere/skills",
       "parameters": {
-        "id": "小说 id, 可在对应小说页 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "syosetu",
-    "provider_name": "Syosetu",
-    "route_key": "/search/:sub/:query",
-    "route": {
-      "name": "Search",
-      "path": "/search/:sub/:query",
-      "example": "/syosetu/search/noc/word=ハーレム&notword=&type=r&mintime=&maxtime=&minlen=30000&maxlen=&min_globalpoint=&max_globalpoint=&minlastup=&maxlastup=&minfirstup=&maxfirstup=&isgl=1&notbl=1&order=new?limit=5",
-      "parameters": {
-        "sub": {
-          "description": "The target Syosetu subsite.",
+        "category": {
+          "description": "分类名",
           "options": [
             {
-              "value": "yomou",
-              "label": "小説を読もう"
+              "value": "weekly",
+              "label": "每周一书"
             },
             {
-              "value": "noc",
-              "label": "ノクターン"
+              "value": "skills",
+              "label": "使用技巧"
             },
             {
-              "value": "mnlt",
-              "label": "ムーンライト"
+              "value": "books",
+              "label": "图书推荐"
             },
             {
-              "value": "mid",
-              "label": "ミッドナイト"
+              "value": "news",
+              "label": "新闻速递"
+            },
+            {
+              "value": "essay",
+              "label": "精选短文"
             }
           ]
-        },
-        "query": "Search parameters in Syosetu format."
+        }
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "tongli",
-    "provider_name": "東立出版社",
-    "route_key": "/news/:type",
-    "route": {
-      "name": "新聞",
-      "path": "/news/:type",
-      "example": "/tongli/news/6",
-      "parameters": {
-        "type": "分類，可以在“新聞”鏈接中找到"
-      },
-      "description": ""
+      "description": "| 每周一书 | 使用技巧 | 图书推荐 | 新闻速递 | 精选短文 |\n| -------- | -------- | -------- | -------- | -------- |\n| weekly   | skills   | books    | news     | essay    |"
     }
   }
 ]

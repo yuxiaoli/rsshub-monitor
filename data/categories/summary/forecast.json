@@ -1,14 +1,41 @@
 [
   {
-    "provider_id": "cqgas",
-    "provider_name": "重庆燃气",
-    "route_key": "/tqtz",
+    "provider_id": "hko",
+    "provider_name": "Hong Kong Observatory",
+    "route_key": "/earthquake",
     "route": {
-      "name": "停气检修通知",
-      "path": "/tqtz",
-      "example": "/cqgas/tqtz",
+      "name": "全球地震資訊網",
+      "path": "/earthquake",
+      "example": "/hko/earthquake",
+      "parameters": {},
+      "description": "来自香港天文台的全球5级以上地震记录"
+    }
+  },
+  {
+    "provider_id": "tingshuitz",
+    "provider_name": "停水通知",
+    "route_key": "/guangzhou",
+    "route": {
+      "name": "广州市",
+      "path": "/guangzhou",
+      "example": "/tingshuitz/guangzhou",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "uptimerobot",
+    "provider_name": "Uptime Robot",
+    "route_key": "/rss/:id/:routeParams?",
+    "route": {
+      "name": "RSS",
+      "path": "/rss/:id/:routeParams?",
+      "example": "/uptimerobot/rss/u358785-e4323652448755805d668f1a66506f2f",
+      "parameters": {
+        "id": "the last part of your RSS URL (e.g. `u358785-e4323652448755805d668f1a66506f2f` for `https://rss.uptimerobot.com/u358785-e4323652448755805d668f1a66506f2f`)",
+        "routeParams": "extra parameters, see the table below"
+      },
+      "description": "| Key    | Description                                                              | Accepts        | Defaults to |\n| ------ | ------------------------------------------------------------------------ | -------------- | ----------- |\n| showID | Show monitor ID (disabling it will also disable link for each RSS entry) | 0/1/true/false | true        |"
     }
   }
 ]

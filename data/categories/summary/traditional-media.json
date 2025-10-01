@@ -1,19 +1,5 @@
 [
   {
-    "provider_id": "bjx",
-    "provider_name": "北极星电力网",
-    "route_key": "/gf/:type",
-    "route": {
-      "name": "光伏",
-      "path": "/gf/:type",
-      "example": "/bjx/gf/sc",
-      "parameters": {
-        "type": "分类，北极星光伏最后的`type`字段"
-      },
-      "description": "`:type` 类型可选如下\n\n| 要闻 | 政策 | 市场行情 | 企业动态 | 独家观点 | 项目工程 | 招标采购 | 财经 | 国际行情 | 价格趋势 | 技术跟踪 |\n| ---- | ---- | -------- | -------- | -------- | -------- | -------- | ---- | -------- | -------- | -------- |\n| yw   | zc   | sc       | mq       | dj       | xm       | zb       | cj   | gj       | sj       | js       |"
-    }
-  },
-  {
     "provider_id": "caixin",
     "provider_name": "财新博客",
     "route_key": "/article",
@@ -26,269 +12,101 @@
     }
   },
   {
-    "provider_id": "caixin",
-    "provider_name": "财新博客",
-    "route_key": "/latest",
-    "route": {
-      "name": "最新文章",
-      "path": "/latest",
-      "example": "/caixin/latest",
-      "parameters": {},
-      "description": "说明：此 RSS feed 会自动抓取财新网的最新文章，但不包含 FM 及视频内容。订阅用户可根据文档设置环境变量后，在url传入`fulltext=`以解锁全文。"
-    }
-  },
-  {
-    "provider_id": "cbc",
-    "provider_name": "Canadian Broadcasting Corporation",
-    "route_key": "/topics/:topic?",
-    "route": {
-      "name": "News",
-      "path": "/topics/:topic?",
-      "example": "/cbc/topics",
-      "parameters": {
-        "topic": "Channel,`Top Stories` by default. For secondary channel like `canada/toronto`, use `-` to replace `/`"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "cctv",
     "provider_name": "央视新闻",
-    "route_key": "/:category",
+    "route_key": "/lm/:id?",
     "route": {
-      "name": "专题",
-      "path": "/:category",
-      "example": "/cctv/world",
+      "name": "栏目",
+      "path": "/lm/:id?",
+      "example": "/cctv/lm/xwzk",
       "parameters": {
-        "category": "分类名"
+        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 `xwzk` 即 新闻周刊"
       },
-      "description": "| 新闻 | 国内  | 国际  | 社会    | 法治 | 文娱 | 科技 | 生活 | 教育 | 每周质量报告 | 新闻 1+1  |\n| ---- | ----- | ----- | ------- | ---- | ---- | ---- | ---- | ---- | ------------ | --------- |\n| news | china | world | society | law  | ent  | tech | life | edu  | mzzlbg       | xinwen1j1 |"
-    }
-  },
-  {
-    "provider_id": "cctv",
-    "provider_name": "央视新闻",
-    "route_key": "/photo/jx",
-    "route": {
-      "name": "央视网图片《镜象》",
-      "path": "/photo/jx",
-      "example": "/cctv/photo/jx",
-      "parameters": {},
-      "description": ""
+      "description": "| 焦点访谈 | 等着我 | 今日说法 | 开讲啦 |\n| -------- | ------ | -------- | ------ |\n| jdft     | dzw    | jrsf     | kjl    |\n\n| 正大综艺 | 经济半小时 | 第一动画乐园 |\n| -------- | ---------- | ------------ |\n| zdzy     | jjbxs      | dydhly       |\n\n::: tip\n  更多栏目请看 [这里](https://tv.cctv.com/lm)\n:::"
     }
   },
   {
     "provider_id": "cna",
     "provider_name": "中央通讯社",
+    "route_key": "/web/:id?",
+    "route": {
+      "name": "分类 (网页爬虫方法)",
+      "path": "/web/:id?",
+      "example": "/cna/web/aall",
+      "parameters": {
+        "id": "分类 id，见上表。此參數默认为 aall"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hnrb",
+    "provider_name": "湖南日报",
     "route_key": "/:id?",
     "route": {
-      "name": "分类",
+      "name": "电子刊物",
       "path": "/:id?",
-      "example": "/cna/aall",
+      "example": "/hnrb",
       "parameters": {
-        "id": "分类 id 或新闻专题 id。分类 id 见下表，新闻专题 id 為 https://www.cna.com.tw/list/newstopic.aspx 中，連結的數字部份。此參數默认为 aall"
+        "id": "编号，见下表，默认为全部"
       },
-      "description": "| 即時 | 政治 | 國際 | 兩岸 | 產經 | 證券 | 科技 | 生活 | 社會 | 地方 | 文化 | 運動 | 娛樂 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| aall | aipl | aopl | acn  | aie  | asc  | ait  | ahel | asoc | aloc | acul | aspt | amov |"
+      "description": "| 版                   | 编号 |\n| -------------------- | ---- |\n| 全部                 |      |\n| 第 01 版：头版       | 1    |\n| 第 02 版：要闻       | 2    |\n| 第 03 版：要闻       | 3    |\n| 第 04 版：深度       | 4    |\n| 第 05 版：市州       | 5    |\n| 第 06 版：理论・学习 | 6    |\n| 第 07 版：观察       | 7    |\n| 第 08 版：时事       | 8    |\n| 第 09 版：中缝       | 9    |"
     }
   },
   {
-    "provider_id": "dealstreetasia",
-    "provider_name": "DealStreetAsia",
-    "route_key": "/home",
+    "provider_id": "lorientlejour",
+    "provider_name": "L'Orient-Le Jour/L'Orient Today",
+    "route_key": "/:category?",
     "route": {
-      "name": "Home",
-      "path": "/home",
-      "example": "/dealstreetasia/home",
+      "name": "Category",
+      "path": "/:category?",
+      "example": "/lorientlejour/977-lebanon",
+      "parameters": {
+        "category": "Category from the last segment of the URL of the corresponding site, see below for more information, /977-Lebanon by default"
+      },
+      "description": "  ::: tip\nFor example, the path for the sites https://today.lorientlejour.com/section/977-lebanon and https://www.lorientlejour.com/rubrique/1-liban would be /lorientlejour/977-lebanon and /lorientlejour/1-liban respectively. \nMultiple categories seperated by '|' is also supported, e.g. /lorientlejour/977-lebanon|1-liban.\n:::"
+    }
+  },
+  {
+    "provider_id": "mrdx",
+    "provider_name": "新华每日电讯",
+    "route_key": "/today",
+    "route": {
+      "name": "今日",
+      "path": "/today",
+      "example": "/mrdx/today",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "economist",
-    "provider_name": "The Economist",
-    "route_key": "/espresso",
+    "provider_id": "now",
+    "provider_name": "Now 新聞",
+    "route_key": "/news/:category?/:id?",
     "route": {
-      "name": "Espresso",
-      "path": "/espresso",
-      "example": "/economist/espresso",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "huanqiu",
-    "provider_name": "环球网",
-    "route_key": "/news/:category?",
-    "route": {
-      "name": "分类",
-      "path": "/news/:category?",
-      "example": "/huanqiu/news/china",
+      "name": "新聞",
+      "path": "/news/:category?/:id?",
+      "example": "/now/news",
       "parameters": {
-        "category": "类别，可以使用二级域名作为参数，默认为：china"
+        "category": "分类，见下表，默认为首页",
+        "id": "编号，可在对应专题/节目页 URL 中找到 topicId"
       },
-      "description": "| 国内新闻 | 国际新闻 | 军事 | 台海   | 评论    |\n| -------- | -------- | ---- | ------ | ------- |\n| china    | world    | mil  | taiwai | opinion |"
-    }
-  },
-  {
-    "provider_id": "infzm",
-    "provider_name": "南方周末",
-    "route_key": "/:id",
-    "route": {
-      "name": "频道",
-      "path": "/:id",
-      "example": "/infzm/1",
-      "parameters": {
-        "id": "南方周末频道 id, 可在该频道的 URL 中找到（即 https://www.infzm.com/contents?term_id=:id)"
-      },
-      "description": "下面给出部分参考：\n\n| 推荐 | 新闻 | 观点 | 文化 | 人物 | 影像 | 专题 | 生活 | 视频 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 1    | 2    | 3    | 4    | 7    | 8    | 6    | 5    | 131  |"
-    }
-  },
-  {
-    "provider_id": "npr",
-    "provider_name": "National Public Radio",
-    "route_key": "/:endpoint?",
-    "route": {
-      "name": "News",
-      "path": "/:endpoint?",
-      "example": "/npr/1001",
-      "parameters": {
-        "endpoint": "Channel ID, can be found in Official RSS URL, `1001` by default"
-      },
-      "description": "Provide full article RSS for CBC topics."
-    }
-  },
-  {
-    "provider_id": "ntdtv",
-    "provider_name": "新唐人电视台",
-    "route_key": "/:language/:id",
-    "route": {
-      "name": "频道",
-      "path": "/:language/:id",
-      "example": "/ntdtv/b5/prog1201",
-      "parameters": {
-        "language": "语言，简体为`gb`，繁体为`b5`",
-        "id": "子频道名称"
-      },
-      "description": "参数均可在官网获取，如：\n\n  `https://www.ntdtv.com/b5/prog1201` 对应 `/ntdtv/b5/prog1201`"
-    }
-  },
-  {
-    "provider_id": "nytimes",
-    "provider_name": "The New York Times",
-    "route_key": "/:lang?",
-    "route": {
-      "name": "News",
-      "path": "/:lang?",
-      "example": "/nytimes/dual",
-      "parameters": {
-        "lang": {
-          "description": "language, default to Chinese",
-          "options": [
-            {
-              "value": "dual",
-              "label": "Chinese-English"
-            },
-            {
-              "value": "en",
-              "label": "English"
-            },
-            {
-              "value": "traditionalchinese",
-              "label": "Traditional Chinese"
-            },
-            {
-              "value": "dual-traditionalchinese",
-              "label": "Chinese-English (Traditional Chinese)"
-            }
-          ]
-        }
-      },
-      "description": "By extracting the full text of articles, we provide a better reading experience (full text articles) over the official one."
-    }
-  },
-  {
-    "provider_id": "oeeee",
-    "provider_name": "南方都市报",
-    "route_key": "/app/reporter/:id",
-    "route": {
-      "name": "南都客户端（按记者）",
-      "path": "/app/reporter/:id",
-      "example": "/oeeee/app/reporter/249",
-      "parameters": {
-        "id": "记者 UID"
-      },
-      "description": "记者的 UID 可通过 `m.mp.oeeee.com` 下的文章页面获取。点击文章下方的作者头像，进入该作者的个人主页，即可从 url 中获取。"
+      "description": "::: tip\n  **编号** 仅对事件追蹤、評論節目、新聞專題三个分类起作用，例子如下：\n\n  对于 [事件追蹤](https://news.now.com/home/tracker) 中的 [塔利班奪權](https://news.now.com/home/tracker/detail?catCode=123&topicId=1056) 话题，其网址为 `https://news.now.com/home/tracker/detail?catCode=123&topicId=1056`，其中 `topicId` 为 1056，则对应路由为 [`/now/news/tracker/1056`](https://rsshub.app/now/news/tracker/1056)\n:::\n\n| 首頁 | 港聞  | 兩岸國際      | 娛樂          |\n| ---- | ----- | ------------- | ------------- |\n|      | local | international | entertainment |\n\n| 生活 | 科技       | 財經    | 體育   |\n| ---- | ---------- | ------- | ------ |\n| life | technology | finance | sports |\n\n| 事件追蹤 | 評論節目 | 新聞專題 |\n| -------- | -------- | -------- |\n| tracker  | feature  | opinion  |"
     }
   },
   {
     "provider_id": "publico",
     "provider_name": "Público",
-    "route_key": "/ciencias/:subsection?",
+    "route_key": "/sociedad/:subsection?",
     "route": {
-      "name": "Ciencias",
-      "path": "/ciencias/:subsection?",
-      "example": "/publico/ciencias",
+      "name": "Sociedad",
+      "path": "/sociedad/:subsection?",
+      "example": "/publico/sociedad",
       "parameters": {
         "subsection": {
           "description": "Filter by subsection. Check the subsections available on the newspaper's website."
         }
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "publico",
-    "provider_name": "Público",
-    "route_key": "/mujer/:subsection?",
-    "route": {
-      "name": "Mujer",
-      "path": "/mujer/:subsection?",
-      "example": "/publico/mujer",
-      "parameters": {
-        "subsection": {
-          "description": "Filter by subsection. Check the subsections available on the newspaper's website."
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "qstheory",
-    "provider_name": "求是网",
-    "route_key": "/magazine/:magazine",
-    "route": {
-      "name": "在线读刊",
-      "path": "/magazine/:magazine",
-      "example": "/qstheory/magazine/qs",
-      "parameters": {
-        "magazine": "刊物，`qs` 为求是，`hqwglist` 为红旗文稿"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "washingtonpost",
-    "provider_name": "The Washington Post",
-    "route_key": "/app/:category{.+}?",
-    "route": {
-      "name": "App",
-      "path": "/app/:category{.+}?",
-      "example": "/washingtonpost/app/national",
-      "parameters": {
-        "category": "Category from the path of the URL of the corresponding site, see below"
-      },
-      "description": "::: tip\nFor example, the category for https://www.washingtonpost.com/national/investigations would be /national/investigations.\n:::"
-    }
-  },
-  {
-    "provider_id": "yicai",
-    "provider_name": "第一财经",
-    "route_key": "/headline",
-    "route": {
-      "name": "头条",
-      "path": "/headline",
-      "example": "/yicai/headline",
-      "parameters": {},
       "description": ""
     }
   }

@@ -1,182 +1,136 @@
 [
   {
-    "provider_id": "android",
-    "provider_name": "Android",
-    "route_key": "/platform-tools-releases",
+    "provider_id": "alpinelinux",
+    "provider_name": "Alpine Linux",
+    "route_key": "/pkgs/:name/:routeParams?",
     "route": {
-      "name": "SDK Platform Tools release notes",
-      "path": "/platform-tools-releases",
-      "example": "/android/platform-tools-releases",
+      "name": "Packages",
+      "path": "/pkgs/:name/:routeParams?",
+      "example": "/alpinelinux/pkgs/nodejs",
+      "parameters": {
+        "name": "Packages name",
+        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
+      },
+      "description": "Alpine Linux packages update"
+    }
+  },
+  {
+    "provider_id": "diskanalyzer",
+    "provider_name": "WizTree",
+    "route_key": "/whats-new",
+    "route": {
+      "name": "What's New",
+      "path": "/whats-new",
+      "example": "/diskanalyzer/whats-new",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "apple",
-    "provider_name": "Apple",
-    "route_key": "/apps/update/:country/:id/:platform?",
+    "provider_id": "f-droid",
+    "provider_name": "F-Droid",
+    "route_key": "/apprelease/:app",
     "route": {
       "name": "App Update",
-      "path": "/apps/update/:country/:id/:platform?",
-      "example": "/apple/apps/update/us/id408709785",
+      "path": "/apprelease/:app",
+      "example": "/f-droid/apprelease/com.termux",
       "parameters": {
-        "country": "App Store Country, obtain from the app URL, see below",
-        "id": "App id, obtain from the app URL",
-        "platform": {
-          "description": "App Platform, see below, all by default",
-          "options": [
-            {
-              "value": "All",
-              "label": "all"
-            },
-            {
-              "value": "iOS",
-              "label": "iOS"
-            },
-            {
-              "value": "macOS",
-              "label": "macOS"
-            },
-            {
-              "value": "tvOS",
-              "label": "tvOS"
-            }
-          ]
-        }
-      },
-      "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::"
-    }
-  },
-  {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/price/:country/:type/:id",
-    "route": {
-      "name": "Price Drop",
-      "path": "/price/:country/:type/:id",
-      "example": "/appstore/price/us/mac/id1152443474",
-      "parameters": {
-        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
-        "type": "App type，either `iOS` or `mac`",
-        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
+        "app": "App's package name"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/app/:id?",
+    "provider_id": "lrepacks",
+    "provider_name": "REPACK скачать",
+    "route_key": "/:category?",
     "route": {
-      "name": "更新情报",
-      "path": "/app/:id?",
-      "example": "/bilibili/app/android",
+      "name": "REPACK скачать",
+      "path": "/:category?",
+      "example": "/lrepacks",
       "parameters": {
-        "id": "客户端 id，见下表，默认为安卓版"
+        "category": "Category, Homepage by default"
       },
-      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |"
+      "description": "::: tip\n  If you subscribe to [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)，where the URL is `https://lrepacks.net/repaki-sistemnyh-programm/`, extract the part `https://lrepacks.net/` to the end, which is `repaki-sistemnyh-programm`, and use it as the parameter to fill in. Therefore, the route will be [`/lrepacks/repaki-sistemnyh-programm`](https://rsshub.app/lrepacks/repaki-sistemnyh-programm).\n\n| Category                                                                        | ID                                                                                           |\n| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |\n| [Новые репаки на сегодня](https://lrepacks.net/novye-repaki-elchupacabra/)      | [novye-repaki-elchupacabra](https://rsshub.app/lrepacks/novye-repaki-elchupacabra)           |\n| [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)          | [repaki-sistemnyh-programm](https://rsshub.app/lrepacks/repaki-sistemnyh-programm)           |\n| [Программы для графики](https://lrepacks.net/repaki-programm-dlya-grafiki/)     | [repaki-programm-dlya-grafiki](https://rsshub.app/lrepacks/repaki-programm-dlya-grafiki)     |\n| [Программы для интернета](https://lrepacks.net/repaki-programm-dlya-interneta/) | [repaki-programm-dlya-interneta](https://rsshub.app/lrepacks/repaki-programm-dlya-interneta) |\n| [Мультимедиа программы](https://lrepacks.net/repaki-multimedia-programm/)       | [repaki-multimedia-programm](https://rsshub.app/lrepacks/repaki-multimedia-programm)         |\n| [Программы для офиса](https://lrepacks.net/repaki-programm-dlya-ofisa/)         | [repaki-programm-dlya-ofisa](https://rsshub.app/lrepacks/repaki-programm-dlya-ofisa)         |\n| [Разные программы](https://lrepacks.net/repaki-raznyh-programm/)                | [repaki-raznyh-programm](https://rsshub.app/lrepacks/repaki-raznyh-programm)                 |\n| [Системные библиотеки](https://lrepacks.net/sistemnye-biblioteki/)              | [sistemnye-biblioteki](https://rsshub.app/lrepacks/sistemnye-biblioteki)                     |\n| [Важная информация](https://lrepacks.net/informaciya/)                          | [informaciya](https://rsshub.app/lrepacks/informaciya)                                       |\n:::"
     }
   },
   {
-    "provider_id": "firecore",
-    "provider_name": "Infuse",
-    "route_key": "/:os",
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/mcr/product/*",
     "route": {
-      "name": "Release Notes",
-      "path": "/:os",
-      "example": "/firecore/ios",
+      "name": "Product tags in mcr.microsoft.com",
+      "path": "/mcr/product/*",
+      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
       "parameters": {
-        "os": "`ios`,`tvos`,`macos`"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "gofans",
-    "provider_name": "GoFans",
-    "route_key": "/:kind?",
-    "route": {
-      "name": "最新限免 / 促销应用",
-      "path": "/:kind?",
-      "example": "/gofans",
-      "parameters": {
-        "kind": "Platform, either `macos` or `ios`, empty means both (default)"
+        "product": "repository path in mcr.microsoft.com"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "greasyfork",
-    "provider_name": "Greasy Fork",
-    "route_key": "/scripts/:script/versions",
+    "provider_id": "neatdownloadmanager",
+    "provider_name": "Neat Download Manager",
+    "route_key": "/download/:os?",
     "route": {
-      "name": "Script Version History",
-      "path": "/scripts/:script/versions",
-      "example": "/greasyfork/scripts/431691-bypass-all-shortlinks/versions",
+      "name": "Download",
+      "path": "/download/:os?",
+      "example": "/neatdownloadmanager/download",
       "parameters": {
-        "script": "Script id, can be found in URL"
+        "os": "Operating system, windows or macos, all by default"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "nextjs",
-    "provider_name": "Next.js",
-    "route_key": "/blog",
+    "provider_id": "sony",
+    "provider_name": "Sony",
+    "route_key": "/downloads/:productType/:productId",
     "route": {
-      "name": "Blog",
-      "path": "/blog",
-      "example": "/nextjs/blog",
+      "name": "Software Downloads",
+      "path": "/downloads/:productType/:productId",
+      "example": "/sony/downloads/product/nw-wm1am2",
+      "parameters": {
+        "productType": "product type",
+        "productId": "product id"
+      },
+      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
+    }
+  },
+  {
+    "provider_id": "sourceforge",
+    "provider_name": "SourceForge",
+    "route_key": "/:routeParams?",
+    "route": {
+      "name": "Software",
+      "path": "/:routeParams?",
+      "example": "/sourceforge/topic=artificial-intelligence&os=windows",
+      "parameters": {
+        "routeParams": "route params, see below"
+      },
+      "description": "For some URL like [https://sourceforge.net/directory/artificial-intelligence/windows/](https://sourceforge.net/directory/artificial-intelligence/windows/), it is equal to [https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows\"](https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows), thus subscribing to `/sourceforge/topic=artificial-intelligence&os=windows`.\n\n  URL params can duplicate, such as `/sourceforge/topic=artificial-intelligence&os=windows&os=linux`."
+    }
+  },
+  {
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
+    "route": {
+      "name": "Desktop releases and release notes",
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "notateslaapp",
-    "provider_name": "Not a Tesla App",
-    "route_key": "/ota",
+    "provider_id": "zotero",
+    "provider_name": "Zotero",
+    "route_key": "/versions",
     "route": {
-      "name": "Tesla Software Updates",
-      "path": "/ota",
-      "example": "/notateslaapp/ota",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "oo-software",
-    "provider_name": "O&O Software",
-    "route_key": "/changelog/:id",
-    "route": {
-      "name": "Changelog",
-      "path": "/changelog/:id",
-      "example": "/oo-software/changelog/shutup10",
-      "parameters": {
-        "id": "Software id, see below, shutup10 by default, can be found in URL"
-      },
-      "description": "| Software        | Id          |\n| --------------- | ----------- |\n| O&O ShutUp10++ | shutup10    |\n| O&O AppBuster  | ooappbuster |\n| O&O Lanytix    | oolanytix   |\n| O&O DeskInfo   | oodeskinfo  |"
-    }
-  },
-  {
-    "provider_id": "putty",
-    "provider_name": "PuTTY",
-    "route_key": "/changes",
-    "route": {
-      "name": "Change Log",
-      "path": "/changes",
-      "example": "/putty/changes",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "unraid",
-    "provider_name": "Unraid",
-    "route_key": "/community-apps",
-    "route": {
-      "name": "Community Apps",
-      "path": "/community-apps",
-      "example": "/unraid/community-apps",
+      "name": "Version History",
+      "path": "/versions",
+      "example": "/zotero/versions",
       "parameters": {},
       "description": ""
     }

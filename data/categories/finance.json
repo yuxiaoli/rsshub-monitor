@@ -1,53 +1,35 @@
 [
   {
-    "provider_id": "chinaratings",
-    "provider_name": "中债资信评估有限责任公司",
-    "route_key": "/CreditResearch/:category{.+}?",
+    "provider_id": "eastmoney",
+    "provider_name": "东方财富",
+    "route_key": "/search/:keyword",
     "route": {
-      "path": "/CreditResearch/:category{.+}?",
-      "name": "中债研究",
-      "url": "www.chinaratings.com.cn",
-      "example": "/chinaratings/CreditResearch",
-      "parameters": {
-        "category": "分类，默认为 `Industry/Comment`，即行业评论，可在对应分类页 URL 中找到"
-      },
-      "description": ":::tip\n若订阅 [行业评论](https://www.chinaratings.com.cn/CreditResearch/Industry/Comment/)，网址为 `https://www.chinaratings.com.cn/CreditResearch/Industry/Comment/`，请截取 `https://www.chinaratings.com.cn/CreditResearch/` 到末尾 `/` 的部分 `Industry/Comment` 作为 `category` 参数填入，此时目标路由为 [`/chinaratings/CreditResearch/Industry/Comment`](https://rsshub.app/chinaratings/CreditResearch/Industry/Comment)。\n:::\n",
+      "path": "/search/:keyword",
       "view": 0,
-      "provider_id": "chinaratings",
-      "provider_name": "中债资信评估有限责任公司",
-      "route_key": "/CreditResearch/:category{.+}?"
-    }
-  },
-  {
-    "provider_id": "cryptoslate",
-    "provider_name": "CryptoSlate",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/cryptoslate",
-      "parameters": {},
-      "name": "News",
-      "description": "Get latest news from CryptoSlate.",
-      "provider_id": "cryptoslate",
-      "provider_name": "CryptoSlate",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "followin",
-    "provider_name": "Followin",
-    "route_key": "/kol/:kolId/:lang?",
-    "route": {
-      "path": "/kol/:kolId/:lang?",
-      "example": "/followin/kol/4075592991",
+      "example": "/eastmoney/search/web3",
       "parameters": {
-        "kolId": "KOL ID, can be found in URL",
-        "lang": "Language, see table above, `en` by default"
+        "keyword": "关键词，可以设置为自己需要检索的关键词"
       },
-      "name": "KOL",
-      "provider_id": "followin",
-      "provider_name": "Followin",
-      "route_key": "/kol/:kolId/:lang?"
+      "name": "搜索",
+      "provider_id": "eastmoney",
+      "provider_name": "东方财富",
+      "route_key": "/search/:keyword"
+    }
+  },
+  {
+    "provider_id": "fastbull",
+    "provider_name": "FastBull",
+    "route_key": "/express-news",
+    "route": {
+      "path": "/express-news",
+      "view": 0,
+      "example": "/fastbull/express-news",
+      "parameters": {},
+      "name": "News Flash",
+      "url": "fastbull.com/express-news",
+      "provider_id": "fastbull",
+      "provider_name": "FastBull",
+      "route_key": "/express-news"
     }
   },
   {
@@ -68,133 +50,81 @@
     }
   },
   {
-    "provider_id": "gelonghui",
-    "provider_name": "格隆汇",
-    "route_key": "/hot-article/:type?",
-    "route": {
-      "path": "/hot-article/:type?",
-      "view": 0,
-      "example": "/gelonghui/hot-article",
-      "parameters": {
-        "type": {
-          "description": "`day` 为日排行，`week` 为周排行，默认为 `day`",
-          "options": [
-            {
-              "value": "day",
-              "label": "日排行"
-            },
-            {
-              "value": "week",
-              "label": "周排行"
-            }
-          ]
-        }
-      },
-      "name": "最热文章",
-      "url": "gelonghui.com/",
-      "provider_id": "gelonghui",
-      "provider_name": "格隆汇",
-      "route_key": "/hot-article/:type?"
-    }
-  },
-  {
-    "provider_id": "jin10",
-    "provider_name": "金十数据",
-    "route_key": "/topic/:id",
-    "route": {
-      "path": "/topic/:id",
-      "view": 0,
-      "example": "/jin10/topic/396",
-      "parameters": {
-        "id": "N"
-      },
-      "name": "主题文章",
-      "url": "jin10.com/",
-      "provider_id": "jin10",
-      "provider_name": "金十数据",
-      "route_key": "/topic/:id"
-    }
-  },
-  {
     "provider_id": "jinse",
     "provider_name": "金色财经",
-    "route_key": "/:category?",
+    "route_key": "/lives/:category?",
     "route": {
-      "path": "/:category?",
-      "example": "/jinse/zhengce",
+      "path": "/lives/:category?",
+      "view": 5,
+      "example": "/jinse/lives",
       "parameters": {
-        "category": "分类，见下表，默认为政策"
+        "category": {
+          "description": "分类",
+          "options": [
+            {
+              "value": "0",
+              "label": "全部"
+            },
+            {
+              "value": "1",
+              "label": "精选"
+            },
+            {
+              "value": "2",
+              "label": "政策"
+            },
+            {
+              "value": "3",
+              "label": "数据"
+            },
+            {
+              "value": "4",
+              "label": "NFT"
+            },
+            {
+              "value": "5",
+              "label": "项目"
+            }
+          ],
+          "default": "0"
+        }
       },
-      "name": "分类",
-      "description": "| 政策    | 行情         | DeFi | 矿业  | 以太坊 2.0 |\n| ------- | ------------ | ---- | ----- | ---------- |\n| zhengce | fenxishishuo | defi | kuang | 以太坊 2.0 |\n\n| 产业     | IPFS | 技术 | 百科  | 研报          |\n| -------- | ---- | ---- | ----- | ------------- |\n| industry | IPFS | tech | baike | capitalmarket |",
+      "name": "快讯",
+      "description": "| 全部 | 精选 | 政策 | 数据 | NFT | 项目 |\n| ---- | ---- | ---- | ---- | --- | ---- |\n| 0    | 1    | 2    | 3    | 4   | 5    |",
       "provider_id": "jinse",
       "provider_name": "金色财经",
-      "route_key": "/:category?"
+      "route_key": "/lives/:category?"
     }
   },
   {
     "provider_id": "sse",
     "provider_name": "上海证券交易所",
-    "route_key": "/convert/:query?",
+    "route_key": "/disclosure/:query?",
     "route": {
-      "path": "/convert/:query?",
-      "example": "/sse/convert/beginDate=2018-08-18&endDate=2019-08-18&companyCode=603283&title=股份",
+      "path": "/disclosure/:query?",
+      "example": "/sse/disclosure/beginDate=2018-08-18&endDate=2020-08-25&productId=600696",
       "parameters": {
         "query": "筛选条件，见示例"
       },
-      "name": "可转换公司债券公告",
+      "name": "上市公司信息最新公告披露",
       "provider_id": "sse",
       "provider_name": "上海证券交易所",
-      "route_key": "/convert/:query?"
+      "route_key": "/disclosure/:query?"
     }
   },
   {
-    "provider_id": "techflowpost",
-    "provider_name": "深潮 TechFlow",
-    "route_key": "/express",
+    "provider_id": "sse",
+    "provider_name": "上海证券交易所",
+    "route_key": "/inquire",
     "route": {
-      "path": "/express",
-      "view": 0,
-      "example": "/techflowpost/express",
-      "name": "快讯",
-      "url": "techflowpost.com/",
-      "provider_id": "techflowpost",
-      "provider_name": "深潮 TechFlow",
-      "route_key": "/express"
-    }
-  },
-  {
-    "provider_id": "theblock",
-    "provider_name": "TheBlock",
-    "route_key": "/category/:category",
-    "route": {
-      "path": "/category/:category",
-      "example": "/theblock/category/crypto-ecosystems",
-      "parameters": {
-        "category": "News category"
-      },
-      "name": "Category",
-      "description": "Get latest news from TheBlock by category. Note that due to website limitations, only article summaries may be available.",
-      "provider_id": "theblock",
-      "provider_name": "TheBlock",
-      "route_key": "/category/:category"
-    }
-  },
-  {
-    "provider_id": "ulapia",
-    "provider_name": "乌拉邦",
-    "route_key": "/reports/:category?",
-    "route": {
-      "path": "/reports/:category?",
-      "example": "/ulapia/reports/stock_research",
-      "parameters": {
-        "category": "频道类型，默认为券商晨报（今日晨报）"
-      },
-      "name": "频道",
-      "description": "|     个股研报    |      行业研报      |      策略研报      |     宏观研报    |    新股研报   | 券商晨报（今日晨报） |\n| :-------------: | :----------------: | :----------------: | :-------------: | :-----------: | :------------------: |\n| stock_research | industry_research | strategy_research | macro_research | ipo_research |    brokerage_news   |",
-      "provider_id": "ulapia",
-      "provider_name": "乌拉邦",
-      "route_key": "/reports/:category?"
+      "path": "/inquire",
+      "example": "/sse/inquire",
+      "parameters": {},
+      "name": "监管问询",
+      "url": "www.sse.com.cn/disclosure/credibility/supervision/inquiries",
+      "provider_id": "sse",
+      "provider_name": "上海证券交易所",
+      "route_key": "/inquire"
     }
   },
   {
@@ -210,39 +140,6 @@
       "provider_id": "unusualwhales",
       "provider_name": "Unusual Whales",
       "route_key": "/news"
-    }
-  },
-  {
-    "provider_id": "wallstreetcn",
-    "provider_name": "华尔街见闻",
-    "route_key": "/live/:category?/:score?",
-    "route": {
-      "path": "/live/:category?/:score?",
-      "example": "/wallstreetcn/live",
-      "parameters": {
-        "category": "快讯分类，默认`global`，见下表",
-        "score": "快讯重要度，默认`1`全部快讯，可设置为`2`只看重要的"
-      },
-      "name": "实时快讯",
-      "description": "| 要闻   | A 股    | 美股     | 港股     | 外汇  | 商品      | 理财      |\n| ------ | ------- | -------- | -------- | ----- | --------- | --------- |\n| global | a-stock | us-stock | hk-stock | forex | commodity | financing |",
-      "provider_id": "wallstreetcn",
-      "provider_name": "华尔街见闻",
-      "route_key": "/live/:category?/:score?"
-    }
-  },
-  {
-    "provider_id": "xueqiu",
-    "provider_name": "雪球",
-    "route_key": "/hots",
-    "route": {
-      "path": "/hots",
-      "example": "/xueqiu/hots",
-      "parameters": {},
-      "name": "热帖",
-      "url": "xueqiu.com/",
-      "provider_id": "xueqiu",
-      "provider_name": "雪球",
-      "route_key": "/hots"
     }
   }
 ]

@@ -1,17 +1,48 @@
 [
   {
-    "provider_id": "cqgas",
-    "provider_name": "重庆燃气",
-    "route_key": "/tqtz",
+    "provider_id": "hko",
+    "provider_name": "Hong Kong Observatory",
+    "route_key": "/earthquake",
     "route": {
-      "path": "/tqtz",
-      "example": "/cqgas/tqtz",
+      "path": "/earthquake",
+      "name": "全球地震資訊網",
+      "example": "/hko/earthquake",
+      "description": "来自香港天文台的全球5级以上地震记录",
+      "provider_id": "hko",
+      "provider_name": "Hong Kong Observatory",
+      "route_key": "/earthquake"
+    }
+  },
+  {
+    "provider_id": "tingshuitz",
+    "provider_name": "停水通知",
+    "route_key": "/guangzhou",
+    "route": {
+      "path": "/guangzhou",
+      "example": "/tingshuitz/guangzhou",
       "parameters": {},
-      "name": "停气检修通知",
-      "url": "cqgas.cn/",
-      "provider_id": "cqgas",
-      "provider_name": "重庆燃气",
-      "route_key": "/tqtz"
+      "name": "广州市",
+      "provider_id": "tingshuitz",
+      "provider_name": "停水通知",
+      "route_key": "/guangzhou"
+    }
+  },
+  {
+    "provider_id": "uptimerobot",
+    "provider_name": "Uptime Robot",
+    "route_key": "/rss/:id/:routeParams?",
+    "route": {
+      "path": "/rss/:id/:routeParams?",
+      "example": "/uptimerobot/rss/u358785-e4323652448755805d668f1a66506f2f",
+      "parameters": {
+        "id": "the last part of your RSS URL (e.g. `u358785-e4323652448755805d668f1a66506f2f` for `https://rss.uptimerobot.com/u358785-e4323652448755805d668f1a66506f2f`)",
+        "routeParams": "extra parameters, see the table below"
+      },
+      "name": "RSS",
+      "description": "| Key    | Description                                                              | Accepts        | Defaults to |\n| ------ | ------------------------------------------------------------------------ | -------------- | ----------- |\n| showID | Show monitor ID (disabling it will also disable link for each RSS entry) | 0/1/true/false | true        |",
+      "provider_id": "uptimerobot",
+      "provider_name": "Uptime Robot",
+      "route_key": "/rss/:id/:routeParams?"
     }
   }
 ]

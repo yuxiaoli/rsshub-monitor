@@ -1,111 +1,94 @@
 [
   {
-    "provider_id": "atptour",
-    "provider_name": "ATP Tour",
-    "route_key": "/news/:lang?",
+    "provider_id": "acpaa",
+    "provider_name": "中华全国专利代理师协会",
+    "route_key": "/:id?/:name?",
     "route": {
-      "path": "/news/:lang?",
-      "example": "/atptour/news/en",
+      "path": "/:id?/:name?",
+      "example": "/acpaa",
       "parameters": {
-        "lang": "en or es."
+        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
+        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
       },
-      "name": "News",
-      "provider_id": "atptour",
-      "provider_name": "ATP Tour",
-      "route_key": "/news/:lang?"
+      "name": "标签",
+      "provider_id": "acpaa",
+      "provider_name": "中华全国专利代理师协会",
+      "route_key": "/:id?/:name?"
     }
   },
   {
-    "provider_id": "baidu",
-    "provider_name": "百度",
-    "route_key": "/search/:keyword",
+    "provider_id": "boc",
+    "provider_name": "中国银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "path": "/search/:keyword",
-      "example": "/baidu/search/rss",
+      "path": "/whpj/:format?",
+      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
       "parameters": {
-        "keyword": "搜索关键词"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
-      "name": "搜索",
-      "provider_id": "baidu",
-      "provider_name": "百度",
-      "route_key": "/search/:keyword"
+      "name": "外汇牌价",
+      "url": "boc.cn/sourcedb/whpj",
+      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |",
+      "provider_id": "boc",
+      "provider_name": "中国银行",
+      "route_key": "/whpj/:format?"
     }
   },
   {
-    "provider_id": "easynomad",
-    "provider_name": "轻松游牧-远程工作聚集地",
-    "route_key": "/",
+    "provider_id": "galxe",
+    "provider_name": "Galxe",
+    "route_key": "/quest/:alias",
     "route": {
-      "path": "/",
-      "view": 5,
-      "example": "/easynomad",
-      "name": "远程工作列表",
-      "provider_id": "easynomad",
-      "provider_name": "轻松游牧-远程工作聚集地",
-      "route_key": "/"
+      "path": "/quest/:alias",
+      "name": "Quest",
+      "url": "app.galxe.com",
+      "example": "/galxe/quest/MissionWeb3",
+      "provider_id": "galxe",
+      "provider_name": "Galxe",
+      "route_key": "/quest/:alias"
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/alerts/:keyword",
+    "provider_id": "genossenschaften",
+    "provider_name": "Genossenschaften.immo",
+    "route_key": "*",
     "route": {
-      "path": "/alerts/:keyword",
-      "example": "/google/alerts/RSSHub",
+      "name": "Immobiliensuche",
+      "path": "*",
+      "description": "\nNote that all parameters are optional and many can be specified multiple times\n(e.g. `district=wien-1-innere-stadt&district=wien-2-leopoldstadt`).\n\nOnly returns the first page of search results, allowing you to keep track of\nnewly added apartments. If you're looking for an apartment, make sure to also\nlook through the other pages on the website.\n\n:::tip\nTo get your query URL, go to https://genossenschaften.immo and apply all\ndesired filters. If you want to filter by (all districts of a) federal state\n(e.g. `/immobilien/regionen/wien/`), please open the district selector and\nde- and re-select any district, so that the region in the URL gets replaced\nwith a number of `district` parameters. Once you've set up all desired\nfilters, copy the part of the URL after the `?`.\n:::\n",
+      "example": "/genossenschaften/district=wien-1-innere-stadt&district=wien-2-leopoldstadt&district=wien-3-landstrasse&district=wien-4-wieden&district=wien-5-margareten&district=wien-6-mariahilf&district=wien-7-neubau&district=wien-8-josefstadt&district=wien-9-alsergrund&district=wien-10-favoriten&district=wien-11-simmering&district=wien-12-meidling&district=wien-13-hietzing&district=wien-14-penzing&district=wien-15-rudolfsheim-fuenfhaus&district=wien-16-ottakring&district=wien-17-hernals&district=wien-18-waehring&district=wien-19-doebling&district=wien-20-brigittenau&district=wien-21-floridsdorf&district=wien-22-donaustadt&district=wien-23-liesing&has_rent=on&has_rent_option=on&status=available&status=construction&cost=1000&room=2&size=50&has_property=off&has_rent=on&has_rent_option=on&status=available&status=construction&status=planned&type=residence&type=project",
       "parameters": {
-        "keyword": "Keyword"
+        "cost": "Miete bis (in €, number)",
+        "district": "Bezirk (string, multiple)",
+        "size": "Größe ab (in m², number)",
+        "room": "Zimmer ab (number)",
+        "genossenschaft": "Bauvereinigung (string, multiple)",
+        "own_funds": "Eigenkapital bis",
+        "has_property": "Eigentum (`on` | `off`)",
+        "has_rent": "Miete (`on` | `off`)",
+        "has_rent_option": "Miete mit Kaufoption (`on` | `off`)",
+        "status": "multiple, `available` | `construction` | `planned`",
+        "type": "multiple, `residence` | `project`",
+        "keywords": "Keyword search"
       },
-      "name": "Alerts",
-      "provider_id": "google",
-      "provider_name": "Google",
-      "route_key": "/alerts/:keyword"
+      "provider_id": "genossenschaften",
+      "provider_name": "Genossenschaften.immo",
+      "route_key": "*"
     }
   },
   {
-    "provider_id": "sogou",
-    "provider_name": "搜狗",
-    "route_key": "/doodles",
+    "provider_id": "urbandictionary",
+    "provider_name": "Urban Dictionary",
+    "route_key": "/random",
     "route": {
-      "path": "/doodles",
-      "example": "/sogou/doodles",
+      "path": "/random",
+      "example": "/urbandictionary/random",
       "parameters": {},
-      "name": "特色 LOGO",
-      "provider_id": "sogou",
-      "provider_name": "搜狗",
-      "route_key": "/doodles"
-    }
-  },
-  {
-    "provider_id": "sogou",
-    "provider_name": "搜狗",
-    "route_key": "/search/:keyword",
-    "route": {
-      "path": "/search/:keyword",
-      "example": "/sogou/search/rss",
-      "parameters": {
-        "keyword": "搜索关键词"
-      },
-      "name": "搜索",
-      "provider_id": "sogou",
-      "provider_name": "搜狗",
-      "route_key": "/search/:keyword"
-    }
-  },
-  {
-    "provider_id": "usepanda",
-    "provider_name": "Panda",
-    "route_key": "/feeds/:id",
-    "route": {
-      "path": "/feeds/:id",
-      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
-      "parameters": {
-        "id": "Feed ID"
-      },
-      "name": "Feeds",
-      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |",
-      "provider_id": "usepanda",
-      "provider_name": "Panda",
-      "route_key": "/feeds/:id"
+      "name": "Random words",
+      "url": "urbandictionary.com/random.php",
+      "provider_id": "urbandictionary",
+      "provider_name": "Urban Dictionary",
+      "route_key": "/random"
     }
   }
 ]

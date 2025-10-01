@@ -1,4 +1,620 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>A List Apart</title><link>https://alistapart.com/articles</link><atom:link href="http://rsshub.email-once.com/alistapart" rel="self" type="application/rss+xml"></atom:link><description>Articles on aListApart.com - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:18:58 GMT</lastBuildDate><ttl>5</ttl><item><title>From Beta to Bedrock: Build Products that Stick.</title><description>&lt;p&gt;As a product builder over too many years to mention, I’ve lost count of the number of times I’ve seen promising ideas go from zero to hero in a few weeks, only to fizzle out within months.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>A List Apart</title><link>https://alistapart.com/articles</link><atom:link href="http://rsshub.isrss.com/alistapart" rel="self" type="application/rss+xml"></atom:link><description>Articles on aListApart.com - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en-us</language><lastBuildDate>Wed, 01 Oct 2025 00:18:07 GMT</lastBuildDate><ttl>5</ttl><item><title>Design Dialects: Breaking the Rules, Not the System</title><description>&lt;p&gt;&lt;em&gt;“Language is not merely a set of unrelated sounds, clauses, rules, and meanings; it is a totally coherent system bound to context and behavior.”&lt;/em&gt; — Kenneth L. Pike&lt;/p&gt;
+
+
+
+&lt;p&gt;The web has accents. So should our design systems.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Design Systems as Living Languages&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Design systems aren’t component libraries—they’re living languages. &lt;a href=&quot;https://m3.material.io/foundations/design-tokens/overview&quot;&gt;&lt;strong&gt;Tokens&lt;/strong&gt;&lt;/a&gt; are phonemes, &lt;a href=&quot;https://atlassian.design/components&quot;&gt;&lt;strong&gt;components&lt;/strong&gt;&lt;/a&gt; are words, &lt;a href=&quot;https://designsystem.university/glossary#pattern&quot;&gt;&lt;strong&gt;patterns&lt;/strong&gt;&lt;/a&gt; are phrases, &lt;a href=&quot;https://www.figma.com/blog/design-systems-102-how-to-build-your-design-system/#use-layout-grids-and-spacing-to-create-visual&quot;&gt;&lt;strong&gt;layouts&lt;/strong&gt;&lt;/a&gt; are sentences. The conversations we build with users become the stories our products tell.&lt;/p&gt;
+
+
+
+&lt;p&gt;But here’s what we’ve forgotten: the more fluently a language is spoken, the more accents it can support without losing meaning. English in Scotland differs from English in Sydney, yet both are unmistakably English. The language adapts to context while preserving core meaning. This couldn’t be more obvious to me, a Brazilian Portuguese speaker, who learned English with an American accent, and lives in Sydney.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our design systems must work the same way. Rigid adherence to visual rules creates brittle systems that break under contextual pressure. Fluent systems bend without breaking.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Consistency becomes a prison&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;The promise of design systems was simple: consistent components would accelerate development and unify experiences. But as systems matured and products grew more complex, that promise has become a prison. &lt;a href=&quot;https://adobe.design/stories/design-for-scale/designing-design-systems-supporting-implementation-and-adoption&quot;&gt;Teams file “exception” requests by the hundreds&lt;/a&gt;. Products launch with workarounds instead of system components. Designers spend more time defending consistency than solving user problems.&lt;/p&gt;
+
+
+
+&lt;p&gt;Our design systems must learn to speak &lt;strong&gt;dialects&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;A design dialect is a systematic adaptation of a design system that maintains core principles while developing new patterns for specific contexts.&lt;/strong&gt; Unlike one-off customizations or brand themes, dialects preserve the system’s essential grammar while expanding its vocabulary to serve different users, environments, or constraints.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;When Perfect Consistency Fails&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;At &lt;a href=&quot;https://booking.com/&quot;&gt;Booking.com&lt;/a&gt;, I learned this lesson the hard way. We A/B-tested everything—color, copy, button shapes, even logo colors. As a professional with a graphic design education and experience building brand style guides, I found this shocking. While everyone fell in love with Airbnb’s pristine design system, Booking grew into a giant without ever considering visual consistency.&amp;nbsp;&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The chaos taught me something profound: &lt;strong&gt;consistency isn’t ROI; solved problems are.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;At Shopify. Polaris (&lt;a href=&quot;https://polaris-react.shopify.com/&quot;&gt;https://polaris-react.shopify.com/&lt;/a&gt;) was our crown jewel—a mature design language perfect for merchants on laptops. As a product team, we were expected to adopt Polaris as-is. Then my fulfillment team hit an “Oh, Ship!” moment, as we faced the challenge of building an app for warehouse pickers using our interface on shared, battered Android scanners in dim aisles, wearing thick gloves, scanning dozens of items per minute, many with limited levels of English understanding.&lt;/p&gt;
+
+
+
+&lt;p&gt;Task completion with standard Polaris: &lt;strong&gt;0%&lt;/strong&gt;.&lt;/p&gt;
+
+
+
+&lt;p&gt;Every component that worked beautifully for merchants failed completely for pickers. White backgrounds created glare. 44px tap targets were invisible to gloved fingers. Sentence-case labels took too long to parse. Multi-step flows confused non-native speakers.&lt;/p&gt;
+
+
+
+&lt;p&gt;We faced a choice: abandon Polaris entirely, or &lt;em&gt;teach it to speak warehouse&lt;/em&gt;.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Birth of a Dialect&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;We chose evolution over revolution. Working within Polaris’s core principles—clarity, efficiency, consistency—we developed what we now call a &lt;strong&gt;design dialect&lt;/strong&gt;:&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-table&quot;&gt;&lt;table class=&quot;has-fixed-layout&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Constraint&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Fluent Move&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Rationale&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Glare &amp;amp; low light&lt;/td&gt;&lt;td&gt;Dark surfaces + light text&lt;/td&gt;&lt;td&gt;Reduce glare on low-DPI screens&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Gloves &amp;amp; haste&lt;/td&gt;&lt;td&gt;90px tap targets (~2cm)&lt;/td&gt;&lt;td&gt;Accommodate thick gloves&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Multilingual&lt;/td&gt;&lt;td&gt;Single-task screens, plain language&lt;/td&gt;&lt;td&gt;Reduce cognitive load&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Result:&lt;/strong&gt; Task completion jumped from &lt;strong&gt;0% to 100%&lt;/strong&gt;. Onboarding time dropped from three weeks to one shift.&lt;/p&gt;
+
+
+
+&lt;p&gt;This wasn’t customization or theming—this was a &lt;strong&gt;dialect&lt;/strong&gt;: a systematic adaptation that maintained Polaris’s core grammar while developing new vocabulary for a specific context. Polaris hadn’t failed; it had learned to speak warehouse.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Flexibility Framework&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;At &lt;a href=&quot;http://www.atlassian.com/&quot;&gt;Atlassian&lt;/a&gt;, working on the Jira platform—itself a system within the larger Atlassian system—I pushed for formalizing this insight. With dozens of products sharing a design language across different codebases, we needed systematic flexibility so we built directly into our ways of working. The old model—exception requests and special approvals—was failing at scale.&lt;/p&gt;
+
+
+
+&lt;p&gt;We developed the &lt;strong&gt;Flexibility Framework&lt;/strong&gt; to help designers define how flexible they wanted their components to be:&lt;/p&gt;
+
+
+
+&lt;figure class=&quot;wp-block-table&quot;&gt;&lt;table class=&quot;has-fixed-layout&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tier&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Action&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;&lt;strong&gt;Ownership&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Consistent&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Adopt unchanged&lt;/td&gt;&lt;td&gt;Platform locks design + code&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Opinionated&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Adapt within bounds&lt;/td&gt;&lt;td&gt;Platform provides smart defaults, products customize&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Flexible&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Extend freely&lt;/td&gt;&lt;td&gt;Platform defines behavior, products own presentation&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;During a navigation redesign, we tiered every element. Logo and global search stayed Consistent. Breadcrumbs and contextual actions became Flexible. Product teams could immediately see where innovation was welcome and where consistency mattered.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Decision Ladder&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Flexibility needs boundaries. We created a simple ladder for evaluating when rules should bend:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Good:&lt;/strong&gt; Ship with existing system components. Fast, consistent, proven.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Better:&lt;/strong&gt; Stretch a component slightly. Document the change. Contribute improvements back to the system for all to use.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Best:&lt;/strong&gt; Prototype the ideal experience first. If user testing validates the benefit, update the system to support it.&lt;/p&gt;
+
+
+
+&lt;p&gt;The key question: “Which option lets users succeed fastest?”&lt;/p&gt;
+
+
+
+&lt;p&gt;Rules are tools, not relics.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Unity Beats Uniformity&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Gmail, Drive, and Maps are unmistakably Google—yet each speaks with its own accent. They achieve unity through shared principles, not cloned components. One extra week of debate over button color costs roughly $30K in engineer time.&lt;/p&gt;
+
+
+
+&lt;p&gt;Unity is a brand outcome; &lt;strong&gt;fluency is a user outcome.&lt;/strong&gt; When the two clash, side with the user.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Governance Without Gates&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;How do you maintain coherence while enabling dialects? Treat your system like a living vocabulary:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Document every deviation&lt;/strong&gt; – e.g., dialects/warehouse.md with before/after screenshots and rationale.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Promote shared patterns&lt;/strong&gt; – when three teams adopt a dialect independently, review it for core inclusion.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Deprecate with context&lt;/strong&gt; – retire old idioms via flags and migration notes, never a big-bang purge.&lt;/p&gt;
+
+
+
+&lt;p&gt;A living dictionary scales better than a frozen rulebook.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Start Small: Your First Dialect&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Ready to introduce dialects? Start with one broken experience:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;This week:&lt;/strong&gt; Find one user flow where perfect consistency blocks task completion. Could be mobile users struggling with desktop-sized components, or accessibility needs your standard patterns don’t address.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Document the context:&lt;/strong&gt; What makes standard patterns fail here? Environmental constraints? User capabilities? Task urgency?&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Design one systematic change:&lt;/strong&gt; Focus on behavior over aesthetics. If gloves are the problem, bigger targets aren’t “”breaking the system””—they’re serving the user. Earn the variations and make them intentional.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Test and measure:&lt;/strong&gt; Does the change improve task completion? Time to productivity? User satisfaction?&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Show the savings:&lt;/strong&gt; If that dialect frees even half a sprint, fluency has paid for itself.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Beyond the Component Library&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;We’re not managing design systems anymore—&lt;strong&gt;we’re cultivating design languages.&lt;/strong&gt; Languages that grow with their speakers. Languages that develop accents without losing meaning. Languages that serve human needs over aesthetic ideals.&lt;/p&gt;
+
+
+
+&lt;p&gt;The warehouse workers who went from 0% to 100% task completion didn’t care that our buttons broke the style guide. They cared that the buttons finally worked.&lt;/p&gt;
+
+
+
+&lt;p&gt;Your users feel the same way. Give your system permission to speak their language.&lt;/p&gt;
+</description><link>https://alistapart.com/article/design-dialects-breaking-the-rules-not-the-system/</link><guid isPermaLink="false">https://alistapart.com/article/design-dialects-breaking-the-rules-not-the-system/</guid><pubDate>Fri, 26 Sep 2025 16:48:12 GMT</pubDate><author>zeldman</author><category>Design</category><category>Design Systems</category><category>Web Strategy</category><category>Workflow &amp;amp; Tools</category></item><item><title>An Holistic Framework for Shared Design Leadership</title><description>&lt;p&gt;Picture this: You’re in a meeting room at your tech company, and two people are having what looks like the same conversation about the same design problem. One is talking about whether the team has the right skills to tackle it. The other is diving deep into whether the solution actually solves the user’s problem. Same room, same problem, completely different lenses.&lt;/p&gt;
+
+
+
+&lt;p&gt;This is the beautiful, sometimes messy reality of having both a Design Manager and a Lead Designer on the same team. And if you’re wondering how to make this work without creating confusion, overlap, or the dreaded “too many cooks” scenario, you’re asking the right question.&lt;/p&gt;
+
+
+
+&lt;p&gt;The traditional answer has been to draw clean lines on an org chart. The Design Manager handles people, the Lead Designer handles craft. Problem solved, right? Except clean org charts are fantasy. In reality, both roles care deeply about team health, design quality, and shipping great work.&amp;nbsp;&lt;/p&gt;
+
+
+
+&lt;p&gt;The magic happens when you embrace the overlap instead of fighting it—when you start thinking of your design org as a design organism.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Anatomy of a Healthy Design Team&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Here’s what I’ve learned from years of being on both sides of this equation: think of your design team as a living organism. The Design Manager tends to the mind (the psychological safety, the career growth, the team dynamics). The Lead Designer tends to the body (the craft skills, the design standards, the hands-on work that ships to users).&lt;/p&gt;
+
+
+
+&lt;p&gt;But just like mind and body aren’t completely separate systems, so, too, do these roles overlap in important ways. You can’t have a healthy person without both working in harmony. The trick is knowing where those overlaps are and how to navigate them gracefully.&lt;/p&gt;
+
+
+
+&lt;p&gt;When we look at how healthy teams actually function, three critical systems emerge. Each requires both roles to work together, but with one taking primary responsibility for keeping that system strong.&lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Nervous System: People &amp;amp; Psychology&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Primary caretaker: Design Manager&lt;/strong&gt;&lt;strong&gt;&lt;br&gt;&lt;/strong&gt;&lt;strong&gt;Supporting role: Lead Designer&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;The nervous system is all about signals, feedback, and psychological safety. When this system is healthy, information flows freely, people feel safe to take risks, and the team can adapt quickly to new challenges.&lt;/p&gt;
+
+
+
+&lt;p&gt;The Design Manager is the primary caretaker here. They’re monitoring the team’s psychological pulse, ensuring feedback loops are healthy, and creating the conditions for people to grow. They’re hosting career conversations, managing workload, and making sure no one burns out.&lt;/p&gt;
+
+
+
+&lt;p&gt;But the Lead Designer plays a crucial supporting role. They’re providing sensory input about craft development needs, spotting when someone’s design skills are stagnating, and helping identify growth opportunities that the Design Manager might miss.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Design Manager tends to:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Career conversations and growth planning&lt;/li&gt;
+
+
+
+&lt;li&gt;Team psychological safety and dynamics&lt;/li&gt;
+
+
+
+&lt;li&gt;Workload management and resource allocation&lt;/li&gt;
+
+
+
+&lt;li&gt;Performance reviews and feedback systems&lt;/li&gt;
+
+
+
+&lt;li&gt;Creating learning opportunities&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Lead Designer supports by:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Providing craft-specific feedback on team member development&lt;/li&gt;
+
+
+
+&lt;li&gt;Identifying design skill gaps and growth opportunities&lt;/li&gt;
+
+
+
+&lt;li&gt;Offering design mentorship and guidance&lt;/li&gt;
+
+
+
+&lt;li&gt;Signaling when team members are ready for more complex challenges&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Muscular System: Craft &amp;amp; Execution&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Primary caretaker: Lead Designer&lt;/strong&gt;&lt;strong&gt;&lt;br&gt;&lt;/strong&gt;&lt;strong&gt;Supporting role: Design Manager&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;The muscular system is about strength, coordination, and skill development. When this system is healthy, the team can execute complex design work with precision, maintain consistent quality, and adapt their craft to new challenges.&lt;/p&gt;
+
+
+
+&lt;p&gt;The Lead Designer is the primary caretaker here. They’re setting design standards, providing craft coaching, and ensuring that shipping work meets the quality bar. They’re the ones who can tell you if a design decision is sound or if we’re solving the right problem.&lt;/p&gt;
+
+
+
+&lt;p&gt;But the Design Manager plays a crucial supporting role. They’re ensuring the team has the resources and support to do their best craft work, like proper nutrition and recovery time for an athlete.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Lead Designer tends to:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Definition of design standards and system usage&lt;/li&gt;
+
+
+
+&lt;li&gt;Feedback on what design work meets the standard&lt;/li&gt;
+
+
+
+&lt;li&gt;Experience direction for the product&lt;/li&gt;
+
+
+
+&lt;li&gt;Design decisions and product-wide alignment&lt;/li&gt;
+
+
+
+&lt;li&gt;Innovation and craft advancement&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Design Manager supports by:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Ensuring design standards are understood and adopted across the team&lt;/li&gt;
+
+
+
+&lt;li&gt;Confirming experience direction is being followed&lt;/li&gt;
+
+
+
+&lt;li&gt;Supporting practices and systems that scale without bottlenecking&lt;/li&gt;
+
+
+
+&lt;li&gt;Facilitating design alignment across teams&lt;/li&gt;
+
+
+
+&lt;li&gt;Providing resources and removing obstacles to great craft work&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Circulatory System: Strategy &amp;amp; Flow&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Shared caretakers: Both Design Manager and Lead Designer&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;The circulatory system is about how information, decisions, and energy flow through the team. When this system is healthy, strategic direction is clear, priorities are aligned, and the team can respond quickly to new opportunities or challenges.&lt;/p&gt;
+
+
+
+&lt;p&gt;This is where true partnership happens. Both roles are responsible for keeping the circulation strong, but they’re bringing different perspectives to the table.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Lead Designer contributes:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;User needs are met by the product&lt;/li&gt;
+
+
+
+&lt;li&gt;Overall product quality and experience&lt;/li&gt;
+
+
+
+&lt;li&gt;Strategic design initiatives&lt;/li&gt;
+
+
+
+&lt;li&gt;Research-based user needs for each initiative&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Design Manager contributes:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Communication to team and stakeholders&lt;/li&gt;
+
+
+
+&lt;li&gt;Stakeholder management and alignment&lt;/li&gt;
+
+
+
+&lt;li&gt;Cross-functional team accountability&lt;/li&gt;
+
+
+
+&lt;li&gt;Strategic business initiatives&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Both collaborate on:&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;ul class=&quot;wp-block-list&quot;&gt;
+&lt;li&gt;Co-creation of strategy with leadership&lt;/li&gt;
+
+
+
+&lt;li&gt;Team goals and prioritization approach&lt;/li&gt;
+
+
+
+&lt;li&gt;Organizational structure decisions&lt;/li&gt;
+
+
+
+&lt;li&gt;Success measures and frameworks&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Keeping the Organism Healthy&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The key to making this partnership sing is understanding that all three systems need to work together. A team with great craft skills but poor psychological safety will burn out. A team with great culture but weak craft execution will ship mediocre work. A team with both but poor strategic circulation will work hard on the wrong things. &lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Be Explicit About Which System You’re Tending&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;When you’re in a meeting about a design problem, it helps to acknowledge which system you’re primarily focused on. “I’m thinking about this from a team capacity perspective” (nervous system) or “I’m looking at this through the lens of user needs” (muscular system) gives everyone context for your input.&lt;/p&gt;
+
+
+
+&lt;p&gt;This isn’t about staying in your lane. It’s about being transparent as to which lens you’re using, so the other person knows how to best add their perspective.&lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Create Healthy Feedback Loops&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;The most successful partnerships I’ve seen establish clear feedback loops between the systems:&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Nervous system signals to muscular system:&lt;/strong&gt; “The team is struggling with confidence in their design skills” → Lead Designer provides more craft coaching and clearer standards.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Muscular system signals to nervous system:&lt;/strong&gt; “The team’s craft skills are advancing faster than their project complexity” → Design Manager finds more challenging growth opportunities.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;Both systems signal to circulatory system:&lt;/strong&gt; “We’re seeing patterns in team health and craft development that suggest we need to adjust our strategic priorities.”&lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Handle Handoffs Gracefully&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;The most critical moments in this partnership are when something moves from one system to another. This might be when a design standard (muscular system) needs to be rolled out across the team (nervous system), or when a strategic initiative (circulatory system) needs specific craft execution (muscular system).&lt;/p&gt;
+
+
+
+&lt;p&gt;Make these transitions explicit. “I’ve defined the new component standards. Can you help me think through how to get the team up to speed?” or “We’ve agreed on this strategic direction. I’m going to focus on the specific user experience approach from here.”&lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Stay Curious, Not Territorial&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;The Design Manager who never thinks about craft, or the Lead Designer who never considers team dynamics, is like a doctor who only looks at one body system. Great design leadership requires both people to care about the whole organism, even when they’re not the primary caretaker.&lt;/p&gt;
+
+
+
+&lt;p&gt;This means asking questions rather than making assumptions. “What do you think about the team’s craft development in this area?” or “How do you see this impacting team morale and workload?” keeps both perspectives active in every decision.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;When the Organism Gets Sick&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Even with clear roles, this partnership can go sideways. Here are the most common failure modes I’ve seen:&lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;System Isolation&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;The Design Manager focuses only on the nervous system and ignores craft development. The Lead Designer focuses only on the muscular system and ignores team dynamics. Both people retreat to their comfort zones and stop collaborating.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The symptoms:&lt;/strong&gt; Team members get mixed messages, work quality suffers, morale drops.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The treatment:&lt;/strong&gt; Reconnect around shared outcomes. What are you both trying to achieve? Usually it’s great design work that ships on time from a healthy team. Figure out how both systems serve that goal.&lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Poor Circulation&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;Strategic direction is unclear, priorities keep shifting, and neither role is taking responsibility for keeping information flowing.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The symptoms:&lt;/strong&gt; Team members are confused about priorities, work gets duplicated or dropped, deadlines are missed.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The treatment:&lt;/strong&gt; Explicitly assign responsibility for circulation. Who’s communicating what to whom? How often? What’s the feedback loop?&lt;/p&gt;
+
+
+
+&lt;h3 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;Autoimmune Response&lt;/strong&gt;&lt;/h3&gt;
+
+
+
+&lt;p&gt;One person feels threatened by the other’s expertise. The Design Manager thinks the Lead Designer is undermining their authority. The Lead Designer thinks the Design Manager doesn’t understand craft.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The symptoms:&lt;/strong&gt; Defensive behavior, territorial disputes, team members caught in the middle.&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;The treatment:&lt;/strong&gt; Remember that you’re both caretakers of the same organism. When one system fails, the whole team suffers. When both systems are healthy, the team thrives.&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Payoff&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;Yes, this model requires more communication. Yes, it requires both people to be secure enough to share responsibility for team health. But the payoff is worth it: better decisions, stronger teams, and design work that’s both excellent and sustainable.&lt;/p&gt;
+
+
+
+&lt;p&gt;When both roles are healthy and working well together, you get the best of both worlds: deep craft expertise and strong people leadership. When one person is out sick, on vacation, or overwhelmed, the other can help maintain the team’s health. When a decision requires both the people perspective and the craft perspective, you’ve got both right there in the room.&lt;/p&gt;
+
+
+
+&lt;p&gt;Most importantly, the framework scales. As your team grows, you can apply the same system thinking to new challenges. Need to launch a design system? Lead Designer tends to the muscular system (standards and implementation), Design Manager tends to the nervous system (team adoption and change management), and both tend to circulation (communication and stakeholder alignment).&lt;/p&gt;
+
+
+
+&lt;h2 class=&quot;wp-block-heading&quot;&gt;&lt;strong&gt;The Bottom Line&lt;/strong&gt;&lt;/h2&gt;
+
+
+
+&lt;p&gt;The relationship between a Design Manager and Lead Designer isn’t about dividing territories. It’s about multiplying impact. When both roles understand they’re tending to different aspects of the same healthy organism, magic happens.&lt;/p&gt;
+
+
+
+&lt;p&gt;The mind and body work together. The team gets both the strategic thinking and the craft excellence they need. And most importantly, the work that ships to users benefits from both perspectives.&lt;/p&gt;
+
+
+
+&lt;p&gt;So the next time you’re in that meeting room, wondering why two people are talking about the same problem from different angles, remember: you’re watching shared leadership in action. And if it’s working well, both the mind and body of your design team are getting stronger.&lt;/p&gt;
+</description><link>https://alistapart.com/article/an-holistic-framework-for-shared-design-leadership/</link><guid isPermaLink="false">https://alistapart.com/article/an-holistic-framework-for-shared-design-leadership/</guid><pubDate>Wed, 23 Jul 2025 14:10:22 GMT</pubDate><author>zeldman</author><category>Business</category><category>Career</category><category>Design</category><category>Industry</category><category>Project Management</category></item><item><title>From Beta to Bedrock: Build Products that Stick.</title><description>&lt;p&gt;As a product builder over too many years to mention, I’ve lost count of the number of times I’ve seen promising ideas go from zero to hero in a few weeks, only to fizzle out within months.&lt;/p&gt;
 
 
 
@@ -1590,532 +2206,4 @@
 
 
 &lt;p&gt;&lt;/p&gt;
-</description><link>https://alistapart.com/article/personalization-pyramid/</link><guid isPermaLink="false">https://alistapart.com/article/personalization-pyramid/</guid><pubDate>Thu, 08 Dec 2022 15:00:00 GMT</pubDate><author>agustafson</author><category>Content</category><category>Interaction Design</category></item><item><title>Mobile-First CSS: Is It Time for a Rethink?</title><description>&lt;p class=&quot;intro&quot;&gt;The mobile-first design methodology is great—it focuses on what really matters to the user, it’s well-practiced, and it’s been a common design pattern for years. So developing your CSS mobile-first should also be great, too…right?&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Well, not necessarily. Classic mobile-first CSS development is based on the principle of overwriting style declarations: you begin your CSS with default style declarations, and overwrite and/or add new styles as you add breakpoints with &lt;code&gt;min-width&lt;/code&gt; media queries for larger viewports (for a good overview see “&lt;a href=&quot;https://www.mightyminnow.com/2013/11/what-is-mobile-first-css-and-why-does-it-rock/&quot;&gt;What is Mobile First CSS and Why Does It Rock?&lt;/a&gt;”). But all those exceptions create complexity and inefficiency, which in turn can lead to an increased testing effort and a code base that’s harder to maintain. Admit it—how many of us willingly want that?&lt;/p&gt;
-
-
-
-&lt;p&gt;On your own projects, mobile-first CSS may yet be the best tool for the job, but first you need to evaluate just how appropriate it is in light of the visual design and user interactions you’re working on. To help you get started, here’s how I go about tackling the factors you need to watch for, and I’ll discuss some alternate solutions if mobile-first doesn’t seem to suit your project.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Advantages of mobile-first&lt;/h2&gt;
-
-
-
-&lt;p&gt;Some of the things to like with mobile-first CSS development—and why it’s been the de facto development methodology for so long—make a lot of sense:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Development hierarchy. &lt;/strong&gt;One thing you undoubtedly get from mobile-first is a nice development hierarchy—you just focus on the mobile view and get developing.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Tried and tested. &lt;/strong&gt;It’s a tried and tested methodology that’s worked for years for a reason: it solves a problem really well.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Prioritizes the mobile view&lt;/strong&gt;. The mobile view is the&lt;strong&gt; &lt;/strong&gt;simplest&lt;strong&gt; &lt;/strong&gt;and arguably the most important, as it &lt;strong&gt;encompasses all the key user journeys&lt;/strong&gt;, and often accounts for a &lt;strong&gt;higher proportion of user visits&lt;/strong&gt; (depending on the project).&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Prevents desktop-centric development. &lt;/strong&gt;As development is done using desktop computers, it can be tempting to initially focus on the desktop view. But thinking about mobile from the start prevents us from getting stuck later on; no one wants to spend their time retrofitting a desktop-centric site to work on mobile devices!&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Disadvantages of mobile-first&lt;/h2&gt;
-
-
-
-&lt;p&gt;Setting style declarations and then overwriting them at higher breakpoints can lead to undesirable ramifications:&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;More complexity. &lt;/strong&gt;The farther up the breakpoint hierarchy you go, the more unnecessary code you inherit from lower breakpoints.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Higher CSS specificity. &lt;/strong&gt;Styles that have been reverted to their browser default value in a class name declaration now have a higher specificity. This can be a headache on large projects when you want to keep the CSS selectors as simple as possible.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;Requires more regression testing. &lt;/strong&gt;Changes to the CSS at a lower view (like adding a new style) requires all higher breakpoints to be regression tested.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;strong&gt;The browser can’t prioritize CSS downloads. &lt;/strong&gt;At wider breakpoints, classic mobile-first &lt;code&gt;min-width&lt;/code&gt; media queries don’t leverage the browser’s capability to download CSS files in priority order.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;The problem of property value overrides&lt;/h2&gt;
-
-
-
-&lt;p&gt;There is nothing inherently wrong with overwriting values; CSS was designed to do just that. Still, inheriting incorrect values is unhelpful and can be burdensome and inefficient. It can also lead to increased style specificity when you have to overwrite styles to reset them back to their defaults, something that may cause issues later on, especially if you are using a combination of bespoke CSS and utility classes. We won’t be able to use a utility class for a style that has been reset with a higher specificity.&lt;/p&gt;
-
-
-
-&lt;p&gt;With this in mind, I’m developing CSS with a focus on the default values much more these days. Since there’s no specific order, and no chains of specific values to keep track of, this frees me to develop breakpoints &lt;em&gt;simultaneously&lt;/em&gt;. I concentrate on finding common styles and isolating the specific exceptions in closed media query ranges (that is, any range with a &lt;code&gt;max-width&lt;/code&gt; set).&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;This approach opens up some opportunities, as you can look at each breakpoint as a clean slate. If a component’s layout looks like it should be based on Flexbox at all breakpoints, it’s fine and can be coded in the default style sheet. But if it looks like Grid would be much better for large screens and Flexbox for mobile, these can both be done entirely independently when the CSS is put into closed media query ranges. Also, developing simultaneously requires you to have a good understanding of any given component in all breakpoints up front. This can help surface issues in the design earlier in the development process. We don’t want to get stuck down a rabbit hole building a complex component for mobile, and then get the designs for desktop and find they are equally complex and incompatible with the HTML we created for the mobile view!&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Though this approach isn’t going to suit everyone, I encourage you to give it a try. There are plenty of tools out there to help with concurrent development, such as &lt;a href=&quot;https://responsively.app/&quot;&gt;Responsively App&lt;/a&gt;, &lt;a href=&quot;https://blisk.io/&quot;&gt;Blisk&lt;/a&gt;, and many others.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Having said that, I don’t feel the order itself is particularly relevant. If you are comfortable with focusing on the mobile view, have a good understanding of the requirements for other breakpoints, and prefer to work on one device at a time, then by all means stick with the classic development order. The important thing is to identify common styles and exceptions so you can put them in the relevant stylesheet—a sort of manual tree-shaking process! Personally, I find this a little easier when working on a component across breakpoints, but that’s by no means a requirement.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Closed media query ranges in practice&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p&gt;In classic mobile-first CSS we overwrite the styles, but we can avoid this by using media query ranges. To illustrate the difference (I’m using SCSS for brevity), let’s assume there are three visual designs:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class=&quot;wp-block-list&quot;&gt;&lt;li&gt;smaller than 768&lt;/li&gt;&lt;li&gt;from 768 to below 1024&lt;/li&gt;&lt;li&gt;1024 and anything larger&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;
-
-
-
-&lt;p&gt;Take a simple example where a block-level element has a default &lt;code&gt;padding&lt;/code&gt; of “20px,” which is overwritten at tablet to be “40px” and set back to “20px” on desktop.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-table&quot;&gt;
-&lt;table&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td valign=&quot;top&quot;&gt;&lt;p&gt;Classic &lt;code&gt;min-width&lt;/code&gt; mobile-first&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.my-block {
-  padding: 20px;
-  @media (min-width: 768px) {
-    padding: 40px;
-  }
-  @media (min-width: 1024px) {
-    padding: 20px;
-  }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td valign=&quot;top&quot;&gt;&lt;p&gt;Closed media query range&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.my-block {
-  padding: 20px;
-  @media (min-width: 768px) and (max-width: 1023.98px) {
-    padding: 40px;
-  }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;/figure&gt;
-
-
-
-&lt;p&gt;The subtle difference is that the mobile-first example sets the default &lt;code&gt;padding&lt;/code&gt; to “20px” and then overwrites it at each breakpoint, setting it three times in total. In contrast, the second example sets the default &lt;code&gt;padding&lt;/code&gt; to “20px” and only overrides it at the relevant breakpoint where it isn’t the default value (in this instance, tablet is the exception).&lt;/p&gt;
-
-
-
-&lt;p&gt;The goal is to:&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;ul class=&quot;wp-block-list&quot;&gt;&lt;li&gt;Only set styles when needed.&amp;nbsp;&lt;/li&gt;&lt;li&gt;Not set them with the &lt;em&gt;expectation&lt;/em&gt; of overwriting them later on, again and again.&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;
-
-
-
-&lt;p&gt;To this end, closed media query ranges are our best friend. If we need to make a change to any given view, we make it in the CSS media query range that applies to the specific breakpoint. We’ll be much less likely to introduce unwanted alterations, and our regression testing only needs to focus on the breakpoint we have actually edited.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Taking the above example, if we find that &lt;code&gt;.my-block&lt;/code&gt; spacing on desktop is already accounted for by the margin at that breakpoint, and since we want to remove the padding altogether, we could do this by setting the mobile &lt;code&gt;padding&lt;/code&gt; in a closed media query range.&lt;br&gt;&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-table&quot;&gt;
-&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.my-block {
-&amp;nbsp; @media (max-width: 767.98px) {
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;padding: 20px;
-&amp;nbsp;&amp;nbsp;}
-&amp;nbsp; @media (min-width: 768px) and (max-width: 1023.98px) {
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;padding: 40px;
-&amp;nbsp;&amp;nbsp;}
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/figure&gt;
-
-
-
-&lt;p&gt;The browser default &lt;code&gt;padding&lt;/code&gt; for our block is “0,” so instead of adding a desktop media query and using &lt;code&gt;unset&lt;/code&gt; or “0” for the &lt;code&gt;padding&lt;/code&gt; value (which we would need with mobile-first), we can wrap the mobile &lt;code&gt;padding&lt;/code&gt; in a closed media query (since it is now also an exception) so it won’t get picked up at wider breakpoints. At the desktop breakpoint, we won’t need to set any &lt;code&gt;padding&lt;/code&gt; style, as we want the browser default value.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Bundling versus separating the CSS&lt;/h2&gt;
-
-
-
-&lt;p&gt;Back in the day, keeping the number of requests to a minimum was very important due to the browser’s limit of concurrent requests (typically around six). As a consequence, the use of image sprites and CSS bundling was the norm, with all the CSS being downloaded in one go, as one stylesheet with highest priority.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;With HTTP/2 and HTTP/3 now on the scene, the number of requests is no longer the big deal it used to be. This allows us to separate the CSS into multiple files by media query. The clear benefit of this is the browser can now request the CSS it currently needs with a higher priority than the CSS it doesn’t. This is more performant and can reduce the overall time &lt;a href=&quot;https://web.dev/critical-rendering-path-render-blocking-css/&quot;&gt;page rendering is blocked&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;h3 class=&quot;wp-block-heading&quot;&gt;Which HTTP version are you using?&lt;/h3&gt;
-
-
-
-&lt;p&gt;To determine which version of HTTP you’re using, go to your website and open your browser’s dev tools. Next, select the &lt;strong&gt;Network&lt;/strong&gt; tab and make sure the &lt;strong&gt;Protocol&lt;/strong&gt; column is visible. If “h2” is listed under &lt;strong&gt;Protocol&lt;/strong&gt;, it means HTTP/2 is being used.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;Note: to view the Protocol in your browser’s dev tools, go to the &lt;/em&gt;&lt;strong&gt;&lt;em&gt;Network&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; tab, reload your page, right-click any column header (e.g., &lt;/em&gt;&lt;strong&gt;&lt;em&gt;Name&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;), and check the &lt;/em&gt;&lt;strong&gt;&lt;em&gt;Protocol&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; column.&lt;/em&gt;&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh4.googleusercontent.com/O8lxNeIY3Hb0YDs2EP7QFhGdGsBXOG7mSTCdAJBd5xkm-6RwrpkS1BN63W7RurVCP3nOH9sNpAR9JNGvIGnUTzG0NYm4sUqI5bU2QPhXYEawmKfeUJ_6YwWAIid2ZDHEdRzaQ1LxzUNTGbGk5g&quot; alt=&quot;Chrome dev tools, Network tab filtered by document, Protocol column&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;figcaption&gt;&lt;em&gt;Note: for a summarized comparison, see ImageKit’s “&lt;/em&gt;&lt;a href=&quot;https://imagekit.io/blog/http2-vs-http1-performance/&quot;&gt;&lt;em&gt;HTTP/2 vs. HTTP/1&lt;/em&gt;&lt;/a&gt;&lt;em&gt;.”&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Also, if your site is still using HTTP/1...WHY?!! What are you waiting for? There is &lt;a href=&quot;https://caniuse.com/http2&quot;&gt;excellent user support for HTTP/2&lt;/a&gt;.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Splitting the CSS&lt;/h2&gt;
-
-
-
-&lt;p&gt;Separating the CSS into individual files is a worthwhile task. Linking the separate CSS files using the relevant &lt;code&gt;media&lt;/code&gt; attribute allows the browser to identify which files are needed immediately (because they’re render-blocking) and which can be deferred. Based on this, it allocates each file an appropriate priority.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the following example of a website visited on a mobile breakpoint, we can see the mobile and default CSS are loaded with “Highest” priority, as they are currently needed to render the page. The remaining CSS files (print, tablet, and desktop) are still downloaded in case they’ll be needed later, but with “Lowest” priority.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image&quot;&gt;&lt;img decoding=&quot;async&quot; src=&quot;https://lh5.googleusercontent.com/RZOq-S7kbVsavDiFctQl6STFgGm6puwG8L22V6j6U1vUfo73Opq3Cspj2N94T2BU5lpYUD7Bb_4krFCXlePvBE8xXJVMFwbc_At8pzc-C5ug-6lrPViwMIIXgbKiJA-2fQ3beDoYfkCflCVgwg&quot; alt=&quot;Chrome dev tools, Network tab filtered by css, Priority column&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;With&lt;strong&gt; bundled CSS&lt;/strong&gt;, the browser will have to download the CSS file and parse it before rendering can start.&lt;br&gt;&lt;br&gt;While, as noted, with the &lt;strong&gt;CSS separated into different files&lt;/strong&gt; linked and marked up with the relevant &lt;code&gt;media&lt;/code&gt; attribute, the browser can prioritize the files it currently needs. Using closed media query ranges allows the browser to do this at all widths, as opposed to classic mobile-first &lt;code&gt;min-width&lt;/code&gt; queries, where the desktop browser would have to download all the CSS with Highest priority. We can’t assume that desktop users always have a fast connection. For instance, in many rural areas, internet connection speeds are still slow.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;The media queries and number of separate CSS files will vary from project to project based on project requirements, but might look similar to the example below.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-table&quot;&gt;
-&lt;table&gt;&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td valign=&quot;top&quot;&gt;
-&lt;p&gt;Bundled CSS&lt;/p&gt;
-&lt;code&gt;&amp;lt;link href=&quot;site.css&quot; rel=&quot;stylesheet&quot;&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;br&gt;
-&lt;p&gt;This single file contains all the CSS, including all media queries, and it will be downloaded with Highest priority.&lt;/p&gt;
-&lt;/td&gt;
-&lt;td valign=&quot;top&quot;&gt;
-&lt;p&gt;Separated CSS&lt;/p&gt;
-&lt;code&gt;&amp;lt;link href=&quot;default.css&quot; rel=&quot;stylesheet&quot;&amp;gt;&amp;lt;link href=&quot;mobile.css&quot; media=&quot;screen and (max-width: 767.98px)&quot; rel=&quot;stylesheet&quot;&amp;gt;&amp;lt;link href=&quot;tablet.css&quot; media=&quot;screen and (min-width: 768px) and (max-width: 1083.98px)&quot; rel=&quot;stylesheet&quot;&amp;gt;&amp;lt;link href=&quot;desktop.css&quot; media=&quot;screen and (min-width: 1084px)&quot; rel=&quot;stylesheet&quot;&amp;gt;&amp;lt;link href=&quot;print.css&quot; media=&quot;print&quot; rel=&quot;stylesheet&quot;&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;br&gt;
-&lt;p&gt;Separating the CSS and specifying a &lt;code&gt;media&lt;/code&gt; attribute value on each &lt;code&gt;link&lt;/code&gt; tag allows the browser to prioritize what it currently needs. Out of the five files listed above, two will be downloaded with Highest priority: the default file, and the file that matches the current media query. The others will be downloaded with Lowest priority.&lt;/p&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;/figure&gt;
-
-
-
-&lt;p&gt;Depending on the project’s deployment strategy, a change to one file (&lt;code&gt;mobile.css&lt;/code&gt;, for example) would only require the QA team to regression test on devices in that specific media query range. Compare that to the prospect of deploying the single bundled &lt;code&gt;site.css&lt;/code&gt; file, an approach that would normally trigger a full regression test.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Moving on&lt;/h2&gt;
-
-
-
-&lt;p&gt;The uptake of mobile-first CSS was a really important milestone in web development; it has helped front-end developers focus on mobile web applications, rather than developing sites on desktop and then attempting to retrofit them to work on other devices.&lt;/p&gt;
-
-
-
-&lt;p&gt;I don’t think anyone wants to return to that development model again, but it’s important we don’t lose sight of the issue it highlighted: that things can easily get convoluted and less efficient if we prioritize one particular device—any device—over others. For this reason, focusing on the CSS in its own right, always mindful of what is the default setting and what’s an exception, seems like the natural next step. I’ve started noticing small simplifications in my own CSS, as well as other developers’, and that testing and maintenance work is also a bit more simplified and productive.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;In general, simplifying CSS rule creation whenever we can is ultimately a cleaner approach than going around in circles of overrides. But whichever methodology you choose, it needs to suit the project. Mobile-first may—or may not—turn out to be the best choice for what’s involved, but first you need to solidly understand the trade-offs you’re stepping into.&lt;/p&gt;
-</description><link>https://alistapart.com/article/mobile-first-css-is-it-time-for-a-rethink/</link><guid isPermaLink="false">https://alistapart.com/article/mobile-first-css-is-it-time-for-a-rethink/</guid><pubDate>Thu, 09 Jun 2022 02:13:10 GMT</pubDate><author>brandongregory</author><category>Code</category><category>CSS</category></item><item><title>Designers, (Re)define Success First</title><description>&lt;p&gt;About two and a half years ago, I introduced the idea of &lt;a href=&quot;https://alistapart.com/article/daily-ethical-design/&quot;&gt;daily ethical design&lt;/a&gt;. It was born out of my frustration with the many obstacles to achieving design that’s usable and equitable; protects people’s privacy, agency, and focus; benefits society; and restores nature. I argued that we need to overcome the inconveniences that prevent us from acting ethically and that we need to elevate design ethics to a more practical level by structurally integrating it into our daily work, processes, and tools.&lt;/p&gt;
-
-
-
-&lt;p&gt;Unfortunately, we’re still very far from this ideal.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;At the time, I didn’t know yet &lt;em&gt;how&lt;/em&gt; to structurally integrate ethics. Yes, I had found some tools that had worked for me in previous projects, such as using checklists, assumption tracking, and “dark reality” sessions, but I didn’t manage to apply those in &lt;em&gt;every&lt;/em&gt; project. I was still struggling for time and support, and at best I had only partially achieved a higher (moral) quality of design—which is far from my definition of &lt;em&gt;structurally integrated&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;I decided to dig deeper for the root causes in business that prevent us from practicing daily ethical design. Now, after much research and experimentation, I believe that I’ve found the key that will let us structurally integrate ethics. And it’s surprisingly simple! But first we need to zoom out to get a better understanding of what we’re up against.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Influence the system&lt;/h2&gt;
-
-
-
-&lt;p&gt;Sadly, we’re trapped in a capitalistic system that reinforces &lt;a href=&quot;https://www.nature.com/articles/s41467-020-16941-y&quot;&gt;consumerism&lt;/a&gt; and &lt;a href=&quot;https://www.aljazeera.com/economy/2022/1/11/brace-yourself-for-an-even-more-unequal-post-pandemic-world-wef&quot;&gt;inequality&lt;/a&gt;, and it’s obsessed with the &lt;a href=&quot;https://www.goodreads.com/book/show/53328332-less-is-more&quot;&gt;fantasy of endless growth&lt;/a&gt;. Sea levels, temperatures, and our demand for energy continue to rise unchallenged, while the gap between rich and poor continues to widen. Shareholders expect ever-higher returns on their investments, and companies feel forced to set short-term objectives that reflect this. Over the last decades, those objectives have &lt;a href=&quot;https://creativegood.com/blog/21/losing-faith-in-ux.html&quot;&gt;twisted our well-intended human-centered mindset into a powerful machine&lt;/a&gt; that promotes ever-higher levels of consumption. When we’re working for an organization that pursues “double-digit growth” or “aggressive sales targets” (which is 99 percent of us), that’s very hard to resist while remaining human &lt;em&gt;friendly&lt;/em&gt;. Even with our best intentions, and even though we like to say that we create solutions for people, we’re a part of the problem.&lt;/p&gt;
-
-
-
-&lt;p&gt;What can we do to change this?&lt;/p&gt;
-
-
-
-&lt;p&gt;We can start by acting on the right level of the system. Donella H. Meadows, a system thinker, once listed &lt;a href=&quot;https://www.goodreads.com/book/show/3828902-thinking-in-systems&quot;&gt;ways to influence a system&lt;/a&gt; in order of effectiveness. When you apply these to design, you get:&lt;/p&gt;
-
-
-
-&lt;ul class=&quot;wp-block-list&quot;&gt;&lt;li&gt;At the lowest level of effectiveness, you can affect &lt;strong&gt;numbers&lt;/strong&gt; such as usability scores or the number of design critiques. But none of that will change the direction of a company.&lt;/li&gt;&lt;li&gt;Similarly, affecting &lt;strong&gt;buffers &lt;/strong&gt;(such as team budgets), &lt;strong&gt;stocks&lt;/strong&gt; (such as the number of designers), &lt;strong&gt;flows&lt;/strong&gt; (such as the number of new hires), and &lt;strong&gt;delays&lt;/strong&gt; (such as the time that it takes to hear about the effect of design) won’t significantly affect a company.&lt;/li&gt;&lt;li&gt;Focusing instead on &lt;strong&gt;feedback loops&lt;/strong&gt; such as management control, employee recognition, or design-system investments can help a company become better at achieving its objectives. But that doesn’t change the objectives themselves, which means that the organization will still work against your ethical-design ideals.&lt;/li&gt;&lt;li&gt;The next level, &lt;strong&gt;information flows&lt;/strong&gt;,&lt;strong&gt;&lt;em&gt; &lt;/em&gt;&lt;/strong&gt;is what most ethical-design initiatives focus on now: the exchange of ethical methods, toolkits, articles, conferences, workshops, and so on. This is also where ethical design has remained mostly &lt;em&gt;theoretical&lt;/em&gt;. We’ve been focusing on the wrong level of the system all this time.&lt;/li&gt;&lt;li&gt;Take &lt;strong&gt;rules,&lt;/strong&gt; for example—they beat knowledge every time. There can be widely accepted rules, such as how finance works, or a scrum team’s definition of done. But ethical design can also be smothered by unofficial rules meant to maintain profits, often revealed through comments such as “the client didn’t ask for it” or “don’t make it too big.”&lt;/li&gt;&lt;li&gt;Changing the rules without holding official power is very hard. That’s why the next level is so influential: &lt;strong&gt;self-organization&lt;/strong&gt;. Experimentation, bottom-up initiatives, passion projects, self-steering teams—all of these are examples of self-organization that improve the resilience and creativity of a company. It’s exactly this diversity of viewpoints that’s needed to structurally tackle big systemic issues like consumerism, wealth inequality, and climate change.&lt;/li&gt;&lt;li&gt;Yet even stronger than self-organization are &lt;strong&gt;objectives&lt;/strong&gt; and &lt;strong&gt;metrics&lt;/strong&gt;. Our companies want to make more money, which means that everything and everyone in the company does their best to… make the company more money. And once I realized that profit is nothing more than a measurement, I understood how crucial a very specific, defined metric can be toward pushing a company in a certain direction.&lt;/li&gt;&lt;/ul&gt;
-
-
-
-&lt;p&gt;The takeaway? If we truly want to incorporate ethics into our daily design practice, we must first change the measurable objectives of the company we work for, from the bottom up.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Redefine success&lt;/h2&gt;
-
-
-
-&lt;p&gt;Traditionally, &lt;a href=&quot;https://designthinking.ideo.com/&quot;&gt;we consider a product or service successful if it’s desirable to humans, technologically feasible, and financially viable&lt;/a&gt;. You tend to see these represented as equals; if you type the three words in a search engine, you’ll find diagrams of three equally sized, evenly arranged circles.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;960&quot; height=&quot;540&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image01.png?resize=960%2C540&amp;amp;ssl=1&quot; alt=&quot;A Venn diagram with three overlapping circles representing Viable, Desirable, and Feasible with the target directly in the central intersection of all three.&quot; class=&quot;wp-image-7173407&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image01.png?resize=1024%2C576&amp;amp;ssl=1 1024w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image01.png?resize=300%2C169&amp;amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image01.png?resize=768%2C432&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image01.png?resize=1536%2C864&amp;amp;ssl=1 1536w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image01.png?w=1600&amp;amp;ssl=1 1600w&quot; sizes=&quot;auto, (max-width: 960px) 100vw, 960px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;But in our hearts, we all know that the three dimensions aren’t equally weighted: it’s viability that ultimately controls whether a product will go live. So a more realistic representation might look like this:&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;960&quot; height=&quot;540&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image02.png?resize=960%2C540&amp;amp;ssl=1&quot; alt=&quot;A Venn diagram with two circles (Desirable and Feasible) overlapping. An arrow points from their intersection to a separate circle marked as Viable, with a target inside it.&quot; class=&quot;wp-image-7173408&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image02.png?resize=1024%2C576&amp;amp;ssl=1 1024w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image02.png?resize=300%2C169&amp;amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image02.png?resize=768%2C432&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image02.png?resize=1536%2C864&amp;amp;ssl=1 1536w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image02.png?w=1920&amp;amp;ssl=1 1920w&quot; sizes=&quot;auto, (max-width: 960px) 100vw, 960px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Desirability and feasibility are the &lt;em&gt;means&lt;/em&gt;; viability is the &lt;em&gt;goal&lt;/em&gt;. Companies—outside of nonprofits and charities—exist to make money.&lt;/p&gt;
-
-
-
-&lt;p&gt;A genuinely purpose-driven company would try to reverse this dynamic: it would recognize finance for what it was intended for: a &lt;em&gt;means&lt;/em&gt;. So both feasibility and viability are means to achieve what the company set out to achieve. It makes intuitive sense: to achieve most anything, you need resources, people, and money. (Fun fact: the Italian language knows no difference between feasibility and viability; both are simply &lt;em&gt;fattibilità&lt;/em&gt;.)&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;960&quot; height=&quot;540&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image03.png?resize=960%2C540&amp;amp;ssl=1&quot; alt=&quot;A Venn diagram with two circles (Viable and Feasible) overlapping. An arrow points from their intersection to a separate circle marked as Desirable, with a target inside it.&quot; class=&quot;wp-image-7173409&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image03.png?resize=1024%2C576&amp;amp;ssl=1 1024w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image03.png?resize=300%2C169&amp;amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image03.png?resize=768%2C432&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image03.png?resize=1536%2C864&amp;amp;ssl=1 1536w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image03.png?w=1920&amp;amp;ssl=1 1920w&quot; sizes=&quot;auto, (max-width: 960px) 100vw, 960px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;But simply swapping &lt;em&gt;viable&lt;/em&gt; for &lt;em&gt;desirable&lt;/em&gt; isn’t enough to achieve an ethical outcome. Desirability is still linked to consumerism because the associated activities aim to identify what people want—&lt;em&gt;whether it’s good for them or not&lt;/em&gt;. Desirability objectives, such as user satisfaction or conversion, don’t consider whether a product is healthy for people. They don’t prevent us from creating products that distract or manipulate people or stop us from contributing to society’s wealth inequality. They’re unsuitable for establishing a healthy balance with nature.&lt;/p&gt;
-
-
-
-&lt;p&gt;There’s a fourth dimension of success that’s missing: our designs also need to be &lt;em&gt;ethical&lt;/em&gt; in the effect that they have on the world.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;960&quot; height=&quot;540&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image04.png?resize=960%2C540&amp;amp;ssl=1&quot; alt=&quot;The original Venn diagram of three circles (Desirable, Viable, and Feasible) overlapping with the target in their central intersection. This time, a fourth circle named Ethical encompasses all three.&quot; class=&quot;wp-image-7173410&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image04.png?resize=1024%2C576&amp;amp;ssl=1 1024w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image04.png?resize=300%2C169&amp;amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image04.png?resize=768%2C432&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image04.png?resize=1536%2C864&amp;amp;ssl=1 1536w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image04.png?w=1920&amp;amp;ssl=1 1920w&quot; sizes=&quot;auto, (max-width: 960px) 100vw, 960px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;This is hardly a new idea. Many similar models exist, some calling the fourth dimension &lt;em&gt;accountability&lt;/em&gt;, &lt;em&gt;integrity&lt;/em&gt;, or &lt;em&gt;responsibility&lt;/em&gt;. What I’ve never seen before, however, is the necessary step that comes after: to influence the system as designers and to make ethical design more practical, we must create objectives for ethical design that are achievable and inspirational. There’s no one way to do this because it highly depends on your culture, values, and industry. But I’ll give you the version that I developed with a group of colleagues at a design agency. Consider it a template to get started.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Pursue well-being, equity, and sustainability&lt;/h2&gt;
-
-
-
-&lt;p&gt;We created objectives that address design’s effect on three levels: individual, societal, and global.&lt;/p&gt;
-
-
-
-&lt;p&gt;An objective on the individual level tells us what success is beyond the typical focus of usability and satisfaction—instead considering matters such as how much time and attention is required from users. We pursued &lt;strong&gt;well-being&lt;/strong&gt;:&lt;/p&gt;
-
-
-
-&lt;blockquote class=&quot;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&quot;&gt;&lt;p&gt;We create products and services that allow for people’s health and happiness. Our solutions are calm, transparent, nonaddictive, and nonmisleading. We respect our users’ time, attention, and privacy, and help them make healthy and respectful choices.&lt;/p&gt;&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;An objective on the societal level forces us to consider our impact beyond just the user, widening our attention to the economy, communities, and other indirect stakeholders. We called this objective &lt;strong&gt;equity&lt;/strong&gt;:&lt;/p&gt;
-
-
-
-&lt;blockquote class=&quot;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&quot;&gt;&lt;p&gt;We create products and services that have a positive social impact. We consider economic equality, racial justice, and the inclusivity and diversity of people as teams, users, and customer segments. We listen to local culture, communities, and those we affect.&lt;/p&gt;&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;Finally, the objective on the global level aims to ensure that we remain in balance with the only home we have as humanity. Referring to it simply as &lt;strong&gt;sustainability&lt;/strong&gt;, our definition was:&lt;/p&gt;
-
-
-
-&lt;blockquote class=&quot;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&quot;&gt;&lt;p&gt;We create products and services that reward sufficiency and reusability. Our solutions support the circular economy: we create value from waste, repurpose products, and prioritize sustainable choices. We deliver functionality instead of ownership, and we limit energy use.&lt;/p&gt;&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;In short, ethical design (to us) meant achieving wellbeing for each user and an equitable value distribution within society through a design that can be sustained by our living planet. When we introduced these objectives in the company, for many colleagues, &lt;em&gt;design ethics&lt;/em&gt; and &lt;em&gt;responsible design&lt;/em&gt; suddenly became tangible and achievable through practical—and even familiar—actions.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Measure impact&amp;nbsp;&lt;/h2&gt;
-
-
-
-&lt;p&gt;But defining these objectives still isn’t enough. What truly caught the attention of senior management was the fact that we created a way to &lt;em&gt;measure&lt;/em&gt; every design project’s well-being, equity, and sustainability.&lt;/p&gt;
-
-
-
-&lt;p&gt;This overview lists example metrics that you can use as you pursue well-being, equity, and sustainability:&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;960&quot; height=&quot;540&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image05.png?resize=960%2C540&amp;amp;ssl=1&quot; alt=&quot;A list of example metrics for ethical impact at individual, societal, and planetary levels. Individual well-being examples include increased calmness, lower screen time, improved safety and privacy. Societal equity examples include improved accessibility, increased team and stakeholder diversity, and increased progressive enhancement. Finally, planetary sustainability examples include reduced energy use, reduced website carbon emissions and device turnover, and increased expert involvement.&quot; class=&quot;wp-image-7173411&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image05.png?resize=1024%2C576&amp;amp;ssl=1 1024w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image05.png?resize=300%2C169&amp;amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image05.png?resize=768%2C432&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image05.png?resize=1536%2C864&amp;amp;ssl=1 1536w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image05.png?w=1920&amp;amp;ssl=1 1920w&quot; sizes=&quot;auto, (max-width: 960px) 100vw, 960px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;There’s a lot of power in measurement. As the saying goes, what gets measured gets done. &lt;a href=&quot;https://www.goodreads.com/book/show/3828902-thinking-in-systems&quot;&gt;Donella Meadows&lt;/a&gt; once shared this example:&lt;/p&gt;
-
-
-
-&lt;blockquote class=&quot;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&quot;&gt;&lt;p&gt;“If the desired system state is national security, and that is defined as the amount of money spent on the military, the system will produce military spending. It may or may not produce national security.”&lt;/p&gt;&lt;/blockquote&gt;
-
-
-
-&lt;p&gt;This phenomenon explains why &lt;em&gt;desirability&lt;/em&gt; is a poor indicator of success: it’s typically &lt;a href=&quot;https://www.interaction-design.org/literature/article/google-s-heart-framework-for-measuring-ux&quot;&gt;defined as the increase in customer satisfaction, session length, frequency of use, conversion rate, churn rate, download rate&lt;/a&gt;, and so on. But none of these metrics increase the health of people, communities, or ecosystems. What if instead we measured success through metrics for (digital) well-being, such as (reduced) &lt;a href=&quot;https://en.wikipedia.org/wiki/Screen_time#Physical_health_effects&quot;&gt;screen time&lt;/a&gt; or software energy consumption?&lt;/p&gt;
-
-
-
-&lt;p&gt;There’s another important message here. Even if we set an objective to build a calm interface, if we were to choose the wrong metric for calmness—say, the number of interface elements—we could still end up with a screen that induces anxiety. Choosing the wrong metric can completely undo good intentions.&amp;nbsp;&lt;/p&gt;
-
-
-
-&lt;p&gt;Additionally, choosing the right metric is enormously helpful in &lt;em&gt;focusing&lt;/em&gt; the design team. Once you go through the exercise of &lt;a href=&quot;https://www.franklincovey.com/the-4-disciplines-old/discipline-2-act/&quot;&gt;choosing metrics for our objectives&lt;/a&gt;, you’re forced to consider what success looks like &lt;em&gt;concretely&lt;/em&gt; and how you can prove that you’ve reached your ethical objectives. It also forces you to consider what we as designers have &lt;em&gt;control&lt;/em&gt; over: what can I include in my design or change in my process that will lead to the right type of success? The answer to this question brings a lot of clarity and focus.&lt;/p&gt;
-
-
-
-&lt;p&gt;And finally, it’s good to remember that traditional businesses run on measurements, and managers love to spend much time discussing charts (ideally hockey-stick shaped)—especially if they concern profit, the one-above-all of metrics. For good or ill, to improve the system, to have a serious discussion about ethical design with managers, we’ll need to speak that business language.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Practice daily ethical design&lt;/h2&gt;
-
-
-
-&lt;p&gt;Once you’ve defined your objectives and you have a reasonable idea of the potential metrics for your design project, &lt;em&gt;only&lt;/em&gt; then do you have a chance to structurally practice ethical design. It “simply” becomes a matter of using your creativity and choosing from all the knowledge and toolkits already available to you.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;960&quot; height=&quot;540&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image06.png?resize=960%2C540&amp;amp;ssl=1&quot; alt=&quot;A set of example methods and tools for practicing at the individual, societal, and planetary level. Individual tools include the principle of minimum necessary data, white-hat persuasion techniques, calm-technology guidelines, and more. Societal tools include stakeholder mapping, inclusive sampling and testing, progressive enhancement, accessibility principles, and more. Planetary tools include the flourishing business canvas, extended-service blueprint, website carbon calculators, product-lifecycle mapping, and more.&quot; class=&quot;wp-image-7173412&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image06.png?resize=1024%2C576&amp;amp;ssl=1 1024w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image06.png?resize=300%2C169&amp;amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image06.png?resize=768%2C432&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image06.png?resize=1536%2C864&amp;amp;ssl=1 1536w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image06.png?w=1920&amp;amp;ssl=1 1920w&quot; sizes=&quot;auto, (max-width: 960px) 100vw, 960px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;I think this is quite exciting! It opens a whole new set of challenges and considerations for the design process. Should you go with that energy-consuming video or would a simple illustration be enough? Which typeface is the most calm and inclusive? Which new tools and methods do you use? When is the website’s end of life? How can you provide the same service while requiring less attention from users? How do you make sure that those who are affected by decisions are there when those decisions are made? How can you measure our effects?&lt;/p&gt;
-
-
-
-&lt;p&gt;The redefinition of success will completely change what it means to do good design.&lt;/p&gt;
-
-
-
-&lt;p&gt;There is, however, a final piece of the puzzle that’s missing: convincing your client, product owner, or manager to be mindful of well-being, equity, and sustainability. For this, it’s essential to engage stakeholders in a dedicated kickoff session.&lt;/p&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Kick it off or fall back to status quo&lt;/h2&gt;
-
-
-
-&lt;p&gt;The kickoff is the most important meeting that can be so easy to forget to include. It consists of two major phases: 1) the alignment of &lt;em&gt;expectations&lt;/em&gt;, and 2) the definition of &lt;em&gt;success&lt;/em&gt;.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the first phase, the entire (design) team goes over the project brief and meets with all the relevant stakeholders. Everyone gets to know one another and express their expectations on the outcome and their contributions to achieving it. Assumptions are raised and discussed. The aim is to get on the same level of understanding and to in turn avoid preventable miscommunications and surprises later in the project.&lt;/p&gt;
-
-
-
-&lt;p&gt;For example, for a recent freelance project that aimed to design a digital platform that facilitates US student advisors’ documentation and communication, we conducted an online kickoff with the client, a subject-matter expert, and two other designers. We used a combination of canvases on Miro: one with questions from “&lt;a href=&quot;https://www.manualof.me/&quot;&gt;Manual of Me&lt;/a&gt;” (to get to know each other), a &lt;a href=&quot;https://www.theteamcanvas.com/&quot;&gt;Team Canvas&lt;/a&gt; (to express expectations), and a version of the &lt;a href=&quot;http://www.projectcanvas.dk/&quot;&gt;Project Canvas&lt;/a&gt; to align on scope, timeline, and other practical matters.&lt;/p&gt;
-
-
-
-&lt;p&gt;The above is the traditional purpose of a kickoff. But just as important as expressing expectations is agreeing on what &lt;em&gt;success&lt;/em&gt; means for the project—in terms of desirability, viability, feasibility, and ethics. What are the objectives in each dimension?&lt;/p&gt;
-
-
-
-&lt;p&gt;Agreement on what success means at such an early stage is crucial because you can rely on it for the remainder of the project. If, for example, the design team wants to build an inclusive app for a diverse user group, they can raise diversity as a specific success criterion during the kickoff. If the client agrees, the team can refer back to that promise throughout the project. “As we agreed in our first meeting, having a diverse user group that includes A and B is necessary to build a successful product. So we do activity X and follow research process Y.” Compare those odds to a situation in which the team didn’t agree to that beforehand and had to ask for permission halfway through the project. The client might argue that that came &lt;em&gt;on top&lt;/em&gt; of the agreed scope—and she’d be right.&lt;/p&gt;
-
-
-
-&lt;p&gt;In the case of this freelance project, to define success I prepared a round canvas that I call the &lt;em&gt;Wheel of Success&lt;/em&gt;. It consists of an inner ring, meant to capture ideas for objectives, and a set of outer rings, meant to capture ideas on how to measure those objectives. The rings are divided into five dimensions of successful design: healthy, equitable, sustainable, desirable, feasible, and viable.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;956&quot; height=&quot;1024&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image07.jpg?resize=956%2C1024&amp;amp;ssl=1&quot; alt=&quot;The wheel of success. The central circle reads &#39;The product is a success when it is&#39;. The next ring outside lists example values such as healthy, equitable, sustainable, viable, feasible, and desirable. The next ring out lists out measurable objectives for those values, and the outermost ring lists tools that can measure those objectives.&quot; class=&quot;wp-image-7173413&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image07.jpg?resize=956%2C1024&amp;amp;ssl=1 956w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image07.jpg?resize=280%2C300&amp;amp;ssl=1 280w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image07.jpg?resize=768%2C822&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image07.jpg?resize=1435%2C1536&amp;amp;ssl=1 1435w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image07.jpg?w=1867&amp;amp;ssl=1 1867w&quot; sizes=&quot;auto, (max-width: 956px) 100vw, 956px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;We went through each dimension, writing down ideas on digital sticky notes. Then we discussed our ideas and verbally agreed on the most important ones. For example, our client agreed that sustainability and progressive enhancement are important success criteria for the platform. And the subject-matter expert emphasized the importance of including students from low-income and disadvantaged groups in the design process.&lt;/p&gt;
-
-
-
-&lt;p&gt;After the kickoff, we summarized our ideas and shared understanding in a project brief that captured these aspects:&lt;/p&gt;
-
-
-
-&lt;ul class=&quot;wp-block-list&quot;&gt;&lt;li&gt;the project’s origin and purpose: &lt;strong&gt;&lt;em&gt;why&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; are we doing this project?&lt;/em&gt;&lt;/li&gt;&lt;li&gt;the problem definition: &lt;em&gt;what do we want to &lt;/em&gt;&lt;strong&gt;&lt;em&gt;solve&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;?&lt;/em&gt;&lt;/li&gt;&lt;li&gt;the concrete goals and metrics for each success dimension: &lt;em&gt;what do we want to &lt;/em&gt;&lt;strong&gt;&lt;em&gt;achieve&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;?&lt;/em&gt;&lt;/li&gt;&lt;li&gt;the scope, process, and role descriptions: &lt;strong&gt;&lt;em&gt;how&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; will we achieve it?&lt;/em&gt;&lt;/li&gt;&lt;/ul&gt;
-
-
-
-&lt;p&gt;With such a brief in place, you can use the agreed-upon objectives and concrete metrics as a checklist of success, and your design team will be ready to pursue the right objective—using the tools, methods, and metrics at their disposal to achieve ethical outcomes.&lt;/p&gt;
-
-
-
-&lt;figure class=&quot;wp-block-image size-large&quot;&gt;&lt;img data-recalc-dims=&quot;1&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;960&quot; height=&quot;540&quot; src=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image08.png?resize=960%2C540&amp;amp;ssl=1&quot; alt=&quot;A drawing of a set of mountains that also looks vaguely like a graph. The leftmost valley has &#39;Pursue the right objective&#39; pointing at it. The middle valley has &#39;Solve the right problem&#39; and the rightmost valley is labelled &#39;Build the right solution.&#39; Below the mountains, a timeline shows from left to right: Kick-off, Problem space, Solution space, and Development.&quot; class=&quot;wp-image-7173414&quot; srcset=&quot;https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image08.png?resize=1024%2C576&amp;amp;ssl=1 1024w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image08.png?resize=300%2C169&amp;amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image08.png?resize=768%2C432&amp;amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image08.png?resize=1536%2C864&amp;amp;ssl=1 1536w, https://i0.wp.com/alistapart.com/wp-content/uploads/2022/05/image08.png?w=1600&amp;amp;ssl=1 1600w&quot; sizes=&quot;auto, (max-width: 960px) 100vw, 960px&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/figure&gt;
-
-
-
-&lt;h2 class=&quot;wp-block-heading&quot;&gt;Conclusion&lt;/h2&gt;
-
-
-
-&lt;p&gt;Over the past year, quite a few colleagues have asked me, “Where do I start with ethical design?” My answer has always been the same: organize a session with your stakeholders to (re)define success. Even though you might not always be 100 percent successful in agreeing on goals that cover all responsibility objectives, that beats the alternative (the status quo) every time. If you want to be an ethical, responsible designer, there’s no skipping this step.&lt;/p&gt;
-
-
-
-&lt;p&gt;To be even more specific: if you consider yourself a &lt;em&gt;strategic designer&lt;/em&gt;, your challenge is to define ethical objectives, set the right metrics, and conduct those kick-off sessions. If you consider yourself a &lt;em&gt;system designer&lt;/em&gt;, your starting point is to understand how your industry contributes to consumerism and inequality, understand how finance drives business, and brainstorm which levers are available to influence the system on the highest level. Then redefine success to create the space to exercise those levers.&lt;/p&gt;
-
-
-
-&lt;p&gt;And for those who consider themselves service designers or UX designers or UI designers: if you truly want to have a positive, meaningful impact, stay away from the toolkits and meetups and conferences for a while. Instead, gather your colleagues and define goals for well-being, equity, and sustainability through design. Engage your stakeholders in a workshop and challenge them to think of ways to achieve and measure those ethical goals. Take their input, make it concrete and visible, ask for their agreement, and hold them to it.&lt;/p&gt;
-
-
-
-&lt;p&gt;Otherwise, I’m genuinely sorry to say, you’re wasting your precious time and creative energy.&lt;/p&gt;
-
-
-
-&lt;p&gt;Of course, engaging your stakeholders in this way can be uncomfortable. Many of my colleagues expressed doubts such as “What will the client think of this?,” “Will they take me seriously?,” and “Can’t we just do it within the design team instead?” In fact, a product manager once asked me why ethics couldn’t just be a structured part of the design &lt;em&gt;process&lt;/em&gt;—to just do it without spending the effort to define ethical objectives. It’s a tempting idea, right? We wouldn’t have to have difficult discussions with stakeholders about what values or which key-performance indicators to pursue. It would let us focus on what we like and do best: designing.&lt;/p&gt;
-
-
-
-&lt;p&gt;But as systems theory tells us, that’s not enough. For those of us who aren’t from marginalized groups and have the privilege to be able to speak up and be heard, that uncomfortable space is exactly where we need to be if we truly want to make a difference. We can’t remain within the design-for-designers bubble, enjoying our privileged working-from-home situation, disconnected from the real world out there. For those of us who have the possibility to speak up and be heard: if we solely keep &lt;em&gt;talking&lt;/em&gt; about ethical design and it remains at the level of articles and toolkits—we’re not designing ethically. It’s just theory. We need to actively engage our colleagues and clients by challenging them to redefine success in business.&lt;/p&gt;
-
-
-
-&lt;p&gt;With a bit of courage, determination, and focus, we can break out of this cage that finance and business-as-usual have built around us and become facilitators of a new type of business that can see beyond financial value. We just need to agree on the right objectives at the start of each design project, find the right metrics, and realize that we already have everything that we need to get started. That’s what it means to do daily ethical design.&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;em&gt;For their inspiration and support over the years, I would like to thank Emanuela Cozzi Schettini, José Gallegos, Annegret Bönemann, Ian Dorr, Vera Rademaker, Virginia Rispoli, Cecilia Scolaro, Rouzbeh Amini, and many others.&lt;/em&gt;&lt;/p&gt;
-</description><link>https://alistapart.com/article/redefine-success-first/</link><guid isPermaLink="false">https://alistapart.com/article/redefine-success-first/</guid><pubDate>Thu, 12 May 2022 14:00:00 GMT</pubDate><author>stegrainer</author><category>Industry</category><category>User Experience</category><category>Workflow &amp;amp; Tools</category></item></channel></rss>
+</description><link>https://alistapart.com/article/personalization-pyramid/</link><guid isPermaLink="false">https://alistapart.com/article/personalization-pyramid/</guid><pubDate>Thu, 08 Dec 2022 15:00:00 GMT</pubDate><author>agustafson</author><category>Content</category><category>Interaction Design</category></item></channel></rss>

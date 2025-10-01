@@ -1,63 +1,95 @@
 [
   {
+    "provider_id": "1x",
+    "provider_name": "1x.com",
+    "route_key": "/:category{.+}?",
+    "route": {
+      "name": "Gallery",
+      "path": "/:category{.+}?",
+      "example": "/1x/latest/awarded",
+      "parameters": {
+        "category": "Category, Latest Awarded by default"
+      },
+      "description": "::: tip\nFill in the field in the path with the part of the corresponding page URL after `https://1x.com/gallery/` or `https://1x.com/photo/`. Here are the examples:\n\nIf you subscribe to [Abstract Awarded](https://1x.com/gallery/abstract/awarded), you should fill in the path with the part `abstract/awarded` from the page URL `https://1x.com/gallery/abstract/awarded`. In this case, the route will be [`/1x/abstract/awarded`](https://rsshub.app/1x/abstract/awarded).\n    \nIf you subscribe to [Wildlife Published](https://1x.com/gallery/wildlife/published), you should fill in the path with the part `wildlife/published` from the page URL `https://1x.com/gallery/wildlife/published`. In this case, the route will be [`/1x/wildlife/published`](https://rsshub.app/1x/wildlife/published).\n:::"
+    }
+  },
+  {
     "provider_id": "4kup",
     "provider_name": "4KUP",
-    "route_key": "/",
+    "route_key": "/tag/:tag",
     "route": {
-      "name": "Latest",
-      "path": "/",
-      "example": "/4kup",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "cosplaytele",
-    "provider_name": "CosplayTele",
-    "route_key": "/",
-    "route": {
-      "name": "Latest",
-      "path": "/",
-      "example": "/cosplaytele",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "natgeo",
-    "provider_name": "National Geographic",
-    "route_key": "/dailyphoto",
-    "route": {
-      "name": "Daily Photo",
-      "path": "/dailyphoto",
-      "example": "/natgeo/dailyphoto",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pinterest",
-    "provider_name": "Pinterest",
-    "route_key": "/user/:username/:type?",
-    "route": {
-      "name": "User",
-      "path": "/user/:username/:type?",
-      "example": "/pinterest/user/howieserious",
+      "name": "Tag",
+      "path": "/tag/:tag",
+      "example": "/4kup/tag/asian",
       "parameters": {
-        "username": "Username",
-        "type": {
-          "description": "Type, default to `_created`",
-          "default": "_created",
+        "tag": "Tag"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "dapenti",
+    "provider_name": "喷嚏",
+    "route_key": "/subject/:id",
+    "route": {
+      "name": "主题",
+      "path": "/subject/:id",
+      "example": "/dapenti/subject/184",
+      "parameters": {
+        "id": "主题 id"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "fantia",
+    "provider_name": "Fantia",
+    "route_key": "/user/:id",
+    "route": {
+      "name": "User Posts",
+      "path": "/user/:id",
+      "example": "/fantia/user/3498",
+      "parameters": {
+        "id": "User id, can be found in user profile URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nasa",
+    "provider_name": "NASA",
+    "route_key": "/apod-cn",
+    "route": {
+      "name": "NASA 中文",
+      "path": "/apod-cn",
+      "example": "/nasa/apod-cn",
+      "parameters": {},
+      "description": "::: tip\n  [NASA 中文](https://www.nasachina.cn/) 提供了每日天文图的中英双语图文说明，但在更新上偶尔略有一两天的延迟。\n:::"
+    }
+  },
+  {
+    "provider_id": "pixabay",
+    "provider_name": "Pixabay",
+    "route_key": "/search/:q/:order?",
+    "route": {
+      "name": "Search",
+      "path": "/search/:q/:order?",
+      "example": "/pixabay/search/cat",
+      "parameters": {
+        "q": "Search term",
+        "order": {
+          "description": "Order",
           "options": [
             {
-              "value": "_created",
-              "label": "Created"
+              "value": "popular",
+              "label": "popular"
             },
             {
-              "value": "_saved",
-              "label": "Saved"
+              "value": "latest",
+              "label": "latest"
             }
-          ]
+          ],
+          "default": "latest"
         }
       },
       "description": ""
