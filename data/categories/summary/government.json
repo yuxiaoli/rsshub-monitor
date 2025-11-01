@@ -1,98 +1,42 @@
 [
   {
-    "provider_id": "bjsk",
-    "provider_name": "北京社科网",
-    "route_key": "/:path?",
+    "provider_id": "chinacdc",
+    "provider_name": "中国疾病预防控制中心",
+    "route_key": "/:category{.+}?",
     "route": {
       "name": "通用",
-      "path": "/:path?",
-      "example": "/bjsk/newslist-1394-1474-0",
+      "path": "/:category{.+}?",
+      "example": "/chinacdc/zxyw",
       "parameters": {
-        "path": "路径，默认为 `newslist-1486-0-0`"
+        "category": "分类，默认为 `zxyw`，即中心要闻，可在对应分类页 URL 中找到，Category, `zxyw`，即中心要闻 by default"
       },
-      "description": "::: tip\n  路径处填写对应页面 URL 中 `https://www.bjsk.org.cn/` 和 `.html` 之间的字段。下面是一个例子。\n\n  若订阅 [社科资讯 > 社科要闻](https://www.bjsk.org.cn/newslist-1394-1474-0.html) 则将对应页面 URL `https://www.bjsk.org.cn/newslist-1394-1474-0.html` 中 `https://www.bjsk.org.cn/` 和 `.html` 之间的字段 `newslist-1394-1474-0` 作为路径填入。此时路由为 [`/bjsk/newslist-1394-1474-0`](https://rsshub.app/bjsk/newslist-1394-1474-0)\n:::"
+      "description": "::: tip\n若订阅 [中心要闻](https://www.chinacdc.cn/zxyw/)，网址为 `https://www.chinacdc.cn/zxyw/`，请截取 `https://www.chinacdc.cn/` 到末尾 `/` 的部分 `zxyw` 作为 `category` 参数填入，此时目标路由为 [`/chinacdc/zxyw`](https://rsshub.app/chinacdc/zxyw)。\n:::\n\n| [中心要闻](https://www.chinacdc.cn/zxyw/) | [通知公告](https://www.chinacdc.cn/tzgg/) |\n| ----------------------------------------- | ----------------------------------------- |\n| [zxyw](https://rsshub.app/chinacdc/zxyw)  | [tzgg](https://rsshub.app/chinacdc/tzgg)  |\n\n<details>\n<summary>更多分类</summary>\n\n#### [党建园地](https://www.chinacdc.cn/dqgz/djgz/)\n\n| [党建工作](https://www.chinacdc.cn/dqgz/djgz/)     | [廉政文化](https://www.chinacdc.cn/djgz_13611/)                | [工会工作](https://www.chinacdc.cn/ghgz/)          | [团青工作](https://www.chinacdc.cn/tqgz/)          | [理论学习](https://www.chinacdc.cn/tqgz_13618/)                |\n| -------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------- |\n| [dqgz/djgz](https://rsshub.app/chinacdc/dqgz/djgz) | [dqgz/djgz_13611](https://rsshub.app/chinacdc/dqgz/djgz_13611) | [dqgz/ghgz](https://rsshub.app/chinacdc/dqgz/ghgz) | [dqgz/tqgz](https://rsshub.app/chinacdc/dqgz/tqgz) | [dqgz/tqgz_13618](https://rsshub.app/chinacdc/dqgz/tqgz_13618) |\n\n#### [疾控应急](https://www.chinacdc.cn/jkyj/)\n\n| [传染病](https://www.chinacdc.cn/jkyj/crb2/)       | [突发公共卫生事件](https://www.chinacdc.cn/jkyj/tfggws/) | [慢性病与伤害防控](https://www.chinacdc.cn/jkyj/mxfcrxjb2/)  | [烟草控制](https://www.chinacdc.cn/jkyj/yckz/)     | [营养与健康](https://www.chinacdc.cn/jkyj/yyyjk2/)     |\n| -------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------ |\n| [jkyj/crb2](https://rsshub.app/chinacdc/jkyj/crb2) | [jkyj/tfggws](https://rsshub.app/chinacdc/jkyj/tfggws)   | [jkyj/mxfcrxjb2](https://rsshub.app/chinacdc/jkyj/mxfcrxjb2) | [jkyj/yckz](https://rsshub.app/chinacdc/jkyj/yckz) | [jkyj/yyyjk2](https://rsshub.app/chinacdc/jkyj/yyyjk2) |\n\n| [环境与健康](https://www.chinacdc.cn/jkyj/hjyjk/)    | [职业卫生与中毒控制](https://www.chinacdc.cn/jkyj/hjwsyzdkz/) | [放射卫生](https://www.chinacdc.cn/jkyj/fsws/)     | [免疫规划](https://www.chinacdc.cn/jkyj/mygh02/)       | [结核病防控](https://www.chinacdc.cn/jkyj/jhbfk/)    |\n| ---------------------------------------------------- | ------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- |\n| [jkyj/hjyjk](https://rsshub.app/chinacdc/jkyj/hjyjk) | [jkyj/hjwsyzdkz](https://rsshub.app/chinacdc/jkyj/hjwsyzdkz)  | [jkyj/fsws](https://rsshub.app/chinacdc/jkyj/fsws) | [jkyj/mygh02](https://rsshub.app/chinacdc/jkyj/mygh02) | [jkyj/jhbfk](https://rsshub.app/chinacdc/jkyj/jhbfk) |\n\n| [寄生虫病](https://www.chinacdc.cn/jkyj/jscb/)     |\n| -------------------------------------------------- |\n| [jkyj/jscb](https://rsshub.app/chinacdc/jkyj/jscb) |\n\n#### [科学研究](https://www.chinacdc.cn/kxyj/)\n\n| [科技进展](https://www.chinacdc.cn/kxyj/kjjz/)     | [学术动态](https://www.chinacdc.cn/kxyj/xsdt/)     | [科研平台](https://www.chinacdc.cn/kxyj/xsjl/)     | [科研亮点](https://www.chinacdc.cn/kxyj/kyld/)     | [科技政策](https://www.chinacdc.cn/kxyj/kjzc/)     |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |\n| [kxyj/kjjz](https://rsshub.app/chinacdc/kxyj/kjjz) | [kxyj/xsdt](https://rsshub.app/chinacdc/kxyj/xsdt) | [kxyj/xsjl](https://rsshub.app/chinacdc/kxyj/xsjl) | [kxyj/kyld](https://rsshub.app/chinacdc/kxyj/kyld) | [kxyj/kjzc](https://rsshub.app/chinacdc/kxyj/kjzc) |\n\n#### [教育培训](https://www.chinacdc.cn/jypx/)\n\n| [研究生院](https://www.chinacdc.cn/jypx/yjsy/)     | [继续教育](https://www.chinacdc.cn/jypx/jxjy/)     | [博士后](https://www.chinacdc.cn/jypx/bsh/)      | [中国现场流行病学培训项目（CFETP）](https://www.chinacdc.cn/jypx/CFETP/) |\n| -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------ |\n| [jypx/yjsy](https://rsshub.app/chinacdc/jypx/yjsy) | [jypx/jxjy](https://rsshub.app/chinacdc/jypx/jxjy) | [jypx/bsh](https://rsshub.app/chinacdc/jypx/bsh) | [jypx/CFETP](https://rsshub.app/chinacdc/jypx/CFETP)                     |\n\n#### [全球公卫](https://www.chinacdc.cn/qqgw/)\n\n| [合作伙伴](https://www.chinacdc.cn/qqgw/hzhb/)     | [世界卫生组织合作中心和参比实验室](https://www.chinacdc.cn/qqgw/wszz/) | [国际交流 (港澳台交流)](https://www.chinacdc.cn/qqgw/gjjl/) | [公共卫生援外与合作](https://www.chinacdc.cn/qqgw/ggws/) |\n| -------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------- |\n| [qqgw/hzhb](https://rsshub.app/chinacdc/qqgw/hzhb) | [qqgw/wszz](https://rsshub.app/chinacdc/qqgw/wszz)                     | [qqgw/gjjl](https://rsshub.app/chinacdc/qqgw/gjjl)         | [qqgw/ggws](https://rsshub.app/chinacdc/qqgw/ggws)       |\n\n#### [人才建设](https://www.chinacdc.cn/rcjs/)\n\n| [院士风采](https://www.chinacdc.cn/rcjs/ysfc/)     | [首席专家](https://www.chinacdc.cn/rcjs/sxzj/)     | [人才队伍](https://www.chinacdc.cn/rcjs/rcdw/)     | [人才招聘](https://www.chinacdc.cn/rcjs/rczp/)     |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |\n| [rcjs/ysfc](https://rsshub.app/chinacdc/rcjs/ysfc) | [rcjs/sxzj](https://rsshub.app/chinacdc/rcjs/sxzj) | [rcjs/rcdw](https://rsshub.app/chinacdc/rcjs/rcdw) | [rcjs/rczp](https://rsshub.app/chinacdc/rcjs/rczp) |\n\n#### [健康数据](https://www.chinacdc.cn/jksj/)\n\n| [全国法定传染病疫情情况](https://www.chinacdc.cn/jksj/jksj01/) | [全国新型冠状病毒感染疫情情况](https://www.chinacdc.cn/jksj/xgbdyq/) | [重点传染病和突发公共卫生事件风险评估报告](https://www.chinacdc.cn/jksj/jksj02/) | [全球传染病事件风险评估报告](https://www.chinacdc.cn/jksj/jksj03/) | [全国预防接种异常反应监测信息概况](https://www.chinacdc.cn/jksj/jksj04_14209/) |\n| -------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------ |\n| [jksj/jksj01](https://rsshub.app/chinacdc/jksj/jksj01)         | [jksj/xgbdyq](https://rsshub.app/chinacdc/jksj/xgbdyq)               | [jksj/jksj02](https://rsshub.app/chinacdc/jksj/jksj02)                           | [jksj/jksj03](https://rsshub.app/chinacdc/jksj/jksj03)             | [jksj/jksj04_14209](https://rsshub.app/chinacdc/jksj/jksj04_14209)             |\n\n| [流感监测周报](https://www.chinacdc.cn/jksj/jksj04_14249/)         | [全国急性呼吸道传染病哨点监测情况](https://www.chinacdc.cn/jksj/jksj04_14275/) | [健康报告](https://www.chinacdc.cn/jksj/jksj04/)       |\n| ------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------ |\n| [jksj/jksj04_14249](https://rsshub.app/chinacdc/jksj/jksj04_14249) | [jksj/jksj04_14275](https://rsshub.app/chinacdc/jksj/jksj04_14275)             | [jksj/jksj04](https://rsshub.app/chinacdc/jksj/jksj04) |\n\n#### [健康科普](https://www.chinacdc.cn/jkkp/)\n\n| [传染病](https://www.chinacdc.cn/jkkp/crb/)      | [慢性非传染性疾病](https://www.chinacdc.cn/jkkp/mxfcrb/) | [免疫规划](https://www.chinacdc.cn/jkkp/mygh/)     | [公共卫生事件](https://www.chinacdc.cn/jkkp/ggws/) | [烟草控制](https://www.chinacdc.cn/jkkp/yckz/)     |\n| ------------------------------------------------ | -------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |\n| [jkkp/crb](https://rsshub.app/chinacdc/jkkp/crb) | [jkkp/mxfcrb](https://rsshub.app/chinacdc/jkkp/mxfcrb)   | [jkkp/mygh](https://rsshub.app/chinacdc/jkkp/mygh) | [jkkp/ggws](https://rsshub.app/chinacdc/jkkp/ggws) | [jkkp/yckz](https://rsshub.app/chinacdc/jkkp/yckz) |\n\n| [营养与健康](https://www.chinacdc.cn/jkkp/yyjk/)   | [环境健康](https://www.chinacdc.cn/jkkp/hjjk/)     | [职业健康与中毒控制](https://www.chinacdc.cn/jkkp/zyjk/) | [放射卫生](https://www.chinacdc.cn/jkkp/fsws/)     |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------- |\n| [jkkp/yyjk](https://rsshub.app/chinacdc/jkkp/yyjk) | [jkkp/hjjk](https://rsshub.app/chinacdc/jkkp/hjjk) | [jkkp/zyjk](https://rsshub.app/chinacdc/jkkp/zyjk)       | [jkkp/fsws](https://rsshub.app/chinacdc/jkkp/fsws) |\n\n</details>\n"
     }
   },
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/caac/cjwt/:category?",
+    "route_key": "/beijing/bjedu/gh/:urlPath?",
     "route": {
-      "name": "公众留言",
-      "path": "/caac/cjwt/:category?",
-      "example": "/gov/caac/cjwt",
+      "name": "通用",
+      "path": "/beijing/bjedu/gh/:urlPath?",
+      "example": "/gov/beijing/bjedu/gh",
       "parameters": {
-        "category": "分类，见下表，默认为全部"
+        "urlPath": "路径，默认为 `zxtzgg`"
       },
-      "description": "| 机票 | 托运 | 无人机 | 体检 | 行政审批 | 投诉 |\n| ---- | ---- | ------ | ---- | -------- | ---- |"
+      "description": "::: tip\n  路径处填写对应页面 URL 中 `https://gh.bjedu.cn/ghsite/` 和 `/index.html` 之间的字段。下面是一个例子。\n\n  若订阅 [通知公告](https://gh.bjedu.cn/ghsite/zxtzgg/index.html) 则将对应页面 URL `https://gh.bjedu.cn/ghsite/zxtzgg/index.html` 中 `https://gh.bjedu.cn/ghsite/` 和 `/index.html` 之间的字段 `zxtzgg` 作为路径填入。此时路由为 [`/gov/beijing/bjedu/gh/zxtzgg`](https://rsshub.app/gov/beijing/bjedu/gh/zxtzgg)\n:::"
     }
   },
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/forestry/gjlckjdjt/:category?",
+    "route_key": "/hainan/iitb/tzgg",
     "route": {
-      "name": "国家林草科技大讲堂",
-      "path": "/forestry/gjlckjdjt/:category?",
-      "example": "/gov/forestry/gjlckjdjt",
-      "parameters": {
-        "category": "分类，见下表，默认为全部"
-      },
-      "description": "| 分类     | id   |\n| -------- | ---- |\n| 经济林   | jjl  |\n| 林木良种 | lmlz |\n| 林下经济 | lxjj |\n| 生态修复 | stxf |\n| 用材林   | ycl  |\n| 其他     | qt   |"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/mee/ywdt/:category?",
-    "route": {
-      "name": "要闻动态",
-      "path": "/mee/ywdt/:category?",
-      "example": "/gov/mee/ywdt/hjywnews",
-      "parameters": {
-        "category": "分类名，预设 `szyw`"
-      },
-      "description": "| 时政要闻 | 环境要闻 | 地方快讯 | 新闻发布 | 视频新闻 | 公示公告 |\n| :------: | :------: | :------: | :------: | :------: | :------: |\n|   szyw   | hjywnews |  dfnews  |   xwfb   |   spxw   |   gsgg   |"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/miit/wjgs",
-    "route": {
-      "name": "文件公示",
-      "path": "/miit/wjgs",
-      "example": "/gov/miit/wjgs",
+      "name": "通知公告",
+      "path": "/hainan/iitb/tzgg",
+      "example": "/gov/hainan/iitb/tzgg",
       "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/moe/:type",
-    "route": {
-      "name": "新闻",
-      "path": "/moe/:type",
-      "example": "/gov/moe/policy_anal",
-      "parameters": {
-        "type": "分类名"
-      },
-      "description": "|   政策解读   |   最新文件   | 公告公示 |      教育部简报     |     教育要闻     |\n| :----------: | :----------: | :------: | :-----------------: | :--------------: |\n| policy_anal | newest_file |  notice  | edu_ministry_news | edu_focus_news |"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/mof/bond/:category?",
-    "route": {
-      "name": "专题",
-      "path": "/mof/bond/:category?",
-      "example": "/gov/mof/bond",
-      "parameters": {
-        "category": "专题，见下表，默认为国债管理工作动态"
-      },
-      "description": "#### 政府债券管理\n\n| 国债管理工作动态 | 记账式国债 (含特别国债) 发行 | 储蓄国债发行 | 地方政府债券管理      |\n| ---------------- | ---------------------------- | ------------ | --------------------- |\n| gzfxgzdt         | gzfxzjs                      | gzfxdzs      | difangzhengfuzhaiquan |"
     }
   },
   {
@@ -112,28 +56,15 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/samr/xgzlyhd/:category?/:department?",
+    "route_key": "/shenzhen/zjj/xxgk/:caty",
     "route": {
-      "name": "留言咨询",
-      "path": "/samr/xgzlyhd/:category?/:department?",
-      "example": "/gov/samr/xgzlyhd",
+      "name": "深圳市住房和建设局",
+      "path": "/shenzhen/zjj/xxgk/:caty",
+      "example": "/gov/shenzhen/zjj/xxgk/tzgg",
       "parameters": {
-        "category": "留言类型，见下表，默认为全部",
-        "department": "回复部门，见下表，默认为全部"
+        "caty": "信息类别"
       },
-      "description": "#### 留言类型\n\n| 类型                                       | 类型 id                          |\n| ------------------------------------------ | -------------------------------- |\n| 反腐倡廉                                   | 14101a4192df48b592b5cfd77a26c0cf |\n| 规划统计                                   | b807cf9cdf434635ae908d48757e0f39 |\n| 行政执法和复议                             | 8af2530e77154d7b939428667b7413f6 |\n| 假冒仿冒行为                               | 75374a34b95341829e08e54d4a0d8c04 |\n| 走私贩私                                   | 84c728530e1e478e94fe3f0030171c53 |\n| 登记注册                                   | 07fff64612dc41aca871c06587abf71d |\n| 个体工商户登记                             | ca8f91ba9a2347a0acd57ea5fd12a5c8 |\n| 信用信息公示系统                           | 1698886c3cdb495998d5ea9285a487f5 |\n| 市场主体垄断                               | 77bfe965843844449c47d29f2feb7999 |\n| 反不正当竞争                               | 2c919b1dc39440d8850c4f6c405869f8 |\n| 商业贿赂                                   | b494e6535af149c5a51fd4197993f061 |\n| 打击传销与规范直销                         | 407a1404844e48558da46139f16d6232 |\n| 消费环境建设                               | 94c2003331dd4c5fa19b0cf88d720676 |\n| 网络交易监管                               | 6302aac5b87140598da53f85c1ccb8fa |\n| 动产抵押登记                               | 3856de5835444229943b18cac7781e9f |\n| 广告监管                                   | d0e38171042048c2bf31b05c5e57aa68 |\n| 三包                                       | c4dbd85692604a428b1ea7613e67beb8 |\n| 缺陷产品召回                               | f93c9a6b81e941d09a547406370e1c0c |\n| 工业生产许可                               | 2b41afaabaa24325b53a5bd7deba895b |\n| 产品质量监督抽查                           | 4388504cb0c04e988e2cf0c90d4a3f14 |\n| 食品安全协调                               | 3127b9f409c24d0eaa60b13c25f819fa |\n| 食品生产监管                               | beaa5555d1364e5bb2a0f0a7cc9720e5 |\n| 食品销售、餐饮服务、食用农产品销售监管     | 3b6c49c6ce934e1b9505601a3b881a6a |\n| 保健、特殊医学用途配方和婴幼儿配方乳粉监管 | 13b43888f8554e078b1dfa475e2aaab0 |\n| 食品监督抽检、召回                         | 0eb6c75581bf41ecaedc629370cb425c |\n| 食品安全标准                               | 399cfd9abfa34c22a5cb3bb971a43819 |\n| 特种设备人员、机构管理                     | e5d0e51cc7d0412790efac605008bf20 |\n| 特种设备检验                               | 03f22fb3d4cd4f09b632079359e9dd7d |\n| 计量器具                                   | 90b25e22861446d5822e07c7c1f5169a |\n| 计量机构和人员管理                         | 76202742f06c459da7482160e0ce17ad |\n| 国家标准                                   | 299b9672e1c246e69485a5b695f42c5b |\n| 行业、地方、团体、企业标准                 | cbdc804c9b2c4e259a159c32eccf4ca9 |\n| 认证监督管理                               | 41259262a42e4de49b5c0b7362ac3796 |\n| 认可与检验检测                             | cb3c9d1e3d364f2a8b1cd70efa69d1cb |\n| 新闻宣传                                   | e3e553e4019c46ccbdc06136900138e9 |\n| 科技财务                                   | 47367b9704964355ba52899a4c5abbb0 |\n| 干部人事                                   | 6b978e3c127c489ea8e2d693b768887e |\n| 国际合作                                   | dd5ce768e33e435ab4bfb769ab6e079a |\n| 党群工作                                   | aa71052978af4304937eb382f24f9902 |\n| 退休干部                                   | 44505fc58c81428eb5cef15706007b5e |\n| 虚假宣传                                   | 5bb2b83ecadb4bf89a779cee414a81dd |\n| 滥用行政权力                               | 1215206156dc48029b98da825f26fcbc |\n| 公平竞争                                   | 9880a23dcbb04deba2cc7b4404e13ff6 |\n| 滥用市场支配地位                           | fea04f0acd84486e84cf71d9c13005b0 |\n| 数字经济领域反垄断执法                     | 4bea424a6e4c4e2aac19fe3c73f9be23 |\n| 并购行为                                   | 90e315647acd415ca68f97fc1b42053d |\n| 经营者集中案件                             | d6571d2cd5624bc18191b342a2e8defb |\n| 数字经济领域反垄断审查                     | 03501ef176ef44fba1c7c70da44ba8a0 |\n| 综合执法                                   | cfbb1b5dade446299670ca38844b265e |\n| 信用监管                                   | a9d76ea04a3a4433946bc02b0bdb77eb |\n| 3C 认证                                    | 111decc7b14a4fdbae86fb4a3ba5c0c1 |\n| 食用农产品                                 | 3159db51f8ca4f23a9340d87d5572d40 |\n| 食品添加                                   | 4e4b0e0152334cbb9c62fd1b80138305 |\n\n#### 回复部门\n\n| 部门                         | 部门 id                          |\n| ---------------------------- | -------------------------------- |\n| 办公厅                       | 6ed539b270634667afc4d466b67a53f7 |\n| 法规司                       | 8625ec7ff8d744ad80a1d1a2bf19cf19 |\n| 执法稽查局                   | 313a8cb1c09042dea52be52cb392c557 |\n| 登记注册局                   | e4553350549f45f38da5602147cf8639 |\n| 信用监督管理司               | 6af98157255a4a858eac5f94ba8d98f4 |\n| 竞争政策协调司               | 8d2266be4791483297822e1aa5fc0a96 |\n| 综合规划司                   | 958e1619159c45a7b76663a59d9052ea |\n| 反垄断执法一司               | f9fb3f6225964c71ab82224a91f21b2c |\n| 反垄断执法二司               | 7986c79e4f16403493d5b480aec30be4 |\n| 价格监督检查和反不正当竞争局 | c5d2b1b273b545cfbc6f874f670654ab |\n| 网络交易监督管理司           | 6ac05b4dbd4e41c69f4529262540459b |\n| 广告监督管理司               | 96457dfe16c54840885b79b4e6e17523 |\n| 质量发展局                   | cb8d2b16fbb540dca296aa33a43fc573 |\n| 质量监督司                   | af2c4e0a54c04f76b512c29ddd075d40 |\n| 食品安全协调司               | cc29962c74e84ef2b21e44336da6c6c5 |\n| 食品生产安全监督管理司       | b334db85a253458285db70b30ee26b0a |\n| 食品经营安全监督管理司       | 4315f0261a5d49f7bdcc5a7524e19ce3 |\n| 特殊食品安全监督管理司       | 62d14f386317486ca94bc53ca7f88891 |\n| 食品安全抽检监测司           | abfc910832cc460a81876ad418618159 |\n| 特种设备安全监察局           | ea79f90bec5840ef9b0881c83682225a |\n| 计量司                       | b0556236fbcf4f45b6fdec8004dac3e4 |\n| 标准技术管理司               | a558d07a51f4454fa59290e0d6e93c26 |\n| 标准创新管理司               | ffb3a80984b344ed8d168f4af6508af0 |\n| 认证监督管理司               | ca4987393d514debb4d1e2126f576987 |\n| 认可与检验检测监督管理司     | 796bfab21b15498e88c9032fe3e3c9f1 |\n| 新闻宣传司                   | 884fc0ea6c184ad58dda10e2170a1eda |\n| 科技和财务司                 | 117355eea94c426199e2e519fd98ce07 |\n| 人事司                       | a341e8b7929e44769b9424b7cf69d32a |\n| 国际司                       | f784499ef24541f5b20de4c24cfc61e7 |\n| 机关党委                     | a49119c6f40045dd994f3910500cedfa |\n| 离退办                       | 6bf265ffd1c94fa4a3f1687b03fa908b |"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/wuhan/sy/whyw",
-    "route": {
-      "name": "武汉要闻",
-      "path": "/wuhan/sy/whyw",
-      "example": "/gov/wuhan/sy/whyw",
-      "parameters": {},
-      "description": ""
+      "description": "| 通知公告 |\n| :------: |\n|   tzgg   |"
     }
   }
 ]

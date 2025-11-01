@@ -1,5 +1,45 @@
 [
   {
+    "provider_id": "005",
+    "provider_name": "幻之羁绊动漫网",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "name": "资讯",
+      "url": "005.tv",
+      "example": "/005/zx",
+      "parameters": {
+        "category": "分类，可在对应分类页 URL 中找到，默认为二次元资讯"
+      },
+      "description": "\n| 二次元资讯 | 慢慢说 | 道听途说 | 展会资讯 |\n| ---------- | ------ | -------- | -------- |\n| zx         | zwh    | dtts     | zh       |\n    ",
+      "provider_id": "005",
+      "provider_name": "幻之羁绊动漫网",
+      "route_key": "/:category?"
+    }
+  },
+  {
+    "provider_id": "18comic",
+    "provider_name": "禁漫天堂",
+    "route_key": "/search/:option?/:category?/:keyword?/:time?/:order?",
+    "route": {
+      "path": "/search/:option?/:category?/:keyword?/:time?/:order?",
+      "example": "/18comic/search/photos/all/NTR",
+      "parameters": {
+        "option": "选项，可选 `video` 和 `photos`，默认为 `photos`",
+        "category": "分类，同上表，默认为 `all` 即全部",
+        "keyword": "关键字，同上表，默认为空",
+        "time": "时间范围，同上表，默认为 `a` 即全部",
+        "order": "排列顺序，同上表，默认为 `mr` 即最新"
+      },
+      "name": "搜索",
+      "url": "jmcomic.group/",
+      "description": "::: tip\n  关键字必须超过两个字，这是来自网站的限制。\n:::",
+      "provider_id": "18comic",
+      "provider_name": "禁漫天堂",
+      "route_key": "/search/:option?/:category?/:keyword?/:time?/:order?"
+    }
+  },
+  {
     "provider_id": "acfun",
     "provider_name": "AcFun",
     "route_key": "/article/:categoryId/:sortType?/:timeRange?",
@@ -90,81 +130,15 @@
     }
   },
   {
-    "provider_id": "anime1",
-    "provider_name": "Anime1",
-    "route_key": "search/:keyword",
-    "route": {
-      "path": "search/:keyword",
-      "name": "Search",
-      "url": "anime1.me",
-      "example": "/anime1/search/神之塔",
-      "parameters": {
-        "keyword": "Anime1 Search Keyword"
-      },
-      "provider_id": "anime1",
-      "provider_name": "Anime1",
-      "route_key": "search/:keyword"
-    }
-  },
-  {
-    "provider_id": "baozimh",
-    "provider_name": "包子漫画",
-    "route_key": "/comic/:name",
-    "route": {
-      "path": "/comic/:name",
-      "example": "/baozimh/comic/guowangpaiming-shiricaofu",
-      "parameters": {
-        "name": "漫画名称，在漫画链接可以得到(`comic/` 后的那段)"
-      },
-      "name": "订阅漫画",
-      "provider_id": "baozimh",
-      "provider_name": "包子漫画",
-      "route_key": "/comic/:name"
-    }
-  },
-  {
-    "provider_id": "gamer",
-    "provider_name": "巴哈姆特電玩資訊站",
-    "route_key": "/ani/anime/:sn",
-    "route": {
-      "path": "/ani/anime/:sn",
-      "view": 3,
-      "example": "/gamer/ani/anime/36868",
-      "parameters": {
-        "sn": "動畫 sn，在 URL 可以找到"
-      },
-      "name": "動畫瘋 - 動畫",
-      "provider_id": "gamer",
-      "provider_name": "巴哈姆特電玩資訊站",
-      "route_key": "/ani/anime/:sn"
-    }
-  },
-  {
-    "provider_id": "gamer",
-    "provider_name": "巴哈姆特電玩資訊站",
-    "route_key": "/ani/new_anime",
-    "route": {
-      "path": "/ani/new_anime",
-      "view": 3,
-      "example": "/gamer/ani/new_anime",
-      "parameters": {},
-      "name": "動畫瘋 - 最後更新",
-      "url": "ani.gamer.com.tw/",
-      "provider_id": "gamer",
-      "provider_name": "巴哈姆特電玩資訊站",
-      "route_key": "/ani/new_anime"
-    }
-  },
-  {
     "provider_id": "hpoi",
     "provider_name": "Hpoi 手办维基",
-    "route_key": "/items/character/:id/:order?",
+    "route_key": "/items/work/:id/:order?",
     "route": {
-      "path": "/items/character/:id/:order?",
+      "path": "/items/work/:id/:order?",
       "view": 2,
-      "example": "/hpoi/items/character/1035374",
+      "example": "/hpoi/items/work/4117491",
       "parameters": {
-        "id": "角色 ID",
+        "id": "作品 ID",
         "order": {
           "description": "排序",
           "options": [
@@ -196,61 +170,26 @@
           "default": "add"
         }
       },
-      "name": "角色周边",
+      "name": "作品周边",
       "provider_id": "hpoi",
       "provider_name": "Hpoi 手办维基",
-      "route_key": "/items/character/:id/:order?"
+      "route_key": "/items/work/:id/:order?"
     }
   },
   {
-    "provider_id": "qoo-app",
-    "provider_name": "QooApp",
-    "route_key": "/apps/:lang?/comment/:id",
+    "provider_id": "idolypride",
+    "provider_name": "IDOLY PRIDE 偶像荣耀",
+    "route_key": "/news",
     "route": {
-      "path": "/apps/:lang?/comment/:id",
-      "example": "/qoo-app/apps/en/comment/7675",
-      "parameters": {
-        "lang": "Language, see the table below, empty means `中文`",
-        "id": "Game ID, can be found in URL"
-      },
-      "name": "Game Store - Review",
-      "description": "| 中文 | English | 한국어 | Español | 日本語 | ไทย | Tiếng Việt |\n| ---- | ------- | ------ | ------- | ------ | --- | ---------- |\n|      | en      | ko     | es      | ja     | th  | vi         |",
-      "provider_id": "qoo-app",
-      "provider_name": "QooApp",
-      "route_key": "/apps/:lang?/comment/:id"
-    }
-  },
-  {
-    "provider_id": "skebetter",
-    "provider_name": "Skebetter",
-    "route_key": "/manga/:order",
-    "route": {
-      "path": "/manga/:order",
-      "example": "/skebetter/manga/1",
-      "parameters": {
-        "order": "Order, see below."
-      },
-      "name": "Manga",
-      "description": "\n| 新着 (Latest) | 人気 (Hot) |\n| ---- | ---- |\n| 1    | 2    |",
-      "provider_id": "skebetter",
-      "provider_name": "Skebetter",
-      "route_key": "/manga/:order"
-    }
-  },
-  {
-    "provider_id": "xmanhua",
-    "provider_name": "X 漫画",
-    "route_key": "/:uid",
-    "route": {
-      "path": "/:uid",
-      "example": "/xmanhua/73xm",
-      "parameters": {
-        "uid": "漫画 id,在浏览器中可见，例如鬼灭之刃对应的 id 为 `73xm`"
-      },
-      "name": "最新动态",
-      "provider_id": "xmanhua",
-      "provider_name": "X 漫画",
-      "route_key": "/:uid"
+      "path": "/news",
+      "view": 0,
+      "example": "/idolypride/news",
+      "parameters": {},
+      "name": "News",
+      "url": "idolypride.jp/news",
+      "provider_id": "idolypride",
+      "provider_name": "IDOLY PRIDE 偶像荣耀",
+      "route_key": "/news"
     }
   }
 ]

@@ -1,42 +1,46 @@
 [
   {
-    "provider_id": "163",
-    "provider_name": "网易公开课",
-    "route_key": "/music/playlist/:id",
+    "provider_id": "ajmide",
+    "provider_name": "阿基米德 FM",
+    "route_key": "/:id",
     "route": {
-      "name": "歌单歌曲",
-      "path": "/music/playlist/:id",
-      "example": "/163/music/playlist/35798529",
+      "name": "播客",
+      "path": "/:id",
+      "example": "/ajmide/10603594",
       "parameters": {
-        "id": "歌单 id, 可在歌单页 URL 中找到"
+        "id": "播客 id，可以从播客页面 URL 中找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "6v123",
-    "provider_name": "6v 电影",
-    "route_key": "/latestTVSeries",
+    "provider_id": "asmr-200",
+    "provider_name": "ASMR Online",
+    "route_key": "/works/:order?/:subtitle?/:sort?",
     "route": {
-      "name": "最新电视剧",
-      "path": "/latestTVSeries",
-      "example": "/6v123/latestTVSeries",
-      "parameters": {},
-      "description": ""
+      "name": "最新收录",
+      "path": "/works/:order?/:subtitle?/:sort?",
+      "example": "/asmr-200/works",
+      "parameters": {
+        "order": "排序字段，默认按照资源的收录日期来排序，详见下表",
+        "sort": "排序方式，可选 `asc` 和 `desc` ，默认倒序",
+        "subtitle": "筛选带字幕音频，可选 `0` 和 `1` ，默认关闭"
+      },
+      "description": "| 发售日期 | 收录日期 | 销量 | 价格 | 评价 | 随机 | RJ号 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| release | create_date | dl_count | price | rate_average_2dp | random | id |"
     }
   },
   {
-    "provider_id": "cntv",
-    "provider_name": "CNTV",
-    "route_key": "/:column",
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "栏目",
-      "path": "/:column",
-      "example": "/cntv/TOPC1451528971114112",
+      "name": "Search",
+      "path": "/search/:keyword",
+      "example": "/chikubi/search/ギャップ",
       "parameters": {
-        "column": "栏目ID, 可在对应CNTV栏目页面找到"
+        "keyword": "Keyword"
       },
-      "description": "::: tip\n栏目 ID 查找示例:\n打开栏目具体某一期页面，F12 控制台输入`column_id`得到栏目 ID。\n:::\n\n  栏目\n\n| 新闻联播             | 新闻周刊             | 天下足球             |\n| -------------------- | -------------------- | -------------------- |\n| TOPC1451528971114112 | TOPC1451559180488841 | TOPC1451551777876756 |"
+      "description": ""
     }
   },
   {
@@ -55,17 +59,15 @@
     }
   },
   {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/trending/:mediaType/:timeWindow/:lang?",
+    "provider_id": "xiaoyuzhou",
+    "provider_name": "小宇宙",
+    "route_key": "/podcast/:id",
     "route": {
-      "name": "Trending",
-      "path": "/trending/:mediaType/:timeWindow/:lang?",
-      "example": "/themoviedb/trending/tv/day/en-US",
+      "name": "播客",
+      "path": "/podcast/:id",
+      "example": "/xiaoyuzhou/podcast/6021f949a789fca4eff4492c",
       "parameters": {
-        "mediaType": "`movie` or `tv`",
-        "timeWindow": "`day` or `week`",
-        "lang": "Language"
+        "id": "播客 id 或单集 id，可以在小宇宙播客的 URL 中找到"
       },
       "description": ""
     }

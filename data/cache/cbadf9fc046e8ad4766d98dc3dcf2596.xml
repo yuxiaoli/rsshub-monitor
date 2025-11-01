@@ -1,4 +1,423 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>子方有料</title><link>https://www.ippa.top</link><atom:link href="http://rss.owo.nz/ippa" rel="self" type="application/rss+xml"></atom:link><description>子方有料 - 最新文章 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Tue, 01 Jul 2025 00:30:25 GMT</lastBuildDate><ttl>5</ttl><item><title>自建zerotier moon节点</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>子方有料</title><link>https://www.ippa.top</link><atom:link href="http://rss.wudifeixue.com/ippa" rel="self" type="application/rss+xml"></atom:link><description>子方有料 - 最新文章 - Made with love by RSSHub(https://github.com/DIYgod/RSSHub)</description><generator>RSSHub</generator><webMaster>i@diygod.me (DIYgod)</webMaster><language>en</language><lastBuildDate>Sat, 01 Nov 2025 00:26:33 GMT</lastBuildDate><ttl>5</ttl><item><title>Ubuntu22配置WireGuard客户端</title><description>&lt;h2&gt;安装&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo apt install wireguard -y
+&lt;/pre&gt;
+&lt;h2&gt;配置文件&lt;/h2&gt;
+&lt;p&gt;配置文件放到 /etc/wireguard/ 下，比如 /etc/wireguard/wg0.conf&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo nano /etc/wireguard/wg0.conf
+
+
+[Interface]
+PrivateKey = xx
+Address = 10.0.0.12/24
+
+[Peer]
+PublicKey = xx
+Endpoint = web.pp.com:10001
+AllowedIPs = 10.0.0.0/24, 172.16.31.64/26, 172.16.20.224/27
+PersistentKeepalive = 30
+
+#配置里写了 AllowedIPs = 0.0.0.0/0，那么所有流量都会走 wg0。如果只写了内网网段（比如 10.0.0.0/24），那么只有访问那个网段时才会走 WireGuard。
+&lt;/pre&gt;
+&lt;h2&gt;启停&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;启动连接
+sudo wg-quick up wg0
+
+断开连接
+sudo wg-quick down wg0
+
+开机自动启动
+sudo systemctl enable wg-quick@wg0
+&lt;/pre&gt;
+&lt;h2&gt;查看更多&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo wg show
+
+interface: wg0
+  public key: xx
+  private key: (hidden)
+  listening port: 36361
+
+peer: xx
+  endpoint: xxx:10001
+  allowed ips: 10.0.0.0/24, 172.16.31.64/26, 172.16.20.224/27
+  latest handshake: 33 seconds ago
+  transfer: 2.81 MiB received, 194.58 KiB sent
+  persistent keepalive: every 30 seconds
+
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1323.html</link><guid isPermaLink="false">https://www.ippa.top/1323.html</guid><pubDate>Sun, 17 Aug 2025 23:45:31 GMT</pubDate></item><item><title>Ubuntu22安装佳能打印机驱动</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;系统状态为net iso方式安装。本打印机是ts30100系列&lt;/p&gt;
+&lt;h2&gt;CUPS 服务&lt;/h2&gt;
+&lt;p&gt;安装CUPS 服务，方便脚本调用 lpadmin&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo apt update
+sudo apt install cups system-config-printer -y
+sudo systemctl enable cups
+sudo systemctl start cups
+systemctl status cups
+&lt;/pre&gt;
+&lt;h2&gt;解决依赖&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo apt update
+sudo apt install libcupsimage2
+
+sudo mkdir -p /usr/share/cups/model
+#Ubuntu 新版本里 CUPS 的 PPD 模型目录默认已经不存在了（Canonical 改成用 /usr/share/ppd 和 Snap 包的方式）。但是 Canon 的老驱动 install.sh 还是死板地往 /usr/share/cups/model/ 写东西，结果导致安装失败。&lt;/pre&gt;
+&lt;h2&gt;驱动安装&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;wget https://gdlp01.c-wss.com/gds/8/0100009108/01/cnijfilter2-5.50-1-deb.tar.gz
+tar -xvzf cnijfilter2-5.50-1-deb.tar.gz
+cd cnijfilter2-5.50-1-deb
+sudo ./install.sh
+#按提示添加打印机即可&lt;/pre&gt;
+&lt;h2&gt;管理&lt;/h2&gt;
+&lt;p&gt;Canon 的 cnijfilter2 驱动本身只提供 命令行工具 + PPD 驱动，没有 Windows 那种“维护工具箱”界面。确认上面的CUPS服务正常运行，打开浏览器http://localhost:631访问管理。或者使用简单的system-config-printer进行管理&lt;/p&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1322.html</link><guid isPermaLink="false">https://www.ippa.top/1322.html</guid><pubDate>Sat, 16 Aug 2025 23:15:08 GMT</pubDate></item><item><title>debian12安装微信踩坑</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;Debian12 netiso安装xfce。 不管是.AppImage还是.deb,Debian12安装后都无法正确启动，问题在于缺少依赖，而且不会提示安装。&lt;/p&gt;
+&lt;h2&gt;处理依赖&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo apt install libatomic1 fonts-noto-cjk
+&lt;/pre&gt;
+&lt;h2&gt;安装&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
+
+sudo apt install ./WeChatLinux_x86_64.deb
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1321.html</link><guid isPermaLink="false">https://www.ippa.top/1321.html</guid><pubDate>Fri, 15 Aug 2025 18:09:27 GMT</pubDate></item><item><title>又一重磅折腾，在PVE8中使用CT容器Debian安装comfyui绘画工具及NVIDIA Container Toolkit安装</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;折腾waydroid时，重装了comfyui所在的宿主机系统。想了一下，为了更方便的折腾，把这个电脑也做成了虚拟化平台！抄作业过程如遇到问题，自行补充。因子方放的内容，不包括之前错误的，可能有些看似错误的步骤，对本次成功安装是有帮助的。&lt;/p&gt;
+&lt;h2&gt;nvdia驱动卸载&lt;/h2&gt;
+&lt;p&gt;可能会一直搞坏驱动，更换版本之类的，放一些卸载的命令，结合着用吧。例如使用run文件安装的驱动，应该使用nvidia-uninstall命令，而非apt。此外说一点，之所以使用run文件安装，是因为apt 安装时，会触动pve的钩子文件，导致无法正常安装。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;nvidia-uninstall
+rm -rf /usr/local/cuda*
+rm -rf /etc/modprobe.d/nvidia*
+rm -rf /var/lib/nvidia
+rm -rf /usr/share/nvidia
+rm -rf /usr/bin/nvidia*
+rm -rf /usr/lib/x86_64-linux-gnu/nvidia
+
+sudo nvidia-uninstall
+sudo apt purge &#39;nvidia-*&#39; -y
+sudo rm -rf /usr/local/cuda*
+sudo rm -f /usr/lib/x86_64-linux-gnu/libcuda*
+sudo rm -f /usr/lib/x86_64-linux-gnu/libnvidia*
+sudo rm -rf /etc/modprobe.d/nvidia*
+sudo rm -rf /lib/modules/$(uname -r)/kernel/drivers/video/nvidia*
+&lt;/pre&gt;
+&lt;h2&gt;自动配置&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt install pve-nvidia-vgpu-helper
+pve-nvidia-vgpu-helper setup
+&lt;/pre&gt;
+&lt;p&gt;pve-nvidia-vgpu-helper工具将设置一些基本功能，例如将nouveau驱动程序列入黑名单、安装头文件包、DKMS 等等。&lt;/p&gt;
+&lt;h2&gt;确认一些信息&lt;/h2&gt;
+&lt;p&gt;如果没有安装驱动，下面只有一个crad和render。要记住哪个没有，安装驱动后出现的，那个就是nvdia的显卡，后面我们要绑定到lxc里面的。（当然没记住，后面再找就麻烦一点，这个是比较简单的办法）。我一开始就是没绑定card和render，无法进行计算。&lt;br&gt;
+另外补充一点，宿主机重新开机，启动CT提示/dev/nvidia-uvm没有挂载的，可以在宿主机允许nvidia-smi，再开启CT&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@mini:~# ls -l /dev/dri
+total 0
+drwxr-xr-x 2 root root        120 Jul 31 14:16 by-path
+crw-rw---- 1 root video  226,   0 Jul 31 14:16 card0
+crw-rw---- 1 root video  226,   1 Jul 31 14:16 card1
+crw-rw---- 1 root render 226, 128 Jul 31 14:16 renderD128
+crw-rw---- 1 root render 226, 129 Jul 31 14:16 renderD129
+
+&lt;/pre&gt;
+&lt;h2&gt;驱动下载&lt;/h2&gt;
+&lt;p&gt;指引页面：https://www.nvidia.com/en-us/drivers/unix/&lt;br&gt;
+全部驱动：https://download.nvidia.com/XFree86/Linux-x86_64/&lt;/p&gt;
+&lt;h2&gt;宿主机安装驱动&lt;/h2&gt;
+&lt;h3&gt;安装&lt;/h3&gt;
+&lt;p&gt;考虑到显卡老爷爷，选择535&lt;br&gt;
+wget &lt;a href=&quot;https://download.nvidia.com/XFree86/Linux-x86_64/535.261.03/NVIDIA-Linux-x86_64-535.261.03.run&quot; rel=&quot;nofollow&quot;&gt;https://download.nvidia.com/XFree86/Linux-x86_64/535.261.03/NVIDIA-Linux-x86_64-535.261.03.run&lt;/a&gt;&lt;br&gt;
+sh NVIDIA-Linux-x86_64-535.261.03.run&lt;/p&gt;
+&lt;h3&gt;验证1，确认驱动被正确识别&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@mini:~# nvidia-smi
+Thu Jul 31 11:02:15 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.261.03             Driver Version: 535.261.03   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA P104-100                Off | 00000000:01:00.0 Off |                  N/A |
+| 63%   42C    P0              42W / 180W |      0MiB /  8192MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+&lt;/pre&gt;
+&lt;h3&gt;验证2，找到需要绑定的设备&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@mini:~# ls -al /dev/nvidia*
+crw-rw-rw- 1 root root 195, 0 Jul 31 10:24 /dev/nvidia0
+crw-rw-rw- 1 root root 195, 255 Jul 31 10:24 /dev/nvidiactl
+crw-rw-rw- 1 root root 510, 0 Jul 31 10:57 /dev/nvidia-uvm
+crw-rw-rw- 1 root root 510, 1 Jul 31 10:57 /dev/nvidia-uvm-tools
+
+/dev/nvidia-caps:
+total 0
+drwxr-xr-x 2 root root 80 Jul 31 10:57 .
+drwxr-xr-x 19 root root 4280 Jul 31 11:02 ..
+cr-------- 1 root root 235, 1 Jul 31 10:57 nvidia-cap1
+cr--r--r-- 1 root root 235, 2 Jul 31 10:57 nvidia-cap2
+&lt;/pre&gt;
+&lt;p&gt;# 如果是桌面环境，上面还应该显示/dev/nvidia-modeset&lt;/p&gt;
+&lt;h2&gt;设备绑定&lt;/h2&gt;
+&lt;p&gt;在对应lxc.conf中添加以下内容，或者在web界面绑定&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;dev0: /dev/nvidia0
+dev1: /dev/nvidiactl
+dev2: /dev/nvidia-uvm
+dev3: /dev/nvidia-uvm-tools
+dev4: /dev/nvidia-caps/nvidia-cap1
+dev5: /dev/nvidia-caps/nvidia-cap2
+dev6: /dev/dri/card0,gid=44
+dev7: /dev/dri/renderD129,gid=104
+&lt;/pre&gt;
+&lt;h2&gt;推送到CT容器安装&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;pct push 100 NVIDIA-Linux-x86_64-535.261.03.run /root/NVIDIA-Linux-x86_64-535.261.03.run
+sh NVIDIA-Linux-x86_64-535.261.03.run --no-kernel-modules
+&lt;/pre&gt;
+&lt;p&gt;# LXC 容器共享宿主机的内核，所以安装时需要指定 –no-kernel-module 参数，避免安装内核模块&lt;/p&gt;
+&lt;h3&gt;容器验证1，确认驱动正常识别&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@Comfy:~# nvidia-smi
+Thu Jul 31 11:13:16 2025
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.261.03 Driver Version: 535.261.03 CUDA Version: 12.2 |
+|-----------------------------------------+----------------------+----------------------+
+| GPU Name Persistence-M | Bus-Id Disp.A | Volatile Uncorr. ECC |
+| Fan Temp Perf Pwr:Usage/Cap | Memory-Usage | GPU-Util Compute M. |
+| | | MIG M. |
+|=========================================+======================+======================|
+| 0 NVIDIA P104-100 Off | 00000000:01:00.0 Off | N/A |
+| 64% 42C P0 39W / 180W | 0MiB / 8192MiB | 0% Default |
+| | | N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes: |
+| GPU GI CI PID Type Process name GPU Memory |
+| ID ID Usage |
+|=======================================================================================|
+| No running processes found |
++---------------------------------------------------------------------------------------+
+&lt;/pre&gt;
+&lt;h3&gt;容器验证2，绑定状态是否一致&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;root@Comfy:~# ls -al /dev/nvidia*
+crw-rw---- 1 root root 509,   0 Jul 31 10:36 /dev/nvidia-uvm
+crw-rw---- 1 root root 509,   1 Jul 31 10:36 /dev/nvidia-uvm-tools
+crw-rw-rw- 1 root root 195,   0 Jul 31 10:36 /dev/nvidia0
+crw-rw-rw- 1 root root 195, 255 Jul 31 10:36 /dev/nvidiactl
+
+/dev/nvidia-caps:
+total 0
+drwxr-xr-x 2 root root     80 Jul 31 10:36 .
+drwxr-xr-x 7 root root    580 Jul 31 10:36 ..
+crw-rw---- 1 root root 234, 1 Jul 31 10:36 nvidia-cap1
+crw-rw---- 1 root root 234, 2 Jul 31 10:36 nvidia-cap2
+&lt;/pre&gt;
+&lt;h2&gt;常规安装操作&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt install sudo git
+sudo usermod -aG sudo l
+apt install python3-venv python3-full -y
+
+# 验证下版本，等下要使用对应的wheel文件。详情看之前的文章
+l@Comfy:~$ python3 --version
+Python 3.11.2
+
+&lt;/pre&gt;
+&lt;h3&gt;准备虚拟环境&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;python3 -m venv ~/comfyui-env
+source ~/comfyui-env/bin/activate
+pip install --upgrade pip
+pip config set global.index-url https://mirrors.cernet.edu.cn/pypi/web/simple
+&lt;/pre&gt;
+&lt;h3&gt;手动安装准备的文件&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;pip install /home/l/torch-2.6.0+cu118-cp311-cp311-linux_x86_64.whl
+pip install /home/l/torchaudio-2.6.0+cu118-cp311-cp311-linux_x86_64.whl
+pip install /home/l/torchvision-0.21.0+cu118-cp311-cp311-linux_x86_64.whl
+
+&lt;/pre&gt;
+&lt;h3&gt;下载对应源码&lt;/h3&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;git clone --depth=1 https://github.com/comfyanonymous/ComfyUI
+cd /home/l/ComfyUI/
+pip install -r requirements.txt
+
+??完工！！
+python main.py --listen 0.0.0.0
+
+??一键进入命令
+source ~/comfyui-env/bin/activate &amp;amp;&amp;amp; cd ComfyUI &amp;amp;&amp;amp; python main.py --listen 0.0.0.0
+&lt;/pre&gt;
+&lt;h2&gt;NVIDIA Container Toolkit&lt;/h2&gt;
+&lt;p&gt;本来以为要成功了，结果跑图就崩溃了。又继续研究了一番，主要是添加了NVIDIA Container Toolkit。先放官方链接指引：https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt install gpg curl
+
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+&amp;amp;&amp;amp; curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+sed &#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39; | \
+sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+sudo apt-get update
+
+export NVIDIA_CONTAINER_TOOLKIT_VERSION=1.17.8-1
+sudo apt-get install -y \
+nvidia-container-toolkit=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
+nvidia-container-toolkit-base=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
+libnvidia-container-tools=${NVIDIA_CONTAINER_TOOLKIT_VERSION} \
+libnvidia-container1=${NVIDIA_CONTAINER_TOOLKIT_VERSION}
+&lt;/pre&gt;
+&lt;p&gt;再次运行，正常了！&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1319.html</link><guid isPermaLink="false">https://www.ippa.top/1319.html</guid><pubDate>Fri, 08 Aug 2025 20:46:22 GMT</pubDate></item><item><title>佳能打印机LCD屏幕维护代码</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;佳能部分打印机带有LCD屏幕，可以通过操作面板访问几种维护功能。要访问这些功能，请按设置按钮，直到出现所需的数字出现在LCD上，然后按黑色或彩色按钮。这样方便在没有安装驱动等情况下调试&lt;/p&gt;
+&lt;h2&gt;快速版&lt;/h2&gt;
+&lt;p&gt;这是子方有料从国外G2270找到资料，来源于官网数据。基本可以参考&lt;/p&gt;
+&lt;p&gt;代码&amp;nbsp; &amp;nbsp; &amp;nbsp; 设置&lt;br&gt;
+1&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;喷嘴检查&lt;br&gt;
+2&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;清洁&lt;br&gt;
+3&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;深度清洁&lt;br&gt;
+4&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;打印/扫描打印头对齐表&lt;br&gt;
+5&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;扫描打印头对齐表&lt;br&gt;
+6&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;打印头对齐值&lt;br&gt;
+7&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;滚筒清洁&lt;br&gt;
+8&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;底板清洁&lt;br&gt;
+9&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;更换打印头中的墨水&lt;br&gt;
+10&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;墨水液位通知功能&lt;br&gt;
+11&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;静音设置&lt;br&gt;
+12&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;改善纸张摩擦&lt;br&gt;
+13&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;自动关机设置&lt;br&gt;
+14&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;自动开机设置&lt;br&gt;
+15&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;检测纸张设置不匹配&lt;br&gt;
+16&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;打印使用统计信息&lt;br&gt;
+17&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;重置所有设置&lt;/p&gt;
+&lt;h2&gt;详细版&lt;/h2&gt;
+&lt;p&gt;这是我从TS3100系列全英说明书找到的资料，里面未提及全部的资料&lt;/p&gt;
+&lt;h3&gt;1&amp;nbsp; 打印喷嘴检查图案&lt;/h3&gt;
+&lt;p&gt;打印喷嘴检查图案以确定墨水是否从打印头喷嘴正常排出。&lt;br&gt;
+你需要准备:一张A4或Letter尺寸的普通纸。&lt;br&gt;
+在将纸张装入后部托盘后，纸张状态和当前纸张尺寸会在LCD上闪烁。按“纸张选择”按钮以选择“A4”或“LTR”，然后按“确定”按钮。按下设置按钮，直到LCD上显示“1”,按下黑色按钮或彩色按钮。喷嘴检查图案将被打印。&lt;/p&gt;
+&lt;h3&gt;2&amp;nbsp; 清洁打印头&lt;/h3&gt;
+&lt;p&gt;如果打印中出现线条缺失或横向白色条纹，应清洁打印头。清洁操作可以疏通喷嘴并恢复打印头的良好状态。清洁打印头会消耗墨水，因此仅在必要时才进行清洁操作。&lt;br&gt;
+按下设置按钮，直到LCD上显示“2”按下黑色按钮或彩色按钮。打印机开始清洁打印头。清洁将在ON灯闪烁后亮起时完成。&lt;/p&gt;
+&lt;h3&gt;3&amp;nbsp; 深度打印头清洁&lt;/h3&gt;
+&lt;p&gt;如果通过标准的打印头清洁操作后打印质量未见改善，请深度清洁打印头。深度清洁打印头所消耗的墨水比标准的打印头清洁操作更多，因此只有在必要时才进行深度清洁。&lt;br&gt;
+按下设置按钮，直到LCD上显示“3”,按下黑色按钮或彩色按钮。打印机开始深度清洁打印头。当ON灯闪烁后亮起时，清洁将完成。&lt;/p&gt;
+&lt;h3&gt;4&amp;nbsp; 对齐打印头&lt;/h3&gt;
+&lt;p&gt;如果打印的线条对齐错误或打印结果不满意，请调整打印头位置。&lt;br&gt;
+在将纸张装入后部托盘后，纸张状态和当前纸张尺寸会在LCD上闪烁。按“纸张选择”按钮以选择“A4”或“LTR”。按下设置按钮，直到LCD上显示“4”,按下黑色按钮或彩色按钮,打印喷头对齐纸张。&lt;/p&gt;
+&lt;h3&gt;5 未找到&lt;/h3&gt;
+&lt;p&gt;未找到该值，参考上方快速版情况。&lt;/p&gt;
+&lt;h3&gt;6&amp;nbsp; 调整打印头位置&lt;/h3&gt;
+&lt;p&gt;如果在按照上述方法调整打印头位置后打印结果仍不满意，则应从计算机手动调整打印头位置。&lt;br&gt;
+对于Windows:调整打印头位置&lt;br&gt;
+对于Mac os:调整打印头位置要打印并检查当前头位置调整值，请按下设置按钮，直到LCD上显示“6”，然后按下黑色按钮或彩色按钮。&lt;/p&gt;
+&lt;h3&gt;7&amp;nbsp; 清洁进纸滚轴&lt;/h3&gt;
+&lt;p&gt;如果进纸滚轴脏污或沾有纸屑，则可能不会正确送入纸张。 在这种情况下，清洁进纸滚轴。需要准备：一张A4或Letter尺寸的普通纸或者市场上出售的清洁纸&lt;br&gt;
+从后端托盘取出所有纸张。清洁没有纸张的进纸滚轴。按设置按钮，直到LCD屏幕上出现7。按黑白按钮或彩色按钮。无纸清洁时，进纸滚轴会转动。&lt;br&gt;
+清洁带有纸张的进纸滚轴。确保进纸滚轴已停止转动，然后在后端托盘中装入一张A4或Letter尺寸的普通纸或市场上出售的清洁纸。装入普通纸/照片纸，按黑白按钮或彩色按钮。打印机开始清洁。 纸张弹出时，清洁完成。&lt;br&gt;
+按停止按钮。&lt;/p&gt;
+&lt;h3&gt;8&amp;nbsp; 清洁打印机内部(底板清洁)&lt;/h3&gt;
+&lt;p&gt;清除打印机内部的污渍。如果打印机内部变得脏污，打印的纸张也可能沾上污渍，因此我们建议定期进行清洁。&lt;br&gt;
+你需要准备:一张A4或Letter尺寸的普通纸请务必使用新的纸张。&lt;br&gt;
+将一张A4或Letter尺寸的普通纸对折，然后展开。只将这一张纸放入后托盘，使开口面朝向自己。按下设置按钮，直到LCD上显示“8”。按下黑色按钮或彩色按钮。纸张在通过打印机时会清洁打印机内部。检查弹出纸张的折叠部分。如果它们被墨水弄脏，请进行底板清洁。&lt;/p&gt;
+&lt;h3&gt;9&amp;nbsp; 立刻从Google Cloud Print进行打印&lt;/h3&gt;
+&lt;p&gt;当打印机无法接收打印数据，或要立即开始打印时，检查Google Cloud Print上是否有打印作业，并手动开始打印。&lt;br&gt;
+按设置按钮直到LCD屏幕上出现“9”。按彩色按钮执行彩色打印，或黑白按钮执行黑白打印。如果有打印数据，则打印机接收打印数据并进行打印。如果没有打印数据，LCD屏幕上显示“0”并且打印机返回至待机状态。&lt;/p&gt;
+&lt;h3&gt;10未找到&lt;/h3&gt;
+&lt;p&gt;未找到该值，参考上方快速版情况。&lt;/p&gt;
+&lt;h3&gt;11&amp;nbsp; 恢复至出厂默认值&lt;/h3&gt;
+&lt;p&gt;初始化会删除打印机上的所有网络设置，导致无法通过网络从计算机进行打印或扫描操作。 要在恢复至出厂默认值后再次通过网络使用打印机，请使用安装光盘或从网页重新执行设置。&lt;br&gt;
+按设置按钮直至LCD屏幕上出现“11”，然后按黑白按钮或彩色按钮。&lt;br&gt;
+网络设置已初始化。&lt;/p&gt;
+&lt;h3&gt;12&amp;nbsp; 静音设置&lt;/h3&gt;
+&lt;p&gt;按设置按钮，直到LCD屏幕上出现12。按彩色按钮，降低工作噪音，例如在夜间打印。要禁用该功能，按黑白按钮。&lt;br&gt;
+与未选择静音模式时相比，操作速度可能有所降低。&lt;/p&gt;
+&lt;h3&gt;13&amp;nbsp; 自动关闭打印机&lt;/h3&gt;
+&lt;p&gt;还可以使打印机在指定时间内未执行任何操作或无打印数据发送到打印机时自动关闭。按设置按钮直到LCD屏幕上出现“13”。按彩色按钮。要禁用该功能，按黑白按钮。&lt;/p&gt;
+&lt;h3&gt;14&amp;nbsp; 自动开启打印机&lt;/h3&gt;
+&lt;p&gt;从计算机执行打印或扫描操作时，可以使打印机自动开启。按设置按钮直到LCD屏幕上出现“14”。按彩色按钮,自动开启打印机。要禁用该功能，按黑白按钮。&lt;/p&gt;
+&lt;h3&gt;15&amp;nbsp; 显示防止误打印的错误代码的默认设置&lt;/h3&gt;
+&lt;p&gt;从兼容PictBridge(无线LAN)的设备、智能手机或平板电脑打印时：默认启用防止误打印的错误代码。&lt;br&gt;
+要更改显示设置：按设置按钮直到LCD屏幕上出现“15”。按彩色按钮启用错误代码显示，或按黑白按钮禁用错误代码显示。&lt;/p&gt;
+&lt;p&gt;禁用防止误打印的错误代码时：即使用于打印的纸张尺寸设置与为打印机设置的纸张尺寸设置不同，打印机也会开始打印。&lt;/p&gt;
+&lt;h3&gt;16&amp;nbsp; 未找到&lt;/h3&gt;
+&lt;p&gt;未找到该值，参考上方快速版情况。&lt;/p&gt;
+&lt;h3&gt;17&amp;nbsp; 初始化打印机设置&lt;/h3&gt;
+&lt;p&gt;在维修、借用或处理打印机时如果您在打印机上输入了个人数据、密码和其他安全设置，这些信息可能会存储在打印机中。&lt;br&gt;
+在将打印机送修、借予他人或转让给其他人，或处理打印机时，请务必按照以下步骤操作，以删除此类信息并防止第三方访问。&lt;br&gt;
+可以初始化打印机设置。当通过无线LAN使用打印机时，请注意，初始化会删除打印机上的所有网络设置，并可能无法通过网络从计算机进行打印操作。 要通过网络使用打印机，请使用安装光盘执行设置或按照我们网站上的说明进行设置。&lt;/p&gt;
+&lt;p&gt;按设置按钮直到LCD屏幕上出现“17”。按彩色按钮或黑白按钮。所有打印机设置已初始化。 远程用户界面或IJ Network Device Setup Utility指定的管理员密码恢复为默认设置。重置后，根据需要重新执行设置。&lt;/p&gt;
+&lt;p&gt;无法将以下设置项目恢复为默认值：打印头的当前位置；用于加密方法(SSL/TLS)设置的CSR(证书签名请求)&lt;/p&gt;
+&lt;h3&gt;补充：转换/禁用无线连接功能&lt;/h3&gt;
+&lt;p&gt;按网络按钮。确保LCD屏幕上的图标消失。&lt;/p&gt;
+</description><link>https://www.ippa.top/1318.html</link><guid isPermaLink="false">https://www.ippa.top/1318.html</guid><pubDate>Thu, 07 Aug 2025 19:58:19 GMT</pubDate></item><item><title>在Debian/Ubuntu安装谷歌浏览器</title><description>&lt;pre class=&quot;prettyprint linenums&quot;&gt;wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1317.html</link><guid isPermaLink="false">https://www.ippa.top/1317.html</guid><pubDate>Sun, 03 Aug 2025 17:05:42 GMT</pubDate></item><item><title>alpine3.21安装zerotier</title><description>&lt;p&gt;前言&lt;/p&gt;
+&lt;p&gt;zerotier并不存在于alpine3.21的软件仓库中，在3.17中可以找到。虽然官方是建议debian等，但总有自身的情况，例如小vps的内存只有128mb，对于单一的运行任务需求，那么alpine还是一优势的。&lt;/p&gt;
+&lt;p&gt;操作过程&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;nano /etc/apk/repositories
+#添加老仓库地址
+https://dl-cdn.alpinelinux.org/alpine/v3.17/main
+https://dl-cdn.alpinelinux.org/alpine/v3.17/community
+
+
+apk update
+apk add zerotier-one
+service zerotier-one start
+rc-update add zerotier-one
+
+&lt;/pre&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1313.html</link><guid isPermaLink="false">https://www.ippa.top/1313.html</guid><pubDate>Sat, 12 Jul 2025 21:46:49 GMT</pubDate></item><item><title>alpine系统升级，以3.17升级3.21为例</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;由于一键DD脚本不包含我需要的系统版本号，而某个软件又存在某个高版本号的仓库中。&lt;/p&gt;
+&lt;h2&gt;操作&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;#先查看当前版本，假设3.17
+cat /etc/alpine-release
+
+nano /etc/apk/repositories
+
+https://dl-cdn.alpinelinux.org/alpine/v3.17/main
+https://dl-cdn.alpinelinux.org/alpine/v3.17/community
+
+#调整为需要更新的版本，例如升级到3.21
+http://dl-cdn.alpinelinux.org/alpine/v3.21/main
+http://dl-cdn.alpinelinux.org/alpine/v3.21/community
+
+apk update
+apk add --upgrade apk-tools
+apk upgrade --available
+sync
+reboot
+
+#再次验证升级后的系统版本号
+cat /etc/alpine-release
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1312.html</link><guid isPermaLink="false">https://www.ippa.top/1312.html</guid><pubDate>Fri, 11 Jul 2025 21:46:23 GMT</pubDate></item><item><title>为特殊端口的服务器配置letsencrypt SSL证书，以alpine+cloudflare为例</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;在 DNS-01 验证挑战中，验证过程不依赖于服务器的 IP 地址，而是依赖于你在 DNS 服务器 中配置 TXT 记录 来完成验证。因此，你可以在一台服务器（比如服务器 B）上进行 DNS-01 验证，即使你的域名 指向 另一台服务器（服务器 A）。&lt;/p&gt;
+&lt;p&gt;怎么说呢，这个大法好！！&lt;/p&gt;
+&lt;h2&gt;安装 Certbot 和 Cloudflare 插件&lt;/h2&gt;
+&lt;p&gt;apk add certbot certbot-dns-cloudflare&lt;/p&gt;
+&lt;h2&gt;获取 Cloudflare API 密钥&lt;/h2&gt;
+&lt;p&gt;进入 API Tokens 页面：API Tokens。创建一个自定义 API 密钥，选择 Zone.DNS 权限，确保它能管理你需要验证的域名的 DNS 记录。记录下 API Key&lt;/p&gt;
+&lt;h2&gt;配置认证文件&lt;/h2&gt;
+&lt;p&gt;nano /etc/letsencrypt/cloudflare.ini&lt;/p&gt;
+&lt;p&gt;# Cloudflare API credentials for Certbot DNS plugin&lt;br&gt;
+dns_cloudflare_api_token = WNXXXXX&lt;/p&gt;
+&lt;p&gt;chmod 600 /etc/letsencrypt/cloudflare.ini&lt;/p&gt;
+&lt;h2&gt;使用 DNS-01 验证请求证书&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;certbot certonly \
+  --dns-cloudflare \
+  --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini \
+  -d frgu.lier.top \
+  -d frgub.lier.top
+&lt;/pre&gt;
+&lt;p&gt;如果有异常，可以尝试调整验证时长为30秒&lt;/p&gt;
+&lt;h2&gt;自动续期配置&lt;/h2&gt;
+&lt;pre class=&quot;prettyprint linenums&quot;&gt;crontab -e
+0 3 * * * certbot renew -quiet
+certbot renew --dry-run #验证模拟
+&lt;/pre&gt;
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1307.html</link><guid isPermaLink="false">https://www.ippa.top/1307.html</guid><pubDate>Tue, 01 Jul 2025 20:57:45 GMT</pubDate></item><item><title>自建zerotier moon节点</title><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;考虑到有时直连效果实在太差，想试试自己的服务器。不过绕国外一圈，效果和直连没什么区别。当然也看你的线路。这次失败还有一个原因是这台是nat vps，端口连接未能期望中的情况。但自建moon的方法是正确的。&lt;/p&gt;
 &lt;h2&gt;导出节点信息&lt;/h2&gt;
 &lt;pre class=&quot;prettyprint linenums&quot;&gt;zerotier-idtool initmoon /var/lib/zerotier-one/identity.public &amp;gt; moon.json
@@ -59,485 +478,4 @@ cafe80ed74 - PLANET 165 DIRECT 2994 2832 185.152.67.145/9993
 cafefd6717 - PLANET 206 DIRECT 7994 67792 2a02:6ea0:d368::9993/9993
 cf62d2778a 1.6.5 LEAF 252 DIRECT 32883 32631 2a01:4f9:4a:1d8e:ec::2865/51331
 &lt;/pre&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1306.html</link><guid isPermaLink="false">https://www.ippa.top/1306.html</guid><pubDate>Fri, 27 Jun 2025 18:26:52 GMT</pubDate></item><item><title>alpine3.21上安装frp</title><description>&lt;h2&gt;前言&lt;/h2&gt;
-&lt;p&gt;由于跨运营商、网络类型从全锥降级很久了，导致zerotier udp丢包异常明显，基本已经无法实现正常连接。尝试了国外服务器做moon节点，效果也一般，因此又折腾起多年前玩过的frp。&lt;/p&gt;
-&lt;p&gt;经过测试，使用xtcp的穿透效果要比zerotier直连更好一些。其中的原因，我猜测可能是zerotier采取的是虚拟网卡，这里面就有损耗，加上其它传输形式可能也有区别。但zerotier的传输应该是更安全一点。&lt;/p&gt;
-&lt;h2&gt;服务端安装&lt;/h2&gt;
-&lt;p&gt;# 基础包&lt;br&gt;
-apk update &amp;amp;&amp;amp; apk add curl tar bash tzdata nano&lt;/p&gt;
-&lt;p&gt;# 安装 frps&lt;br&gt;
-curl -LO &lt;a href=&quot;https://github.com/fatedier/frp/releases/download/v0.63.0/frp_0.63.0_linux_arm64.tar.gz&quot; rel=&quot;nofollow&quot;&gt;https://github.com/fatedier/frp/releases/download/v0.63.0/frp_0.63.0_linux_arm64.tar.gz&lt;/a&gt;&lt;br&gt;
-tar -xzf frp_0.63.0_linux_arm64.tar.gz &amp;amp;&amp;amp; mv frp_0.63.0_linux_arm64/frps /usr/local/bin/&lt;/p&gt;
-&lt;p&gt;–当然你也可以直接使用apk add frp。另外注意你的服务器架构。&lt;/p&gt;
-&lt;h2&gt;服务器配置&lt;/h2&gt;
-&lt;p&gt;# FRPS 配置文件&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;mkdir /etc/frp/ &amp;amp;&amp;amp; nano /etc/frp/frps.toml
-
-bindPort = 20104
-auth.token = &quot;abcz1iAOq0PtPQFfdffsdfas&quot;
-
-#下面的不是必要的，有上面两行其实足以
-webServer.addr = &quot;0.0.0.0&quot;
-webServer.port = 20105
-webServer.user = &quot;l&quot;
-webServer.password = &quot;lzf&quot;
-log.to = &quot;/var/log/frps.log&quot;
-log.level = &quot;info&quot;
-log.maxDays = 3
-&lt;/pre&gt;
-&lt;p&gt;# 开机自启。如果你是apk add安装的，下面的脚本已经默认存在。&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;nano /etc/init.d/frps
-
-
-#!/sbin/openrc-run
-
-name=frps
-description=&quot;frp server&quot;
-command=&quot;/usr/bin/$name&quot;
-supervisor=supervise-daemon
-
-: ${cfgfile:=/etc/frp/$RC_SVCNAME.toml}
-command_args=&quot;-c $cfgfile&quot;
-pidfile=&quot;/run/$RC_SVCNAME.pid&quot;
-
-: ${respawn_delay:=5}
-: ${respawn_max:=0}
-
-depend() {
-need net
-after firewall
-}
-
-
-chmod +x /etc/init.d/frps
-rc-update add frps
-rc-service frps start
-&lt;/pre&gt;
-&lt;h2&gt;客户端安装&lt;/h2&gt;
-&lt;p&gt;下载就完事了，注意Windows会报毒，关掉杀毒软件，并把软件设置为白名单。&lt;/p&gt;
-&lt;h2&gt;客户端配置&lt;/h2&gt;
-&lt;p&gt;找到frpc.toml，我们主打一个直连，fallback也不写了，目前看还行。注意xtcp，需要在受控、被控都需要安装frpc。如果是tcp，只需要指向被控端即可。（或者你也可以理解为，找到一个局域网内的设备作为frpc即可，然后通过这个转发访问任意内网设备）。&lt;/p&gt;
-&lt;p&gt;# 发起控制端配置&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;serverAddr = &quot;1.18.36.225&quot;
-serverPort = 20104
-auth.token = &quot;abcz1iAOq0PtPQFfdffsdfas&quot;
-# 如果默认的 STUN 服务器不可用，可以配置一个新的 STUN 服务器
-# natHoleStunServer = &quot;xxx&quot;
-
-[[visitors]]
-name = &quot;win7rdp_p2p&quot;
-type = &quot;xtcp&quot;
-# 要访问的 P2P 代理的名称
-serverName = &quot;win7rdp&quot;
-secretKey = &quot;PmUhv#zQ!xRKNDV!2*gNvLguq&quot;
-# 绑定本地端口以访问 SSH 服务
-bindAddr = &quot;127.0.0.1&quot;
-bindPort = 3390
-# 如果需要自动保持隧道打开，将其设置为 true
-# keepTunnelOpen = false
-&lt;/pre&gt;
-&lt;p&gt;# 被控端/统一代理端配置&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;serverAddr = &quot;1.18.36.225&quot; 
-serverPort = 20104
-auth.token = &quot;abcz1iAOq0PtPQFfdffsdfas&quot;
-# 如果默认的 STUN 服务器不可用，可以配置一个新的 STUN 服务器
-# natHoleStunServer = &quot;xxx&quot;
-
-[[proxies]]
-name = &quot;win7rdp&quot;
-type = &quot;xtcp&quot;
-# 只有共享密钥 (secretKey) 与服务器端一致的用户才能访问该服务
-secretKey = &quot;PmUhv#zQ!xRKNDV!2*gNvLguq&quot;
-localIP = &quot;127.0.0.1&quot;
-localPort = 3389
-
-#这里的IP和端口可以调整，就可以实现对多个设备的访问&lt;/pre&gt;
-&lt;p&gt;# 自动脚本bat&lt;br&gt;
-考虑到传输不是加密的，就不做成开机启动/服务方式运行了。有需要就执行脚本打开frpc&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;@echo off
-cd /d &quot;D:\Program Files\frp_0.63.0_windows_amd64&quot;
-start &quot;&quot; frpc.exe -c frpc.toml
-&lt;/pre&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1305.html</link><guid isPermaLink="false">https://www.ippa.top/1305.html</guid><pubDate>Thu, 26 Jun 2025 18:24:32 GMT</pubDate></item><item><title>安卓手机：私有局域网转发敏感数据，无惧大内网鸡</title><description>&lt;h2&gt;前言&lt;/h2&gt;
-&lt;p&gt;没有V6，也没有V4。通过zerotier可以搞定一个V4。&lt;/p&gt;
-&lt;p&gt;对于电脑来说没问题，1+1的方法，可以正常使用。但对于安卓就麻烦了，因为安卓只支持开一个代理app&lt;/p&gt;
-&lt;p&gt;✈️ 手机在外 → 启用 ZeroTier → 加入家中 SD-WAN → 使用家中 V2 代理 → 达到访问&lt;/p&gt;
-&lt;p&gt;✅ 已知前提：&lt;/p&gt;
-&lt;p&gt;✅ 手机不能同时运行 ZeroTier 和 V2（安卓 VPN 冲突）&lt;/p&gt;
-&lt;p&gt;✅ 已让 v2 开启局域网监听，手机可以设代理访问&lt;/p&gt;
-&lt;p&gt;✅ 家中网络设备一直在线，作为中转点&lt;/p&gt;
-&lt;p&gt;流量路径：[手机] → [ZeroTier 虚拟局域网 IP] → [家庭电脑等 v2 HTTP代理] → [外网]&lt;/p&gt;
-&lt;p&gt;只需要在手机上设置“手动代理”或“PAC”，指向家庭电脑的 ZeroTier IP，就可以在任何地方远程！&lt;/p&gt;
-&lt;h2&gt;方案的局限性&lt;/h2&gt;
-&lt;p&gt;1、必须需要连接WiFi，不支持手机移动数据&lt;/p&gt;
-&lt;p&gt;2、分流取决于你的服务端，例如openwrt目前不可以分流节点，等于全局出去&lt;/p&gt;
-&lt;h2&gt;搭建服务端&lt;/h2&gt;
-&lt;p&gt;1、可以使用V2N，开启http访问&lt;/p&gt;
-&lt;p&gt;2、或可以使用openwrt，在对应的V2中，开启http代理服务，要配置服务器端，不能是socket&lt;/p&gt;
-&lt;p&gt;3、进入zerotier网&lt;/p&gt;
-&lt;h2&gt;使用安卓端&lt;/h2&gt;
-&lt;p&gt;1、进入zerotier网&lt;/p&gt;
-&lt;p&gt;2、在安卓设置 Wi-Fi → 代理 → 手动中，输入上面配置的IP和端口&lt;/p&gt;
-&lt;p&gt;3、zerotier，DNS首先配置自己的私有局域网，或者&lt;em class=&quot;t55VCb&quot;&gt;route all your internet traffic through a ZeroTier client。&lt;/em&gt;（不设dns，不走你的局域网；不设后面的流量全部经过，部分app不走局域网）&lt;/p&gt;
-</description><link>https://www.ippa.top/1300.html</link><guid isPermaLink="false">https://www.ippa.top/1300.html</guid><pubDate>Thu, 17 Apr 2025 00:27:16 GMT</pubDate></item><item><title>为pve中的ct容器debian12安装原生版微信无法启动</title><description>&lt;h2&gt;前言&lt;/h2&gt;
-&lt;p&gt;微信官方已经提供官方版微信，可以直接下载使用。目前最新版是4.0.1 测试版。&lt;/p&gt;
-&lt;h2&gt;安装方法-deb&lt;/h2&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
-dkpg -i WeChatLinux_x86_64.deb
-&lt;/pre&gt;
-&lt;h2&gt;安装方法-appimage&lt;/h2&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
-
-# 打开文件属性，调整为可执行。AppImage类似绿色版软件
-./WeChatLinux_x86_64.AppImage --appimage-extract-and-run&lt;/pre&gt;
-&lt;h2&gt;安装后无法启动&lt;/h2&gt;
-&lt;p&gt;子方在安装deb版本后，怎么都无法启动，也看不到错误提示信息。尝试过解压WeChatLinux_x86_64.AppImage，打开也是没有显示的。&lt;/p&gt;
-&lt;p&gt;我在githhub看到关于 AppImage 的一个提示：如果您的发行版未安装 libfuse3，或因为权限、容器等限制无法加载 fuse 模块，那么本微信将不能直接以 AppImage 运行。您可以尝试在命令后面加上 –appimage-extract-and-run；如有其它选项，则不需要改变。&lt;/p&gt;
-&lt;p&gt;我的验证过程：&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;l@Xfce:~/Downloads$ ./WeChatLinux_x86_64.AppImage --appimage-extract-and-run
-/tmp/appimage_extracted_778c14832129ed34732775240eab7ad9/usr/bin/wechat: error while loading shared libraries: libatomic.so.1: cannot open shared object file: No such file or directory
-&lt;/pre&gt;
-&lt;h2&gt;问题解决&lt;/h2&gt;
-&lt;p&gt;问题出在缺少依赖库 libatomic.so.1。这个是 GCC 提供的一个共享库，在很多系统上不会默认安装，尤其是在容器环境或精简系统中。大多数基于 Debian / Ubuntu 的系统可以直接安装这个包。安装后微信就可以正常启动了。&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo apt update
-sudo apt install libatomic1
-&lt;/pre&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1299.html</link><guid isPermaLink="false">https://www.ippa.top/1299.html</guid><pubDate>Sat, 12 Apr 2025 22:39:28 GMT</pubDate></item><item><title>stash-app IP v6访问问题</title><description>&lt;h2&gt;启用IP v6&lt;/h2&gt;
-&lt;p&gt;在 config.yml 中添加 ipv6_enabled: true&lt;/p&gt;
-&lt;h2&gt;启用/关闭公网&lt;/h2&gt;
-&lt;p&gt;This is extremely dangerous! The whole world can see your stash page and&lt;/p&gt;
-&lt;p&gt;首先要设置密码，其次要注释配置文件中的以下选项&lt;/p&gt;
-&lt;p&gt;security_tripwire_accessed_from_public_internet:&lt;/p&gt;
-&lt;p&gt;如果各种意外仍无法打开，请确保值为null后再重新配置用户名等信息。例如：&lt;/p&gt;
-&lt;p&gt;security_tripwire_accessed_from_public_internet: null&lt;/p&gt;
-</description><link>https://www.ippa.top/1297.html</link><guid isPermaLink="false">https://www.ippa.top/1297.html</guid><pubDate>Fri, 11 Apr 2025 01:28:39 GMT</pubDate></item><item><title>LXC与PVE宿主机SMB交叉融合+清除Windows端smb连接</title><description>&lt;h2&gt;背景&lt;/h2&gt;
-&lt;p&gt;Debian12上已部署samba server端，设置smb用户a，能否让该用户上传的文件，文件归属为100033:100033?&lt;/p&gt;
-&lt;p&gt;LXC使用非特权容器，映射了宿主机的硬盘。为了更快捷的权限，lxc中的id33对应宿主机的100033。我需要通过smb服务，更快捷的把文件传输到宿主机中，但是保持lxc中的权限一致。下面都是宿主机操作。&lt;/p&gt;
-&lt;h2&gt;用户准备&lt;/h2&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;#用户创建
-groupadd --gid 100033 cloud
-useradd --uid 100033 --gid 100033 --no-create-home --shell /usr/sbin/nologin cloud
-
-#配置密码并启用
-smbpasswd -a cloud
-smbpasswd -e cloud&lt;/pre&gt;
-&lt;h2&gt;smb.conf配置&lt;/h2&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;[global]
-   workgroup = WORKGROUP
-   server string = Samba Server
-   security = user
-   map to guest = Never
-   passdb backend = tdbsam
-   guest ok = no
-   usershare allow guests = no
-   local master = no
-   preferred master = no
-   min protocol = SMB2
-   max protocol = SMB3
-   ntlm auth = no
-
-   # 禁用打印机功能
-   load printers = no
-   printing = bsd
-   printcap name = /dev/null
-   disable spoolss = yes
-
-[Cloud-SSD]
-   path = /mnt/HY110/
-   writable = yes
-   valid users = root,cloud
-   create mask = 0644
-   directory mask = 0755&lt;/pre&gt;
-&lt;h2&gt;实施效果&lt;/h2&gt;
-&lt;p&gt;这样，如果登录的用户是cloud，上传的文件权属就是100033:100033，lxc中可以正常删除创建&lt;/p&gt;
-&lt;h2&gt;清除Windows端smb连接&lt;/h2&gt;
-&lt;p&gt;如果只是想断开所有 SMB 连接，在cmd中运行 (net use * /delete /yes) 是最直接有效的方式。这样可以减少配置更改造成的干扰&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;net use * /delete /yes
-&lt;/pre&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1293.html</link><guid isPermaLink="false">https://www.ippa.top/1293.html</guid><pubDate>Sat, 05 Apr 2025 00:14:59 GMT</pubDate></item><item><title>Debian上的smba配置文件</title><description>&lt;h2&gt;前言&lt;/h2&gt;
-&lt;p&gt;这个问题一直都存在。群晖的smb在哪台设备都可以，但Debian的smb总是有个别设备访问不到。参考了群晖的smb文件，调整如下：&lt;/p&gt;
-&lt;h2&gt;smb.conf&lt;/h2&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;[global]
-   workgroup = WORKGROUP
-   server string = Samba Server
-   security = user
-   map to guest = Never
-   passdb backend = tdbsam
-   guest ok = no
-   usershare allow guests = no
-   encrypt passwords = yes
-   local master = no
-   preferred master = no
-   min protocol = SMB2
-   max protocol = SMB3
-
-   # 禁用打印机功能
-   load printers = no
-   printing = bsd
-   printcap name = /dev/null
-   disable spoolss = yes
-
-[Cloud-SSD]
-   path = /mnt/HYabc/
-   writable = yes
-   write list = root
-   valid users = root
-   create mask = 0644
-   directory mask = 0755
-&lt;/pre&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1290.html</link><guid isPermaLink="false">https://www.ippa.top/1290.html</guid><pubDate>Fri, 04 Apr 2025 02:37:27 GMT</pubDate></item><item><title>stash通过sqlite3数据库批量删除图库</title><description>&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt install sqlite3 -y
-sqlite3 ~/.stash/stash-go.sqlite
-
-DELETE FROM galleries;
-DELETE FROM galleries_images;
-DELETE FROM galleries_files;
-DELETE FROM galleries_tags;
-DELETE FROM gallery_urls;
-&lt;/pre&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1289.html</link><guid isPermaLink="false">https://www.ippa.top/1289.html</guid><pubDate>Thu, 03 Apr 2025 00:02:10 GMT</pubDate></item><item><title>在Debian上自定义安装comfyui-cli暨Nvidia驱动及CUDA疑难杂症解决篇暨手动安装Python Wheel文件</title><description>&lt;h2&gt;前言&lt;/h2&gt;
-&lt;p&gt;这个其实是2月中尝试进一步深化的项目。之前也安装过，只是后来发现速度太慢，一度怀疑是平台太新的问题。因此又尝试了在Debian11和Debian12上各种尝试安装，也尝试了不同版本的组合。&lt;/p&gt;
-&lt;p&gt;本篇，更像是是一个思路的整理。由于时隔太久，只能简单写写。&lt;/p&gt;
-&lt;h2&gt;新旧版本&lt;/h2&gt;
-&lt;p&gt;其实不是越新越好，而是越稳定越好。有些老卡，在新的comfyui、Debian系统中，【对老设备】反而是一种负优化。如果你使用各种安装，给你安装的就是最新的。但是吧，手贱的人，总想自己瞎折腾，浪费人生宝贵的时间。（我更建议你买最好最新的硬件！）&lt;/p&gt;
-&lt;h2&gt;Debian版本&lt;/h2&gt;
-&lt;p&gt;其实Debian12自带的版本可以直接用，但是内核高，我以前验证过，它的调用幅度比较灵敏，当然也没有Debian11那么稳。&lt;/p&gt;
-&lt;h2&gt;Python版本&lt;/h2&gt;
-&lt;p&gt;选了Debian11，这里就是挖了小坑。为了更好的兼容，我本次选择了Python3.11.9。但Debian11 apt 安装的版本号较低，需要手动编译。&lt;/p&gt;
-&lt;h2&gt;Python编译&lt;/h2&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;apt update
-apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget -y
-
-wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz
-tar -zxvf Python-3.11.9.tgz
-cd Python-3.11.9
-./configure --enable-optimizations --prefix=/usr/local
-make -j 4
-make altinstall
-
-python3.11 --version
-update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.11 1
-update-alternatives --config python3
-
-&lt;/pre&gt;
-&lt;h2&gt;CUDA版本&lt;/h2&gt;
-&lt;p&gt;通过上面的链接，你能看到其实有多种版本推荐。对于p104这种老卡，我本次选择cu118&lt;/p&gt;
-&lt;h2&gt;CUDA及驱动安装&lt;/h2&gt;
-&lt;p&gt;之前是通过&lt;a href=&quot;https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&amp;amp;target_arch=x86_64&amp;amp;Distribution=Debian&amp;amp;target_version=11&amp;amp;target_type=runfile_local&quot; rel=&quot;nofollow&quot;&gt;CUDA Toolkit 11.8 Downloads&lt;/a&gt;安装的，这里也可以切换你需要的版本，ippatop安装时会包括驱动。在Debian12是没有问题的。不过在这里，会发现这里明明写着Debian11，即使使用runfile安装，对驱动的那一部分也会报错。&lt;/p&gt;
-&lt;p&gt;这里其实是两件事：&lt;/p&gt;
-&lt;p&gt;nvidia驱动。你可以用apt方式安装也是可以的。可以不安装这里&lt;a href=&quot;https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&amp;amp;target_arch=x86_64&amp;amp;Distribution=Debian&amp;amp;target_version=11&amp;amp;target_type=runfile_local&quot; rel=&quot;nofollow&quot;&gt;CUDA Toolkit&lt;/a&gt;自带的驱动&lt;/p&gt;
-&lt;p&gt;CUDA。这个是指定版本的，也是可以单独安装。&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;这次，我们还是不走寻常路。ippatop推荐同步阅读：官方文档&lt;a href=&quot;https://docs.nvidia.com/cuda/archive/11.8.0/cuda-installation-guide-linux/index.html#abstract&quot; name=&quot;abstract&quot; shape=&quot;rect&quot; rel=&quot;nofollow&quot;&gt;NVIDIA CUDA Installation Guide for Linux&lt;/a&gt;&amp;nbsp;，以及：&lt;a href=&quot;https://linuxcapable.com/install-nvidia-drivers-on-debian/&quot; rel=&quot;nofollow&quot;&gt;install-nvidia-drivers-on-debian&lt;/a&gt;&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;【环境准备】
-apt install linux-headers-amd64
-
-警告⚠：如果你apt upgrade，很可能会出现多个内核，请务必保证自己只有一个内核！否则你就会发现，各种安装了，提示显卡找不到！！
-
-
-这些命令可以帮助你清理不必要的内容
-apt install linux-headers-$(uname -r)
-
-dpkg -l | grep linux-headers
-
-uname -r
-
-sudo apt remove --purge linux-image-5.10.0-32-amd64
-
-sudo apt remove --purge linux-headers-5.10.0-32-amd64 linux-headers-5.10.0-32-common linux-image-5.10.0-32-amd64
-
-sudo apt autoremove
-
-sudo update-grub
-
-sudo reboot
-
-
-【检测显卡存在】
-lspci | grep -e VGA
-# 如果你矿卡都找不着，就不用玩了。这里要说明一下，有很多系统可能需要你完全断电重启，才能识别到声卡。啊，这里也别问我是怎么知道的
-
-
-
-【存储库安装】
-👉方案一：官方的，我最后使用了该方法
-apt-key del 7fa2af80
-
-wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.0-1_all.deb
-
-dpkg -i cuda-keyring_1.0-1_all.deb
-
-apt-get update
-
-👉方案二：博客的，也备用
-apt install dirmngr ca-certificates software-properties-common apt-transport-https dkms curl sudo -y
-
-curl -fSsL https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/3bf863cc.pub | sudo gpg --dearmor | sudo tee /usr/share/keyrings/nvidia-drivers.gpg &amp;gt; /dev/null 2&amp;gt;&amp;amp;1
-
-echo &#39;deb [signed-by=/usr/share/keyrings/nvidia-drivers.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/ /&#39; | sudo tee /etc/apt/sources.list.d/nvidia-drivers.list
-
-sudo apt update
-
-
-【安装 CUDA SDK】
-👉我们先安装 CUDA SDK，安装完成之后重启，再安装 cuda-drivers。我ippatop记得当时驱动好像存在一些问题，如果不行，重启试试，以及再次安装试试，或者调换 cuda-drivers 和 CUDA SDK 的安装顺序
-
-#列出支持的cuda版本
-apt policy cuda 
-
-#默认安装最新版本，允许以后更新
-apt-get -y install cuda 
-
-#指定版本，我需要安装这个，固定住它
-apt-get install cuda-11-8  
-nvcc -V #检查安装情况，ok
-root@Comfyui:~# nvcc -V
-nvcc: NVIDIA (R) Cuda compiler driver
-Copyright (c) 2005-2022 NVIDIA Corporation
-Built on Wed_Sep_21_10:33:58_PDT_2022
-Cuda compilation tools, release 11.8, V11.8.89
-Build cuda_11.8.r11.8/compiler.31833905_0
-
-
-【安装显卡驱动】
-👉下面我们安装显卡驱动。如果不行，可能需要你卸载干净重新安装，换个版本试试。驱动版本没多大影响，这里能查询到支持的即可
-#列出所有支持的显卡驱动
-apt show cuda-drivers -a 
-#默认安装最新版本，允许以后更新
-apt-get install cuda-drivers 
-
-#指定版本，我在首次安装时无法正常。这个命令会固定这个版本号的驱动
-apt-get install cuda-drivers-495 
-
-
-【驱动卸载重装】
-😚可能你会遇到驱动的问题，那么需要卸载重装，下面这些命令可以帮助到你
-dmesg | grep -i nvidia
-sudo apt remove --purge &#39;^nvidia-.*&#39;
-sudo apt autoremove
-sudo rm -rf /etc/X11/xorg.conf /usr/lib/nvidia /usr/lib32/nvidia
-
-【确认最终安装】
-🎨最后查询：Driver Version: 560.35.05是显卡驱动程序版本号，CUDA Version: 12.6是指可以支持到的最高CUDA版本！！我们安装的，还是上面nvcc -V查询到的cuda_11.8
-root@Comfyui:~# nvidia-smi
-Tue Mar 11 14:32:57 2025
-+-----------------------------------------------------------------------------------------+
-| NVIDIA-SMI 560.35.05              Driver Version: 560.35.05      CUDA Version: 12.6     |
-|-----------------------------------------+------------------------+----------------------+
-| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
-|                                         |                        |               MIG M. |
-|=========================================+========================+======================|
-|   0  NVIDIA P104-100                On  |   00000000:01:00.0 Off |                  N/A |
-| 46%   33C    P8              7W /  180W |       0MiB /   8192MiB |      0%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-
-+-----------------------------------------------------------------------------------------+
-| Processes:                                                                              |
-|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
-|        ID   ID                                                               Usage      |
-|=========================================================================================|
-|  No running processes found                                                             |
-+-----------------------------------------------------------------------------------------+&lt;/pre&gt;
-&lt;h2&gt;Pytorch版本&lt;/h2&gt;
-&lt;p&gt;我们来这里找老的组合：https://pytorch.org/get-started/previous-versions/。结合comfyui在安装时的要求，Pytorch要大于2.4，我选择了v2.5.0&lt;/p&gt;
-&lt;p&gt;找到了这个，其实你发现，我们上面的很多工作，都是根据这个来的&lt;/p&gt;
-&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu118&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Pytorch手动安装本地文件&lt;/h2&gt;
-&lt;p&gt;到这里，我们发现和comfyui的官方文档很像了。但是，这里我们还是继续走不同的路线，因为这个下载太慢啦！！！如果你使用的不是我这套组合，也可以自己更换，通过迅雷下载对应的轮子文件上传。&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;根据分析，我找到了原始下载地址。我们再展开说一下，cu118是你的cuda sdk版本；cp311 说明你需要使用Python3.11；torch-2.5.0等都是对应pytorch.org建议的版本的。
-https://download.pytorch.org/whl/cu118/torch-2.5.0%2Bcu118-cp311-cp311-linux_x86_64.whl
-https://download.pytorch.org/whl/cu118/torchvision-0.20.0%2Bcu118-cp311-cp311-linux_x86_64.whl
-https://download.pytorch.org/whl/cu118/torchaudio-2.5.0%2Bcu118-cp311-cp311-linux_x86_64.whl
-&lt;/pre&gt;
-&lt;p&gt;当你把文件上传到服务器之后，就可以开始干活了&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;python3 -m venv ~/comfyui-env
-source ~/comfyui-env/bin/activate
-pip install --upgrade pip
-pip config set global.index-url https://mirrors.cernet.edu.cn/pypi/web/simple
-
-#这里就需要手动安装我们准备的文件了
-pip install /home/l/cofy/torch-2.5.0+cu118-cp311-cp311-linux_x86_64.whl
-pip install /home/l/cofy/torchaudio-2.5.0+cu118-cp311-cp311-linux_x86_64.whl
-pip install /home/l/cofy/torchvision-0.20.0+cu118-cp311-cp311-linux_x86_64.whl&lt;/pre&gt;
-&lt;h2&gt;安装comfyui&lt;/h2&gt;
-&lt;p&gt;我们继续上面的内容&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;git clone --depth=1 https://github.com/comfyanonymous/ComfyUI
-cd /home/l/ComfyUI/
-pip install -r requirements.txt
-
-🎉完工！！
-python main.py --listen 0.0.0.0
-
-🎃一键进入命令
-source ~/comfyui-env/bin/activate &amp;amp;&amp;amp; cd ComfyUI &amp;amp;&amp;amp; python main.py --listen 0.0.0.0&lt;/pre&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1287.html</link><guid isPermaLink="false">https://www.ippa.top/1287.html</guid><pubDate>Tue, 01 Apr 2025 21:14:16 GMT</pubDate></item><item><title>pve8-lxc音画直通HDMI VGA输出系列：声卡篇之再次研究暨暂终篇</title><description>&lt;h2&gt;一些问题&lt;/h2&gt;
-&lt;p&gt;在/etc/pulse/default.pa中，我确认存在load-module module-detect、load-module module-udev-detect。由于lxc中存在加载问题，可能会有异常（我通过pactl命令先unload-module，重新load发现无法正常使用）。&lt;/p&gt;
-&lt;p&gt;为此，我进行了手动加载：pactl load-module module-alsa-card device_id=0，pactl load-module module-alsa-source device_id=0。这个加载有效，volume control可以看到录音和输出设备&lt;/p&gt;
-&lt;p&gt;新的问题，它有时会没有声音，在某次尝试中，运行pulseaudio –start有效。当我运行systemctl –user restart pulseaudio时，volume control中就看不到声卡和录音设备了。&lt;/p&gt;
-&lt;p&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&lt;strong&gt;非常重要：我的直通方法，是基于pve8，Debian12 CT进行测试的。我验证了Debian11、Ubuntu22，无法正常显示画面直通！我建议你阅读我整理系列的内容。&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;ippa如何解决&lt;/h2&gt;
-&lt;p&gt;由于自动检测在lxc中是有故障的，需要手动加载 module-alsa-card 和 module-alsa-source 。同时我们也将禁用自动检测功能&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo nano /etc/pulse/default.pa
-禁用part，自己用#注释
-### Automatically load driver modules depending on the hardware available
-.ifexists module-udev-detect.so
-load-module module-udev-detect
-.else
-### Use the static hardware detection module (for systems that lack udev suppor&amp;gt;
-load-module module-detect
-.endif
-禁用part，自己用#注释
-
-load-module module-alsa-card device_id=0
-load-module module-alsa-source device_id=0
-&lt;/pre&gt;
-&lt;p&gt;我发现挂载之后，volume control显示了声卡，但没有声音。你可以每次手动启动pulseaudio –start。&lt;br&gt;
-但，这明显不是我想要的&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;sudo nano /etc/pulse/client.conf
-
-#取消下面这一行的注释
-autospawn = yes
-&lt;/pre&gt;
-&lt;p&gt;重启，OK。&lt;/p&gt;
-&lt;h2&gt;待处理问题&lt;/h2&gt;
-&lt;p&gt;已经验证，如何使用HDMI OUT时，配置文件可以用，但hdmi设备那边没有声音，还是从耳机口输出。对我来说问题不大，暂时不处理了。&lt;br&gt;
-我觉得，这里的验证思路，可以通过指定输出设备来解决。&lt;br&gt;
-load-module module-alsa-sink device=hw:0,0，第一声卡，设备号0。hdmi应该是设备号3 4.&lt;/p&gt;
-&lt;h2&gt;基础思路&lt;/h2&gt;
-&lt;p&gt;1、alsa》plusaudio》volume control。我们重点解决这三个&lt;/p&gt;
-&lt;p&gt;2、alsa是基石，在玩转音频之前，请确保在lxc端的命令行，speakertest有声音输出。&lt;/p&gt;
-&lt;p&gt;3、plusaudio是对接口，大部分的时候，都是这个玩意无法正常启动&lt;/p&gt;
-&lt;p&gt;4、volume control是面板，如果你按我之前的方法处理，可能会发现，这里明明显示了设备，确没有声音。殊不知plusaudio没有正确启动&lt;/p&gt;
-&lt;h2&gt;alsa&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;声卡和录音设备确认&lt;/strong&gt;&lt;br&gt;
-aplay -l&lt;br&gt;
-arecord -l&lt;/p&gt;
-&lt;h2&gt;plusaudio一些模块相关命令&lt;/h2&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;#取消加载
-pactl unload-module module-detect
-pactl unload-module module-udev-detect
-pactl unload-module module-alsa-card
-pactl unload-module module-alsa-source
-
-#手动加载
-pactl load-module module-alsa-card device_id=0
-pactl load-module module-alsa-source device_id=0
-pactl load-module module-alsa-sink
-
-#启停命令
-pulseaudio --kill
-pulseaudio --start
-systemctl --user restart pulseaudio
-&lt;/pre&gt;
-&lt;h2&gt;pacmd&lt;/h2&gt;
-&lt;p&gt;pacmd 是 PulseAudio 的命令行工具，可以用来查询和控制 PulseAudio 的状态。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;pactl&lt;/code&gt; 是一个 PulseAudio 的命令行工具，提供了更底层的控制功能。&lt;/p&gt;
-&lt;pre class=&quot;prettyprint linenums&quot;&gt;pactl info：显示 PulseAudio 服务器信息。 
-pactl list sinks：显示音频输出设备信息。
-pactl list sources：显示音频输入设备信息。 
-pactl list cards：显示声卡信息。
-&lt;/pre&gt;
-&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1283.html</link><guid isPermaLink="false">https://www.ippa.top/1283.html</guid><pubDate>Mon, 31 Mar 2025 18:57:57 GMT</pubDate></item></channel></rss>
+&lt;!--wp-compress-html no compression--&gt;&lt;!--wp-compress-html--&gt;</description><link>https://www.ippa.top/1306.html</link><guid isPermaLink="false">https://www.ippa.top/1306.html</guid><pubDate>Fri, 27 Jun 2025 18:26:52 GMT</pubDate></item></channel></rss>

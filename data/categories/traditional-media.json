@@ -2,33 +2,47 @@
   {
     "provider_id": "caixin",
     "provider_name": "财新博客",
-    "route_key": "/article",
+    "route_key": "/weekly",
     "route": {
-      "path": "/article",
-      "example": "/caixin/article",
-      "parameters": {},
-      "name": "首页新闻",
-      "url": "caixin.com/",
+      "path": "/weekly",
+      "example": "/caixin/weekly",
+      "name": "财新周刊",
+      "url": "weekly.caixin.com/",
       "provider_id": "caixin",
       "provider_name": "财新博客",
-      "route_key": "/article"
+      "route_key": "/weekly"
     }
   },
   {
-    "provider_id": "cctv",
-    "provider_name": "央视新闻",
-    "route_key": "/lm/:id?",
+    "provider_id": "caixinglobal",
+    "provider_name": "Caixin Global",
+    "route_key": "/latest",
     "route": {
-      "path": "/lm/:id?",
-      "example": "/cctv/lm/xwzk",
+      "path": "/latest",
+      "example": "/caixinglobal/latest",
+      "parameters": {},
+      "name": "Latest News",
+      "url": "caixinglobal.com/news",
+      "provider_id": "caixinglobal",
+      "provider_name": "Caixin Global",
+      "route_key": "/latest"
+    }
+  },
+  {
+    "provider_id": "cbc",
+    "provider_name": "Canadian Broadcasting Corporation",
+    "route_key": "/topics/:topic?",
+    "route": {
+      "path": "/topics/:topic?",
+      "example": "/cbc/topics",
       "parameters": {
-        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 `xwzk` 即 新闻周刊"
+        "topic": "Channel,`Top Stories` by default. For secondary channel like `canada/toronto`, use `-` to replace `/`"
       },
-      "name": "栏目",
-      "description": "| 焦点访谈 | 等着我 | 今日说法 | 开讲啦 |\n| -------- | ------ | -------- | ------ |\n| jdft     | dzw    | jrsf     | kjl    |\n\n| 正大综艺 | 经济半小时 | 第一动画乐园 |\n| -------- | ---------- | ------------ |\n| zdzy     | jjbxs      | dydhly       |\n\n::: tip\n  更多栏目请看 [这里](https://tv.cctv.com/lm)\n:::",
-      "provider_id": "cctv",
-      "provider_name": "央视新闻",
-      "route_key": "/lm/:id?"
+      "name": "News",
+      "url": "cbc.ca/news",
+      "provider_id": "cbc",
+      "provider_name": "Canadian Broadcasting Corporation",
+      "route_key": "/topics/:topic?"
     }
   },
   {
@@ -48,90 +62,53 @@
     }
   },
   {
-    "provider_id": "hnrb",
-    "provider_name": "湖南日报",
-    "route_key": "/:id?",
+    "provider_id": "dealstreetasia",
+    "provider_name": "DealStreetAsia",
+    "route_key": "/section/:section",
     "route": {
-      "path": "/:id?",
-      "example": "/hnrb",
+      "path": "/section/:section",
+      "example": "/dealstreetasia/section/private-equity",
       "parameters": {
-        "id": "编号，见下表，默认为全部"
+        "section": "target section"
       },
-      "name": "电子刊物",
-      "url": "voc.com.cn/",
-      "description": "| 版                   | 编号 |\n| -------------------- | ---- |\n| 全部                 |      |\n| 第 01 版：头版       | 1    |\n| 第 02 版：要闻       | 2    |\n| 第 03 版：要闻       | 3    |\n| 第 04 版：深度       | 4    |\n| 第 05 版：市州       | 5    |\n| 第 06 版：理论・学习 | 6    |\n| 第 07 版：观察       | 7    |\n| 第 08 版：时事       | 8    |\n| 第 09 版：中缝       | 9    |",
-      "provider_id": "hnrb",
-      "provider_name": "湖南日报",
-      "route_key": "/:id?"
+      "name": "Section",
+      "url": "dealstreetasia.com/",
+      "provider_id": "dealstreetasia",
+      "provider_name": "DealStreetAsia",
+      "route_key": "/section/:section"
     }
   },
   {
-    "provider_id": "lorientlejour",
-    "provider_name": "L'Orient-Le Jour/L'Orient Today",
-    "route_key": "/:category?",
+    "provider_id": "eastday",
+    "provider_name": "东方网",
+    "route_key": "/sh",
     "route": {
-      "path": "/:category?",
-      "example": "/lorientlejour/977-lebanon",
-      "parameters": {
-        "category": "Category from the last segment of the URL of the corresponding site, see below for more information, /977-Lebanon by default"
-      },
-      "name": "Category",
-      "description": "  ::: tip\nFor example, the path for the sites https://today.lorientlejour.com/section/977-lebanon and https://www.lorientlejour.com/rubrique/1-liban would be /lorientlejour/977-lebanon and /lorientlejour/1-liban respectively. \nMultiple categories seperated by '|' is also supported, e.g. /lorientlejour/977-lebanon|1-liban.\n:::",
-      "provider_id": "lorientlejour",
-      "provider_name": "L'Orient-Le Jour/L'Orient Today",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "mrdx",
-    "provider_name": "新华每日电讯",
-    "route_key": "/today",
-    "route": {
-      "path": "/today",
-      "example": "/mrdx/today",
+      "path": "/sh",
+      "example": "/eastday/sh",
       "parameters": {},
-      "name": "今日",
-      "url": "mrdx.cn*",
-      "provider_id": "mrdx",
-      "provider_name": "新华每日电讯",
-      "route_key": "/today"
-    }
-  },
-  {
-    "provider_id": "now",
-    "provider_name": "Now 新聞",
-    "route_key": "/news/:category?/:id?",
-    "route": {
-      "path": "/news/:category?/:id?",
-      "example": "/now/news",
-      "parameters": {
-        "category": "分类，见下表，默认为首页",
-        "id": "编号，可在对应专题/节目页 URL 中找到 topicId"
-      },
-      "name": "新聞",
-      "url": "news.now.com/",
-      "description": "::: tip\n  **编号** 仅对事件追蹤、評論節目、新聞專題三个分类起作用，例子如下：\n\n  对于 [事件追蹤](https://news.now.com/home/tracker) 中的 [塔利班奪權](https://news.now.com/home/tracker/detail?catCode=123&topicId=1056) 话题，其网址为 `https://news.now.com/home/tracker/detail?catCode=123&topicId=1056`，其中 `topicId` 为 1056，则对应路由为 [`/now/news/tracker/1056`](https://rsshub.app/now/news/tracker/1056)\n:::\n\n| 首頁 | 港聞  | 兩岸國際      | 娛樂          |\n| ---- | ----- | ------------- | ------------- |\n|      | local | international | entertainment |\n\n| 生活 | 科技       | 財經    | 體育   |\n| ---- | ---------- | ------- | ------ |\n| life | technology | finance | sports |\n\n| 事件追蹤 | 評論節目 | 新聞專題 |\n| -------- | -------- | -------- |\n| tracker  | feature  | opinion  |",
-      "provider_id": "now",
-      "provider_name": "Now 新聞",
-      "route_key": "/news/:category?/:id?"
+      "name": "上海新闻",
+      "url": "sh.eastday.com/",
+      "provider_id": "eastday",
+      "provider_name": "东方网",
+      "route_key": "/sh"
     }
   },
   {
     "provider_id": "publico",
     "provider_name": "Público",
-    "route_key": "/sociedad/:subsection?",
+    "route_key": "/opinion/:subsection?",
     "route": {
-      "path": "/sociedad/:subsection?",
+      "path": "/opinion/:subsection?",
       "parameters": {
         "subsection": {
           "description": "Filter by subsection. Check the subsections available on the newspaper's website."
         }
       },
-      "example": "/publico/sociedad",
-      "name": "Sociedad",
+      "example": "/publico/opinion",
+      "name": "Opinión",
       "provider_id": "publico",
       "provider_name": "Público",
-      "route_key": "/sociedad/:subsection?"
+      "route_key": "/opinion/:subsection?"
     }
   }
 ]

@@ -1,160 +1,36 @@
 [
   {
-    "provider_id": "163",
-    "provider_name": "网易公开课",
-    "route_key": "/ds/:id",
+    "provider_id": "itch",
+    "provider_name": "itch.io",
+    "route_key": "/devlog/:user/:id",
     "route": {
-      "path": "/ds/:id",
-      "example": "/163/ds/63dfbaf4117741daaf73404601165843",
+      "path": "/devlog/:user/:id",
+      "example": "/itch/devlog/teamterrible/the-baby-in-yellow",
       "parameters": {
-        "id": "用户ID"
+        "user": "User id, can be found in URL",
+        "id": "Item id, can be found in URL"
       },
-      "name": "用户发帖",
-      "provider_id": "163",
-      "provider_name": "网易公开课",
-      "route_key": "/ds/:id"
+      "name": "Developer Logs",
+      "description": "`User id` is the field before `.itch.io` in the URL of the corresponding page, e.g. the URL of [The Baby In Yellow Devlog](https://teamterrible.itch.io/the-baby-in-yellow/devlog) is `https://teamterrible.itch.io/the-baby-in-yellow/devlog`, where the field before `.itch.io` is `teamterrible`.\n\n  `Item id` is the field between `itch.io` and `/devlog` in the URL of the corresponding page, e.g. the URL for [The Baby In Yellow Devlog](https://teamterrible.itch.io/the-baby-in-yellow/devlog) is `https://teamterrible.itch.io/the-baby-in-yellow/devlog`, where the field between `itch.io` and `/devlog` is `the-baby-in-yellow`.\n\n  So the route is [`/itch/devlogs/teamterrible/the-baby-in-yellow`](https://rsshub.app/itch/devlogs/teamterrible/the-baby-in-yellow).",
+      "provider_id": "itch",
+      "provider_name": "itch.io",
+      "route_key": "/devlog/:user/:id"
     }
   },
   {
-    "provider_id": "ali213",
-    "provider_name": "游侠网",
-    "route_key": "/news/:category?",
+    "provider_id": "mihoyo",
+    "provider_name": "米哈游",
+    "route_key": "/bbs/user-post/:uid",
     "route": {
-      "path": "/news/:category?",
-      "name": "资讯",
-      "url": "www.ali213.net",
-      "example": "/ali213/news/new",
+      "path": "/bbs/user-post/:uid",
+      "example": "/mihoyo/bbs/user-post/77005350",
       "parameters": {
-        "category": "分类，默认为 `new`，即最新资讯，可在对应分类页 URL 中找到"
+        "uid": "用户uid"
       },
-      "description": "::: tip\n若订阅 [游戏资讯](https://www.ali213.net/news/game/)，网址为 `https://www.ali213.net/news/game/`，请截取 `https://www.ali213.net/news/` 到末尾 `/` 的部分 `game` 作为 `category` 参数填入，此时目标路由为 [`/ali213/news/game`](https://rsshub.app/ali213/news/game)。\n:::\n\n| 分类名称 | 分类 ID |\n| -------- | ------- |\n| 最新资讯 | new     |\n| 评测     | pingce  |\n| 游戏     | game    |\n| 动漫     | comic   |\n| 影视     | movie   |\n| 科技     | tech    |\n| 电竞     | esports |\n| 娱乐     | amuse   |\n| 手游     | mobile  |\n",
-      "view": 0,
-      "provider_id": "ali213",
-      "provider_name": "游侠网",
-      "route_key": "/news/:category?"
-    }
-  },
-  {
-    "provider_id": "diershoubing",
-    "provider_name": "二柄 APP",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/diershoubing/news",
-      "parameters": {},
-      "name": "新闻",
-      "url": "diershoubing.com/",
-      "provider_id": "diershoubing",
-      "provider_name": "二柄 APP",
-      "route_key": "/news"
-    }
-  },
-  {
-    "provider_id": "epicgames",
-    "provider_name": "Epic Games Store",
-    "route_key": "/freegames/:locale?/:country?",
-    "route": {
-      "path": "/freegames/:locale?/:country?",
-      "view": 5,
-      "example": "/epicgames/freegames/en-US/US",
-      "parameters": {
-        "locale": {
-          "description": "Locale",
-          "default": "en-US"
-        },
-        "country": {
-          "description": "Country",
-          "default": "US"
-        }
-      },
-      "name": "Free games",
-      "provider_id": "epicgames",
-      "provider_name": "Epic Games Store",
-      "route_key": "/freegames/:locale?/:country?"
-    }
-  },
-  {
-    "provider_id": "gamebase",
-    "provider_name": "遊戲基地 Gamebase",
-    "route_key": "/news/:type?/:category?",
-    "route": {
-      "path": "/news/:type?/:category?",
-      "name": "新聞",
-      "url": "news.gamebase.com.tw",
-      "example": "/gamebase/news",
-      "parameters": {
-        "type": "類型，見下表，預設為 newslist",
-        "category": "分類，預設為 `all`，即全部，可在對應分類頁 URL 中找到"
-      },
-      "description": ":::tip\n若訂閱 [手機遊戲新聞](https://news.gamebase.com.tw/news/newslist?type=mobile)，網址為 `https://news.gamebase.com.tw/news/newslist?type=mobile`，請截取 `https://news.gamebase.com.tw/news/` 到末尾的部分 `newslist` 作為 `type` 參數填入，`mobile` 作為 `category` 參數填入，此時目標路由為 [`/gamebase/news/newslist/mobile`](https://rsshub.app/gamebase/news/newslist/mobile)。\n:::\n\n| newslist | r18list |\n| -------- | ------- |\n",
-      "view": 0,
-      "zh": {
-        "path": "/news/:type?/:category?",
-        "name": "新闻",
-        "url": "news.gamebase.com.tw",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "example": "/gamebase/news",
-        "parameters": {
-          "type": "类型，见下表，默认为 newslist",
-          "category": "分类，默认为 `all`，即全部，可在对应分类页 URL 中找到"
-        },
-        "description": ":::tip\n若订阅 [手机游戏新闻](https://news.gamebase.com.tw/news/newslist?type=mobile)，网址为 `https://news.gamebase.com.tw/news/newslist?type=mobile`，请截取 `https://news.gamebase.com.tw/news/` 到末尾的部分 `newslist` 作为 `type` 参数填入，`mobile` 作为 `category` 参数填入，此时目标路由为 [`/gamebase/news/newslist/mobile`](https://rsshub.app/gamebase/news/newslist/mobile)。\n:::\n\n| newslist | r18list |\n| -------- | ------- |\n"
-      },
-      "provider_id": "gamebase",
-      "provider_name": "遊戲基地 Gamebase",
-      "route_key": "/news/:type?/:category?"
-    }
-  },
-  {
-    "provider_id": "gamersky",
-    "provider_name": "GamerSky",
-    "route_key": "/news/:type?",
-    "route": {
-      "path": "/news/:type?",
-      "example": "/gamersky/news/pc",
-      "parameters": {
-        "type": "资讯类型，见表，默认为 `pc`"
-      },
-      "name": "资讯",
-      "description": "|today|pc|ns|mobile|web|industry|hardware|tech|\n|---|---|---|---|---|---|---|---|\n|今日推荐|单机电玩|NS|手游|网游|业界|硬件|科技|\n",
-      "provider_id": "gamersky",
-      "provider_name": "GamerSky",
-      "route_key": "/news/:type?"
-    }
-  },
-  {
-    "provider_id": "gcores",
-    "provider_name": "机核网",
-    "route_key": "/videos",
-    "route": {
-      "path": "/videos",
-      "name": "视频",
-      "url": "www.gcores.com",
-      "example": "/gcores/videos",
-      "view": 3,
-      "provider_id": "gcores",
-      "provider_name": "机核网",
-      "route_key": "/videos"
-    }
-  },
-  {
-    "provider_id": "hypergryph",
-    "provider_name": "鹰角网络",
-    "route_key": "/arknights/announce/:platform?/:group?",
-    "route": {
-      "path": "/arknights/announce/:platform?/:group?",
-      "example": "/hypergryph/arknights/announce",
-      "parameters": {
-        "platform": "平台，默认为 Android",
-        "group": "分组，默认为 ALL"
-      },
-      "name": "明日方舟 - 游戏内公告",
-      "description": "平台\n\n|  安卓服 | iOS 服 |   B 服   |\n| :-----: | :----: | :------: |\n| Android |   IOS  | Bilibili |\n\n  分组\n\n| 全部 | 系统公告 | 活动公告 |\n| :--: | :------: | :------: |\n|  ALL |  SYSTEM  | ACTIVITY |",
-      "provider_id": "hypergryph",
-      "provider_name": "鹰角网络",
-      "route_key": "/arknights/announce/:platform?/:group?"
+      "name": "米游社 - 用户帖子",
+      "provider_id": "mihoyo",
+      "provider_name": "米哈游",
+      "route_key": "/bbs/user-post/:uid"
     }
   },
   {
@@ -177,28 +53,6 @@
     }
   },
   {
-    "provider_id": "minecraft",
-    "provider_name": "Minecraft",
-    "route_key": "/version/:versionType?/:linkType?",
-    "route": {
-      "path": "/version/:versionType?/:linkType?",
-      "example": "/minecraft/version",
-      "parameters": {
-        "versionType": "Game version type, `all` by default",
-        "linkType": "Link added to feed, `official` by default"
-      },
-      "name": "Java Game Update",
-      "url": "minecraft.net/",
-      "description": "\n| Version                    | versionType |\n| -------------------------- | ----------- |\n| 正式版                     | release     |\n| 快照                       | snapshot    |\n| Alpha 及更早的版本         | old_alpha  |\n| Beta 版                    | old_beta   |\n| Target                     | linkType    |\n| -------------------------- | --------    |\n| minecraft.net              | official    |\n| 英文 Minecraft Wiki 版本页 | enwiki      |\n| 中文 Minecraft Wiki 版本页 | zhwiki      |\n",
-      "zh": {
-        "name": "Java版游戏更新"
-      },
-      "provider_id": "minecraft",
-      "provider_name": "Minecraft",
-      "route_key": "/version/:versionType?/:linkType?"
-    }
-  },
-  {
     "provider_id": "nintendo",
     "provider_name": "Nintendo",
     "route_key": "/system-update",
@@ -214,46 +68,39 @@
     }
   },
   {
-    "provider_id": "sega",
-    "provider_name": "SEGA",
-    "route_key": "/maimaidx/news",
+    "provider_id": "taptap",
+    "provider_name": "TapTap",
+    "route_key": "/review/:id/:order?/:lang?",
     "route": {
-      "path": "/maimaidx/news",
-      "example": "/sega/maimaidx/news",
-      "name": "maimai DX Japanese Ver. News",
-      "url": "info-maimai.sega.jp/",
-      "provider_id": "sega",
-      "provider_name": "SEGA",
-      "route_key": "/maimaidx/news"
+      "path": "/review/:id/:order?/:lang?",
+      "example": "/taptap/review/142793/hot",
+      "parameters": {
+        "id": "游戏 ID，游戏主页 URL 中获取",
+        "order": "排序方式，空为综合，可选如下",
+        "lang": "语言，`zh-CN` 或 `zh-TW`，默认为 `zh-CN`"
+      },
+      "name": "游戏评价",
+      "description": "| 最新   | 综合 |\n| --- | --- |\n| new | hot |",
+      "provider_id": "taptap",
+      "provider_name": "TapTap",
+      "route_key": "/review/:id/:order?/:lang?"
     }
   },
   {
-    "provider_id": "warthunder",
-    "provider_name": "War Thunder",
-    "route_key": "/news",
+    "provider_id": "tgbus",
+    "provider_name": "电玩巴士 TGBUS",
+    "route_key": "/list/:category",
     "route": {
-      "path": "/news",
-      "example": "/warthunder/news",
-      "parameters": {},
-      "name": "News",
-      "url": "warthunder.com/en/news",
-      "description": "News data from [https://warthunder.com/en/news/](https://warthunder.com/en/news/)\n  The `pubDate` provided under UTC time zone, so please ignore the specific time!!!",
-      "provider_id": "warthunder",
-      "provider_name": "War Thunder",
-      "route_key": "/news"
-    }
-  },
-  {
-    "provider_id": "xiaoheihe",
-    "provider_name": "小黑盒",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/xiaoheihe/news",
-      "name": "游戏新闻",
-      "provider_id": "xiaoheihe",
-      "provider_name": "小黑盒",
-      "route_key": "/news"
+      "path": "/list/:category",
+      "parameters": {
+        "category": "列表分类，见下表"
+      },
+      "example": "/tgbus/list/news",
+      "name": "文章列表",
+      "description": "| 最新资讯 | 游戏评测 | 游戏视频 | 巴士首页特稿 | 硬件资讯 |\n| -------- | -------- | -------- | ------------ | -------- |\n| news     | review   | video    | special      | hardware |",
+      "provider_id": "tgbus",
+      "provider_name": "电玩巴士 TGBUS",
+      "route_key": "/list/:category"
     }
   }
 ]

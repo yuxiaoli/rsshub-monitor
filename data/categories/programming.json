@@ -14,62 +14,36 @@
     }
   },
   {
-    "provider_id": "aliyun",
-    "provider_name": "阿里云",
-    "route_key": "/developer/group/:type",
+    "provider_id": "alistapart",
+    "provider_name": "A List Apart",
+    "route_key": "/:topic",
     "route": {
-      "path": "/developer/group/:type",
-      "example": "/aliyun/developer/group/alitech",
+      "path": "/:topic",
+      "example": "/alistapart/application-development",
       "parameters": {
-        "type": "对应技术领域分类"
+        "topic": "Any Topic or from the table below. Defaults to All Articles"
       },
-      "name": "开发者社区 - 主题",
-      "provider_id": "aliyun",
-      "provider_name": "阿里云",
-      "route_key": "/developer/group/:type"
+      "name": "Topics",
+      "url": "alistapart.com/articles/",
+      "description": "You have the option to utilize the main heading or use individual categories as topics for the path.\n\n| **Code**                    | *code*                    |\n| --------------------------- | ------------------------- |\n| **Application Development** | *application-development* |\n| **Browsers**                | *browsers*                |\n| **CSS**                     | *css*                     |\n| **HTML**                    | *html*                    |\n| **JavaScript**              | *javascript*              |\n| **The Server Side**         | *the-server-side*         |\n\n| **Content**          | *content*          |\n| -------------------- | ------------------ |\n| **Community**        | *community*        |\n| **Content Strategy** | *content-strategy* |\n| **Writing**          | *writing*          |\n\n| **Design**                 | *design*               |\n| -------------------------- | ---------------------- |\n| **Brand Identity**         | *brand-identity*       |\n| **Graphic Design**         | *graphic-design*       |\n| **Layout & Grids**         | *layout-grids*         |\n| **Mobile/Multidevice**     | *mobile-multidevice*   |\n| **Responsive Design**      | *responsive-design*    |\n| **Typography & Web Fonts** | *typography-web-fonts* |\n\n| **Industry & Business** | *industry-business* |\n| ----------------------- | ------------------- |\n| **Business**            | *business*          |\n| **Career**              | *career*            |\n| **Industry**            | *industry*          |\n| **State of the Web**    | *state-of-the-web*  |\n\n| **Process**            | *process*            |\n| ---------------------- | -------------------- |\n| **Creativity**         | *creativity*         |\n| **Project Management** | *project-management* |\n| **Web Strategy**       | *web-strategy*       |\n| **Workflow & Tools**   | *workflow-tools*     |\n\n| **User Experience**          | *user-experience*          |\n| ---------------------------- | -------------------------- |\n| **Accessibility**            | *accessibility*            |\n| **Information Architecture** | *information-architecture* |\n| **Interaction Design**       | *interaction-design*       |\n| **Usability**                | *usability*                |\n| **User Research**            | *user-research*            |",
+      "provider_id": "alistapart",
+      "provider_name": "A List Apart",
+      "route_key": "/:topic"
     }
   },
   {
-    "provider_id": "bitbucket",
-    "provider_name": "Bitbucket",
-    "route_key": "/commits/:workspace/:repo_slug",
+    "provider_id": "devtrium",
+    "provider_name": "Devtrium",
+    "route_key": "/",
     "route": {
-      "path": "/commits/:workspace/:repo_slug",
-      "example": "/bitbucket/commits/blaze-lib/blaze",
-      "parameters": {
-        "workspace": "Workspace",
-        "repo_slug": "Repository"
-      },
-      "name": "Commits",
-      "provider_id": "bitbucket",
-      "provider_name": "Bitbucket",
-      "route_key": "/commits/:workspace/:repo_slug"
-    }
-  },
-  {
-    "provider_id": "chlinlearn",
-    "provider_name": "chlinlearn 的技术博客",
-    "route_key": "/daily-blog",
-    "route": {
-      "path": "/daily-blog",
-      "name": "值得一读技术博客",
-      "example": "/chlinlearn/daily-blog",
-      "provider_id": "chlinlearn",
-      "provider_name": "chlinlearn 的技术博客",
-      "route_key": "/daily-blog"
-    }
-  },
-  {
-    "provider_id": "deepseek",
-    "provider_name": "Deepseek",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/deepseek/news",
-      "name": "新闻",
-      "provider_id": "deepseek",
-      "provider_name": "Deepseek",
-      "route_key": "/news"
+      "path": "/",
+      "example": "/devtrium",
+      "parameters": {},
+      "name": "Official Blogs",
+      "url": "devtrium.com",
+      "provider_id": "devtrium",
+      "provider_name": "Devtrium",
+      "route_key": "/"
     }
   },
   {
@@ -87,42 +61,6 @@
       "provider_id": "gitee",
       "provider_name": "Gitee",
       "route_key": "/releases/:owner/:repo"
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/activity/:user",
-    "route": {
-      "path": "/activity/:user",
-      "name": "User Activities",
-      "example": "/github/activity/DIYgod",
-      "view": 5,
-      "parameters": {
-        "user": "GitHub username"
-      },
-      "description": "Get the activities of a user on GitHub, based on the GitHub official RSS feed",
-      "provider_id": "github",
-      "provider_name": "GitHub",
-      "route_key": "/activity/:user"
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/comments/:user/:repo/:number?",
-    "route": {
-      "path": "/comments/:user/:repo/:number?",
-      "example": "/github/comments/DIYgod/RSSHub/8116",
-      "parameters": {
-        "user": "User / Org name",
-        "repo": "Repo name",
-        "number": "Issue or pull number (if omitted: all)"
-      },
-      "name": "Issue / Pull Request comments",
-      "provider_id": "github",
-      "provider_name": "GitHub",
-      "route_key": "/comments/:user/:repo/:number?"
     }
   },
   {
@@ -147,135 +85,89 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/topics/:name/:qs?",
+    "route_key": "/issue/:user/:repo/:state?/:labels?",
     "route": {
-      "path": "/topics/:name/:qs?",
-      "example": "/github/topics/framework",
+      "path": "/issue/:user/:repo/:state?/:labels?",
+      "view": 5,
+      "example": "/github/issue/DIYgod/RSSHub/open",
       "parameters": {
-        "name": "Topic name, which can be found in the URL of the corresponding [Topics Page](https://github.com/topics/framework)",
-        "qs": "Query string, like `l=php&o=desc&s=stars`. Details listed as follows:"
+        "user": "GitHub username",
+        "repo": "GitHub repo name",
+        "state": {
+          "description": "the state of the issues.",
+          "default": "open",
+          "options": [
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Closed",
+              "value": "closed"
+            },
+            {
+              "label": "All",
+              "value": "all"
+            }
+          ]
+        },
+        "labels": "a list of comma separated label names"
       },
-      "name": "Topics",
-      "url": "github.com/topics",
-      "description": "| Parameter | Description      | Values                                                                                                                          |\n| --------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |\n| `l`       | Language         | For instance `php`, which can be found in the URL of the corresponding [Topics page](https://github.com/topics/framework?l=php) |\n| `o`       | Sorting Order    | `asc`, `desc`                                                                                                                   |\n| `s`       | Sorting Criteria | `stars`, `forks`, `updated`                                                                                                     |\n\n  For instance, the `/github/topics/framework/l=php&o=desc&s=stars` route will generate the RSS feed corresponding to this [page](https://github.com/topics/framework?l=php&o=desc&s=stars).",
+      "name": "Repo Issues",
       "provider_id": "github",
       "provider_name": "GitHub",
-      "route_key": "/topics/:name/:qs?"
+      "route_key": "/issue/:user/:repo/:state?/:labels?"
     }
   },
   {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/wiki/:user/:repo/:page?",
+    "provider_id": "hellogithub",
+    "provider_name": "HelloGitHub",
+    "route_key": "/home/:sort?/:id?",
     "route": {
-      "path": "/wiki/:user/:repo/:page?",
-      "example": "/github/wiki/flutter/flutter/Roadmap",
+      "path": "/home/:sort?/:id?",
+      "example": "/hellogithub/home",
       "parameters": {
-        "user": "User / Org name",
-        "repo": "Repo name",
-        "page": "Page slug, can be found in URL, empty means Home"
+        "sort": "排序方式，见下表，默认为 `featured`，即精选",
+        "id": "标签 id，可在对应标签页 URL 中找到，默认为全部标签"
       },
-      "name": "Wiki History",
-      "provider_id": "github",
-      "provider_name": "GitHub",
-      "route_key": "/wiki/:user/:repo/:page?"
+      "name": "开源项目",
+      "description": "| 精选 | 全部 |\n| ---- | ---- |\n| featured  | all |",
+      "provider_id": "hellogithub",
+      "provider_name": "HelloGitHub",
+      "route_key": "/home/:sort?/:id?"
     }
   },
   {
-    "provider_id": "hackmd",
-    "provider_name": "HackMD",
-    "route_key": "/profile/:path",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/trending/:category/:type",
     "route": {
-      "path": "/profile/:path",
-      "example": "/hackmd/profile/hackmd",
+      "path": "/trending/:category/:type",
+      "example": "/juejin/trending/ios/monthly",
       "parameters": {
-        "path": "userpath or teampath"
+        "category": "分类名",
+        "type": "类型"
       },
-      "name": "Profile",
-      "provider_id": "hackmd",
-      "provider_name": "HackMD",
-      "route_key": "/profile/:path"
+      "name": "热门",
+      "description": "| category | 标签     |\n| -------- | -------- |\n| android  | Android  |\n| frontend | 前端     |\n| ios      | iOS      |\n| backend  | 后端     |\n| design   | 设计     |\n| product  | 产品     |\n| freebie  | 工具资源 |\n| article  | 阅读     |\n| ai       | 人工智能 |\n| devops   | 运维     |\n| all      | 全部     |\n\n| type       | 类型     |\n| ---------- | -------- |\n| weekly     | 本周最热 |\n| monthly    | 本月最热 |\n| historical | 历史最热 |",
+      "provider_id": "juejin",
+      "provider_name": "掘金",
+      "route_key": "/trending/:category/:type"
     }
   },
   {
-    "provider_id": "huggingface",
-    "provider_name": "Huggingface",
-    "route_key": "/blog-zh",
+    "provider_id": "konghq",
+    "provider_name": "Kong API 网关平台",
+    "route_key": "/blog-posts",
     "route": {
-      "path": "/blog-zh",
-      "example": "/huggingface/blog-zh",
+      "path": "/blog-posts",
+      "example": "/konghq/blog-posts",
       "parameters": {},
-      "name": "中文博客",
-      "url": "huggingface.co/blog/zh",
-      "provider_id": "huggingface",
-      "provider_name": "Huggingface",
-      "route_key": "/blog-zh"
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/books",
-    "route": {
-      "path": "/books",
-      "example": "/juejin/books",
-      "parameters": {},
-      "name": "小册",
-      "url": "juejin.cn/books",
-      "description": "> 掘金小册需要付费订阅，RSS 仅做更新提醒，不含付费内容.",
-      "provider_id": "juejin",
-      "provider_name": "掘金",
-      "route_key": "/books"
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/category/:category",
-    "route": {
-      "path": "/category/:category",
-      "example": "/juejin/category/frontend",
-      "parameters": {
-        "category": "分类名"
-      },
-      "name": "分类",
-      "description": "| 后端    | 前端     | Android | iOS | 人工智能 | 开发工具 | 代码人生 | 阅读    |\n| ------- | -------- | ------- | --- | -------- | -------- | -------- | ------- |\n| backend | frontend | android | ios | ai       | freebie  | career   | article |",
-      "provider_id": "juejin",
-      "provider_name": "掘金",
-      "route_key": "/category/:category"
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/collections/:userId",
-    "route": {
-      "path": "/collections/:userId",
-      "example": "/juejin/collections/1697301682482439",
-      "parameters": {
-        "userId": "用户唯一标志符, 在浏览器地址栏URL中能够找到"
-      },
-      "name": "收藏集",
-      "provider_id": "juejin",
-      "provider_name": "掘金",
-      "route_key": "/collections/:userId"
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/pins/:type?",
-    "route": {
-      "path": "/pins/:type?",
-      "example": "/juejin/pins/6824710202487472141",
-      "parameters": {
-        "type": "默认为 recommend，见下表"
-      },
-      "name": "沸点",
-      "description": "| 推荐      | 热门 | 上班摸鱼            | 内推招聘            | 一图胜千言          | 今天学到了          | 每天一道算法题      | 开发工具推荐        | 树洞一下            |\n| --------- | ---- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |\n| recommend | hot  | 6824710203301167112 | 6819970850532360206 | 6824710202487472141 | 6824710202562969614 | 6824710202378436621 | 6824710202000932877 | 6824710203112423437 |",
-      "provider_id": "juejin",
-      "provider_name": "掘金",
-      "route_key": "/pins/:type?"
+      "name": "博客最新文章",
+      "url": "konghq.com/blog/*",
+      "provider_id": "konghq",
+      "provider_name": "Kong API 网关平台",
+      "route_key": "/blog-posts"
     }
   },
   {
@@ -292,66 +184,6 @@
       "provider_id": "lanqiao",
       "provider_name": "蓝桥云课",
       "route_key": "/author/:uid"
-    }
-  },
-  {
-    "provider_id": "luogu",
-    "provider_name": "洛谷",
-    "route_key": "/contest",
-    "route": {
-      "path": "/contest",
-      "example": "/luogu/contest",
-      "parameters": {},
-      "name": "比赛列表",
-      "url": "luogu.com.cn/contest/list",
-      "provider_id": "luogu",
-      "provider_name": "洛谷",
-      "route_key": "/contest"
-    }
-  },
-  {
-    "provider_id": "modb",
-    "provider_name": "墨天轮",
-    "route_key": "/topic/:id",
-    "route": {
-      "path": "/topic/:id",
-      "example": "/modb/topic/44158",
-      "parameters": {
-        "id": "合辑序号"
-      },
-      "name": "合辑",
-      "provider_id": "modb",
-      "provider_name": "墨天轮",
-      "route_key": "/topic/:id"
-    }
-  },
-  {
-    "provider_id": "rustcc",
-    "provider_name": "Rust 语言中文社区",
-    "route_key": "/jobs",
-    "route": {
-      "path": "/jobs",
-      "example": "/rustcc/jobs",
-      "parameters": {},
-      "name": "招聘",
-      "url": "rustcc.cn/",
-      "provider_id": "rustcc",
-      "provider_name": "Rust 语言中文社区",
-      "route_key": "/jobs"
-    }
-  },
-  {
-    "provider_id": "sec-wiki",
-    "provider_name": "SecWiki - 安全维基",
-    "route_key": "/weekly",
-    "route": {
-      "path": "/weekly",
-      "example": "/sec-wiki/weekly",
-      "parameters": {},
-      "name": "最新周刊",
-      "provider_id": "sec-wiki",
-      "provider_name": "SecWiki - 安全维基",
-      "route_key": "/weekly"
     }
   }
 ]

@@ -1,142 +1,146 @@
 [
   {
-    "provider_id": "bulianglin",
-    "provider_name": "不良林",
+    "provider_id": "apache",
+    "provider_name": "Apache",
+    "route_key": "/apisix/blog",
+    "route": {
+      "path": "/apisix/blog",
+      "example": "/apache/apisix/blog",
+      "parameters": {},
+      "name": "APISIX 博客",
+      "provider_id": "apache",
+      "provider_name": "Apache",
+      "route_key": "/apisix/blog"
+    }
+  },
+  {
+    "provider_id": "hicairo",
+    "provider_name": "HiFeng'Blog",
     "route_key": "/",
     "route": {
       "path": "/",
-      "example": "/bulianglin",
-      "name": "全部文章",
-      "url": "bulianglin.com/",
-      "provider_id": "bulianglin",
-      "provider_name": "不良林",
+      "example": "/hicairo",
+      "name": "最近发表",
+      "url": "hicairo.com/",
+      "provider_id": "hicairo",
+      "provider_name": "HiFeng'Blog",
       "route_key": "/"
     }
   },
   {
-    "provider_id": "ceph",
-    "provider_name": "Ceph",
-    "route_key": "/blog/:topic?",
+    "provider_id": "ippa",
+    "provider_name": "子方有料",
+    "route_key": "/",
     "route": {
-      "path": "/blog/:topic?",
-      "example": "/ceph/blog/a11y",
-      "parameters": {
-        "category": "filter blog post by category, return all posts if not specified"
-      },
-      "name": "Blog",
-      "url": "ceph.io",
-      "provider_id": "ceph",
-      "provider_name": "Ceph",
-      "route_key": "/blog/:topic?"
+      "path": "/",
+      "example": "/ippa",
+      "name": "最新文章",
+      "url": "ippa.top/",
+      "provider_id": "ippa",
+      "provider_name": "子方有料",
+      "route_key": "/"
     }
   },
   {
-    "provider_id": "ddosi",
-    "provider_name": "雨苁博客",
-    "route_key": "/category/:category?",
+    "provider_id": "itc",
+    "provider_name": "Open Github社区",
+    "route_key": "/collection/:colType",
     "route": {
-      "path": "/category/:category?",
-      "example": "/ddosi/category/黑客工具",
-      "parameters": {
-        "category": "N"
-      },
-      "name": "分类",
-      "url": "ddosi.org/",
-      "provider_id": "ddosi",
-      "provider_name": "雨苁博客",
-      "route_key": "/category/:category?"
+      "path": "/collection/:colType",
+      "example": "/itc/collection/1",
+      "name": "合集",
+      "provider_id": "itc",
+      "provider_name": "Open Github社区",
+      "route_key": "/collection/:colType"
     }
   },
   {
-    "provider_id": "flashcat",
-    "provider_name": "Flashcat",
+    "provider_id": "pianyivps",
+    "provider_name": "便宜VPS网",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "example": "/pianyivps",
+      "name": "最新发布",
+      "url": "pianyivps.com/",
+      "provider_id": "pianyivps",
+      "provider_name": "便宜VPS网",
+      "route_key": "/"
+    }
+  },
+  {
+    "provider_id": "playpcesor",
+    "provider_name": "电脑玩物",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "example": "/playpcesor",
+      "name": "每日精选文章",
+      "url": "playpcesor.com/",
+      "provider_id": "playpcesor",
+      "provider_name": "电脑玩物",
+      "route_key": "/"
+    }
+  },
+  {
+    "provider_id": "withgoogle",
+    "provider_name": "People + AI Research (PAIR)",
+    "route_key": "/explorables",
+    "route": {
+      "name": "PAIR - AI Exploreables",
+      "url": "pair.withgoogle.com/explorables",
+      "path": "/explorables",
+      "example": "/withgoogle/explorables",
+      "provider_id": "withgoogle",
+      "provider_name": "People + AI Research (PAIR)",
+      "route_key": "/explorables"
+    }
+  },
+  {
+    "provider_id": "xunhupay",
+    "provider_name": "虎皮椒",
     "route_key": "/blog",
     "route": {
       "path": "/blog",
-      "example": "/flashcat/blog",
-      "parameters": {},
-      "name": "快猫星云博客",
-      "provider_id": "flashcat",
-      "provider_name": "Flashcat",
-      "route_key": "/blog"
-    }
-  },
-  {
-    "provider_id": "luxiangdong",
-    "provider_name": "土猛的员外",
-    "route_key": "/archive",
-    "route": {
-      "path": "/archive",
-      "example": "/luxiangdong/archive",
+      "example": "/xunhupay/blog",
       "parameters": {},
       "name": "文章",
-      "url": "luxiangdong.com/",
-      "provider_id": "luxiangdong",
-      "provider_name": "土猛的员外",
-      "route_key": "/archive"
-    }
-  },
-  {
-    "provider_id": "medium",
-    "provider_name": "Medium",
-    "route_key": "/feed/:user",
-    "route": {
-      "path": "/feed/:user",
-      "view": 1,
-      "example": "/medium/feed/zhgchgli",
-      "parameters": {
-        "user": "Username of the Medium"
-      },
-      "name": "Medium Feed",
-      "provider_id": "medium",
-      "provider_name": "Medium",
-      "route_key": "/feed/:user"
-    }
-  },
-  {
-    "provider_id": "medium",
-    "provider_name": "Medium",
-    "route_key": "/list/:user/:catalogId",
-    "route": {
-      "path": "/list/:user/:catalogId",
-      "example": "/medium/list/imsingee/f2d8d48096a9",
-      "parameters": {
-        "user": "Username",
-        "catalogId": "List ID"
-      },
-      "name": "List",
-      "description": "The List ID is the last part of the URL after `-`, for example, the username in [https://medium.com/@imsingee/list/collection-7e67004f23f9](https://medium.com/@imsingee/list/collection-7e67004f23f9) is `imsingee`, and the ID is `7e67004f23f9`.\n\n::: warning\n  To access private lists, only self-hosting is supported.\n:::",
-      "provider_id": "medium",
-      "provider_name": "Medium",
-      "route_key": "/list/:user/:catalogId"
-    }
-  },
-  {
-    "provider_id": "nielsberglund",
-    "provider_name": "Niels Berglund Blog",
-    "route_key": "/blog",
-    "route": {
-      "path": "/blog",
-      "example": "/nielsberglund/blog",
-      "url": "nielsberglund.com/",
-      "name": "Blog",
-      "description": "Niels Berglund Blog Posts",
-      "provider_id": "nielsberglund",
-      "provider_name": "Niels Berglund Blog",
+      "url": "www.xunhupay.com/blog",
+      "provider_id": "xunhupay",
+      "provider_name": "虎皮椒",
       "route_key": "/blog"
     }
   },
   {
-    "provider_id": "njuferret",
-    "provider_name": "njuferret",
-    "route_key": "/blog",
+    "provider_id": "xys",
+    "provider_name": "新语丝",
+    "route_key": "/new",
     "route": {
-      "path": "/blog",
-      "example": "/njuferret/blog",
-      "name": "Blogs",
-      "provider_id": "njuferret",
-      "provider_name": "njuferret",
-      "route_key": "/blog"
+      "path": "/new",
+      "example": "/xys/new",
+      "parameters": {},
+      "name": "新到资料",
+      "url": "xys.org/",
+      "provider_id": "xys",
+      "provider_name": "新语丝",
+      "route_key": "/new"
+    }
+  },
+  {
+    "provider_id": "youmemark",
+    "provider_name": "YouMeMark",
+    "route_key": "/:userid",
+    "route": {
+      "path": "/:userid",
+      "example": "/youmemark/pseudoyu",
+      "parameters": {
+        "userid": "`userid` is the user id of youmemark"
+      },
+      "name": "Bookmarks",
+      "description": "Get user's public bookmarks from YouMeMark\n::: tip\n  Add `?limit=<number>` to the end of the route to limit the number of items. Default is 10.\n:::",
+      "provider_id": "youmemark",
+      "provider_name": "YouMeMark",
+      "route_key": "/:userid"
     }
   }
 ]

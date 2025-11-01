@@ -1,13 +1,29 @@
 [
   {
-    "provider_id": "chsi",
-    "provider_name": "中国研究生招生信息网",
-    "route_key": "/kydt",
+    "provider_id": "dblp",
+    "provider_name": "DBLP",
+    "route_key": "/:field",
     "route": {
-      "name": "考研动态",
-      "path": "/kydt",
-      "example": "/chsi/kydt",
-      "parameters": {},
+      "name": "Keyword Search",
+      "path": "/:field",
+      "example": "/dblp/knowledge%20tracing",
+      "parameters": {
+        "field": "Research field"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "x-mol",
+    "provider_name": "X-MOL",
+    "route_key": "/news/:tag?",
+    "route": {
+      "name": "News",
+      "path": "/news/:tag?",
+      "example": "/x-mol/news/3",
+      "parameters": {
+        "tag": "Tag number, can be obtained from news list URL. Empty value means news index."
+      },
       "description": ""
     }
   }

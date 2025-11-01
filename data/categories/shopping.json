@@ -1,66 +1,72 @@
 [
   {
-    "provider_id": "mi",
-    "provider_name": "小米",
-    "route_key": "/crowdfunding",
+    "provider_id": "damai",
+    "provider_name": "大麦网",
+    "route_key": "/activity/:city/:category/:subcategory/:keyword?",
     "route": {
-      "path": "/crowdfunding",
-      "example": "/mi/crowdfunding",
-      "name": "小米众筹",
-      "view": 5,
-      "provider_id": "mi",
-      "provider_name": "小米",
-      "route_key": "/crowdfunding"
-    }
-  },
-  {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/brand/:id",
-    "route": {
-      "path": "/brand/:id",
-      "example": "/showstart/brand/34707",
+      "path": "/activity/:city/:category/:subcategory/:keyword?",
+      "example": "/damai/activity/上海/音乐会/全部/柴可夫斯基",
       "parameters": {
-        "id": "厂牌 ID"
+        "city": "城市，如果不需要限制，请填入`全部`",
+        "category": "分类，如果不需要限制，请填入`全部`",
+        "subcategory": "子分类，如果不需要限制，请填入`全部`",
+        "keyword": "搜索关键字，置空为不限制"
       },
-      "name": "按厂牌 - 演出更新",
-      "description": "::: tip\n厂牌 ID 查询: `/showstart/search/brand/:keyword`，如: [https://rsshub.app/showstart/search/brand/声场](https://rsshub.app/showstart/search/brand/声场)\n:::",
-      "provider_id": "showstart",
-      "provider_name": "秀动网",
-      "route_key": "/brand/:id"
+      "name": "票务更新",
+      "description": "城市、分类名、子分类名，请参见[大麦网搜索页面](https://search.damai.cn/search.htm)",
+      "provider_id": "damai",
+      "provider_name": "大麦网",
+      "route_key": "/activity/:city/:category/:subcategory/:keyword?"
     }
   },
   {
-    "provider_id": "snowpeak",
-    "provider_name": "Snow Peak",
-    "route_key": "/us/new-arrivals",
+    "provider_id": "furstar",
+    "provider_name": "Furstar",
+    "route_key": "/archive/:lang?",
     "route": {
-      "path": "/us/new-arrivals",
-      "example": "/snowpeak/us/new-arrivals",
-      "parameters": {},
-      "name": "New Arrivals(USA)",
-      "url": "snowpeak.com/collections/new-arrivals",
-      "provider_id": "snowpeak",
-      "provider_name": "Snow Peak",
-      "route_key": "/us/new-arrivals"
-    }
-  },
-  {
-    "provider_id": "xianbao",
-    "provider_name": "线报酷",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "name": "线板酷",
-      "url": "new.xianbao.fun",
-      "example": "/xianbao",
+      "path": "/archive/:lang?",
+      "example": "/furstar/archive/cn",
       "parameters": {
-        "category": "类别id，默认为：latest"
+        "lang": "语言, 留空为jp, 支持cn, en"
       },
-      "description": "\n| 分类         | id             |\n| ------------ | -------------- |\n| 最新         | latest         |\n| 赚客吧       | zuankeba       |\n| 赚客吧热帖   | zuankeba-hot   |\n| 新赚吧       | xinzuanba      |\n| 新赚吧热帖   | xinzuanba-hot  |\n| 微博         | weibo          |\n| 微博热帖     | weibo-hot      |\n| 豆瓣线报     | douban         |\n| 豆瓣热帖     | douban-hot     |\n| 酷安         | kuan           |\n| 小嘀咕       | xiaodigu       |\n| 葫芦侠       | huluxia        |\n| 小刀娱乐网   | xiadao         |\n| 技术QQ网     | qqjishu        |\n| YYOK大全     | yyok           |\n| 活动资讯网   | huodong        |\n| 免费赚钱中心 | mianfei        |\n| 一小时       | yixiaoshi      |\n| 三小时       | sanxiaoshi     |\n| 六小时       | liuxiaoshi     |\n| 十二小时     | shierxiaoshi   |\n| 二十四小时   | ershisixiaoshi |\n| 四十八小时   | sishibaxiaoshi |\n| 今天         | jintian        |\n| 昨天         | zuotian        |\n| 前天         | qiantian       |\n| 三天         | santian        |\n| 五天         | wutian         |\n| 七天         | qitian         |\n| 十五天       | shiwutian      |",
-      "provider_id": "xianbao",
-      "provider_name": "线报酷",
-      "route_key": "/:category?"
+      "name": "已经出售的角色列表",
+      "provider_id": "furstar",
+      "provider_name": "Furstar",
+      "route_key": "/archive/:lang?"
+    }
+  },
+  {
+    "provider_id": "openrice",
+    "provider_name": "Openrice開飯喇",
+    "route_key": "/:lang/hongkong/promos",
+    "route": {
+      "path": "/:lang/hongkong/promos",
+      "example": "/openrice/zh/hongkong/promos",
+      "parameters": {
+        "lang": "语言，缺省为 zh"
+      },
+      "name": "香港餐厅滋讯",
+      "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n  ",
+      "provider_id": "openrice",
+      "provider_name": "Openrice開飯喇",
+      "route_key": "/:lang/hongkong/promos"
+    }
+  },
+  {
+    "provider_id": "uniqlo",
+    "provider_name": "Uniqlo",
+    "route_key": "/new/:country/:category",
+    "route": {
+      "path": "/new/:country/:category",
+      "example": "/uniqlo/new/sg/men",
+      "parameters": {
+        "country": "currently only supports sg, us, jp",
+        "category": "supports `men` `women`, `kids`, `baby`"
+      },
+      "name": "New Arrivals",
+      "provider_id": "uniqlo",
+      "provider_name": "Uniqlo",
+      "route_key": "/new/:country/:category"
     }
   }
 ]

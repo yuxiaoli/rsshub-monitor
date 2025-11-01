@@ -1,17 +1,26 @@
 [
   {
-    "provider_id": "alpinelinux",
-    "provider_name": "Alpine Linux",
-    "route_key": "/pkgs/:name/:routeParams?",
+    "provider_id": "asus",
+    "provider_name": "ASUS",
+    "route_key": "/gpu-tweak",
     "route": {
-      "name": "Packages",
-      "path": "/pkgs/:name/:routeParams?",
-      "example": "/alpinelinux/pkgs/nodejs",
-      "parameters": {
-        "name": "Packages name",
-        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
-      },
-      "description": "Alpine Linux packages update"
+      "name": "GPU Tweak",
+      "path": "/gpu-tweak",
+      "example": "/asus/gpu-tweak",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "cpuid",
+    "provider_name": "CPUID",
+    "route_key": "/news",
+    "route": {
+      "name": "News",
+      "path": "/news",
+      "example": "/cpuid/news",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -27,110 +36,39 @@
     }
   },
   {
-    "provider_id": "f-droid",
-    "provider_name": "F-Droid",
-    "route_key": "/apprelease/:app",
+    "provider_id": "greasyfork",
+    "provider_name": "Greasy Fork",
+    "route_key": "/scripts/:script/versions",
     "route": {
-      "name": "App Update",
-      "path": "/apprelease/:app",
-      "example": "/f-droid/apprelease/com.termux",
+      "name": "Script Version History",
+      "path": "/scripts/:script/versions",
+      "example": "/greasyfork/scripts/431691-bypass-all-shortlinks/versions",
       "parameters": {
-        "app": "App's package name"
+        "script": "Script id, can be found in URL"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "lrepacks",
-    "provider_name": "REPACK скачать",
-    "route_key": "/:category?",
+    "provider_id": "postman",
+    "provider_name": "Postman",
+    "route_key": "/release-notes",
     "route": {
-      "name": "REPACK скачать",
-      "path": "/:category?",
-      "example": "/lrepacks",
-      "parameters": {
-        "category": "Category, Homepage by default"
-      },
-      "description": "::: tip\n  If you subscribe to [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)，where the URL is `https://lrepacks.net/repaki-sistemnyh-programm/`, extract the part `https://lrepacks.net/` to the end, which is `repaki-sistemnyh-programm`, and use it as the parameter to fill in. Therefore, the route will be [`/lrepacks/repaki-sistemnyh-programm`](https://rsshub.app/lrepacks/repaki-sistemnyh-programm).\n\n| Category                                                                        | ID                                                                                           |\n| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |\n| [Новые репаки на сегодня](https://lrepacks.net/novye-repaki-elchupacabra/)      | [novye-repaki-elchupacabra](https://rsshub.app/lrepacks/novye-repaki-elchupacabra)           |\n| [Системные программы](https://lrepacks.net/repaki-sistemnyh-programm/)          | [repaki-sistemnyh-programm](https://rsshub.app/lrepacks/repaki-sistemnyh-programm)           |\n| [Программы для графики](https://lrepacks.net/repaki-programm-dlya-grafiki/)     | [repaki-programm-dlya-grafiki](https://rsshub.app/lrepacks/repaki-programm-dlya-grafiki)     |\n| [Программы для интернета](https://lrepacks.net/repaki-programm-dlya-interneta/) | [repaki-programm-dlya-interneta](https://rsshub.app/lrepacks/repaki-programm-dlya-interneta) |\n| [Мультимедиа программы](https://lrepacks.net/repaki-multimedia-programm/)       | [repaki-multimedia-programm](https://rsshub.app/lrepacks/repaki-multimedia-programm)         |\n| [Программы для офиса](https://lrepacks.net/repaki-programm-dlya-ofisa/)         | [repaki-programm-dlya-ofisa](https://rsshub.app/lrepacks/repaki-programm-dlya-ofisa)         |\n| [Разные программы](https://lrepacks.net/repaki-raznyh-programm/)                | [repaki-raznyh-programm](https://rsshub.app/lrepacks/repaki-raznyh-programm)                 |\n| [Системные библиотеки](https://lrepacks.net/sistemnye-biblioteki/)              | [sistemnye-biblioteki](https://rsshub.app/lrepacks/sistemnye-biblioteki)                     |\n| [Важная информация](https://lrepacks.net/informaciya/)                          | [informaciya](https://rsshub.app/lrepacks/informaciya)                                       |\n:::"
-    }
-  },
-  {
-    "provider_id": "microsoft",
-    "provider_name": "Microsoft",
-    "route_key": "/mcr/product/*",
-    "route": {
-      "name": "Product tags in mcr.microsoft.com",
-      "path": "/mcr/product/*",
-      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
-      "parameters": {
-        "product": "repository path in mcr.microsoft.com"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "neatdownloadmanager",
-    "provider_name": "Neat Download Manager",
-    "route_key": "/download/:os?",
-    "route": {
-      "name": "Download",
-      "path": "/download/:os?",
-      "example": "/neatdownloadmanager/download",
-      "parameters": {
-        "os": "Operating system, windows or macos, all by default"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sony",
-    "provider_name": "Sony",
-    "route_key": "/downloads/:productType/:productId",
-    "route": {
-      "name": "Software Downloads",
-      "path": "/downloads/:productType/:productId",
-      "example": "/sony/downloads/product/nw-wm1am2",
-      "parameters": {
-        "productType": "product type",
-        "productId": "product id"
-      },
-      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
-    }
-  },
-  {
-    "provider_id": "sourceforge",
-    "provider_name": "SourceForge",
-    "route_key": "/:routeParams?",
-    "route": {
-      "name": "Software",
-      "path": "/:routeParams?",
-      "example": "/sourceforge/topic=artificial-intelligence&os=windows",
-      "parameters": {
-        "routeParams": "route params, see below"
-      },
-      "description": "For some URL like [https://sourceforge.net/directory/artificial-intelligence/windows/](https://sourceforge.net/directory/artificial-intelligence/windows/), it is equal to [https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows\"](https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows), thus subscribing to `/sourceforge/topic=artificial-intelligence&os=windows`.\n\n  URL params can duplicate, such as `/sourceforge/topic=artificial-intelligence&os=windows&os=linux`."
-    }
-  },
-  {
-    "provider_id": "tradingview",
-    "provider_name": "TradingView",
-    "route_key": "/desktop",
-    "route": {
-      "name": "Desktop releases and release notes",
-      "path": "/desktop",
-      "example": "/tradingview/desktop",
+      "name": "Release Notes",
+      "path": "/release-notes",
+      "example": "/postman/release-notes",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "zotero",
-    "provider_name": "Zotero",
-    "route_key": "/versions",
+    "provider_id": "remnote",
+    "provider_name": "RemNote",
+    "route_key": "/changelog",
     "route": {
-      "name": "Version History",
-      "path": "/versions",
-      "example": "/zotero/versions",
+      "name": "Changelog",
+      "path": "/changelog",
+      "example": "/remnote/changelog",
       "parameters": {},
       "description": ""
     }
