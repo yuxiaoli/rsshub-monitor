@@ -1,36 +1,93 @@
 [
   {
-    "provider_id": "douyu",
-    "provider_name": "斗鱼直播",
-    "route_key": "/post/:id",
+    "provider_id": "deepin",
+    "provider_name": "Deepin",
+    "route_key": "/threads/:type?",
     "route": {
-      "path": "/post/:id",
-      "example": "/douyu/post/631737151576473201",
+      "path": "/threads/:type?",
+      "example": "/deepin/threads/latest",
       "parameters": {
-        "id": "帖子 id，可在帖子页 URL 中找到"
+        "type": {
+          "description": "主题类型",
+          "options": [
+            {
+              "value": "hot",
+              "label": "最热主题"
+            },
+            {
+              "value": "latest",
+              "label": "最新主题"
+            }
+          ]
+        }
       },
-      "name": "鱼吧跟帖",
-      "provider_id": "douyu",
-      "provider_name": "斗鱼直播",
-      "route_key": "/post/:id"
+      "name": "首页主题列表",
+      "provider_id": "deepin",
+      "provider_name": "Deepin",
+      "route_key": "/threads/:type?"
     }
   },
   {
-    "provider_id": "nowcoder",
-    "provider_name": "牛客网",
-    "route_key": "/schedule/:propertyId?/:typeId?",
+    "provider_id": "eleduck",
+    "provider_name": "电鸭社区",
+    "route_key": "/jobs",
     "route": {
-      "path": "/schedule/:propertyId?/:typeId?",
-      "example": "/nowcoder/schedule",
+      "path": "/jobs",
+      "example": "/eleduck/jobs",
+      "parameters": {},
+      "name": "工作机会",
+      "url": "eleduck.com/categories/5",
+      "provider_id": "eleduck",
+      "provider_name": "电鸭社区",
+      "route_key": "/jobs"
+    }
+  },
+  {
+    "provider_id": "eleduck",
+    "provider_name": "电鸭社区",
+    "route_key": "/posts/:id?",
+    "route": {
+      "path": "/posts/:id?",
+      "example": "/eleduck/posts/4",
       "parameters": {
-        "propertyId": "行业, 在控制台中抓取接口，可获得行业id，默认0",
-        "typeId": "类别，同上"
+        "id": "分类id,可以论坛的URL找到，默认为全部"
       },
-      "name": "校招日程",
-      "url": "nowcoder.com/",
-      "provider_id": "nowcoder",
-      "provider_name": "牛客网",
-      "route_key": "/schedule/:propertyId?/:typeId?"
+      "name": "分类文章",
+      "description": "| id | 分类     |\n| -- | -------- |\n| 0  | 全部     |\n| 1  | 讨论     |\n| 2  | 分享     |\n| 3  | 露个脸   |\n| 4  | 访谈故事 |\n| 5  | 招聘     |\n| 10 | 海外移民 |\n| 12 | 英语     |\n| 14 | 电鸭官方 |\n| 15 | 独立产品 |\n| 17 | 闲话开源 |\n| 19 | Web3     |\n| 21 | 设计     |\n| 22 | 人才库   |\n| 23 | Upwork   |\n| 24 | 经验课   |",
+      "provider_id": "eleduck",
+      "provider_name": "电鸭社区",
+      "route_key": "/posts/:id?"
+    }
+  },
+  {
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/post/:postid",
+    "route": {
+      "path": "/post/:postid",
+      "example": "/v2ex/post/584403",
+      "parameters": {
+        "postid": "帖子ID，在 URL 可以找到"
+      },
+      "name": "帖子",
+      "provider_id": "v2ex",
+      "provider_name": "V2EX",
+      "route_key": "/post/:postid"
+    }
+  },
+  {
+    "provider_id": "xiaote",
+    "provider_name": "小特社区",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/xiaote/news",
+      "parameters": {},
+      "name": "首页帖子",
+      "url": "xiaote.com/",
+      "provider_id": "xiaote",
+      "provider_name": "小特社区",
+      "route_key": "/news"
     }
   }
 ]

@@ -1,37 +1,5 @@
 [
   {
-    "provider_id": "4kup",
-    "provider_name": "4KUP",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/4kup",
-      "parameters": {},
-      "name": "Latest",
-      "url": "4kup.net/",
-      "provider_id": "4kup",
-      "provider_name": "4KUP",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "500px",
-    "provider_name": "500px 摄影社区",
-    "route_key": "/tribe/set/:id",
-    "route": {
-      "path": "/tribe/set/:id",
-      "view": 2,
-      "example": "/500px/tribe/set/f5de0b8aa6d54ec486f5e79616418001",
-      "parameters": {
-        "id": "部落 ID"
-      },
-      "name": "部落影集",
-      "provider_id": "500px",
-      "provider_name": "500px 摄影社区",
-      "route_key": "/tribe/set/:id"
-    }
-  },
-  {
     "provider_id": "dapenti",
     "provider_name": "喷嚏",
     "route_key": "/subject/:id",
@@ -48,21 +16,95 @@
     }
   },
   {
-    "provider_id": "ehentai",
-    "provider_name": "E-Hentai",
-    "route_key": "/search/:params?/:page?/:routeParams?",
+    "provider_id": "jpxgmn",
+    "provider_name": "极品性感美女",
+    "route_key": "/weekly",
     "route": {
-      "path": "/search/:params?/:page?/:routeParams?",
-      "example": "/ehentai/search/f_cats=1021/0/bittorrent=true&embed_thumb=false",
+      "path": "/weekly",
+      "example": "/jpxgmn/weekly",
+      "name": "本周热门",
+      "provider_id": "jpxgmn",
+      "provider_name": "极品性感美女",
+      "route_key": "/weekly"
+    }
+  },
+  {
+    "provider_id": "misskon",
+    "provider_name": "MissKON",
+    "route_key": "/top/:k",
+    "route": {
+      "path": "/top/:k",
+      "example": "/misskon/top/60",
       "parameters": {
-        "params": "Search parameters. You can copy the content after `https://e-hentai.org/?`",
-        "page": "Page number, set 0 to get latest",
-        "routeParams": "Additional parameters, see the table above"
+        "k": "Top k days, can be 3, 7, 30 or 60"
+      },
+      "name": "Top k days",
+      "provider_id": "misskon",
+      "provider_name": "MissKON",
+      "route_key": "/top/:k"
+    }
+  },
+  {
+    "provider_id": "nasa",
+    "provider_name": "NASA",
+    "route_key": "/apod-cn",
+    "route": {
+      "path": "/apod-cn",
+      "example": "/nasa/apod-cn",
+      "parameters": {},
+      "name": "NASA 中文",
+      "url": "apod.nasa.govundefined",
+      "description": "::: tip\n  [NASA 中文](https://www.nasachina.cn/) 提供了每日天文图的中英双语图文说明，但在更新上偶尔略有一两天的延迟。\n:::",
+      "provider_id": "nasa",
+      "provider_name": "NASA",
+      "route_key": "/apod-cn"
+    }
+  },
+  {
+    "provider_id": "nasa",
+    "provider_name": "NASA",
+    "route_key": "/apod",
+    "route": {
+      "path": "/apod",
+      "view": 2,
+      "example": "/nasa/apod",
+      "parameters": {},
+      "name": "Astronomy Picture of the Day",
+      "url": "apod.nasa.govundefined",
+      "provider_id": "nasa",
+      "provider_name": "NASA",
+      "route_key": "/apod"
+    }
+  },
+  {
+    "provider_id": "pixabay",
+    "provider_name": "Pixabay",
+    "route_key": "/search/:q/:order?",
+    "route": {
+      "path": "/search/:q/:order?",
+      "view": 2,
+      "example": "/pixabay/search/cat",
+      "parameters": {
+        "q": "Search term",
+        "order": {
+          "description": "Order",
+          "options": [
+            {
+              "value": "popular",
+              "label": "popular"
+            },
+            {
+              "value": "latest",
+              "label": "latest"
+            }
+          ],
+          "default": "latest"
+        }
       },
       "name": "Search",
-      "provider_id": "ehentai",
-      "provider_name": "E-Hentai",
-      "route_key": "/search/:params?/:page?/:routeParams?"
+      "provider_id": "pixabay",
+      "provider_name": "Pixabay",
+      "route_key": "/search/:q/:order?"
     }
   }
 ]

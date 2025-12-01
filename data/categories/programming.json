@@ -1,34 +1,19 @@
 [
   {
-    "provider_id": "alistapart",
-    "provider_name": "A List Apart",
-    "route_key": "/",
+    "provider_id": "bitbucket",
+    "provider_name": "Bitbucket",
+    "route_key": "/commits/:workspace/:repo_slug",
     "route": {
-      "path": "/",
-      "name": "Home Feed",
-      "url": "alistapart.com/articles/",
-      "example": "/alistapart",
-      "provider_id": "alistapart",
-      "provider_name": "A List Apart",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "alistapart",
-    "provider_name": "A List Apart",
-    "route_key": "/:topic",
-    "route": {
-      "path": "/:topic",
-      "example": "/alistapart/application-development",
+      "path": "/commits/:workspace/:repo_slug",
+      "example": "/bitbucket/commits/blaze-lib/blaze",
       "parameters": {
-        "topic": "Any Topic or from the table below. Defaults to All Articles"
+        "workspace": "Workspace",
+        "repo_slug": "Repository"
       },
-      "name": "Topics",
-      "url": "alistapart.com/articles/",
-      "description": "You have the option to utilize the main heading or use individual categories as topics for the path.\n\n| **Code**                    | *code*                    |\n| --------------------------- | ------------------------- |\n| **Application Development** | *application-development* |\n| **Browsers**                | *browsers*                |\n| **CSS**                     | *css*                     |\n| **HTML**                    | *html*                    |\n| **JavaScript**              | *javascript*              |\n| **The Server Side**         | *the-server-side*         |\n\n| **Content**          | *content*          |\n| -------------------- | ------------------ |\n| **Community**        | *community*        |\n| **Content Strategy** | *content-strategy* |\n| **Writing**          | *writing*          |\n\n| **Design**                 | *design*               |\n| -------------------------- | ---------------------- |\n| **Brand Identity**         | *brand-identity*       |\n| **Graphic Design**         | *graphic-design*       |\n| **Layout & Grids**         | *layout-grids*         |\n| **Mobile/Multidevice**     | *mobile-multidevice*   |\n| **Responsive Design**      | *responsive-design*    |\n| **Typography & Web Fonts** | *typography-web-fonts* |\n\n| **Industry & Business** | *industry-business* |\n| ----------------------- | ------------------- |\n| **Business**            | *business*          |\n| **Career**              | *career*            |\n| **Industry**            | *industry*          |\n| **State of the Web**    | *state-of-the-web*  |\n\n| **Process**            | *process*            |\n| ---------------------- | -------------------- |\n| **Creativity**         | *creativity*         |\n| **Project Management** | *project-management* |\n| **Web Strategy**       | *web-strategy*       |\n| **Workflow & Tools**   | *workflow-tools*     |\n\n| **User Experience**          | *user-experience*          |\n| ---------------------------- | -------------------------- |\n| **Accessibility**            | *accessibility*            |\n| **Information Architecture** | *information-architecture* |\n| **Interaction Design**       | *interaction-design*       |\n| **Usability**                | *usability*                |\n| **User Research**            | *user-research*            |",
-      "provider_id": "alistapart",
-      "provider_name": "A List Apart",
-      "route_key": "/:topic"
+      "name": "Commits",
+      "provider_id": "bitbucket",
+      "provider_name": "Bitbucket",
+      "route_key": "/commits/:workspace/:repo_slug"
     }
   },
   {
@@ -47,143 +32,126 @@
     }
   },
   {
-    "provider_id": "gitee",
-    "provider_name": "Gitee",
-    "route_key": "/releases/:owner/:repo",
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/search/:query/:sort?/:order?",
     "route": {
-      "path": "/releases/:owner/:repo",
-      "example": "/gitee/releases/y_project/RuoYi",
+      "path": "/search/:query/:sort?/:order?",
+      "example": "/github/search/RSSHub/bestmatch/desc",
       "parameters": {
-        "owner": "用户名",
-        "repo": "仓库名"
+        "query": "search keyword",
+        "sort": "Sort options (default to bestmatch)",
+        "order": "Sort order, desc and asc (desc descending by default)"
       },
-      "name": "仓库 Releases",
-      "provider_id": "gitee",
-      "provider_name": "Gitee",
-      "route_key": "/releases/:owner/:repo"
+      "name": "Search Result",
+      "description": "| Sort options     | sort      |\n| ---------------- | --------- |\n| Best match       | bestmatch |\n| Most stars       | stars     |\n| Most forks       | forks     |\n| Recently updated | updated   |",
+      "provider_id": "github",
+      "provider_name": "GitHub",
+      "route_key": "/search/:query/:sort?/:order?"
     }
   },
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/contributors/:user/:repo/:order?/:anon?",
+    "route_key": "/starred_repos/:user",
     "route": {
-      "path": "/contributors/:user/:repo/:order?/:anon?",
-      "example": "/github/contributors/DIYgod/RSSHub",
+      "path": "/starred_repos/:user",
+      "example": "/github/starred_repos/DIYgod",
       "parameters": {
-        "user": "User name",
-        "repo": "Repo name",
-        "order": "Sort order by commit numbers, desc and asc (descending by default)",
-        "anon": "Show anonymous users. Defaults to no, use any values for yes."
+        "user": "User name"
       },
-      "name": "Repo Contributors",
+      "name": "User Starred Repositories",
       "provider_id": "github",
       "provider_name": "GitHub",
-      "route_key": "/contributors/:user/:repo/:order?/:anon?"
+      "route_key": "/starred_repos/:user"
     }
   },
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/issue/:user/:repo/:state?/:labels?",
+    "route_key": "/topics/:name/:qs?",
     "route": {
-      "path": "/issue/:user/:repo/:state?/:labels?",
-      "view": 5,
-      "example": "/github/issue/DIYgod/RSSHub/open",
+      "path": "/topics/:name/:qs?",
+      "example": "/github/topics/framework",
       "parameters": {
-        "user": "GitHub username",
-        "repo": "GitHub repo name",
-        "state": {
-          "description": "the state of the issues.",
-          "default": "open",
-          "options": [
-            {
-              "label": "Open",
-              "value": "open"
-            },
-            {
-              "label": "Closed",
-              "value": "closed"
-            },
-            {
-              "label": "All",
-              "value": "all"
-            }
-          ]
-        },
-        "labels": "a list of comma separated label names"
+        "name": "Topic name, which can be found in the URL of the corresponding [Topics Page](https://github.com/topics/framework)",
+        "qs": "Query string, like `l=php&o=desc&s=stars`. Details listed as follows:"
       },
-      "name": "Repo Issues",
+      "name": "Topics",
+      "url": "github.com/topics",
+      "description": "| Parameter | Description      | Values                                                                                                                          |\n| --------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |\n| `l`       | Language         | For instance `php`, which can be found in the URL of the corresponding [Topics page](https://github.com/topics/framework?l=php) |\n| `o`       | Sorting Order    | `asc`, `desc`                                                                                                                   |\n| `s`       | Sorting Criteria | `stars`, `forks`, `updated`                                                                                                     |\n\n  For instance, the `/github/topics/framework/l=php&o=desc&s=stars` route will generate the RSS feed corresponding to this [page](https://github.com/topics/framework?l=php&o=desc&s=stars).",
       "provider_id": "github",
       "provider_name": "GitHub",
-      "route_key": "/issue/:user/:repo/:state?/:labels?"
+      "route_key": "/topics/:name/:qs?"
     }
   },
   {
-    "provider_id": "hellogithub",
-    "provider_name": "HelloGitHub",
-    "route_key": "/home/:sort?/:id?",
+    "provider_id": "jinritemai",
+    "provider_name": "抖店开放平台",
+    "route_key": "/docs/:dirId?",
     "route": {
-      "path": "/home/:sort?/:id?",
-      "example": "/hellogithub/home",
+      "path": "/docs/:dirId?",
+      "example": "/jinritemai/docs/19",
       "parameters": {
-        "sort": "排序方式，见下表，默认为 `featured`，即精选",
-        "id": "标签 id，可在对应标签页 URL 中找到，默认为全部标签"
+        "dirId": "公告分类, 可在页面URL获取 默认为全部"
       },
-      "name": "开源项目",
-      "description": "| 精选 | 全部 |\n| ---- | ---- |\n| featured  | all |",
-      "provider_id": "hellogithub",
-      "provider_name": "HelloGitHub",
-      "route_key": "/home/:sort?/:id?"
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/trending/:category/:type",
-    "route": {
-      "path": "/trending/:category/:type",
-      "example": "/juejin/trending/ios/monthly",
-      "parameters": {
-        "category": "分类名",
-        "type": "类型"
-      },
-      "name": "热门",
-      "description": "| category | 标签     |\n| -------- | -------- |\n| android  | Android  |\n| frontend | 前端     |\n| ios      | iOS      |\n| backend  | 后端     |\n| design   | 设计     |\n| product  | 产品     |\n| freebie  | 工具资源 |\n| article  | 阅读     |\n| ai       | 人工智能 |\n| devops   | 运维     |\n| all      | 全部     |\n\n| type       | 类型     |\n| ---------- | -------- |\n| weekly     | 本周最热 |\n| monthly    | 本月最热 |\n| historical | 历史最热 |",
-      "provider_id": "juejin",
-      "provider_name": "掘金",
-      "route_key": "/trending/:category/:type"
-    }
-  },
-  {
-    "provider_id": "konghq",
-    "provider_name": "Kong API 网关平台",
-    "route_key": "/blog-posts",
-    "route": {
-      "path": "/blog-posts",
-      "example": "/konghq/blog-posts",
-      "parameters": {},
-      "name": "博客最新文章",
-      "url": "konghq.com/blog/*",
-      "provider_id": "konghq",
-      "provider_name": "Kong API 网关平台",
-      "route_key": "/blog-posts"
+      "name": "平台公告",
+      "description": "| 类型    | type    |\n| --------- | ---------- |\n| 全部公告    | 5    |\n| 产品发布    | 19   |\n| 规则变更    | 21   |\n| 维护公告    | 20   |\n| 其他公告    | 22   |",
+      "provider_id": "jinritemai",
+      "provider_name": "抖店开放平台",
+      "route_key": "/docs/:dirId?"
     }
   },
   {
     "provider_id": "lanqiao",
     "provider_name": "蓝桥云课",
-    "route_key": "/author/:uid",
+    "route_key": "/questions/:id",
     "route": {
-      "path": "/author/:uid",
-      "example": "/lanqiao/author/1701267",
+      "path": "/questions/:id",
+      "example": "/lanqiao/questions/2",
       "parameters": {
-        "uid": "作者 `uid` 可在作者主页 URL 中找到"
+        "id": "topic_id 主题 `id` 可在社区板块 URL 中找到"
       },
-      "name": "作者发布的课程",
+      "name": "技术社区",
+      "url": "lanqiao.cn/questions/",
       "provider_id": "lanqiao",
       "provider_name": "蓝桥云课",
-      "route_key": "/author/:uid"
+      "route_key": "/questions/:id"
+    }
+  },
+  {
+    "provider_id": "mysql",
+    "provider_name": "MySQL",
+    "route_key": "/release/:version?",
+    "route": {
+      "path": "/release/:version?",
+      "example": "/mysql/release/8.0",
+      "parameters": {
+        "version": "Version, see below, 8.0 by default"
+      },
+      "name": "Release Notes",
+      "description": "| 8.0 | 5.7 | 5.6 |\n| --- | --- | --- |",
+      "provider_id": "mysql",
+      "provider_name": "MySQL",
+      "route_key": "/release/:version?"
+    }
+  },
+  {
+    "provider_id": "smashingmagazine",
+    "provider_name": "Smashing Magazine",
+    "route_key": "/:category?",
+    "route": {
+      "path": "/:category?",
+      "example": "/smashingmagazine/react",
+      "parameters": {
+        "category": "Find in URL or Table below"
+      },
+      "name": "Category",
+      "url": "smashingmagazine.com/articles/",
+      "description": "| **Category**       |                    |\n| ------------------ | ------------------ |\n| Accessibility      | accessibility      |\n| Best practices     | best-practices     |\n| Business           | business           |\n| Career             | career             |\n| Checklists         | checklists         |\n| CSS                | css                |\n| Data Visualization | data-visualization |\n| Design             | design             |\n| Design Patterns    | design-patterns    |\n| Design Systems     | design-systems     |\n| E-Commerce         | e-commerce         |\n| Figma              | figma              |\n| Freebies           | freebies           |\n| HTML               | html               |\n| Illustrator        | illustrator        |\n| Inspiration        | inspiration        |\n| JavaScript         | javascript         |\n| Mobile             | mobile             |\n| Performance        | performance        |\n| Privacy            | privacy            |\n| React              | react              |\n| Responsive Design  | responsive-design  |\n| Round-Ups          | round-ups          |\n| SEO                | seo                |\n| Typography         | typography         |\n| Tools              | tools              |\n| UI                 | ui                 |\n| Usability          | usability          |\n| UX                 | ux                 |\n| Vue                | vue                |\n| Wallpapers         | wallpapers         |\n| Web Design         | web-design         |\n| Workflow           | workflow           |",
+      "provider_id": "smashingmagazine",
+      "provider_name": "Smashing Magazine",
+      "route_key": "/:category?"
     }
   }
 ]

@@ -1,120 +1,14 @@
 [
   {
-    "provider_id": "005",
-    "provider_name": "幻之羁绊动漫网",
-    "route_key": "/:category?",
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/bannerItem",
     "route": {
-      "name": "资讯",
-      "path": "/:category?",
-      "example": "/005/zx",
-      "parameters": {
-        "category": "分类，可在对应分类页 URL 中找到，默认为二次元资讯"
-      },
-      "description": "\n| 二次元资讯 | 慢慢说 | 道听途说 | 展会资讯 |\n| ---------- | ------ | -------- | -------- |\n| zx         | zwh    | dtts     | zh       |\n    "
-    }
-  },
-  {
-    "provider_id": "18comic",
-    "provider_name": "禁漫天堂",
-    "route_key": "/search/:option?/:category?/:keyword?/:time?/:order?",
-    "route": {
-      "name": "搜索",
-      "path": "/search/:option?/:category?/:keyword?/:time?/:order?",
-      "example": "/18comic/search/photos/all/NTR",
-      "parameters": {
-        "option": "选项，可选 `video` 和 `photos`，默认为 `photos`",
-        "category": "分类，同上表，默认为 `all` 即全部",
-        "keyword": "关键字，同上表，默认为空",
-        "time": "时间范围，同上表，默认为 `a` 即全部",
-        "order": "排列顺序，同上表，默认为 `mr` 即最新"
-      },
-      "description": "::: tip\n  关键字必须超过两个字，这是来自网站的限制。\n:::"
-    }
-  },
-  {
-    "provider_id": "acfun",
-    "provider_name": "AcFun",
-    "route_key": "/article/:categoryId/:sortType?/:timeRange?",
-    "route": {
-      "name": "文章",
-      "path": "/article/:categoryId/:sortType?/:timeRange?",
-      "example": "/acfun/article/110",
-      "parameters": {
-        "categoryId": {
-          "description": "分区 ID",
-          "options": [
-            {
-              "value": "73",
-              "label": "生活情感"
-            },
-            {
-              "value": "74",
-              "label": "动漫文化"
-            },
-            {
-              "value": "75",
-              "label": "漫画文学"
-            },
-            {
-              "value": "110",
-              "label": "综合"
-            },
-            {
-              "value": "164",
-              "label": "游戏"
-            },
-            {
-              "value": "184",
-              "label": "二次元画师"
-            }
-          ]
-        },
-        "sortType": {
-          "description": "排序",
-          "options": [
-            {
-              "value": "createTime",
-              "label": "最新发表"
-            },
-            {
-              "value": "lastCommentTime",
-              "label": "最新动态"
-            },
-            {
-              "value": "hotScore",
-              "label": "最热文章"
-            }
-          ],
-          "default": "createTime"
-        },
-        "timeRange": {
-          "description": "时间范围，仅在排序是 `hotScore` 有效",
-          "options": [
-            {
-              "value": "all",
-              "label": "时间不限"
-            },
-            {
-              "value": "oneDay",
-              "label": "24 小时"
-            },
-            {
-              "value": "threeDay",
-              "label": "三天"
-            },
-            {
-              "value": "oneWeek",
-              "label": "一周"
-            },
-            {
-              "value": "oneMonth",
-              "label": "一个月"
-            }
-          ],
-          "default": "all"
-        }
-      },
-      "description": "| 二次元画师 | 综合 | 生活情感 | 游戏 | 动漫文化 | 漫画文学 |\n| ---------- | ---- | -------- | ---- | -------- | -------- |\n| 184        | 110  | 73       | 164  | 74       | 75       |\n\n| 最新发表   | 最新动态        | 最热文章 |\n| ---------- | --------------- | -------- |\n| createTime | lastCommentTime | hotScore |\n\n| 时间不限 | 24 小时 | 三天     | 一周    | 一个月   |\n| -------- | ------- | -------- | ------- | -------- |\n| all      | oneDay  | threeDay | oneWeek | oneMonth |"
+      "name": "热门推荐",
+      "path": "/bannerItem",
+      "example": "/hpoi/bannerItem",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -162,15 +56,17 @@
     }
   },
   {
-    "provider_id": "idolypride",
-    "provider_name": "IDOLY PRIDE 偶像荣耀",
-    "route_key": "/news",
+    "provider_id": "ymgal",
+    "provider_name": "月幕 Galgame",
+    "route_key": "/article/:type?",
     "route": {
-      "name": "News",
-      "path": "/news",
-      "example": "/idolypride/news",
-      "parameters": {},
-      "description": ""
+      "name": "文章",
+      "path": "/article/:type?",
+      "example": "/ymgal/article",
+      "parameters": {
+        "type": "文章类型"
+      },
+      "description": "| 全部文章 | 资讯 | 专栏   |\n| -------- | ---- | ------ |\n| all      | news | column |"
     }
   }
 ]

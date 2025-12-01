@@ -1,5 +1,20 @@
 [
   {
+    "provider_id": "alpinelinux",
+    "provider_name": "Alpine Linux",
+    "route_key": "/pkgs/:name/:routeParams?",
+    "route": {
+      "name": "Packages",
+      "path": "/pkgs/:name/:routeParams?",
+      "example": "/alpinelinux/pkgs/nodejs",
+      "parameters": {
+        "name": "Packages name",
+        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
+      },
+      "description": "Alpine Linux packages update"
+    }
+  },
+  {
     "provider_id": "asus",
     "provider_name": "ASUS",
     "route_key": "/gpu-tweak",
@@ -12,26 +27,42 @@
     }
   },
   {
-    "provider_id": "cpuid",
-    "provider_name": "CPUID",
-    "route_key": "/news",
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/app/:id?",
     "route": {
-      "name": "News",
-      "path": "/news",
-      "example": "/cpuid/news",
+      "name": "更新情报",
+      "path": "/app/:id?",
+      "example": "/bilibili/app/android",
+      "parameters": {
+        "id": "客户端 id，见下表，默认为安卓版"
+      },
+      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |"
+    }
+  },
+  {
+    "provider_id": "civitai",
+    "provider_name": "Civitai",
+    "route_key": "/models",
+    "route": {
+      "name": "Latest models",
+      "path": "/models",
+      "example": "/civitai/models",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "diskanalyzer",
-    "provider_name": "WizTree",
-    "route_key": "/whats-new",
+    "provider_id": "firecore",
+    "provider_name": "Infuse",
+    "route_key": "/:os",
     "route": {
-      "name": "What's New",
-      "path": "/whats-new",
-      "example": "/diskanalyzer/whats-new",
-      "parameters": {},
+      "name": "Release Notes",
+      "path": "/:os",
+      "example": "/firecore/ios",
+      "parameters": {
+        "os": "`ios`,`tvos`,`macos`"
+      },
       "description": ""
     }
   },
@@ -50,25 +81,25 @@
     }
   },
   {
-    "provider_id": "postman",
-    "provider_name": "Postman",
-    "route_key": "/release-notes",
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/golden",
     "route": {
-      "name": "Release Notes",
-      "path": "/release-notes",
-      "example": "/postman/release-notes",
+      "name": "小米应用商店金米奖",
+      "path": "/golden",
+      "example": "/mi/golden",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "remnote",
-    "provider_name": "RemNote",
-    "route_key": "/changelog",
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
     "route": {
-      "name": "Changelog",
-      "path": "/changelog",
-      "example": "/remnote/changelog",
+      "name": "Desktop releases and release notes",
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
       "parameters": {},
       "description": ""
     }

@@ -1,43 +1,88 @@
 [
   {
-    "provider_id": "aqicn",
-    "provider_name": "空气质量",
-    "route_key": "/:city/:pollution?",
+    "provider_id": "boc",
+    "provider_name": "中国银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "name": "实时 AQI",
-      "path": "/:city/:pollution?",
-      "example": "/aqicn/beijing/pm25",
+      "name": "外汇牌价",
+      "path": "/whpj/:format?",
+      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
       "parameters": {
-        "city": "城市拼音或地区 ID，详见[aqicn.org](http://aqicn.org/city/)",
-        "pollution": "可选择显示更详细的空气污染成分"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
-      "description": ""
+      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
     }
   },
   {
-    "provider_id": "qq",
-    "provider_name": "腾讯网",
-    "route_key": "/fact",
+    "provider_id": "galxe",
+    "provider_name": "Galxe",
+    "route_key": "/quest/:alias",
     "route": {
-      "name": "最新辟谣",
-      "path": "/fact",
-      "example": "/qq/fact",
+      "name": "Quest",
+      "path": "/quest/:alias",
+      "example": "/galxe/quest/MissionWeb3",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "usepanda",
-    "provider_name": "Panda",
-    "route_key": "/feeds/:id",
+    "provider_id": "guduodata",
+    "provider_name": "骨朵数据",
+    "route_key": "/daily",
     "route": {
-      "name": "Feeds",
-      "path": "/feeds/:id",
-      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
+      "name": "日榜",
+      "path": "/daily",
+      "example": "/guduodata/daily",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "ke",
+    "provider_name": "贝壳研究院",
+    "route_key": "/researchResults",
+    "route": {
+      "name": "研究成果",
+      "path": "/researchResults",
+      "example": "/ke/researchResults",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "wise",
+    "provider_name": "Wise",
+    "route_key": "/pair/:source/:target",
+    "route": {
+      "name": "FX Pair Yesterday",
+      "path": "/pair/:source/:target",
+      "example": "/wise/pair/GBP/USD",
       "parameters": {
-        "id": "Feed ID"
+        "source": "Base currency abbreviation",
+        "target": "Quote currency abbreviation"
       },
-      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |"
+      "description": "Refer to [the list of supported currencies](https://wise.com/tools/exchange-rate-alerts/)."
+    }
+  },
+  {
+    "provider_id": "wohnnet",
+    "provider_name": "wohnnet.at",
+    "route_key": "/:category/:region/*",
+    "route": {
+      "name": "Immobiliensuche",
+      "path": "/:category/:region/*",
+      "example": "/wohnnet/mietwohnungen/wien/unterregionen=g90101--g90201--g90301--g90401--g90501&flaeche=40&preis=-1000",
+      "parameters": {
+        "category": "Category (`mietwohnungen`, `eigentumswohnungen`, `grundstuecke`, …)",
+        "region": "Region (`wien`, `oesterreich`, …)",
+        "unterregionen": "Unterregionen (e.g. `g90101--g90201--g90301`)",
+        "intention": "Intention (`kauf` | `miete`)",
+        "zimmer": "Zimmer (at least number, e.g. `2`)",
+        "flaeche": "Fläche (m², `40-` = at least 40 m², `40-60` = between 40 m² and 60 m²)",
+        "preis": "Preis (€, `-1000` = at most 1,000 €, `500-1000` = between 500 € and 1,000 €)",
+        "merkmale": "Merkmale (multiple, delimited by `--`, e.g. `balkon--garten--kurzzeitmiete--moebliert--parkplatz--provisionsfrei--sofort-beziehbar`)"
+      },
+      "description": "\nOnly returns the first page of search results, allowing you to keep track of\nnewly added apartments. If you're looking for an apartment, make sure to also\nlook through the other pages on the website.\n\n:::tip\nNote that the parameter `&sortierung=neueste-zuerst` for chronological order\nis automatically appended.\n:::\n\n:::tip\nTo get your query URL, go to https://www.wohnnet.at/immobilien/suche, apply\nall desired filters (but at least a category and a region!) and click the\n\"… Treffer anzeigen\" link. From the resulting URL, cut off the\n`https://www.wohnnet.at/immobilien/` part at the beginning and replace only\nthe `?` (the `&`s stay as is!) after the region name with a `/`.\n\nExamples:\n\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien`\n    - → `/wohnnet/mietwohnungen/wien`\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien?unterregionen=g90101`\n    - → `/wohnnet/mietwohnungen/wien/unterregionen=g90101`\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien?unterregionen=g90101&merkmale=balkon`\n    - → `/wohnnet/mietwohnungen/wien/unterregionen=g90101&merkmale=balkon`\n:::\n"
     }
   }
 ]

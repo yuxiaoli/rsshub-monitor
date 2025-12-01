@@ -1,30 +1,41 @@
 [
   {
-    "provider_id": "dblp",
-    "provider_name": "DBLP",
-    "route_key": "/:field",
+    "provider_id": "ccf",
+    "provider_name": "中国计算机学会",
+    "route_key": "/tfbd/:caty/:id",
     "route": {
-      "name": "Keyword Search",
-      "path": "/:field",
-      "example": "/dblp/knowledge%20tracing",
+      "name": "大数据专家委员会",
+      "path": "/tfbd/:caty/:id",
+      "example": "/ccf/tfbd/xwdt/tzgg",
       "parameters": {
-        "field": "Research field"
+        "caty": "主分类，可在 URL 找到",
+        "id": "子分类，可在 URL 找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "x-mol",
-    "provider_name": "X-MOL",
-    "route_key": "/news/:tag?",
+    "provider_id": "lmu",
+    "provider_name": "Ludwig Maximilian University of Munich",
+    "route_key": "/jobs",
     "route": {
-      "name": "News",
-      "path": "/news/:tag?",
-      "example": "/x-mol/news/3",
-      "parameters": {
-        "tag": "Tag number, can be obtained from news list URL. Empty value means news index."
-      },
-      "description": ""
+      "name": "Job Openings",
+      "path": "/jobs",
+      "example": "/lmu/jobs",
+      "parameters": {},
+      "description": "RSS feed for LMU academic staff job openings."
+    }
+  },
+  {
+    "provider_id": "ruankao",
+    "provider_name": "中国计算机职业技术资格考试",
+    "route_key": "/news",
+    "route": {
+      "name": "软考动态",
+      "path": "/news",
+      "example": "/ruankao/news",
+      "parameters": {},
+      "description": "**注意：** 官方网站限制了国外网络请求，可能需要通过部署在中国大陆内的 RSSHub 实例访问。"
     }
   }
 ]

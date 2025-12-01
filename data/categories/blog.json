@@ -1,70 +1,113 @@
 [
   {
-    "provider_id": "apache",
-    "provider_name": "Apache",
-    "route_key": "/apisix/blog",
+    "provider_id": "baoyu",
+    "provider_name": "宝玉",
+    "route_key": "/blog",
     "route": {
-      "path": "/apisix/blog",
-      "example": "/apache/apisix/blog",
+      "path": "/blog",
+      "example": "/baoyu/blog",
+      "url": "baoyu.io/",
+      "name": "Blog",
+      "description": "宝玉 - 博客文章",
+      "provider_id": "baoyu",
+      "provider_name": "宝玉",
+      "route_key": "/blog"
+    }
+  },
+  {
+    "provider_id": "cmpxchg8b",
+    "provider_name": "cmpxchg8b",
+    "route_key": "/articles",
+    "route": {
+      "path": "/articles",
+      "example": "/cmpxchg8b/articles",
       "parameters": {},
-      "name": "APISIX 博客",
-      "provider_id": "apache",
-      "provider_name": "Apache",
-      "route_key": "/apisix/blog"
+      "name": "Articles",
+      "url": "lock.cmpxchg8b.com/articles",
+      "provider_id": "cmpxchg8b",
+      "provider_name": "cmpxchg8b",
+      "route_key": "/articles"
     }
   },
   {
-    "provider_id": "hicairo",
-    "provider_name": "HiFeng'Blog",
+    "provider_id": "freebuf",
+    "provider_name": "FreeBuf",
+    "route_key": "/articles/:type",
+    "route": {
+      "path": "/articles/:type",
+      "example": "/freebuf/articles/web",
+      "parameters": {
+        "type": "文章类别"
+      },
+      "name": "文章",
+      "description": "::: tip\n  Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。\n:::",
+      "provider_id": "freebuf",
+      "provider_name": "FreeBuf",
+      "route_key": "/articles/:type"
+    }
+  },
+  {
+    "provider_id": "geocaching",
+    "provider_name": "Geocaching",
+    "route_key": "/blogs/:language?",
+    "route": {
+      "path": "/blogs/:language?",
+      "example": "/geocaching/blogs/en",
+      "parameters": {
+        "language": {
+          "description": "language",
+          "default": "en",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "nl",
+              "label": "Nederlands"
+            },
+            {
+              "value": "cs",
+              "label": "Čeština"
+            },
+            {
+              "value": "all",
+              "label": "Not Specified"
+            }
+          ]
+        }
+      },
+      "name": "Official Blogs",
+      "url": "geocaching.com/blog/",
+      "provider_id": "geocaching",
+      "provider_name": "Geocaching",
+      "route_key": "/blogs/:language?"
+    }
+  },
+  {
+    "provider_id": "luolei",
+    "provider_name": "罗磊的独立博客",
     "route_key": "/",
     "route": {
       "path": "/",
-      "example": "/hicairo",
-      "name": "最近发表",
-      "url": "hicairo.com/",
-      "provider_id": "hicairo",
-      "provider_name": "HiFeng'Blog",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "ippa",
-    "provider_name": "子方有料",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/ippa",
-      "name": "最新文章",
-      "url": "ippa.top/",
-      "provider_id": "ippa",
-      "provider_name": "子方有料",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "itc",
-    "provider_name": "Open Github社区",
-    "route_key": "/collection/:colType",
-    "route": {
-      "path": "/collection/:colType",
-      "example": "/itc/collection/1",
-      "name": "合集",
-      "provider_id": "itc",
-      "provider_name": "Open Github社区",
-      "route_key": "/collection/:colType"
-    }
-  },
-  {
-    "provider_id": "pianyivps",
-    "provider_name": "便宜VPS网",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/pianyivps",
-      "name": "最新发布",
-      "url": "pianyivps.com/",
-      "provider_id": "pianyivps",
-      "provider_name": "便宜VPS网",
+      "name": "罗磊的独立博客",
+      "url": "luolei.org",
+      "example": "/luolei",
+      "description": "",
+      "provider_id": "luolei",
+      "provider_name": "罗磊的独立博客",
       "route_key": "/"
     }
   },
@@ -80,50 +123,6 @@
       "provider_id": "playpcesor",
       "provider_name": "电脑玩物",
       "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "withgoogle",
-    "provider_name": "People + AI Research (PAIR)",
-    "route_key": "/explorables",
-    "route": {
-      "name": "PAIR - AI Exploreables",
-      "url": "pair.withgoogle.com/explorables",
-      "path": "/explorables",
-      "example": "/withgoogle/explorables",
-      "provider_id": "withgoogle",
-      "provider_name": "People + AI Research (PAIR)",
-      "route_key": "/explorables"
-    }
-  },
-  {
-    "provider_id": "xunhupay",
-    "provider_name": "虎皮椒",
-    "route_key": "/blog",
-    "route": {
-      "path": "/blog",
-      "example": "/xunhupay/blog",
-      "parameters": {},
-      "name": "文章",
-      "url": "www.xunhupay.com/blog",
-      "provider_id": "xunhupay",
-      "provider_name": "虎皮椒",
-      "route_key": "/blog"
-    }
-  },
-  {
-    "provider_id": "xys",
-    "provider_name": "新语丝",
-    "route_key": "/new",
-    "route": {
-      "path": "/new",
-      "example": "/xys/new",
-      "parameters": {},
-      "name": "新到资料",
-      "url": "xys.org/",
-      "provider_id": "xys",
-      "provider_name": "新语丝",
-      "route_key": "/new"
     }
   },
   {

@@ -1,5 +1,27 @@
 [
   {
+    "provider_id": "alpinelinux",
+    "provider_name": "Alpine Linux",
+    "route_key": "/pkgs/:name/:routeParams?",
+    "route": {
+      "name": "Packages",
+      "path": "/pkgs/:name/:routeParams?",
+      "parameters": {
+        "name": "Packages name",
+        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
+      },
+      "example": "/alpinelinux/pkgs/nodejs",
+      "description": "Alpine Linux packages update",
+      "zh": {
+        "name": "软件包",
+        "description": "Alpine Linux 软件包更新"
+      },
+      "provider_id": "alpinelinux",
+      "provider_name": "Alpine Linux",
+      "route_key": "/pkgs/:name/:routeParams?"
+    }
+  },
+  {
     "provider_id": "asus",
     "provider_name": "ASUS",
     "route_key": "/gpu-tweak",
@@ -15,33 +37,51 @@
     }
   },
   {
-    "provider_id": "cpuid",
-    "provider_name": "CPUID",
-    "route_key": "/news",
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/app/:id?",
     "route": {
-      "path": "/news",
-      "example": "/cpuid/news",
-      "parameters": {},
-      "name": "News",
-      "url": "cpuid.com/news.html",
-      "provider_id": "cpuid",
-      "provider_name": "CPUID",
-      "route_key": "/news"
+      "path": "/app/:id?",
+      "example": "/bilibili/app/android",
+      "parameters": {
+        "id": "客户端 id，见下表，默认为安卓版"
+      },
+      "name": "更新情报",
+      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/app/:id?"
     }
   },
   {
-    "provider_id": "diskanalyzer",
-    "provider_name": "WizTree",
-    "route_key": "/whats-new",
+    "provider_id": "civitai",
+    "provider_name": "Civitai",
+    "route_key": "/models",
     "route": {
-      "path": "/whats-new",
-      "example": "/diskanalyzer/whats-new",
+      "path": "/models",
+      "example": "/civitai/models",
       "parameters": {},
-      "name": "What's New",
-      "url": "diskanalyzer.com/whats-new",
-      "provider_id": "diskanalyzer",
-      "provider_name": "WizTree",
-      "route_key": "/whats-new"
+      "name": "Latest models",
+      "url": "civitai.com/",
+      "provider_id": "civitai",
+      "provider_name": "Civitai",
+      "route_key": "/models"
+    }
+  },
+  {
+    "provider_id": "firecore",
+    "provider_name": "Infuse",
+    "route_key": "/:os",
+    "route": {
+      "path": "/:os",
+      "example": "/firecore/ios",
+      "parameters": {
+        "os": "`ios`,`tvos`,`macos`"
+      },
+      "name": "Release Notes",
+      "provider_id": "firecore",
+      "provider_name": "Infuse",
+      "route_key": "/:os"
     }
   },
   {
@@ -61,33 +101,31 @@
     }
   },
   {
-    "provider_id": "postman",
-    "provider_name": "Postman",
-    "route_key": "/release-notes",
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/golden",
     "route": {
-      "path": "/release-notes",
-      "example": "/postman/release-notes",
-      "parameters": {},
-      "name": "Release Notes",
-      "url": "postman.com/downloads/release-notes",
-      "provider_id": "postman",
-      "provider_name": "Postman",
-      "route_key": "/release-notes"
+      "path": "/golden",
+      "example": "/mi/golden",
+      "name": "小米应用商店金米奖",
+      "provider_id": "mi",
+      "provider_name": "小米",
+      "route_key": "/golden"
     }
   },
   {
-    "provider_id": "remnote",
-    "provider_name": "RemNote",
-    "route_key": "/changelog",
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
     "route": {
-      "path": "/changelog",
-      "example": "/remnote/changelog",
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
       "parameters": {},
-      "name": "Changelog",
-      "url": "remnote.com/changelog",
-      "provider_id": "remnote",
-      "provider_name": "RemNote",
-      "route_key": "/changelog"
+      "name": "Desktop releases and release notes",
+      "url": "tradingview.com/support/solutions/43000673888-tradingview-desktop-releases-and-release-notes/",
+      "provider_id": "tradingview",
+      "provider_name": "TradingView",
+      "route_key": "/desktop"
     }
   }
 ]

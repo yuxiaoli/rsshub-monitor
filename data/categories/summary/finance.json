@@ -12,80 +12,150 @@
     }
   },
   {
-    "provider_id": "cryptoslate",
-    "provider_name": "CryptoSlate",
-    "route_key": "/",
+    "provider_id": "chinamoney",
+    "provider_name": "中国货币网",
+    "route_key": "/:channelId?",
     "route": {
-      "name": "News",
-      "path": "/",
-      "example": "/cryptoslate",
-      "parameters": {},
-      "description": "Get latest news from CryptoSlate."
+      "name": "公告",
+      "path": "/:channelId?",
+      "example": "/chinamoney",
+      "parameters": {
+        "channelId": "分类，见下表，默认为 `2834`"
+      },
+      "description": "<details>\n<summary>市场公告</summary>\n\n    外汇市场公告\n\n| 最新 | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| ---- | ------------ | ------------ | ------------ |\n| 2834 | 2835         | 2836         | 2837         |\n\n    本币市场公告\n\n| 最新           | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| -------------- | ------------ | ------------ | ------------ |\n| 2839,2840,2841 | 2839         | 2840         | 2841         |\n\n    央行业务公告\n\n| 最新      | 公开市场操作 | 中央国库现金管理 |\n| --------- | ------------ | ---------------- |\n| 2845,2846 | 2845         | 2846             |\n</details>\n\n<details>\n<summary>本币市场</summary>\n\n    贷款市场报价利率\n\n| LPR 市场公告 |\n| ------------ |\n| 3686         |\n</details>"
     }
   },
   {
-    "provider_id": "okx",
-    "provider_name": "欧易 OKX",
-    "route_key": "/:section?",
+    "provider_id": "eastmoney",
+    "provider_name": "东方财富",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "公告",
-      "path": "/:section?",
-      "example": "/okx/new-listings",
+      "name": "搜索",
+      "path": "/search/:keyword",
+      "example": "/eastmoney/search/web3",
       "parameters": {
-        "section": {
-          "description": "公告版块",
-          "default": "latest-announcements",
+        "keyword": "关键词，可以设置为自己需要检索的关键词"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "finviz",
+    "provider_name": "finviz",
+    "route_key": "/:category?",
+    "route": {
+      "name": "News",
+      "path": "/:category?",
+      "example": "/finviz",
+      "parameters": {
+        "category": {
+          "description": "Category, see below, News by default",
           "options": [
             {
-              "value": "latest-announcements",
-              "label": "最新公告"
+              "value": "news",
+              "label": "news"
             },
             {
-              "value": "new-listings",
-              "label": "新币种上线"
-            },
-            {
-              "value": "delistings",
-              "label": "币对下线"
-            },
-            {
-              "value": "trading-updates",
-              "label": "交易规则更新"
-            },
-            {
-              "value": "deposit-withdrawal-suspension-resumption",
-              "label": "充提暂停/恢复公告"
-            },
-            {
-              "value": "p2p-trading",
-              "label": "C2C 公告"
-            },
-            {
-              "value": "web3",
-              "label": "Web3"
-            },
-            {
-              "value": "earn",
-              "label": "赚币"
-            },
-            {
-              "value": "jumpstart",
-              "label": "Jumpstart"
-            },
-            {
-              "value": "api",
-              "label": "API公告"
-            },
-            {
-              "value": "okb-buy-back-burn",
-              "label": "OKB销毁"
-            },
-            {
-              "value": "others",
-              "label": "其他"
+              "value": "blogs",
+              "label": "blogs"
             }
           ]
         }
+      },
+      "description": "| News | Blogs |\n| ---- | ---- |\n| news | blogs |"
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/pbc/gzlw",
+    "route": {
+      "name": "工作论文",
+      "path": "/pbc/gzlw",
+      "example": "/gov/pbc/gzlw",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "jinse",
+    "provider_name": "金色财经",
+    "route_key": "/lives/:category?",
+    "route": {
+      "name": "快讯",
+      "path": "/lives/:category?",
+      "example": "/jinse/lives",
+      "parameters": {
+        "category": {
+          "description": "分类",
+          "options": [
+            {
+              "value": "0",
+              "label": "全部"
+            },
+            {
+              "value": "1",
+              "label": "精选"
+            },
+            {
+              "value": "2",
+              "label": "政策"
+            },
+            {
+              "value": "3",
+              "label": "数据"
+            },
+            {
+              "value": "4",
+              "label": "NFT"
+            },
+            {
+              "value": "5",
+              "label": "项目"
+            }
+          ],
+          "default": "0"
+        }
+      },
+      "description": "| 全部 | 精选 | 政策 | 数据 | NFT | 项目 |\n| ---- | ---- | ---- | ---- | --- | ---- |\n| 0    | 1    | 2    | 3    | 4   | 5    |"
+    }
+  },
+  {
+    "provider_id": "mrm",
+    "provider_name": "华储网",
+    "route_key": "/:category?",
+    "route": {
+      "name": "通知",
+      "path": "/:category?",
+      "example": "/mrm",
+      "parameters": {
+        "category": "N"
+      },
+      "description": "| 交易通知     | 政策规定             | 业务通知          |\n| ------------ | -------------------- | ----------------- |\n| zonghezixun3 | zhengceguiding_list | yewutongzhi_list |"
+    }
+  },
+  {
+    "provider_id": "nbd",
+    "provider_name": "每经网",
+    "route_key": "/daily",
+    "route": {
+      "name": "重磅原创",
+      "path": "/daily",
+      "example": "/nbd/daily",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sse",
+    "provider_name": "上海证券交易所",
+    "route_key": "/disclosure/:query?",
+    "route": {
+      "name": "上市公司信息最新公告披露",
+      "path": "/disclosure/:query?",
+      "example": "/sse/disclosure/beginDate=2018-08-18&endDate=2020-08-25&productId=600696",
+      "parameters": {
+        "query": "筛选条件，见示例"
       },
       "description": ""
     }

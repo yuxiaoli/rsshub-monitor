@@ -1,53 +1,106 @@
 [
   {
-    "provider_id": "aqicn",
-    "provider_name": "空气质量",
-    "route_key": "/:city/:pollution?",
+    "provider_id": "boc",
+    "provider_name": "中国银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "path": "/:city/:pollution?",
-      "example": "/aqicn/beijing/pm25",
+      "path": "/whpj/:format?",
+      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
       "parameters": {
-        "city": "城市拼音或地区 ID，详见[aqicn.org](http://aqicn.org/city/)",
-        "pollution": "可选择显示更详细的空气污染成分"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
-      "name": "实时 AQI",
-      "url": "aqicn.org",
-      "descriptions": "\n|   参数   | 污染成分 |\n| -------- | -------- |\n|   pm25   |  PM2.5   |\n|   pm10   |  PM10    |\n|   o3     |  O3      |\n|   no2    |  NO2     |\n|   so2    |  SO2     |\n|   co     |  CO      |\n\n举例: [https://rsshub.app/aqicn/beijing/pm25,pm10](https://rsshub.app/aqicn/beijing/pm25,pm10)\n\n1. 显示单个污染成分，例如「pm25」, [https://rsshub.app/aqicn/beijing/pm25](https://rsshub.app/aqicn/beijing/pm25)\n2. 逗号分隔显示多个污染成分，例如「pm25,pm10」，[https://rsshub.app/aqicn/beijing/pm25,pm10](https://rsshub.app/aqicn/beijing/pm25,pm10)\n3. 城市子站 ID 获取方法：右键显示网页源代码，搜索 \"idx\" （带双冒号），后面的 ID 就是子站的 ID，如你给的链接 ID 是 4258，RSS 地址就是 [https://rsshub.app/aqicn/4258](https://rsshub.app/aqicn/4258)\n",
-      "provider_id": "aqicn",
-      "provider_name": "空气质量",
-      "route_key": "/:city/:pollution?"
+      "name": "外汇牌价",
+      "url": "boc.cn/sourcedb/whpj",
+      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |",
+      "provider_id": "boc",
+      "provider_name": "中国银行",
+      "route_key": "/whpj/:format?"
     }
   },
   {
-    "provider_id": "qq",
-    "provider_name": "腾讯网",
-    "route_key": "/fact",
+    "provider_id": "galxe",
+    "provider_name": "Galxe",
+    "route_key": "/quest/:alias",
     "route": {
-      "path": "/fact",
-      "example": "/qq/fact",
+      "path": "/quest/:alias",
+      "name": "Quest",
+      "url": "app.galxe.com",
+      "example": "/galxe/quest/MissionWeb3",
+      "provider_id": "galxe",
+      "provider_name": "Galxe",
+      "route_key": "/quest/:alias"
+    }
+  },
+  {
+    "provider_id": "guduodata",
+    "provider_name": "骨朵数据",
+    "route_key": "/daily",
+    "route": {
+      "path": "/daily",
+      "example": "/guduodata/daily",
       "parameters": {},
-      "name": "最新辟谣",
-      "url": "vp.fact.qq.com/home",
-      "provider_id": "qq",
-      "provider_name": "腾讯网",
-      "route_key": "/fact"
+      "name": "日榜",
+      "url": "guduodata.com/",
+      "provider_id": "guduodata",
+      "provider_name": "骨朵数据",
+      "route_key": "/daily"
     }
   },
   {
-    "provider_id": "usepanda",
-    "provider_name": "Panda",
-    "route_key": "/feeds/:id",
+    "provider_id": "ke",
+    "provider_name": "贝壳研究院",
+    "route_key": "/researchResults",
     "route": {
-      "path": "/feeds/:id",
-      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
+      "path": "/researchResults",
+      "example": "/ke/researchResults",
+      "parameters": {},
+      "name": "研究成果",
+      "url": "www.research.ke.com/researchResults",
+      "provider_id": "ke",
+      "provider_name": "贝壳研究院",
+      "route_key": "/researchResults"
+    }
+  },
+  {
+    "provider_id": "wise",
+    "provider_name": "Wise",
+    "route_key": "/pair/:source/:target",
+    "route": {
+      "path": "/pair/:source/:target",
+      "example": "/wise/pair/GBP/USD",
       "parameters": {
-        "id": "Feed ID"
+        "source": "Base currency abbreviation",
+        "target": "Quote currency abbreviation"
       },
-      "name": "Feeds",
-      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |",
-      "provider_id": "usepanda",
-      "provider_name": "Panda",
-      "route_key": "/feeds/:id"
+      "name": "FX Pair Yesterday",
+      "description": "Refer to [the list of supported currencies](https://wise.com/tools/exchange-rate-alerts/).",
+      "provider_id": "wise",
+      "provider_name": "Wise",
+      "route_key": "/pair/:source/:target"
+    }
+  },
+  {
+    "provider_id": "wohnnet",
+    "provider_name": "wohnnet.at",
+    "route_key": "/:category/:region/*",
+    "route": {
+      "name": "Immobiliensuche",
+      "path": "/:category/:region/*",
+      "description": "\nOnly returns the first page of search results, allowing you to keep track of\nnewly added apartments. If you're looking for an apartment, make sure to also\nlook through the other pages on the website.\n\n:::tip\nNote that the parameter `&sortierung=neueste-zuerst` for chronological order\nis automatically appended.\n:::\n\n:::tip\nTo get your query URL, go to https://www.wohnnet.at/immobilien/suche, apply\nall desired filters (but at least a category and a region!) and click the\n\"… Treffer anzeigen\" link. From the resulting URL, cut off the\n`https://www.wohnnet.at/immobilien/` part at the beginning and replace only\nthe `?` (the `&`s stay as is!) after the region name with a `/`.\n\nExamples:\n\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien`\n    - → `/wohnnet/mietwohnungen/wien`\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien?unterregionen=g90101`\n    - → `/wohnnet/mietwohnungen/wien/unterregionen=g90101`\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien?unterregionen=g90101&merkmale=balkon`\n    - → `/wohnnet/mietwohnungen/wien/unterregionen=g90101&merkmale=balkon`\n:::\n",
+      "example": "/wohnnet/mietwohnungen/wien/unterregionen=g90101--g90201--g90301--g90401--g90501&flaeche=40&preis=-1000",
+      "parameters": {
+        "category": "Category (`mietwohnungen`, `eigentumswohnungen`, `grundstuecke`, …)",
+        "region": "Region (`wien`, `oesterreich`, …)",
+        "unterregionen": "Unterregionen (e.g. `g90101--g90201--g90301`)",
+        "intention": "Intention (`kauf` | `miete`)",
+        "zimmer": "Zimmer (at least number, e.g. `2`)",
+        "flaeche": "Fläche (m², `40-` = at least 40 m², `40-60` = between 40 m² and 60 m²)",
+        "preis": "Preis (€, `-1000` = at most 1,000 €, `500-1000` = between 500 € and 1,000 €)",
+        "merkmale": "Merkmale (multiple, delimited by `--`, e.g. `balkon--garten--kurzzeitmiete--moebliert--parkplatz--provisionsfrei--sofort-beziehbar`)"
+      },
+      "provider_id": "wohnnet",
+      "provider_name": "wohnnet.at",
+      "route_key": "/:category/:region/*"
     }
   }
 ]

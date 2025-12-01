@@ -1,65 +1,141 @@
 [
   {
-    "provider_id": "bnu",
-    "provider_name": "北京师范大学",
-    "route_key": "/jwb",
+    "provider_id": "ccnu",
+    "provider_name": "华中师范大学",
+    "route_key": "/cs",
     "route": {
-      "name": "教务部（研究生院）",
-      "path": "/jwb",
-      "example": "/bnu/jwb",
+      "name": "计算机学院",
+      "path": "/cs",
+      "example": "/ccnu/cs",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "bnu",
-    "provider_name": "北京师范大学",
-    "route_key": "/mba/:category{.+}?",
+    "provider_id": "ccnu",
+    "provider_name": "华中师范大学",
+    "route_key": "/wu",
     "route": {
-      "name": "经济与工商管理学院MBA",
-      "path": "/mba/:category{.+}?",
-      "example": "/bnu/mba/xwdt",
+      "name": "伍论贡学院",
+      "path": "/wu",
+      "example": "/ccnu/wu",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "csu",
+    "provider_name": "中南大学",
+    "route_key": "/cse/:type?",
+    "route": {
+      "name": "计算机学院",
+      "path": "/cse/:type?",
+      "example": "/csu/cse",
       "parameters": {
-        "category": "分类，默认为 xwdt，即新闻聚焦"
+        "type": "类型"
       },
-      "description": "::: tip\n  若订阅 [新闻聚焦](https://mba.bnu.edu.cn/xwdt/index.html)，网址为 `https://mba.bnu.edu.cn/xwdt/index.html`。截取 `https://mba.bnu.edu.cn/` 到末尾 `/index.html` 的部分 `xwdt` 作为参数填入，此时路由为 [`/bnu/mba/xwdt`](https://rsshub.app/bnu/mba/xwdt)。\n:::\n\n#### [主页](https://mba.bnu.edu.cn)\n\n| [新闻聚焦](https://mba.bnu.edu.cn/xwdt/index.html) | [通知公告](https://mba.bnu.edu.cn/tzgg/index.html) | [MBA 系列讲座](https://mba.bnu.edu.cn/mbaxljz/index.html) |\n| -------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------------- |\n| [xwdt](https://rsshub.app/bnu/mba/xwdt)            | [tzgg](https://rsshub.app/bnu/mba/tzgg)            | [mbaxljz](https://rsshub.app/bnu/mba/mbaxljz)             |\n\n#### [招生动态](https://mba.bnu.edu.cn/zsdt/zsjz/index.html)\n\n| [下载专区](https://mba.bnu.edu.cn/zsdt/cjwt/index.html) |\n| ------------------------------------------------------- |\n| [zsdt/cjwt](https://rsshub.app/bnu/mba/zsdt/cjwt)       |\n\n#### [国际视野](https://mba.bnu.edu.cn/gjhz/hwjd/index.html)\n\n| [海外基地](https://mba.bnu.edu.cn/gjhz/hwjd/index.html) | [学位合作](https://mba.bnu.edu.cn/gjhz/xwhz/index.html) | [长期交换](https://mba.bnu.edu.cn/gjhz/zqjh/index.html) | [短期项目](https://mba.bnu.edu.cn/gjhz/dqxm/index.html) |\n| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |\n| [gjhz/hwjd](https://rsshub.app/bnu/mba/gjhz/hwjd)       | [gjhz/xwhz](https://rsshub.app/bnu/mba/gjhz/xwhz)       | [gjhz/zqjh](https://rsshub.app/bnu/mba/gjhz/zqjh)       | [gjhz/dqxm](https://rsshub.app/bnu/mba/gjhz/dqxm)       |\n\n#### [校园生活](https://mba.bnu.edu.cn/xysh/xszz/index.html)\n\n| [学生组织](https://mba.bnu.edu.cn/xysh/xszz/index.html) |\n| ------------------------------------------------------- |\n| [xysh/xszz](https://rsshub.app/bnu/mba/xysh/xszz)       |\n\n#### [职业发展](https://mba.bnu.edu.cn/zyfz/xwds/index.html)\n\n| [校外导师](https://mba.bnu.edu.cn/zyfz/xwds/index.html) | [企业实践](https://mba.bnu.edu.cn/zyfz/zycp/index.html) | [就业创业](https://mba.bnu.edu.cn/zyfz/jycy/index.html) |\n| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |\n| [zyfz/xwds](https://rsshub.app/bnu/mba/zyfz/xwds)       | [zyfz/zycp](https://rsshub.app/bnu/mba/zyfz/zycp)       | [zyfz/jycy](https://rsshub.app/bnu/mba/zyfz/jycy)       |\n  "
+      "description": "| 类型 | 学院新闻 | 通知公告 | 学术信息 | 学工动态 | 科研动态 |\n| ---- | -------- | -------- | -------- | -------- | -------- |\n| 参数 | xyxw     | tzgg     | xsxx     | xgdt     | kydt     |"
     }
   },
   {
-    "provider_id": "ecnu",
-    "provider_name": "East China Normal University 华东师范大学",
-    "route_key": "/yjs",
+    "provider_id": "dhu",
+    "provider_name": "东华大学",
+    "route_key": "/yjs/zs/:type?",
     "route": {
-      "name": "研究生院",
-      "path": "/yjs",
-      "example": "/ecnu/yjs",
+      "name": "研究生招生信息",
+      "path": "/yjs/zs/:type?",
+      "example": "/dhu/yjs/zs/master",
+      "parameters": {
+        "type": "默认为 `master`"
+      },
+      "description": "| 博士招生 | 硕士招生 |\n| -------- | -------- |\n| doctor   | master   |"
+    }
+  },
+  {
+    "provider_id": "gxmzu",
+    "provider_name": "广西民族大学",
+    "route_key": "/yjszsgg",
+    "route": {
+      "name": "研究生院招生公告",
+      "path": "/yjszsgg",
+      "example": "/gxmzu/yjszsgg",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "hrbeu",
+    "provider_name": "哈尔滨工程大学",
+    "route_key": "/job/bigemploy",
+    "route": {
+      "name": "大型招聘会",
+      "path": "/job/bigemploy",
+      "example": "/hrbeu/job/bigemploy",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hrbeu",
+    "provider_name": "哈尔滨工程大学",
+    "route_key": "/sec/:id",
+    "route": {
+      "name": "船舶工程学院",
+      "path": "/sec/:id",
+      "example": "/hrbeu/sec/xshd",
+      "parameters": {
+        "id": "栏目编号，由 `URL` 中获取。"
+      },
+      "description": "| 学院要闻 | 学术活动 | 通知公告 | 学科方向 |\n| :------: | :------: |:------: | :------: |\n|   xyyw   |   xshd   |  229   |   xkfx   |"
     }
   },
   {
     "provider_id": "hunau",
     "provider_name": "湖南农业大学",
-    "route_key": "/xky/:category?/:page?",
+    "route_key": "/jwc/:category?/:page?",
     "route": {
-      "name": "信息与智能科学学院",
-      "path": "/xky/:category?/:page?",
-      "example": "/hunau/xky",
+      "name": "教务处",
+      "path": "/jwc/:category?/:page?",
+      "example": "/hunau/jwc",
       "parameters": {
-        "category": "页面分类，默认为 `tzgg_8472`",
+        "category": "页面分类，默认为 `tzgg`",
         "page": "页码，默认为 `1`"
       },
-      "description": "| 分类 | 通知公告   | 学院新闻 | 其他分类通知... |\n| ---- | ---------- | -------- | --------------- |\n| 参数 | tzgg_8472 | xyxw     | 对应 URL        |"
+      "description": "| 分类 | 通知公告 | 教务动态 | 其他教务通知... |\n| ---- | -------- | -------- | --------------- |\n| 参数 | tzgg     | jwds     | 对应 URL        |"
     }
   },
   {
-    "provider_id": "nju",
-    "provider_name": "南京大学",
-    "route_key": "/dafls",
+    "provider_id": "jlu",
+    "provider_name": "吉林大学",
+    "route_key": "/jwc",
     "route": {
-      "name": "大学外语部",
-      "path": "/dafls",
-      "example": "/nju/dafls",
+      "name": "教务通知",
+      "path": "/jwc",
+      "example": "/jlu/jwc",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "lmu",
+    "provider_name": "Ludwig Maximilian University of Munich",
+    "route_key": "/jobs",
+    "route": {
+      "name": "Job Openings",
+      "path": "/jobs",
+      "example": "/lmu/jobs",
+      "parameters": {},
+      "description": "RSS feed for LMU academic staff job openings."
+    }
+  },
+  {
+    "provider_id": "ncu",
+    "provider_name": "南昌大学",
+    "route_key": "/jwc",
+    "route": {
+      "name": "教务通知",
+      "path": "/jwc",
+      "example": "/ncu/jwc",
       "parameters": {},
       "description": ""
     }
@@ -67,27 +143,39 @@
   {
     "provider_id": "nju",
     "provider_name": "南京大学",
-    "route_key": "/itsc",
+    "route_key": "/admission",
     "route": {
-      "name": "ITSC 信息中心",
-      "path": "/itsc",
-      "example": "/nju/itsc",
+      "name": "本科迎新",
+      "path": "/admission",
+      "example": "/nju/admission",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "njust",
-    "provider_name": "南京理工大学",
-    "route_key": "/gs/:type?",
+    "provider_id": "nju",
+    "provider_name": "南京大学",
+    "route_key": "/hospital",
     "route": {
-      "name": "研究生院",
-      "path": "/gs/:type?",
-      "example": "/njust/gs/sytzgg_4568",
+      "name": "校医院",
+      "path": "/hospital",
+      "example": "/nju/hospital",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nua",
+    "provider_name": "Nanjing University of the Arts 南京艺术学院",
+    "route_key": "/sxw/:type",
+    "route": {
+      "name": "Shuangxing Information",
+      "path": "/sxw/:type",
+      "example": "/nua/sxw/230",
       "parameters": {
-        "type": "分类 ID，部分示例参数见下表，默认为首页通知公告，其他分类 ID 可以从网站 URL Path 中找到，如国际交流为 `gjjl`"
+        "type": "News Type"
       },
-      "description": "| 首页通知公告 | 首页新闻动态 | 最新通知 | 招生信息 | 培养信息 | 学术活动 |\n| ------------ | ------------ | -------- | -------- | -------- | -------- |\n| sytzgg_4568 | sytzgg       | 14686    | 14687    | 14688    | xshdggl  |"
+      "description": "| News Type | Parameters |\n| --------- | ---------- |\n| 校园电视  | 230        |\n| 院部动态  | 232        |\n| 动感校园  | 233        |\n| 招就指南  | 234        |\n| 南艺院报  | 236        |"
     }
   },
   {
@@ -100,6 +188,108 @@
       "example": "/pku/cls/announcement",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "pku",
+    "provider_name": "北京大学",
+    "route_key": "/cls/lecture",
+    "route": {
+      "name": "生命科学学院近期讲座",
+      "path": "/cls/lecture",
+      "example": "/pku/cls/lecture",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "qlu",
+    "provider_name": "齐鲁工业大学",
+    "route_key": "/notice",
+    "route": {
+      "name": "通知公告",
+      "path": "/notice",
+      "example": "/qlu/notice",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "scnu",
+    "provider_name": "华南师范大学",
+    "route_key": "/yjs",
+    "route": {
+      "name": "研究生院通知公告",
+      "path": "/yjs",
+      "example": "/scnu/yjs",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "scu",
+    "provider_name": "四川大学",
+    "route_key": "/scupi",
+    "route": {
+      "name": "匹兹堡学院通知",
+      "path": "/scupi",
+      "example": "/scu/scupi",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "scut",
+    "provider_name": "华南理工大学",
+    "route_key": "/jwc/news",
+    "route": {
+      "name": "教务处新闻动态",
+      "path": "/jwc/news",
+      "example": "/scut/jwc/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sdu",
+    "provider_name": "山东大学",
+    "route_key": "/wh/jwc/:column?",
+    "route": {
+      "name": "教务处",
+      "path": "/wh/jwc/:column?",
+      "example": "/sdu/wh/jwc/gztz",
+      "parameters": {
+        "column": "专栏名称，默认为工作通知（`gztz`）"
+      },
+      "description": "| 规章制度 | 专业建设 | 实践教学 | 支部风采 | 服务指南 | 教务要闻 | 工作通知 | 教务简报 | 常用下载 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| gzzd     | zyjs     | sjjx     | zbfc     | fwzn     | jwyw     | gztz     | jwjb     | cyxz     |"
+    }
+  },
+  {
+    "provider_id": "sdu",
+    "provider_name": "山东大学",
+    "route_key": "/wh/news/:column?",
+    "route": {
+      "name": "新闻网",
+      "path": "/wh/news/:column?",
+      "example": "/sdu/wh/news/xyyw",
+      "parameters": {
+        "column": "专栏名称，默认为校园要闻（`xyyw`）"
+      },
+      "description": "| 校园要闻 | 学生动态 | 综合新闻 | 山大视点 | 菁菁校园 | 校园简讯 | 玛珈之窗 | 热点专题 | 媒体视角 | 高教视野 | 理论学习 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| xyyw     | xsdt     | zhxw     | sdsd     | jjxy     | xyjx     | mjzc     | rdzt     | mtsj     | gjsy     | llxx     |"
+    }
+  },
+  {
+    "provider_id": "sdust",
+    "provider_name": "山东科技大学",
+    "route_key": "/yjsy/zhaosheng/:id?",
+    "route": {
+      "name": "研究生招生网",
+      "path": "/yjsy/zhaosheng/:id?",
+      "example": "/sdust/yjsy/zhaosheng",
+      "parameters": {
+        "id": "栏目 id，见下表，默认为通知公告"
+      },
+      "description": "栏目\n\n| 招生简章 | 专业目录 | 往届录取 | 管理规定 | 资料下载 |\n| -------- | -------- | -------- | -------- | -------- |\n| zsjz     | zyml     | wjlq     | glgd     | zlxz     |\n\n| 通知公告 | 博士招生 | 硕士招生 | 推免生招生 | 招生宣传 |\n| -------- | -------- | -------- | ---------- | -------- |\n| tzgg     | bszs     | sszs     | tms        | zsxc     |"
     }
   },
   {
@@ -117,113 +307,95 @@
     }
   },
   {
-    "provider_id": "sqmc",
-    "provider_name": "新乡医学院三全学院",
-    "route_key": "/www/:category?",
+    "provider_id": "shisu",
+    "provider_name": "上海外国语大学",
+    "route_key": "/news/:section",
     "route": {
-      "name": "官网信息",
-      "path": "/www/:category?",
-      "example": "/sqmc/www/3157",
+      "name": "上外新闻",
+      "path": "/news/:section",
+      "example": "/shisu/news/news",
       "parameters": {
-        "category": "分类ID，默认为`3157`"
+        "section": "主站的新闻类别"
       },
-      "description": "| 学校要闻 | 通知 | 学术讲座 | 基层风采书院 | 基层风采院系 | 外媒报道 | 三全学院报 |\n| -------- | ---- | -------- | ------------ | ------------ | -------- | ---------- |\n| 3157     | 3187 | 3188     | 3185         | 3186         | 3199     | 3200       |"
+      "description": "| 首页 | 特稿    | 学术      | 教学       | 国际          | 校园   | 人物   | 视讯       | 公告   |\n| ---- | ------- | --------- | ---------- | ------------- | ------ | ------ | ---------- | ------ |\n| news | gazette | research- | academics- | international | campus | people | multimedia | notice |"
     }
   },
   {
-    "provider_id": "tju",
-    "provider_name": "Tianjin University 天津大学",
+    "provider_id": "shu",
+    "provider_name": "上海大学",
     "route_key": "/news/:type?",
     "route": {
-      "name": "News",
+      "name": "官网通知公告",
       "path": "/news/:type?",
-      "example": "/tju/news/focus",
+      "example": "/shu/news/tzgg",
       "parameters": {
-        "type": "default `focus`"
+        "type": "分类，默认为通知公告"
       },
-      "description": "| Focus on TJU | General News | Internal News | Media Report | Pictures of TJU |\n| :----------: | :----------: | :-----------: | :----------: | :-------------: |\n|     focus    |    general   |    internal   |     media    |     picture     |"
+      "description": "| 通知公告 | 重要新闻 |\n| -------- | --------- |\n| tzgg     | zyxw      |"
     }
   },
   {
-    "provider_id": "tongji",
-    "provider_name": "同济大学",
-    "route_key": "/sse/:type?",
+    "provider_id": "swjtu",
+    "provider_name": "西南交通大学",
+    "route_key": "/jyzpxx",
     "route": {
-      "name": "软件学院通知",
-      "path": "/sse/:type?",
-      "example": "/tongji/sse/xytz",
-      "parameters": {
-        "type": "通知类型，默认为 `xytz`"
-      },
-      "description": "| 本科生通知 | 研究生通知 | 教工通知 | 全体通知 | 学院通知 | 学院新闻 | 学院活动 |\n| ---------- | ---------- | -------- | -------- | -------- | -------- | -------- |\n| bkstz      | yjstz      | jgtz     | qttz     | xytz     | xyxw     | xyhd     |\n\n  注意: `qttz` 与 `xytz` 在原网站等价."
-    }
-  },
-  {
-    "provider_id": "uestc",
-    "provider_name": "电子科技大学",
-    "route_key": "/gr/:type?",
-    "route": {
-      "name": "研究生院",
-      "path": "/gr/:type?",
-      "example": "/uestc/gr/student",
-      "parameters": {
-        "type": "默认为 `important`"
-      },
-      "description": "| 重要公告  | 教学管理 | 学位管理 | 学生管理 | 就业实践 |\n| --------- | -------- | -------- | -------- | -------- |\n| important | teaching | degree   | student  | practice |"
-    }
-  },
-  {
-    "provider_id": "usts",
-    "provider_name": "苏州科技大学",
-    "route_key": "/jwch/:type?",
-    "route": {
-      "name": "教务处",
-      "path": "/jwch/:type?",
-      "example": "/usts/jwch",
-      "parameters": {
-        "type": "类型，默认为教务动态"
-      },
-      "description": "| 类型 | 教务动态 | 公告在线 | 选课通知 |\n| ---- | -------- | -------- | -------- |\n|      | jwdt     | ggzx     | xktz     |"
-    }
-  },
-  {
-    "provider_id": "xmu",
-    "provider_name": "Xiamen University",
-    "route_key": "/kydt",
-    "route": {
-      "name": "科研动态",
-      "path": "/kydt",
-      "example": "/xmu/kydt",
+      "name": "就业招聘信息",
+      "path": "/jyzpxx",
+      "example": "/swjtu/jyzpxx",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "zju",
-    "provider_name": "浙江大学",
-    "route_key": "/cst/custom/:id",
+    "provider_id": "tju",
+    "provider_name": "Tianjin University 天津大学",
+    "route_key": "/cic/:type?",
     "route": {
-      "name": "软件学院",
-      "path": "/cst/custom/:id",
-      "example": "/zju/cst/custom/36194+36241+36246",
+      "name": "College of Intelligence and Computing",
+      "path": "/cic/:type?",
+      "example": "/tju/cic/news",
       "parameters": {
-        "id": "提取出通知页面中的 `ID`，如 `http://www.cst.zju.edu.cn/36246/list.htm` 中的 `36246`，可将你想获取通知的多个页面，通过 `+` 符号来聚合。"
+        "type": "default `news`"
       },
-      "description": "| 全部通知 | 招生信息 | 教务管理 | 论文管理 | 思政工作 | 评奖评优 | 实习就业 | 国际实习 | 国内合作科研 | 国际合作科研 | 校园服务 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | ------------ | ------------ | -------- |\n| 0        | 1        | 2        | 3        | 4        | 5        | 6        | 7        | 8            | 9            | 10       |\n\n#### 自定义聚合通知 {#zhe-jiang-da-xue-ruan-jian-xue-yuan-zi-ding-yi-ju-he-tong-zhi}"
+      "description": "| College News | Notification | TJU Forum for CIC |\n| :----------: | :----------: | :---------------: |\n|     news     | notification |       forum       |"
     }
   },
   {
-    "provider_id": "zju",
-    "provider_name": "浙江大学",
-    "route_key": "/grs/:type",
+    "provider_id": "ucas",
+    "provider_name": "中国科学院大学",
+    "route_key": "/ai",
     "route": {
-      "name": "研究生院",
-      "path": "/grs/:type",
-      "example": "/zju/grs/1",
+      "name": "人工智能学院",
+      "path": "/ai",
+      "example": "/ucas/ai",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "upc",
+    "provider_name": "中国石油大学（华东）",
+    "route_key": "/jwc/:type?",
+    "route": {
+      "name": "教务处通知公告",
+      "path": "/jwc/:type?",
+      "example": "/upc/jwc/tzgg",
       "parameters": {
-        "type": "分类，见下表"
+        "type": "分类，见下表，其值与对应网页url路径参数一致，默认为所有通知"
       },
-      "description": "| 全部公告 | 教学管理 | 各类资助 | 学科建设 | 海外交流 |\n| -------- | -------- | -------- | -------- | -------- |\n| 1        | 2        | 3        | 4        | 5        |"
+      "description": "| 所有通知 | 教学·运行 | 学业·学籍 | 教学·研究 | 课程·教材 | 实践·教学 | 创新·创业 | 语言·文字 | 继续·教育 | 本科·招生 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| tzgg     | 18519    | 18520   | 18521    |    18522 |    18523 | 18524    |  yywwz   |  jxwjy   |   bkwzs  |"
+    }
+  },
+  {
+    "provider_id": "ustb",
+    "provider_name": "北京科技大学",
+    "route_key": "/yzxc/tzgg",
+    "route": {
+      "name": "研究生招生信息网",
+      "path": "/yzxc/tzgg",
+      "example": "/ustb/yzxc/tzgg",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

@@ -1,12 +1,26 @@
 [
   {
+    "provider_id": "bjx",
+    "provider_name": "北极星电力网",
+    "route_key": "/gf/:type",
+    "route": {
+      "name": "光伏",
+      "path": "/gf/:type",
+      "example": "/bjx/gf/sc",
+      "parameters": {
+        "type": "分类，北极星光伏最后的`type`字段"
+      },
+      "description": "`:type` 类型可选如下\n\n| 要闻 | 政策 | 市场行情 | 企业动态 | 独家观点 | 项目工程 | 招标采购 | 财经 | 国际行情 | 价格趋势 | 技术跟踪 |\n| ---- | ---- | -------- | -------- | -------- | -------- | -------- | ---- | -------- | -------- | -------- |\n| yw   | zc   | sc       | mq       | dj       | xm       | zb       | cj   | gj       | sj       | js       |"
+    }
+  },
+  {
     "provider_id": "caixin",
     "provider_name": "财新博客",
-    "route_key": "/weekly",
+    "route_key": "/article",
     "route": {
-      "name": "财新周刊",
-      "path": "/weekly",
-      "example": "/caixin/weekly",
+      "name": "首页新闻",
+      "path": "/article",
+      "example": "/caixin/article",
       "parameters": {},
       "description": ""
     }
@@ -24,45 +38,32 @@
     }
   },
   {
-    "provider_id": "cbc",
-    "provider_name": "Canadian Broadcasting Corporation",
-    "route_key": "/topics/:topic?",
+    "provider_id": "cctv",
+    "provider_name": "央视新闻",
+    "route_key": "/lm/:id?",
     "route": {
-      "name": "News",
-      "path": "/topics/:topic?",
-      "example": "/cbc/topics",
+      "name": "栏目",
+      "path": "/lm/:id?",
+      "example": "/cctv/lm/xwzk",
       "parameters": {
-        "topic": "Channel,`Top Stories` by default. For secondary channel like `canada/toronto`, use `-` to replace `/`"
+        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 `xwzk` 即 新闻周刊"
       },
-      "description": ""
+      "description": "| 焦点访谈 | 等着我 | 今日说法 | 开讲啦 |\n| -------- | ------ | -------- | ------ |\n| jdft     | dzw    | jrsf     | kjl    |\n\n| 正大综艺 | 经济半小时 | 第一动画乐园 |\n| -------- | ---------- | ------------ |\n| zdzy     | jjbxs      | dydhly       |\n\n::: tip\n  更多栏目请看 [这里](https://tv.cctv.com/lm)\n:::"
     }
   },
   {
-    "provider_id": "cna",
-    "provider_name": "中央通讯社",
-    "route_key": "/web/:id?",
+    "provider_id": "cgtn",
+    "provider_name": "中国环球电视网",
+    "route_key": "/podcast/:category/:id",
     "route": {
-      "name": "分类 (网页爬虫方法)",
-      "path": "/web/:id?",
-      "example": "/cna/web/aall",
+      "name": "播客",
+      "path": "/podcast/:category/:id",
+      "example": "/cgtn/podcast/ezfm/4",
       "parameters": {
-        "id": "分类 id，见上表。此參數默认为 aall"
+        "category": "类型名",
+        "id": "播客 id"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "dealstreetasia",
-    "provider_name": "DealStreetAsia",
-    "route_key": "/section/:section",
-    "route": {
-      "name": "Section",
-      "path": "/section/:section",
-      "example": "/dealstreetasia/section/private-equity",
-      "parameters": {
-        "section": "target section"
-      },
-      "description": ""
+      "description": "> 类型名与播客 id 可以在播客对应的 URL 中找到\n  > 如 URL `https://radio.cgtn.com/podcast/column/ezfm/More-to-Read/4` ，其 `category` 为 `ezfm` ，`id` 为 `4`，对应的订阅路由为 [`/podcast/ezfm/4`](https://rsshub.app/podcast/ezfm/4)"
     }
   },
   {
@@ -78,18 +79,139 @@
     }
   },
   {
-    "provider_id": "publico",
-    "provider_name": "Público",
-    "route_key": "/opinion/:subsection?",
+    "provider_id": "inewsweek",
+    "provider_name": "中国新闻周刊",
+    "route_key": "/:channel",
     "route": {
-      "name": "Opinión",
-      "path": "/opinion/:subsection?",
-      "example": "/publico/opinion",
+      "name": "栏目",
+      "path": "/:channel",
+      "example": "/inewsweek/survey",
       "parameters": {
-        "subsection": {
-          "description": "Filter by subsection. Check the subsections available on the newspaper's website."
+        "channel": "栏目"
+      },
+      "description": "提取文章全文。\n\n| 封面  | 时政     | 社会    | 经济    | 国际  | 调查   | 人物   |\n| ----- | -------- | ------- | ------- | ----- | ------ | ------ |\n| cover | politics | society | finance | world | survey | people |"
+    }
+  },
+  {
+    "provider_id": "infzm",
+    "provider_name": "南方周末",
+    "route_key": "/hot",
+    "route": {
+      "name": "热门文章",
+      "path": "/hot",
+      "example": "/infzm/hot",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/book/:category?",
+    "route": {
+      "name": "Best Seller Books",
+      "path": "/book/:category?",
+      "example": "/nytimes/book/combined-print-and-e-book-nonfiction",
+      "parameters": {
+        "category": {
+          "description": "Category, can be found on the [official page](https://www.nytimes.com/books/best-sellers/)",
+          "options": [
+            {
+              "value": "combined-print-and-e-book-nonfiction",
+              "label": "Combined Print & E-Book Nonfiction"
+            },
+            {
+              "value": "hardcover-nonfiction",
+              "label": "Hardcover Nonfiction"
+            },
+            {
+              "value": "paperback-nonfiction",
+              "label": "Paperback Nonfiction"
+            },
+            {
+              "value": "advice-how-to-and-miscellaneous",
+              "label": "Advice, How-To & Miscellaneous"
+            },
+            {
+              "value": "combined-print-and-e-book-fiction",
+              "label": "Combined Print & E-Book Fiction"
+            },
+            {
+              "value": "hardcover-fiction",
+              "label": "Hardcover Fiction"
+            },
+            {
+              "value": "trade-fiction-paperback",
+              "label": "Paperback Trade Fiction"
+            },
+            {
+              "value": "childrens-middle-grade-hardcover",
+              "label": "Children's Middle Grade Hardcover"
+            },
+            {
+              "value": "picture-books",
+              "label": "Picture Books"
+            },
+            {
+              "value": "series-books",
+              "label": "Series Books"
+            },
+            {
+              "value": "young-adult-hardcover",
+              "label": "Young Adult Hardcover"
+            }
+          ],
+          "default": "combined-print-and-e-book-nonfiction"
         }
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "pts",
+    "provider_name": "公視新聞網",
+    "route_key": "/curations",
+    "route": {
+      "name": "專題策展",
+      "path": "/curations",
+      "example": "/pts/curations",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "publico",
+    "provider_name": "Público",
+    "route_key": "/tremending",
+    "route": {
+      "name": "Tremending",
+      "path": "/tremending",
+      "example": "/publico/tremending",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "yicai",
+    "provider_name": "第一财经",
+    "route_key": "/brief",
+    "route": {
+      "name": "正在",
+      "path": "/brief",
+      "example": "/yicai/brief",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "yicai",
+    "provider_name": "第一财经",
+    "route_key": "/latest",
+    "route": {
+      "name": "最新",
+      "path": "/latest",
+      "example": "/yicai/latest",
+      "parameters": {},
       "description": ""
     }
   }

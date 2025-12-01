@@ -2,32 +2,6 @@
   {
     "provider_id": "bilibili",
     "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/hot-search",
-    "route": {
-      "name": "热搜",
-      "path": "/hot-search",
-      "example": "/bilibili/hot-search",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/readlist/:listid",
-    "route": {
-      "name": "专栏文集",
-      "path": "/readlist/:listid",
-      "example": "/bilibili/readlist/25611",
-      "parameters": {
-        "listid": "文集 id, 可在专栏文集 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
     "route_key": "/weekly/:embed?",
     "route": {
       "name": "B 站每周必看",
@@ -35,6 +9,20 @@
       "example": "/bilibili/weekly",
       "parameters": {
         "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bsky",
+    "provider_name": "Bluesky (bsky)",
+    "route_key": "/keyword/:keyword",
+    "route": {
+      "name": "Keywords",
+      "path": "/keyword/:keyword",
+      "example": "/bsky/keyword/hello",
+      "parameters": {
+        "keyword": "N"
       },
       "description": ""
     }
@@ -55,6 +43,207 @@
     }
   },
   {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/doulist/:id",
+    "route": {
+      "name": "豆瓣豆列",
+      "path": "/doulist/:id",
+      "example": "/douban/doulist/37716774",
+      "parameters": {
+        "id": "豆列id"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "douban",
+    "provider_name": "豆瓣",
+    "route_key": "/movie/weekly/:type?",
+    "route": {
+      "name": "一周口碑榜",
+      "path": "/movie/weekly/:type?",
+      "example": "/douban/movie/weekly",
+      "parameters": {
+        "type": "分类，可在榜单页 URL 中找到，默认为一周口碑电影榜"
+      },
+      "description": "| 一周口碑电影榜      | 华语口碑剧集榜            |\n| ------------------- | ------------------------- |\n| movie_weekly_best | tv_chinese_best_weekly |"
+    }
+  },
+  {
+    "provider_id": "furaffinity",
+    "provider_name": "Furaffinity",
+    "route_key": "/art/:folder/:username/:mode?",
+    "route": {
+      "name": "Gallery",
+      "path": "/art/:folder/:username/:mode?",
+      "example": "/furaffinity/art/gallery/fender/nsfw",
+      "parameters": {
+        "username": "Username, can find in userpage",
+        "folder": "Image folders, options are gallery, scraps, favorites",
+        "mode": "R18 content toggle, default value is sfw, options are sfw, nsfw"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "instagram",
+    "provider_name": "Instagram",
+    "route_key": "/2/:category/:key",
+    "route": {
+      "name": "User Profile / Hashtag",
+      "path": "/2/:category/:key",
+      "example": "/instagram/2/user/stefaniejoosten",
+      "parameters": {
+        "category": "Feed category, see table below",
+        "key": "Username / Hashtag name"
+      },
+      "description": "::: tip\nYou may need to setup cookie for a less restrictive rate limit and private profiles.\n:::\n\n\n| User timeline | Hashtag |\n| ------------- | ------- |\n| user          | tags    |"
+    }
+  },
+  {
+    "provider_id": "lofter",
+    "provider_name": "Lofter",
+    "route_key": "/collection/:collectionID",
+    "route": {
+      "name": "Collection",
+      "path": "/collection/:collectionID",
+      "example": "/lofter/collection/552041",
+      "parameters": {
+        "collectionID": "Lofter collection ID, can be found in the share URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "mastodon",
+    "provider_name": "Mastodon",
+    "route_key": "/acct/:acct/statuses/:only_media?",
+    "route": {
+      "name": "User timeline",
+      "path": "/acct/:acct/statuses/:only_media?",
+      "example": "/mastodon/acct/Mastodon@mastodon.social/statuses",
+      "parameters": {
+        "acct": "Webfinger account URI, like `user@host`",
+        "only_media": {
+          "description": "whether only display media content, default to false, any value to true",
+          "options": [
+            {
+              "value": "true",
+              "label": "true"
+            },
+            {
+              "value": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        }
+      },
+      "description": "Started from Mastodon v4.0.0, the use of the `search` API in the route no longer requires a user token.\nIf the domain of your Webfinger account URI is the same as the API host of the instance (i.e., no delegation called in some other protocols), then no configuration is required and the route is available out of the box.\nHowever, you can still specify these route-specific configurations if you need to override them."
+    }
+  },
+  {
+    "provider_id": "misskey",
+    "provider_name": "Misskey",
+    "route_key": "/notes/featured/:site",
+    "route": {
+      "name": "Featured Notes",
+      "path": "/notes/featured/:site",
+      "example": "/misskey/notes/featured/misskey.io",
+      "parameters": {
+        "site": "instance address, domain only, without `http://` or `https://` protocol header"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "misskey",
+    "provider_name": "Misskey",
+    "route_key": "/users/notes/:username/:routeParams?",
+    "route": {
+      "name": "User timeline",
+      "path": "/users/notes/:username/:routeParams?",
+      "example": "/misskey/users/notes/support@misskey.io",
+      "parameters": {
+        "username": "Misskey username in the format of username@instance.domain",
+        "routeParams": "\n| Key               | Description                             | Accepted Values | Default |\n| ----------------- | --------------------------------------- | --------------- | ------- |\n| withRenotes       | Include renotes in the timeline         | 0/1/true/false  | false   |\n| mediaOnly         | Only return posts containing media      | 0/1/true/false  | false   |\n| simplifyAuthor    | Simplify author field in feed items     | 0/1/true/false  | false   |\n\nNote: `withRenotes` and `mediaOnly` are mutually exclusive and cannot both be set to true.\n\nExamples:\n- /misskey/users/notes/mttb2ccp@misskey.io/withRenotes=true\n- /misskey/users/notes/mttb2ccp@misskey.io/mediaOnly=true"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "pixiv",
+    "provider_name": "pixiv",
+    "route_key": "/user/novels/:id/:full_content?",
+    "route": {
+      "name": "User Novels",
+      "path": "/user/novels/:id/:full_content?",
+      "example": "/pixiv/user/novels/27104704",
+      "parameters": {
+        "id": "User id, available in user's homepage URL",
+        "full_content": {
+          "description": "Enable or disable the display of full content. ",
+          "options": [
+            {
+              "value": "true",
+              "label": "true"
+            },
+            {
+              "value": "false",
+              "label": "false"
+            }
+          ],
+          "default": "false"
+        }
+      },
+      "description": "\n| 小說類型 Novel Type | full_content | PIXIV_REFRESHTOKEN | 返回內容 Content |\n|-------------------|--------------|-------------------|-----------------|\n| Non R18           | false        | 不需要 Not Required  | 簡介 Basic info |\n| Non R18           | true         | 不需要 Not Required  | 全文 Full text  |\n| R18               | false        | 需要 Required       | 簡介 Basic info |\n| R18               | true         | 需要 Required       | 全文 Full text  |\n\nDefault value for `full_content` is `false` if not specified.\n\nExample:\n- `/pixiv/user/novels/79603797` → 簡介 Basic info\n- `/pixiv/user/novels/79603797/true` → 全文 Full text"
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/search/:keyword",
+    "route": {
+      "name": "Search",
+      "path": "/search/:keyword",
+      "example": "/plurk/search/FGO",
+      "parameters": {
+        "keyword": "Search keyword"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/top/:category?/:lang?",
+    "route": {
+      "name": "Top",
+      "path": "/top/:category?/:lang?",
+      "example": "/plurk/top/topReplurks",
+      "parameters": {
+        "category": "Category, see the table below, `topReplurks` by default",
+        "lang": "Language, see the table below, `en` by default"
+      },
+      "description": "| Top Replurks | Top Favorites | Top Responded |\n| ------------ | ------------- | ------------- |\n| topReplurks  | topFavorites  | topResponded  |\n\n| English | 中文（繁體） |\n| ------- | ------------ |\n| en      | zh           |"
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/user/:user",
+    "route": {
+      "name": "User",
+      "path": "/user/:user",
+      "example": "/plurk/user/plurkoffice",
+      "parameters": {
+        "user": "User ID, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "qq",
     "provider_name": "腾讯网",
     "route_key": "/kg/:userId",
@@ -64,6 +253,50 @@
       "example": "/qq/kg/639a9a86272c308e33",
       "parameters": {
         "userId": "用户 ID, 可在对应页面的 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "telegram",
+    "provider_name": "Telegram",
+    "route_key": "/channel/:username/:routeParams?",
+    "route": {
+      "name": "Channel",
+      "path": "/channel/:username/:routeParams?",
+      "example": "/telegram/channel/awesomeRSSHub",
+      "parameters": {
+        "username": "channel username",
+        "routeParams": "extra parameters, see the table below\n| Key                    | Description                                                           | Accepts                                            | Defaults to  |\n| :--------------------: | :-------------------------------------------------------------------: | :------------------------------------------------: | :----------: |\n| showLinkPreview        | Show the link preview from Telegram                                   | 0/1/true/false                                     | true         |\n| showViaBot             | For messages sent via bot, show the bot                               | 0/1/true/false                                     | true         |\n| showReplyTo            | For reply messages, show the target of the reply                      | 0/1/true/false                                     | true         |\n| showFwdFrom            | For forwarded messages, show the forwarding source                    | 0/1/true/false                                     | true         |\n| showFwdFromAuthor      | For forwarded messages, show the author of the forwarding source      | 0/1/true/false                                     | true         |\n| showInlineButtons      | Show inline buttons                                                   | 0/1/true/false                                     | false        |\n| showMediaTagInTitle    | Show media tags in the title                                          | 0/1/true/false                                     | true         |\n| showMediaTagAsEmoji    | Show media tags as emoji                                              | 0/1/true/false                                     | true         |\n| showHashtagAsHyperlink | Show hashtags as hyperlinks (`https://t.me/s/channel?q=%23hashtag`) | 0/1/true/false                                     | true         |\n| includeFwd             | Include forwarded messages                                            | 0/1/true/false                                     | true         |\n| includeReply           | Include reply messages                                                | 0/1/true/false                                     | true         |\n| includeServiceMsg      | Include service messages (e.g. message pinned, channel photo updated) | 0/1/true/false                                     | true         |\n| includeUnsupportedMsg  | Include messages unsupported by t.me                                  | 0/1/true/false                                     | false        |\n| searchQuery            | search query                                                          | keywords; replace `#hashtag` with `%23hashtag` | (no keyword) |\n\nSpecify different option values than default values can meet different needs, URL\n\n```\nhttps://rsshub.app/telegram/channel/NewlearnerChannel/showLinkPreview=0&showViaBot=0&showReplyTo=0&showFwdFrom=0&showFwdFromAuthor=0&showInlineButtons=0&showMediaTagInTitle=1&showMediaTagAsEmoji=1&includeFwd=0&includeReply=1&includeServiceMsg=0&includeUnsupportedMsg=0\n```\n\ngenerates an RSS without any link previews and annoying metadata, with emoji media tags in the title, without forwarded messages (but with reply messages), and without messages you don't care about (service messages and unsupported messages), for people who prefer pure subscriptions.\n\nFor backward compatibility reasons, invalid `routeParams` will be treated as `searchQuery` .\n"
+      },
+      "description": "\n::: tip\n  Due to Telegram restrictions, some channels involving pornography, copyright, and politics cannot be subscribed. You can confirm by visiting `https://t.me/s/:username`, it's recommended to deploy your own instance with telegram api configs (create your telegram application via `https://core.telegram.org/api/obtaining_api_id`, run this command `node ./lib/routes/telegram/scripts/get-telegram-session.mjs` to get `TELEGRAM_SESSION` and set it as Environment Variable).\n:::"
+    }
+  },
+  {
+    "provider_id": "weibo",
+    "provider_name": "微博",
+    "route_key": "/keyword/:keyword/:routeParams?",
+    "route": {
+      "name": "关键词",
+      "path": "/keyword/:keyword/:routeParams?",
+      "example": "/weibo/keyword/RSSHub",
+      "parameters": {
+        "keyword": "你想订阅的微博关键词",
+        "routeParams": "额外参数；请参阅上面的说明和表格"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "weibo",
+    "provider_name": "微博",
+    "route_key": "/oasis/user/:userid",
+    "route": {
+      "name": "绿洲用户",
+      "path": "/oasis/user/:userid",
+      "example": "/weibo/oasis/user/1990895721",
+      "parameters": {
+        "userid": "用户 id, 可在用户主页 URL 中找到"
       },
       "description": ""
     }

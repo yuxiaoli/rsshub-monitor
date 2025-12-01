@@ -1,91 +1,89 @@
 [
   {
-    "provider_id": "ajmide",
-    "provider_name": "阿基米德 FM",
-    "route_key": "/:id",
-    "route": {
-      "path": "/:id",
-      "view": 4,
-      "example": "/ajmide/10603594",
-      "parameters": {
-        "id": "播客 id，可以从播客页面 URL 中找到"
-      },
-      "name": "播客",
-      "provider_id": "ajmide",
-      "provider_name": "阿基米德 FM",
-      "route_key": "/:id"
-    }
-  },
-  {
-    "provider_id": "asmr-200",
-    "provider_name": "ASMR Online",
-    "route_key": "/works/:order?/:subtitle?/:sort?",
-    "route": {
-      "path": "/works/:order?/:subtitle?/:sort?",
-      "example": "/asmr-200/works",
-      "parameters": {
-        "order": "排序字段，默认按照资源的收录日期来排序，详见下表",
-        "sort": "排序方式，可选 `asc` 和 `desc` ，默认倒序",
-        "subtitle": "筛选带字幕音频，可选 `0` 和 `1` ，默认关闭"
-      },
-      "name": "最新收录",
-      "url": "asmr-200.com",
-      "description": "| 发售日期 | 收录日期 | 销量 | 价格 | 评价 | 随机 | RJ号 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| release | create_date | dl_count | price | rate_average_2dp | random | id |",
-      "provider_id": "asmr-200",
-      "provider_name": "ASMR Online",
-      "route_key": "/works/:order?/:subtitle?/:sort?"
-    }
-  },
-  {
     "provider_id": "chikubi",
     "provider_name": "乳首ふぇち",
-    "route_key": "/search/:keyword",
+    "route_key": "/tag/:keyword",
     "route": {
-      "path": "/search/:keyword",
-      "example": "/chikubi/search/ギャップ",
+      "path": "/tag/:keyword",
+      "example": "/chikubi/tag/ドリームチケット",
       "parameters": {
         "keyword": "Keyword"
       },
-      "name": "Search",
+      "name": "Tag",
       "provider_id": "chikubi",
       "provider_name": "乳首ふぇち",
+      "route_key": "/tag/:keyword"
+    }
+  },
+  {
+    "provider_id": "cntv",
+    "provider_name": "CNTV",
+    "route_key": "/:column",
+    "route": {
+      "path": "/:column",
+      "example": "/cntv/TOPC1451528971114112",
+      "parameters": {
+        "column": "栏目ID, 可在对应CNTV栏目页面找到"
+      },
+      "name": "栏目",
+      "url": "navi.cctv.com/",
+      "description": "::: tip\n栏目 ID 查找示例:\n打开栏目具体某一期页面，F12 控制台输入`column_id`得到栏目 ID。\n:::\n\n  栏目\n\n| 新闻联播             | 新闻周刊             | 天下足球             |\n| -------------------- | -------------------- | -------------------- |\n| TOPC1451528971114112 | TOPC1451559180488841 | TOPC1451551777876756 |",
+      "provider_id": "cntv",
+      "provider_name": "CNTV",
+      "route_key": "/:column"
+    }
+  },
+  {
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/rankings/:category?/:time?",
+    "route": {
+      "path": "/rankings/:category?/:time?",
+      "example": "/javdb/rankings",
+      "parameters": {
+        "category": "分类，见下表，默认为 `有碼`",
+        "time": "时间，见下表，默认为 `日榜`"
+      },
+      "name": "排行榜",
+      "url": "javdb.com/",
+      "description": "分类\n\n| 有碼     | 無碼       | 歐美    |\n| -------- | ---------- | ------- |\n| censored | uncensored | western |\n\n  时间\n\n| 日榜  | 週榜   | 月榜    |\n| ----- | ------ | ------- |\n| daily | weekly | monthly |",
+      "provider_id": "javdb",
+      "provider_name": "JavDB",
+      "route_key": "/rankings/:category?/:time?"
+    }
+  },
+  {
+    "provider_id": "pornhub",
+    "provider_name": "PornHub",
+    "route_key": "/search/:keyword",
+    "route": {
+      "path": "/search/:keyword",
+      "view": 3,
+      "example": "/pornhub/search/stepsister",
+      "parameters": {
+        "keyword": "keyword"
+      },
+      "name": "Keyword Search",
+      "provider_id": "pornhub",
+      "provider_name": "PornHub",
       "route_key": "/search/:keyword"
     }
   },
   {
-    "provider_id": "mixcloud",
-    "provider_name": "Mixcloud",
-    "route_key": "/:username/:type?",
+    "provider_id": "pornhub",
+    "provider_name": "PornHub",
+    "route_key": "/users/:username/:language?",
     "route": {
-      "path": "/:username/:type?",
-      "example": "/mixcloud/dholbach/uploads",
+      "path": "/users/:username/:language?",
+      "example": "/pornhub/users/pornhubmodels",
       "parameters": {
-        "username": "Username, can be found in URL",
-        "type": "Type, see below, uploads by default"
+        "language": "language, see below",
+        "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
       },
-      "name": "User",
-      "description": "| Shows   | Reposts | Favorites | History | Stream |\n| ------- | ------- | --------- | ------- | ------ |\n| uploads | reposts | favorites | listens | stream |",
-      "provider_id": "mixcloud",
-      "provider_name": "Mixcloud",
-      "route_key": "/:username/:type?"
-    }
-  },
-  {
-    "provider_id": "xiaoyuzhou",
-    "provider_name": "小宇宙",
-    "route_key": "/podcast/:id",
-    "route": {
-      "path": "/podcast/:id",
-      "view": 4,
-      "example": "/xiaoyuzhou/podcast/6021f949a789fca4eff4492c",
-      "parameters": {
-        "id": "播客 id 或单集 id，可以在小宇宙播客的 URL 中找到"
-      },
-      "name": "播客",
-      "url": "xiaoyuzhoufm.com/",
-      "provider_id": "xiaoyuzhou",
-      "provider_name": "小宇宙",
-      "route_key": "/podcast/:id"
+      "name": "Users",
+      "provider_id": "pornhub",
+      "provider_name": "PornHub",
+      "route_key": "/users/:username/:language?"
     }
   }
 ]
