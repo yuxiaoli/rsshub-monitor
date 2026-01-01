@@ -2,40 +2,70 @@
   {
     "provider_id": "ccf",
     "provider_name": "中国计算机学会",
-    "route_key": "/tfbd/:caty/:id",
+    "route_key": "/news/:category?",
     "route": {
-      "name": "大数据专家委员会",
-      "path": "/tfbd/:caty/:id",
-      "example": "/ccf/tfbd/xwdt/tzgg",
+      "name": "新闻",
+      "path": "/news/:category?",
+      "example": "/ccf/news",
       "parameters": {
-        "caty": "主分类，可在 URL 找到",
-        "id": "子分类，可在 URL 找到"
+        "category": "分类，见下表，默认为 CCF 新闻"
       },
+      "description": "| CCF 新闻    | CCF 聚焦 | ACM 信息  |\n| ----------- | -------- | --------- |\n| Media_list | Focus    | ACM_News |"
+    }
+  },
+  {
+    "provider_id": "cste",
+    "provider_name": "中国技术经济学会",
+    "route_key": "/:id?",
+    "route": {
+      "name": "栏目",
+      "path": "/:id?",
+      "example": "/cste",
+      "parameters": {
+        "id": "分类，见下表，默认为 16，即通知公告"
+      },
+      "description": "| 通知公告 | 学会新闻 | 科协简讯 | 学科动态 | 往事钩沉 |\n| -------- | -------- | -------- | -------- | -------- |\n| 16       | 18       | 19       | 20       | 21       |"
+    }
+  },
+  {
+    "provider_id": "eshukan",
+    "provider_name": "万维书刊网",
+    "route_key": "/academic/:id?",
+    "route": {
+      "name": "学术资讯",
+      "path": "/academic/:id?",
+      "example": "/eshukan/academic/1",
+      "parameters": {
+        "category": "栏目 id，默认为 `1`，即期刊动态，可在对应栏目页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [期刊动态](https://www.eshukan.com/academic/index.aspx?cid=1)，网址为 `https://www.eshukan.com/academic/index.aspx?cid=1`。截取 `https://www.eshukan.com/academic/index.aspx?cid=` 到末尾的部分 `1` 作为参数填入，此时路由为 [`/eshukan/academic/1`](https://rsshub.app/eshukan/academic/1)。\n:::\n    "
+    }
+  },
+  {
+    "provider_id": "howtoforge",
+    "provider_name": "Howtoforge Linux Tutorials",
+    "route_key": "/",
+    "route": {
+      "name": "Tutorials",
+      "path": "/",
+      "example": "/howtoforge",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "lmu",
-    "provider_name": "Ludwig Maximilian University of Munich",
-    "route_key": "/jobs",
+    "provider_id": "mindmeister",
+    "provider_name": "MindMeister",
+    "route_key": "/:category?/:language?",
     "route": {
-      "name": "Job Openings",
-      "path": "/jobs",
-      "example": "/lmu/jobs",
-      "parameters": {},
-      "description": "RSS feed for LMU academic staff job openings."
-    }
-  },
-  {
-    "provider_id": "ruankao",
-    "provider_name": "中国计算机职业技术资格考试",
-    "route_key": "/news",
-    "route": {
-      "name": "软考动态",
-      "path": "/news",
-      "example": "/ruankao/news",
-      "parameters": {},
-      "description": "**注意：** 官方网站限制了国外网络请求，可能需要通过部署在中国大陆内的 RSSHub 实例访问。"
+      "name": "Public Maps",
+      "path": "/:category?/:language?",
+      "example": "/mindmeister/mind-map-examples",
+      "parameters": {
+        "category": "Categories, see the table below, `mind-map-examples` by default",
+        "language": "Languages, see the table below, `en` by default"
+      },
+      "description": "| Categories    | parameter         |\n| ------------- | ----------------- |\n| Featured Map  | mind-map-examples |\n| Business      | business          |\n| Design        | design            |\n| Education     | education         |\n| Entertainment | entertainment     |\n| Life          | life              |\n| Marketing     | marketing         |\n| Productivity  | productivity      |\n| Summaries     | summaries         |\n| Technology    | technology        |\n| Other         | other             |\n\n| Languages  | parameter |\n| ---------- | --------- |\n| English    | en        |\n| Deutsch    | de        |\n| Français   | fr        |\n| Español    | es        |\n| Português  | pt        |\n| Nederlands | nl        |\n| Dansk      | da        |\n| Русский    | ru        |\n| 日本語     | ja        |\n| Italiano   | it        |\n| 简体中文   | zh        |\n| 한국어     | ko        |\n| Other      | other     |"
     }
   }
 ]

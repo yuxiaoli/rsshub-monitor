@@ -1,29 +1,80 @@
 [
   {
-    "provider_id": "hpoi",
-    "provider_name": "Hpoi 手办维基",
-    "route_key": "/bannerItem",
+    "provider_id": "acfun",
+    "provider_name": "AcFun",
+    "route_key": "/user/video/:uid",
     "route": {
-      "path": "/bannerItem",
-      "example": "/hpoi/bannerItem",
-      "parameters": {},
-      "name": "热门推荐",
-      "url": "www.hpoi.net/bannerItem/list",
-      "provider_id": "hpoi",
-      "provider_name": "Hpoi 手办维基",
-      "route_key": "/bannerItem"
+      "path": "/user/video/:uid",
+      "name": "用户投稿",
+      "parameters": {
+        "uid": "用户 UID"
+      },
+      "example": "/acfun/user/video/6102",
+      "view": 3,
+      "provider_id": "acfun",
+      "provider_name": "AcFun",
+      "route_key": "/user/video/:uid"
+    }
+  },
+  {
+    "provider_id": "bangumi.tv",
+    "provider_name": "Bangumi 番组计划",
+    "route_key": "/person/:id",
+    "route": {
+      "path": "/person/:id",
+      "example": "/bangumi.tv/person/32943",
+      "parameters": {
+        "id": "人物 id, 在人物页面的地址栏查看"
+      },
+      "name": "现实人物的新作品",
+      "provider_id": "bangumi.tv",
+      "provider_name": "Bangumi 番组计划",
+      "route_key": "/person/:id"
+    }
+  },
+  {
+    "provider_id": "cngal",
+    "provider_name": "CnGal",
+    "route_key": "/entry/:id",
+    "route": {
+      "path": "/entry/:id",
+      "example": "/cngal/entry/2693",
+      "parameters": {
+        "id": "词条ID，游戏或制作者页面URL的最后一串数字"
+      },
+      "name": "制作者 / 游戏新闻",
+      "provider_id": "cngal",
+      "provider_name": "CnGal",
+      "route_key": "/entry/:id"
+    }
+  },
+  {
+    "provider_id": "eventernote",
+    "provider_name": "Eventernote",
+    "route_key": "/actors/:name/:id",
+    "route": {
+      "path": "/actors/:name/:id",
+      "view": 3,
+      "example": "/eventernote/actors/三森すずこ/2634",
+      "parameters": {
+        "name": "声优姓名",
+        "id": "声优 ID"
+      },
+      "name": "声优活动及演唱会",
+      "provider_id": "eventernote",
+      "provider_name": "Eventernote",
+      "route_key": "/actors/:name/:id"
     }
   },
   {
     "provider_id": "hpoi",
     "provider_name": "Hpoi 手办维基",
-    "route_key": "/items/work/:id/:order?",
+    "route_key": "/items/all/:order?",
     "route": {
-      "path": "/items/work/:id/:order?",
+      "path": "/items/all/:order?",
       "view": 2,
-      "example": "/hpoi/items/work/4117491",
+      "example": "/hpoi/items/all",
       "parameters": {
-        "id": "作品 ID",
         "order": {
           "description": "排序",
           "options": [
@@ -55,27 +106,158 @@
           "default": "add"
         }
       },
-      "name": "作品周边",
+      "name": "所有周边",
+      "url": "www.hpoi.net/hobby/all",
       "provider_id": "hpoi",
       "provider_name": "Hpoi 手办维基",
-      "route_key": "/items/work/:id/:order?"
+      "route_key": "/items/all/:order?"
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/character/:id/:order?",
+    "route": {
+      "path": "/items/character/:id/:order?",
+      "view": 2,
+      "example": "/hpoi/items/character/1035374",
+      "parameters": {
+        "id": "角色 ID",
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
+      },
+      "name": "角色周边",
+      "provider_id": "hpoi",
+      "provider_name": "Hpoi 手办维基",
+      "route_key": "/items/character/:id/:order?"
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/info/:type?",
+    "route": {
+      "path": "/info/:type?",
+      "example": "/hpoi/info/all",
+      "parameters": {
+        "type": {
+          "description": "分类",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "hobby",
+              "label": "手办"
+            },
+            {
+              "value": "model",
+              "label": "模型"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "name": "情报",
+      "provider_id": "hpoi",
+      "provider_name": "Hpoi 手办维基",
+      "route_key": "/info/:type?"
+    }
+  },
+  {
+    "provider_id": "kemono",
+    "provider_name": "Kemono",
+    "route_key": "/:source?/:id?",
+    "route": {
+      "path": "/:source?/:id?",
+      "example": "/kemono",
+      "parameters": {
+        "source": "Source, see below, Posts by default",
+        "id": "User id, can be found in URL"
+      },
+      "name": "Posts",
+      "description": "Sources\n\n| Posts | Patreon | Pixiv Fanbox | Gumroad | SubscribeStar | DLsite | Discord | Fantia |\n| ----- | ------- | ------------ | ------- | ------------- | ------ | ------- | ------ |\n| posts | patreon | fanbox       | gumroad | subscribestar | dlsite | discord | fantia |\n\n::: tip\n  When `posts` is selected as the value of the parameter **source**, the parameter **id** does not take effect.\n  There is an optinal parameter **limit** which controls the number of posts to fetch, default value is 25.\n:::",
+      "provider_id": "kemono",
+      "provider_name": "Kemono",
+      "route_key": "/:source?/:id?"
+    }
+  },
+  {
+    "provider_id": "qoo-app",
+    "provider_name": "QooApp",
+    "route_key": "/apps/:lang?/card/:id",
+    "route": {
+      "path": "/apps/:lang?/card/:id",
+      "example": "/qoo-app/apps/en/card/7675",
+      "parameters": {
+        "lang": "Language, see the table above, empty means `中文`",
+        "id": "Game ID, can be found in URL"
+      },
+      "name": "Game Store - Cards",
+      "provider_id": "qoo-app",
+      "provider_name": "QooApp",
+      "route_key": "/apps/:lang?/card/:id"
+    }
+  },
+  {
+    "provider_id": "skebetter",
+    "provider_name": "Skebetter",
+    "route_key": "/illust/:type",
+    "route": {
+      "path": "/illust/:type",
+      "example": "/skebetter/illust/hot",
+      "parameters": {
+        "type": "Type, see below"
+      },
+      "name": "Illust",
+      "description": "\n| 急上昇 | 週間 | 月間 | 新着 |\n| ----- | ---- | ---- | ---- |\n| hot | week | month| latest |",
+      "provider_id": "skebetter",
+      "provider_name": "Skebetter",
+      "route_key": "/illust/:type"
     }
   },
   {
     "provider_id": "ymgal",
     "provider_name": "月幕 Galgame",
-    "route_key": "/article/:type?",
+    "route_key": "/game/release",
     "route": {
-      "path": "/article/:type?",
-      "example": "/ymgal/article",
-      "parameters": {
-        "type": "文章类型"
-      },
-      "name": "文章",
-      "description": "| 全部文章 | 资讯 | 专栏   |\n| -------- | ---- | ------ |\n| all      | news | column |",
+      "path": "/game/release",
+      "example": "/ymgal/game/release",
+      "parameters": {},
+      "name": "本月新作",
+      "url": "ymgal.games/",
       "provider_id": "ymgal",
       "provider_name": "月幕 Galgame",
-      "route_key": "/article/:type?"
+      "route_key": "/game/release"
     }
   }
 ]

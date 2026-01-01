@@ -1,20 +1,101 @@
 [
   {
-    "provider_id": "boc",
-    "provider_name": "中国银行",
-    "route_key": "/whpj/:format?",
+    "provider_id": "acpaa",
+    "provider_name": "中华全国专利代理师协会",
+    "route_key": "/:id?/:name?",
     "route": {
-      "path": "/whpj/:format?",
-      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
+      "path": "/:id?/:name?",
+      "example": "/acpaa",
       "parameters": {
-        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
+        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
+        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
       },
-      "name": "外汇牌价",
-      "url": "boc.cn/sourcedb/whpj",
-      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |",
-      "provider_id": "boc",
-      "provider_name": "中国银行",
-      "route_key": "/whpj/:format?"
+      "name": "标签",
+      "provider_id": "acpaa",
+      "provider_name": "中华全国专利代理师协会",
+      "route_key": "/:id?/:name?"
+    }
+  },
+  {
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/dynamic/:uid?",
+    "route": {
+      "path": "/dynamic/:uid?",
+      "example": "/afdian/dynamic/@afdian",
+      "parameters": {
+        "uid": "用户id，用户动态页面url里可找到"
+      },
+      "name": "用户动态",
+      "provider_id": "afdian",
+      "provider_name": "爱发电",
+      "route_key": "/dynamic/:uid?"
+    }
+  },
+  {
+    "provider_id": "baidu",
+    "provider_name": "百度",
+    "route_key": "/top/:board?",
+    "route": {
+      "path": "/top/:board?",
+      "example": "/baidu/top",
+      "parameters": {
+        "board": "榜单，默认为 `realtime`"
+      },
+      "name": "热搜榜单",
+      "description": "| 热搜榜   | 小说榜 | 电影榜 | 电视剧榜 | 汽车榜 | 游戏榜 |\n| -------- | ------ | ------ | -------- | ------ | ------ |\n| realtime | novel  | movie  | teleplay | car    | game   |",
+      "provider_id": "baidu",
+      "provider_name": "百度",
+      "route_key": "/top/:board?"
+    }
+  },
+  {
+    "provider_id": "clickme",
+    "provider_name": "ClickMe",
+    "route_key": "/:site/:grouping/:name",
+    "route": {
+      "path": "/:site/:grouping/:name",
+      "example": "/clickme/default/category/beauty",
+      "parameters": {
+        "site": "站点，`default`为普通站，`r18`为成人站，其它值默认为普通站",
+        "grouping": "分组方式，`category`为分类，`tag`为标签，其他值默认为分类",
+        "name": "分类名或标签名，分类名为英文，可以在分类 URL 中找到"
+      },
+      "name": "文章",
+      "provider_id": "clickme",
+      "provider_name": "ClickMe",
+      "route_key": "/:site/:grouping/:name"
+    }
+  },
+  {
+    "provider_id": "dingshao",
+    "provider_name": "盯梢",
+    "route_key": "/share/:shortId",
+    "route": {
+      "path": "/share/:shortId",
+      "example": "/dingshao/share/FzFypN",
+      "parameters": {
+        "shortId": "频道 ID"
+      },
+      "name": "频道",
+      "provider_id": "dingshao",
+      "provider_name": "盯梢",
+      "route_key": "/share/:shortId"
+    }
+  },
+  {
+    "provider_id": "fisher-spb",
+    "provider_name": "Fisher Spb",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/fisher-spb/news",
+      "parameters": {},
+      "name": "News",
+      "url": "fisher.spb.ru/news",
+      "provider_id": "fisher-spb",
+      "provider_name": "Fisher Spb",
+      "route_key": "/news"
     }
   },
   {
@@ -32,75 +113,36 @@
     }
   },
   {
-    "provider_id": "guduodata",
-    "provider_name": "骨朵数据",
-    "route_key": "/daily",
+    "provider_id": "icbc",
+    "provider_name": "中国工商银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "path": "/daily",
-      "example": "/guduodata/daily",
-      "parameters": {},
-      "name": "日榜",
-      "url": "guduodata.com/",
-      "provider_id": "guduodata",
-      "provider_name": "骨朵数据",
-      "route_key": "/daily"
-    }
-  },
-  {
-    "provider_id": "ke",
-    "provider_name": "贝壳研究院",
-    "route_key": "/researchResults",
-    "route": {
-      "path": "/researchResults",
-      "example": "/ke/researchResults",
-      "parameters": {},
-      "name": "研究成果",
-      "url": "www.research.ke.com/researchResults",
-      "provider_id": "ke",
-      "provider_name": "贝壳研究院",
-      "route_key": "/researchResults"
-    }
-  },
-  {
-    "provider_id": "wise",
-    "provider_name": "Wise",
-    "route_key": "/pair/:source/:target",
-    "route": {
-      "path": "/pair/:source/:target",
-      "example": "/wise/pair/GBP/USD",
+      "path": "/whpj/:format?",
+      "example": "/icbc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
       "parameters": {
-        "source": "Base currency abbreviation",
-        "target": "Quote currency abbreviation"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
-      "name": "FX Pair Yesterday",
-      "description": "Refer to [the list of supported currencies](https://wise.com/tools/exchange-rate-alerts/).",
-      "provider_id": "wise",
-      "provider_name": "Wise",
-      "route_key": "/pair/:source/:target"
+      "name": "外汇牌价",
+      "url": "icbc.com.cn/column/1438058341489590354.html",
+      "description": "| 短格式 | 参考价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs     | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |",
+      "provider_id": "icbc",
+      "provider_name": "中国工商银行",
+      "route_key": "/whpj/:format?"
     }
   },
   {
-    "provider_id": "wohnnet",
-    "provider_name": "wohnnet.at",
-    "route_key": "/:category/:region/*",
+    "provider_id": "urbandictionary",
+    "provider_name": "Urban Dictionary",
+    "route_key": "/random",
     "route": {
-      "name": "Immobiliensuche",
-      "path": "/:category/:region/*",
-      "description": "\nOnly returns the first page of search results, allowing you to keep track of\nnewly added apartments. If you're looking for an apartment, make sure to also\nlook through the other pages on the website.\n\n:::tip\nNote that the parameter `&sortierung=neueste-zuerst` for chronological order\nis automatically appended.\n:::\n\n:::tip\nTo get your query URL, go to https://www.wohnnet.at/immobilien/suche, apply\nall desired filters (but at least a category and a region!) and click the\n\"… Treffer anzeigen\" link. From the resulting URL, cut off the\n`https://www.wohnnet.at/immobilien/` part at the beginning and replace only\nthe `?` (the `&`s stay as is!) after the region name with a `/`.\n\nExamples:\n\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien`\n    - → `/wohnnet/mietwohnungen/wien`\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien?unterregionen=g90101`\n    - → `/wohnnet/mietwohnungen/wien/unterregionen=g90101`\n* `https://www.wohnnet.at/immobilien/mietwohnungen/wien?unterregionen=g90101&merkmale=balkon`\n    - → `/wohnnet/mietwohnungen/wien/unterregionen=g90101&merkmale=balkon`\n:::\n",
-      "example": "/wohnnet/mietwohnungen/wien/unterregionen=g90101--g90201--g90301--g90401--g90501&flaeche=40&preis=-1000",
-      "parameters": {
-        "category": "Category (`mietwohnungen`, `eigentumswohnungen`, `grundstuecke`, …)",
-        "region": "Region (`wien`, `oesterreich`, …)",
-        "unterregionen": "Unterregionen (e.g. `g90101--g90201--g90301`)",
-        "intention": "Intention (`kauf` | `miete`)",
-        "zimmer": "Zimmer (at least number, e.g. `2`)",
-        "flaeche": "Fläche (m², `40-` = at least 40 m², `40-60` = between 40 m² and 60 m²)",
-        "preis": "Preis (€, `-1000` = at most 1,000 €, `500-1000` = between 500 € and 1,000 €)",
-        "merkmale": "Merkmale (multiple, delimited by `--`, e.g. `balkon--garten--kurzzeitmiete--moebliert--parkplatz--provisionsfrei--sofort-beziehbar`)"
-      },
-      "provider_id": "wohnnet",
-      "provider_name": "wohnnet.at",
-      "route_key": "/:category/:region/*"
+      "path": "/random",
+      "example": "/urbandictionary/random",
+      "parameters": {},
+      "name": "Random words",
+      "url": "urbandictionary.com/random.php",
+      "provider_id": "urbandictionary",
+      "provider_name": "Urban Dictionary",
+      "route_key": "/random"
     }
   }
 ]

@@ -1,32 +1,16 @@
 [
   {
-    "provider_id": "baoyu",
-    "provider_name": "宝玉",
-    "route_key": "/blog",
+    "provider_id": "bulianglin",
+    "provider_name": "不良林",
+    "route_key": "/",
     "route": {
-      "path": "/blog",
-      "example": "/baoyu/blog",
-      "url": "baoyu.io/",
-      "name": "Blog",
-      "description": "宝玉 - 博客文章",
-      "provider_id": "baoyu",
-      "provider_name": "宝玉",
-      "route_key": "/blog"
-    }
-  },
-  {
-    "provider_id": "cmpxchg8b",
-    "provider_name": "cmpxchg8b",
-    "route_key": "/articles",
-    "route": {
-      "path": "/articles",
-      "example": "/cmpxchg8b/articles",
-      "parameters": {},
-      "name": "Articles",
-      "url": "lock.cmpxchg8b.com/articles",
-      "provider_id": "cmpxchg8b",
-      "provider_name": "cmpxchg8b",
-      "route_key": "/articles"
+      "path": "/",
+      "example": "/bulianglin",
+      "name": "全部文章",
+      "url": "bulianglin.com/",
+      "provider_id": "bulianglin",
+      "provider_name": "不良林",
+      "route_key": "/"
     }
   },
   {
@@ -47,14 +31,33 @@
     }
   },
   {
-    "provider_id": "geocaching",
-    "provider_name": "Geocaching",
-    "route_key": "/blogs/:language?",
+    "provider_id": "fxiaoke",
+    "provider_name": "纷享销客 CRM",
+    "route_key": "/crm/:type",
     "route": {
-      "path": "/blogs/:language?",
-      "example": "/geocaching/blogs/en",
+      "path": "/crm/:type",
+      "example": "/fxiaoke/crm/news",
       "parameters": {
-        "language": {
+        "type": "文章类型, 见下表"
+      },
+      "name": "文章",
+      "description": "| 全部文章 | 文章干货 | CRM 知识 | 纷享动态        | 签约喜报  |\n| -------- | -------- | -------- | --------------- | --------- |\n| news     | blog     | articles | about-influence | customers |",
+      "provider_id": "fxiaoke",
+      "provider_name": "纷享销客 CRM",
+      "route_key": "/crm/:type"
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/developers/:locale?",
+    "route": {
+      "path": "/developers/:locale?",
+      "name": "Developers Blog",
+      "url": "developers.googleblog.com",
+      "example": "/google/developers/en",
+      "parameters": {
+        "locale": {
           "description": "language",
           "default": "en",
           "options": [
@@ -63,83 +66,114 @@
               "label": "English"
             },
             {
-              "value": "de",
-              "label": "Deutsch"
-            },
-            {
-              "value": "fr",
-              "label": "Français"
-            },
-            {
               "value": "es",
-              "label": "Español"
+              "label": "Español (Latam)"
             },
             {
-              "value": "nl",
-              "label": "Nederlands"
+              "value": "id",
+              "label": "Bahasa Indonesia"
             },
             {
-              "value": "cs",
-              "label": "Čeština"
+              "value": "ja",
+              "label": "日本語"
             },
             {
-              "value": "all",
-              "label": "Not Specified"
+              "value": "ko",
+              "label": "한국어"
+            },
+            {
+              "value": "pt-br",
+              "label": "Português (Brasil)"
+            },
+            {
+              "value": "zh-hans",
+              "label": "简体中文"
             }
           ]
         }
       },
-      "name": "Official Blogs",
-      "url": "geocaching.com/blog/",
-      "provider_id": "geocaching",
-      "provider_name": "Geocaching",
-      "route_key": "/blogs/:language?"
+      "description": "Google Developers Blog",
+      "provider_id": "google",
+      "provider_name": "Google",
+      "route_key": "/developers/:locale?"
     }
   },
   {
-    "provider_id": "luolei",
-    "provider_name": "罗磊的独立博客",
-    "route_key": "/",
+    "provider_id": "logrocket",
+    "provider_name": "logrocket blog",
+    "route_key": "/:type",
     "route": {
-      "path": "/",
-      "name": "罗磊的独立博客",
-      "url": "luolei.org",
-      "example": "/luolei",
-      "description": "",
-      "provider_id": "luolei",
-      "provider_name": "罗磊的独立博客",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "playpcesor",
-    "provider_name": "电脑玩物",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/playpcesor",
-      "name": "每日精选文章",
-      "url": "playpcesor.com/",
-      "provider_id": "playpcesor",
-      "provider_name": "电脑玩物",
-      "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "youmemark",
-    "provider_name": "YouMeMark",
-    "route_key": "/:userid",
-    "route": {
-      "path": "/:userid",
-      "example": "/youmemark/pseudoyu",
+      "path": "/:type",
+      "example": "/logrocket/dev",
       "parameters": {
-        "userid": "`userid` is the user id of youmemark"
+        "type": "dev | product-management | ux-design"
       },
-      "name": "Bookmarks",
-      "description": "Get user's public bookmarks from YouMeMark\n::: tip\n  Add `?limit=<number>` to the end of the route to limit the number of items. Default is 10.\n:::",
-      "provider_id": "youmemark",
-      "provider_name": "YouMeMark",
-      "route_key": "/:userid"
+      "name": "blog.logrocket",
+      "url": "blog.logrocket.com/",
+      "provider_id": "logrocket",
+      "provider_name": "logrocket blog",
+      "route_key": "/:type"
+    }
+  },
+  {
+    "provider_id": "substack",
+    "provider_name": "Substack",
+    "route_key": "/subscribe/:user",
+    "route": {
+      "path": "/subscribe/:user",
+      "view": 1,
+      "example": "/substack/subscribe/mangoread",
+      "parameters": {
+        "user": "Username of the Substack"
+      },
+      "name": "Substack Subscription",
+      "provider_id": "substack",
+      "provider_name": "Substack",
+      "route_key": "/subscribe/:user"
+    }
+  },
+  {
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/xna",
+    "route": {
+      "path": "/xna",
+      "view": 0,
+      "example": "/v2ex/xna",
+      "parameters": {},
+      "name": "XNA",
+      "provider_id": "v2ex",
+      "provider_name": "V2EX",
+      "route_key": "/xna"
+    }
+  },
+  {
+    "provider_id": "xunhupay",
+    "provider_name": "虎皮椒",
+    "route_key": "/blog",
+    "route": {
+      "path": "/blog",
+      "example": "/xunhupay/blog",
+      "parameters": {},
+      "name": "文章",
+      "url": "www.xunhupay.com/blog",
+      "provider_id": "xunhupay",
+      "provider_name": "虎皮椒",
+      "route_key": "/blog"
+    }
+  },
+  {
+    "provider_id": "zhujiceping",
+    "provider_name": "国外主机测评",
+    "route_key": "/",
+    "route": {
+      "path": "/",
+      "example": "/zhujiceping",
+      "name": "最新发布",
+      "url": "zhujiceping.com/",
+      "provider_id": "zhujiceping",
+      "provider_name": "国外主机测评",
+      "route_key": "/"
     }
   }
 ]

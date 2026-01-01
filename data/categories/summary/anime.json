@@ -1,26 +1,70 @@
 [
   {
-    "provider_id": "hpoi",
-    "provider_name": "Hpoi 手办维基",
-    "route_key": "/bannerItem",
+    "provider_id": "acfun",
+    "provider_name": "AcFun",
+    "route_key": "/user/video/:uid",
     "route": {
-      "name": "热门推荐",
-      "path": "/bannerItem",
-      "example": "/hpoi/bannerItem",
-      "parameters": {},
+      "name": "用户投稿",
+      "path": "/user/video/:uid",
+      "example": "/acfun/user/video/6102",
+      "parameters": {
+        "uid": "用户 UID"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bangumi.tv",
+    "provider_name": "Bangumi 番组计划",
+    "route_key": "/person/:id",
+    "route": {
+      "name": "现实人物的新作品",
+      "path": "/person/:id",
+      "example": "/bangumi.tv/person/32943",
+      "parameters": {
+        "id": "人物 id, 在人物页面的地址栏查看"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "cngal",
+    "provider_name": "CnGal",
+    "route_key": "/entry/:id",
+    "route": {
+      "name": "制作者 / 游戏新闻",
+      "path": "/entry/:id",
+      "example": "/cngal/entry/2693",
+      "parameters": {
+        "id": "词条ID，游戏或制作者页面URL的最后一串数字"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "eventernote",
+    "provider_name": "Eventernote",
+    "route_key": "/actors/:name/:id",
+    "route": {
+      "name": "声优活动及演唱会",
+      "path": "/actors/:name/:id",
+      "example": "/eventernote/actors/三森すずこ/2634",
+      "parameters": {
+        "name": "声优姓名",
+        "id": "声优 ID"
+      },
       "description": ""
     }
   },
   {
     "provider_id": "hpoi",
     "provider_name": "Hpoi 手办维基",
-    "route_key": "/items/work/:id/:order?",
+    "route_key": "/items/all/:order?",
     "route": {
-      "name": "作品周边",
-      "path": "/items/work/:id/:order?",
-      "example": "/hpoi/items/work/4117491",
+      "name": "所有周边",
+      "path": "/items/all/:order?",
+      "example": "/hpoi/items/all",
       "parameters": {
-        "id": "作品 ID",
         "order": {
           "description": "排序",
           "options": [
@@ -56,17 +100,134 @@
     }
   },
   {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/character/:id/:order?",
+    "route": {
+      "name": "角色周边",
+      "path": "/items/character/:id/:order?",
+      "example": "/hpoi/items/character/1035374",
+      "parameters": {
+        "id": "角色 ID",
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/info/:type?",
+    "route": {
+      "name": "情报",
+      "path": "/info/:type?",
+      "example": "/hpoi/info/all",
+      "parameters": {
+        "type": {
+          "description": "分类",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "hobby",
+              "label": "手办"
+            },
+            {
+              "value": "model",
+              "label": "模型"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "kemono",
+    "provider_name": "Kemono",
+    "route_key": "/:source?/:id?",
+    "route": {
+      "name": "Posts",
+      "path": "/:source?/:id?",
+      "example": "/kemono",
+      "parameters": {
+        "source": "Source, see below, Posts by default",
+        "id": "User id, can be found in URL"
+      },
+      "description": "Sources\n\n| Posts | Patreon | Pixiv Fanbox | Gumroad | SubscribeStar | DLsite | Discord | Fantia |\n| ----- | ------- | ------------ | ------- | ------------- | ------ | ------- | ------ |\n| posts | patreon | fanbox       | gumroad | subscribestar | dlsite | discord | fantia |\n\n::: tip\n  When `posts` is selected as the value of the parameter **source**, the parameter **id** does not take effect.\n  There is an optinal parameter **limit** which controls the number of posts to fetch, default value is 25.\n:::"
+    }
+  },
+  {
+    "provider_id": "qoo-app",
+    "provider_name": "QooApp",
+    "route_key": "/apps/:lang?/card/:id",
+    "route": {
+      "name": "Game Store - Cards",
+      "path": "/apps/:lang?/card/:id",
+      "example": "/qoo-app/apps/en/card/7675",
+      "parameters": {
+        "lang": "Language, see the table above, empty means `中文`",
+        "id": "Game ID, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "skebetter",
+    "provider_name": "Skebetter",
+    "route_key": "/illust/:type",
+    "route": {
+      "name": "Illust",
+      "path": "/illust/:type",
+      "example": "/skebetter/illust/hot",
+      "parameters": {
+        "type": "Type, see below"
+      },
+      "description": "\n| 急上昇 | 週間 | 月間 | 新着 |\n| ----- | ---- | ---- | ---- |\n| hot | week | month| latest |"
+    }
+  },
+  {
     "provider_id": "ymgal",
     "provider_name": "月幕 Galgame",
-    "route_key": "/article/:type?",
+    "route_key": "/game/release",
     "route": {
-      "name": "文章",
-      "path": "/article/:type?",
-      "example": "/ymgal/article",
-      "parameters": {
-        "type": "文章类型"
-      },
-      "description": "| 全部文章 | 资讯 | 专栏   |\n| -------- | ---- | ------ |\n| all      | news | column |"
+      "name": "本月新作",
+      "path": "/game/release",
+      "example": "/ymgal/game/release",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

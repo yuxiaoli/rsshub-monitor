@@ -1,16 +1,53 @@
 [
   {
-    "provider_id": "bitbucket",
-    "provider_name": "Bitbucket",
-    "route_key": "/commits/:workspace/:repo_slug",
+    "provider_id": "alistapart",
+    "provider_name": "A List Apart",
+    "route_key": "/",
     "route": {
-      "name": "Commits",
-      "path": "/commits/:workspace/:repo_slug",
-      "example": "/bitbucket/commits/blaze-lib/blaze",
+      "name": "Home Feed",
+      "path": "/",
+      "example": "/alistapart",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "alistapart",
+    "provider_name": "A List Apart",
+    "route_key": "/:topic",
+    "route": {
+      "name": "Topics",
+      "path": "/:topic",
+      "example": "/alistapart/application-development",
       "parameters": {
-        "workspace": "Workspace",
-        "repo_slug": "Repository"
+        "topic": "Any Topic or from the table below. Defaults to All Articles"
       },
+      "description": "You have the option to utilize the main heading or use individual categories as topics for the path.\n\n| **Code**                    | *code*                    |\n| --------------------------- | ------------------------- |\n| **Application Development** | *application-development* |\n| **Browsers**                | *browsers*                |\n| **CSS**                     | *css*                     |\n| **HTML**                    | *html*                    |\n| **JavaScript**              | *javascript*              |\n| **The Server Side**         | *the-server-side*         |\n\n| **Content**          | *content*          |\n| -------------------- | ------------------ |\n| **Community**        | *community*        |\n| **Content Strategy** | *content-strategy* |\n| **Writing**          | *writing*          |\n\n| **Design**                 | *design*               |\n| -------------------------- | ---------------------- |\n| **Brand Identity**         | *brand-identity*       |\n| **Graphic Design**         | *graphic-design*       |\n| **Layout & Grids**         | *layout-grids*         |\n| **Mobile/Multidevice**     | *mobile-multidevice*   |\n| **Responsive Design**      | *responsive-design*    |\n| **Typography & Web Fonts** | *typography-web-fonts* |\n\n| **Industry & Business** | *industry-business* |\n| ----------------------- | ------------------- |\n| **Business**            | *business*          |\n| **Career**              | *career*            |\n| **Industry**            | *industry*          |\n| **State of the Web**    | *state-of-the-web*  |\n\n| **Process**            | *process*            |\n| ---------------------- | -------------------- |\n| **Creativity**         | *creativity*         |\n| **Project Management** | *project-management* |\n| **Web Strategy**       | *web-strategy*       |\n| **Workflow & Tools**   | *workflow-tools*     |\n\n| **User Experience**          | *user-experience*          |\n| ---------------------------- | -------------------------- |\n| **Accessibility**            | *accessibility*            |\n| **Information Architecture** | *information-architecture* |\n| **Interaction Design**       | *interaction-design*       |\n| **Usability**                | *usability*                |\n| **User Research**            | *user-research*            |"
+    }
+  },
+  {
+    "provider_id": "bestblogs",
+    "provider_name": "bestblogs.dev",
+    "route_key": "/feeds/:category?",
+    "route": {
+      "name": "文章列表",
+      "path": "/feeds/:category?",
+      "example": "/bestblogs/feeds/featured",
+      "parameters": {
+        "category": "the category of articles. Can be `programming`, `ai`, `product`, `business` or `featured`. Default is `featured`"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "codeforces",
+    "provider_name": "Codeforces",
+    "route_key": "/contests",
+    "route": {
+      "name": "Latest contests",
+      "path": "/contests",
+      "example": "/codeforces/contests",
+      "parameters": {},
       "description": ""
     }
   },
@@ -29,17 +66,44 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/search/:query/:sort?/:order?",
+    "route_key": "/advisor/data/:type?/:category?",
     "route": {
-      "name": "Search Result",
-      "path": "/search/:query/:sort?/:order?",
-      "example": "/github/search/RSSHub/bestmatch/desc",
+      "name": "Github Advisory Database RSS",
+      "path": "/advisor/data/:type?/:category?",
+      "example": "/github/advisor/data/reviewed/composer",
+      "parameters": {},
+      "description": "\n| Type | Description | Explanation |\n| --- | --- | --- |\n| reviewed | Reviewed | 已审核 |\n| unreviewed | Unreviewed | 未审核 |\n\n| Category | Description | Explanation |\n| --- | --- | --- |\n| composer | Composer | PHP 依赖管理工具 |\n| go | Go | Go 语言包管理工具 |\n| maven | Maven | Java 项目管理工具 |\n| npm | NPM | Node.js 包管理工具 |\n| nuget | NuGet | .NET 包管理工具 |\n| pip | Pip | Python 包管理工具 |\n| pub | Pub | Dart 包管理工具 |\n| rubygems | RubyGems | Ruby 包管理工具 |\n| rust | Rust | Rust 包管理工具 |\n| erlang | Erlang | Erlang 包管理工具 |\n| actions | Actions | GitHub Actions |\n| swift | Swift | Swift 包管理工具 |"
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/branches/:user/:repo",
+    "route": {
+      "name": "Repo Branches",
+      "path": "/branches/:user/:repo",
+      "example": "/github/branches/DIYgod/RSSHub",
       "parameters": {
-        "query": "search keyword",
-        "sort": "Sort options (default to bestmatch)",
-        "order": "Sort order, desc and asc (desc descending by default)"
+        "user": "User name",
+        "repo": "Repo name"
       },
-      "description": "| Sort options     | sort      |\n| ---------------- | --------- |\n| Best match       | bestmatch |\n| Most stars       | stars     |\n| Most forks       | forks     |\n| Recently updated | updated   |"
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/comments/:user/:repo/:number?",
+    "route": {
+      "name": "Issue / Pull Request comments",
+      "path": "/comments/:user/:repo/:number?",
+      "example": "/github/comments/DIYgod/RSSHub/8116",
+      "parameters": {
+        "user": "User / Org name",
+        "repo": "Repo name",
+        "number": "Issue or pull number (if omitted: all)"
+      },
+      "description": ""
     }
   },
   {
@@ -57,32 +121,29 @@
     }
   },
   {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/topics/:name/:qs?",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/books",
     "route": {
-      "name": "Topics",
-      "path": "/topics/:name/:qs?",
-      "example": "/github/topics/framework",
-      "parameters": {
-        "name": "Topic name, which can be found in the URL of the corresponding [Topics Page](https://github.com/topics/framework)",
-        "qs": "Query string, like `l=php&o=desc&s=stars`. Details listed as follows:"
-      },
-      "description": "| Parameter | Description      | Values                                                                                                                          |\n| --------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |\n| `l`       | Language         | For instance `php`, which can be found in the URL of the corresponding [Topics page](https://github.com/topics/framework?l=php) |\n| `o`       | Sorting Order    | `asc`, `desc`                                                                                                                   |\n| `s`       | Sorting Criteria | `stars`, `forks`, `updated`                                                                                                     |\n\n  For instance, the `/github/topics/framework/l=php&o=desc&s=stars` route will generate the RSS feed corresponding to this [page](https://github.com/topics/framework?l=php&o=desc&s=stars)."
+      "name": "小册",
+      "path": "/books",
+      "example": "/juejin/books",
+      "parameters": {},
+      "description": "> 掘金小册需要付费订阅，RSS 仅做更新提醒，不含付费内容."
     }
   },
   {
-    "provider_id": "jinritemai",
-    "provider_name": "抖店开放平台",
-    "route_key": "/docs/:dirId?",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/column/:id",
     "route": {
-      "name": "平台公告",
-      "path": "/docs/:dirId?",
-      "example": "/jinritemai/docs/19",
+      "name": "专栏",
+      "path": "/column/:id",
+      "example": "/juejin/column/6960559453037199391",
       "parameters": {
-        "dirId": "公告分类, 可在页面URL获取 默认为全部"
+        "id": "专栏 id, 可在专栏页 URL 中找到"
       },
-      "description": "| 类型    | type    |\n| --------- | ---------- |\n| 全部公告    | 5    |\n| 产品发布    | 19   |\n| 规则变更    | 21   |\n| 维护公告    | 20   |\n| 其他公告    | 22   |"
+      "description": ""
     }
   },
   {
@@ -100,31 +161,55 @@
     }
   },
   {
-    "provider_id": "mysql",
-    "provider_name": "MySQL",
-    "route_key": "/release/:version?",
+    "provider_id": "meituan",
+    "provider_name": "美团",
+    "route_key": "/tech",
     "route": {
-      "name": "Release Notes",
-      "path": "/release/:version?",
-      "example": "/mysql/release/8.0",
-      "parameters": {
-        "version": "Version, see below, 8.0 by default"
-      },
-      "description": "| 8.0 | 5.7 | 5.6 |\n| --- | --- | --- |"
+      "name": "技术团队博客",
+      "path": "/tech",
+      "example": "/meituan/tech",
+      "parameters": {},
+      "description": ""
     }
   },
   {
-    "provider_id": "smashingmagazine",
-    "provider_name": "Smashing Magazine",
-    "route_key": "/:category?",
+    "provider_id": "oschina",
+    "provider_name": "开源中国",
+    "route_key": "/event/:category?",
     "route": {
-      "name": "Category",
-      "path": "/:category?",
-      "example": "/smashingmagazine/react",
+      "name": "活动",
+      "path": "/event/:category?",
+      "example": "/oschina/event",
       "parameters": {
-        "category": "Find in URL or Table below"
+        "category": "分类，默认为 `latest`，即最新活动，可在对应分类页 URL 中找到"
       },
-      "description": "| **Category**       |                    |\n| ------------------ | ------------------ |\n| Accessibility      | accessibility      |\n| Best practices     | best-practices     |\n| Business           | business           |\n| Career             | career             |\n| Checklists         | checklists         |\n| CSS                | css                |\n| Data Visualization | data-visualization |\n| Design             | design             |\n| Design Patterns    | design-patterns    |\n| Design Systems     | design-systems     |\n| E-Commerce         | e-commerce         |\n| Figma              | figma              |\n| Freebies           | freebies           |\n| HTML               | html               |\n| Illustrator        | illustrator        |\n| Inspiration        | inspiration        |\n| JavaScript         | javascript         |\n| Mobile             | mobile             |\n| Performance        | performance        |\n| Privacy            | privacy            |\n| React              | react              |\n| Responsive Design  | responsive-design  |\n| Round-Ups          | round-ups          |\n| SEO                | seo                |\n| Typography         | typography         |\n| Tools              | tools              |\n| UI                 | ui                 |\n| Usability          | usability          |\n| UX                 | ux                 |\n| Vue                | vue                |\n| Wallpapers         | wallpapers         |\n| Web Design         | web-design         |\n| Workflow           | workflow           |"
+      "description": ":::tip\n若订阅 [强力推荐](https://www.oschina.net/event?tab=recommend)，网址为 `https://www.oschina.net/event?tab=recommend`，请截取 `https://www.oschina.net/event?tab=` 到末尾的部分 `recommend` 作为 `category` 参数填入，此时目标路由为 [`/oschina/event/recommend`](https://rsshub.app/oschina/event/recommend)。\n:::\n\n| 强力推荐  | 最新活动 |\n| --------- | -------- |\n| recommend | latest   |\n"
+    }
+  },
+  {
+    "provider_id": "oschina",
+    "provider_name": "开源中国",
+    "route_key": "/topic/:topic",
+    "route": {
+      "name": "问答主题",
+      "path": "/topic/:topic",
+      "example": "/oschina/topic/weekly-news",
+      "parameters": {
+        "topic": "主题名，可从 [全部主题](https://www.oschina.net/question/topics) 进入主题页，在 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "wechat",
+    "provider_name": "微信小程序",
+    "route_key": "/announce",
+    "route": {
+      "name": "公众平台系统公告栏目",
+      "path": "/announce",
+      "example": "/wechat/announce",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

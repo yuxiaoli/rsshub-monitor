@@ -1,31 +1,192 @@
 [
   {
-    "provider_id": "3kns",
-    "provider_name": "3k-Switch游戏库",
-    "route_key": "/:filters?/:order?",
+    "provider_id": "3dmgame",
+    "provider_name": "3DMGame",
+    "route_key": "/news/:category?",
     "route": {
-      "name": "3k-Switch游戏库",
-      "path": "/:filters?/:order?",
-      "example": "/3kns/category=all&lang=all",
+      "name": "新闻中心",
+      "path": "/news/:category?",
+      "example": "/3dmgame/news",
       "parameters": {
-        "filters": "过滤器，可用参数见下表",
-        "order": "排序，按高分排序:desc;按低分排序:asc"
+        "category": "分类名或 ID，见下表，默认为新闻推荐，ID 可从分类 URL 中找到，如 Steam 为 `22221`"
       },
-      "description": "游戏类型(category)\n\n| 不限 | 角色扮演 | 动作冒险 | 策略游戏 | 模拟经营 | 即时战略 | 格斗类 | 射击游戏 | 休闲益智 | 体育运动 | 街机格斗 | 无双类 | 其他游戏 | 赛车竞速 |\n| ---- | -------- | -------- | -------- | -------- | -------- | ------ | -------- | -------- | -------- | -------- | ------ | -------- | -------- |\n| all  | 1        | 2        | 3        | 4        | 5        | 6      | 7        | 8        | 9        | 10       | 11     | 12       | 13       |\n\n  游戏语言(language)\n\n| 不限 | 中文 | 英语 | 日语 | 其他 | 中文汉化 | 德语 |\n| ---- | ---- | ---- | ---- | ---- | -------- | ---- |\n| all  | 1    | 2    | 3    | 4    | 5        | 6    |\n\n  游戏标签(tag)\n\n| 不限 | 热门 | 多人聚会 | 僵尸 | 体感 | 大作 | 音乐 | 三国 | RPG | 格斗 | 闯关 | 横版 | 科幻 | 棋牌 | 运输 | 无双 | 卡通动漫 | 日系 | 养成 | 恐怖 | 运动 | 乙女 | 街机 | 飞行模拟 | 解谜 | 海战 | 战争 | 跑酷 | 即时策略 | 射击 | 经营 | 益智 | 沙盒 | 模拟 | 冒险 | 竞速 | 休闲 | 动作 | 生存 | 独立 | 拼图 | 魔改 xci | 卡牌 | 塔防 |\n| ---- | ---- | -------- | ---- | ---- | ---- | ---- | ---- | --- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | -------- | ---- | ---- | ---- | ---- | ---- | ---- | -------- | ---- | ---- | ---- | ---- | -------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | -------- | ---- | ---- |\n| all  | 1    | 2        | 3    | 4    | 5    | 6    | 7    | 8   | 9    | 10   | 11   | 12   | 13   | 14   | 15   | 16       | 17   | 18   | 19   | 20   | 21   | 22   | 23       | 24   | 25   | 26   | 27   | 28       | 29   | 30   | 31   | 32   | 33   | 34   | 35   | 36   | 37   | 38   | 39   | 40   | 41       | 42   | 43   |\n\n  发售时间(pubDate)\n\n| 不限 | 2017 年 | 2018 年 | 2019 年 | 2020 年 | 2021 年 | 2022 年 | 2023 年 | 2024 年 |\n| ---- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |\n| all  | 1       | 2       | 3       | 4       | 5       | 6       | 7       | 8       |\n\n  游戏集合(collection)\n\n| 不限 | 舞力全开 | 马里奥 | 生化危机 | 炼金工房 | 最终幻想 | 塞尔达 | 宝可梦 | 勇者斗恶龙 | 模拟器 | 秋之回忆 | 第一方 | 体感健身 | 开放世界 | 儿童乐园 |\n| ---- | -------- | ------ | -------- | -------- | -------- | ------ | ------ | ---------- | ------ | -------- | ------ | -------- | -------- | -------- |\n| all  | 1        | 2      | 3        | 4        | 5        | 6      | 7      | 8          | 9      | 10       | 11     | 12       | 13       | 14       |"
+      "description": "| 新闻推荐 | 游戏新闻 | 动漫影视 | 智能数码 | 时事焦点    |\n| -------- | -------- | -------- | -------- | ----------- |\n|          | game     | acg      | next     | news_36_1 |"
     }
   },
   {
-    "provider_id": "osu",
-    "provider_name": "osu!",
-    "route_key": "/packs/:type?",
+    "provider_id": "4gamers",
+    "provider_name": "4Gamers",
+    "route_key": "/topic/:topic",
     "route": {
-      "name": "Beatmap Packs",
-      "path": "/packs/:type?",
-      "example": "/osu/packs",
+      "name": "主題",
+      "path": "/topic/:topic",
+      "example": "/4gamers/topic/gentlemen-topic",
       "parameters": {
-        "type": "pack type, default to `standard`, can choose from `featured`, `tournament`, `loved`, `chart`, `theme` and `artist`"
+        "topic": "主题，可在首页上方页面内找到"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "counter-strike",
+    "provider_name": "Counter Strike",
+    "route_key": "/news/:category?/:language?",
+    "route": {
+      "name": "News",
+      "path": "/news/:category?/:language?",
+      "example": "/counter-strike/news",
+      "parameters": {
+        "category": "Category, `updates` or `all`, `all` by default",
+        "language": "Language, english by default, see below for more languages"
+      },
+      "description": "::: tip\n  If you subscribe to [Updates in English](https://www.counter-strike.net/news/updates?l=english)，where the URL is `https://www.counter-strike.net/news/updates?l=english`, extract the `l`, which is `english`, and use it as the parameter to fill in. Therefore, the route will be [`/counter-strike/news/updates/english`](https://rsshub.app/counter-strike/news/updates/english).\n:::\n\n<details>\n<summary>More languages</summary>\n\n| 语言代码                                          | 语言名称   |\n| ------------------------------------------------- | ---------- |\n| English                                           | english    |\n| Español - España (Spanish - Spain)                | spanish    |\n| Français (French)                                 | french     |\n| Italiano (Italian)                                | italian    |\n| Deutsch (German)                                  | german     |\n| Ελληνικά (Greek)                                  | greek      |\n| 한국어 (Korean)                                   | koreana    |\n| 简体中文 (Simplified Chinese)                     | schinese   |\n| 繁體中文 (Traditional Chinese)                    | tchinese   |\n| Русский (Russian)                                 | russian    |\n| ไทย (Thai)                                        | thai       |\n| 日本語 (Japanese)                                 | japanese   |\n| Português (Portuguese)                            | portuguese |\n| Português - Brasil (Portuguese - Brazil)          | brazilian  |\n| Polski (Polish)                                   | polish     |\n| Dansk (Danish)                                    | danish     |\n| Nederlands (Dutch)                                | dutch      |\n| Suomi (Finnish)                                   | finnish    |\n| Norsk (Norwegian)                                 | norwegian  |\n| Svenska (Swedish)                                 | swedish    |\n| Čeština (Czech)                                   | czech      |\n| Magyar (Hungarian)                                | hungarian  |\n| Română (Romanian)                                 | romanian   |\n| Български (Bulgarian)                             | bulgarian  |\n| Türkçe (Turkish)                                  | turkish    |\n| Українська (Ukrainian)                            | ukrainian  |\n| Tiếng Việt (Vietnamese)                           | vietnamese |\n| Español - Latinoamérica (Spanish - Latin America) | latam      |\n\n</details>\n    "
+    }
+  },
+  {
+    "provider_id": "diershoubing",
+    "provider_name": "二柄 APP",
+    "route_key": "/news",
+    "route": {
+      "name": "新闻",
+      "path": "/news",
+      "example": "/diershoubing/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gamebase",
+    "provider_name": "遊戲基地 Gamebase",
+    "route_key": "/news/:type?/:category?",
+    "route": {
+      "name": "新聞",
+      "path": "/news/:type?/:category?",
+      "example": "/gamebase/news",
+      "parameters": {
+        "type": "類型，見下表，預設為 newslist",
+        "category": "分類，預設為 `all`，即全部，可在對應分類頁 URL 中找到"
+      },
+      "description": ":::tip\n若訂閱 [手機遊戲新聞](https://news.gamebase.com.tw/news/newslist?type=mobile)，網址為 `https://news.gamebase.com.tw/news/newslist?type=mobile`，請截取 `https://news.gamebase.com.tw/news/` 到末尾的部分 `newslist` 作為 `type` 參數填入，`mobile` 作為 `category` 參數填入，此時目標路由為 [`/gamebase/news/newslist/mobile`](https://rsshub.app/gamebase/news/newslist/mobile)。\n:::\n\n| newslist | r18list |\n| -------- | ------- |\n"
+    }
+  },
+  {
+    "provider_id": "gamersky",
+    "provider_name": "GamerSky",
+    "route_key": "/ent/:category?",
+    "route": {
+      "name": "娱乐",
+      "path": "/ent/:category?",
+      "example": "/gamersky/ent/xz",
+      "parameters": {
+        "type": "分类类型，留空为 `all`"
+      },
+      "description": "|\n|\n|\n"
+    }
+  },
+  {
+    "provider_id": "gcores",
+    "provider_name": "机核网",
+    "route_key": "/articles",
+    "route": {
+      "name": "文章",
+      "path": "/articles",
+      "example": "/gcores/articles",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "mcmod",
+    "provider_name": "MC百科",
+    "route_key": "/:type",
+    "route": {
+      "name": "最新MOD",
+      "path": "/:type",
+      "example": "/mcmod/new",
+      "parameters": {
+        "type": "查询类型，详见下表"
+      },
+      "description": "`:type` 类型可选如下\n\n| 随机显示MOD | 最新收录MOD | 最近编辑MOD |\n| ------ | --- | ---- |\n| random | new | edit |"
+    }
+  },
+  {
+    "provider_id": "nintendo",
+    "provider_name": "Nintendo",
+    "route_key": "/direct",
+    "route": {
+      "name": "Nintendo Direct",
+      "path": "/direct",
+      "example": "/nintendo/direct",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "priconne-redive",
+    "provider_name": "PRINCESS CONNECT! Re Dive プリンセスコネクト！Re Dive",
+    "route_key": "/news/:server?",
+    "route": {
+      "name": "最新公告",
+      "path": "/news/:server?",
+      "example": "/priconne-redive/news",
+      "parameters": {
+        "server": "服务器，默认日服"
+      },
+      "description": "服务器\n\n| 国服  | 台服  | 日服  |\n| ----- | ----- | ---- |\n| zh-cn | zh-tw | jp   |"
+    }
+  },
+  {
+    "provider_id": "qq",
+    "provider_name": "腾讯网",
+    "route_key": "/lol/news/:category?",
+    "route": {
+      "name": "英雄联盟新闻",
+      "path": "/lol/news/:category?",
+      "example": "/qq/lol/news",
+      "parameters": {
+        "category": "分类，默认为 `23`，即综合，见下表"
+      },
+      "description": ":::tip\n若订阅 [英雄联盟首页新闻列表 - 公告](https://lol.qq.com/news/index.shtml)，网址为 `https://lol.qq.com/news/index.shtml`，请选择 `24` 作为 `category` 参数填入，此时目标路由为 [`/qq/lol/news/24`](https://rsshub.app/qq/lol/news/24)。\n:::\n\n| 综合 | 公告 | 赛事 | 攻略 | 社区 |\n| ---- | ---- | ---- | ---- | ---- |\n| 23   | 24   | 25   | 27   | 28   |\n"
+    }
+  },
+  {
+    "provider_id": "sega",
+    "provider_name": "SEGA",
+    "route_key": "/maimaidx/news",
+    "route": {
+      "name": "maimai DX Japanese Ver. News",
+      "path": "/maimaidx/news",
+      "example": "/sega/maimaidx/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "xiaoheihe",
+    "provider_name": "小黑盒",
+    "route_key": "/discount/:platform",
+    "route": {
+      "name": "游戏折扣",
+      "path": "/discount/:platform",
+      "example": "/xiaoheihe/discount/pc",
+      "parameters": {
+        "platform": "平台分类，见下表"
+      },
+      "description": "| PC  | Switch  | PSN   | Xbox |\n| ----- | ------ | ----- | ----- |\n| pc    | switch | psn   | xbox  |"
+    }
+  },
+  {
+    "provider_id": "yxdzqb",
+    "provider_name": "游戏打折情报",
+    "route_key": "/:type",
+    "route": {
+      "name": "游戏折扣",
+      "path": "/:type",
+      "example": "/yxdzqb/popular_cn",
+      "parameters": {
+        "type": "折扣类型"
+      },
+      "description": "| Steam 最新折扣 | Steam 热门游戏折扣 | Steam 热门中文游戏折扣 | Steam 历史低价 | Steam 中文游戏历史低价 |\n| -------------- | ------------------ | ---------------------- | -------------- | ---------------------- |\n| discount       | popular            | popular_cn            | low            | low_cn                |"
     }
   }
 ]

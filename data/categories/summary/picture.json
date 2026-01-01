@@ -1,64 +1,76 @@
 [
   {
-    "provider_id": "dapenti",
-    "provider_name": "喷嚏",
-    "route_key": "/subject/:id",
+    "provider_id": "4khd",
+    "provider_name": "4KHD",
+    "route_key": "/category/:category",
     "route": {
-      "name": "主题",
-      "path": "/subject/:id",
-      "example": "/dapenti/subject/184",
+      "name": "Category",
+      "path": "/category/:category",
+      "example": "/4khd/category/cosplay",
       "parameters": {
-        "id": "主题 id"
+        "category": "Category"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "jpxgmn",
-    "provider_name": "极品性感美女",
-    "route_key": "/weekly",
+    "provider_id": "4khd",
+    "provider_name": "4KHD",
+    "route_key": "/",
     "route": {
-      "name": "本周热门",
-      "path": "/weekly",
-      "example": "/jpxgmn/weekly",
+      "name": "Latest",
+      "path": "/",
+      "example": "/4khd",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "misskon",
-    "provider_name": "MissKON",
-    "route_key": "/top/:k",
+    "provider_id": "4kup",
+    "provider_name": "4KUP",
+    "route_key": "/",
     "route": {
-      "name": "Top k days",
-      "path": "/top/:k",
-      "example": "/misskon/top/60",
+      "name": "Latest",
+      "path": "/",
+      "example": "/4kup",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "500px",
+    "provider_name": "500px 摄影社区",
+    "route_key": "/tribe/set/:id",
+    "route": {
+      "name": "部落影集",
+      "path": "/tribe/set/:id",
+      "example": "/500px/tribe/set/f5de0b8aa6d54ec486f5e79616418001",
       "parameters": {
-        "k": "Top k days, can be 3, 7, 30 or 60"
+        "id": "部落 ID"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod-cn",
+    "provider_id": "cosplaytele",
+    "provider_name": "CosplayTele",
+    "route_key": "/",
     "route": {
-      "name": "NASA 中文",
-      "path": "/apod-cn",
-      "example": "/nasa/apod-cn",
+      "name": "Latest",
+      "path": "/",
+      "example": "/cosplaytele",
       "parameters": {},
-      "description": "::: tip\n  [NASA 中文](https://www.nasachina.cn/) 提供了每日天文图的中英双语图文说明，但在更新上偶尔略有一两天的延迟。\n:::"
+      "description": ""
     }
   },
   {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod",
+    "provider_id": "magnumphotos",
+    "provider_name": "Magnum Photos",
+    "route_key": "/magazine",
     "route": {
-      "name": "Astronomy Picture of the Day",
-      "path": "/apod",
-      "example": "/nasa/apod",
+      "name": "Magazine",
+      "path": "/magazine",
+      "example": "/magnumphotos/magazine",
       "parameters": {},
       "description": ""
     }
@@ -89,6 +101,41 @@
         }
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "yande",
+    "provider_name": "yande.re",
+    "route_key": "/post/popular_recent/:period?",
+    "route": {
+      "name": "Popular Recent Posts",
+      "path": "/post/popular_recent/:period?",
+      "example": "/yande/post/popular_recent/1d",
+      "parameters": {
+        "period": {
+          "description": "展示时间",
+          "options": [
+            {
+              "value": "1d",
+              "label": "最近 24 小时"
+            },
+            {
+              "value": "1w",
+              "label": "最近一周"
+            },
+            {
+              "value": "1m",
+              "label": "最近一月"
+            },
+            {
+              "value": "1y",
+              "label": "最近一年"
+            }
+          ],
+          "default": "1d"
+        }
+      },
+      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |"
     }
   }
 ]

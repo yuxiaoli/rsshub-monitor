@@ -1,148 +1,189 @@
 [
   {
-    "provider_id": "ainvest",
-    "provider_name": "AInvest",
-    "route_key": "/news",
+    "provider_id": "bloomberg",
+    "provider_name": "Bloomberg",
+    "route_key": "/:site?",
     "route": {
-      "name": "Latest News",
-      "path": "/news",
-      "example": "/ainvest/news",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "chinamoney",
-    "provider_name": "中国货币网",
-    "route_key": "/:channelId?",
-    "route": {
-      "name": "公告",
-      "path": "/:channelId?",
-      "example": "/chinamoney",
+      "name": "Bloomberg Site",
+      "path": "/:site?",
+      "example": "/bloomberg/bbiz",
       "parameters": {
-        "channelId": "分类，见下表，默认为 `2834`"
-      },
-      "description": "<details>\n<summary>市场公告</summary>\n\n    外汇市场公告\n\n| 最新 | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| ---- | ------------ | ------------ | ------------ |\n| 2834 | 2835         | 2836         | 2837         |\n\n    本币市场公告\n\n| 最新           | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| -------------- | ------------ | ------------ | ------------ |\n| 2839,2840,2841 | 2839         | 2840         | 2841         |\n\n    央行业务公告\n\n| 最新      | 公开市场操作 | 中央国库现金管理 |\n| --------- | ------------ | ---------------- |\n| 2845,2846 | 2845         | 2846             |\n</details>\n\n<details>\n<summary>本币市场</summary>\n\n    贷款市场报价利率\n\n| LPR 市场公告 |\n| ------------ |\n| 3686         |\n</details>"
-    }
-  },
-  {
-    "provider_id": "eastmoney",
-    "provider_name": "东方财富",
-    "route_key": "/search/:keyword",
-    "route": {
-      "name": "搜索",
-      "path": "/search/:keyword",
-      "example": "/eastmoney/search/web3",
-      "parameters": {
-        "keyword": "关键词，可以设置为自己需要检索的关键词"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "finviz",
-    "provider_name": "finviz",
-    "route_key": "/:category?",
-    "route": {
-      "name": "News",
-      "path": "/:category?",
-      "example": "/finviz",
-      "parameters": {
-        "category": {
-          "description": "Category, see below, News by default",
+        "site": {
+          "description": "Site ID, can be found below",
           "options": [
             {
-              "value": "news",
-              "label": "news"
+              "value": "/",
+              "label": "News"
             },
             {
-              "value": "blogs",
-              "label": "blogs"
+              "value": "bpol",
+              "label": "Politics"
+            },
+            {
+              "value": "bbiz",
+              "label": "Business"
+            },
+            {
+              "value": "markets",
+              "label": "Markets"
+            },
+            {
+              "value": "technology",
+              "label": "Technology"
+            },
+            {
+              "value": "green",
+              "label": "Green"
+            },
+            {
+              "value": "wealth",
+              "label": "Wealth"
+            },
+            {
+              "value": "pursuits",
+              "label": "Pursuits"
+            },
+            {
+              "value": "bview",
+              "label": "Opinion"
+            },
+            {
+              "value": "equality",
+              "label": "Equality"
+            },
+            {
+              "value": "businessweek",
+              "label": "Businessweek"
+            },
+            {
+              "value": "citylab",
+              "label": "CityLab"
             }
           ]
         }
       },
-      "description": "| News | Blogs |\n| ---- | ---- |\n| news | blogs |"
+      "description": "\n| Site ID      | Title        |\n| ------------ | ------------ |\n| /            | News         |\n| bpol         | Politics     |\n| bbiz         | Business     |\n| markets      | Markets      |\n| technology   | Technology   |\n| green        | Green        |\n| wealth       | Wealth       |\n| pursuits     | Pursuits     |\n| bview        | Opinion      |\n| equality     | Equality     |\n| businessweek | Businessweek |\n| citylab      | CityLab      |\n  "
     }
   },
   {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/pbc/gzlw",
+    "provider_id": "fastbull",
+    "provider_name": "FastBull",
+    "route_key": "/express-news",
     "route": {
-      "name": "工作论文",
-      "path": "/pbc/gzlw",
-      "example": "/gov/pbc/gzlw",
+      "name": "News Flash",
+      "path": "/express-news",
+      "example": "/fastbull/express-news",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "jinse",
-    "provider_name": "金色财经",
-    "route_key": "/lives/:category?",
+    "provider_id": "followin",
+    "provider_name": "Followin",
+    "route_key": "/kol/:kolId/:lang?",
     "route": {
-      "name": "快讯",
-      "path": "/lives/:category?",
-      "example": "/jinse/lives",
+      "name": "KOL",
+      "path": "/kol/:kolId/:lang?",
+      "example": "/followin/kol/4075592991",
       "parameters": {
-        "category": {
-          "description": "分类",
+        "kolId": "KOL ID, can be found in URL",
+        "lang": "Language, see table above, `en` by default"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/live",
+    "route": {
+      "name": "实时快讯",
+      "path": "/live",
+      "example": "/gelonghui/live",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/subject/:id",
+    "route": {
+      "name": "主题文章",
+      "path": "/subject/:id",
+      "example": "/gelonghui/subject/4",
+      "parameters": {
+        "id": "主题编号，可在主题页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "moodysmismicrosite",
+    "provider_name": "穆迪评级",
+    "route_key": "/report/:industry?",
+    "route": {
+      "name": "industry",
+      "path": "/report/:industry?",
+      "example": "/moodysmismicrosite/report/企业&金融机构",
+      "parameters": {
+        "industry": {
+          "description": "可选参数，默认为全部行业。行业选择，支持使用&连接多个。",
           "options": [
             {
               "value": "0",
-              "label": "全部"
+              "label": "企业"
             },
             {
               "value": "1",
-              "label": "精选"
+              "label": "金融机构"
             },
             {
               "value": "2",
-              "label": "政策"
+              "label": "主权"
             },
             {
               "value": "3",
-              "label": "数据"
+              "label": "地方政府及城投公司"
             },
             {
               "value": "4",
-              "label": "NFT"
+              "label": "宏观经济"
             },
             {
               "value": "5",
-              "label": "项目"
+              "label": "结构融资"
+            },
+            {
+              "value": "6",
+              "label": "基础设施及项目融资"
+            },
+            {
+              "value": "7",
+              "label": "ESG"
+            },
+            {
+              "value": "8",
+              "label": "其他"
             }
           ],
-          "default": "0"
+          "default": "全部"
         }
       },
-      "description": "| 全部 | 精选 | 政策 | 数据 | NFT | 项目 |\n| ---- | ---- | ---- | ---- | --- | ---- |\n| 0    | 1    | 2    | 3    | 4   | 5    |"
+      "description": "\n| ID | Description |\n| ---   | ---   |\n| 0 | 企业 |\n| 1 | 金融机构 |\n| 2 | 主权 |\n| 3 | 地方政府及城投公司 |\n| 4 | 宏观经济 |\n| 5 | 结构融资 |\n| 6 | 基础设施项目融资 |\n| 7 | ESG |\n| 8 | 其他 |\n    "
     }
   },
   {
-    "provider_id": "mrm",
-    "provider_name": "华储网",
-    "route_key": "/:category?",
+    "provider_id": "sse",
+    "provider_name": "上海证券交易所",
+    "route_key": "/convert/:query?",
     "route": {
-      "name": "通知",
-      "path": "/:category?",
-      "example": "/mrm",
+      "name": "可转换公司债券公告",
+      "path": "/convert/:query?",
+      "example": "/sse/convert/beginDate=2018-08-18&endDate=2019-08-18&companyCode=603283&title=股份",
       "parameters": {
-        "category": "N"
+        "query": "筛选条件，见示例"
       },
-      "description": "| 交易通知     | 政策规定             | 业务通知          |\n| ------------ | -------------------- | ----------------- |\n| zonghezixun3 | zhengceguiding_list | yewutongzhi_list |"
-    }
-  },
-  {
-    "provider_id": "nbd",
-    "provider_name": "每经网",
-    "route_key": "/daily",
-    "route": {
-      "name": "重磅原创",
-      "path": "/daily",
-      "example": "/nbd/daily",
-      "parameters": {},
       "description": ""
     }
   },
@@ -157,6 +198,44 @@
       "parameters": {
         "query": "筛选条件，见示例"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sse",
+    "provider_name": "上海证券交易所",
+    "route_key": "/inquire",
+    "route": {
+      "name": "监管问询",
+      "path": "/inquire",
+      "example": "/sse/inquire",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sse",
+    "provider_name": "上海证券交易所",
+    "route_key": "/sselawsrules/:category{.+}?",
+    "route": {
+      "name": "本所业务规则",
+      "path": "/sselawsrules/:category{.+}?",
+      "example": "/sse/sselawsrules/latest",
+      "parameters": {
+        "category": "分类，默认为最新规则，即 `latest`，可在对应分类页 URL 中找到"
+      },
+      "description": "::: tip\n  若订阅 [最新规则](https://www.sse.com.cn/lawandrules/sselawsrules/latest/)，网址为 `https://www.sse.com.cn/lawandrules/sselawsrules/latest/`。截取 `https://www.sse.com.cn/lawandrules/sselawsrules/` 到末尾 `/` 的部分 `latest` 作为参数填入，此时路由为 [`/sse/sselawsrules/latest`](https://rsshub.app/sse/sselawsrules/latest)。\n:::\n\n| [最新规则](https://www.sse.com.cn/lawandrules/sselawsrules/latest/) | [章程](https://www.sse.com.cn/lawandrules/sselawsrules/article/) | [首发](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/review/firstepisode/)          | [再融资](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/review/refinancing/)       | [重组](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/review/recombination/)           |\n| ------------------------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |\n| [latest](https://rsshub.app/sse/sselawsrules/latest)                | [article](https://rsshub.app/sse/sselawsrules/article)           | [stocks/review/firstepisode](https://rsshub.app/sse/sselawsrules/stocks/review/firstepisode) | [stocks/review/refinancing](https://rsshub.app/sse/sselawsrules/stocks/review/refinancing) | [stocks/review/recombination](https://rsshub.app/sse/sselawsrules/stocks/review/recombination) |\n\n| [转板](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/review/flap/)  | [发行承销](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/issue/) | [主板上市（挂牌）](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/mainipo/) | [科创板上市（挂牌）](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/staripo/) | [股票交易](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/exchange/) |\n| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |\n| [stocks/review/flap](https://rsshub.app/sse/sselawsrules/stocks/review/flap) | [stocks/issue](https://rsshub.app/sse/sselawsrules/stocks/issue)          | [stocks/mainipo](https://rsshub.app/sse/sselawsrules/stocks/mainipo)                | [stocks/staripo](https://rsshub.app/sse/sselawsrules/stocks/staripo)                  | [stocks/exchange](https://rsshub.app/sse/sselawsrules/stocks/exchange)       |\n\n| [试点创新企业](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/innovative/) | [股权分置改革](https://www.sse.com.cn/lawandrules/sselawsrules/stocks/reform/) | [发行上市审核](https://www.sse.com.cn/lawandrules/sselawsrules/bond/review/) | [发行承销](https://www.sse.com.cn/lawandrules/sselawsrules/bond/issue/) | [公司债券上市（挂牌）](https://www.sse.com.cn/lawandrules/sselawsrules/bond/listing/corporatebond/) |\n| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |\n| [stocks/innovative](https://rsshub.app/sse/sselawsrules/stocks/innovative)         | [stocks/reform](https://rsshub.app/sse/sselawsrules/stocks/reform)             | [bond/review](https://rsshub.app/sse/sselawsrules/bond/review)               | [bond/issue](https://rsshub.app/sse/sselawsrules/bond/issue)            | [bond/listing/corporatebond](https://rsshub.app/sse/sselawsrules/bond/listing/corporatebond)        |\n\n| [资产支持证券上市（挂牌）](https://www.sse.com.cn/lawandrules/sselawsrules/bond/listing/assets/) | [债券交易通用](https://www.sse.com.cn/lawandrules/sselawsrules/bond/trading/currency/) | [国债预发行](https://www.sse.com.cn/lawandrules/sselawsrules/bond/trading/tbondp/) | [债券质押式三方回购](https://www.sse.com.cn/lawandrules/sselawsrules/bond/trading/tripartyrepo/) | [债券质押式协议回购](https://www.sse.com.cn/lawandrules/sselawsrules/bond/trading/repurchase/) |\n| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |\n| [bond/listing/assets](https://rsshub.app/sse/sselawsrules/bond/listing/assets)                   | [bond/trading/currency](https://rsshub.app/sse/sselawsrules/bond/trading/currency)     | [bond/trading/tbondp](https://rsshub.app/sse/sselawsrules/bond/trading/tbondp)     | [bond/trading/tripartyrepo](https://rsshub.app/sse/sselawsrules/bond/trading/tripartyrepo)       | [bond/trading/repurchase](https://rsshub.app/sse/sselawsrules/bond/trading/repurchase)         |\n\n| [国债买断式回购交易](https://www.sse.com.cn/lawandrules/sselawsrules/bond/trading/outrightrepo/) | [信用保护工具](https://www.sse.com.cn/lawandrules/sselawsrules/bond/trading/cdx/) | [上市公司可转债](https://www.sse.com.cn/lawandrules/sselawsrules/bond/convertible/) | [基金上市](https://www.sse.com.cn/lawandrules/sselawsrules/fund/listing/) | [基金交易](https://www.sse.com.cn/lawandrules/sselawsrules/fund/trading/) |\n| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |\n| [bond/trading/outrightrepo](https://rsshub.app/sse/sselawsrules/bond/trading/outrightrepo)       | [bond/trading/cdx](https://rsshub.app/sse/sselawsrules/bond/trading/cdx)          | [bond/convertible](https://rsshub.app/sse/sselawsrules/bond/convertible)            | [fund/listing](https://rsshub.app/sse/sselawsrules/fund/listing)          | [fund/trading](https://rsshub.app/sse/sselawsrules/fund/trading)          |\n\n| [基础设施公募REITs](https://www.sse.com.cn/lawandrules/sselawsrules/reits/) | [期权](https://www.sse.com.cn/lawandrules/sselawsrules/option/) | [通用类](https://www.sse.com.cn/lawandrules/sselawsrules/trade/universal/) | [融资融券](https://www.sse.com.cn/lawandrules/sselawsrules/trade/specific/margin/) | [转融通](https://www.sse.com.cn/lawandrules/sselawsrules/trade/specific/refinancing/)        |\n| --------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |\n| [reits](https://rsshub.app/sse/sselawsrules/reits)                          | [option](https://rsshub.app/sse/sselawsrules/option)            | [trade/universal](https://rsshub.app/sse/sselawsrules/trade/universal)     | [trade/specific/margin](https://rsshub.app/sse/sselawsrules/trade/specific/margin) | [trade/specific/refinancing](https://rsshub.app/sse/sselawsrules/trade/specific/refinancing) |\n\n| [质押式回购](https://www.sse.com.cn/lawandrules/sselawsrules/trade/specific/repo/) | [质押式报价回购](https://www.sse.com.cn/lawandrules/sselawsrules/trade/specific/pricerepo/) | [约定购回](https://www.sse.com.cn/lawandrules/sselawsrules/trade/specific/promise/)  | [协议转让](https://www.sse.com.cn/lawandrules/sselawsrules/trade/specific/xyzr/) | [其他](https://www.sse.com.cn/lawandrules/sselawsrules/trade/specific/others/)     |\n| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |\n| [trade/specific/repo](https://rsshub.app/sse/sselawsrules/trade/specific/repo)     | [trade/specific/pricerepo](https://rsshub.app/sse/sselawsrules/trade/specific/pricerepo)    | [trade/specific/promise](https://rsshub.app/sse/sselawsrules/trade/specific/promise) | [trade/specific/xyzr](https://rsshub.app/sse/sselawsrules/trade/specific/xyzr)   | [trade/specific/others](https://rsshub.app/sse/sselawsrules/trade/specific/others) |\n\n| [沪港通](https://www.sse.com.cn/lawandrules/sselawsrules/global/hkexsc/) | [互联互通存托凭证](https://www.sse.com.cn/lawandrules/sselawsrules/global/slsc/) | [会员管理](https://www.sse.com.cn/lawandrules/sselawsrules/member/personnel/) | [适当性管理](https://www.sse.com.cn/lawandrules/sselawsrules/member/adequacy/) | [纪律处分与复核](https://www.sse.com.cn/lawandrules/sselawsrules/disciplinary/) |\n| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |\n| [global/hkexsc](https://rsshub.app/sse/sselawsrules/global/hkexsc)       | [global/slsc](https://rsshub.app/sse/sselawsrules/global/slsc)                   | [member/personnel](https://rsshub.app/sse/sselawsrules/member/personnel)      | [member/adequacy](https://rsshub.app/sse/sselawsrules/member/adequacy)         | [disciplinary](https://rsshub.app/sse/sselawsrules/disciplinary)                |\n\n| [交易收费](https://www.sse.com.cn/lawandrules/sselawsrules/charge/) | [其他业务规则](https://www.sse.com.cn/lawandrules/sselawsrules/other/) | [业务规则废止公告](https://www.sse.com.cn/lawandrules/sserules/repeal/announcement/)                                       | [已废止规则文本](https://www.sse.com.cn/lawandrules/sselawsrules/repeal/rules/) |\n| ------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |\n| [charge](https://rsshub.app/sse/sselawsrules/charge)                | [other](https://rsshub.app/sse/sselawsrules/other)                     | [/lawandrules/sserules/repeal/announcement](https://rsshub.app/sse/sselawsrules//lawandrules/sserules/repeal/announcement) | [repeal/rules](https://rsshub.app/sse/sselawsrules/repeal/rules)                |\n  "
+    }
+  },
+  {
+    "provider_id": "ulapia",
+    "provider_name": "乌拉邦",
+    "route_key": "/research/latest",
+    "route": {
+      "name": "最新研报",
+      "path": "/research/latest",
+      "example": "/ulapia/research/latest",
+      "parameters": {},
       "description": ""
     }
   }

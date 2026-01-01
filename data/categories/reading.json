@@ -1,18 +1,34 @@
 [
   {
-    "provider_id": "jjwxc",
-    "provider_name": "晋江文学城",
-    "route_key": "/author/:id?",
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/html_clip/:user/:tag",
     "route": {
-      "path": "/author/:id?",
-      "example": "/jjwxc/author/4364484",
+      "path": "/html_clip/:user/:tag",
+      "example": "/inoreader/html_clip/1005137674/user-favorites",
+      "view": 0,
+      "name": "HTML Clip",
+      "provider_id": "inoreader",
+      "provider_name": "Inoreader",
+      "route_key": "/html_clip/:user/:tag"
+    }
+  },
+  {
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/rss/:user/:tag",
+    "route": {
+      "path": "/rss/:user/:tag",
+      "view": 0,
+      "example": "/inoreader/rss/1005137674/user-favorites",
       "parameters": {
-        "id": "作者 id，可在对应作者页中找到"
+        "user": "user id, the interger after user/ in the example URL",
+        "tag": "tag, the string after tag/ in the example URL"
       },
-      "name": "作者最新作品",
-      "provider_id": "jjwxc",
-      "provider_name": "晋江文学城",
-      "route_key": "/author/:id?"
+      "name": "RSS",
+      "provider_id": "inoreader",
+      "provider_name": "Inoreader",
+      "route_key": "/rss/:user/:tag"
     }
   },
   {
@@ -29,6 +45,59 @@
       "provider_id": "kakuyomu",
       "provider_name": "カクヨム",
       "route_key": "/works/:id"
+    }
+  },
+  {
+    "provider_id": "linovelib",
+    "provider_name": "哔哩轻小说",
+    "route_key": "/volume/:id",
+    "route": {
+      "path": "/volume/:id",
+      "example": "/linovelib/volume/8",
+      "parameters": {
+        "id": "小说 ID，可在小说页 URL 中找到"
+      },
+      "name": "卷",
+      "provider_id": "linovelib",
+      "provider_name": "哔哩轻小说",
+      "route_key": "/volume/:id"
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/search/:sub/:query",
+    "route": {
+      "path": "/search/:sub/:query",
+      "example": "/syosetu/search/noc/word=ハーレム&notword=&type=r&mintime=&maxtime=&minlen=30000&maxlen=&min_globalpoint=&max_globalpoint=&minlastup=&maxlastup=&minfirstup=&maxfirstup=&isgl=1&notbl=1&order=new?limit=5",
+      "parameters": {
+        "sub": {
+          "description": "The target Syosetu subsite.",
+          "options": [
+            {
+              "value": "yomou",
+              "label": "小説を読もう"
+            },
+            {
+              "value": "noc",
+              "label": "ノクターン"
+            },
+            {
+              "value": "mnlt",
+              "label": "ムーンライト"
+            },
+            {
+              "value": "mid",
+              "label": "ミッドナイト"
+            }
+          ]
+        },
+        "query": "Search parameters in Syosetu format."
+      },
+      "name": "Search",
+      "provider_id": "syosetu",
+      "provider_name": "Syosetu",
+      "route_key": "/search/:sub/:query"
     }
   }
 ]

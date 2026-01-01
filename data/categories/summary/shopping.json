@@ -1,5 +1,76 @@
 [
   {
+    "provider_id": "guangdiu",
+    "provider_name": "逛丢",
+    "route_key": "/:query?",
+    "route": {
+      "name": "国内折扣 / 海外折扣",
+      "path": "/:query?",
+      "example": "/guangdiu/k=daily",
+      "parameters": {
+        "query": "链接参数，对应网址问号后的内容"
+      },
+      "description": "::: tip\n  海外折扣: [`/guangdiu/k=daily&c=us`](https://rsshub.app/guangdiu/k=daily&c=us)\n:::"
+    }
+  },
+  {
+    "provider_id": "guangdiu",
+    "provider_name": "逛丢",
+    "route_key": "/rank",
+    "route": {
+      "name": "一小时风云榜",
+      "path": "/rank",
+      "example": "/guangdiu/rank",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hotukdeals",
+    "provider_name": "hotukdeals",
+    "route_key": "/:type",
+    "route": {
+      "name": "thread",
+      "path": "/:type",
+      "example": "/hotukdeals/hot",
+      "parameters": {
+        "type": "should be one of highlights, hot, new, discussed"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "modian",
+    "provider_name": "摩点",
+    "route_key": "/zhongchou/:category?/:sort?/:status?",
+    "route": {
+      "name": "众筹",
+      "path": "/zhongchou/:category?/:sort?/:status?",
+      "example": "/modian/zhongchou",
+      "parameters": {
+        "category": "分类，见下表，默认为全部",
+        "sort": "排序，见下表，默认为最新上线",
+        "status": "状态，见下表，默认为全部"
+      },
+      "description": "分类\n\n| 全部 | 游戏  | 动漫   | 出版       | 桌游       |\n| ---- | ----- | ------ | ---------- | ---------- |\n| all  | games | comics | publishing | tablegames |\n\n| 卡牌  | 潮玩模型 | 影视       | 音乐  | 活动       |\n| ----- | -------- | ---------- | ----- | ---------- |\n| cards | toys     | film-video | music | activities |\n\n| 设计   | 科技       | 食品 | 爱心通道 | 动物救助 |\n| ------ | ---------- | ---- | -------- | -------- |\n| design | technology | food | charity  | animals  |\n\n| 个人愿望 | 其他   |\n| -------- | ------ |\n| wishes   | others |\n\n  排序\n\n| 最新上线  | 金额最高   | 评论最多     |\n| --------- | ---------- | ------------ |\n| top_time | top_money | top_comment |\n\n  状态\n\n| 全部 | 创意 | 预热    | 众筹中 | 众筹成功 |\n| ---- | ---- | ------- | ------ | -------- |\n| all  | idea | preheat | going  | success  |"
+    }
+  },
+  {
+    "provider_id": "openrice",
+    "provider_name": "Openrice開飯喇",
+    "route_key": "/:lang/hongkong/explore/chart/:category",
+    "route": {
+      "name": "香港餐廳排行榜",
+      "path": "/:lang/hongkong/explore/chart/:category",
+      "example": "/openrice/zh/hongkong/explore/chart/most-bookmarked",
+      "parameters": {
+        "lang": "语言，缺省为 zh",
+        "category": "类别，缺省为 most-bookmarked"
+      },
+      "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n\n| 最多收藏 | 每周最高评分 | 最高浏览 | 最佳甜品餐厅 |\n| ----- | ------ | ----- | ----- |\n| most-bookmarked | best-rating | most-popular | best-dessert |\n  "
+    }
+  },
+  {
     "provider_id": "openrice",
     "provider_name": "Openrice開飯喇",
     "route_key": "/:lang/hongkong/offers",
@@ -14,6 +85,33 @@
     }
   },
   {
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/event/:cityCode/:showStyle?",
+    "route": {
+      "name": "按城市 - 演出更新",
+      "path": "/event/:cityCode/:showStyle?",
+      "example": "/showstart/event/571/3",
+      "parameters": {
+        "cityCode": "演出城市 (编号)",
+        "showStyle": "演出风格 (编号)"
+      },
+      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::"
+    }
+  },
+  {
+    "provider_id": "snowpeak",
+    "provider_name": "Snow Peak",
+    "route_key": "/us/new-arrivals",
+    "route": {
+      "name": "New Arrivals(USA)",
+      "path": "/us/new-arrivals",
+      "example": "/snowpeak/us/new-arrivals",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "taobao",
     "provider_name": "淘宝众筹",
     "route_key": "/zhongchou/:type?",
@@ -25,6 +123,32 @@
         "type": "类型, 默认为 `all` 全部"
       },
       "description": "| 全部 | 科技 | 食品        | 动漫 | 设计   | 公益 | 娱乐 | 影音  | 书籍 | 游戏 | 其他  |\n| ---- | ---- | ----------- | ---- | ------ | ---- | ---- | ----- | ---- | ---- | ----- |\n| all  | tech | agriculture | acg  | design | love | tele | music | book | game | other |"
+    }
+  },
+  {
+    "provider_id": "xianbao",
+    "provider_name": "线报酷",
+    "route_key": "/:category?",
+    "route": {
+      "name": "线板酷",
+      "path": "/:category?",
+      "example": "/xianbao",
+      "parameters": {
+        "category": "类别id，默认为：latest"
+      },
+      "description": "\n| 分类         | id             |\n| ------------ | -------------- |\n| 最新         | latest         |\n| 赚客吧       | zuankeba       |\n| 赚客吧热帖   | zuankeba-hot   |\n| 新赚吧       | xinzuanba      |\n| 新赚吧热帖   | xinzuanba-hot  |\n| 微博         | weibo          |\n| 微博热帖     | weibo-hot      |\n| 豆瓣线报     | douban         |\n| 豆瓣热帖     | douban-hot     |\n| 酷安         | kuan           |\n| 小嘀咕       | xiaodigu       |\n| 葫芦侠       | huluxia        |\n| 小刀娱乐网   | xiadao         |\n| 技术QQ网     | qqjishu        |\n| YYOK大全     | yyok           |\n| 活动资讯网   | huodong        |\n| 免费赚钱中心 | mianfei        |\n| 一小时       | yixiaoshi      |\n| 三小时       | sanxiaoshi     |\n| 六小时       | liuxiaoshi     |\n| 十二小时     | shierxiaoshi   |\n| 二十四小时   | ershisixiaoshi |\n| 四十八小时   | sishibaxiaoshi |\n| 今天         | jintian        |\n| 昨天         | zuotian        |\n| 前天         | qiantian       |\n| 三天         | santian        |\n| 五天         | wutian         |\n| 七天         | qitian         |\n| 十五天       | shiwutian      |"
+    }
+  },
+  {
+    "provider_id": "zhuwang",
+    "provider_name": "中国养猪网",
+    "route_key": "/zhujia",
+    "route": {
+      "name": "全国今日生猪价格",
+      "path": "/zhujia",
+      "example": "/zhuwang/zhujia",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

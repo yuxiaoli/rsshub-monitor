@@ -1,55 +1,127 @@
 [
   {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/tag/:keyword",
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/music/playlist/:id",
     "route": {
-      "path": "/tag/:keyword",
-      "example": "/chikubi/tag/ドリームチケット",
+      "path": "/music/playlist/:id",
+      "example": "/163/music/playlist/35798529",
       "parameters": {
-        "keyword": "Keyword"
+        "id": "歌单 id, 可在歌单页 URL 中找到"
       },
-      "name": "Tag",
-      "provider_id": "chikubi",
-      "provider_name": "乳首ふぇち",
-      "route_key": "/tag/:keyword"
+      "name": "歌单歌曲",
+      "provider_id": "163",
+      "provider_name": "网易公开课",
+      "route_key": "/music/playlist/:id"
     }
   },
   {
-    "provider_id": "cntv",
-    "provider_name": "CNTV",
-    "route_key": "/:column",
+    "provider_id": "6v123",
+    "provider_name": "6v 电影",
+    "route_key": "/latestMovies",
     "route": {
-      "path": "/:column",
-      "example": "/cntv/TOPC1451528971114112",
-      "parameters": {
-        "column": "栏目ID, 可在对应CNTV栏目页面找到"
-      },
-      "name": "栏目",
-      "url": "navi.cctv.com/",
-      "description": "::: tip\n栏目 ID 查找示例:\n打开栏目具体某一期页面，F12 控制台输入`column_id`得到栏目 ID。\n:::\n\n  栏目\n\n| 新闻联播             | 新闻周刊             | 天下足球             |\n| -------------------- | -------------------- | -------------------- |\n| TOPC1451528971114112 | TOPC1451559180488841 | TOPC1451551777876756 |",
-      "provider_id": "cntv",
-      "provider_name": "CNTV",
-      "route_key": "/:column"
+      "path": "/latestMovies",
+      "example": "/6v123/latestMovies",
+      "parameters": {},
+      "name": "最新电影",
+      "url": "hao6v.com/",
+      "provider_id": "6v123",
+      "provider_name": "6v 电影",
+      "route_key": "/latestMovies"
     }
   },
   {
-    "provider_id": "javdb",
-    "provider_name": "JavDB",
-    "route_key": "/rankings/:category?/:time?",
+    "provider_id": "7mmtv",
+    "provider_name": "7mmtv",
+    "route_key": "/:language?/:category?/:type?",
     "route": {
-      "path": "/rankings/:category?/:time?",
-      "example": "/javdb/rankings",
+      "path": "/:language?/:category?/:type?",
+      "example": "/7mmtv/zh/censored_list/all",
       "parameters": {
-        "category": "分类，见下表，默认为 `有碼`",
-        "time": "时间，见下表，默认为 `日榜`"
+        "language": "Language, see below, `en` as English by default",
+        "category": "Category, see below, `censored_list` as Censored by default",
+        "type": "Server, see below, all server by default"
       },
-      "name": "排行榜",
-      "url": "javdb.com/",
-      "description": "分类\n\n| 有碼     | 無碼       | 歐美    |\n| -------- | ---------- | ------- |\n| censored | uncensored | western |\n\n  时间\n\n| 日榜  | 週榜   | 月榜    |\n| ----- | ------ | ------- |\n| daily | weekly | monthly |",
-      "provider_id": "javdb",
-      "provider_name": "JavDB",
-      "route_key": "/rankings/:category?/:time?"
+      "name": "Category",
+      "description": "**Language**\n\n| English | 日本語 | 한국의 | 中文 |\n| ------- | ------ | ------ | ---- |\n| en      | ja     | ko     | zh   |\n\n  **Category**\n\n| Chinese subtitles AV | Censored       | Amateur          | Uncensored       | Asian self-timer | H comics     |\n| -------------------- | -------------- | ---------------- | ---------------- | ---------------- | ------------ |\n| chinese_list        | censored_list | amateurjav_list | uncensored_list | amateur_list    | hcomic_list |\n\n| Chinese subtitles AV random | Censored random  | Amateur random     | Uncensored random  | Asian self-timer random | H comics random |\n| --------------------------- | ---------------- | ------------------ | ------------------ | ----------------------- | --------------- |\n| chinese_random             | censored_random | amateurjav_random | uncensored_random | amateur_random         | hcomic_random  |\n\n  **Server**\n\n| All Server | fembed(Full DL) | streamsb(Full DL) | doodstream | streamtape(Full DL) | avgle | embedgram | videovard(Full DL) |\n| ---------- | --------------- | ----------------- | ---------- | ------------------- | ----- | --------- | ------------------ |\n| all        | 21              | 30                | 28         | 29                  | 17    | 34        | 33                 |",
+      "provider_id": "7mmtv",
+      "provider_name": "7mmtv",
+      "route_key": "/:language?/:category?/:type?"
+    }
+  },
+  {
+    "provider_id": "ajmide",
+    "provider_name": "阿基米德 FM",
+    "route_key": "/:id",
+    "route": {
+      "path": "/:id",
+      "view": 4,
+      "example": "/ajmide/10603594",
+      "parameters": {
+        "id": "播客 id，可以从播客页面 URL 中找到"
+      },
+      "name": "播客",
+      "provider_id": "ajmide",
+      "provider_name": "阿基米德 FM",
+      "route_key": "/:id"
+    }
+  },
+  {
+    "provider_id": "imdb",
+    "provider_name": "IMDb",
+    "route_key": "/chart/:chart?",
+    "route": {
+      "path": "/chart/:chart?",
+      "view": 5,
+      "parameters": {
+        "chart": {
+          "description": "The chart to display, `top` by default",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top 250 Movies"
+            },
+            {
+              "value": "moviemeter",
+              "label": "Most Popular Movies"
+            },
+            {
+              "value": "toptv",
+              "label": "Top 250 TV Shows"
+            },
+            {
+              "value": "tvmeter",
+              "label": "Most Popular TV Shows"
+            }
+          ],
+          "default": "top"
+        }
+      },
+      "example": "/imdb/chart",
+      "name": "Charts",
+      "url": "www.imdb.com/chart/top/",
+      "description": "| Top 250 Movies | Most Popular Movies | Top 250 TV Shows | Most Popular TV Shows |\n| -------------- | ------------------- | ---------------- | --------------------- |\n| top            | moviemeter          | toptv            | tvmeter               |",
+      "provider_id": "imdb",
+      "provider_name": "IMDb",
+      "route_key": "/chart/:chart?"
+    }
+  },
+  {
+    "provider_id": "mixcloud",
+    "provider_name": "Mixcloud",
+    "route_key": "/:username/:type?",
+    "route": {
+      "path": "/:username/:type?",
+      "example": "/mixcloud/dholbach/uploads",
+      "parameters": {
+        "username": "Username, can be found in URL",
+        "type": "Type, see below, uploads by default"
+      },
+      "name": "User",
+      "description": "| Shows   | Reposts | Favorites | History | Stream |\n| ------- | ------- | --------- | ------- | ------ |\n| uploads | reposts | favorites | listens | stream |",
+      "provider_id": "mixcloud",
+      "provider_name": "Mixcloud",
+      "route_key": "/:username/:type?"
     }
   },
   {
@@ -70,20 +142,74 @@
     }
   },
   {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/users/:username/:language?",
+    "provider_id": "t66y",
+    "provider_name": "草榴社区",
+    "route_key": "/:id/:type?/:search?",
     "route": {
-      "path": "/users/:username/:language?",
-      "example": "/pornhub/users/pornhubmodels",
+      "path": "/:id/:type?/:search?",
+      "example": "/t66y/20/2",
       "parameters": {
-        "language": "language, see below",
-        "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
+        "id": "分区 id, 可在分区页 URL 中找到",
+        "type": "类型 id, 可在分区类型过滤后的 URL 中找到",
+        "search": "主题类型筛选，可在分区主题类型筛选后的 URL 中找到，默认为 `today`"
       },
-      "name": "Users",
-      "provider_id": "pornhub",
-      "provider_name": "PornHub",
-      "route_key": "/users/:username/:language?"
+      "name": "分区帖子",
+      "description": "> 注意：并非所有的分区都有子类型，可以参考成人文学交流区的 `古典武侠` 这一子类型。\n\n| 亚洲无码原创区 | 亚洲有码原创区 | 欧美原创区 | 动漫原创区 | 国产原创区 |\n| -------------- | -------------- | ---------- | ---------- | ---------- |\n| 2              | 15             | 4          | 5          | 25         |\n\n| 中字原创区 | 转帖交流区 | HTTP 下载区 | 在线成人区 |\n| ---------- | ---------- | ----------- | ---------- |\n| 26         | 27         | 21          | 22         |\n\n| 技术讨论区 | 新时代的我们 | 达盖尔的旗帜 | 成人文学交流 |\n| ---------- | ------------ | ------------ | ------------ |\n| 7          | 8            | 16           | 20           |\n\n  **主题过滤**\n\n  > 因为该类型无法搭配子类型使用，所以使用时 `type` 子类型需使用 `-999` 占位\n\n| 今日主题 | 热门主题 | 精华主题 | 原创主题 | 今日新作  |\n| ------- | ------- | ------- | ------- | ------ |\n| today   | hot     | digest  | 1       | 2      |",
+      "provider_id": "t66y",
+      "provider_name": "草榴社区",
+      "route_key": "/:id/:type?/:search?"
+    }
+  },
+  {
+    "provider_id": "themoviedb",
+    "provider_name": "The Movie Database",
+    "route_key": "/tv/:id/seasons/:lang?",
+    "route": {
+      "path": "/tv/:id/seasons/:lang?",
+      "view": 5,
+      "example": "/themoviedb/tv/70593/seasons/en-US",
+      "parameters": {
+        "id": "TV show ID",
+        "lang": "Language"
+      },
+      "name": "TV Show Seasons",
+      "provider_id": "themoviedb",
+      "provider_name": "The Movie Database",
+      "route_key": "/tv/:id/seasons/:lang?"
+    }
+  },
+  {
+    "provider_id": "tingtingfm",
+    "provider_name": "听听 FM",
+    "route_key": "/program/:programId",
+    "route": {
+      "path": "/program/:programId",
+      "view": 4,
+      "example": "/tingtingfm/program/M7VJv6Jj4R",
+      "parameters": {
+        "programId": "节目 ID，可以在 URL 中找到"
+      },
+      "name": "节目",
+      "provider_id": "tingtingfm",
+      "provider_name": "听听 FM",
+      "route_key": "/program/:programId"
+    }
+  },
+  {
+    "provider_id": "youku",
+    "provider_name": "优酷",
+    "route_key": "/channel/:channelId/:embed?",
+    "route": {
+      "path": "/channel/:channelId/:embed?",
+      "example": "/youku/channel/UNTg3MTM3OTcy",
+      "parameters": {
+        "channelId": "频道 id",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
+      },
+      "name": "频道",
+      "provider_id": "youku",
+      "provider_name": "优酷",
+      "route_key": "/channel/:channelId/:embed?"
     }
   }
 ]

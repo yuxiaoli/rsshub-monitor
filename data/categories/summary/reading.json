@@ -1,14 +1,27 @@
 [
   {
-    "provider_id": "jjwxc",
-    "provider_name": "晋江文学城",
-    "route_key": "/author/:id?",
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/html_clip/:user/:tag",
     "route": {
-      "name": "作者最新作品",
-      "path": "/author/:id?",
-      "example": "/jjwxc/author/4364484",
+      "name": "HTML Clip",
+      "path": "/html_clip/:user/:tag",
+      "example": "/inoreader/html_clip/1005137674/user-favorites",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/rss/:user/:tag",
+    "route": {
+      "name": "RSS",
+      "path": "/rss/:user/:tag",
+      "example": "/inoreader/rss/1005137674/user-favorites",
       "parameters": {
-        "id": "作者 id，可在对应作者页中找到"
+        "user": "user id, the interger after user/ in the example URL",
+        "tag": "tag, the string after tag/ in the example URL"
       },
       "description": ""
     }
@@ -23,6 +36,55 @@
       "example": "/kakuyomu/works/1177354054894027232",
       "parameters": {
         "id": "投稿 ID"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "linovelib",
+    "provider_name": "哔哩轻小说",
+    "route_key": "/volume/:id",
+    "route": {
+      "name": "卷",
+      "path": "/volume/:id",
+      "example": "/linovelib/volume/8",
+      "parameters": {
+        "id": "小说 ID，可在小说页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/search/:sub/:query",
+    "route": {
+      "name": "Search",
+      "path": "/search/:sub/:query",
+      "example": "/syosetu/search/noc/word=ハーレム&notword=&type=r&mintime=&maxtime=&minlen=30000&maxlen=&min_globalpoint=&max_globalpoint=&minlastup=&maxlastup=&minfirstup=&maxfirstup=&isgl=1&notbl=1&order=new?limit=5",
+      "parameters": {
+        "sub": {
+          "description": "The target Syosetu subsite.",
+          "options": [
+            {
+              "value": "yomou",
+              "label": "小説を読もう"
+            },
+            {
+              "value": "noc",
+              "label": "ノクターン"
+            },
+            {
+              "value": "mnlt",
+              "label": "ムーンライト"
+            },
+            {
+              "value": "mid",
+              "label": "ミッドナイト"
+            }
+          ]
+        },
+        "query": "Search parameters in Syosetu format."
       },
       "description": ""
     }
