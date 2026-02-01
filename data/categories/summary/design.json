@@ -1,5 +1,33 @@
 [
   {
+    "provider_id": "behance",
+    "provider_name": "Behance",
+    "route_key": "/:user/:type?",
+    "route": {
+      "name": "User Works",
+      "path": "/:user/:type?",
+      "example": "/behance/mishapetrick",
+      "parameters": {
+        "user": "username",
+        "type": {
+          "description": "type",
+          "options": [
+            {
+              "value": "projects",
+              "label": "projects"
+            },
+            {
+              "value": "appreciated",
+              "label": "appreciated"
+            }
+          ],
+          "default": "projects"
+        }
+      },
+      "description": "Behance user's profile URL, like [https://www.behance.net/mishapetrick](https://www.behance.net/mishapetrick) the username will be `mishapetrick`。"
+    }
+  },
+  {
     "provider_id": "notefolio",
     "provider_name": "Notefolio",
     "route_key": "/search/:category?/:order?/:time?/:query?",
@@ -113,6 +141,32 @@
         "query": "Keyword, empty by default"
       },
       "description": "| Category | Name in Korean     | Name in English         |\n| -------- | ------------------ | ----------------------- |\n| all      | 전체               | All                     |\n| 1        | 영상/모션그래픽    | Video / Motion Graphics |\n| 2        | 그래픽 디자인      | Graphic Design          |\n| 3        | 브랜딩/편집        | Branding / Editing      |\n| 4        | UI/UX              | UI/UX                   |\n| 5        | 일러스트레이션     | Illustration            |\n| 6        | 디지털 아트        | Digital Art             |\n| 7        | 캐릭터 디자인      | Character Design        |\n| 8        | 제품/패키지 디자인 | Product Package Design  |\n| 9        | 포토그래피         | Photography             |\n| 10       | 타이포그래피       | Typography              |\n| 11       | 공예               | Crafts                  |\n| 12       | 파인아트           | Fine Art                |"
+    }
+  },
+  {
+    "provider_id": "zcool",
+    "provider_name": "站酷",
+    "route_key": "/top/:type",
+    "route": {
+      "name": "作品总榜单",
+      "path": "/top/:type",
+      "example": "/zcool/top/design",
+      "parameters": {
+        "type": {
+          "description": "推荐类型",
+          "options": [
+            {
+              "value": "design",
+              "label": "作品榜单"
+            },
+            {
+              "value": "article",
+              "label": "文章榜单"
+            }
+          ]
+        }
+      },
+      "description": ""
     }
   }
 ]

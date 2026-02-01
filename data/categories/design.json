@@ -1,5 +1,37 @@
 [
   {
+    "provider_id": "behance",
+    "provider_name": "Behance",
+    "route_key": "/:user/:type?",
+    "route": {
+      "path": "/:user/:type?",
+      "view": 2,
+      "example": "/behance/mishapetrick",
+      "parameters": {
+        "user": "username",
+        "type": {
+          "description": "type",
+          "options": [
+            {
+              "value": "projects",
+              "label": "projects"
+            },
+            {
+              "value": "appreciated",
+              "label": "appreciated"
+            }
+          ],
+          "default": "projects"
+        }
+      },
+      "name": "User Works",
+      "description": "Behance user's profile URL, like [https://www.behance.net/mishapetrick](https://www.behance.net/mishapetrick) the username will be `mishapetrick`。",
+      "provider_id": "behance",
+      "provider_name": "Behance",
+      "route_key": "/:user/:type?"
+    }
+  },
+  {
     "provider_id": "notefolio",
     "provider_name": "Notefolio",
     "route_key": "/search/:category?/:order?/:time?/:query?",
@@ -118,6 +150,35 @@
       "provider_id": "notefolio",
       "provider_name": "Notefolio",
       "route_key": "/search/:category?/:order?/:time?/:query?"
+    }
+  },
+  {
+    "provider_id": "zcool",
+    "provider_name": "站酷",
+    "route_key": "/top/:type",
+    "route": {
+      "path": "/top/:type",
+      "view": 2,
+      "example": "/zcool/top/design",
+      "parameters": {
+        "type": {
+          "description": "推荐类型",
+          "options": [
+            {
+              "value": "design",
+              "label": "作品榜单"
+            },
+            {
+              "value": "article",
+              "label": "文章榜单"
+            }
+          ]
+        }
+      },
+      "name": "作品总榜单",
+      "provider_id": "zcool",
+      "provider_name": "站酷",
+      "route_key": "/top/:type"
     }
   }
 ]

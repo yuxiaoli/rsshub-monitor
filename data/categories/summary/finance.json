@@ -1,190 +1,194 @@
 [
   {
-    "provider_id": "bloomberg",
-    "provider_name": "Bloomberg",
-    "route_key": "/:site?",
+    "provider_id": "ainvest",
+    "provider_name": "AInvest",
+    "route_key": "/news",
     "route": {
-      "name": "Bloomberg Site",
-      "path": "/:site?",
-      "example": "/bloomberg/bbiz",
+      "name": "Latest News",
+      "path": "/news",
+      "example": "/ainvest/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "binance",
+    "provider_name": "Binance",
+    "route_key": "/announcement/:type",
+    "route": {
+      "name": "Announcement",
+      "path": "/announcement/:type",
+      "example": "/binance/announcement/new-cryptocurrency-listing",
       "parameters": {
-        "site": {
-          "description": "Site ID, can be found below",
+        "type": {
+          "description": "Binance Announcement type",
+          "default": "new-cryptocurrency-listing",
           "options": [
             {
-              "value": "/",
-              "label": "News"
+              "value": "new-cryptocurrency-listing",
+              "label": "New Cryptocurrency Listing"
             },
             {
-              "value": "bpol",
-              "label": "Politics"
+              "value": "latest-binance-news",
+              "label": "Latest Binance News"
             },
             {
-              "value": "bbiz",
-              "label": "Business"
+              "value": "latest-activities",
+              "label": "Latest Activities"
             },
             {
-              "value": "markets",
-              "label": "Markets"
+              "value": "new-fiat-listings",
+              "label": "New Fiat Listings"
             },
             {
-              "value": "technology",
-              "label": "Technology"
+              "value": "api-updates",
+              "label": "API Updates"
             },
             {
-              "value": "green",
-              "label": "Green"
+              "value": "crypto-airdrop",
+              "label": "Crypto Airdrop"
             },
             {
-              "value": "wealth",
-              "label": "Wealth"
+              "value": "wallet-maintenance-updates",
+              "label": "Wallet Maintenance Updates"
             },
             {
-              "value": "pursuits",
-              "label": "Pursuits"
-            },
-            {
-              "value": "bview",
-              "label": "Opinion"
-            },
-            {
-              "value": "equality",
-              "label": "Equality"
-            },
-            {
-              "value": "businessweek",
-              "label": "Businessweek"
-            },
-            {
-              "value": "citylab",
-              "label": "CityLab"
+              "value": "delisting",
+              "label": "Delisting"
             }
           ]
         }
       },
-      "description": "\n| Site ID      | Title        |\n| ------------ | ------------ |\n| /            | News         |\n| bpol         | Politics     |\n| bbiz         | Business     |\n| markets      | Markets      |\n| technology   | Technology   |\n| green        | Green        |\n| wealth       | Wealth       |\n| pursuits     | Pursuits     |\n| bview        | Opinion      |\n| equality     | Equality     |\n| businessweek | Businessweek |\n| citylab      | CityLab      |\n  "
+      "description": "\nType category\n\n - new-cryptocurrency-listing => New Cryptocurrency Listing\n - latest-binance-news        => Latest Binance News\n - latest-activities          => Latest Activities\n - new-fiat-listings          => New Fiat Listings\n - api-updates                => API Updates\n - crypto-airdrop             => Crypto Airdrop\n - wallet-maintenance-updates => Wallet Maintenance Updates\n - delisting                  => Delisting\n"
     }
   },
   {
-    "provider_id": "fastbull",
-    "provider_name": "FastBull",
-    "route_key": "/express-news",
+    "provider_id": "cls",
+    "provider_name": "财联社",
+    "route_key": "/telegraph/:category?",
     "route": {
-      "name": "News Flash",
-      "path": "/express-news",
-      "example": "/fastbull/express-news",
+      "name": "电报",
+      "path": "/telegraph/:category?",
+      "example": "/cls/telegraph",
+      "parameters": {
+        "category": "分类，见下表，默认为全部"
+      },
+      "description": "| 看盘  | 公司         | 解读    | 加红 | 推送  | 提醒   | 基金 | 港股 |\n| ----- | ------------ | ------- | ---- | ----- | ------ | ---- | ---- |\n| watch | announcement | explain | red  | jpush | remind | fund | hk   |"
+    }
+  },
+  {
+    "provider_id": "cryptoslate",
+    "provider_name": "CryptoSlate",
+    "route_key": "/",
+    "route": {
+      "name": "News",
+      "path": "/",
+      "example": "/cryptoslate",
       "parameters": {},
-      "description": ""
+      "description": "Get latest news from CryptoSlate."
     }
   },
   {
     "provider_id": "followin",
     "provider_name": "Followin",
-    "route_key": "/kol/:kolId/:lang?",
+    "route_key": "/:categoryId?/:lang?",
     "route": {
-      "name": "KOL",
-      "path": "/kol/:kolId/:lang?",
-      "example": "/followin/kol/4075592991",
+      "name": "Home",
+      "path": "/:categoryId?/:lang?",
+      "example": "/followin",
       "parameters": {
-        "kolId": "KOL ID, can be found in URL",
-        "lang": "Language, see table above, `en` by default"
+        "categoryId": {
+          "description": "Category ID",
+          "options": [
+            {
+              "value": "1",
+              "label": "For You"
+            },
+            {
+              "value": "9",
+              "label": "Market"
+            },
+            {
+              "value": "13",
+              "label": "Meme"
+            },
+            {
+              "value": "14",
+              "label": "BRC20"
+            },
+            {
+              "value": "3",
+              "label": "NFT"
+            },
+            {
+              "value": "5",
+              "label": "Thread"
+            },
+            {
+              "value": "6",
+              "label": "In-depth"
+            },
+            {
+              "value": "8",
+              "label": "Tutorials"
+            },
+            {
+              "value": "11",
+              "label": "Videos"
+            }
+          ],
+          "default": "1"
+        },
+        "lang": {
+          "description": "Language",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "zh-Hans",
+              "label": "简体中文"
+            },
+            {
+              "value": "zh-Hant",
+              "label": "繁體中文"
+            },
+            {
+              "value": "vi",
+              "label": "Tiếng Việt"
+            }
+          ],
+          "default": "en"
+        }
       },
-      "description": ""
+      "description": "Category ID\n\n| For You | Market | Meme | BRC20 | NFT | Thread | In-depth | Tutorials | Videos |\n| ------- | ------ | ---- | ----- | --- | ------ | -------- | --------- | ------ |\n| 1       | 9      | 13   | 14    | 3   | 5      | 6        | 8         | 11     |\n\n  Language\n\n| English | 简体中文 | 繁體中文 | Tiếng Việt |\n| ------- | -------- | -------- | ---------- |\n| en      | zh-Hans  | zh-Hant  | vi         |"
     }
   },
   {
-    "provider_id": "gelonghui",
-    "provider_name": "格隆汇",
-    "route_key": "/live",
+    "provider_id": "jiuyangongshe",
+    "provider_name": "韭研公社",
+    "route_key": "/community",
     "route": {
-      "name": "实时快讯",
-      "path": "/live",
-      "example": "/gelonghui/live",
+      "name": "社群",
+      "path": "/community",
+      "example": "/jiuyangongshe/community",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "gelonghui",
-    "provider_name": "格隆汇",
-    "route_key": "/subject/:id",
+    "provider_id": "nifd",
+    "provider_name": "国家金融与发展实验室",
+    "route_key": "/research/:categoryGuid?",
     "route": {
-      "name": "主题文章",
-      "path": "/subject/:id",
-      "example": "/gelonghui/subject/4",
+      "name": "研究",
+      "path": "/research/:categoryGuid?",
+      "example": "/nifd/research/3333d2af-91d6-429b-be83-28b92f31b6d7",
       "parameters": {
-        "id": "主题编号，可在主题页 URL 中找到"
+        "categoryGuid": "资讯类型，默认为周报"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "moodysmismicrosite",
-    "provider_name": "穆迪评级",
-    "route_key": "/report/:industry?",
-    "route": {
-      "name": "industry",
-      "path": "/report/:industry?",
-      "example": "/moodysmismicrosite/report/企业&金融机构",
-      "parameters": {
-        "industry": {
-          "description": "可选参数，默认为全部行业。行业选择，支持使用&连接多个。",
-          "options": [
-            {
-              "value": "0",
-              "label": "企业"
-            },
-            {
-              "value": "1",
-              "label": "金融机构"
-            },
-            {
-              "value": "2",
-              "label": "主权"
-            },
-            {
-              "value": "3",
-              "label": "地方政府及城投公司"
-            },
-            {
-              "value": "4",
-              "label": "宏观经济"
-            },
-            {
-              "value": "5",
-              "label": "结构融资"
-            },
-            {
-              "value": "6",
-              "label": "基础设施及项目融资"
-            },
-            {
-              "value": "7",
-              "label": "ESG"
-            },
-            {
-              "value": "8",
-              "label": "其他"
-            }
-          ],
-          "default": "全部"
-        }
-      },
-      "description": "\n| ID | Description |\n| ---   | ---   |\n| 0 | 企业 |\n| 1 | 金融机构 |\n| 2 | 主权 |\n| 3 | 地方政府及城投公司 |\n| 4 | 宏观经济 |\n| 5 | 结构融资 |\n| 6 | 基础设施项目融资 |\n| 7 | ESG |\n| 8 | 其他 |\n    "
-    }
-  },
-  {
-    "provider_id": "sse",
-    "provider_name": "上海证券交易所",
-    "route_key": "/convert/:query?",
-    "route": {
-      "name": "可转换公司债券公告",
-      "path": "/convert/:query?",
-      "example": "/sse/convert/beginDate=2018-08-18&endDate=2019-08-18&companyCode=603283&title=股份",
-      "parameters": {
-        "query": "筛选条件，见示例"
-      },
-      "description": ""
+      "description": "资讯类型可以从网址中获取，如：\n\n  `http://www.nifd.cn/Research?categoryGuid=7a6a826d-b525-42aa-b550-4236e524227f` 对应 `/nifd/research/7a6a826d-b525-42aa-b550-4236e524227f`"
     }
   },
   {
@@ -204,18 +208,6 @@
   {
     "provider_id": "sse",
     "provider_name": "上海证券交易所",
-    "route_key": "/inquire",
-    "route": {
-      "name": "监管问询",
-      "path": "/inquire",
-      "example": "/sse/inquire",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sse",
-    "provider_name": "上海证券交易所",
     "route_key": "/sselawsrules/:category{.+}?",
     "route": {
       "name": "本所业务规则",
@@ -228,13 +220,74 @@
     }
   },
   {
-    "provider_id": "ulapia",
-    "provider_name": "乌拉邦",
-    "route_key": "/research/latest",
+    "provider_id": "stockedge",
+    "provider_name": "Stock Edge",
+    "route_key": "/daily-updates/news",
     "route": {
-      "name": "最新研报",
-      "path": "/research/latest",
-      "example": "/ulapia/research/latest",
+      "name": "Daily Updates News",
+      "path": "/daily-updates/news",
+      "example": "/stockedge/daily-updates/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "theblockbeats",
+    "provider_name": "律动 BlockBeats",
+    "route_key": "/:channel?/:original?",
+    "route": {
+      "name": "新闻快讯",
+      "path": "/:channel?/:original?",
+      "example": "/theblockbeats/newsflash",
+      "parameters": {
+        "channel": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "newsflash",
+              "label": "快讯"
+            },
+            {
+              "value": "article",
+              "label": "文章"
+            }
+          ],
+          "default": "newsflash"
+        },
+        "original": {
+          "description": "文章类型，仅 `channel` 为 `article` 时有效",
+          "options": [
+            {
+              "value": "0",
+              "label": "全部"
+            },
+            {
+              "value": "1",
+              "label": "深度"
+            },
+            {
+              "value": "2",
+              "label": "精选"
+            },
+            {
+              "value": "3",
+              "label": "热点追踪"
+            }
+          ],
+          "default": "0"
+        }
+      },
+      "description": "|    快讯   |   文章  |\n| :-------: | :-----: |\n| newsflash | article |\n\n| 全部 | 深度 | 精选 | 热点追踪 |\n| :--: | :--: | :--: | :---: |\n|     | -2  | 1    |  2     |"
+    }
+  },
+  {
+    "provider_id": "unusualwhales",
+    "provider_name": "Unusual Whales",
+    "route_key": "/news",
+    "route": {
+      "name": "News Flow",
+      "path": "/news",
+      "example": "/unusualwhales/news",
       "parameters": {},
       "description": ""
     }

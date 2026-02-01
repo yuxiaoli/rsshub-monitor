@@ -1,124 +1,58 @@
 [
   {
-    "provider_id": "acpaa",
-    "provider_name": "中华全国专利代理师协会",
-    "route_key": "/:id?/:name?",
-    "route": {
-      "name": "标签",
-      "path": "/:id?/:name?",
-      "example": "/acpaa",
-      "parameters": {
-        "id": "标签 id，默认为 1，可在对应标签页 URL 中找到",
-        "name": "标签名称，默认为重要通知，可在对应标签页 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "afdian",
     "provider_name": "爱发电",
-    "route_key": "/dynamic/:uid?",
+    "route_key": "/explore/:type/:category?",
     "route": {
-      "name": "用户动态",
-      "path": "/dynamic/:uid?",
-      "example": "/afdian/dynamic/@afdian",
+      "name": "发现用户",
+      "path": "/explore/:type/:category?",
+      "example": "/afdian/explore/hot/所有",
       "parameters": {
-        "uid": "用户id，用户动态页面url里可找到"
+        "type": "分类",
+        "category": "目录类型，默认为 `所有`"
       },
-      "description": ""
+      "description": "分类\n\n| 推荐 | 最热 |\n| ---- | ---- |\n| rec  | hot  |\n\n  目录类型\n\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |"
     }
   },
   {
-    "provider_id": "baidu",
-    "provider_name": "百度",
-    "route_key": "/top/:board?",
+    "provider_id": "instructables",
+    "provider_name": "Instructables",
+    "route_key": "/projects/:category?",
     "route": {
-      "name": "热搜榜单",
-      "path": "/top/:board?",
-      "example": "/baidu/top",
+      "name": "Projects",
+      "path": "/projects/:category?",
+      "example": "/instructables/projects/circuits",
       "parameters": {
-        "board": "榜单，默认为 `realtime`"
+        "category": "Category, empty by default, can be found in URL or see the table below"
       },
-      "description": "| 热搜榜   | 小说榜 | 电影榜 | 电视剧榜 | 汽车榜 | 游戏榜 |\n| -------- | ------ | ------ | -------- | ------ | ------ |\n| realtime | novel  | movie  | teleplay | car    | game   |"
+      "description": "| All | Circuits | Workshop | Craft | Cooking | Living | Outside | Teachers |\n| --- | -------- | -------- | ----- | ------- | ------ | ------- | -------- |\n|     | circuits | workshop | craft | cooking | living | outside | teachers |"
     }
   },
   {
-    "provider_id": "clickme",
-    "provider_name": "ClickMe",
-    "route_key": "/:site/:grouping/:name",
+    "provider_id": "nlc",
+    "provider_name": "中国国家图书馆",
+    "route_key": "/read/:type?",
     "route": {
-      "name": "文章",
-      "path": "/:site/:grouping/:name",
-      "example": "/clickme/default/category/beauty",
+      "name": "读者云平台",
+      "path": "/read/:type?",
+      "example": "/nlc/read/电子图书",
       "parameters": {
-        "site": "站点，`default`为普通站，`r18`为成人站，其它值默认为普通站",
-        "grouping": "分组方式，`category`为分类，`tag`为标签，其他值默认为分类",
-        "name": "分类名或标签名，分类名为英文，可以在分类 URL 中找到"
+        "type": "分类，见下表，默认为电子图书"
       },
-      "description": ""
+      "description": "| [电子图书](http://read.nlc.cn/outRes/outResList?type=电子图书) | [电子期刊](http://read.nlc.cn/outRes/outResList?type=电子期刊) | [电子论文](http://read.nlc.cn/outRes/outResList?type=电子论文) | [电子报纸](http://read.nlc.cn/outRes/outResList?type=电子报纸) | [音视频](http://read.nlc.cn/outRes/outResList?type=音视频) |\n| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------- |\n\n| [标准专利](http://read.nlc.cn/outRes/outResList?type=标准专利) | [工具书](http://read.nlc.cn/outRes/outResList?type=工具书) | [少儿资源](http://read.nlc.cn/outRes/outResList?type=少儿资源) |\n| -------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------- |"
     }
   },
   {
-    "provider_id": "dingshao",
-    "provider_name": "盯梢",
-    "route_key": "/share/:shortId",
+    "provider_id": "sogou",
+    "provider_name": "搜狗",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "频道",
-      "path": "/share/:shortId",
-      "example": "/dingshao/share/FzFypN",
+      "name": "搜索",
+      "path": "/search/:keyword",
+      "example": "/sogou/search/rss",
       "parameters": {
-        "shortId": "频道 ID"
+        "keyword": "搜索关键词"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "fisher-spb",
-    "provider_name": "Fisher Spb",
-    "route_key": "/news",
-    "route": {
-      "name": "News",
-      "path": "/news",
-      "example": "/fisher-spb/news",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "galxe",
-    "provider_name": "Galxe",
-    "route_key": "/quest/:alias",
-    "route": {
-      "name": "Quest",
-      "path": "/quest/:alias",
-      "example": "/galxe/quest/MissionWeb3",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "icbc",
-    "provider_name": "中国工商银行",
-    "route_key": "/whpj/:format?",
-    "route": {
-      "name": "外汇牌价",
-      "path": "/whpj/:format?",
-      "example": "/icbc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
-      "parameters": {
-        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
-      },
-      "description": "| 短格式 | 参考价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs     | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
-    }
-  },
-  {
-    "provider_id": "urbandictionary",
-    "provider_name": "Urban Dictionary",
-    "route_key": "/random",
-    "route": {
-      "name": "Random words",
-      "path": "/random",
-      "example": "/urbandictionary/random",
-      "parameters": {},
       "description": ""
     }
   }

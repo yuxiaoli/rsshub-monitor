@@ -1,125 +1,41 @@
 [
   {
-    "provider_id": "apple",
-    "provider_name": "Apple",
-    "route_key": "/apps/update/:country/:id/:platform?",
+    "provider_id": "appstore",
+    "provider_name": "App Store/Mac App Store",
+    "route_key": "/iap/:country/:id",
     "route": {
-      "name": "App Update",
-      "path": "/apps/update/:country/:id/:platform?",
-      "example": "/apple/apps/update/us/id408709785",
+      "name": "In-App-Purchase Price Drop Alert",
+      "path": "/iap/:country/:id",
+      "example": "/appstore/iap/us/id953286746",
       "parameters": {
-        "country": "App Store Country, obtain from the app URL, see below",
-        "id": "App id, obtain from the app URL",
-        "platform": {
-          "description": "App Platform, see below, all by default",
-          "options": [
-            {
-              "value": "All",
-              "label": "all"
-            },
-            {
-              "value": "iOS",
-              "label": "iOS"
-            },
-            {
-              "value": "macOS",
-              "label": "macOS"
-            },
-            {
-              "value": "tvOS",
-              "label": "tvOS"
-            }
-          ]
-        }
+        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id953286746, in this case, `us`",
+        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id953286746, in this case, `id953286746`"
       },
-      "description": "\n::: tip\n  For example, the URL of [GarageBand](https://apps.apple.com/us/app/messages/id408709785) in the App Store is `https://apps.apple.com/us/app/messages/id408709785`. In this case, the `App Store Country` parameter for the route is `us`, and the `App id` parameter is `id1146560473`. So the route should be [`/apple/apps/update/us/id408709785`](https://rsshub.app/apple/apps/update/us/id408709785).\n:::"
+      "description": ""
     }
   },
   {
     "provider_id": "appstore",
     "provider_name": "App Store/Mac App Store",
-    "route_key": "/price/:country/:type/:id",
+    "route_key": "/xianmian",
     "route": {
-      "name": "Price Drop",
-      "path": "/price/:country/:type/:id",
-      "example": "/appstore/price/us/mac/id1152443474",
-      "parameters": {
-        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
-        "type": "App type，either `iOS` or `mac`",
-        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "asus",
-    "provider_name": "ASUS",
-    "route_key": "/gpu-tweak",
-    "route": {
-      "name": "GPU Tweak",
-      "path": "/gpu-tweak",
-      "example": "/asus/gpu-tweak",
+      "name": "每日精品限免 / 促销应用（鲜面连线 by AppSo）",
+      "path": "/xianmian",
+      "example": "/appstore/xianmian",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "civitai",
-    "provider_name": "Civitai",
-    "route_key": "/models",
+    "provider_id": "brave",
+    "provider_name": "Brave",
+    "route_key": "/latest",
     "route": {
-      "name": "Latest models",
-      "path": "/models",
-      "example": "/civitai/models",
+      "name": "Release Notes",
+      "path": "/latest",
+      "example": "/brave/latest",
       "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "cursor",
-    "provider_name": "Cursor",
-    "route_key": "/changelog",
-    "route": {
-      "name": "Changelog",
-      "path": "/changelog",
-      "example": "/cursor/changelog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "dockerhub",
-    "provider_name": "Docker Hub",
-    "route_key": "/build/:owner/:image/:tag?",
-    "route": {
-      "name": "Image New Build",
-      "path": "/build/:owner/:image/:tag?",
-      "example": "/dockerhub/build/diygod/rsshub/latest",
-      "parameters": {
-        "owner": "Image owner, the owner of the official image fills in the library, for example: /dockerhub/build/library/mysql",
-        "image": "Image name",
-        "tag": {
-          "description": "Image tag",
-          "default": "latest"
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "dockerhub",
-    "provider_name": "Docker Hub",
-    "route_key": "/tag/:owner/:image/:limits?",
-    "route": {
-      "name": "Image New Tag",
-      "path": "/tag/:owner/:image/:limits?",
-      "example": "/dockerhub/tag/library/mariadb",
-      "parameters": {
-        "owner": "Image owner",
-        "image": "Image name",
-        "limits": "Tag count, 10 by default"
-      },
-      "description": "::: warning\n  Use `library` as the `owner` for official images, such as [https://rsshub.app/dockerhub/tag/library/mysql](https://rsshub.app/dockerhub/tag/library/mysql)\n:::"
     }
   },
   {
@@ -132,6 +48,20 @@
       "example": "/f-droid/apprelease/com.termux",
       "parameters": {
         "app": "App's package name"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "firecore",
+    "provider_name": "Infuse",
+    "route_key": "/:os",
+    "route": {
+      "name": "Release Notes",
+      "path": "/:os",
+      "example": "/firecore/ios",
+      "parameters": {
+        "os": "`ios`,`tvos`,`macos`"
       },
       "description": ""
     }
@@ -151,160 +81,85 @@
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/chrome/extension/:id",
+    "provider_id": "fosshub",
+    "provider_name": "FossHub",
+    "route_key": "/:id",
     "route": {
-      "name": "Extension Update",
-      "path": "/chrome/extension/:id",
-      "example": "/google/chrome/extension/kefjpfngnndepjbopdmoebkipbgkggaa",
+      "name": "Software Update",
+      "path": "/:id",
+      "example": "/fosshub/qBittorrent",
       "parameters": {
-        "id": "Extension id, can be found in extension url"
+        "id": "Software id, can be found in URL"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "greasyfork",
-    "provider_name": "Greasy Fork",
-    "route_key": "/scripts/:script/versions",
-    "route": {
-      "name": "Script Version History",
-      "path": "/scripts/:script/versions",
-      "example": "/greasyfork/scripts/431691-bypass-all-shortlinks/versions",
-      "parameters": {
-        "script": "Script id, can be found in URL"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ipsw",
-    "provider_name": "IPSW.me",
-    "route_key": "/index/:ptype/:pname",
-    "route": {
-      "name": "Apple Firmware Update-IPSWs/OTAs version",
-      "path": "/index/:ptype/:pname",
-      "example": "/ipsw/index/ipsws/iPad8,11",
-      "parameters": {
-        "ptype": "Fill in ipsws or otas to get different versions of firmware",
-        "pname": "Product name, `http://rsshub.app/ipsw/index/ipsws/iPod`, if you fill in the iPad, follow the entire iPad series(ptype default to ipsws).`http://rsshub.app/ipsw/index/ipsws/iPhone11,8`, if you fill in the specific iPhone11,8, submit to the ipsws firmware information of this model"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ipsw.dev",
-    "provider_name": "IPSW.dev",
-    "route_key": "/index/:productID",
-    "route": {
-      "name": "Apple latest beta firmware",
-      "path": "/index/:productID",
-      "example": "/ipsw.dev/index/iPhone16,1",
-      "parameters": {
-        "productID": "Product ID"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "oo-software",
-    "provider_name": "O&O Software",
-    "route_key": "/changelog/:id",
-    "route": {
-      "name": "Changelog",
-      "path": "/changelog/:id",
-      "example": "/oo-software/changelog/shutup10",
-      "parameters": {
-        "id": "Software id, see below, shutup10 by default, can be found in URL"
-      },
-      "description": "| Software        | Id          |\n| --------------- | ----------- |\n| O&O ShutUp10++ | shutup10    |\n| O&O AppBuster  | ooappbuster |\n| O&O Lanytix    | oolanytix   |\n| O&O DeskInfo   | oodeskinfo  |"
-    }
-  },
-  {
-    "provider_id": "postman",
-    "provider_name": "Postman",
-    "route_key": "/release-notes",
-    "route": {
-      "name": "Release Notes",
-      "path": "/release-notes",
-      "example": "/postman/release-notes",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "putty",
-    "provider_name": "PuTTY",
-    "route_key": "/changes",
-    "route": {
-      "name": "Change Log",
-      "path": "/changes",
-      "example": "/putty/changes",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "remnote",
-    "provider_name": "RemNote",
+    "provider_id": "imagemagick",
+    "provider_name": "ImageMagick",
     "route_key": "/changelog",
     "route": {
       "name": "Changelog",
       "path": "/changelog",
-      "example": "/remnote/changelog",
+      "example": "/imagemagick/changelog",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "sourceforge",
-    "provider_name": "SourceForge",
-    "route_key": "/:routeParams?",
+    "provider_id": "macupdate",
+    "provider_name": "MacUpdate",
+    "route_key": "/app/:appId/:appSlug?",
     "route": {
-      "name": "Software",
-      "path": "/:routeParams?",
-      "example": "/sourceforge/topic=artificial-intelligence&os=windows",
+      "name": "Update",
+      "path": "/app/:appId/:appSlug?",
+      "example": "/macupdate/app/11942",
       "parameters": {
-        "routeParams": "route params, see below"
+        "appId": "Application unique ID, can be found in URL",
+        "appSlug": "Application slug, can be found in URL"
       },
-      "description": "For some URL like [https://sourceforge.net/directory/artificial-intelligence/windows/](https://sourceforge.net/directory/artificial-intelligence/windows/), it is equal to [https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows\"](https://sourceforge.net/directory/?topic=artificial-intelligence&os=windows), thus subscribing to `/sourceforge/topic=artificial-intelligence&os=windows`.\n\n  URL params can duplicate, such as `/sourceforge/topic=artificial-intelligence&os=windows&os=linux`."
+      "description": ""
     }
   },
   {
-    "provider_id": "unraid",
-    "provider_name": "Unraid",
-    "route_key": "/community-apps",
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/edge/addon/:crxid",
     "route": {
-      "name": "Community Apps",
-      "path": "/community-apps",
-      "example": "/unraid/community-apps",
+      "name": "Addons Update",
+      "path": "/edge/addon/:crxid",
+      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
+      "parameters": {
+        "crxid": "Addon id, can be found in addon url"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "raycast",
+    "provider_name": "Raycast",
+    "route_key": "/changelog",
+    "route": {
+      "name": "Changelog",
+      "path": "/changelog",
+      "example": "/raycast/changelog",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "wizfile",
-    "provider_name": "WziFile",
-    "route_key": "/updates",
+    "provider_id": "sony",
+    "provider_name": "Sony",
+    "route_key": "/downloads/:productType/:productId",
     "route": {
-      "name": "Version History",
-      "path": "/updates",
-      "example": "/wizfile/updates",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "zotero",
-    "provider_name": "Zotero",
-    "route_key": "/versions",
-    "route": {
-      "name": "Version History",
-      "path": "/versions",
-      "example": "/zotero/versions",
-      "parameters": {},
-      "description": ""
+      "name": "Software Downloads",
+      "path": "/downloads/:productType/:productId",
+      "example": "/sony/downloads/product/nw-wm1am2",
+      "parameters": {
+        "productType": "product type",
+        "productId": "product id"
+      },
+      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
     }
   }
 ]

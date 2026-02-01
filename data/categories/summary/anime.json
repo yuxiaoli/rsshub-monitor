@@ -1,99 +1,100 @@
 [
   {
-    "provider_id": "acfun",
-    "provider_name": "AcFun",
-    "route_key": "/user/video/:uid",
+    "provider_id": "005",
+    "provider_name": "幻之羁绊动漫网",
+    "route_key": "/:category?",
     "route": {
-      "name": "用户投稿",
-      "path": "/user/video/:uid",
-      "example": "/acfun/user/video/6102",
+      "name": "资讯",
+      "path": "/:category?",
+      "example": "/005/zx",
       "parameters": {
-        "uid": "用户 UID"
+        "category": "分类，可在对应分类页 URL 中找到，默认为二次元资讯"
       },
-      "description": ""
+      "description": "\n| 二次元资讯 | 慢慢说 | 道听途说 | 展会资讯 |\n| ---------- | ------ | -------- | -------- |\n| zx         | zwh    | dtts     | zh       |\n    "
     }
   },
   {
     "provider_id": "bangumi.tv",
     "provider_name": "Bangumi 番组计划",
-    "route_key": "/person/:id",
+    "route_key": "/group/:id",
     "route": {
-      "name": "现实人物的新作品",
-      "path": "/person/:id",
-      "example": "/bangumi.tv/person/32943",
+      "name": "小组话题",
+      "path": "/group/:id",
+      "example": "/bangumi.tv/group/boring",
       "parameters": {
-        "id": "人物 id, 在人物页面的地址栏查看"
+        "id": "小组 id, 在小组页面地址栏查看"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "cngal",
-    "provider_name": "CnGal",
-    "route_key": "/entry/:id",
+    "provider_id": "collabo-cafe",
+    "provider_name": "コラボカフェ",
+    "route_key": "/category/:category",
     "route": {
-      "name": "制作者 / 游戏新闻",
-      "path": "/entry/:id",
-      "example": "/cngal/entry/2693",
+      "name": "分类",
+      "path": "/category/:category",
+      "example": "/collabo-cafe/category/cafe",
       "parameters": {
-        "id": "词条ID，游戏或制作者页面URL的最后一串数字"
+        "category": "Category, refer to the original website (ジャンル別)"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "eventernote",
-    "provider_name": "Eventernote",
-    "route_key": "/actors/:name/:id",
+    "provider_id": "dlsite",
+    "provider_name": "DLsite",
+    "route_key": "/campaign/:type/:free?",
     "route": {
-      "name": "声优活动及演唱会",
-      "path": "/actors/:name/:id",
-      "example": "/eventernote/actors/三森すずこ/2634",
+      "name": "Discounted Works",
+      "path": "/campaign/:type/:free?",
+      "example": "/dlsite/campaign/home",
       "parameters": {
-        "name": "声优姓名",
-        "id": "声优 ID"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "hpoi",
-    "provider_name": "Hpoi 手办维基",
-    "route_key": "/items/all/:order?",
-    "route": {
-      "name": "所有周边",
-      "path": "/items/all/:order?",
-      "example": "/hpoi/items/all",
-      "parameters": {
-        "order": {
-          "description": "排序",
+        "type": {
+          "description": "类型",
           "options": [
             {
-              "value": "release",
-              "label": "发售"
+              "value": "home",
+              "label": "「DLsite 同人」"
             },
             {
-              "value": "add",
-              "label": "入库"
+              "value": "comic",
+              "label": "「DLsite コミック」"
             },
             {
-              "value": "hits",
-              "label": "总热度"
+              "value": "soft",
+              "label": "「DLsite PCソフト」"
             },
             {
-              "value": "hits7Day",
-              "label": "一周热度"
+              "value": "maniax",
+              "label": "「DLsite 同人 - R18」"
             },
             {
-              "value": "hitsDay",
-              "label": "一天热度"
+              "value": "books",
+              "label": "「DLsite 成年コミック - R18」"
             },
             {
-              "value": "rating",
-              "label": "评价"
+              "value": "pro",
+              "label": "「DLsite 美少女ゲーム」"
+            },
+            {
+              "value": "girls",
+              "label": "「DLsite 乙女」"
+            },
+            {
+              "value": "bl",
+              "label": "「DLsite BL」"
             }
-          ],
-          "default": "add"
+          ]
+        },
+        "free": {
+          "description": "免费",
+          "options": [
+            {
+              "value": "1",
+              "label": "是"
+            }
+          ]
         }
       },
       "description": ""
@@ -144,33 +145,14 @@
     }
   },
   {
-    "provider_id": "hpoi",
-    "provider_name": "Hpoi 手办维基",
-    "route_key": "/info/:type?",
+    "provider_id": "idolypride",
+    "provider_name": "IDOLY PRIDE 偶像荣耀",
+    "route_key": "/news",
     "route": {
-      "name": "情报",
-      "path": "/info/:type?",
-      "example": "/hpoi/info/all",
-      "parameters": {
-        "type": {
-          "description": "分类",
-          "options": [
-            {
-              "value": "all",
-              "label": "全部"
-            },
-            {
-              "value": "hobby",
-              "label": "手办"
-            },
-            {
-              "value": "model",
-              "label": "模型"
-            }
-          ],
-          "default": "all"
-        }
-      },
+      "name": "News",
+      "path": "/news",
+      "example": "/idolypride/news",
+      "parameters": {},
       "description": ""
     }
   },
@@ -192,26 +174,26 @@
   {
     "provider_id": "qoo-app",
     "provider_name": "QooApp",
-    "route_key": "/apps/:lang?/card/:id",
+    "route_key": "/apps/:lang?/comment/:id",
     "route": {
-      "name": "Game Store - Cards",
-      "path": "/apps/:lang?/card/:id",
-      "example": "/qoo-app/apps/en/card/7675",
+      "name": "Game Store - Review",
+      "path": "/apps/:lang?/comment/:id",
+      "example": "/qoo-app/apps/en/comment/7675",
       "parameters": {
-        "lang": "Language, see the table above, empty means `中文`",
+        "lang": "Language, see the table below, empty means `中文`",
         "id": "Game ID, can be found in URL"
       },
-      "description": ""
+      "description": "| 中文 | English | 한국어 | Español | 日本語 | ไทย | Tiếng Việt |\n| ---- | ------- | ------ | ------- | ------ | --- | ---------- |\n|      | en      | ko     | es      | ja     | th  | vi         |"
     }
   },
   {
     "provider_id": "skebetter",
     "provider_name": "Skebetter",
-    "route_key": "/illust/:type",
+    "route_key": "/:type",
     "route": {
-      "name": "Illust",
-      "path": "/illust/:type",
-      "example": "/skebetter/illust/hot",
+      "name": "Hot",
+      "path": "/:type",
+      "example": "/skebetter/hot",
       "parameters": {
         "type": "Type, see below"
       },

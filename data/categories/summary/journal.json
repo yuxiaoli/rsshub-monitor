@@ -1,5 +1,19 @@
 [
   {
+    "provider_id": "academia",
+    "provider_name": "Academia",
+    "route_key": "/topic/:interest",
+    "route": {
+      "name": "interest",
+      "path": "/topic/:interest",
+      "example": "/academia/topic/Urban_History",
+      "parameters": {
+        "interest": "interest"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "aeaweb",
     "provider_name": "American Economic Association",
     "route_key": "/:id",
@@ -14,31 +28,33 @@
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/citations/:id",
+    "provider_id": "linkresearcher",
+    "provider_name": "Link Research",
+    "route_key": "/:params",
     "route": {
-      "name": "Scholar Author Citations",
-      "path": "/citations/:id",
-      "example": "/google/citations/mlmE4JMAAAAJ",
+      "name": "Articles",
+      "path": "/:params",
+      "example": "/linkresearcher/category=theses&columns=Nature%20导读&subject=生物",
       "parameters": {
-        "id": "N"
+        "params": {
+          "description": "search parameters, support `category`, `subject`, `columns`, `query`"
+        }
       },
-      "description": "The parameter id in the route is the id in the URL of the user's Google Scholar reference page, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ` to `mlmE4JMAAAAJ`.\n\n  Query parameters are also supported here, for example `https://scholar.google.com/citations?user=mlmE4JMAAAAJ&sortby=pubdate` to `mlmE4JMAAAAJ&sortby=pubdate`. Please make sure that the user id (`mlmE4JMAAAAJ` in this case) should be the first parameter in the query string."
+      "description": ""
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/scholar/:query",
+    "provider_id": "mdpi",
+    "provider_name": "MDPI",
+    "route_key": "/:journal",
     "route": {
-      "name": "Scholar Keywords Monitoring",
-      "path": "/scholar/:query",
-      "example": "/google/scholar/data+visualization",
+      "name": "Journal",
+      "path": "/:journal",
+      "example": "/mdpi/analytica",
       "parameters": {
-        "query": "query statement which supports「Basic」and「Advanced」modes"
+        "journal": "Journal Name, get it from the journal homepage"
       },
-      "description": "::: warning\n  Google Scholar has strict anti-crawling mechanism implemented, the demo below doesn't guarantee availability. Please deploy your own instance as it might increase the stability.\n:::\n\n  1.  Basic mode, sample query is the keywords desired, eg.「data visualization」, [https://rsshub.app/google/scholar/data+visualization](https://rsshub.app/google/scholar/data+visualization).\n\n  2.  Advanced mode, visit [Google Scholar](https://scholar.google.com/schhp?hl=en&as_sdt=0,5), click the top left corner and select「Advanced Search」, fill in your conditions and submit the search. The URL should look like this: [https://scholar.google.com/scholar?as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5](https://scholar.google.com/scholar?as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5), copy everything after `https://scholar.google.com/scholar?` from the URL and use it as the query for this route. The complete URL for the above example should look like this: [https://rsshub.app/google/scholar/as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5](https://rsshub.app/google/scholar/as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5)."
+      "description": ""
     }
   },
   {

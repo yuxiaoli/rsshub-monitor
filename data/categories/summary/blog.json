@@ -1,28 +1,66 @@
 [
   {
-    "provider_id": "bulianglin",
-    "provider_name": "不良林",
-    "route_key": "/",
+    "provider_id": "caixin",
+    "provider_name": "财新博客",
+    "route_key": "/blog/:column?",
     "route": {
-      "name": "全部文章",
-      "path": "/",
-      "example": "/bulianglin",
+      "name": "用户博客",
+      "path": "/blog/:column?",
+      "example": "/caixin/blog/zhangwuchang",
+      "parameters": {
+        "column": "博客名称，可在博客主页的 URL 找到"
+      },
+      "description": "通过提取文章全文，以提供比官方源更佳的阅读体验."
+    }
+  },
+  {
+    "provider_id": "cmpxchg8b",
+    "provider_name": "cmpxchg8b",
+    "route_key": "/articles",
+    "route": {
+      "name": "Articles",
+      "path": "/articles",
+      "example": "/cmpxchg8b/articles",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "freebuf",
-    "provider_name": "FreeBuf",
-    "route_key": "/articles/:type",
+    "provider_id": "cmu",
+    "provider_name": "Carnegie Mellon University",
+    "route_key": "/andypavlo/blog",
     "route": {
-      "name": "文章",
-      "path": "/articles/:type",
-      "example": "/freebuf/articles/web",
+      "name": "Andy Pavlo Blog",
+      "path": "/andypavlo/blog",
+      "example": "/cmu/andypavlo/blog",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "ddosi",
+    "provider_name": "雨苁博客",
+    "route_key": "/category/:category?",
+    "route": {
+      "name": "分类",
+      "path": "/category/:category?",
+      "example": "/ddosi/category/黑客工具",
       "parameters": {
-        "type": "文章类别"
+        "category": "N"
       },
-      "description": "::: tip\n  Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。\n:::"
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "foreverblog",
+    "provider_name": "十年之约",
+    "route_key": "/feeds",
+    "route": {
+      "name": "专题展示 - 文章",
+      "path": "/feeds",
+      "example": "/foreverblog/feeds",
+      "parameters": {},
+      "description": ""
     }
   },
   {
@@ -37,6 +75,53 @@
         "type": "文章类型, 见下表"
       },
       "description": "| 全部文章 | 文章干货 | CRM 知识 | 纷享动态        | 签约喜报  |\n| -------- | -------- | -------- | --------------- | --------- |\n| news     | blog     | articles | about-influence | customers |"
+    }
+  },
+  {
+    "provider_id": "geocaching",
+    "provider_name": "Geocaching",
+    "route_key": "/blogs/:language?",
+    "route": {
+      "name": "Official Blogs",
+      "path": "/blogs/:language?",
+      "example": "/geocaching/blogs/en",
+      "parameters": {
+        "language": {
+          "description": "language",
+          "default": "en",
+          "options": [
+            {
+              "value": "en",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "nl",
+              "label": "Nederlands"
+            },
+            {
+              "value": "cs",
+              "label": "Čeština"
+            },
+            {
+              "value": "all",
+              "label": "Not Specified"
+            }
+          ]
+        }
+      },
+      "description": ""
     }
   },
   {
@@ -87,17 +172,63 @@
     }
   },
   {
-    "provider_id": "logrocket",
-    "provider_name": "logrocket blog",
-    "route_key": "/:type",
+    "provider_id": "imhcg",
+    "provider_name": "imhcg的信息站",
+    "route_key": "/",
     "route": {
-      "name": "blog.logrocket",
-      "path": "/:type",
-      "example": "/logrocket/dev",
-      "parameters": {
-        "type": "dev | product-management | ux-design"
-      },
+      "name": "Engineering blogs",
+      "path": "/",
+      "example": "/imhcg",
+      "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "kadokawa",
+    "provider_name": "台灣角川",
+    "route_key": "/blog",
+    "route": {
+      "name": "角編新聞台",
+      "path": "/blog",
+      "example": "/kadokawa/blog",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "luolei",
+    "provider_name": "罗磊的独立博客",
+    "route_key": "/",
+    "route": {
+      "name": "罗磊的独立博客",
+      "path": "/",
+      "example": "/luolei",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "luxiangdong",
+    "provider_name": "土猛的员外",
+    "route_key": "/archive",
+    "route": {
+      "name": "文章",
+      "path": "/archive",
+      "example": "/luxiangdong/archive",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nielsberglund",
+    "provider_name": "Niels Berglund Blog",
+    "route_key": "/blog",
+    "route": {
+      "name": "Blog",
+      "path": "/blog",
+      "example": "/nielsberglund/blog",
+      "parameters": {},
+      "description": "Niels Berglund Blog Posts"
     }
   },
   {
@@ -115,37 +246,13 @@
     }
   },
   {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/xna",
-    "route": {
-      "name": "XNA",
-      "path": "/xna",
-      "example": "/v2ex/xna",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "xunhupay",
-    "provider_name": "虎皮椒",
-    "route_key": "/blog",
-    "route": {
-      "name": "文章",
-      "path": "/blog",
-      "example": "/xunhupay/blog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "zhujiceping",
-    "provider_name": "国外主机测评",
+    "provider_id": "ygkkk",
+    "provider_name": "甬哥侃侃侃YouTube教程摘要随笔",
     "route_key": "/",
     "route": {
-      "name": "最新发布",
+      "name": "最新发表",
       "path": "/",
-      "example": "/zhujiceping",
+      "example": "/ygkkk",
       "parameters": {},
       "description": ""
     }

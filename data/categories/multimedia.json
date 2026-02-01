@@ -2,68 +2,47 @@
   {
     "provider_id": "163",
     "provider_name": "网易公开课",
-    "route_key": "/music/playlist/:id",
+    "route_key": "/music/artist/songs/:id",
     "route": {
-      "path": "/music/playlist/:id",
-      "example": "/163/music/playlist/35798529",
+      "path": "/music/artist/songs/:id",
+      "example": "/163/music/artist/songs/2116",
       "parameters": {
-        "id": "歌单 id, 可在歌单页 URL 中找到"
+        "id": "歌手 id, 可在歌手详情页 URL 中找到"
       },
-      "name": "歌单歌曲",
+      "name": "歌手歌曲",
       "provider_id": "163",
       "provider_name": "网易公开课",
-      "route_key": "/music/playlist/:id"
+      "route_key": "/music/artist/songs/:id"
     }
   },
   {
-    "provider_id": "6v123",
-    "provider_name": "6v 电影",
-    "route_key": "/latestMovies",
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/tag/:keyword",
     "route": {
-      "path": "/latestMovies",
-      "example": "/6v123/latestMovies",
-      "parameters": {},
-      "name": "最新电影",
-      "url": "hao6v.com/",
-      "provider_id": "6v123",
-      "provider_name": "6v 电影",
-      "route_key": "/latestMovies"
-    }
-  },
-  {
-    "provider_id": "7mmtv",
-    "provider_name": "7mmtv",
-    "route_key": "/:language?/:category?/:type?",
-    "route": {
-      "path": "/:language?/:category?/:type?",
-      "example": "/7mmtv/zh/censored_list/all",
+      "path": "/tag/:keyword",
+      "example": "/chikubi/tag/ドリームチケット",
       "parameters": {
-        "language": "Language, see below, `en` as English by default",
-        "category": "Category, see below, `censored_list` as Censored by default",
-        "type": "Server, see below, all server by default"
+        "keyword": "Keyword"
       },
-      "name": "Category",
-      "description": "**Language**\n\n| English | 日本語 | 한국의 | 中文 |\n| ------- | ------ | ------ | ---- |\n| en      | ja     | ko     | zh   |\n\n  **Category**\n\n| Chinese subtitles AV | Censored       | Amateur          | Uncensored       | Asian self-timer | H comics     |\n| -------------------- | -------------- | ---------------- | ---------------- | ---------------- | ------------ |\n| chinese_list        | censored_list | amateurjav_list | uncensored_list | amateur_list    | hcomic_list |\n\n| Chinese subtitles AV random | Censored random  | Amateur random     | Uncensored random  | Asian self-timer random | H comics random |\n| --------------------------- | ---------------- | ------------------ | ------------------ | ----------------------- | --------------- |\n| chinese_random             | censored_random | amateurjav_random | uncensored_random | amateur_random         | hcomic_random  |\n\n  **Server**\n\n| All Server | fembed(Full DL) | streamsb(Full DL) | doodstream | streamtape(Full DL) | avgle | embedgram | videovard(Full DL) |\n| ---------- | --------------- | ----------------- | ---------- | ------------------- | ----- | --------- | ------------------ |\n| all        | 21              | 30                | 28         | 29                  | 17    | 34        | 33                 |",
-      "provider_id": "7mmtv",
-      "provider_name": "7mmtv",
-      "route_key": "/:language?/:category?/:type?"
+      "name": "Tag",
+      "provider_id": "chikubi",
+      "provider_name": "乳首ふぇち",
+      "route_key": "/tag/:keyword"
     }
   },
   {
-    "provider_id": "ajmide",
-    "provider_name": "阿基米德 FM",
-    "route_key": "/:id",
+    "provider_id": "fanxinzhui",
+    "provider_name": "追新番",
+    "route_key": "/",
     "route": {
-      "path": "/:id",
-      "view": 4,
-      "example": "/ajmide/10603594",
-      "parameters": {
-        "id": "播客 id，可以从播客页面 URL 中找到"
-      },
-      "name": "播客",
-      "provider_id": "ajmide",
-      "provider_name": "阿基米德 FM",
-      "route_key": "/:id"
+      "path": "/",
+      "name": "最近更新",
+      "url": "fanxinzhui.com/lastest",
+      "example": "/fanxinzhui",
+      "provider_id": "fanxinzhui",
+      "provider_name": "追新番",
+      "route_key": "/"
     }
   },
   {
@@ -107,109 +86,186 @@
     }
   },
   {
-    "provider_id": "mixcloud",
-    "provider_name": "Mixcloud",
-    "route_key": "/:username/:type?",
+    "provider_id": "javdb",
+    "provider_name": "JavDB",
+    "route_key": "/makers/:id/:filter?",
     "route": {
-      "path": "/:username/:type?",
-      "example": "/mixcloud/dholbach/uploads",
+      "path": "/makers/:id/:filter?",
+      "example": "/javdb/makers/7R",
       "parameters": {
-        "username": "Username, can be found in URL",
-        "type": "Type, see below, uploads by default"
+        "id": "编号，可在片商页 URL 中找到",
+        "filter": "过滤，见下表，默认为 `全部`"
       },
-      "name": "User",
-      "description": "| Shows   | Reposts | Favorites | History | Stream |\n| ------- | ------- | --------- | ------- | ------ |\n| uploads | reposts | favorites | listens | stream |",
-      "provider_id": "mixcloud",
-      "provider_name": "Mixcloud",
-      "route_key": "/:username/:type?"
+      "name": "片商",
+      "url": "javdb.com/",
+      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有片商编号参见 [片商庫](https://javdb.com/makers)",
+      "provider_id": "javdb",
+      "provider_name": "JavDB",
+      "route_key": "/makers/:id/:filter?"
+    }
+  },
+  {
+    "provider_id": "javtiful",
+    "provider_name": "Javtiful",
+    "route_key": "/actress/:id",
+    "route": {
+      "path": "/actress/:id",
+      "name": "Actress",
+      "example": "/javtiful/actress/akari-tsumugi",
+      "parameters": {
+        "id": "Actress name"
+      },
+      "provider_id": "javtiful",
+      "provider_name": "Javtiful",
+      "route_key": "/actress/:id"
+    }
+  },
+  {
+    "provider_id": "newzmz",
+    "provider_name": "NEW 字幕组",
+    "route_key": "/:id?/:downLinkType?",
+    "route": {
+      "path": "/:id?/:downLinkType?",
+      "example": "/newzmz/qEzRyY3v",
+      "parameters": {
+        "id": "剧集 id，可在剧集下载页 URL 中找到",
+        "downLinkType": "下载链接类型，默认为磁力链"
+      },
+      "name": "指定剧集",
+      "url": "newzmz.com/",
+      "description": "::: tip\n  [雪国列车 (剧版)](https://nzmz.xyz/details-qEzRyY3v.html) 的下载页 URL 为 `https://v.ys99.xyz/view/qEzRyY3v.html`，即剧集 id 为 `qEzRyY3v`\n:::",
+      "provider_id": "newzmz",
+      "provider_name": "NEW 字幕组",
+      "route_key": "/:id?/:downLinkType?"
     }
   },
   {
     "provider_id": "pornhub",
     "provider_name": "PornHub",
-    "route_key": "/search/:keyword",
+    "route_key": "/pornstar/:username/:language?/:sort?",
     "route": {
-      "path": "/search/:keyword",
+      "path": "/pornstar/:username/:language?/:sort?",
       "view": 3,
-      "example": "/pornhub/search/stepsister",
+      "example": "/pornhub/pornstar/june-liu/www/mr",
       "parameters": {
-        "keyword": "keyword"
+        "username": {
+          "description": "username, part of the url e.g. `pornhub.com/pornstar/june-liu`"
+        },
+        "language": {
+          "description": "language",
+          "options": [
+            {
+              "value": "www",
+              "label": "English"
+            },
+            {
+              "value": "de",
+              "label": "Deutsch"
+            },
+            {
+              "value": "es",
+              "label": "Español"
+            },
+            {
+              "value": "fr",
+              "label": "Français"
+            },
+            {
+              "value": "it",
+              "label": "Italiano"
+            },
+            {
+              "value": "ja",
+              "label": "日本語"
+            },
+            {
+              "value": "pt",
+              "label": "Português"
+            },
+            {
+              "value": "pl",
+              "label": "Polski"
+            },
+            {
+              "value": "rt",
+              "label": "Русский"
+            },
+            {
+              "value": "nl",
+              "label": "Dutch"
+            },
+            {
+              "value": "cs",
+              "label": "Czech"
+            },
+            {
+              "value": "cn",
+              "label": "中文（简体）"
+            }
+          ],
+          "default": "www"
+        },
+        "sort": {
+          "description": "sorting method, leave empty for `Best`",
+          "options": [
+            {
+              "label": "Most Recent",
+              "value": "mr"
+            },
+            {
+              "label": "Most Viewed",
+              "value": "mv"
+            },
+            {
+              "label": "Top Rated",
+              "value": "tr"
+            },
+            {
+              "label": "Longest",
+              "value": "lg"
+            }
+          ]
+        }
       },
-      "name": "Keyword Search",
+      "name": "Pornstar",
       "provider_id": "pornhub",
       "provider_name": "PornHub",
-      "route_key": "/search/:keyword"
+      "route_key": "/pornstar/:username/:language?/:sort?"
     }
   },
   {
-    "provider_id": "t66y",
-    "provider_name": "草榴社区",
-    "route_key": "/:id/:type?/:search?",
+    "provider_id": "pornhub",
+    "provider_name": "PornHub",
+    "route_key": "/users/:username/:language?",
     "route": {
-      "path": "/:id/:type?/:search?",
-      "example": "/t66y/20/2",
+      "path": "/users/:username/:language?",
+      "example": "/pornhub/users/pornhubmodels",
       "parameters": {
-        "id": "分区 id, 可在分区页 URL 中找到",
-        "type": "类型 id, 可在分区类型过滤后的 URL 中找到",
-        "search": "主题类型筛选，可在分区主题类型筛选后的 URL 中找到，默认为 `today`"
+        "language": "language, see below",
+        "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
       },
-      "name": "分区帖子",
-      "description": "> 注意：并非所有的分区都有子类型，可以参考成人文学交流区的 `古典武侠` 这一子类型。\n\n| 亚洲无码原创区 | 亚洲有码原创区 | 欧美原创区 | 动漫原创区 | 国产原创区 |\n| -------------- | -------------- | ---------- | ---------- | ---------- |\n| 2              | 15             | 4          | 5          | 25         |\n\n| 中字原创区 | 转帖交流区 | HTTP 下载区 | 在线成人区 |\n| ---------- | ---------- | ----------- | ---------- |\n| 26         | 27         | 21          | 22         |\n\n| 技术讨论区 | 新时代的我们 | 达盖尔的旗帜 | 成人文学交流 |\n| ---------- | ------------ | ------------ | ------------ |\n| 7          | 8            | 16           | 20           |\n\n  **主题过滤**\n\n  > 因为该类型无法搭配子类型使用，所以使用时 `type` 子类型需使用 `-999` 占位\n\n| 今日主题 | 热门主题 | 精华主题 | 原创主题 | 今日新作  |\n| ------- | ------- | ------- | ------- | ------ |\n| today   | hot     | digest  | 1       | 2      |",
-      "provider_id": "t66y",
-      "provider_name": "草榴社区",
-      "route_key": "/:id/:type?/:search?"
+      "name": "Users",
+      "provider_id": "pornhub",
+      "provider_name": "PornHub",
+      "route_key": "/users/:username/:language?"
     }
   },
   {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/tv/:id/seasons/:lang?",
+    "provider_id": "xiaoyuzhou",
+    "provider_name": "小宇宙",
+    "route_key": "/podcast/:id",
     "route": {
-      "path": "/tv/:id/seasons/:lang?",
-      "view": 5,
-      "example": "/themoviedb/tv/70593/seasons/en-US",
-      "parameters": {
-        "id": "TV show ID",
-        "lang": "Language"
-      },
-      "name": "TV Show Seasons",
-      "provider_id": "themoviedb",
-      "provider_name": "The Movie Database",
-      "route_key": "/tv/:id/seasons/:lang?"
-    }
-  },
-  {
-    "provider_id": "tingtingfm",
-    "provider_name": "听听 FM",
-    "route_key": "/program/:programId",
-    "route": {
-      "path": "/program/:programId",
+      "path": "/podcast/:id",
       "view": 4,
-      "example": "/tingtingfm/program/M7VJv6Jj4R",
+      "example": "/xiaoyuzhou/podcast/6021f949a789fca4eff4492c",
       "parameters": {
-        "programId": "节目 ID，可以在 URL 中找到"
+        "id": "播客 id 或单集 id，可以在小宇宙播客的 URL 中找到"
       },
-      "name": "节目",
-      "provider_id": "tingtingfm",
-      "provider_name": "听听 FM",
-      "route_key": "/program/:programId"
-    }
-  },
-  {
-    "provider_id": "youku",
-    "provider_name": "优酷",
-    "route_key": "/channel/:channelId/:embed?",
-    "route": {
-      "path": "/channel/:channelId/:embed?",
-      "example": "/youku/channel/UNTg3MTM3OTcy",
-      "parameters": {
-        "channelId": "频道 id",
-        "embed": "默认为开启内嵌视频, 任意值为关闭"
-      },
-      "name": "频道",
-      "provider_id": "youku",
-      "provider_name": "优酷",
-      "route_key": "/channel/:channelId/:embed?"
+      "name": "播客",
+      "url": "xiaoyuzhoufm.com/",
+      "provider_id": "xiaoyuzhou",
+      "provider_name": "小宇宙",
+      "route_key": "/podcast/:id"
     }
   }
 ]

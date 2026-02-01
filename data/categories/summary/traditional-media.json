@@ -14,6 +14,46 @@
     }
   },
   {
+    "provider_id": "caixin",
+    "provider_name": "财新博客",
+    "route_key": "/latest",
+    "route": {
+      "name": "最新文章",
+      "path": "/latest",
+      "example": "/caixin/latest",
+      "parameters": {},
+      "description": "说明：此 RSS feed 会自动抓取财新网的最新文章，但不包含 FM 及视频内容。订阅用户可根据文档设置环境变量后，在url传入`fulltext=`以解锁全文。"
+    }
+  },
+  {
+    "provider_id": "cna",
+    "provider_name": "中央通讯社",
+    "route_key": "/web/:id?",
+    "route": {
+      "name": "分类 (网页爬虫方法)",
+      "path": "/web/:id?",
+      "example": "/cna/web/aall",
+      "parameters": {
+        "id": "分类 id，见上表。此參數默认为 aall"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "dealstreetasia",
+    "provider_name": "DealStreetAsia",
+    "route_key": "/section/:section",
+    "route": {
+      "name": "Section",
+      "path": "/section/:section",
+      "example": "/dealstreetasia/section/private-equity",
+      "parameters": {
+        "section": "target section"
+      },
+      "description": ""
+    }
+  },
+  {
     "provider_id": "hakkatv",
     "provider_name": "客家電視台",
     "route_key": "/news/:type?",
@@ -40,41 +80,13 @@
     }
   },
   {
-    "provider_id": "npr",
-    "provider_name": "National Public Radio",
-    "route_key": "/:endpoint?",
-    "route": {
-      "name": "News",
-      "path": "/:endpoint?",
-      "example": "/npr/1001",
-      "parameters": {
-        "endpoint": "Channel ID, can be found in Official RSS URL, `1001` by default"
-      },
-      "description": "Provide full article RSS for CBC topics."
-    }
-  },
-  {
-    "provider_id": "oncc",
-    "provider_name": "东网",
-    "route_key": "/money18/:id?",
-    "route": {
-      "name": "Money18",
-      "path": "/money18/:id?",
-      "example": "/oncc/money18/exp",
-      "parameters": {
-        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 exp，即新聞總覽"
-      },
-      "description": "| 新聞總覽 | 全日焦點 | 板塊新聞 | 國際金融 | 大行報告 | A 股新聞 | 地產新聞 | 投資理財  | 新股 IPO | 科技財情 |\n| -------- | -------- | -------- | -------- | -------- | -------- | -------- | --------- | -------- | -------- |\n| exp      | fov      | industry | int      | recagent | ntlgroup | pro      | weainvest | ipo      | tech     |"
-    }
-  },
-  {
     "provider_id": "publico",
     "provider_name": "Público",
-    "route_key": "/economia/:subsection?",
+    "route_key": "/ciencias/:subsection?",
     "route": {
-      "name": "Economia",
-      "path": "/economia/:subsection?",
-      "example": "/publico/economia",
+      "name": "Ciencias",
+      "path": "/ciencias/:subsection?",
+      "example": "/publico/ciencias",
       "parameters": {
         "subsection": {
           "description": "Filter by subsection. Check the subsections available on the newspaper's website."
@@ -86,16 +98,12 @@
   {
     "provider_id": "publico",
     "provider_name": "Público",
-    "route_key": "/internacional/:subsection?",
+    "route_key": "/public",
     "route": {
-      "name": "Internacional",
-      "path": "/internacional/:subsection?",
-      "example": "/publico/internacional",
-      "parameters": {
-        "subsection": {
-          "description": "Filter by subsection. Check the subsections available on the newspaper's website."
-        }
-      },
+      "name": "Public",
+      "path": "/public",
+      "example": "/publico/public",
+      "parameters": {},
       "description": ""
     }
   },
@@ -116,29 +124,88 @@
     }
   },
   {
-    "provider_id": "theatlantic",
-    "provider_name": "The Atlantic",
-    "route_key": "/:category",
+    "provider_id": "solidot",
+    "provider_name": "Solidot",
+    "route_key": "/:type?",
     "route": {
-      "name": "News",
-      "path": "/:category",
-      "example": "/theatlantic/latest",
+      "name": "最新消息",
+      "path": "/:type?",
+      "example": "/solidot/linux",
       "parameters": {
-        "category": "category, see below"
-      },
-      "description": "| Popular      | Latest | Politics | Technology | Business |\n| ------------ | ------ | -------- | ---------- | -------- |\n| most-popular | latest | politics | technology | business |\n\n  More categories (except photo) can be found within the navigation bar at [https://www.theatlantic.com](https://www.theatlantic.com)"
-    }
-  },
-  {
-    "provider_id": "thehindu",
-    "provider_name": "The Hindu",
-    "route_key": "/topic/:topic",
-    "route": {
-      "name": "Topic",
-      "path": "/topic/:topic",
-      "example": "/thehindu/topic/rains",
-      "parameters": {
-        "topic": "Topic slug, can be found in URL."
+        "type": {
+          "description": "消息类型，在网站上方选择后复制子域名或参见 [https://www.solidot.org/index.rss](https://www.solidot.org/index.rss) 即可",
+          "options": [
+            {
+              "value": "www",
+              "label": "全部"
+            },
+            {
+              "value": "startup",
+              "label": "创业"
+            },
+            {
+              "value": "linux",
+              "label": "Linux"
+            },
+            {
+              "value": "science",
+              "label": "科学"
+            },
+            {
+              "value": "technology",
+              "label": "科技"
+            },
+            {
+              "value": "mobile",
+              "label": "移动"
+            },
+            {
+              "value": "apple",
+              "label": "苹果"
+            },
+            {
+              "value": "hardware",
+              "label": "硬件"
+            },
+            {
+              "value": "software",
+              "label": "软件"
+            },
+            {
+              "value": "security",
+              "label": "安全"
+            },
+            {
+              "value": "games",
+              "label": "游戏"
+            },
+            {
+              "value": "books",
+              "label": "书籍"
+            },
+            {
+              "value": "ask",
+              "label": "ask"
+            },
+            {
+              "value": "idle",
+              "label": "idle"
+            },
+            {
+              "value": "blog",
+              "label": "博客"
+            },
+            {
+              "value": "cloud",
+              "label": "云计算"
+            },
+            {
+              "value": "story",
+              "label": "奇客故事"
+            }
+          ],
+          "default": "www"
+        }
       },
       "description": ""
     }
@@ -146,69 +213,15 @@
   {
     "provider_id": "udn",
     "provider_name": "聯合新聞網",
-    "route_key": "/news/breakingnews/:id",
+    "route_key": "/global/tag/:tag?",
     "route": {
-      "name": "即時新聞",
-      "path": "/news/breakingnews/:id",
-      "example": "/udn/news/breakingnews/99",
+      "name": "轉角國際 - 標籤",
+      "path": "/global/tag/:tag?",
+      "example": "/udn/global/tag/過去24小時",
       "parameters": {
-        "id": "类别"
+        "tag": "标签，可在对应标签页 URL 中找到"
       },
-      "description": "| 0    | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 11   | 12   | 13   | 99     |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ |\n| 精選 | 要聞 | 社會 | 地方 | 兩岸 | 國際 | 財經 | 運動 | 娛樂 | 生活 | 股市 | 文教 | 數位 | 不分類 |"
-    }
-  },
-  {
-    "provider_id": "udn",
-    "provider_name": "聯合新聞網",
-    "route_key": "/global/:category?",
-    "route": {
-      "name": "轉角國際 - 首頁",
-      "path": "/global/:category?",
-      "example": "/udn/global",
-      "parameters": {
-        "category": "分类，见下表，默认为首頁"
-      },
-      "description": "| 首頁 | 最新文章 | 熱門文章 |\n| ---- | -------- | -------- |\n|      | new      | hot      |"
-    }
-  },
-  {
-    "provider_id": "xkb",
-    "provider_name": "新快报",
-    "route_key": "/:channel",
-    "route": {
-      "name": "新闻",
-      "path": "/:channel",
-      "example": "/xkb/350",
-      "parameters": {
-        "channel": "栏目 ID，点击对应栏目后在地址栏找到"
-      },
-      "description": "常用栏目 ID：\n\n| 栏目名 | ID  |\n| ------ | --- |\n| 首页   | 350 |\n| 重点   | 359 |\n| 广州   | 353 |\n| 湾区   | 360 |\n| 天下   | 355 |"
-    }
-  },
-  {
-    "provider_id": "yicai",
-    "provider_name": "第一财经",
-    "route_key": "/headline",
-    "route": {
-      "name": "头条",
-      "path": "/headline",
-      "example": "/yicai/headline",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "zaobao",
-    "provider_name": "联合早报",
-    "route_key": "/realtime/:section?",
-    "route": {
-      "name": "即时新闻",
-      "path": "/realtime/:section?",
-      "example": "/zaobao/realtime/china",
-      "parameters": {
-        "section": "分类，缺省为 china"
-      },
-      "description": "| 中国  | 新加坡    | 国际  | 财经     |\n| ----- | --------- | ----- | -------- |\n| china | singapore | world | zfinance |"
+      "description": "| 過去 24 小時 | 鏡頭背後 | 深度專欄 | 重磅廣播 |\n| ------------ | -------- | -------- | -------- |"
     }
   },
   {

@@ -14,5 +14,73 @@
       "provider_name": "哔哩哔哩 bilibili",
       "route_key": "/live/room/:roomID"
     }
+  },
+  {
+    "provider_id": "douyu",
+    "provider_name": "斗鱼直播",
+    "route_key": "/room/:id",
+    "route": {
+      "path": "/room/:id",
+      "example": "/douyu/room/24422",
+      "parameters": {
+        "id": "直播间 id, 可在主播直播间页 URL 中找到"
+      },
+      "name": "直播间开播",
+      "provider_id": "douyu",
+      "provider_name": "斗鱼直播",
+      "route_key": "/room/:id"
+    }
+  },
+  {
+    "provider_id": "twitch",
+    "provider_name": "Twitch",
+    "route_key": "/video/:login/:filter?",
+    "route": {
+      "path": "/video/:login/:filter?",
+      "view": 3,
+      "example": "/twitch/video/riotgames/highlights",
+      "parameters": {
+        "login": "Twitch username",
+        "filter": {
+          "description": "Video type, Default to all",
+          "options": [
+            {
+              "value": "archive",
+              "label": "Archive"
+            },
+            {
+              "value": "highlights",
+              "label": "Highlights"
+            },
+            {
+              "value": "all",
+              "label": "All"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "name": "Channel Video",
+      "provider_id": "twitch",
+      "provider_name": "Twitch",
+      "route_key": "/video/:login/:filter?"
+    }
+  },
+  {
+    "provider_id": "yoasobi-music",
+    "provider_name": "Yoasobi Official",
+    "route_key": "/info/:category?",
+    "route": {
+      "path": "/info/:category?",
+      "example": "/yoasobi-music/info/news",
+      "parameters": {
+        "category": "`news`, `biography`"
+      },
+      "name": "News & Biography",
+      "url": "www.yoasobi-music.jp/",
+      "provider_id": "yoasobi-music",
+      "provider_name": "Yoasobi Official",
+      "route_key": "/info/:category?"
+    }
   }
 ]
