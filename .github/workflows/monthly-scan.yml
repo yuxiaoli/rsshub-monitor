@@ -23,21 +23,18 @@ jobs:
         with:
           python-version: '3.11'
           
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: 1.5.1
-          virtualenvs-create: true
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
           
       - name: Install dependencies
-        run: poetry install
+        run: uv sync
         
       - name: Scan RSSHub servers
-        run: poetry run python src/rsshub_monitor/scan_servers.py --output data/servers.json
+        run: uv run python src/rsshub_monitor/scan_servers.py --output data/servers.json
         
       - name: Scan RSSHub namespace
         run: |
-          poetry run python src/rsshub_monitor/scan_namespace.py \
+          uv run python src/rsshub_monitor/scan_namespace.py \
             --output data/namespace.json \
             --rss-output data/online.json \
             --cache \
@@ -45,7 +42,7 @@ jobs:
             --concurrent
       
       - name: Split routes by category
-        run: poetry run python src/rsshub_monitor/split_by_category.py -s
+        run: uv run python src/rsshub_monitor/split_by_category.py -s
       
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
