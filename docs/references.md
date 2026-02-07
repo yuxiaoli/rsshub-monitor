@@ -1,1 +1,5 @@
 1. [Folo](https://github.com/RSSNext/Folo)
+2. [Documentation](https://docs.rsshub.app/guide/)
+3. [Public Instances](https://docs.rsshub.app/guide/instances)
+- [Public Instances JSON](https://proxy.cf-io.workers.dev/?url=https://docs.rsshub.app/guide/instances&format=json)
+4. [RSSHub API Reference](https://rsshub.app/api/reference)

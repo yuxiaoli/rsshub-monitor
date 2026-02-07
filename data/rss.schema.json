@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "topic_zh": {
+          "type": "string"
+        },
+        "regional_focus_zh": {
+          "type": "string"
+        },
+        "language_flow": {
+          "type": "string"
+        },
+        "total_count": {
+          "type": "integer"
+        },
+        "primary_rsshub_base_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "mirror_rsshub_base_urls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "working_definition_zh": {
+          "type": "string"
+        },
+        "source_files_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "topic_zh",
+        "regional_focus_zh",
+        "language_flow",
+        "total_count",
+        "primary_rsshub_base_url",
+        "mirror_rsshub_base_urls",
+        "working_definition_zh",
+        "source_files_used"
+      ]
+    },
+    "rss_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    }
+  },
+  "required": [
+    "metadata",
+    "rss_urls"
+  ]
+}
