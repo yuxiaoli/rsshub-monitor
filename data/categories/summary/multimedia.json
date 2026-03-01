@@ -1,16 +1,54 @@
 [
   {
-    "provider_id": "163",
-    "provider_name": "网易公开课",
-    "route_key": "/music/artist/songs/:id",
+    "provider_id": "6v123",
+    "provider_name": "6v 电影",
+    "route_key": "/latestMovies",
     "route": {
-      "name": "歌手歌曲",
-      "path": "/music/artist/songs/:id",
-      "example": "/163/music/artist/songs/2116",
+      "name": "最新电影",
+      "path": "/latestMovies",
+      "example": "/6v123/latestMovies",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "ajmide",
+    "provider_name": "阿基米德 FM",
+    "route_key": "/:id",
+    "route": {
+      "name": "播客",
+      "path": "/:id",
+      "example": "/ajmide/10603594",
       "parameters": {
-        "id": "歌手 id, 可在歌手详情页 URL 中找到"
+        "id": "播客 id，可以从播客页面 URL 中找到"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/",
+    "route": {
+      "name": "最新記事",
+      "path": "/",
+      "example": "/chikubi",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "chikubi",
+    "provider_name": "乳首ふぇち",
+    "route_key": "/:keyword",
+    "route": {
+      "name": "Navigation",
+      "path": "/:keyword",
+      "example": "/chikubi",
+      "parameters": {
+        "keyword": "導覽列，見下表，默認爲最新"
+      },
+      "description": "| 殿堂 | 動畫 | VR | 漫畫 | 音聲 | CG・イラスト |\n| ---- | ----- | -- | ----- | ----- | -- |\n| best | video | vr | comic | voice | cg |"
     }
   },
   {
@@ -28,198 +66,60 @@
     }
   },
   {
-    "provider_id": "fanxinzhui",
-    "provider_name": "追新番",
-    "route_key": "/",
+    "provider_id": "coomer",
+    "provider_name": "Coomer",
+    "route_key": "/:source?/:id?",
     "route": {
-      "name": "最近更新",
-      "path": "/",
-      "example": "/fanxinzhui",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "imdb",
-    "provider_name": "IMDb",
-    "route_key": "/chart/:chart?",
-    "route": {
-      "name": "Charts",
-      "path": "/chart/:chart?",
-      "example": "/imdb/chart",
+      "name": "Posts",
+      "path": "/:source?/:id?",
+      "example": "/coomer",
       "parameters": {
-        "chart": {
-          "description": "The chart to display, `top` by default",
-          "options": [
-            {
-              "value": "top",
-              "label": "Top 250 Movies"
-            },
-            {
-              "value": "moviemeter",
-              "label": "Most Popular Movies"
-            },
-            {
-              "value": "toptv",
-              "label": "Top 250 TV Shows"
-            },
-            {
-              "value": "tvmeter",
-              "label": "Most Popular TV Shows"
-            }
-          ],
-          "default": "top"
-        }
+        "source": "Source, see below, Posts by default",
+        "id": "User id, can be found in URL"
       },
-      "description": "| Top 250 Movies | Most Popular Movies | Top 250 TV Shows | Most Popular TV Shows |\n| -------------- | ------------------- | ---------------- | --------------------- |\n| top            | moviemeter          | toptv            | tvmeter               |"
-    }
-  },
-  {
-    "provider_id": "javdb",
-    "provider_name": "JavDB",
-    "route_key": "/makers/:id/:filter?",
-    "route": {
-      "name": "片商",
-      "path": "/makers/:id/:filter?",
-      "example": "/javdb/makers/7R",
-      "parameters": {
-        "id": "编号，可在片商页 URL 中找到",
-        "filter": "过滤，见下表，默认为 `全部`"
-      },
-      "description": "| 全部 | 可播放   | 單體作品 | 可下載   | 字幕  | 預覽圖  |\n| ---- | -------- | -------- | -------- | ----- | ------- |\n|      | playable | single   | download | cnsub | preview |\n\n  所有片商编号参见 [片商庫](https://javdb.com/makers)"
-    }
-  },
-  {
-    "provider_id": "javtiful",
-    "provider_name": "Javtiful",
-    "route_key": "/actress/:id",
-    "route": {
-      "name": "Actress",
-      "path": "/actress/:id",
-      "example": "/javtiful/actress/akari-tsumugi",
-      "parameters": {
-        "id": "Actress name"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "newzmz",
-    "provider_name": "NEW 字幕组",
-    "route_key": "/:id?/:downLinkType?",
-    "route": {
-      "name": "指定剧集",
-      "path": "/:id?/:downLinkType?",
-      "example": "/newzmz/qEzRyY3v",
-      "parameters": {
-        "id": "剧集 id，可在剧集下载页 URL 中找到",
-        "downLinkType": "下载链接类型，默认为磁力链"
-      },
-      "description": "::: tip\n  [雪国列车 (剧版)](https://nzmz.xyz/details-qEzRyY3v.html) 的下载页 URL 为 `https://v.ys99.xyz/view/qEzRyY3v.html`，即剧集 id 为 `qEzRyY3v`\n:::"
+      "description": "Sources\n\n| Posts | OnlyFans | Fansly | CandFans |\n| ----- | -------- | ------- | -------- |\n| posts | onlyfans | fansly   | candfans |\n\n::: tip\n  When `posts` is selected as the value of the parameter **source**, the parameter **id** does not take effect.\n  There is an optinal parameter **limit** which controls the number of posts to fetch, default value is 25.\n:::"
     }
   },
   {
     "provider_id": "pornhub",
     "provider_name": "PornHub",
-    "route_key": "/pornstar/:username/:language?/:sort?",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "Pornstar",
-      "path": "/pornstar/:username/:language?/:sort?",
-      "example": "/pornhub/pornstar/june-liu/www/mr",
+      "name": "Keyword Search",
+      "path": "/search/:keyword",
+      "example": "/pornhub/search/stepsister",
       "parameters": {
-        "username": {
-          "description": "username, part of the url e.g. `pornhub.com/pornstar/june-liu`"
-        },
-        "language": {
-          "description": "language",
-          "options": [
-            {
-              "value": "www",
-              "label": "English"
-            },
-            {
-              "value": "de",
-              "label": "Deutsch"
-            },
-            {
-              "value": "es",
-              "label": "Español"
-            },
-            {
-              "value": "fr",
-              "label": "Français"
-            },
-            {
-              "value": "it",
-              "label": "Italiano"
-            },
-            {
-              "value": "ja",
-              "label": "日本語"
-            },
-            {
-              "value": "pt",
-              "label": "Português"
-            },
-            {
-              "value": "pl",
-              "label": "Polski"
-            },
-            {
-              "value": "rt",
-              "label": "Русский"
-            },
-            {
-              "value": "nl",
-              "label": "Dutch"
-            },
-            {
-              "value": "cs",
-              "label": "Czech"
-            },
-            {
-              "value": "cn",
-              "label": "中文（简体）"
-            }
-          ],
-          "default": "www"
-        },
-        "sort": {
-          "description": "sorting method, leave empty for `Best`",
-          "options": [
-            {
-              "label": "Most Recent",
-              "value": "mr"
-            },
-            {
-              "label": "Most Viewed",
-              "value": "mv"
-            },
-            {
-              "label": "Top Rated",
-              "value": "tr"
-            },
-            {
-              "label": "Longest",
-              "value": "lg"
-            }
-          ]
-        }
+        "keyword": "keyword"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/users/:username/:language?",
+    "provider_id": "radio",
+    "provider_name": "云听",
+    "route_key": "/album/:id",
     "route": {
-      "name": "Users",
-      "path": "/users/:username/:language?",
-      "example": "/pornhub/users/pornhubmodels",
+      "name": "专辑",
+      "path": "/album/:id",
+      "example": "/radio/album/15682090498666",
       "parameters": {
-        "language": "language, see below",
-        "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
+        "id": "专辑 id，可在对应专辑页面的 URL 中找到"
+      },
+      "description": "如果订阅 [中国相声榜](https://www.radio.cn/pc-portal/sanji/detail.html?columnId=15682090498666)，其 URL 为 `https://www.radio.cn/pc-portal/sanji/detail.html?columnId=15682090498666`，可以得到 `columnId` 为 `15682090498666`\n\n  所以对应路由为 [`/radio/album/15682090498666`](https://rsshub.app/radio/album/15682090498666)\n\n::: tip\n  部分专辑不适用该路由，此时可以尝试 [节目](#yun-ting-jie-mu) 路由\n:::"
+    }
+  },
+  {
+    "provider_id": "themoviedb",
+    "provider_name": "The Movie Database",
+    "route_key": "/trending/:mediaType/:timeWindow/:lang?",
+    "route": {
+      "name": "Trending",
+      "path": "/trending/:mediaType/:timeWindow/:lang?",
+      "example": "/themoviedb/trending/tv/day/en-US",
+      "parameters": {
+        "mediaType": "`movie` or `tv`",
+        "timeWindow": "`day` or `week`",
+        "lang": "Language"
       },
       "description": ""
     }

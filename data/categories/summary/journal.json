@@ -1,60 +1,40 @@
 [
   {
-    "provider_id": "academia",
-    "provider_name": "Academia",
-    "route_key": "/topic/:interest",
+    "provider_id": "bioone",
+    "provider_name": "BioOne",
+    "route_key": "/featured",
     "route": {
-      "name": "interest",
-      "path": "/topic/:interest",
-      "example": "/academia/topic/Urban_History",
-      "parameters": {
-        "interest": "interest"
-      },
+      "name": "Featured articles",
+      "path": "/featured",
+      "example": "/bioone/featured",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "aeaweb",
-    "provider_name": "American Economic Association",
-    "route_key": "/:id",
+    "provider_id": "nymity",
+    "provider_name": "nymity",
+    "route_key": "/censorbib",
     "route": {
-      "name": "Journal",
-      "path": "/:id",
-      "example": "/aeaweb/aer",
-      "parameters": {
-        "id": "Journal id, can be found in URL"
-      },
-      "description": "The URL of the journal [American Economic Review](https://www.aeaweb.org/journals/aer) is `https://www.aeaweb.org/journals/aer`, where `aer` is the id of the journal, so the route for this journal is `/aeaweb/aer`.\n\n::: tip\n  More jounals can be found in [AEA Journals](https://www.aeaweb.org/journals).\n:::"
-    }
-  },
-  {
-    "provider_id": "linkresearcher",
-    "provider_name": "Link Research",
-    "route_key": "/:params",
-    "route": {
-      "name": "Articles",
-      "path": "/:params",
-      "example": "/linkresearcher/category=theses&columns=Nature%20导读&subject=生物",
-      "parameters": {
-        "params": {
-          "description": "search parameters, support `category`, `subject`, `columns`, `query`"
-        }
-      },
+      "name": "CensorBib Updates",
+      "path": "/censorbib",
+      "example": "/nymity/censorbib",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "mdpi",
-    "provider_name": "MDPI",
-    "route_key": "/:journal",
+    "provider_id": "papers",
+    "provider_name": "Cool Papers",
+    "route_key": "/query/:keyword{.+}?",
     "route": {
-      "name": "Journal",
-      "path": "/:journal",
-      "example": "/mdpi/analytica",
+      "name": "Topic",
+      "path": "/query/:keyword{.+}?",
+      "example": "/papers/query/Detection",
       "parameters": {
-        "journal": "Journal Name, get it from the journal homepage"
+        "keyword": "Keyword to search for papers, e.g., Detection, Segmentation, etc."
       },
-      "description": ""
+      "description": "::: tip\n  If you subscibe to [arXiv Paper queryed by Detection](https://papers.cool/arxiv/search?highlight=1&query=Detection), where the URL is `https://papers.cool/arxiv/search?highlight=1&query=Detection`, extract the part `https://papers.cool/` to the end, and use it as the parameter to fill in. Therefore, the route will be [`/papers/query/Detection`](https://rsshub.app/papers/query/Detection).\n:::\n\n| Category                                              | id                  |\n| ----------------------------------------------------- | ------------------- |\n| arXiv Paper queryed by Detection                      | query/Detection     |\n| arXiv Paper queryed by Segmentation                   | query/Segmentation  |\n  "
     }
   },
   {

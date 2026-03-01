@@ -1,97 +1,71 @@
 [
   {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/iap/:country/:id",
+    "provider_id": "alpinelinux",
+    "provider_name": "Alpine Linux",
+    "route_key": "/pkgs/:name/:routeParams?",
     "route": {
-      "path": "/iap/:country/:id",
-      "example": "/appstore/iap/us/id953286746",
+      "name": "Packages",
+      "path": "/pkgs/:name/:routeParams?",
       "parameters": {
-        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id953286746, in this case, `us`",
-        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id953286746, in this case, `id953286746`"
+        "name": "Packages name",
+        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
       },
-      "name": "In-App-Purchase Price Drop Alert",
-      "provider_id": "appstore",
-      "provider_name": "App Store/Mac App Store",
-      "route_key": "/iap/:country/:id"
+      "example": "/alpinelinux/pkgs/nodejs",
+      "description": "Alpine Linux packages update",
+      "zh": {
+        "name": "软件包",
+        "description": "Alpine Linux 软件包更新"
+      },
+      "provider_id": "alpinelinux",
+      "provider_name": "Alpine Linux",
+      "route_key": "/pkgs/:name/:routeParams?"
     }
   },
   {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/xianmian",
+    "provider_id": "amazon",
+    "provider_name": "Amazon",
+    "route_key": "/kindle/software-updates",
     "route": {
-      "path": "/xianmian",
-      "example": "/appstore/xianmian",
+      "path": "/kindle/software-updates",
+      "example": "/amazon/kindle/software-updates",
       "parameters": {},
-      "name": "每日精品限免 / 促销应用（鲜面连线 by AppSo）",
-      "url": "app.so/xianmian",
-      "provider_id": "appstore",
-      "provider_name": "App Store/Mac App Store",
-      "route_key": "/xianmian"
+      "name": "Kindle Software Updates",
+      "provider_id": "amazon",
+      "provider_name": "Amazon",
+      "route_key": "/kindle/software-updates"
     }
   },
   {
-    "provider_id": "brave",
-    "provider_name": "Brave",
-    "route_key": "/latest",
+    "provider_id": "diskanalyzer",
+    "provider_name": "WizTree",
+    "route_key": "/whats-new",
     "route": {
-      "path": "/latest",
-      "example": "/brave/latest",
+      "path": "/whats-new",
+      "example": "/diskanalyzer/whats-new",
       "parameters": {},
-      "name": "Release Notes",
-      "url": "brave.com/latest",
-      "provider_id": "brave",
-      "provider_name": "Brave",
-      "route_key": "/latest"
+      "name": "What's New",
+      "url": "diskanalyzer.com/whats-new",
+      "provider_id": "diskanalyzer",
+      "provider_name": "WizTree",
+      "route_key": "/whats-new"
     }
   },
   {
-    "provider_id": "f-droid",
-    "provider_name": "F-Droid",
-    "route_key": "/apprelease/:app",
+    "provider_id": "dockerhub",
+    "provider_name": "Docker Hub",
+    "route_key": "/repositories/:owner",
     "route": {
-      "path": "/apprelease/:app",
-      "example": "/f-droid/apprelease/com.termux",
+      "name": "Owner Repositories",
+      "description": "List of repositories for an image owner",
+      "path": "/repositories/:owner",
+      "view": 5,
+      "example": "/dockerhub/repositories/diygod",
       "parameters": {
-        "app": "App's package name"
+        "owner": "Image owner"
       },
-      "name": "App Update",
-      "provider_id": "f-droid",
-      "provider_name": "F-Droid",
-      "route_key": "/apprelease/:app"
-    }
-  },
-  {
-    "provider_id": "firecore",
-    "provider_name": "Infuse",
-    "route_key": "/:os",
-    "route": {
-      "path": "/:os",
-      "example": "/firecore/ios",
-      "parameters": {
-        "os": "`ios`,`tvos`,`macos`"
-      },
-      "name": "Release Notes",
-      "provider_id": "firecore",
-      "provider_name": "Infuse",
-      "route_key": "/:os"
-    }
-  },
-  {
-    "provider_id": "firefox",
-    "provider_name": "Mozilla",
-    "route_key": "/addons/:id",
-    "route": {
-      "path": "/addons/:id",
-      "example": "/firefox/addons/rsshub-radar",
-      "parameters": {
-        "id": "Add-ons id, can be found in add-ons url"
-      },
-      "name": "Add-ons Update",
-      "provider_id": "firefox",
-      "provider_name": "Mozilla",
-      "route_key": "/addons/:id"
+      "provider_id": "dockerhub",
+      "provider_name": "Docker Hub",
+      "route_key": "/repositories/:owner"
     }
   },
   {
@@ -111,64 +85,18 @@
     }
   },
   {
-    "provider_id": "imagemagick",
-    "provider_name": "ImageMagick",
-    "route_key": "/changelog",
+    "provider_id": "postman",
+    "provider_name": "Postman",
+    "route_key": "/release-notes",
     "route": {
-      "path": "/changelog",
-      "example": "/imagemagick/changelog",
+      "path": "/release-notes",
+      "example": "/postman/release-notes",
       "parameters": {},
-      "name": "Changelog",
-      "url": "imagemagick.org/script/download.php",
-      "provider_id": "imagemagick",
-      "provider_name": "ImageMagick",
-      "route_key": "/changelog"
-    }
-  },
-  {
-    "provider_id": "macupdate",
-    "provider_name": "MacUpdate",
-    "route_key": "/app/:appId/:appSlug?",
-    "route": {
-      "path": "/app/:appId/:appSlug?",
-      "example": "/macupdate/app/11942",
-      "parameters": {
-        "appId": "Application unique ID, can be found in URL",
-        "appSlug": "Application slug, can be found in URL"
-      },
-      "name": "Update",
-      "provider_id": "macupdate",
-      "provider_name": "MacUpdate",
-      "route_key": "/app/:appId/:appSlug?"
-    }
-  },
-  {
-    "provider_id": "microsoft",
-    "provider_name": "Microsoft",
-    "route_key": "/edge/addon/:crxid",
-    "route": {
-      "path": "/edge/addon/:crxid",
-      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
-      "parameters": {
-        "crxid": "Addon id, can be found in addon url"
-      },
-      "name": "Addons Update",
-      "provider_id": "microsoft",
-      "provider_name": "Microsoft",
-      "route_key": "/edge/addon/:crxid"
-    }
-  },
-  {
-    "provider_id": "raycast",
-    "provider_name": "Raycast",
-    "route_key": "/changelog",
-    "route": {
-      "path": "/changelog",
-      "name": "Changelog",
-      "example": "/raycast/changelog",
-      "provider_id": "raycast",
-      "provider_name": "Raycast",
-      "route_key": "/changelog"
+      "name": "Release Notes",
+      "url": "postman.com/downloads/release-notes",
+      "provider_id": "postman",
+      "provider_name": "Postman",
+      "route_key": "/release-notes"
     }
   },
   {
@@ -187,6 +115,21 @@
       "provider_id": "sony",
       "provider_name": "Sony",
       "route_key": "/downloads/:productType/:productId"
+    }
+  },
+  {
+    "provider_id": "zotero",
+    "provider_name": "Zotero",
+    "route_key": "/versions",
+    "route": {
+      "path": "/versions",
+      "example": "/zotero/versions",
+      "parameters": {},
+      "name": "Version History",
+      "url": "zotero.org/",
+      "provider_id": "zotero",
+      "provider_name": "Zotero",
+      "route_key": "/versions"
     }
   }
 ]

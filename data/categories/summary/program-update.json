@@ -1,83 +1,55 @@
 [
   {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/iap/:country/:id",
+    "provider_id": "alpinelinux",
+    "provider_name": "Alpine Linux",
+    "route_key": "/pkgs/:name/:routeParams?",
     "route": {
-      "name": "In-App-Purchase Price Drop Alert",
-      "path": "/iap/:country/:id",
-      "example": "/appstore/iap/us/id953286746",
+      "name": "Packages",
+      "path": "/pkgs/:name/:routeParams?",
+      "example": "/alpinelinux/pkgs/nodejs",
       "parameters": {
-        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id953286746, in this case, `us`",
-        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id953286746, in this case, `id953286746`"
+        "name": "Packages name",
+        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
       },
-      "description": ""
+      "description": "Alpine Linux packages update"
     }
   },
   {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/xianmian",
+    "provider_id": "amazon",
+    "provider_name": "Amazon",
+    "route_key": "/kindle/software-updates",
     "route": {
-      "name": "每日精品限免 / 促销应用（鲜面连线 by AppSo）",
-      "path": "/xianmian",
-      "example": "/appstore/xianmian",
+      "name": "Kindle Software Updates",
+      "path": "/kindle/software-updates",
+      "example": "/amazon/kindle/software-updates",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "brave",
-    "provider_name": "Brave",
-    "route_key": "/latest",
+    "provider_id": "diskanalyzer",
+    "provider_name": "WizTree",
+    "route_key": "/whats-new",
     "route": {
-      "name": "Release Notes",
-      "path": "/latest",
-      "example": "/brave/latest",
+      "name": "What's New",
+      "path": "/whats-new",
+      "example": "/diskanalyzer/whats-new",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "f-droid",
-    "provider_name": "F-Droid",
-    "route_key": "/apprelease/:app",
+    "provider_id": "dockerhub",
+    "provider_name": "Docker Hub",
+    "route_key": "/repositories/:owner",
     "route": {
-      "name": "App Update",
-      "path": "/apprelease/:app",
-      "example": "/f-droid/apprelease/com.termux",
+      "name": "Owner Repositories",
+      "path": "/repositories/:owner",
+      "example": "/dockerhub/repositories/diygod",
       "parameters": {
-        "app": "App's package name"
+        "owner": "Image owner"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "firecore",
-    "provider_name": "Infuse",
-    "route_key": "/:os",
-    "route": {
-      "name": "Release Notes",
-      "path": "/:os",
-      "example": "/firecore/ios",
-      "parameters": {
-        "os": "`ios`,`tvos`,`macos`"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "firefox",
-    "provider_name": "Mozilla",
-    "route_key": "/addons/:id",
-    "route": {
-      "name": "Add-ons Update",
-      "path": "/addons/:id",
-      "example": "/firefox/addons/rsshub-radar",
-      "parameters": {
-        "id": "Add-ons id, can be found in add-ons url"
-      },
-      "description": ""
+      "description": "List of repositories for an image owner"
     }
   },
   {
@@ -95,54 +67,13 @@
     }
   },
   {
-    "provider_id": "imagemagick",
-    "provider_name": "ImageMagick",
-    "route_key": "/changelog",
+    "provider_id": "postman",
+    "provider_name": "Postman",
+    "route_key": "/release-notes",
     "route": {
-      "name": "Changelog",
-      "path": "/changelog",
-      "example": "/imagemagick/changelog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "macupdate",
-    "provider_name": "MacUpdate",
-    "route_key": "/app/:appId/:appSlug?",
-    "route": {
-      "name": "Update",
-      "path": "/app/:appId/:appSlug?",
-      "example": "/macupdate/app/11942",
-      "parameters": {
-        "appId": "Application unique ID, can be found in URL",
-        "appSlug": "Application slug, can be found in URL"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "microsoft",
-    "provider_name": "Microsoft",
-    "route_key": "/edge/addon/:crxid",
-    "route": {
-      "name": "Addons Update",
-      "path": "/edge/addon/:crxid",
-      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
-      "parameters": {
-        "crxid": "Addon id, can be found in addon url"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "raycast",
-    "provider_name": "Raycast",
-    "route_key": "/changelog",
-    "route": {
-      "name": "Changelog",
-      "path": "/changelog",
-      "example": "/raycast/changelog",
+      "name": "Release Notes",
+      "path": "/release-notes",
+      "example": "/postman/release-notes",
       "parameters": {},
       "description": ""
     }
@@ -160,6 +91,18 @@
         "productId": "product id"
       },
       "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
+    }
+  },
+  {
+    "provider_id": "zotero",
+    "provider_name": "Zotero",
+    "route_key": "/versions",
+    "route": {
+      "name": "Version History",
+      "path": "/versions",
+      "example": "/zotero/versions",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

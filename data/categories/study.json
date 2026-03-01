@@ -1,51 +1,51 @@
 [
   {
-    "provider_id": "cste",
-    "provider_name": "中国技术经济学会",
-    "route_key": "/:id?",
+    "provider_id": "ccf",
+    "provider_name": "中国计算机学会",
+    "route_key": "/news/:category?",
     "route": {
-      "path": "/:id?",
-      "example": "/cste",
+      "path": "/news/:category?",
+      "example": "/ccf/news",
       "parameters": {
-        "id": "分类，见下表，默认为 16，即通知公告"
+        "category": "分类，见下表，默认为 CCF 新闻"
       },
-      "name": "栏目",
-      "description": "| 通知公告 | 学会新闻 | 科协简讯 | 学科动态 | 往事钩沉 |\n| -------- | -------- | -------- | -------- | -------- |\n| 16       | 18       | 19       | 20       | 21       |",
-      "provider_id": "cste",
-      "provider_name": "中国技术经济学会",
-      "route_key": "/:id?"
+      "name": "新闻",
+      "description": "| CCF 新闻    | CCF 聚焦 | ACM 信息  |\n| ----------- | -------- | --------- |\n| Media_list | Focus    | ACM_News |",
+      "provider_id": "ccf",
+      "provider_name": "中国计算机学会",
+      "route_key": "/news/:category?"
     }
   },
   {
-    "provider_id": "eshukan",
-    "provider_name": "万维书刊网",
-    "route_key": "/academic/:id?",
+    "provider_id": "cssn",
+    "provider_name": "Chinese Social Science Net",
+    "route_key": "/iolaw/:section?",
     "route": {
-      "path": "/academic/:id?",
-      "name": "学术资讯",
-      "url": "www.eshukan.com",
-      "example": "/eshukan/academic/1",
+      "path": "/iolaw/:section?",
+      "example": "/cssn/iolaw/zxzp",
       "parameters": {
-        "category": "栏目 id，默认为 `1`，即期刊动态，可在对应栏目页 URL 中找到"
+        "section": "Section ID, can be found in the URL. For example, the Section ID of URL `http://iolaw.cssn.cn/zxzp/` is `zxzp`. The default value is `zxzp`"
       },
-      "description": "::: tip\n  若订阅 [期刊动态](https://www.eshukan.com/academic/index.aspx?cid=1)，网址为 `https://www.eshukan.com/academic/index.aspx?cid=1`。截取 `https://www.eshukan.com/academic/index.aspx?cid=` 到末尾的部分 `1` 作为参数填入，此时路由为 [`/eshukan/academic/1`](https://rsshub.app/eshukan/academic/1)。\n:::\n    ",
-      "provider_id": "eshukan",
-      "provider_name": "万维书刊网",
-      "route_key": "/academic/:id?"
+      "name": "Institute of Law",
+      "provider_id": "cssn",
+      "provider_name": "Chinese Social Science Net",
+      "route_key": "/iolaw/:section?"
     }
   },
   {
-    "provider_id": "howtoforge",
-    "provider_name": "Howtoforge Linux Tutorials",
-    "route_key": "/",
+    "provider_id": "hunanpea",
+    "provider_name": "湖南人事考试网",
+    "route_key": "/rsks/:guid",
     "route": {
-      "path": "/",
-      "example": "/howtoforge",
-      "name": "Tutorials",
-      "url": "howtoforge.com/",
-      "provider_id": "howtoforge",
-      "provider_name": "Howtoforge Linux Tutorials",
-      "route_key": "/"
+      "path": "/rsks/:guid",
+      "example": "/hunanpea/rsks/2f1a6239-b4dc-491b-92af-7d95e0f0543e",
+      "parameters": {
+        "guid": "分类 id，可在 URL 中找到"
+      },
+      "name": "公告",
+      "provider_id": "hunanpea",
+      "provider_name": "湖南人事考试网",
+      "route_key": "/rsks/:guid"
     }
   },
   {
@@ -64,35 +64,35 @@
     }
   },
   {
-    "provider_id": "ruankao",
-    "provider_name": "中国计算机职业技术资格考试",
-    "route_key": "/news",
+    "provider_id": "lmu",
+    "provider_name": "Ludwig Maximilian University of Munich",
+    "route_key": "/jobs",
     "route": {
-      "path": "/news",
-      "name": "软考动态",
-      "description": "**注意：** 官方网站限制了国外网络请求，可能需要通过部署在中国大陆内的 RSSHub 实例访问。",
-      "example": "/ruankao/news",
-      "provider_id": "ruankao",
-      "provider_name": "中国计算机职业技术资格考试",
-      "route_key": "/news"
+      "path": "/jobs",
+      "name": "Job Openings",
+      "url": "lmu.de",
+      "example": "/lmu/jobs",
+      "description": "RSS feed for LMU academic staff job openings.",
+      "provider_id": "lmu",
+      "provider_name": "Ludwig Maximilian University of Munich",
+      "route_key": "/jobs"
     }
   },
   {
-    "provider_id": "sdzk",
-    "provider_name": "山东省教育招生考试院",
-    "route_key": "/:bcid?/:cid?",
+    "provider_id": "shmeea",
+    "provider_name": "上海市教育考试院",
+    "route_key": "/:id?",
     "route": {
-      "path": "/:bcid?/:cid?",
-      "example": "/sdzk",
+      "path": "/:id?",
+      "example": "/shmeea/08000",
       "parameters": {
-        "bcid": "板块 id，可在对应板块页 URL 中找到，默认为 `1`，即信息与政策",
-        "cid": "栏目 id，可在对应板块页 URL 中找到，默认为 `16`，即通知公告"
+        "id": "页面 ID，可在 URL 中找到，默认为消息速递"
       },
-      "name": "新闻",
-      "description": "::: tip\n  若订阅 [信息与政策](https://www.sdzk.cn/NewsList.aspx?BCID=1)，网址为 `https://www.sdzk.cn/NewsList.aspx?BCID=1`。截取 `BCID=1` 作为参数，此时路由为 [`/sdzk/1`](https://rsshub.app/sdzk/1)。\n\n  若订阅 [通知公告](https://www.sdzk.cn/NewsList.aspx?BCID=1&CID=16)，网址为 `https://www.sdzk.cn/NewsList.aspx?BCID=1&CID=16`。截取 `BCID=1` 与 `CID=16` 作为参数，此时路由为 [`/sdzk/1/16`](https://rsshub.app/sdzk/1/16)。\n:::",
-      "provider_id": "sdzk",
-      "provider_name": "山东省教育招生考试院",
-      "route_key": "/:bcid?/:cid?"
+      "name": "消息",
+      "description": "::: tip\n  例如：消息速递的网址为 `https://www.shmeea.edu.cn/page/08000/index.html`，则页面 ID 为 `08000`。\n:::\n\n::: warning\n  暂不支持大类分类和[院内动态](https://www.shmeea.edu.cn/page/19000/index.html)\n:::",
+      "provider_id": "shmeea",
+      "provider_name": "上海市教育考试院",
+      "route_key": "/:id?"
     }
   }
 ]

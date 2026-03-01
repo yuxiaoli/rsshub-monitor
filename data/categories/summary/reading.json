@@ -1,26 +1,75 @@
 [
   {
-    "provider_id": "inoreader",
-    "provider_name": "Inoreader",
-    "route_key": "/html_clip/:user/:tag",
+    "provider_id": "gmcmonline",
+    "provider_name": "国门传媒在线",
+    "route_key": "/chinacustoms",
     "route": {
-      "name": "HTML Clip",
-      "path": "/html_clip/:user/:tag",
-      "example": "/inoreader/html_clip/1005137674/user-favorites",
+      "name": "中国海关",
+      "path": "/chinacustoms",
+      "example": "/gmcmonline/chinacustoms",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "linovelib",
-    "provider_name": "哔哩轻小说",
-    "route_key": "/volume/:id",
+    "provider_id": "p-articles",
+    "provider_name": "虚词",
+    "route_key": "/section/:section",
     "route": {
-      "name": "卷",
-      "path": "/volume/:id",
-      "example": "/linovelib/volume/8",
+      "name": "版块",
+      "path": "/section/:section",
+      "example": "/p-articles/section/critics",
       "parameters": {
-        "id": "小说 ID，可在小说页 URL 中找到"
+        "section": "版块名称, 可在对应版块 URL 中找到, 子版块链接用`-`连接"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/:ncode",
+    "route": {
+      "name": "Novel Updates",
+      "path": "/:ncode",
+      "example": "/syosetu/n9292ii",
+      "parameters": {
+        "ncode": "Novel code, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/search/:sub/:query",
+    "route": {
+      "name": "Search",
+      "path": "/search/:sub/:query",
+      "example": "/syosetu/search/noc/word=ハーレム&notword=&type=r&mintime=&maxtime=&minlen=30000&maxlen=&min_globalpoint=&max_globalpoint=&minlastup=&maxlastup=&minfirstup=&maxfirstup=&isgl=1&notbl=1&order=new?limit=5",
+      "parameters": {
+        "sub": {
+          "description": "The target Syosetu subsite.",
+          "options": [
+            {
+              "value": "yomou",
+              "label": "小説を読もう"
+            },
+            {
+              "value": "noc",
+              "label": "ノクターン"
+            },
+            {
+              "value": "mnlt",
+              "label": "ムーンライト"
+            },
+            {
+              "value": "mid",
+              "label": "ミッドナイト"
+            }
+          ]
+        },
+        "query": "Search parameters in Syosetu format."
       },
       "description": ""
     }

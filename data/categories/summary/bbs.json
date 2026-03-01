@@ -1,71 +1,69 @@
 [
   {
-    "provider_id": "deepin",
-    "provider_name": "Deepin",
-    "route_key": "/threads/:type?",
+    "provider_id": "feng",
+    "provider_name": "威锋",
+    "route_key": "/forum/:id/:type?",
     "route": {
-      "name": "首页主题列表",
-      "path": "/threads/:type?",
-      "example": "/deepin/threads/latest",
+      "name": "社区",
+      "path": "/forum/:id/:type?",
+      "example": "/feng/forum/1",
       "parameters": {
-        "type": {
-          "description": "主题类型",
-          "options": [
-            {
-              "value": "hot",
-              "label": "最热主题"
-            },
-            {
-              "value": "latest",
-              "label": "最新主题"
-            }
-          ]
-        }
+        "id": "版块 ID，可在版块 URL 找到",
+        "type": "排序，见下表，默认为 `all`"
+      },
+      "description": "| 最新回复 | 最新发布 | 热门 | 精华    |\n| -------- | -------- | ---- | ------- |\n| newest   | all      | hot  | essence |"
+    }
+  },
+  {
+    "provider_id": "loongarch",
+    "provider_name": "LA UOSC社区",
+    "route_key": "/post/:type?",
+    "route": {
+      "name": "最热 / 最新帖子",
+      "path": "/post/:type?",
+      "example": "/loongarch/post/newest",
+      "parameters": {
+        "type": "top 或 newest"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "douyu",
-    "provider_name": "斗鱼直播",
-    "route_key": "/group/:id/:sort?",
+    "provider_id": "playno1",
+    "provider_name": "PLAYNO.1 玩樂達人",
+    "route_key": "/st/:catid?",
     "route": {
-      "name": "鱼吧帖子",
-      "path": "/group/:id/:sort?",
-      "example": "/douyu/group/1011",
+      "name": "情趣",
+      "path": "/st/:catid?",
+      "example": "/playno1/st",
       "parameters": {
-        "id": "鱼吧 id，可在鱼吧页 URL 中找到",
-        "sort": "排序方式，见下表，默认为发布时间排序"
+        "catid": "分类，见下表，默认为全部文章"
       },
-      "description": "| 回复时间排序 | 发布时间排序 |\n| ------------ | ------------ |\n| 1            | 2            |"
+      "description": "| 全部文章 | 情趣體驗報告 | 情趣新聞 | 情趣研究所 |\n| -------- | ------------ | -------- | ---------- |\n| all      | experience   | news     | graduate   |"
     }
   },
   {
-    "provider_id": "douyu",
-    "provider_name": "斗鱼直播",
-    "route_key": "/post/:id",
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/xna",
     "route": {
-      "name": "鱼吧跟帖",
-      "path": "/post/:id",
-      "example": "/douyu/post/631737151576473201",
-      "parameters": {
-        "id": "帖子 id，可在帖子页 URL 中找到"
-      },
+      "name": "XNA",
+      "path": "/xna",
+      "example": "/v2ex/xna",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "eleduck",
-    "provider_name": "电鸭社区",
-    "route_key": "/posts/:id?",
+    "provider_id": "xiaote",
+    "provider_name": "小特社区",
+    "route_key": "/news",
     "route": {
-      "name": "分类文章",
-      "path": "/posts/:id?",
-      "example": "/eleduck/posts/4",
-      "parameters": {
-        "id": "分类id,可以论坛的URL找到，默认为全部"
-      },
-      "description": "| id | 分类     |\n| -- | -------- |\n| 0  | 全部     |\n| 1  | 讨论     |\n| 2  | 分享     |\n| 3  | 露个脸   |\n| 4  | 访谈故事 |\n| 5  | 招聘     |\n| 10 | 海外移民 |\n| 12 | 英语     |\n| 14 | 电鸭官方 |\n| 15 | 独立产品 |\n| 17 | 闲话开源 |\n| 19 | Web3     |\n| 21 | 设计     |\n| 22 | 人才库   |\n| 23 | Upwork   |\n| 24 | 经验课   |"
+      "name": "首页帖子",
+      "path": "/news",
+      "example": "/xiaote/news",
+      "parameters": {},
+      "description": ""
     }
   }
 ]

@@ -1,99 +1,86 @@
 [
   {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/artists/:lang?",
+    "provider_id": "guangdiu",
+    "provider_name": "逛丢",
+    "route_key": "/rank",
     "route": {
-      "path": "/artists/:lang?",
-      "example": "/furstar/artists/cn",
-      "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
-      },
-      "name": "画师列表",
-      "url": "furstar.jp/",
-      "provider_id": "furstar",
-      "provider_name": "Furstar",
-      "route_key": "/artists/:lang?"
-    }
-  },
-  {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/characters/:lang?",
-    "route": {
-      "path": "/characters/:lang?",
-      "example": "/furstar/characters/cn",
-      "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
-      },
-      "name": "最新售卖角色列表",
-      "provider_id": "furstar",
-      "provider_name": "Furstar",
-      "route_key": "/characters/:lang?"
-    }
-  },
-  {
-    "provider_id": "hotukdeals",
-    "provider_name": "hotukdeals",
-    "route_key": "/hottest",
-    "route": {
-      "path": "/hottest",
-      "example": "/hotukdeals/hottest",
+      "path": "/rank",
+      "example": "/guangdiu/rank",
       "parameters": {},
-      "name": "hottest",
-      "url": "www.hotukdeals.com/",
-      "provider_id": "hotukdeals",
-      "provider_name": "hotukdeals",
-      "route_key": "/hottest"
+      "name": "一小时风云榜",
+      "url": "guangdiu.com/rank",
+      "provider_id": "guangdiu",
+      "provider_name": "逛丢",
+      "route_key": "/rank"
     }
   },
   {
-    "provider_id": "openrice",
-    "provider_name": "Openrice開飯喇",
-    "route_key": "/:lang/hongkong/explore/chart/:category",
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/artist/:id",
     "route": {
-      "path": "/:lang/hongkong/explore/chart/:category",
-      "example": "/openrice/zh/hongkong/explore/chart/most-bookmarked",
+      "path": "/artist/:id",
+      "example": "/showstart/artist/301783",
       "parameters": {
-        "lang": "语言，缺省为 zh",
-        "category": "类别，缺省为 most-bookmarked"
+        "id": "音乐人 ID"
       },
-      "name": "香港餐廳排行榜",
-      "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n\n| 最多收藏 | 每周最高评分 | 最高浏览 | 最佳甜品餐厅 |\n| ----- | ------ | ----- | ----- |\n| most-bookmarked | best-rating | most-popular | best-dessert |\n  ",
-      "provider_id": "openrice",
-      "provider_name": "Openrice開飯喇",
-      "route_key": "/:lang/hongkong/explore/chart/:category"
+      "name": "按音乐人 - 演出更新",
+      "description": "::: tip\n音乐人 ID 查询: `/showstart/search/artist/:keyword`，如: [https://rsshub.app/showstart/search/artist/周杰伦](https://rsshub.app/showstart/search/artist/周杰伦)\n:::",
+      "provider_id": "showstart",
+      "provider_name": "秀动网",
+      "route_key": "/artist/:id"
     }
   },
   {
-    "provider_id": "shcstheatre",
-    "provider_name": "上海文化广场",
-    "route_key": "/programs",
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/brand/:id",
     "route": {
-      "path": "/programs",
-      "example": "/shcstheatre/programs",
-      "parameters": {},
-      "name": "节目列表",
-      "url": "www.shcstheatre.com/Program/programList.aspx",
-      "provider_id": "shcstheatre",
-      "provider_name": "上海文化广场",
-      "route_key": "/programs"
-    }
-  },
-  {
-    "provider_id": "shopback",
-    "provider_name": "ShopBack",
-    "route_key": "/:store",
-    "route": {
-      "path": "/:store",
-      "example": "/shopback/shopee-mart",
+      "path": "/brand/:id",
+      "example": "/showstart/brand/34707",
       "parameters": {
-        "store": "Store, can be found in URL"
+        "id": "厂牌 ID"
       },
-      "name": "Store",
-      "provider_id": "shopback",
-      "provider_name": "ShopBack",
-      "route_key": "/:store"
+      "name": "按厂牌 - 演出更新",
+      "description": "::: tip\n厂牌 ID 查询: `/showstart/search/brand/:keyword`，如: [https://rsshub.app/showstart/search/brand/声场](https://rsshub.app/showstart/search/brand/声场)\n:::",
+      "provider_id": "showstart",
+      "provider_name": "秀动网",
+      "route_key": "/brand/:id"
+    }
+  },
+  {
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/event/:cityCode/:showStyle?",
+    "route": {
+      "path": "/event/:cityCode/:showStyle?",
+      "example": "/showstart/event/571/3",
+      "parameters": {
+        "cityCode": "演出城市 (编号)",
+        "showStyle": "演出风格 (编号)"
+      },
+      "name": "按城市 - 演出更新",
+      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::",
+      "provider_id": "showstart",
+      "provider_name": "秀动网",
+      "route_key": "/event/:cityCode/:showStyle?"
+    }
+  },
+  {
+    "provider_id": "taobao",
+    "provider_name": "淘宝众筹",
+    "route_key": "/zhongchou/:type?",
+    "route": {
+      "path": "/zhongchou/:type?",
+      "example": "/taobao/zhongchou/all",
+      "parameters": {
+        "type": "类型, 默认为 `all` 全部"
+      },
+      "name": "众筹项目",
+      "description": "| 全部 | 科技 | 食品        | 动漫 | 设计   | 公益 | 娱乐 | 影音  | 书籍 | 游戏 | 其他  |\n| ---- | ---- | ----------- | ---- | ------ | ---- | ---- | ----- | ---- | ---- | ----- |\n| all  | tech | agriculture | acg  | design | love | tele | music | book | game | other |",
+      "provider_id": "taobao",
+      "provider_name": "淘宝众筹",
+      "route_key": "/zhongchou/:type?"
     }
   },
   {
@@ -124,21 +111,6 @@
       "provider_id": "xiaomiyoupin",
       "provider_name": "小米有品",
       "route_key": "/latest"
-    }
-  },
-  {
-    "provider_id": "zhuwang",
-    "provider_name": "中国养猪网",
-    "route_key": "/zhujia",
-    "route": {
-      "path": "/zhujia",
-      "example": "/zhuwang/zhujia",
-      "parameters": {},
-      "name": "全国今日生猪价格",
-      "url": "zhujia.zhuwang.cc/",
-      "provider_id": "zhuwang",
-      "provider_name": "中国养猪网",
-      "route_key": "/zhujia"
     }
   }
 ]

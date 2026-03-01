@@ -1,154 +1,69 @@
 [
   {
-    "provider_id": "bjsk",
-    "provider_name": "北京社科网",
-    "route_key": "/:path?",
+    "provider_id": "beijingprice",
+    "provider_name": "北京价格",
+    "route_key": "/:category{.+}?",
     "route": {
-      "path": "/:path?",
-      "example": "/bjsk/newslist-1394-1474-0",
+      "path": "/:category{.+}?",
+      "name": "资讯",
+      "url": "beijingprice.cn",
+      "example": "/beijingprice/jgzx/xwzx",
       "parameters": {
-        "path": "路径，默认为 `newslist-1486-0-0`"
+        "category": "分类，默认为 `jgzx/xwzx` 即新闻资讯，可在对应分类页 URL 中找到"
       },
+      "description": "::: tip\n  若订阅 [新闻资讯](https://www.beijingprice.cn/jgzx/xwzx/)，网址为 `https://www.beijingprice.cn/jgzx/xwzx/`。截取 `https://beijingprice.cn/` 到末尾 `/` 的部分 `jgzx/xwzx` 作为参数填入，此时路由为 [`/beijingprice/jgzx/xwzx`](https://rsshub.app/beijingprice/jgzx/xwzx)。\n:::\n\n#### [价格资讯](https://www.beijingprice.cn/jgzx/xwzx/)\n\n| [新闻资讯](https://www.beijingprice.cn/jgzx/xwzx/)     | [工作动态](https://www.beijingprice.cn/jgzx/gzdt/)     | [各区动态](https://www.beijingprice.cn/jgzx/gqdt/)     | [通知公告](https://www.beijingprice.cn/jgzx/tzgg/)     | [价格早报](https://www.beijingprice.cn/jgzx/jgzb/)     |\n| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |\n| [jgzx/xwzx](https://rsshub.app/beijingprice/jgzx/xwzx) | [jgzx/gzdt](https://rsshub.app/beijingprice/jgzx/gzdt) | [jgzx/gqdt](https://rsshub.app/beijingprice/jgzx/gqdt) | [jgzx/tzgg](https://rsshub.app/beijingprice/jgzx/tzgg) | [jgzx/jgzb](https://rsshub.app/beijingprice/jgzx/jgzb) |\n\n#### [综合信息](https://www.beijingprice.cn/zhxx/cbjs/)\n\n| [价格听证](https://www.beijingprice.cn/zhxx/jgtz/)     | [价格监测定点单位名单](https://www.beijingprice.cn/zhxx/jgjcdddwmd/) | [部门预算决算](https://www.beijingprice.cn/bmys/) |\n| ------------------------------------------------------ | -------------------------------------------------------------------- | ------------------------------------------------- |\n| [zhxx/jgtz](https://rsshub.app/beijingprice/zhxx/jgtz) | [zhxx/jgjcdddwmd](https://rsshub.app/beijingprice/zhxx/jgjcdddwmd)   | [bmys](https://rsshub.app/beijingprice/bmys)      |\n    ",
+      "provider_id": "beijingprice",
+      "provider_name": "北京价格",
+      "route_key": "/:category{.+}?"
+    }
+  },
+  {
+    "provider_id": "chinacdc",
+    "provider_name": "中国疾病预防控制中心",
+    "route_key": "/:category{.+}?",
+    "route": {
+      "path": "/:category{.+}?",
       "name": "通用",
-      "description": "::: tip\n  路径处填写对应页面 URL 中 `https://www.bjsk.org.cn/` 和 `.html` 之间的字段。下面是一个例子。\n\n  若订阅 [社科资讯 > 社科要闻](https://www.bjsk.org.cn/newslist-1394-1474-0.html) 则将对应页面 URL `https://www.bjsk.org.cn/newslist-1394-1474-0.html` 中 `https://www.bjsk.org.cn/` 和 `.html` 之间的字段 `newslist-1394-1474-0` 作为路径填入。此时路由为 [`/bjsk/newslist-1394-1474-0`](https://rsshub.app/bjsk/newslist-1394-1474-0)\n:::",
-      "provider_id": "bjsk",
-      "provider_name": "北京社科网",
-      "route_key": "/:path?"
-    }
-  },
-  {
-    "provider_id": "cisia",
-    "provider_name": "中国无机盐工业协会",
-    "route_key": "/:id?",
-    "route": {
-      "path": "/:id?",
-      "name": "栏目",
-      "url": "www.cisia.org",
-      "example": "/cisia/9",
+      "url": "www.chinacdc.cn",
+      "example": "/chinacdc/zxyw",
       "parameters": {
-        "id": "栏目 id，默认为 `9`，即协会动态，可在对应分类页 URL 中找到"
+        "category": "分类，默认为 `zxyw`，即中心要闻，可在对应分类页 URL 中找到，Category, `zxyw`，即中心要闻 by default"
       },
-      "description": "::: tip\n  若订阅 [市场信息](http://www.cisia.org/site/term/12.html)，网址为 `http://www.cisia.org/site/term/12.html`。截取 `https://www.cisia.org/site/term/` 到末尾 `.html` 的部分 `12` 作为参数填入，此时路由为 [`/cisia/12`](https://rsshub.app/cisia/12)。\n:::\n\n<details>\n<summary>更多分类</summary>\n\n#### [分支机构信息](http://www.cisia.org/site/term/14.html)\n\n| [企业动态](http://www.cisia.org/site/term/17.html) | [产品展示](http://www.cisia.org/site/term/18.html) |\n| -------------------------------------------------- | -------------------------------------------------- |\n| [17](https://rsshub.app/cisia/17)                  | [18](https://rsshub.app/cisia/18)                  |\n\n#### [新闻中心](http://www.cisia.org/site/term/8.html)\n\n| [协会动态](http://www.cisia.org/site/term/9.html) | [行业新闻](http://www.cisia.org/site/term/10.html) | [通知公告](http://www.cisia.org/site/term/11.html) | [市场信息](http://www.cisia.org/site/term/12.html) |\n| ------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |\n| [9](https://rsshub.app/cisia/9)                   | [10](https://rsshub.app/cisia/10)                  | [11](https://rsshub.app/cisia/11)                  | [12](https://rsshub.app/cisia/12)                  |\n\n#### [政策法规](http://www.cisia.org/site/term/19.html)\n\n| [宏观聚焦](http://www.cisia.org/site/term/20.html) | [技术园区](http://www.cisia.org/site/term/396.html) |\n| -------------------------------------------------- | --------------------------------------------------- |\n| [20](https://rsshub.app/cisia/20)                  | [396](https://rsshub.app/cisia/396)                 |\n\n#### [合作交流](http://www.cisia.org/site/term/22.html)\n\n| [国际交流](http://www.cisia.org/site/term/23.html) | [行业交流](http://www.cisia.org/site/term/24.html) | [企业调研](http://www.cisia.org/site/term/25.html) | [会展信息](http://www.cisia.org/site/term/84.html) | [宣传专题](http://www.cisia.org/site/term/430.html) |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------- |\n| [23](https://rsshub.app/cisia/23)                  | [24](https://rsshub.app/cisia/24)                  | [25](https://rsshub.app/cisia/25)                  | [84](https://rsshub.app/cisia/84)                  | [430](https://rsshub.app/cisia/430)                 |\n\n#### [党建工作](http://www.cisia.org/site/term/26.html)\n\n| [党委文件](http://www.cisia.org/site/term/27.html) | [学习园地](http://www.cisia.org/site/term/28.html) | [两会专题](http://www.cisia.org/site/term/443.html) |\n| -------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------- |\n| [27](https://rsshub.app/cisia/27)                  | [28](https://rsshub.app/cisia/28)                  | [443](https://rsshub.app/cisia/443)                 |\n\n#### [网上服务平台](http://www.cisia.org/site/term/29.html)\n\n| [前沿科技](http://www.cisia.org/site/term/31.html) | [新材料新技术](http://www.cisia.org/site/term/133.html) | [文件共享](http://www.cisia.org/site/term/30.html) |\n| -------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------- |\n| [31](https://rsshub.app/cisia/31)                  | [133](https://rsshub.app/cisia/133)                     | [30](https://rsshub.app/cisia/30)                  |\n\n#### [会员社区](http://www.cisia.org/site/term/34.html)\n\n| [会员分布](http://www.cisia.org/site/term/35.html) | [会员风采](http://www.cisia.org/site/term/68.html) |\n| -------------------------------------------------- | -------------------------------------------------- |\n| [35](https://rsshub.app/cisia/35)                  | [68](https://rsshub.app/cisia/68)                  |\n\n</details>\n    ",
-      "provider_id": "cisia",
-      "provider_name": "中国无机盐工业协会",
-      "route_key": "/:id?"
-    }
-  },
-  {
-    "provider_id": "go",
-    "provider_name": "JapanGov",
-    "route_key": "/mhlw/pdf/:category{.+}?",
-    "route": {
-      "path": "/mhlw/pdf/:category{.+}?",
-      "name": "PDF",
-      "url": "www.mhlw.go.jp",
-      "example": "/go/mhlw/pdf/stf/seisakunitsuite/bunya/houkokusuunosuii",
-      "parameters": {
-        "category": "Category, `stf/seisakunitsuite/bunya/houkokusuunosuii` as 新型コロナウイルス感染症の定点当たり報告数の推移 by default"
-      },
-      "description": "::: tip\n  Subscribing to this route will give you access to all PDF files on this page.\n\n  If you subscribe to [新型コロナウイルス感染症の定点当たり報告数の推移](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/houkokusuunosuii.html)，where the URL is `https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/houkokusuunosuii.html`, extract the part `https://www.mhlw.go.jp/` to the end, which is `.html`, and use it as the parameter to fill in. Therefore, the route will be [`/go/mhlw/stf/seisakunitsuite/bunya/houkokusuunosuii`](https://rsshub.app/go/mhlw/stf/seisakunitsuite/bunya/houkokusuunosuii).\n:::\n  ",
-      "provider_id": "go",
-      "provider_name": "JapanGov",
-      "route_key": "/mhlw/pdf/:category{.+}?"
+      "description": "::: tip\n若订阅 [中心要闻](https://www.chinacdc.cn/zxyw/)，网址为 `https://www.chinacdc.cn/zxyw/`，请截取 `https://www.chinacdc.cn/` 到末尾 `/` 的部分 `zxyw` 作为 `category` 参数填入，此时目标路由为 [`/chinacdc/zxyw`](https://rsshub.app/chinacdc/zxyw)。\n:::\n\n| [中心要闻](https://www.chinacdc.cn/zxyw/) | [通知公告](https://www.chinacdc.cn/tzgg/) |\n| ----------------------------------------- | ----------------------------------------- |\n| [zxyw](https://rsshub.app/chinacdc/zxyw)  | [tzgg](https://rsshub.app/chinacdc/tzgg)  |\n\n<details>\n<summary>更多分类</summary>\n\n#### [党建园地](https://www.chinacdc.cn/dqgz/djgz/)\n\n| [党建工作](https://www.chinacdc.cn/dqgz/djgz/)     | [廉政文化](https://www.chinacdc.cn/djgz_13611/)                | [工会工作](https://www.chinacdc.cn/ghgz/)          | [团青工作](https://www.chinacdc.cn/tqgz/)          | [理论学习](https://www.chinacdc.cn/tqgz_13618/)                |\n| -------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------- |\n| [dqgz/djgz](https://rsshub.app/chinacdc/dqgz/djgz) | [dqgz/djgz_13611](https://rsshub.app/chinacdc/dqgz/djgz_13611) | [dqgz/ghgz](https://rsshub.app/chinacdc/dqgz/ghgz) | [dqgz/tqgz](https://rsshub.app/chinacdc/dqgz/tqgz) | [dqgz/tqgz_13618](https://rsshub.app/chinacdc/dqgz/tqgz_13618) |\n\n#### [疾控应急](https://www.chinacdc.cn/jkyj/)\n\n| [传染病](https://www.chinacdc.cn/jkyj/crb2/)       | [突发公共卫生事件](https://www.chinacdc.cn/jkyj/tfggws/) | [慢性病与伤害防控](https://www.chinacdc.cn/jkyj/mxfcrxjb2/)  | [烟草控制](https://www.chinacdc.cn/jkyj/yckz/)     | [营养与健康](https://www.chinacdc.cn/jkyj/yyyjk2/)     |\n| -------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------ |\n| [jkyj/crb2](https://rsshub.app/chinacdc/jkyj/crb2) | [jkyj/tfggws](https://rsshub.app/chinacdc/jkyj/tfggws)   | [jkyj/mxfcrxjb2](https://rsshub.app/chinacdc/jkyj/mxfcrxjb2) | [jkyj/yckz](https://rsshub.app/chinacdc/jkyj/yckz) | [jkyj/yyyjk2](https://rsshub.app/chinacdc/jkyj/yyyjk2) |\n\n| [环境与健康](https://www.chinacdc.cn/jkyj/hjyjk/)    | [职业卫生与中毒控制](https://www.chinacdc.cn/jkyj/hjwsyzdkz/) | [放射卫生](https://www.chinacdc.cn/jkyj/fsws/)     | [免疫规划](https://www.chinacdc.cn/jkyj/mygh02/)       | [结核病防控](https://www.chinacdc.cn/jkyj/jhbfk/)    |\n| ---------------------------------------------------- | ------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- |\n| [jkyj/hjyjk](https://rsshub.app/chinacdc/jkyj/hjyjk) | [jkyj/hjwsyzdkz](https://rsshub.app/chinacdc/jkyj/hjwsyzdkz)  | [jkyj/fsws](https://rsshub.app/chinacdc/jkyj/fsws) | [jkyj/mygh02](https://rsshub.app/chinacdc/jkyj/mygh02) | [jkyj/jhbfk](https://rsshub.app/chinacdc/jkyj/jhbfk) |\n\n| [寄生虫病](https://www.chinacdc.cn/jkyj/jscb/)     |\n| -------------------------------------------------- |\n| [jkyj/jscb](https://rsshub.app/chinacdc/jkyj/jscb) |\n\n#### [科学研究](https://www.chinacdc.cn/kxyj/)\n\n| [科技进展](https://www.chinacdc.cn/kxyj/kjjz/)     | [学术动态](https://www.chinacdc.cn/kxyj/xsdt/)     | [科研平台](https://www.chinacdc.cn/kxyj/xsjl/)     | [科研亮点](https://www.chinacdc.cn/kxyj/kyld/)     | [科技政策](https://www.chinacdc.cn/kxyj/kjzc/)     |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |\n| [kxyj/kjjz](https://rsshub.app/chinacdc/kxyj/kjjz) | [kxyj/xsdt](https://rsshub.app/chinacdc/kxyj/xsdt) | [kxyj/xsjl](https://rsshub.app/chinacdc/kxyj/xsjl) | [kxyj/kyld](https://rsshub.app/chinacdc/kxyj/kyld) | [kxyj/kjzc](https://rsshub.app/chinacdc/kxyj/kjzc) |\n\n#### [教育培训](https://www.chinacdc.cn/jypx/)\n\n| [研究生院](https://www.chinacdc.cn/jypx/yjsy/)     | [继续教育](https://www.chinacdc.cn/jypx/jxjy/)     | [博士后](https://www.chinacdc.cn/jypx/bsh/)      | [中国现场流行病学培训项目（CFETP）](https://www.chinacdc.cn/jypx/CFETP/) |\n| -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------ |\n| [jypx/yjsy](https://rsshub.app/chinacdc/jypx/yjsy) | [jypx/jxjy](https://rsshub.app/chinacdc/jypx/jxjy) | [jypx/bsh](https://rsshub.app/chinacdc/jypx/bsh) | [jypx/CFETP](https://rsshub.app/chinacdc/jypx/CFETP)                     |\n\n#### [全球公卫](https://www.chinacdc.cn/qqgw/)\n\n| [合作伙伴](https://www.chinacdc.cn/qqgw/hzhb/)     | [世界卫生组织合作中心和参比实验室](https://www.chinacdc.cn/qqgw/wszz/) | [国际交流 (港澳台交流)](https://www.chinacdc.cn/qqgw/gjjl/) | [公共卫生援外与合作](https://www.chinacdc.cn/qqgw/ggws/) |\n| -------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------- |\n| [qqgw/hzhb](https://rsshub.app/chinacdc/qqgw/hzhb) | [qqgw/wszz](https://rsshub.app/chinacdc/qqgw/wszz)                     | [qqgw/gjjl](https://rsshub.app/chinacdc/qqgw/gjjl)         | [qqgw/ggws](https://rsshub.app/chinacdc/qqgw/ggws)       |\n\n#### [人才建设](https://www.chinacdc.cn/rcjs/)\n\n| [院士风采](https://www.chinacdc.cn/rcjs/ysfc/)     | [首席专家](https://www.chinacdc.cn/rcjs/sxzj/)     | [人才队伍](https://www.chinacdc.cn/rcjs/rcdw/)     | [人才招聘](https://www.chinacdc.cn/rcjs/rczp/)     |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |\n| [rcjs/ysfc](https://rsshub.app/chinacdc/rcjs/ysfc) | [rcjs/sxzj](https://rsshub.app/chinacdc/rcjs/sxzj) | [rcjs/rcdw](https://rsshub.app/chinacdc/rcjs/rcdw) | [rcjs/rczp](https://rsshub.app/chinacdc/rcjs/rczp) |\n\n#### [健康数据](https://www.chinacdc.cn/jksj/)\n\n| [全国法定传染病疫情情况](https://www.chinacdc.cn/jksj/jksj01/) | [全国新型冠状病毒感染疫情情况](https://www.chinacdc.cn/jksj/xgbdyq/) | [重点传染病和突发公共卫生事件风险评估报告](https://www.chinacdc.cn/jksj/jksj02/) | [全球传染病事件风险评估报告](https://www.chinacdc.cn/jksj/jksj03/) | [全国预防接种异常反应监测信息概况](https://www.chinacdc.cn/jksj/jksj04_14209/) |\n| -------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------ |\n| [jksj/jksj01](https://rsshub.app/chinacdc/jksj/jksj01)         | [jksj/xgbdyq](https://rsshub.app/chinacdc/jksj/xgbdyq)               | [jksj/jksj02](https://rsshub.app/chinacdc/jksj/jksj02)                           | [jksj/jksj03](https://rsshub.app/chinacdc/jksj/jksj03)             | [jksj/jksj04_14209](https://rsshub.app/chinacdc/jksj/jksj04_14209)             |\n\n| [流感监测周报](https://www.chinacdc.cn/jksj/jksj04_14249/)         | [全国急性呼吸道传染病哨点监测情况](https://www.chinacdc.cn/jksj/jksj04_14275/) | [健康报告](https://www.chinacdc.cn/jksj/jksj04/)       |\n| ------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------ |\n| [jksj/jksj04_14249](https://rsshub.app/chinacdc/jksj/jksj04_14249) | [jksj/jksj04_14275](https://rsshub.app/chinacdc/jksj/jksj04_14275)             | [jksj/jksj04](https://rsshub.app/chinacdc/jksj/jksj04) |\n\n#### [健康科普](https://www.chinacdc.cn/jkkp/)\n\n| [传染病](https://www.chinacdc.cn/jkkp/crb/)      | [慢性非传染性疾病](https://www.chinacdc.cn/jkkp/mxfcrb/) | [免疫规划](https://www.chinacdc.cn/jkkp/mygh/)     | [公共卫生事件](https://www.chinacdc.cn/jkkp/ggws/) | [烟草控制](https://www.chinacdc.cn/jkkp/yckz/)     |\n| ------------------------------------------------ | -------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |\n| [jkkp/crb](https://rsshub.app/chinacdc/jkkp/crb) | [jkkp/mxfcrb](https://rsshub.app/chinacdc/jkkp/mxfcrb)   | [jkkp/mygh](https://rsshub.app/chinacdc/jkkp/mygh) | [jkkp/ggws](https://rsshub.app/chinacdc/jkkp/ggws) | [jkkp/yckz](https://rsshub.app/chinacdc/jkkp/yckz) |\n\n| [营养与健康](https://www.chinacdc.cn/jkkp/yyjk/)   | [环境健康](https://www.chinacdc.cn/jkkp/hjjk/)     | [职业健康与中毒控制](https://www.chinacdc.cn/jkkp/zyjk/) | [放射卫生](https://www.chinacdc.cn/jkkp/fsws/)     |\n| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------- |\n| [jkkp/yyjk](https://rsshub.app/chinacdc/jkkp/yyjk) | [jkkp/hjjk](https://rsshub.app/chinacdc/jkkp/hjjk) | [jkkp/zyjk](https://rsshub.app/chinacdc/jkkp/zyjk)       | [jkkp/fsws](https://rsshub.app/chinacdc/jkkp/fsws) |\n\n</details>\n",
+      "view": 0,
+      "provider_id": "chinacdc",
+      "provider_name": "中国疾病预防控制中心",
+      "route_key": "/:category{.+}?"
     }
   },
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/chongqing/sydwgkzp/:year?",
+    "route_key": "/miit/zcjd",
     "route": {
-      "path": "/chongqing/sydwgkzp/:year?",
-      "url": "rlsbj.cq.gov.cn/",
-      "example": "/gov/chongqing/sydwgkzp",
-      "parameters": {
-        "year": "需要订阅的年份，格式为`YYYY`，必须小于等于当前年份，默认为当前年份"
-      },
-      "name": "重庆市人民政府 人力社保局 - 事业单位公开招聘",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/chongqing/sydwgkzp/:year?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/cmse/fxrw",
-    "route": {
-      "path": "/cmse/fxrw",
-      "example": "/gov/cmse/fxrw",
+      "path": "/miit/zcjd",
+      "example": "/gov/miit/zcjd",
       "parameters": {},
-      "name": "飞行任务",
-      "url": "www.cmse.gov.cn/fxrw",
+      "name": "政策解读",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/cmse/fxrw"
+      "route_key": "/miit/zcjd"
     }
   },
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/csrc/zfxxgk_zdgk/:id?",
+    "route_key": "/safe/business/:site?",
     "route": {
-      "path": "/csrc/zfxxgk_zdgk/:id?",
-      "name": "政府信息公开",
-      "url": "www.csrc.gov.cn",
-      "example": "/gov/csrc/zfxxgk_zdgk/c101971",
+      "path": "/safe/business/:site?",
+      "example": "/gov/safe/business/beijing",
       "parameters": {
-        "id": "频道 id，默认为 `c101971`，即行政处罚决定，可在对应频道页 URL 中找到"
+        "site": "站点，见上表，默认为 beijing"
       },
-      "description": "::: tip\n  若订阅 [行政处罚决定](http://www.csrc.gov.cn/csrc/c101971/zfxxgk_zdgk.shtml)，网址为 `http://www.csrc.gov.cn/csrc/c101971/zfxxgk_zdgk.shtml`。截取 `http://www.csrc.gov.cn/csrc/` 到末尾 `/zfxxgk_zdgk.shtml` 的部分 `c101971` 作为参数填入，此时路由为 [`/gov/csrc/zfxxgk_zdgk/c101971`](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101971)。\n:::\n\n#### [主动公开目录](http://www.csrc.gov.cn/csrc/c100035/zfxxgk_zdgk.shtml)\n\n| 频道                                                                    | ID                                                         |\n| ----------------------------------------------------------------------- | ---------------------------------------------------------- |\n| [按主题查看](http://www.csrc.gov.cn/csrc/c101793/zfxxgk_zdgk.shtml)     | [c101793](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101793) |\n| [按体裁文种查看](http://www.csrc.gov.cn/csrc/c101951/zfxxgk_zdgk.shtml) | [c101951](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101951) |\n| [按派出机构查看](http://www.csrc.gov.cn/csrc/c101985/zfxxgk_zdgk.shtml) | [c101985](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101985) |\n\n<details>\n<summary>更多频道</summary>\n\n#### [按主题查看](http://www.csrc.gov.cn/csrc/c101793/zfxxgk_zdgk.shtml)\n\n| 频道                                                                              | ID                                                         |\n| --------------------------------------------------------------------------------- | ---------------------------------------------------------- |\n| [综合政务](http://www.csrc.gov.cn/csrc/c101794/zfxxgk_zdgk.shtml)                 | [c101794](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101794) |\n| [发行监管](http://www.csrc.gov.cn/csrc/c101801/zfxxgk_zdgk.shtml)                 | [c101801](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101801) |\n| [公众公司监管（含北交所）](http://www.csrc.gov.cn/csrc/c101828/zfxxgk_zdgk.shtml) | [c101828](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101828) |\n| [证券交易监管](http://www.csrc.gov.cn/csrc/c101832/zfxxgk_zdgk.shtml)             | [c101832](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101832) |\n| [证券经营机构监管](http://www.csrc.gov.cn/csrc/c101837/zfxxgk_zdgk.shtml)         | [c101837](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101837) |\n| [上市公司监管](http://www.csrc.gov.cn/csrc/c101863/zfxxgk_zdgk.shtml)             | [c101863](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101863) |\n| [基金监管](http://www.csrc.gov.cn/csrc/c101876/zfxxgk_zdgk.shtml)                 | [c101876](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101876) |\n| [私募基金监管](http://www.csrc.gov.cn/csrc/c101938/zfxxgk_zdgk.shtml)             | [c101938](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101938) |\n| [区域性股权市场规范发展](http://www.csrc.gov.cn/csrc/c106301/zfxxgk_zdgk.shtml)   | [c106301](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c106301) |\n| [期货监管](http://www.csrc.gov.cn/csrc/c101901/zfxxgk_zdgk.shtml)                 | [c101901](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101901) |\n| [债券监管](http://www.csrc.gov.cn/csrc/c106306/zfxxgk_zdgk.shtml)                 | [c106306](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c106306) |\n| [行政执法](http://www.csrc.gov.cn/csrc/c101925/zfxxgk_zdgk.shtml)                 | [c101925](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101925) |\n| [行政复议](http://www.csrc.gov.cn/csrc/c105938/zfxxgk_zdgk.shtml)                 | [c105938](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c105938) |\n| [国际合作](http://www.csrc.gov.cn/csrc/c101931/zfxxgk_zdgk.shtml)                 | [c101931](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101931) |\n| [证券服务机构监管](http://www.csrc.gov.cn/csrc/c105939/zfxxgk_zdgk.shtml)         | [c105939](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c105939) |\n| [其他](http://www.csrc.gov.cn/csrc/c101950/zfxxgk_zdgk.shtml)                     | [c101950](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101950) |\n\n#### [按体裁文种查看](http://www.csrc.gov.cn/csrc/c101951/zfxxgk_zdgk.shtml)\n\n| 频道                                                                        | ID                                                         |\n| --------------------------------------------------------------------------- | ---------------------------------------------------------- |\n| [机构职能](http://www.csrc.gov.cn/csrc/c101952/zfxxgk_zdgk.shtml)           | [c101952](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101952) |\n| [证监会令](http://www.csrc.gov.cn/csrc/c101953/zfxxgk_zdgk.shtml)           | [c101953](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101953) |\n| [证监会公告](http://www.csrc.gov.cn/csrc/c101954/zfxxgk_zdgk.shtml)         | [c101954](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101954) |\n| [监管规则适用指引](http://www.csrc.gov.cn/csrc/c105948/zfxxgk_zdgk.shtml)   | [c105948](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c105948) |\n| [行政许可批复](http://www.csrc.gov.cn/csrc/c101955/zfxxgk_zdgk.shtml)       | [c101955](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101955) |\n| [办事指南](http://www.csrc.gov.cn/csrc/c101968/zfxxgk_zdgk.shtml)           | [c101968](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101968) |\n| [监管对象](http://www.csrc.gov.cn/csrc/c101969/zfxxgk_zdgk.shtml)           | [c101969](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101969) |\n| [统计信息](http://www.csrc.gov.cn/csrc/c101970/zfxxgk_zdgk.shtml)           | [c101970](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101970) |\n| [行政处罚决定](http://www.csrc.gov.cn/csrc/c101971/zfxxgk_zdgk.shtml)       | [c101971](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101971) |\n| [市场禁入决定](http://www.csrc.gov.cn/csrc/c101972/zfxxgk_zdgk.shtml)       | [c101972](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101972) |\n| [行政执法当事人承诺](http://www.csrc.gov.cn/csrc/c106416/zfxxgk_zdgk.shtml) | [c106416](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c106416) |\n| [行政复议](http://www.csrc.gov.cn/csrc/c101973/zfxxgk_zdgk.shtml)           | [c101973](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101973) |\n| [监管措施](http://www.csrc.gov.cn/csrc/c105955/zfxxgk_zdgk.shtml)           | [c105955](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c105955) |\n| [预先披露](http://www.csrc.gov.cn/csrc/c101974/zfxxgk_zdgk.shtml)           | [c101974](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101974) |\n| [发审会公告](http://www.csrc.gov.cn/csrc/c101975/zfxxgk_zdgk.shtml)         | [c101975](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101975) |\n| [重组委公告](http://www.csrc.gov.cn/csrc/c101976/zfxxgk_zdgk.shtml)         | [c101976](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101976) |\n| [规划报告](http://www.csrc.gov.cn/csrc/c101977/zfxxgk_zdgk.shtml)           | [c101977](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101977) |\n| [非行政许可事项](http://www.csrc.gov.cn/csrc/c101978/zfxxgk_zdgk.shtml)     | [c101978](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101978) |\n| [其他](http://www.csrc.gov.cn/csrc/c101979/zfxxgk_zdgk.shtml)               | [c101979](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101979) |\n| [备案管理](http://www.csrc.gov.cn/csrc/c106402/zfxxgk_zdgk.shtml)           | [c106402](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c106402) |\n\n#### [按派出机构查看](http://www.csrc.gov.cn/csrc/c101985/zfxxgk_zdgk.shtml)\n\n| 频道                                                                | ID                                                         |\n| ------------------------------------------------------------------- | ---------------------------------------------------------- |\n| [北京](http://www.csrc.gov.cn/csrc/c101986/zfxxgk_zdgk.shtml)       | [c101986](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101986) |\n| [天津](http://www.csrc.gov.cn/csrc/c101987/zfxxgk_zdgk.shtml)       | [c101987](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101987) |\n| [河北](http://www.csrc.gov.cn/csrc/c101988/zfxxgk_zdgk.shtml)       | [c101988](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101988) |\n| [山西](http://www.csrc.gov.cn/csrc/c101989/zfxxgk_zdgk.shtml)       | [c101989](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101989) |\n| [内蒙古](http://www.csrc.gov.cn/csrc/c101990/zfxxgk_zdgk.shtml)     | [c101990](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101990) |\n| [辽宁](http://www.csrc.gov.cn/csrc/c101991/zfxxgk_zdgk.shtml)       | [c101991](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101991) |\n| [吉林](http://www.csrc.gov.cn/csrc/c101992/zfxxgk_zdgk.shtml)       | [c101992](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101992) |\n| [黑龙江](http://www.csrc.gov.cn/csrc/c101993/zfxxgk_zdgk.shtml)     | [c101993](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101993) |\n| [上海](http://www.csrc.gov.cn/csrc/c101994/zfxxgk_zdgk.shtml)       | [c101994](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101994) |\n| [江苏](http://www.csrc.gov.cn/csrc/c101995/zfxxgk_zdgk.shtml)       | [c101995](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101995) |\n| [浙江](http://www.csrc.gov.cn/csrc/c101996/zfxxgk_zdgk.shtml)       | [c101996](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101996) |\n| [安徽](http://www.csrc.gov.cn/csrc/c101997/zfxxgk_zdgk.shtml)       | [c101997](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101997) |\n| [福建](http://www.csrc.gov.cn/csrc/c101998/zfxxgk_zdgk.shtml)       | [c101998](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101998) |\n| [江西](http://www.csrc.gov.cn/csrc/c101999/zfxxgk_zdgk.shtml)       | [c101999](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101999) |\n| [山东](http://www.csrc.gov.cn/csrc/c102000/zfxxgk_zdgk.shtml)       | [c102000](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102000) |\n| [河南](http://www.csrc.gov.cn/csrc/c102001/zfxxgk_zdgk.shtml)       | [c102001](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102001) |\n| [湖北](http://www.csrc.gov.cn/csrc/c102002/zfxxgk_zdgk.shtml)       | [c102002](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102002) |\n| [湖南](http://www.csrc.gov.cn/csrc/c102003/zfxxgk_zdgk.shtml)       | [c102003](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102003) |\n| [广东](http://www.csrc.gov.cn/csrc/c102004/zfxxgk_zdgk.shtml)       | [c102004](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102004) |\n| [广西](http://www.csrc.gov.cn/csrc/c102005/zfxxgk_zdgk.shtml)       | [c102005](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102005) |\n| [海南](http://www.csrc.gov.cn/csrc/c102006/zfxxgk_zdgk.shtml)       | [c102006](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102006) |\n| [重庆](http://www.csrc.gov.cn/csrc/c102007/zfxxgk_zdgk.shtml)       | [c102007](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102007) |\n| [四川](http://www.csrc.gov.cn/csrc/c102008/zfxxgk_zdgk.shtml)       | [c102008](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102008) |\n| [贵州](http://www.csrc.gov.cn/csrc/c102009/zfxxgk_zdgk.shtml)       | [c102009](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102009) |\n| [云南](http://www.csrc.gov.cn/csrc/c102010/zfxxgk_zdgk.shtml)       | [c102010](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102010) |\n| [西藏](http://www.csrc.gov.cn/csrc/c102011/zfxxgk_zdgk.shtml)       | [c102011](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102011) |\n| [陕西](http://www.csrc.gov.cn/csrc/c102012/zfxxgk_zdgk.shtml)       | [c102012](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102012) |\n| [甘肃](http://www.csrc.gov.cn/csrc/c102013/zfxxgk_zdgk.shtml)       | [c102013](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102013) |\n| [青海](http://www.csrc.gov.cn/csrc/c102014/zfxxgk_zdgk.shtml)       | [c102014](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102014) |\n| [宁夏](http://www.csrc.gov.cn/csrc/c102015/zfxxgk_zdgk.shtml)       | [c102015](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102015) |\n| [新疆](http://www.csrc.gov.cn/csrc/c102016/zfxxgk_zdgk.shtml)       | [c102016](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102016) |\n| [深圳](http://www.csrc.gov.cn/csrc/c102017/zfxxgk_zdgk.shtml)       | [c102017](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102017) |\n| [大连](http://www.csrc.gov.cn/csrc/c102018/zfxxgk_zdgk.shtml)       | [c102018](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102018) |\n| [宁波](http://www.csrc.gov.cn/csrc/c102019/zfxxgk_zdgk.shtml)       | [c102019](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102019) |\n| [厦门](http://www.csrc.gov.cn/csrc/c102020/zfxxgk_zdgk.shtml)       | [c102020](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102020) |\n| [青岛](http://www.csrc.gov.cn/csrc/c102021/zfxxgk_zdgk.shtml)       | [c102021](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c102021) |\n| [上海专员办](http://www.csrc.gov.cn/csrc/c105841/zfxxgk_zdgk.shtml) | [c105841](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c105841) |\n| [深圳专员办](http://www.csrc.gov.cn/csrc/c105842/zfxxgk_zdgk.shtml) | [c105842](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c105842) |\n\n#### [综合政务](http://www.csrc.gov.cn/csrc/c101794/zfxxgk_zdgk.shtml)\n\n| 频道                                                                                    | ID                                                         |\n| --------------------------------------------------------------------------------------- | ---------------------------------------------------------- |\n| [组织机构](http://www.csrc.gov.cn/csrc/c101795/zfxxgk_zdgk.shtml)                       | [c101795](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101795) |\n| [征求意见](http://www.csrc.gov.cn/csrc/c101796/zfxxgk_zdgk.shtml)                       | [c101796](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101796) |\n| [废止规章](http://www.csrc.gov.cn/csrc/c101797/zfxxgk_zdgk.shtml)                       | [c101797](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101797) |\n| [财务预算管理](http://www.csrc.gov.cn/csrc/c105887/zfxxgk_zdgk.shtml)                   | [c105887](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c105887) |\n| [其他](http://www.csrc.gov.cn/csrc/c101799/zfxxgk_zdgk.shtml)                           | [c101799](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101799) |\n| [全国人大建议和政协提案复文公开](http://www.csrc.gov.cn/csrc/c101800/zfxxgk_zdgk.shtml) | [c101800](https://rsshub.app/gov/csrc/zfxxgk_zdgk/c101800) |\n\n</details>\n    ",
+      "name": "业务咨询",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/csrc/zfxxgk_zdgk/:id?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/mee/ywdt/:category?",
-    "route": {
-      "path": "/mee/ywdt/:category?",
-      "example": "/gov/mee/ywdt/hjywnews",
-      "parameters": {
-        "category": "分类名，预设 `szyw`"
-      },
-      "name": "要闻动态",
-      "description": "| 时政要闻 | 环境要闻 | 地方快讯 | 新闻发布 | 视频新闻 | 公示公告 |\n| :------: | :------: | :------: | :------: | :------: | :------: |\n|   szyw   | hjywnews |  dfnews  |   xwfb   |   spxw   |   gsgg   |",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/mee/ywdt/:category?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/mem/gk/sgcc/:category?",
-    "route": {
-      "path": "/mem/gk/sgcc/:category?",
-      "example": "/gov/mem/gk/sgcc/tbzdsgdcbg",
-      "parameters": {
-        "category": "分类，见下表，默认为挂牌督办"
-      },
-      "name": "事故及灾害查处",
-      "description": "| 挂牌督办 | 调查报告   |\n| -------- | ---------- |\n| sggpdbqk | tbzdsgdcbg |",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/mem/gk/sgcc/:category?"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/wuhan/sy/whyw",
-    "route": {
-      "path": "/wuhan/sy/whyw",
-      "example": "/gov/wuhan/sy/whyw",
-      "parameters": {},
-      "name": "武汉要闻",
-      "url": "wuhan.gov.cn/sy/whyw/",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/wuhan/sy/whyw"
+      "route_key": "/safe/business/:site?"
     }
   }
 ]

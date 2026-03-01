@@ -1,108 +1,84 @@
 [
   {
-    "provider_id": "4kup",
-    "provider_name": "4KUP",
-    "route_key": "/category/:category",
+    "provider_id": "fantia",
+    "provider_name": "Fantia",
+    "route_key": "/user/:id",
     "route": {
-      "path": "/category/:category",
-      "example": "/4kup/category/coser",
-      "parameters": {
-        "category": "Category"
-      },
-      "name": "Category",
-      "url": "4kup.net/",
-      "provider_id": "4kup",
-      "provider_name": "4KUP",
-      "route_key": "/category/:category"
-    }
-  },
-  {
-    "provider_id": "4kup",
-    "provider_name": "4KUP",
-    "route_key": "/tag/:tag",
-    "route": {
-      "path": "/tag/:tag",
-      "example": "/4kup/tag/asian",
-      "parameters": {
-        "tag": "Tag"
-      },
-      "name": "Tag",
-      "url": "4kup.net/",
-      "provider_id": "4kup",
-      "provider_name": "4KUP",
-      "route_key": "/tag/:tag"
-    }
-  },
-  {
-    "provider_id": "bjp",
-    "provider_name": "北京天文馆",
-    "route_key": "/apod",
-    "route": {
-      "path": "/apod",
+      "path": "/user/:id",
       "view": 2,
-      "example": "/bjp/apod",
+      "example": "/fantia/user/3498",
+      "parameters": {
+        "id": "User id, can be found in user profile URL"
+      },
+      "name": "User Posts",
+      "provider_id": "fantia",
+      "provider_name": "Fantia",
+      "route_key": "/user/:id"
+    }
+  },
+  {
+    "provider_id": "magnumphotos",
+    "provider_name": "Magnum Photos",
+    "route_key": "/magazine",
+    "route": {
+      "path": "/magazine",
+      "view": 2,
+      "example": "/magnumphotos/magazine",
       "parameters": {},
-      "name": "每日一图",
-      "url": "bjp.org.cn/APOD/today.shtml",
-      "provider_id": "bjp",
-      "provider_name": "北京天文馆",
-      "route_key": "/apod"
+      "name": "Magazine",
+      "url": "magnumphotos.com/",
+      "provider_id": "magnumphotos",
+      "provider_name": "Magnum Photos",
+      "route_key": "/magazine"
     }
   },
   {
-    "provider_id": "cosplaytele",
-    "provider_name": "CosplayTele",
-    "route_key": "/category/:category",
+    "provider_id": "misskon",
+    "provider_name": "MissKON",
+    "route_key": "/posts/:routeParams?",
     "route": {
-      "path": "/category/:category",
-      "example": "/cosplaytele/category/cosplay",
+      "path": "/posts/:routeParams?",
+      "example": "/misskon/posts/search=video&tags_exclude=353,3100&per_page=5",
       "parameters": {
-        "category": "Category"
+        "routeParams": "Additional parameters for filtering posts, refer to [WordPress API Reference](https://developer.wordpress.org/rest-api/reference/posts/#arguments) for details."
       },
-      "name": "Category",
-      "url": "cosplaytele.com/",
-      "provider_id": "cosplaytele",
-      "provider_name": "CosplayTele",
-      "route_key": "/category/:category"
+      "name": "Posts",
+      "provider_id": "misskon",
+      "provider_name": "MissKON",
+      "route_key": "/posts/:routeParams?"
     }
   },
   {
-    "provider_id": "konachan",
-    "provider_name": "Konachan.com Anime Wallpapers",
-    "route_key": "/post/popular_recent/:period?",
+    "provider_id": "natgeo",
+    "provider_name": "National Geographic",
+    "route_key": "/dailyphoto",
     "route": {
-      "path": "/post/popular_recent/:period?",
+      "path": "/dailyphoto",
       "view": 2,
-      "example": "/konachan/post/popular_recent/1d",
+      "example": "/natgeo/dailyphoto",
+      "parameters": {},
+      "name": "Daily Photo",
+      "url": "nationalgeographic.com/photo-of-the-day/*",
+      "provider_id": "natgeo",
+      "provider_name": "National Geographic",
+      "route_key": "/dailyphoto"
+    }
+  },
+  {
+    "provider_id": "skeb",
+    "provider_name": "Skeb",
+    "route_key": "/search/:keyword",
+    "route": {
+      "path": "/search/:keyword",
+      "example": "/skeb/search/初音ミク",
       "parameters": {
-        "period": {
-          "description": "展示时间",
-          "options": [
-            {
-              "value": "1d",
-              "label": "最近 24 小时"
-            },
-            {
-              "value": "1w",
-              "label": "最近一周"
-            },
-            {
-              "value": "1m",
-              "label": "最近一月"
-            },
-            {
-              "value": "1y",
-              "label": "最近一年"
-            }
-          ],
-          "default": "1d"
-        }
+        "keyword": "Search keyword"
       },
-      "name": "Popular Recent Posts",
-      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |",
-      "provider_id": "konachan",
-      "provider_name": "Konachan.com Anime Wallpapers",
-      "route_key": "/post/popular_recent/:period?"
+      "name": "Search Results",
+      "description": "Get the search results for works on Skeb",
+      "provider_id": "skeb",
+      "provider_name": "Skeb",
+      "route_key": "/search/:keyword"
     }
   }
 ]

@@ -1,32 +1,85 @@
 [
   {
-    "provider_id": "inoreader",
-    "provider_name": "Inoreader",
-    "route_key": "/html_clip/:user/:tag",
+    "provider_id": "gmcmonline",
+    "provider_name": "国门传媒在线",
+    "route_key": "/chinacustoms",
     "route": {
-      "path": "/html_clip/:user/:tag",
-      "example": "/inoreader/html_clip/1005137674/user-favorites",
-      "view": 0,
-      "name": "HTML Clip",
-      "provider_id": "inoreader",
-      "provider_name": "Inoreader",
-      "route_key": "/html_clip/:user/:tag"
+      "path": "/chinacustoms",
+      "name": "中国海关",
+      "url": "chinacustoms.gmcmonline.com",
+      "example": "/gmcmonline/chinacustoms",
+      "provider_id": "gmcmonline",
+      "provider_name": "国门传媒在线",
+      "route_key": "/chinacustoms"
     }
   },
   {
-    "provider_id": "linovelib",
-    "provider_name": "哔哩轻小说",
-    "route_key": "/volume/:id",
+    "provider_id": "p-articles",
+    "provider_name": "虚词",
+    "route_key": "/section/:section",
     "route": {
-      "path": "/volume/:id",
-      "example": "/linovelib/volume/8",
+      "path": "/section/:section",
+      "example": "/p-articles/section/critics",
       "parameters": {
-        "id": "小说 ID，可在小说页 URL 中找到"
+        "section": "版块名称, 可在对应版块 URL 中找到, 子版块链接用`-`连接"
       },
-      "name": "卷",
-      "provider_id": "linovelib",
-      "provider_name": "哔哩轻小说",
-      "route_key": "/volume/:id"
+      "name": "版块",
+      "provider_id": "p-articles",
+      "provider_name": "虚词",
+      "route_key": "/section/:section"
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/:ncode",
+    "route": {
+      "path": "/:ncode",
+      "example": "/syosetu/n9292ii",
+      "parameters": {
+        "ncode": "Novel code, can be found in URL"
+      },
+      "name": "Novel Updates",
+      "provider_id": "syosetu",
+      "provider_name": "Syosetu",
+      "route_key": "/:ncode"
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/search/:sub/:query",
+    "route": {
+      "path": "/search/:sub/:query",
+      "example": "/syosetu/search/noc/word=ハーレム&notword=&type=r&mintime=&maxtime=&minlen=30000&maxlen=&min_globalpoint=&max_globalpoint=&minlastup=&maxlastup=&minfirstup=&maxfirstup=&isgl=1&notbl=1&order=new?limit=5",
+      "parameters": {
+        "sub": {
+          "description": "The target Syosetu subsite.",
+          "options": [
+            {
+              "value": "yomou",
+              "label": "小説を読もう"
+            },
+            {
+              "value": "noc",
+              "label": "ノクターン"
+            },
+            {
+              "value": "mnlt",
+              "label": "ムーンライト"
+            },
+            {
+              "value": "mid",
+              "label": "ミッドナイト"
+            }
+          ]
+        },
+        "query": "Search parameters in Syosetu format."
+      },
+      "name": "Search",
+      "provider_id": "syosetu",
+      "provider_name": "Syosetu",
+      "route_key": "/search/:sub/:query"
     }
   }
 ]
