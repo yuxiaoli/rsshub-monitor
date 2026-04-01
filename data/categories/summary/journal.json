@@ -1,52 +1,43 @@
 [
   {
-    "provider_id": "bioone",
-    "provider_name": "BioOne",
-    "route_key": "/featured",
+    "provider_id": "aeaweb",
+    "provider_name": "American Economic Association",
+    "route_key": "/:id",
     "route": {
-      "name": "Featured articles",
-      "path": "/featured",
-      "example": "/bioone/featured",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nymity",
-    "provider_name": "nymity",
-    "route_key": "/censorbib",
-    "route": {
-      "name": "CensorBib Updates",
-      "path": "/censorbib",
-      "example": "/nymity/censorbib",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "papers",
-    "provider_name": "Cool Papers",
-    "route_key": "/query/:keyword{.+}?",
-    "route": {
-      "name": "Topic",
-      "path": "/query/:keyword{.+}?",
-      "example": "/papers/query/Detection",
+      "name": "Journal",
+      "path": "/:id",
+      "example": "/aeaweb/aer",
       "parameters": {
-        "keyword": "Keyword to search for papers, e.g., Detection, Segmentation, etc."
+        "id": "Journal id, can be found in URL"
       },
-      "description": "::: tip\n  If you subscibe to [arXiv Paper queryed by Detection](https://papers.cool/arxiv/search?highlight=1&query=Detection), where the URL is `https://papers.cool/arxiv/search?highlight=1&query=Detection`, extract the part `https://papers.cool/` to the end, and use it as the parameter to fill in. Therefore, the route will be [`/papers/query/Detection`](https://rsshub.app/papers/query/Detection).\n:::\n\n| Category                                              | id                  |\n| ----------------------------------------------------- | ------------------- |\n| arXiv Paper queryed by Detection                      | query/Detection     |\n| arXiv Paper queryed by Segmentation                   | query/Segmentation  |\n  "
+      "description": "The URL of the journal [American Economic Review](https://www.aeaweb.org/journals/aer) is `https://www.aeaweb.org/journals/aer`, where `aer` is the id of the journal, so the route for this journal is `/aeaweb/aer`.\n\n::: tip\n  More jounals can be found in [AEA Journals](https://www.aeaweb.org/journals).\n:::"
     }
   },
   {
-    "provider_id": "usenix",
-    "provider_name": "USENIX",
-    "route_key": "/loginonline",
+    "provider_id": "ieee-security",
+    "provider_name": "IEEE Computer Society",
+    "route_key": "/security-privacy",
     "route": {
-      "name": ";login:",
-      "path": "/loginonline",
-      "example": "/usenix/loginonline",
+      "name": "IEEE Symposium on Security and Privacy",
+      "path": "/security-privacy",
+      "example": "/ieee-security/security-privacy",
       "parameters": {},
-      "description": ""
+      "description": "Return results from 2020"
+    }
+  },
+  {
+    "provider_id": "rsc",
+    "provider_name": "Royal Society of Chemistry",
+    "route_key": "/journal/:id/:category?",
+    "route": {
+      "name": "Journal",
+      "path": "/journal/:id/:category?",
+      "example": "/rsc/journal/ta",
+      "parameters": {
+        "id": "Journal id, can be found in URL",
+        "category": "Category, see below, All Recent Articles by default"
+      },
+      "description": "::: tip\n  All journals at [Current journals](https://pubs.rsc.org/en/journals)\n:::\n\n| All Recent Articles | Advance Articles |\n| ------------------- | ---------------- |\n| allrecentarticles   | advancearticles  |"
     }
   }
 ]

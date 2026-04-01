@@ -1,42 +1,29 @@
 [
   {
-    "provider_id": "aqicn",
-    "provider_name": "空气质量",
-    "route_key": "/:city/:pollution?",
+    "provider_id": "apple",
+    "provider_name": "Apple",
+    "route_key": "/exchange_repair/:country?",
     "route": {
-      "name": "实时 AQI",
-      "path": "/:city/:pollution?",
-      "example": "/aqicn/beijing/pm25",
+      "name": "Exchange and Repair Extension Programs",
+      "path": "/exchange_repair/:country?",
+      "example": "/apple/exchange_repair",
       "parameters": {
-        "city": "城市拼音或地区 ID，详见[aqicn.org](http://aqicn.org/city/)",
-        "pollution": "可选择显示更详细的空气污染成分"
+        "country": "country code in apple.com URL (exception: for `United States` please use `us`), default to China `cn`"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "boc",
-    "provider_name": "中国银行",
-    "route_key": "/whpj/:format?",
+    "provider_id": "bing",
+    "provider_name": "Bing",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "外汇牌价",
-      "path": "/whpj/:format?",
-      "example": "/boc/whpj/zs?filter_title=%E8%8B%B1%E9%95%91",
+      "name": "搜索",
+      "path": "/search/:keyword",
+      "example": "/bing/search/rss",
       "parameters": {
-        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
+        "keyword": "搜索关键词"
       },
-      "description": "| 短格式 | 中行折算价 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | ---------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | zs         | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
-    }
-  },
-  {
-    "provider_id": "cdzjryb",
-    "provider_name": "成都住建蓉 e 办",
-    "route_key": "/zw/projectList",
-    "route": {
-      "name": "商品住房购房登记",
-      "path": "/zw/projectList",
-      "example": "/cdzjryb/zw/projectList",
-      "parameters": {},
       "description": ""
     }
   },
@@ -55,27 +42,77 @@
     }
   },
   {
-    "provider_id": "gdsrx",
-    "provider_name": "广东省食品药品审评认证技术协会",
-    "route_key": "/:id?",
+    "provider_id": "cib",
+    "provider_name": "中国兴业银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "name": "栏目",
-      "path": "/:id?",
-      "example": "/gdsrx",
+      "name": "外汇牌价",
+      "path": "/whpj/:format?",
+      "example": "/cib/whpj/xh?filter_title=USD",
       "parameters": {
-        "id": "栏目 id，可在对应栏目页 URL 中找到，见下表，默认为法规文库"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
-      "description": "| 栏目名称          | 栏目 id |\n| ----------------- | ------- |\n| 法规文库          | 10      |\n| 法规资讯          | 12      |\n| 专家供稿          | 13      |\n| 协会动态 会员动态 | 20      |\n| 协会动态          | 37      |\n| 协会通知公告      | 38      |\n| 会员动态          | 39      |"
+      "description": "| 短格式 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
     }
   },
   {
-    "provider_id": "jingzhengu",
-    "provider_name": "精真估",
+    "provider_id": "fisher-spb",
+    "provider_name": "Fisher Spb",
     "route_key": "/news",
     "route": {
-      "name": "资讯",
+      "name": "News",
       "path": "/news",
-      "example": "/jingzhengu/news",
+      "example": "/fisher-spb/news",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "instructables",
+    "provider_name": "Instructables",
+    "route_key": "/projects/:category?",
+    "route": {
+      "name": "Projects",
+      "path": "/projects/:category?",
+      "example": "/instructables/projects/circuits",
+      "parameters": {
+        "category": "Category, empty by default, can be found in URL or see the table below"
+      },
+      "description": "| All | Circuits | Workshop | Craft | Cooking | Living | Outside | Teachers |\n| --- | -------- | -------- | ----- | ------- | ------ | ------- | -------- |\n|     | circuits | workshop | craft | cooking | living | outside | teachers |"
+    }
+  },
+  {
+    "provider_id": "sogou",
+    "provider_name": "搜狗",
+    "route_key": "/doodles",
+    "route": {
+      "name": "特色 LOGO",
+      "path": "/doodles",
+      "example": "/sogou/doodles",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "taiwanmobile",
+    "provider_name": "台灣大哥大",
+    "route_key": "/rate-plans",
+    "route": {
+      "name": "資費公告",
+      "path": "/rate-plans",
+      "example": "/taiwanmobile/rate-plans",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "urbandictionary",
+    "provider_name": "Urban Dictionary",
+    "route_key": "/random",
+    "route": {
+      "name": "Random words",
+      "path": "/random",
+      "example": "/urbandictionary/random",
       "parameters": {},
       "description": ""
     }

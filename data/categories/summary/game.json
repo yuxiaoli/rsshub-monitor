@@ -1,20 +1,5 @@
 [
   {
-    "provider_id": "alicesoft",
-    "provider_name": "ALICESOFT",
-    "route_key": "/information/:category?/:game?",
-    "route": {
-      "name": "ニュース",
-      "path": "/information/:category?/:game?",
-      "example": "/alicesoft/information/game/cat377",
-      "parameters": {
-        "category": "Category in the URL, which can be accessed under カテゴリ一覧 on the website.",
-        "game": "Game-specific subcategory in the URL, which can be accessed under カテゴリ一覧 on the website. In this case, the category value should be `game`."
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "diershoubing",
     "provider_name": "二柄 APP",
     "route_key": "/news",
@@ -48,90 +33,75 @@
     }
   },
   {
-    "provider_id": "gf-cn",
-    "provider_name": "少女前线",
-    "route_key": "/news/:category?",
+    "provider_id": "gamersky",
+    "provider_name": "GamerSky",
+    "route_key": "/news/:type?",
     "route": {
-      "name": "情报局",
-      "path": "/news/:category?",
-      "example": "/gf-cn/news",
+      "name": "资讯",
+      "path": "/news/:type?",
+      "example": "/gamersky/news/pc",
       "parameters": {
-        "category": "分类，见下表，默认为新闻"
+        "type": "资讯类型，见表，默认为 `pc`"
       },
-      "description": "| 新闻 | 公告 |\n| ---- | ---- |\n| 1    | 3    |"
+      "description": "|today|pc|ns|mobile|web|industry|hardware|tech|\n|---|---|---|---|---|---|---|---|\n|今日推荐|单机电玩|NS|手游|网游|业界|硬件|科技|\n"
+    }
+  },
+  {
+    "provider_id": "gcores",
+    "provider_name": "机核网",
+    "route_key": "/news",
+    "route": {
+      "name": "资讯",
+      "path": "/news",
+      "example": "/gcores/news",
+      "parameters": {},
+      "description": ""
     }
   },
   {
     "provider_id": "mihoyo",
     "provider_name": "米哈游",
-    "route_key": "/ys/:location?/:category?",
+    "route_key": "/bbs/follow-list/:uid",
     "route": {
-      "name": "原神",
-      "path": "/ys/:location?/:category?",
-      "example": "/mihoyo/ys",
+      "name": "米游社 - 用户关注",
+      "path": "/bbs/follow-list/:uid",
+      "example": "/mihoyo/bbs/follow-list/77005350",
       "parameters": {
-        "location": "区域，可选 `main`（简中）或 `zh-tw`（繁中）",
-        "category": "分类，见下表，默认为最新"
-      },
-      "description": "#### 新闻 {#mi-ha-you-yuan-shen-xin-wen}\n\n| 最新   | 新闻 | 公告   | 活动     |\n| ------ | ---- | ------ | -------- |\n| latest | news | notice | activity |"
-    }
-  },
-  {
-    "provider_id": "minecraft",
-    "provider_name": "Minecraft",
-    "route_key": "/java-runtime/:arch?/:javaType?",
-    "route": {
-      "name": "Java Runtimes",
-      "path": "/java-runtime/:arch?/:javaType?",
-      "example": "/minecraft/java-runtime",
-      "parameters": {
-        "arch": "Arch, `all` by default",
-        "javaType": "Java runtime type, `all` by default"
-      },
-      "description": "\narch:\n\n- gamecore (Currently not used by Mojang)\n- linux\n- linux-i386\n- mac-os\n- mac-os-arm64\n- windows-arm64\n- windows-x64\n- windows-x86\n\njavaType:\n\n- java-runtime-alpha\n- java-runtime-beta\n- java-runtime-delta\n- java-runtime-gamma\n- java-runtime-gamma-snapshot\n- jre-legacy\n- minecraft-java-exe (Only on Windows)\n"
-    }
-  },
-  {
-    "provider_id": "minecraft",
-    "provider_name": "Minecraft",
-    "route_key": "/version/:versionType?/:linkType?",
-    "route": {
-      "name": "Java Game Update",
-      "path": "/version/:versionType?/:linkType?",
-      "example": "/minecraft/version",
-      "parameters": {
-        "versionType": "Game version type, `all` by default",
-        "linkType": "Link added to feed, `official` by default"
-      },
-      "description": "\n| Version                    | versionType |\n| -------------------------- | ----------- |\n| 正式版                     | release     |\n| 快照                       | snapshot    |\n| Alpha 及更早的版本         | old_alpha  |\n| Beta 版                    | old_beta   |\n| Target                     | linkType    |\n| -------------------------- | --------    |\n| minecraft.net              | official    |\n| 英文 Minecraft Wiki 版本页 | enwiki      |\n| 中文 Minecraft Wiki 版本页 | zhwiki      |\n"
-    }
-  },
-  {
-    "provider_id": "osu",
-    "provider_name": "osu!",
-    "route_key": "/packs/:type?",
-    "route": {
-      "name": "Beatmap Packs",
-      "path": "/packs/:type?",
-      "example": "/osu/packs",
-      "parameters": {
-        "type": "pack type, default to `standard`, can choose from `featured`, `tournament`, `loved`, `chart`, `theme` and `artist`"
+        "uid": "用户uid"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "qq",
-    "provider_name": "腾讯网",
-    "route_key": "/cfhd/news/:category?",
+    "provider_id": "modrinth",
+    "provider_name": "Modrinth",
+    "route_key": "/project/:id/versions/:routeParams?",
     "route": {
-      "name": "穿越火线 CFHD 专区资讯中心",
-      "path": "/cfhd/news/:category?",
-      "example": "/qq/cfhd/news",
+      "name": "Project versions",
+      "path": "/project/:id/versions/:routeParams?",
+      "example": "/modrinth/project/sodium/versions",
       "parameters": {
-        "category": "分类，默认为 60847，即最新，可在对应分类页 URL 中找到"
+        "id": "Id or slug of the Modrinth project",
+        "routeParams": "Extra route params. See the table below for options"
       },
-      "description": "::: tip\n  若订阅 [穿越火线 CFHD 专区资讯中心 - 最新](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60847/m22510/list_1.shtml)，网址为 `https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60847/m22510/list_1.shtml`。截取 `https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/` 到末尾 `/m22510/list_1.shtml` 的部分 `60847` 作为参数填入，此时路由为 [`/qq/cfhd/news/60847`](https://rsshub.app/qq/cfhd/news/60847)。\n:::\n\n| 分类                                                                                                  | ID                                            |\n| ----------------------------------------------------------------------------------------------------- | --------------------------------------------- |\n| [最新](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60847/m22510/list_1.shtml) | [60847](https://rsshub.app/qq/cfhd/news/60847) |\n| [公告](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/59625/m22510/list_1.shtml) | [59625](https://rsshub.app/qq/cfhd/news/59625) |\n| [版本](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/60850/m22510/list_1.shtml) | [60850](https://rsshub.app/qq/cfhd/news/60850) |\n| [赛事](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/59626/m22510/list_1.shtml) | [59626](https://rsshub.app/qq/cfhd/news/59626) |\n| [杂谈](https://cfhd.cf.qq.com/webplat/info/news_version3/37427/59139/59140/59624/m22510/list_1.shtml) | [59624](https://rsshub.app/qq/cfhd/news/59624) |\n  "
+      "description": "| Name           | Example                                      |\n| -------------- | -------------------------------------------- |\n| loaders        | loaders=fabric&loaders=quilt&loaders=forge |\n| game_versions | game_versions=1.20.1&game_versions=1.20.2 |\n| featured       | featured=true                                |"
+    }
+  },
+  {
+    "provider_id": "osu",
+    "provider_name": "osu!",
+    "route_key": "/latest-ranked/:routeParams?",
+    "route": {
+      "name": "Latest Ranked Beatmap",
+      "path": "/latest-ranked/:routeParams?",
+      "example": "/osu/latest-ranked/includeMode=osu&difficultyLimit=L3&difficultyLimit=U7",
+      "parameters": {
+        "routeParams": {
+          "description": "Used to pass route parameters in Query String format. Check out route description for more info.",
+          "default": "null"
+        }
+      },
+      "description": "\nSubscribe to the new beatmaps on https://osu.ppy.sh/beatmapsets.\n\n#### Parameter Description\n\nParameters allows you to:\n\n- Filter game mode\n- Limit beatmap difficulty\n- Show/hide game mode in feed title\n\nBelow is a table of all allowed parameters passed to `routeParams`\n\n\n| Name              | Default  | Description                                                                                                                                                                                                                                          |\n| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `includeMode`     | All mode | Could be `osu`, `mania`, `fruits` or `taiko`. Specify included game mode of beatmaps. Including this paramseter multiple times to specify multiple game modes, e.g.: `includeMode=osu&includeMode=mania`. Subscribe to all game modes if not specified |\n| `difficultyLimit` | None     | Lower/upper limit of star rating of the beatmaps in the beatmapset item, e.g.:`difficultyLimit=U6`. Checkout tips in descriptions for detailed explaination and examples.                                                                            |\n| `modeInTitle`     | `true`   | `true` or `false` Add mode info into feed title.\n\n\nThis actual parameters should be passed as `routeParams` in URL Query String format without `?`, e.g.:\n\n    /osu/latest-ranked/modeInTitle=true&includeMode=osu\n\n:::tip\nYou could make use of `difficultyLimit` paramters to create a \"high difficulty/low difficulty only\" only feed.\n\nFor example, if you only wants to play low star rating beatmap like 1 or 2 star, you could subscribe to:\n\n    /osu/latest-ranked/difficultyLimit=U2\n\nThis will filter out all beatmapsets that do not provide at least one beatmap with star rating<=`2.00`.\n\nSimilarly, you could use lower bound to filter out beatmapsets which don't have at least one beatmap\nwith star rating higher than a certain threshold.\n\n    /osu/latest-ranked/difficultyLimit=L6\n\nNow all beatmapsets that don't provided at least one beatmap with star rating higher than `6.00` will be filtered.\n:::\n"
     }
   },
   {
@@ -150,31 +120,30 @@
     }
   },
   {
-    "provider_id": "xiaoheihe",
-    "provider_name": "小黑盒",
-    "route_key": "/discount/:platform",
+    "provider_id": "taptap",
+    "provider_name": "TapTap",
+    "route_key": "/changelog/:id/:lang?",
     "route": {
-      "name": "游戏折扣",
-      "path": "/discount/:platform",
-      "example": "/xiaoheihe/discount/pc",
+      "name": "游戏更新",
+      "path": "/changelog/:id/:lang?",
+      "example": "/taptap/changelog/60809/en_US",
       "parameters": {
-        "platform": "平台分类，见下表"
+        "id": "游戏 ID，游戏主页 URL 中获取",
+        "lang": "语言，默认使用 `zh_CN`，亦可使用 `en_US`"
       },
-      "description": "| PC  | Switch  | PSN   | Xbox |\n| ----- | ------ | ----- | ----- |\n| pc    | switch | psn   | xbox  |"
+      "description": ""
     }
   },
   {
-    "provider_id": "yxdzqb",
-    "provider_name": "游戏打折情报",
-    "route_key": "/:type",
+    "provider_id": "warthunder",
+    "provider_name": "War Thunder",
+    "route_key": "/news",
     "route": {
-      "name": "游戏折扣",
-      "path": "/:type",
-      "example": "/yxdzqb/popular_cn",
-      "parameters": {
-        "type": "折扣类型"
-      },
-      "description": "| Steam 最新折扣 | Steam 热门游戏折扣 | Steam 热门中文游戏折扣 | Steam 历史低价 | Steam 中文游戏历史低价 |\n| -------------- | ------------------ | ---------------------- | -------------- | ---------------------- |\n| discount       | popular            | popular_cn            | low            | low_cn                |"
+      "name": "News",
+      "path": "/news",
+      "example": "/warthunder/news",
+      "parameters": {},
+      "description": "News data from [https://warthunder.com/en/news/](https://warthunder.com/en/news/)\n  The `pubDate` provided under UTC time zone, so please ignore the specific time!!!"
     }
   }
 ]

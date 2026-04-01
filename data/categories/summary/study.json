@@ -1,82 +1,28 @@
 [
   {
-    "provider_id": "ccf",
-    "provider_name": "中国计算机学会",
-    "route_key": "/news/:category?",
+    "provider_id": "aiea",
+    "provider_name": "Asian Innovation and Entrepreneurship Association",
+    "route_key": "/seminars/:period",
     "route": {
-      "name": "新闻",
-      "path": "/news/:category?",
-      "example": "/ccf/news",
+      "name": "Seminar Series",
+      "path": "/seminars/:period",
+      "example": "/aiea/seminars/upcoming",
       "parameters": {
-        "category": "分类，见下表，默认为 CCF 新闻"
+        "period": "Time frame"
       },
-      "description": "| CCF 新闻    | CCF 聚焦 | ACM 信息  |\n| ----------- | -------- | --------- |\n| Media_list | Focus    | ACM_News |"
+      "description": "| Time frame |\n| ---------- |\n| upcoming   |\n| past       |\n| both       |"
     }
   },
   {
-    "provider_id": "cssn",
-    "provider_name": "Chinese Social Science Net",
-    "route_key": "/iolaw/:section?",
+    "provider_id": "ruankao",
+    "provider_name": "中国计算机职业技术资格考试",
+    "route_key": "/news",
     "route": {
-      "name": "Institute of Law",
-      "path": "/iolaw/:section?",
-      "example": "/cssn/iolaw/zxzp",
-      "parameters": {
-        "section": "Section ID, can be found in the URL. For example, the Section ID of URL `http://iolaw.cssn.cn/zxzp/` is `zxzp`. The default value is `zxzp`"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "hunanpea",
-    "provider_name": "湖南人事考试网",
-    "route_key": "/rsks/:guid",
-    "route": {
-      "name": "公告",
-      "path": "/rsks/:guid",
-      "example": "/hunanpea/rsks/2f1a6239-b4dc-491b-92af-7d95e0f0543e",
-      "parameters": {
-        "guid": "分类 id，可在 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "kimlaw",
-    "provider_name": "The Korea Institute of Marine Law",
-    "route_key": "/thesis",
-    "route": {
-      "name": "Thesis",
-      "path": "/thesis",
-      "example": "/kimlaw/thesis",
+      "name": "软考动态",
+      "path": "/news",
+      "example": "/ruankao/news",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "lmu",
-    "provider_name": "Ludwig Maximilian University of Munich",
-    "route_key": "/jobs",
-    "route": {
-      "name": "Job Openings",
-      "path": "/jobs",
-      "example": "/lmu/jobs",
-      "parameters": {},
-      "description": "RSS feed for LMU academic staff job openings."
-    }
-  },
-  {
-    "provider_id": "shmeea",
-    "provider_name": "上海市教育考试院",
-    "route_key": "/:id?",
-    "route": {
-      "name": "消息",
-      "path": "/:id?",
-      "example": "/shmeea/08000",
-      "parameters": {
-        "id": "页面 ID，可在 URL 中找到，默认为消息速递"
-      },
-      "description": "::: tip\n  例如：消息速递的网址为 `https://www.shmeea.edu.cn/page/08000/index.html`，则页面 ID 为 `08000`。\n:::\n\n::: warning\n  暂不支持大类分类和[院内动态](https://www.shmeea.edu.cn/page/19000/index.html)\n:::"
+      "description": "**注意：** 官方网站限制了国外网络请求，可能需要通过部署在中国大陆内的 RSSHub 实例访问。"
     }
   }
 ]

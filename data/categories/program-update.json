@@ -1,27 +1,5 @@
 [
   {
-    "provider_id": "alpinelinux",
-    "provider_name": "Alpine Linux",
-    "route_key": "/pkgs/:name/:routeParams?",
-    "route": {
-      "name": "Packages",
-      "path": "/pkgs/:name/:routeParams?",
-      "parameters": {
-        "name": "Packages name",
-        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
-      },
-      "example": "/alpinelinux/pkgs/nodejs",
-      "description": "Alpine Linux packages update",
-      "zh": {
-        "name": "软件包",
-        "description": "Alpine Linux 软件包更新"
-      },
-      "provider_id": "alpinelinux",
-      "provider_name": "Alpine Linux",
-      "route_key": "/pkgs/:name/:routeParams?"
-    }
-  },
-  {
     "provider_id": "amazon",
     "provider_name": "Amazon",
     "route_key": "/kindle/software-updates",
@@ -33,6 +11,38 @@
       "provider_id": "amazon",
       "provider_name": "Amazon",
       "route_key": "/kindle/software-updates"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/app/:id?",
+    "route": {
+      "path": "/app/:id?",
+      "example": "/bilibili/app/android",
+      "parameters": {
+        "id": "客户端 id，见下表，默认为安卓版"
+      },
+      "name": "更新情报",
+      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |",
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/app/:id?"
+    }
+  },
+  {
+    "provider_id": "brave",
+    "provider_name": "Brave",
+    "route_key": "/latest",
+    "route": {
+      "path": "/latest",
+      "example": "/brave/latest",
+      "parameters": {},
+      "name": "Release Notes",
+      "url": "brave.com/latest",
+      "provider_id": "brave",
+      "provider_name": "Brave",
+      "route_key": "/latest"
     }
   },
   {
@@ -69,19 +79,48 @@
     }
   },
   {
-    "provider_id": "fosshub",
-    "provider_name": "FossHub",
-    "route_key": "/:id",
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/golden",
     "route": {
-      "path": "/:id",
-      "example": "/fosshub/qBittorrent",
+      "path": "/golden",
+      "example": "/mi/golden",
+      "name": "小米应用商店金米奖",
+      "provider_id": "mi",
+      "provider_name": "小米",
+      "route_key": "/golden"
+    }
+  },
+  {
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/edge/addon/:crxid",
+    "route": {
+      "path": "/edge/addon/:crxid",
+      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
       "parameters": {
-        "id": "Software id, can be found in URL"
+        "crxid": "Addon id, can be found in addon url"
       },
-      "name": "Software Update",
-      "provider_id": "fosshub",
-      "provider_name": "FossHub",
-      "route_key": "/:id"
+      "name": "Addons Update",
+      "provider_id": "microsoft",
+      "provider_name": "Microsoft",
+      "route_key": "/edge/addon/:crxid"
+    }
+  },
+  {
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/mcr/product/*",
+    "route": {
+      "path": "/mcr/product/*",
+      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
+      "parameters": {
+        "product": "repository path in mcr.microsoft.com"
+      },
+      "name": "Product tags in mcr.microsoft.com",
+      "provider_id": "microsoft",
+      "provider_name": "Microsoft",
+      "route_key": "/mcr/product/*"
     }
   },
   {
@@ -100,21 +139,32 @@
     }
   },
   {
-    "provider_id": "sony",
-    "provider_name": "Sony",
-    "route_key": "/downloads/:productType/:productId",
+    "provider_id": "tiddlywiki",
+    "provider_name": "TiddlyWiki",
+    "route_key": "/releases",
     "route": {
-      "path": "/downloads/:productType/:productId",
-      "example": "/sony/downloads/product/nw-wm1am2",
-      "parameters": {
-        "productType": "product type",
-        "productId": "product id"
-      },
-      "name": "Software Downloads",
-      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::",
-      "provider_id": "sony",
-      "provider_name": "Sony",
-      "route_key": "/downloads/:productType/:productId"
+      "path": "/releases",
+      "example": "/tiddlywiki/releases",
+      "url": "tiddlywiki.com",
+      "name": "Releases",
+      "provider_id": "tiddlywiki",
+      "provider_name": "TiddlyWiki",
+      "route_key": "/releases"
+    }
+  },
+  {
+    "provider_id": "webcatalog",
+    "provider_name": "WebCatalog",
+    "route_key": "/changelog",
+    "route": {
+      "path": "/changelog",
+      "example": "/webcatalog/changelog",
+      "parameters": {},
+      "name": "Changelog",
+      "url": "desktop.webcatalog.io/en/changelog",
+      "provider_id": "webcatalog",
+      "provider_name": "WebCatalog",
+      "route_key": "/changelog"
     }
   },
   {

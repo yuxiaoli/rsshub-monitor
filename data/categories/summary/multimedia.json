@@ -12,6 +12,22 @@
     }
   },
   {
+    "provider_id": "7mmtv",
+    "provider_name": "7mmtv",
+    "route_key": "/:language?/:category?/:type?",
+    "route": {
+      "name": "Category",
+      "path": "/:language?/:category?/:type?",
+      "example": "/7mmtv/zh/censored_list/all",
+      "parameters": {
+        "language": "Language, see below, `en` as English by default",
+        "category": "Category, see below, `censored_list` as Censored by default",
+        "type": "Server, see below, all server by default"
+      },
+      "description": "**Language**\n\n| English | 日本語 | 한국의 | 中文 |\n| ------- | ------ | ------ | ---- |\n| en      | ja     | ko     | zh   |\n\n  **Category**\n\n| Chinese subtitles AV | Censored       | Amateur          | Uncensored       | Asian self-timer | H comics     |\n| -------------------- | -------------- | ---------------- | ---------------- | ---------------- | ------------ |\n| chinese_list        | censored_list | amateurjav_list | uncensored_list | amateur_list    | hcomic_list |\n\n| Chinese subtitles AV random | Censored random  | Amateur random     | Uncensored random  | Asian self-timer random | H comics random |\n| --------------------------- | ---------------- | ------------------ | ------------------ | ----------------------- | --------------- |\n| chinese_random             | censored_random | amateurjav_random | uncensored_random | amateur_random         | hcomic_random  |\n\n  **Server**\n\n| All Server | fembed(Full DL) | streamsb(Full DL) | doodstream | streamtape(Full DL) | avgle | embedgram | videovard(Full DL) |\n| ---------- | --------------- | ----------------- | ---------- | ------------------- | ----- | --------- | ------------------ |\n| all        | 21              | 30                | 28         | 29                  | 17    | 34        | 33                 |"
+    }
+  },
+  {
     "provider_id": "ajmide",
     "provider_name": "阿基米德 FM",
     "route_key": "/:id",
@@ -26,13 +42,13 @@
     }
   },
   {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/",
+    "provider_id": "bandcamp",
+    "provider_name": "Bandcamp",
+    "route_key": "/weekly",
     "route": {
-      "name": "最新記事",
-      "path": "/",
-      "example": "/chikubi",
+      "name": "Weekly",
+      "path": "/weekly",
+      "example": "/bandcamp/weekly",
       "parameters": {},
       "description": ""
     }
@@ -40,29 +56,29 @@
   {
     "provider_id": "chikubi",
     "provider_name": "乳首ふぇち",
-    "route_key": "/:keyword",
+    "route_key": "/category/:keyword",
     "route": {
-      "name": "Navigation",
-      "path": "/:keyword",
-      "example": "/chikubi",
-      "parameters": {
-        "keyword": "導覽列，見下表，默認爲最新"
-      },
-      "description": "| 殿堂 | 動畫 | VR | 漫畫 | 音聲 | CG・イラスト |\n| ---- | ----- | -- | ----- | ----- | -- |\n| best | video | vr | comic | voice | cg |"
-    }
-  },
-  {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/tag/:keyword",
-    "route": {
-      "name": "Tag",
-      "path": "/tag/:keyword",
-      "example": "/chikubi/tag/ドリームチケット",
+      "name": "Category",
+      "path": "/category/:keyword",
+      "example": "/chikubi/category/nipple-lesbian",
       "parameters": {
         "keyword": "Keyword"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "cntv",
+    "provider_name": "CNTV",
+    "route_key": "/:column",
+    "route": {
+      "name": "栏目",
+      "path": "/:column",
+      "example": "/cntv/TOPC1451528971114112",
+      "parameters": {
+        "column": "栏目ID, 可在对应CNTV栏目页面找到"
+      },
+      "description": "::: tip\n栏目 ID 查找示例:\n打开栏目具体某一期页面，F12 控制台输入`column_id`得到栏目 ID。\n:::\n\n  栏目\n\n| 新闻联播             | 新闻周刊             | 天下足球             |\n| -------------------- | -------------------- | -------------------- |\n| TOPC1451528971114112 | TOPC1451559180488841 | TOPC1451551777876756 |"
     }
   },
   {
@@ -81,15 +97,43 @@
     }
   },
   {
+    "provider_id": "newzmz",
+    "provider_name": "NEW 字幕组",
+    "route_key": "/:id?/:downLinkType?",
+    "route": {
+      "name": "指定剧集",
+      "path": "/:id?/:downLinkType?",
+      "example": "/newzmz/qEzRyY3v",
+      "parameters": {
+        "id": "剧集 id，可在剧集下载页 URL 中找到",
+        "downLinkType": "下载链接类型，默认为磁力链"
+      },
+      "description": "::: tip\n  [雪国列车 (剧版)](https://nzmz.xyz/details-qEzRyY3v.html) 的下载页 URL 为 `https://v.ys99.xyz/view/qEzRyY3v.html`，即剧集 id 为 `qEzRyY3v`\n:::"
+    }
+  },
+  {
+    "provider_id": "olevod",
+    "provider_name": "欧乐影院",
+    "route_key": "/vodlist",
+    "route": {
+      "name": "最新视频",
+      "path": "/vodlist",
+      "example": "/olevod/vodlist",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "pornhub",
     "provider_name": "PornHub",
-    "route_key": "/search/:keyword",
+    "route_key": "/users/:username/:language?",
     "route": {
-      "name": "Keyword Search",
-      "path": "/search/:keyword",
-      "example": "/pornhub/search/stepsister",
+      "name": "Users",
+      "path": "/users/:username/:language?",
+      "example": "/pornhub/users/pornhubmodels",
       "parameters": {
-        "keyword": "keyword"
+        "language": "language, see below",
+        "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
       },
       "description": ""
     }
@@ -125,16 +169,28 @@
     }
   },
   {
-    "provider_id": "xiaoyuzhou",
-    "provider_name": "小宇宙",
-    "route_key": "/podcast/:id",
+    "provider_id": "tingtingfm",
+    "provider_name": "听听 FM",
+    "route_key": "/program/:programId",
     "route": {
-      "name": "播客",
-      "path": "/podcast/:id",
-      "example": "/xiaoyuzhou/podcast/6021f949a789fca4eff4492c",
+      "name": "节目",
+      "path": "/program/:programId",
+      "example": "/tingtingfm/program/M7VJv6Jj4R",
       "parameters": {
-        "id": "播客 id 或单集 id，可以在小宇宙播客的 URL 中找到"
+        "programId": "节目 ID，可以在 URL 中找到"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "yyets",
+    "provider_name": "人人影视",
+    "route_key": "/today",
+    "route": {
+      "name": "今日播出",
+      "path": "/today",
+      "example": "/yyets/today",
+      "parameters": {},
       "description": ""
     }
   }

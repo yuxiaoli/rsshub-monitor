@@ -1,270 +1,126 @@
 [
   {
-    "provider_id": "acfun",
-    "provider_name": "AcFun",
-    "route_key": "/article/:categoryId/:sortType?/:timeRange?",
-    "route": {
-      "path": "/article/:categoryId/:sortType?/:timeRange?",
-      "view": 0,
-      "example": "/acfun/article/110",
-      "parameters": {
-        "categoryId": {
-          "description": "分区 ID",
-          "options": [
-            {
-              "value": "73",
-              "label": "生活情感"
-            },
-            {
-              "value": "74",
-              "label": "动漫文化"
-            },
-            {
-              "value": "75",
-              "label": "漫画文学"
-            },
-            {
-              "value": "110",
-              "label": "综合"
-            },
-            {
-              "value": "164",
-              "label": "游戏"
-            },
-            {
-              "value": "184",
-              "label": "二次元画师"
-            }
-          ]
-        },
-        "sortType": {
-          "description": "排序",
-          "options": [
-            {
-              "value": "createTime",
-              "label": "最新发表"
-            },
-            {
-              "value": "lastCommentTime",
-              "label": "最新动态"
-            },
-            {
-              "value": "hotScore",
-              "label": "最热文章"
-            }
-          ],
-          "default": "createTime"
-        },
-        "timeRange": {
-          "description": "时间范围，仅在排序是 `hotScore` 有效",
-          "options": [
-            {
-              "value": "all",
-              "label": "时间不限"
-            },
-            {
-              "value": "oneDay",
-              "label": "24 小时"
-            },
-            {
-              "value": "threeDay",
-              "label": "三天"
-            },
-            {
-              "value": "oneWeek",
-              "label": "一周"
-            },
-            {
-              "value": "oneMonth",
-              "label": "一个月"
-            }
-          ],
-          "default": "all"
-        }
-      },
-      "name": "文章",
-      "description": "| 二次元画师 | 综合 | 生活情感 | 游戏 | 动漫文化 | 漫画文学 |\n| ---------- | ---- | -------- | ---- | -------- | -------- |\n| 184        | 110  | 73       | 164  | 74       | 75       |\n\n| 最新发表   | 最新动态        | 最热文章 |\n| ---------- | --------------- | -------- |\n| createTime | lastCommentTime | hotScore |\n\n| 时间不限 | 24 小时 | 三天     | 一周    | 一个月   |\n| -------- | ------- | -------- | ------- | -------- |\n| all      | oneDay  | threeDay | oneWeek | oneMonth |",
-      "provider_id": "acfun",
-      "provider_name": "AcFun",
-      "route_key": "/article/:categoryId/:sortType?/:timeRange?"
-    }
-  },
-  {
     "provider_id": "anime1",
     "provider_name": "Anime1",
-    "route_key": "search/:keyword",
+    "route_key": "anime/:category/:name",
     "route": {
-      "path": "search/:keyword",
-      "name": "Search",
+      "path": "anime/:category/:name",
+      "name": "Anime",
       "url": "anime1.me",
-      "example": "/anime1/search/神之塔",
+      "example": "/anime1/anime/2024年夏季/神之塔-第二季",
       "parameters": {
-        "keyword": "Anime1 Search Keyword"
+        "category": "Anime1 Category",
+        "name": "Anime1 Name"
       },
       "provider_id": "anime1",
       "provider_name": "Anime1",
-      "route_key": "search/:keyword"
+      "route_key": "anime/:category/:name"
     }
   },
   {
     "provider_id": "bangumi.tv",
     "provider_name": "Bangumi 番组计划",
-    "route_key": "/calendar/today",
+    "route_key": "/topic/:id",
     "route": {
-      "path": "/calendar/today",
-      "example": "/bangumi.tv/calendar/today",
-      "parameters": {},
-      "name": "放送列表",
-      "url": "bgm.tv/calendar",
+      "path": "/topic/:id",
+      "example": "/bangumi.tv/topic/367032",
+      "parameters": {
+        "id": "话题 id, 在话题页面地址栏查看"
+      },
+      "name": "小组话题的新回复",
       "provider_id": "bangumi.tv",
       "provider_name": "Bangumi 番组计划",
-      "route_key": "/calendar/today"
+      "route_key": "/topic/:id"
     }
   },
   {
     "provider_id": "bangumi.tv",
     "provider_name": "Bangumi 番组计划",
-    "route_key": "/person/:id",
+    "route_key": "/user/collections/:id/:subjectType/:type",
     "route": {
-      "path": "/person/:id",
-      "example": "/bangumi.tv/person/32943",
+      "path": "/user/collections/:id/:subjectType/:type",
+      "example": "/bangumi.tv/user/collections/sai/1/1",
       "parameters": {
-        "id": "人物 id, 在人物页面的地址栏查看"
-      },
-      "name": "现实人物的新作品",
-      "provider_id": "bangumi.tv",
-      "provider_name": "Bangumi 番组计划",
-      "route_key": "/person/:id"
-    }
-  },
-  {
-    "provider_id": "bangumi.tv",
-    "provider_name": "Bangumi 番组计划",
-    "route_key": "/subject/:id/:type?/:showOriginalName?",
-    "route": {
-      "path": "/subject/:id/:type?/:showOriginalName?",
-      "example": "/bangumi.tv/subject/328609/ep/true",
-      "parameters": {
-        "id": "条目 id, 在条目页面的地址栏查看",
-        "type": "条目类型，可选值为 `ep`, `comments`, `blogs`, `topics`，默认为 `ep`",
-        "showOriginalName": "显示番剧标题原名，可选值 0/1/false/true，默认为 false"
-      },
-      "name": "条目的通用路由格式",
-      "description": "::: warning\n  此通用路由仅用于对路由参数的描述，具体信息请查看下方与条目相关的路由\n:::",
-      "provider_id": "bangumi.tv",
-      "provider_name": "Bangumi 番组计划",
-      "route_key": "/subject/:id/:type?/:showOriginalName?"
-    }
-  },
-  {
-    "provider_id": "baozimh",
-    "provider_name": "包子漫画",
-    "route_key": "/comic/:name",
-    "route": {
-      "path": "/comic/:name",
-      "example": "/baozimh/comic/guowangpaiming-shiricaofu",
-      "parameters": {
-        "name": "漫画名称，在漫画链接可以得到(`comic/` 后的那段)"
-      },
-      "name": "订阅漫画",
-      "provider_id": "baozimh",
-      "provider_name": "包子漫画",
-      "route_key": "/comic/:name"
-    }
-  },
-  {
-    "provider_id": "colamanga",
-    "provider_name": "COLAMANGA",
-    "route_key": "/:id",
-    "route": {
-      "path": "/:id",
-      "parameters": {
-        "id": "漫画id"
-      },
-      "name": "Manga",
-      "example": "/colamanga/manga-qq978758",
-      "provider_id": "colamanga",
-      "provider_name": "COLAMANGA",
-      "route_key": "/:id"
-    }
-  },
-  {
-    "provider_id": "dlsite",
-    "provider_name": "DLsite",
-    "route_key": "/campaign/:type/:free?",
-    "route": {
-      "path": "/campaign/:type/:free?",
-      "example": "/dlsite/campaign/home",
-      "parameters": {
-        "type": {
-          "description": "类型",
+        "id": "用户 id, 在用户页面地址栏查看",
+        "subjectType": {
+          "description": "全部类别: `空`、book: `1`、anime: `2`、music: `3`、game: `4`、real: `6`",
           "options": [
             {
-              "value": "home",
-              "label": "「DLsite 同人」"
+              "value": "ALL",
+              "label": "all"
             },
             {
-              "value": "comic",
-              "label": "「DLsite コミック」"
+              "value": "book",
+              "label": "1"
             },
             {
-              "value": "soft",
-              "label": "「DLsite PCソフト」"
+              "value": "anime",
+              "label": "2"
             },
             {
-              "value": "maniax",
-              "label": "「DLsite 同人 - R18」"
+              "value": "music",
+              "label": "3"
             },
             {
-              "value": "books",
-              "label": "「DLsite 成年コミック - R18」"
+              "value": "game",
+              "label": "4"
             },
             {
-              "value": "pro",
-              "label": "「DLsite 美少女ゲーム」"
-            },
-            {
-              "value": "girls",
-              "label": "「DLsite 乙女」"
-            },
-            {
-              "value": "bl",
-              "label": "「DLsite BL」"
+              "value": "real",
+              "label": "6"
             }
           ]
         },
-        "free": {
-          "description": "免费",
+        "type": {
+          "description": "全部类别: `空`、想看: `1`、看过: `2`、在看: `3`、搁置: `4`、抛弃: `5`",
           "options": [
             {
-              "value": "1",
-              "label": "是"
+              "value": "ALL",
+              "label": "all"
+            },
+            {
+              "value": "想看",
+              "label": "1"
+            },
+            {
+              "value": "看过",
+              "label": "2"
+            },
+            {
+              "value": "在看",
+              "label": "3"
+            },
+            {
+              "value": "搁置",
+              "label": "4"
+            },
+            {
+              "value": "抛弃",
+              "label": "5"
             }
           ]
         }
       },
-      "name": "Discounted Works",
-      "provider_id": "dlsite",
-      "provider_name": "DLsite",
-      "route_key": "/campaign/:type/:free?"
+      "name": "Bangumi 用户收藏列表",
+      "provider_id": "bangumi.tv",
+      "provider_name": "Bangumi 番组计划",
+      "route_key": "/user/collections/:id/:subjectType/:type"
     }
   },
   {
-    "provider_id": "eventernote",
-    "provider_name": "Eventernote",
-    "route_key": "/actors/:name/:id",
+    "provider_id": "cngal",
+    "provider_name": "CnGal",
+    "route_key": "/weekly",
     "route": {
-      "path": "/actors/:name/:id",
-      "view": 3,
-      "example": "/eventernote/actors/三森すずこ/2634",
-      "parameters": {
-        "name": "声优姓名",
-        "id": "声优 ID"
-      },
-      "name": "声优活动及演唱会",
-      "provider_id": "eventernote",
-      "provider_name": "Eventernote",
-      "route_key": "/actors/:name/:id"
+      "path": "/weekly",
+      "view": 0,
+      "example": "/cngal/weekly",
+      "parameters": {},
+      "name": "每周速报",
+      "url": "www.cngal.org/",
+      "provider_id": "cngal",
+      "provider_name": "CnGal",
+      "route_key": "/weekly"
     }
   },
   {
@@ -315,50 +171,37 @@
     }
   },
   {
-    "provider_id": "hpoi",
-    "provider_name": "Hpoi 手办维基",
-    "route_key": "/items/work/:id/:order?",
+    "provider_id": "skebetter",
+    "provider_name": "Skebetter",
+    "route_key": "/illust/:type",
     "route": {
-      "path": "/items/work/:id/:order?",
-      "view": 2,
-      "example": "/hpoi/items/work/4117491",
+      "path": "/illust/:type",
+      "example": "/skebetter/illust/hot",
       "parameters": {
-        "id": "作品 ID",
-        "order": {
-          "description": "排序",
-          "options": [
-            {
-              "value": "release",
-              "label": "发售"
-            },
-            {
-              "value": "add",
-              "label": "入库"
-            },
-            {
-              "value": "hits",
-              "label": "总热度"
-            },
-            {
-              "value": "hits7Day",
-              "label": "一周热度"
-            },
-            {
-              "value": "hitsDay",
-              "label": "一天热度"
-            },
-            {
-              "value": "rating",
-              "label": "评价"
-            }
-          ],
-          "default": "add"
-        }
+        "type": "Type, see below"
       },
-      "name": "作品周边",
-      "provider_id": "hpoi",
-      "provider_name": "Hpoi 手办维基",
-      "route_key": "/items/work/:id/:order?"
+      "name": "Illust",
+      "description": "\n| 急上昇 | 週間 | 月間 | 新着 |\n| ----- | ---- | ---- | ---- |\n| hot | week | month| latest |",
+      "provider_id": "skebetter",
+      "provider_name": "Skebetter",
+      "route_key": "/illust/:type"
+    }
+  },
+  {
+    "provider_id": "toranoana",
+    "provider_name": "とらのあな",
+    "route_key": "/news/:category?",
+    "route": {
+      "path": "/news/:category?",
+      "example": "/toranoana/news/toragen",
+      "parameters": {
+        "category": "category"
+      },
+      "name": "Category",
+      "description": "\n::: warning TIP\n[総合新着記事](https://news.toranoana.jp)→`/toranoana/news`  \n[女性向け](https://news.toranoana.jp/joshi)→`/toranoana/news/joshi`  \n[イラスト展](https://news.toranoana.jp/exhibitions)→`/toranoana/news/exhibition`  \n[`https://news.toranoana.jp/category/media`](https://news.toranoana.jp/category/media)→`/toranoana/news/media`\n:::",
+      "provider_id": "toranoana",
+      "provider_name": "とらのあな",
+      "route_key": "/news/:category?"
     }
   }
 ]

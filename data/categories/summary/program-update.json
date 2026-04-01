@@ -1,20 +1,5 @@
 [
   {
-    "provider_id": "alpinelinux",
-    "provider_name": "Alpine Linux",
-    "route_key": "/pkgs/:name/:routeParams?",
-    "route": {
-      "name": "Packages",
-      "path": "/pkgs/:name/:routeParams?",
-      "example": "/alpinelinux/pkgs/nodejs",
-      "parameters": {
-        "name": "Packages name",
-        "routeParams": "Filters of packages type. E.g. branch=edge&repo=main&arch=armv7&maintainer=Jakub%20Jirutka"
-      },
-      "description": "Alpine Linux packages update"
-    }
-  },
-  {
     "provider_id": "amazon",
     "provider_name": "Amazon",
     "route_key": "/kindle/software-updates",
@@ -22,6 +7,32 @@
       "name": "Kindle Software Updates",
       "path": "/kindle/software-updates",
       "example": "/amazon/kindle/software-updates",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/app/:id?",
+    "route": {
+      "name": "更新情报",
+      "path": "/app/:id?",
+      "example": "/bilibili/app/android",
+      "parameters": {
+        "id": "客户端 id，见下表，默认为安卓版"
+      },
+      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |"
+    }
+  },
+  {
+    "provider_id": "brave",
+    "provider_name": "Brave",
+    "route_key": "/latest",
+    "route": {
+      "name": "Release Notes",
+      "path": "/latest",
+      "example": "/brave/latest",
       "parameters": {},
       "description": ""
     }
@@ -53,15 +64,41 @@
     }
   },
   {
-    "provider_id": "fosshub",
-    "provider_name": "FossHub",
-    "route_key": "/:id",
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/golden",
     "route": {
-      "name": "Software Update",
-      "path": "/:id",
-      "example": "/fosshub/qBittorrent",
+      "name": "小米应用商店金米奖",
+      "path": "/golden",
+      "example": "/mi/golden",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/edge/addon/:crxid",
+    "route": {
+      "name": "Addons Update",
+      "path": "/edge/addon/:crxid",
+      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
       "parameters": {
-        "id": "Software id, can be found in URL"
+        "crxid": "Addon id, can be found in addon url"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "microsoft",
+    "provider_name": "Microsoft",
+    "route_key": "/mcr/product/*",
+    "route": {
+      "name": "Product tags in mcr.microsoft.com",
+      "path": "/mcr/product/*",
+      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
+      "parameters": {
+        "product": "repository path in mcr.microsoft.com"
       },
       "description": ""
     }
@@ -79,18 +116,27 @@
     }
   },
   {
-    "provider_id": "sony",
-    "provider_name": "Sony",
-    "route_key": "/downloads/:productType/:productId",
+    "provider_id": "tiddlywiki",
+    "provider_name": "TiddlyWiki",
+    "route_key": "/releases",
     "route": {
-      "name": "Software Downloads",
-      "path": "/downloads/:productType/:productId",
-      "example": "/sony/downloads/product/nw-wm1am2",
-      "parameters": {
-        "productType": "product type",
-        "productId": "product id"
-      },
-      "description": "::: tip\n  Open `https://www.sony.com/electronics/support` and search for the corresponding product, such as `Sony A7M4`, the website corresponding to which is `https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads`, where `productType` is `e-mount-body-ilce-7-series` and `productId` is `ilce-7m4`.\n:::"
+      "name": "Releases",
+      "path": "/releases",
+      "example": "/tiddlywiki/releases",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "webcatalog",
+    "provider_name": "WebCatalog",
+    "route_key": "/changelog",
+    "route": {
+      "name": "Changelog",
+      "path": "/changelog",
+      "example": "/webcatalog/changelog",
+      "parameters": {},
+      "description": ""
     }
   },
   {

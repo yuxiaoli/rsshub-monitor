@@ -1,41 +1,55 @@
 [
   {
-    "provider_id": "fantia",
-    "provider_name": "Fantia",
-    "route_key": "/user/:id",
+    "provider_id": "500px",
+    "provider_name": "500px 摄影社区",
+    "route_key": "/tribe/set/:id",
     "route": {
-      "name": "User Posts",
-      "path": "/user/:id",
-      "example": "/fantia/user/3498",
+      "name": "部落影集",
+      "path": "/tribe/set/:id",
+      "example": "/500px/tribe/set/f5de0b8aa6d54ec486f5e79616418001",
       "parameters": {
-        "id": "User id, can be found in user profile URL"
+        "id": "部落 ID"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "magnumphotos",
-    "provider_name": "Magnum Photos",
-    "route_key": "/magazine",
+    "provider_id": "cosplaytele",
+    "provider_name": "CosplayTele",
+    "route_key": "/",
     "route": {
-      "name": "Magazine",
-      "path": "/magazine",
-      "example": "/magnumphotos/magazine",
+      "name": "Latest",
+      "path": "/",
+      "example": "/cosplaytele",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "misskon",
-    "provider_name": "MissKON",
-    "route_key": "/posts/:routeParams?",
+    "provider_id": "ehentai",
+    "provider_name": "E-Hentai",
+    "route_key": "/search/:params?/:page?/:routeParams?",
     "route": {
-      "name": "Posts",
-      "path": "/posts/:routeParams?",
-      "example": "/misskon/posts/search=video&tags_exclude=353,3100&per_page=5",
+      "name": "Search",
+      "path": "/search/:params?/:page?/:routeParams?",
+      "example": "/ehentai/search/f_cats=1021/0/bittorrent=true&embed_thumb=false",
       "parameters": {
-        "routeParams": "Additional parameters for filtering posts, refer to [WordPress API Reference](https://developer.wordpress.org/rest-api/reference/posts/#arguments) for details."
+        "params": "Search parameters. You can copy the content after `https://e-hentai.org/?`",
+        "page": "Page number, set 0 to get latest",
+        "routeParams": "Additional parameters, see the table above"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nasa",
+    "provider_name": "NASA",
+    "route_key": "/apod-ncku",
+    "route": {
+      "name": "Cheng Kung University Mirror",
+      "path": "/apod-ncku",
+      "example": "/nasa/apod-ncku",
+      "parameters": {},
       "description": ""
     }
   },
@@ -52,17 +66,66 @@
     }
   },
   {
-    "provider_id": "skeb",
-    "provider_name": "Skeb",
-    "route_key": "/search/:keyword",
+    "provider_id": "pinterest",
+    "provider_name": "Pinterest",
+    "route_key": "/user/:username/:type?",
     "route": {
-      "name": "Search Results",
-      "path": "/search/:keyword",
-      "example": "/skeb/search/初音ミク",
+      "name": "User",
+      "path": "/user/:username/:type?",
+      "example": "/pinterest/user/howieserious",
       "parameters": {
-        "keyword": "Search keyword"
+        "username": "Username",
+        "type": {
+          "description": "Type, default to `_created`",
+          "default": "_created",
+          "options": [
+            {
+              "value": "_created",
+              "label": "Created"
+            },
+            {
+              "value": "_saved",
+              "label": "Saved"
+            }
+          ]
+        }
       },
-      "description": "Get the search results for works on Skeb"
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "yande",
+    "provider_name": "yande.re",
+    "route_key": "/post/popular_recent/:period?",
+    "route": {
+      "name": "Popular Recent Posts",
+      "path": "/post/popular_recent/:period?",
+      "example": "/yande/post/popular_recent/1d",
+      "parameters": {
+        "period": {
+          "description": "展示时间",
+          "options": [
+            {
+              "value": "1d",
+              "label": "最近 24 小时"
+            },
+            {
+              "value": "1w",
+              "label": "最近一周"
+            },
+            {
+              "value": "1m",
+              "label": "最近一月"
+            },
+            {
+              "value": "1y",
+              "label": "最近一年"
+            }
+          ],
+          "default": "1d"
+        }
+      },
+      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |"
     }
   }
 ]

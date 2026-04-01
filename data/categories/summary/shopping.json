@@ -1,42 +1,87 @@
 [
   {
-    "provider_id": "guangdiu",
-    "provider_name": "逛丢",
-    "route_key": "/rank",
+    "provider_id": "furstar",
+    "provider_name": "Furstar",
+    "route_key": "/archive/:lang?",
     "route": {
-      "name": "一小时风云榜",
-      "path": "/rank",
-      "example": "/guangdiu/rank",
+      "name": "已经出售的角色列表",
+      "path": "/archive/:lang?",
+      "example": "/furstar/archive/cn",
+      "parameters": {
+        "lang": "语言, 留空为jp, 支持cn, en"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hotukdeals",
+    "provider_name": "hotukdeals",
+    "route_key": "/hottest",
+    "route": {
+      "name": "hottest",
+      "path": "/hottest",
+      "example": "/hotukdeals/hottest",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/artist/:id",
+    "provider_id": "ktown4u",
+    "provider_name": "Ktown4u",
+    "route_key": "/artistBrandlist/:grpNo/:grpNo2?",
     "route": {
-      "name": "按音乐人 - 演出更新",
-      "path": "/artist/:id",
-      "example": "/showstart/artist/301783",
+      "name": "Get the products on sale",
+      "path": "/artistBrandlist/:grpNo/:grpNo2?",
+      "example": "/ktown4u/artistBrandlist/234590/1723449",
       "parameters": {
-        "id": "音乐人 ID"
+        "grpNo": "artist id (Get in url)",
+        "grpNo2": "product category id (Get in url), empty for all categories"
       },
-      "description": "::: tip\n音乐人 ID 查询: `/showstart/search/artist/:keyword`，如: [https://rsshub.app/showstart/search/artist/周杰伦](https://rsshub.app/showstart/search/artist/周杰伦)\n:::"
+      "description": ""
     }
   },
   {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/brand/:id",
+    "provider_id": "modian",
+    "provider_name": "摩点",
+    "route_key": "/zhongchou/:category?/:sort?/:status?",
     "route": {
-      "name": "按厂牌 - 演出更新",
-      "path": "/brand/:id",
-      "example": "/showstart/brand/34707",
+      "name": "众筹",
+      "path": "/zhongchou/:category?/:sort?/:status?",
+      "example": "/modian/zhongchou",
       "parameters": {
-        "id": "厂牌 ID"
+        "category": "分类，见下表，默认为全部",
+        "sort": "排序，见下表，默认为最新上线",
+        "status": "状态，见下表，默认为全部"
       },
-      "description": "::: tip\n厂牌 ID 查询: `/showstart/search/brand/:keyword`，如: [https://rsshub.app/showstart/search/brand/声场](https://rsshub.app/showstart/search/brand/声场)\n:::"
+      "description": "分类\n\n| 全部 | 游戏  | 动漫   | 出版       | 桌游       |\n| ---- | ----- | ------ | ---------- | ---------- |\n| all  | games | comics | publishing | tablegames |\n\n| 卡牌  | 潮玩模型 | 影视       | 音乐  | 活动       |\n| ----- | -------- | ---------- | ----- | ---------- |\n| cards | toys     | film-video | music | activities |\n\n| 设计   | 科技       | 食品 | 爱心通道 | 动物救助 |\n| ------ | ---------- | ---- | -------- | -------- |\n| design | technology | food | charity  | animals  |\n\n| 个人愿望 | 其他   |\n| -------- | ------ |\n| wishes   | others |\n\n  排序\n\n| 最新上线  | 金额最高   | 评论最多     |\n| --------- | ---------- | ------------ |\n| top_time | top_money | top_comment |\n\n  状态\n\n| 全部 | 创意 | 预热    | 众筹中 | 众筹成功 |\n| ---- | ---- | ------- | ------ | -------- |\n| all  | idea | preheat | going  | success  |"
+    }
+  },
+  {
+    "provider_id": "openrice",
+    "provider_name": "Openrice開飯喇",
+    "route_key": "/:lang/hongkong/offers",
+    "route": {
+      "name": "香港餐廳精選優惠券",
+      "path": "/:lang/hongkong/offers",
+      "example": "/openrice/zh/hongkong/offers",
+      "parameters": {
+        "lang": "语言，缺省为 zh"
+      },
+      "description": "\n| 简体 | 繁體 | EN |\n| ----- | ------ | ----- |\n| zh-cn | zh | en |\n  "
+    }
+  },
+  {
+    "provider_id": "shopback",
+    "provider_name": "ShopBack",
+    "route_key": "/:store",
+    "route": {
+      "name": "Store",
+      "path": "/:store",
+      "example": "/shopback/shopee-mart",
+      "parameters": {
+        "store": "Store, can be found in URL"
+      },
+      "description": ""
     }
   },
   {
@@ -55,40 +100,60 @@
     }
   },
   {
-    "provider_id": "taobao",
-    "provider_name": "淘宝众筹",
-    "route_key": "/zhongchou/:type?",
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/search/:type/:keyword?",
     "route": {
-      "name": "众筹项目",
-      "path": "/zhongchou/:type?",
-      "example": "/taobao/zhongchou/all",
+      "name": "演出搜索",
+      "path": "/search/:type/:keyword?",
+      "example": "/showstart/search/live",
       "parameters": {
-        "type": "类型, 默认为 `all` 全部"
+        "keyword": "搜索关键词",
+        "type": {
+          "description": "类别",
+          "options": [
+            {
+              "value": "event",
+              "label": "演出"
+            },
+            {
+              "value": "artist",
+              "label": "音乐人"
+            },
+            {
+              "value": "site",
+              "label": "场地"
+            },
+            {
+              "value": "brand",
+              "label": "厂牌"
+            },
+            {
+              "value": "city",
+              "label": "城市"
+            },
+            {
+              "value": "style",
+              "label": "风格"
+            }
+          ]
+        }
       },
-      "description": "| 全部 | 科技 | 食品        | 动漫 | 设计   | 公益 | 娱乐 | 影音  | 书籍 | 游戏 | 其他  |\n| ---- | ---- | ----------- | ---- | ------ | ---- | ---- | ----- | ---- | ---- | ----- |\n| all  | tech | agriculture | acg  | design | love | tele | music | book | game | other |"
-    }
-  },
-  {
-    "provider_id": "tesla",
-    "provider_name": "特斯拉中国",
-    "route_key": "/price",
-    "route": {
-      "name": "价格",
-      "path": "/price",
-      "example": "/tesla/price",
-      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "xiaomiyoupin",
-    "provider_name": "小米有品",
-    "route_key": "/latest",
+    "provider_id": "uniqlo",
+    "provider_name": "Uniqlo",
+    "route_key": "/new/:country/:category",
     "route": {
-      "name": "小米有品每日上新",
-      "path": "/latest",
-      "example": "/xiaomiyoupin/latest",
-      "parameters": {},
+      "name": "New Arrivals",
+      "path": "/new/:country/:category",
+      "example": "/uniqlo/new/sg/men",
+      "parameters": {
+        "country": "currently only supports sg, us, jp",
+        "category": "supports `men` `women`, `kids`, `baby`"
+      },
       "description": ""
     }
   }
