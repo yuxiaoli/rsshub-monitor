@@ -1,42 +1,14 @@
 [
   {
-    "provider_id": "6v123",
-    "provider_name": "6v 电影",
-    "route_key": "/latestMovies",
+    "provider_id": "163",
+    "provider_name": "网易公开课",
+    "route_key": "/music/artist/:id",
     "route": {
-      "name": "最新电影",
-      "path": "/latestMovies",
-      "example": "/6v123/latestMovies",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "7mmtv",
-    "provider_name": "7mmtv",
-    "route_key": "/:language?/:category?/:type?",
-    "route": {
-      "name": "Category",
-      "path": "/:language?/:category?/:type?",
-      "example": "/7mmtv/zh/censored_list/all",
+      "name": "歌手专辑",
+      "path": "/music/artist/:id",
+      "example": "/163/music/artist/2116",
       "parameters": {
-        "language": "Language, see below, `en` as English by default",
-        "category": "Category, see below, `censored_list` as Censored by default",
-        "type": "Server, see below, all server by default"
-      },
-      "description": "**Language**\n\n| English | 日本語 | 한국의 | 中文 |\n| ------- | ------ | ------ | ---- |\n| en      | ja     | ko     | zh   |\n\n  **Category**\n\n| Chinese subtitles AV | Censored       | Amateur          | Uncensored       | Asian self-timer | H comics     |\n| -------------------- | -------------- | ---------------- | ---------------- | ---------------- | ------------ |\n| chinese_list        | censored_list | amateurjav_list | uncensored_list | amateur_list    | hcomic_list |\n\n| Chinese subtitles AV random | Censored random  | Amateur random     | Uncensored random  | Asian self-timer random | H comics random |\n| --------------------------- | ---------------- | ------------------ | ------------------ | ----------------------- | --------------- |\n| chinese_random             | censored_random | amateurjav_random | uncensored_random | amateur_random         | hcomic_random  |\n\n  **Server**\n\n| All Server | fembed(Full DL) | streamsb(Full DL) | doodstream | streamtape(Full DL) | avgle | embedgram | videovard(Full DL) |\n| ---------- | --------------- | ----------------- | ---------- | ------------------- | ----- | --------- | ------------------ |\n| all        | 21              | 30                | 28         | 29                  | 17    | 34        | 33                 |"
-    }
-  },
-  {
-    "provider_id": "ajmide",
-    "provider_name": "阿基米德 FM",
-    "route_key": "/:id",
-    "route": {
-      "name": "播客",
-      "path": "/:id",
-      "example": "/ajmide/10603594",
-      "parameters": {
-        "id": "播客 id，可以从播客页面 URL 中找到"
+        "id": "歌手 id, 可在歌手详情页 URL 中找到"
       },
       "description": ""
     }
@@ -50,20 +22,6 @@
       "path": "/weekly",
       "example": "/bandcamp/weekly",
       "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/category/:keyword",
-    "route": {
-      "name": "Category",
-      "path": "/category/:keyword",
-      "example": "/chikubi/category/nipple-lesbian",
-      "parameters": {
-        "keyword": "Keyword"
-      },
       "description": ""
     }
   },
@@ -97,73 +55,15 @@
     }
   },
   {
-    "provider_id": "newzmz",
-    "provider_name": "NEW 字幕组",
-    "route_key": "/:id?/:downLinkType?",
+    "provider_id": "myfans",
+    "provider_name": "myfans",
+    "route_key": "/user/:username",
     "route": {
-      "name": "指定剧集",
-      "path": "/:id?/:downLinkType?",
-      "example": "/newzmz/qEzRyY3v",
+      "name": "User Posts",
+      "path": "/user/:username",
+      "example": "/myfans/user/secret_japan",
       "parameters": {
-        "id": "剧集 id，可在剧集下载页 URL 中找到",
-        "downLinkType": "下载链接类型，默认为磁力链"
-      },
-      "description": "::: tip\n  [雪国列车 (剧版)](https://nzmz.xyz/details-qEzRyY3v.html) 的下载页 URL 为 `https://v.ys99.xyz/view/qEzRyY3v.html`，即剧集 id 为 `qEzRyY3v`\n:::"
-    }
-  },
-  {
-    "provider_id": "olevod",
-    "provider_name": "欧乐影院",
-    "route_key": "/vodlist",
-    "route": {
-      "name": "最新视频",
-      "path": "/vodlist",
-      "example": "/olevod/vodlist",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pornhub",
-    "provider_name": "PornHub",
-    "route_key": "/users/:username/:language?",
-    "route": {
-      "name": "Users",
-      "path": "/users/:username/:language?",
-      "example": "/pornhub/users/pornhubmodels",
-      "parameters": {
-        "language": "language, see below",
-        "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "radio",
-    "provider_name": "云听",
-    "route_key": "/album/:id",
-    "route": {
-      "name": "专辑",
-      "path": "/album/:id",
-      "example": "/radio/album/15682090498666",
-      "parameters": {
-        "id": "专辑 id，可在对应专辑页面的 URL 中找到"
-      },
-      "description": "如果订阅 [中国相声榜](https://www.radio.cn/pc-portal/sanji/detail.html?columnId=15682090498666)，其 URL 为 `https://www.radio.cn/pc-portal/sanji/detail.html?columnId=15682090498666`，可以得到 `columnId` 为 `15682090498666`\n\n  所以对应路由为 [`/radio/album/15682090498666`](https://rsshub.app/radio/album/15682090498666)\n\n::: tip\n  部分专辑不适用该路由，此时可以尝试 [节目](#yun-ting-jie-mu) 路由\n:::"
-    }
-  },
-  {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/trending/:mediaType/:timeWindow/:lang?",
-    "route": {
-      "name": "Trending",
-      "path": "/trending/:mediaType/:timeWindow/:lang?",
-      "example": "/themoviedb/trending/tv/day/en-US",
-      "parameters": {
-        "mediaType": "`movie` or `tv`",
-        "timeWindow": "`day` or `week`",
-        "lang": "Language"
+        "username": "User handle"
       },
       "description": ""
     }
@@ -179,18 +79,6 @@
       "parameters": {
         "programId": "节目 ID，可以在 URL 中找到"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "yyets",
-    "provider_name": "人人影视",
-    "route_key": "/today",
-    "route": {
-      "name": "今日播出",
-      "path": "/today",
-      "example": "/yyets/today",
-      "parameters": {},
       "description": ""
     }
   }

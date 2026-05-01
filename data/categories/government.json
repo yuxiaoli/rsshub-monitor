@@ -1,67 +1,34 @@
 [
   {
-    "provider_id": "cde",
-    "provider_name": "国家药品审评网站",
-    "route_key": "/:channel/:category",
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/cmse/fxrw",
     "route": {
-      "path": "/:channel/:category",
-      "example": "/cde/news/gzdt",
-      "parameters": {
-        "channel": "频道",
-        "category": "类别"
-      },
-      "name": "首页",
-      "description": "-   频道\n\n| 新闻中心 | 政策法规 |\n| :------: | :------: |\n|   news   |  policy  |\n\n  -   类别\n\n| 新闻中心 | 政务新闻 | 要闻导读 | 图片新闻 | 工作动态 |\n| :------: | :------: | :------: | :------: | :------: |\n|          |   zwxw   |   ywdd   |   tpxw   |   gzdt   |\n\n| 政策法规 | 法律法规 | 中心规章 |\n| :------: | :------: | :------: |\n|          |   flfg   |   zxgz   |",
-      "provider_id": "cde",
-      "provider_name": "国家药品审评网站",
-      "route_key": "/:channel/:category"
-    }
-  },
-  {
-    "provider_id": "cffex",
-    "provider_name": "中国金融期货交易所",
-    "route_key": "/announcement",
-    "route": {
-      "path": "/announcement",
-      "name": "交易所公告",
-      "url": "www.cffex.com.cn",
-      "example": "/cffex/announcement",
+      "path": "/cmse/fxrw",
+      "example": "/gov/cmse/fxrw",
       "parameters": {},
-      "description": "",
-      "provider_id": "cffex",
-      "provider_name": "中国金融期货交易所",
-      "route_key": "/announcement"
+      "name": "飞行任务",
+      "url": "www.cmse.gov.cn/fxrw",
+      "provider_id": "gov",
+      "provider_name": "上海市人民政府",
+      "route_key": "/cmse/fxrw"
     }
   },
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/miit/zcjd",
+    "route_key": "/moe/:type",
     "route": {
-      "path": "/miit/zcjd",
-      "example": "/gov/miit/zcjd",
-      "parameters": {},
-      "name": "政策解读",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/miit/zcjd"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/ndrc/xwdt/:category{.+}?",
-    "route": {
-      "path": "/ndrc/xwdt/:category{.+}?",
-      "name": "新闻动态",
-      "example": "/gov/ndrc/xwdt",
+      "path": "/moe/:type",
+      "example": "/gov/moe/policy_anal",
       "parameters": {
-        "category": "分类，见下表，默认为新闻发布"
+        "type": "分类名"
       },
-      "description": "| 新闻发布 | 通知通告 | 委领导动态 | 司局动态 | 地方动态 |\n| -------- | -------- | ---------- | -------- | -------- |\n| xwfb     | tzgg     | wlddt      | sjdt     | dfdt     |",
+      "name": "新闻",
+      "description": "|   政策解读   |   最新文件   | 公告公示 |      教育部简报     |     教育要闻     |\n| :----------: | :----------: | :------: | :-----------------: | :--------------: |\n| policy_anal | newest_file |  notice  | edu_ministry_news | edu_focus_news |",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/ndrc/xwdt/:category{.+}?"
+      "route_key": "/moe/:type"
     }
   },
   {
@@ -84,71 +51,17 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/tianjin/tjftz-notice/:channelId",
+    "route_key": "/safe/business/:site?",
     "route": {
-      "path": "/tianjin/tjftz-notice/:channelId",
-      "example": "/gov/tianjin/tjftz-notice/6302",
+      "path": "/safe/business/:site?",
+      "example": "/gov/safe/business/beijing",
       "parameters": {
-        "channelId": "公告分类id、详细信息点击源网站https://www.tjftz.gov.cn/请求中寻找"
+        "site": "站点，见上表，默认为 beijing"
       },
-      "name": "天津港保税区-公告",
-      "url": "tjftz.gov.cn",
-      "description": "\n| 公告类别         | channelId |\n| ------------ | -- |\n| 首页>新闻>保税区要闻>区域聚焦     | 6302  |\n    ",
+      "name": "业务咨询",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/tianjin/tjftz-notice/:channelId"
-    }
-  },
-  {
-    "provider_id": "gov",
-    "provider_name": "上海市人民政府",
-    "route_key": "/zhengce/zhengceku/:department",
-    "route": {
-      "path": "/zhengce/zhengceku/:department",
-      "example": "/gov/zhengce/zhengceku/bmwj",
-      "parameters": {
-        "department": "库名"
-      },
-      "name": "国务院政策文件库",
-      "provider_id": "gov",
-      "provider_name": "上海市人民政府",
-      "route_key": "/zhengce/zhengceku/:department"
-    }
-  },
-  {
-    "provider_id": "whitehouse",
-    "provider_name": "The White House",
-    "route_key": "/news/:category?",
-    "route": {
-      "path": "/news/:category?",
-      "example": "/whitehouse/news",
-      "parameters": {
-        "category": "Category, see below, all by default"
-      },
-      "name": "News",
-      "description": "| All | Articles | Briefings and Statements | Presidential Actions | Remarks |\n| --- | -------- | ------------------------ | -------------------- | ------- |\n|     | articles | briefings-statements     | presidential-actions | remarks |",
-      "provider_id": "whitehouse",
-      "provider_name": "The White House",
-      "route_key": "/news/:category?"
-    }
-  },
-  {
-    "provider_id": "who",
-    "provider_name": "World Health Organization | WHO",
-    "route_key": "/news-room/:category?/:language?",
-    "route": {
-      "path": "/news-room/:category?/:language?",
-      "example": "/who/news-room/feature-stories",
-      "parameters": {
-        "category": "Category, see below, Feature stories by default",
-        "language": "Language, see below, English by default"
-      },
-      "name": "Newsroom",
-      "url": "who.int/news",
-      "description": "Category\n\n| Feature stories | Commentaries |\n| --------------- | ------------ |\n| feature-stories | commentaries |\n\n  Language\n\n| English | العربية | 中文 | Français | Русский | Español | Português |\n| ------- | ------- | ---- | -------- | ------- | ------- | --------- |\n| en      | ar      | zh   | fr       | ru      | es      | pt        |",
-      "provider_id": "who",
-      "provider_name": "World Health Organization | WHO",
-      "route_key": "/news-room/:category?/:language?"
+      "route_key": "/safe/business/:site?"
     }
   }
 ]

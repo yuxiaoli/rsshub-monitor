@@ -1,185 +1,114 @@
 [
   {
-    "provider_id": "amazon",
-    "provider_name": "Amazon",
-    "route_key": "/kindle/software-updates",
+    "provider_id": "asus",
+    "provider_name": "ASUS",
+    "route_key": "/gpu-tweak",
     "route": {
-      "path": "/kindle/software-updates",
-      "example": "/amazon/kindle/software-updates",
+      "path": "/gpu-tweak",
+      "example": "/asus/gpu-tweak",
       "parameters": {},
-      "name": "Kindle Software Updates",
-      "provider_id": "amazon",
-      "provider_name": "Amazon",
-      "route_key": "/kindle/software-updates"
+      "name": "GPU Tweak",
+      "url": "asus.com/campaign/GPU-Tweak-III/*",
+      "provider_id": "asus",
+      "provider_name": "ASUS",
+      "route_key": "/gpu-tweak"
     }
   },
   {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/app/:id?",
+    "provider_id": "cpuid",
+    "provider_name": "CPUID",
+    "route_key": "/news",
     "route": {
-      "path": "/app/:id?",
-      "example": "/bilibili/app/android",
-      "parameters": {
-        "id": "客户端 id，见下表，默认为安卓版"
-      },
-      "name": "更新情报",
-      "description": "| 安卓版  | iPhone 版 | iPad HD 版 | UWP 版 | TV 版            |\n| ------- | --------- | ---------- | ------ | ---------------- |\n| android | iphone    | ipad       | win    | android_tv_yst |",
-      "provider_id": "bilibili",
-      "provider_name": "哔哩哔哩 bilibili",
-      "route_key": "/app/:id?"
-    }
-  },
-  {
-    "provider_id": "brave",
-    "provider_name": "Brave",
-    "route_key": "/latest",
-    "route": {
-      "path": "/latest",
-      "example": "/brave/latest",
+      "path": "/news",
+      "example": "/cpuid/news",
       "parameters": {},
-      "name": "Release Notes",
-      "url": "brave.com/latest",
-      "provider_id": "brave",
-      "provider_name": "Brave",
-      "route_key": "/latest"
-    }
-  },
-  {
-    "provider_id": "diskanalyzer",
-    "provider_name": "WizTree",
-    "route_key": "/whats-new",
-    "route": {
-      "path": "/whats-new",
-      "example": "/diskanalyzer/whats-new",
-      "parameters": {},
-      "name": "What's New",
-      "url": "diskanalyzer.com/whats-new",
-      "provider_id": "diskanalyzer",
-      "provider_name": "WizTree",
-      "route_key": "/whats-new"
+      "name": "News",
+      "url": "cpuid.com/news.html",
+      "provider_id": "cpuid",
+      "provider_name": "CPUID",
+      "route_key": "/news"
     }
   },
   {
     "provider_id": "dockerhub",
     "provider_name": "Docker Hub",
-    "route_key": "/repositories/:owner",
+    "route_key": "/build/:owner/:image/:tag?",
     "route": {
-      "name": "Owner Repositories",
-      "description": "List of repositories for an image owner",
-      "path": "/repositories/:owner",
+      "path": "/build/:owner/:image/:tag?",
       "view": 5,
-      "example": "/dockerhub/repositories/diygod",
+      "example": "/dockerhub/build/diygod/rsshub/latest",
       "parameters": {
-        "owner": "Image owner"
+        "owner": "Image owner, the owner of the official image fills in the library, for example: /dockerhub/build/library/mysql",
+        "image": "Image name",
+        "tag": {
+          "description": "Image tag",
+          "default": "latest"
+        }
       },
+      "name": "Image New Build",
       "provider_id": "dockerhub",
       "provider_name": "Docker Hub",
-      "route_key": "/repositories/:owner"
+      "route_key": "/build/:owner/:image/:tag?"
     }
   },
   {
-    "provider_id": "mi",
-    "provider_name": "小米",
-    "route_key": "/golden",
+    "provider_id": "fosshub",
+    "provider_name": "FossHub",
+    "route_key": "/:id",
     "route": {
-      "path": "/golden",
-      "example": "/mi/golden",
-      "name": "小米应用商店金米奖",
-      "provider_id": "mi",
-      "provider_name": "小米",
-      "route_key": "/golden"
-    }
-  },
-  {
-    "provider_id": "microsoft",
-    "provider_name": "Microsoft",
-    "route_key": "/edge/addon/:crxid",
-    "route": {
-      "path": "/edge/addon/:crxid",
-      "example": "/microsoft/edge/addon/gangkeiaobmjcjokiofpkfpcobpbmnln",
+      "path": "/:id",
+      "example": "/fosshub/qBittorrent",
       "parameters": {
-        "crxid": "Addon id, can be found in addon url"
+        "id": "Software id, can be found in URL"
       },
-      "name": "Addons Update",
-      "provider_id": "microsoft",
-      "provider_name": "Microsoft",
-      "route_key": "/edge/addon/:crxid"
+      "name": "Software Update",
+      "provider_id": "fosshub",
+      "provider_name": "FossHub",
+      "route_key": "/:id"
     }
   },
   {
-    "provider_id": "microsoft",
-    "provider_name": "Microsoft",
-    "route_key": "/mcr/product/*",
-    "route": {
-      "path": "/mcr/product/*",
-      "example": "/microsoft/mcr/product/dotnet/framework/runtime",
-      "parameters": {
-        "product": "repository path in mcr.microsoft.com"
-      },
-      "name": "Product tags in mcr.microsoft.com",
-      "provider_id": "microsoft",
-      "provider_name": "Microsoft",
-      "route_key": "/mcr/product/*"
-    }
-  },
-  {
-    "provider_id": "postman",
-    "provider_name": "Postman",
-    "route_key": "/release-notes",
-    "route": {
-      "path": "/release-notes",
-      "example": "/postman/release-notes",
-      "parameters": {},
-      "name": "Release Notes",
-      "url": "postman.com/downloads/release-notes",
-      "provider_id": "postman",
-      "provider_name": "Postman",
-      "route_key": "/release-notes"
-    }
-  },
-  {
-    "provider_id": "tiddlywiki",
-    "provider_name": "TiddlyWiki",
-    "route_key": "/releases",
-    "route": {
-      "path": "/releases",
-      "example": "/tiddlywiki/releases",
-      "url": "tiddlywiki.com",
-      "name": "Releases",
-      "provider_id": "tiddlywiki",
-      "provider_name": "TiddlyWiki",
-      "route_key": "/releases"
-    }
-  },
-  {
-    "provider_id": "webcatalog",
-    "provider_name": "WebCatalog",
+    "provider_id": "imagemagick",
+    "provider_name": "ImageMagick",
     "route_key": "/changelog",
     "route": {
       "path": "/changelog",
-      "example": "/webcatalog/changelog",
+      "example": "/imagemagick/changelog",
       "parameters": {},
       "name": "Changelog",
-      "url": "desktop.webcatalog.io/en/changelog",
-      "provider_id": "webcatalog",
-      "provider_name": "WebCatalog",
+      "url": "imagemagick.org/script/download.php",
+      "provider_id": "imagemagick",
+      "provider_name": "ImageMagick",
       "route_key": "/changelog"
     }
   },
   {
-    "provider_id": "zotero",
-    "provider_name": "Zotero",
-    "route_key": "/versions",
+    "provider_id": "raycast",
+    "provider_name": "Raycast",
+    "route_key": "/changelog",
     "route": {
-      "path": "/versions",
-      "example": "/zotero/versions",
-      "parameters": {},
-      "name": "Version History",
-      "url": "zotero.org/",
-      "provider_id": "zotero",
-      "provider_name": "Zotero",
-      "route_key": "/versions"
+      "path": "/changelog",
+      "name": "Changelog",
+      "example": "/raycast/changelog",
+      "provider_id": "raycast",
+      "provider_name": "Raycast",
+      "route_key": "/changelog"
+    }
+  },
+  {
+    "provider_id": "winstall",
+    "provider_name": "winstall",
+    "route_key": "/:appId",
+    "route": {
+      "path": "/:appId",
+      "example": "/winstall/Mozilla.Firefox",
+      "parameters": {
+        "appId": "Application ID"
+      },
+      "name": "Apps Update",
+      "provider_id": "winstall",
+      "provider_name": "winstall",
+      "route_key": "/:appId"
     }
   }
 ]

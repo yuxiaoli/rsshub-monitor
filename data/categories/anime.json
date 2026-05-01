@@ -1,5 +1,22 @@
 [
   {
+    "provider_id": "acfun",
+    "provider_name": "AcFun",
+    "route_key": "/user/video/:uid",
+    "route": {
+      "path": "/user/video/:uid",
+      "name": "用户投稿",
+      "parameters": {
+        "uid": "用户 UID"
+      },
+      "example": "/acfun/user/video/6102",
+      "view": 3,
+      "provider_id": "acfun",
+      "provider_name": "AcFun",
+      "route_key": "/user/video/:uid"
+    }
+  },
+  {
     "provider_id": "anime1",
     "provider_name": "Anime1",
     "route_key": "anime/:category/:name",
@@ -34,174 +51,52 @@
     }
   },
   {
-    "provider_id": "bangumi.tv",
-    "provider_name": "Bangumi 番组计划",
-    "route_key": "/user/collections/:id/:subjectType/:type",
+    "provider_id": "komiic",
+    "provider_name": "Komiic",
+    "route_key": "/comic/:id",
     "route": {
-      "path": "/user/collections/:id/:subjectType/:type",
-      "example": "/bangumi.tv/user/collections/sai/1/1",
+      "path": "/comic/:id",
+      "example": "/komiic/comic/533",
       "parameters": {
-        "id": "用户 id, 在用户页面地址栏查看",
-        "subjectType": {
-          "description": "全部类别: `空`、book: `1`、anime: `2`、music: `3`、game: `4`、real: `6`",
-          "options": [
-            {
-              "value": "ALL",
-              "label": "all"
-            },
-            {
-              "value": "book",
-              "label": "1"
-            },
-            {
-              "value": "anime",
-              "label": "2"
-            },
-            {
-              "value": "music",
-              "label": "3"
-            },
-            {
-              "value": "game",
-              "label": "4"
-            },
-            {
-              "value": "real",
-              "label": "6"
-            }
-          ]
-        },
-        "type": {
-          "description": "全部类别: `空`、想看: `1`、看过: `2`、在看: `3`、搁置: `4`、抛弃: `5`",
-          "options": [
-            {
-              "value": "ALL",
-              "label": "all"
-            },
-            {
-              "value": "想看",
-              "label": "1"
-            },
-            {
-              "value": "看过",
-              "label": "2"
-            },
-            {
-              "value": "在看",
-              "label": "3"
-            },
-            {
-              "value": "搁置",
-              "label": "4"
-            },
-            {
-              "value": "抛弃",
-              "label": "5"
-            }
-          ]
-        }
+        "id": "漫画 ID"
       },
-      "name": "Bangumi 用户收藏列表",
-      "provider_id": "bangumi.tv",
-      "provider_name": "Bangumi 番组计划",
-      "route_key": "/user/collections/:id/:subjectType/:type"
+      "name": "漫画更新",
+      "provider_id": "komiic",
+      "provider_name": "Komiic",
+      "route_key": "/comic/:id"
     }
   },
   {
-    "provider_id": "cngal",
-    "provider_name": "CnGal",
-    "route_key": "/weekly",
+    "provider_id": "qoo-app",
+    "provider_name": "QooApp",
+    "route_key": "/apps/:lang?/post/:id",
     "route": {
-      "path": "/weekly",
-      "view": 0,
-      "example": "/cngal/weekly",
-      "parameters": {},
-      "name": "每周速报",
-      "url": "www.cngal.org/",
-      "provider_id": "cngal",
-      "provider_name": "CnGal",
-      "route_key": "/weekly"
+      "path": "/apps/:lang?/post/:id",
+      "example": "/qoo-app/apps/en/post/7675",
+      "parameters": {
+        "lang": "Language, see the table above, empty means `中文`",
+        "id": "Game ID, can be found in URL"
+      },
+      "name": "Game Store - Article",
+      "provider_id": "qoo-app",
+      "provider_name": "QooApp",
+      "route_key": "/apps/:lang?/post/:id"
     }
   },
   {
-    "provider_id": "hpoi",
-    "provider_name": "Hpoi 手办维基",
-    "route_key": "/items/all/:order?",
+    "provider_id": "xmanhua",
+    "provider_name": "X 漫画",
+    "route_key": "/:uid",
     "route": {
-      "path": "/items/all/:order?",
-      "view": 2,
-      "example": "/hpoi/items/all",
+      "path": "/:uid",
+      "example": "/xmanhua/73xm",
       "parameters": {
-        "order": {
-          "description": "排序",
-          "options": [
-            {
-              "value": "release",
-              "label": "发售"
-            },
-            {
-              "value": "add",
-              "label": "入库"
-            },
-            {
-              "value": "hits",
-              "label": "总热度"
-            },
-            {
-              "value": "hits7Day",
-              "label": "一周热度"
-            },
-            {
-              "value": "hitsDay",
-              "label": "一天热度"
-            },
-            {
-              "value": "rating",
-              "label": "评价"
-            }
-          ],
-          "default": "add"
-        }
+        "uid": "漫画 id,在浏览器中可见，例如鬼灭之刃对应的 id 为 `73xm`"
       },
-      "name": "所有周边",
-      "url": "www.hpoi.net/hobby/all",
-      "provider_id": "hpoi",
-      "provider_name": "Hpoi 手办维基",
-      "route_key": "/items/all/:order?"
-    }
-  },
-  {
-    "provider_id": "skebetter",
-    "provider_name": "Skebetter",
-    "route_key": "/illust/:type",
-    "route": {
-      "path": "/illust/:type",
-      "example": "/skebetter/illust/hot",
-      "parameters": {
-        "type": "Type, see below"
-      },
-      "name": "Illust",
-      "description": "\n| 急上昇 | 週間 | 月間 | 新着 |\n| ----- | ---- | ---- | ---- |\n| hot | week | month| latest |",
-      "provider_id": "skebetter",
-      "provider_name": "Skebetter",
-      "route_key": "/illust/:type"
-    }
-  },
-  {
-    "provider_id": "toranoana",
-    "provider_name": "とらのあな",
-    "route_key": "/news/:category?",
-    "route": {
-      "path": "/news/:category?",
-      "example": "/toranoana/news/toragen",
-      "parameters": {
-        "category": "category"
-      },
-      "name": "Category",
-      "description": "\n::: warning TIP\n[総合新着記事](https://news.toranoana.jp)→`/toranoana/news`  \n[女性向け](https://news.toranoana.jp/joshi)→`/toranoana/news/joshi`  \n[イラスト展](https://news.toranoana.jp/exhibitions)→`/toranoana/news/exhibition`  \n[`https://news.toranoana.jp/category/media`](https://news.toranoana.jp/category/media)→`/toranoana/news/media`\n:::",
-      "provider_id": "toranoana",
-      "provider_name": "とらのあな",
-      "route_key": "/news/:category?"
+      "name": "最新动态",
+      "provider_id": "xmanhua",
+      "provider_name": "X 漫画",
+      "route_key": "/:uid"
     }
   }
 ]

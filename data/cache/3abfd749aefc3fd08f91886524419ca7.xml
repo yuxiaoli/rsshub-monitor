@@ -1,91 +1,687 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>DIYgod/RSSHub Pull requests</title><link>https://github.com/DIYgod/RSSHub/pulls</link><atom:link href="http://rsshub.rssforever.com/github/pull/DIYgod/RSSHub" rel="self" type="application/rss+xml"></atom:link><description>DIYgod/RSSHub Pull requests - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Sun, 01 Jun 2025 00:27:58 GMT</lastBuildDate><ttl>5</ttl><item><title>chore(deps-dev): bump msw from 2.4.3 to 2.8.6</title><description>&lt;p&gt;Bumps &lt;a href=&quot;https://github.com/mswjs/msw&quot;&gt;msw&lt;/a&gt; from 2.4.3 to 2.8.6.&lt;/p&gt;
-&lt;details&gt;
-&lt;summary&gt;Release notes&lt;/summary&gt;
-&lt;p&gt;&lt;em&gt;Sourced from &lt;a href=&quot;https://github.com/mswjs/msw/releases&quot;&gt;msw&#39;s releases&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h2&gt;v2.8.6 (2025-05-29)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>DIYgod/RSSHub Pull requests</title><link>https://github.com/DIYgod/RSSHub/pulls</link><atom:link href="http://rsshub.isrss.com/github/pull/DIYgod/RSSHub" rel="self" type="application/rss+xml"></atom:link><description>DIYgod/RSSHub Pull requests - Powered by RSSHub</description><generator>RSSHub</generator><webMaster>contact@rsshub.app (RSSHub)</webMaster><language>en</language><lastBuildDate>Fri, 01 May 2026 00:40:24 GMT</lastBuildDate><ttl>60</ttl><item><title>feat(route/gettyimages): add Australia image search</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+不要填写 /gettyimages/search/:keyword 这类路径参数形式；应写具体示例值（CI 也会校验）。
+
+Please include route starts with /, with all required and optional parameters in the `routes` section. Fail to comply will result in your pull request being closed automatically.
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/gettyimages/search/kangaroo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;browser:&lt;/strong&gt; set the default entrypoint to commonjs (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2516&quot;&gt;#2516&lt;/a&gt;) (ee44fab147c83d45095bd2c14fdfffbff876d721) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] New Route / 新的路由&lt;/li&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] Documentation / 文档说明&lt;/li&gt;
+&lt;li&gt;[ ] Full text / 全文获取&lt;/li&gt;
+&lt;li&gt;[ ] Use cache / 使用缓存&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制&lt;/li&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;v2.8.5 (2025-05-27)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;Adds &lt;strong&gt;Getty Images Australia&lt;/strong&gt; (&lt;code&gt;www.gettyimages.com.au&lt;/code&gt;) image search at &lt;code&gt;/gettyimages/search/:keyword&lt;/code&gt; (subscribe with a concrete keyword). First search results page only; preview images in &lt;code&gt;description&lt;/code&gt; via &lt;code&gt;renderToString&lt;/code&gt; + JSX. The listing does not provide reliable per-item dates, so &lt;code&gt;pubDate&lt;/code&gt; is omitted per &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;no-date&lt;/a&gt; guidance. Radar matches the search landing URL; users choose the keyword in the route path. User-Agent uses &lt;code&gt;config.trueUA&lt;/code&gt;.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21877</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21877</guid><pubDate>Thu, 30 Apr 2026 11:25:32 GMT</pubDate><author>QwQ-OvO</author></item><item><title>feat(route/bilibili): add /user/video-browser route using Puppeteer + XHR interception</title><description>&lt;p&gt;Close #20406&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/bilibili/user/video-browser/2267573
+/bilibili/user/video-browser/2267573/0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;HttpResponse:&lt;/strong&gt; strictly annotate all response methods (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2509&quot;&gt;#2509&lt;/a&gt;) (2cdc2b1d4436e600f00a54568ae5999a0dc97b77) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;update &lt;code&gt;@mswjs/interceptors&lt;/code&gt; to 0.38.7 (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2508&quot;&gt;#2508&lt;/a&gt;) (b06fd0e83af70a94303489062de7a5c49fb80ae7) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;v2.8.4 (2025-05-19)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
+&lt;li&gt;[x] &lt;strong&gt;New Route / 新的路由&lt;/strong&gt;
 &lt;ul&gt;
-&lt;li&gt;support nullable GraphQL queries (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2403&quot;&gt;#2403&lt;/a&gt;) (594e8ca16b53294900ca26150eeba42ea9d686e5) &lt;a href=&quot;https://github.com/huuyafwww&quot;&gt;&lt;code&gt;@huuyafwww&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随&lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;v2.8.3 (2025-05-17)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;HttpResponse:&lt;/strong&gt; export &lt;code&gt;StrictResponse&lt;/code&gt; type again with added deprecation notice (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2500&quot;&gt;#2500&lt;/a&gt;) (a5bbe977481139ce0ea34d065054e76e75befa7a) &lt;a href=&quot;https://github.com/christoph-fricke&quot;&gt;&lt;code&gt;@christoph-fricke&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] Bilibili upgraded anti-crawler (WBI signing) on &lt;code&gt;/x/space/wbi/arc/search&lt;/code&gt; in Nov 2025, causing existing &lt;code&gt;/user/video/:uid&lt;/code&gt; to return 412. This route bypasses it by intercepting the browser&#39;s own API response via Puppeteer.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;v2.8.2 (2025-05-09)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;catch &lt;code&gt;postinstall&lt;/code&gt; errors (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2498&quot;&gt;#2498&lt;/a&gt;) (6d3013c62cc2217231bed02722ee5f63fb6c4513) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] Parsed / 可以解析 — uses &lt;code&gt;created&lt;/code&gt; timestamp from API response&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确 — &lt;code&gt;new Date(timestamp * 1000)&lt;/code&gt; handles it automatically&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;v2.8.1 (2025-05-09)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包 — none&lt;/li&gt;
+&lt;li&gt;[x] &lt;code&gt;Puppeteer&lt;/code&gt; — requires browserless/chromium service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;h3&gt;Background&lt;/h3&gt;
+&lt;p&gt;Bilibili upgraded the anti-crawler mechanism (WBI signing) on &lt;code&gt;/x/space/wbi/arc/search&lt;/code&gt; in Nov 2025, causing the existing &lt;code&gt;/bilibili/user/video/:uid&lt;/code&gt; route to return &lt;strong&gt;412 Precondition Failed&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3&gt;Approach&lt;/h3&gt;
+&lt;p&gt;Added a new independent route &lt;code&gt;/bilibili/user/video-browser/:uid/:embed?&lt;/code&gt; that fetches UP&#39;s video list by:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Using &lt;code&gt;getPuppeteerPage()&lt;/code&gt; to open the Bilibili space page&lt;/li&gt;
+&lt;li&gt;Intercepting the browser&#39;s auto-initiated &lt;code&gt;/x/space/wbi/arc/search&lt;/code&gt; XHR response&lt;/li&gt;
+&lt;li&gt;Extracting structured video data (title, bvid, pic, created, author, play, comment)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Why XHR interception instead of DOM scraping?&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Aspect&lt;/th&gt;
+&lt;th&gt;DOM Scraping&lt;/th&gt;
+&lt;th&gt;XHR Interception&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Data quality&lt;/td&gt;
+&lt;td&gt;Regex-guessed dates/titles&lt;/td&gt;
+&lt;td&gt;Structured JSON fields&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pubDate&lt;/td&gt;
+&lt;td&gt;Relative date conversion&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;created&lt;/code&gt; timestamp direct&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;comments&lt;/td&gt;
+&lt;td&gt;Hardcoded 0&lt;/td&gt;
+&lt;td&gt;API real value&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;author&lt;/td&gt;
+&lt;td&gt;Page title regex&lt;/td&gt;
+&lt;td&gt;API &lt;code&gt;author&lt;/code&gt; field&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Code size&lt;/td&gt;
+&lt;td&gt;~250 lines&lt;/td&gt;
+&lt;td&gt;~160 lines&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Stability&lt;/td&gt;
+&lt;td&gt;Depends on HTML structure&lt;/td&gt;
+&lt;td&gt;Depends on API format&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Relationship with existing routes&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Route&lt;/th&gt;
+&lt;th&gt;Approach&lt;/th&gt;
+&lt;th&gt;Status&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/user/video/:uid&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;API + WBI signing&lt;/td&gt;
+&lt;td&gt;412 broken&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/user/video-browser/:uid&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Puppeteer + XHR interception&lt;/td&gt;
+&lt;td&gt;This PR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Both paths coexist. Can merge or deprecate this route once upstream fixes #20406.&lt;/p&gt;
+&lt;p&gt;🤖 Generated with &lt;a href=&quot;https://claude.com/claude-code&quot;&gt;Claude Code&lt;/a&gt;&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21857</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21857</guid><pubDate>Wed, 29 Apr 2026 07:12:02 GMT</pubDate><author>gqy20</author></item><item><title>feat(route): add Meta AI global search</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;None&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/meta/ai/global-search
+/meta/ai/global-search/content_types=blog
+/meta/ai/global-search/content_types=person
+/meta/ai/global-search/content_types=publication
+/meta/ai/global-search/content_types=dataset
+/meta/ai/global-search/content_types=tool
+/meta/ai/global-search/sort_by=MOST_RECENT
+/meta/ai/global-search/q=llama%26content_types=publication%26years=2024,2025%26sort_by=MOST_RECENT
+/meta/ai/global-search/content_types=person%26alphabetical_filter=A%26sort_by=ALPHABETICAL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;do not append &lt;code&gt;.mjs&lt;/code&gt; to &lt;code&gt;.d.ts&lt;/code&gt; core imports (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2496&quot;&gt;#2496&lt;/a&gt;) (6ae6b2930da292a4fb6cdd00c572bf9b4aaa1383) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;v2.8.0 (2025-05-08)&lt;/h2&gt;
-&lt;h3&gt;Features&lt;/h3&gt;
+&lt;li&gt;[x] New Route / 新的路由
 &lt;ul&gt;
-&lt;li&gt;support typescript 5.6 - 5.8 (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2493&quot;&gt;#2493&lt;/a&gt;) (3fce59462cb302ec3472218a19ad5dc4bb5020e9) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;migrate to ESM internally, remain CJS-first (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2490&quot;&gt;#2490&lt;/a&gt;) (17d553ba9a20967f739cea5c869904f91b7d2691) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Andarist&quot;&gt;&lt;code&gt;@Andarist&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SetupServerApi:&lt;/strong&gt; allow using custom interceptors (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2464&quot;&gt;#2464&lt;/a&gt;) (0cc656ab64c13e5113d0575c9c1be64a6e80ce2d) &lt;a href=&quot;https://github.com/tastypackets&quot;&gt;&lt;code&gt;@tastypackets&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;HttpResponse:&lt;/strong&gt; support explicitly empty response body via &lt;code&gt;null&lt;/code&gt; type argument (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2118&quot;&gt;#2118&lt;/a&gt;) (50ce6a4682aa7200e510f286fdad5803e23fc27b) &lt;a href=&quot;https://github.com/kettanaito&quot;&gt;&lt;code&gt;@kettanaito&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2&gt;v2.7.6 (2025-05-05)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;... (truncated)&lt;/p&gt;
-&lt;/details&gt;
-&lt;details&gt;
-&lt;summary&gt;Commits&lt;/summary&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/e27cbf3350f27393dccce2bac27c6c0467e3386e&quot;&gt;&lt;code&gt;e27cbf3&lt;/code&gt;&lt;/a&gt; chore(release): v2.8.6&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/ee44fab147c83d45095bd2c14fdfffbff876d721&quot;&gt;&lt;code&gt;ee44fab&lt;/code&gt;&lt;/a&gt; fix(browser): set the default entrypoint to commonjs (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2516&quot;&gt;#2516&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/0fbaedc67d430c349804b71b3d64dca8679f6631&quot;&gt;&lt;code&gt;0fbaedc&lt;/code&gt;&lt;/a&gt; chore(release): v2.8.5&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/2cdc2b1d4436e600f00a54568ae5999a0dc97b77&quot;&gt;&lt;code&gt;2cdc2b1&lt;/code&gt;&lt;/a&gt; fix(HttpResponse): strictly annotate all response methods (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2509&quot;&gt;#2509&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/b06fd0e83af70a94303489062de7a5c49fb80ae7&quot;&gt;&lt;code&gt;b06fd0e&lt;/code&gt;&lt;/a&gt; fix: update &lt;code&gt;@mswjs/interceptors&lt;/code&gt; to 0.38.7 (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2508&quot;&gt;#2508&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/269280397dad61bd4d8373245a1ec7e649c2c989&quot;&gt;&lt;code&gt;2692803&lt;/code&gt;&lt;/a&gt; test(ts): add request handler type regression test (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2502&quot;&gt;#2502&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/46013fbd092d8a116a9da6911b5ca44c6cdd4c03&quot;&gt;&lt;code&gt;46013fb&lt;/code&gt;&lt;/a&gt; chore(release): v2.8.4&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/594e8ca16b53294900ca26150eeba42ea9d686e5&quot;&gt;&lt;code&gt;594e8ca&lt;/code&gt;&lt;/a&gt; fix: support nullable GraphQL queries (&lt;a href=&quot;https://redirect.github.com/mswjs/msw/issues/2403&quot;&gt;#2403&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/cf670951c02741adfb243f7564b379756363049c&quot;&gt;&lt;code&gt;cf67095&lt;/code&gt;&lt;/a&gt; chore(release): v2.8.3&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/mswjs/msw/commit/a5bbe977481139ce0ea34d065054e76e75befa7a&quot;&gt;&lt;code&gt;a5bbe97&lt;/code&gt;&lt;/a&gt; fix(HttpResponse): export &lt;code&gt;StrictResponse&lt;/code&gt; type again with added deprecation ...&lt;/li&gt;
-&lt;li&gt;Additional commits viewable in &lt;a href=&quot;https://github.com/mswjs/msw/compare/v2.4.3...v2.8.6&quot;&gt;compare view&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] Page is fetched first to extract LSD/SiteData (same approach as &lt;code&gt;/meta/ai/blog&lt;/code&gt;); GraphQL request reuses the LSD token. ofetch&#39;s existing retry-on-400 with &lt;code&gt;x-prefer-proxy: 1&lt;/code&gt; covers Meta&#39;s edge throttling.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/details&gt;
-&lt;br&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores&quot;&gt;&lt;img src=&quot;https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=msw&amp;amp;package-manager=npm_and_yarn&amp;amp;previous-version=2.4.3&amp;amp;new-version=2.8.6&quot; alt=&quot;Dependabot compatibility score&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Dependabot will resolve any conflicts with this PR as long as you don&#39;t alter it yourself. You can also trigger a rebase manually by commenting &lt;code&gt;@dependabot rebase&lt;/code&gt;.&lt;/p&gt;
-&lt;hr&gt;
-&lt;details&gt;
-&lt;summary&gt;Dependabot commands and options&lt;/summary&gt;
-&lt;br&gt;
-&lt;p&gt;You can trigger Dependabot actions by commenting on this PR:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;@dependabot rebase&lt;/code&gt; will rebase this PR&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot recreate&lt;/code&gt; will recreate this PR, overwriting any edits that have been made to it&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot merge&lt;/code&gt; will merge this PR after your CI passes on it&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot squash and merge&lt;/code&gt; will squash and merge this PR after your CI passes on it&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot cancel merge&lt;/code&gt; will cancel a previously requested merge and block automerging&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot reopen&lt;/code&gt; will reopen this PR if it is closed&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot close&lt;/code&gt; will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot show &amp;lt;dependency name&amp;gt; ignore conditions&lt;/code&gt; will show all of the ignore conditions of the specified dependency&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot ignore this major version&lt;/code&gt; will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot ignore this minor version&lt;/code&gt; will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot ignore this dependency&lt;/code&gt; will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)&lt;/li&gt;
+&lt;li&gt;[x] Parsed / 可以解析 (Unix &lt;code&gt;published_time&lt;/code&gt; → &lt;code&gt;parseDate&lt;/code&gt; ms)&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确 (UTC)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/details&gt;</description><link>https://github.com/DIYgod/RSSHub/pull/19238</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19238</guid><pubDate>Fri, 30 May 2025 08:17:49 GMT</pubDate><author>dependabot[bot]</author></item><item><title>feat(route): add JBpress news route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;Adds support for &lt;code&gt;https://ai.meta.com/global_search/&lt;/code&gt;, which is backed by the &lt;code&gt;useFBAIGlobalSearchQuery&lt;/code&gt; GraphQL query (&lt;code&gt;doc_id=9716930201759979&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Filters&lt;/strong&gt; (path-encoded &lt;code&gt;routeParams&lt;/code&gt;):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;q&lt;/code&gt; — search query&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;content_types&lt;/code&gt; — comma-separated: &lt;code&gt;person&lt;/code&gt;, &lt;code&gt;publication&lt;/code&gt;, &lt;code&gt;blog&lt;/code&gt;, &lt;code&gt;dataset&lt;/code&gt;, &lt;code&gt;event&lt;/code&gt;, &lt;code&gt;tool&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;research_areas&lt;/code&gt; — e.g. &lt;code&gt;natural-language-processing,computer-vision&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;filter_tags&lt;/code&gt; — &lt;code&gt;research&lt;/code&gt;, &lt;code&gt;ml-applications&lt;/code&gt;, &lt;code&gt;open-source&lt;/code&gt;, &lt;code&gt;developer-tools&lt;/code&gt;, &lt;code&gt;ar-vr&lt;/code&gt;, &lt;code&gt;hardware&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;years&lt;/code&gt; — e.g. &lt;code&gt;2024,2025&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;location_cities&lt;/code&gt; — publication venues, e.g. &lt;code&gt;AAAI,ACL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;alphabetical_filter&lt;/code&gt; — single letter (pairs with &lt;code&gt;content_types=person&lt;/code&gt; + &lt;code&gt;sort_by=ALPHABETICAL&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sort_by&lt;/code&gt; — &lt;code&gt;RELEVANCE&lt;/code&gt; (default) / &lt;code&gt;MOST_RECENT&lt;/code&gt; / &lt;code&gt;ALPHABETICAL&lt;/code&gt; / &lt;code&gt;RANDOM&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;offset&lt;/code&gt; — pagination offset&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;limit&lt;/code&gt; stays as a regular query string (&lt;code&gt;?limit=N&lt;/code&gt;) because the cache layer keys on it. Path-encoded &lt;code&gt;routeParams&lt;/code&gt; keeps each filter combination in its own cache entry, matching the convention used by &lt;code&gt;weibo/keyword/:keyword/:routeParams?&lt;/code&gt;. The full set of &lt;code&gt;sort_by&lt;/code&gt;/&lt;code&gt;content_types&lt;/code&gt; enum values was discovered empirically by probing the GraphQL endpoint.&lt;/p&gt;
+&lt;p&gt;The LSD/SiteData fetch and GraphQL body builder were extracted into &lt;code&gt;lib/routes/meta/utils.ts&lt;/code&gt; so &lt;code&gt;ai-blog.ts&lt;/code&gt; and &lt;code&gt;ai-global-search.ts&lt;/code&gt; share the boilerplate. &lt;code&gt;/meta/ai/blog&lt;/code&gt; has been refactored onto the helper and regression-tested locally — output is unchanged.&lt;/p&gt;
+&lt;p&gt;To combine multiple filters in one URL, encode &lt;code&gt;&amp;amp;&lt;/code&gt; as &lt;code&gt;%26&lt;/code&gt; inside the path (e.g. &lt;code&gt;q=llama%26content_types=publication&lt;/code&gt;).&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21839</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21839</guid><pubDate>Sun, 26 Apr 2026 20:50:15 GMT</pubDate><author>shcheglovnd</author></item><item><title>feat: fix xiaohongshu url</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #21836&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/xiaohongshu/user/593032945e87e77791e03696/notes
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/xiaohongshu/user/593032945e87e77791e03696/notes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[x] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[x] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21837</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21837</guid><pubDate>Sun, 26 Apr 2026 16:59:39 GMT</pubDate><author>runny4184</author></item><item><title>fix(route/nhentai): fix detail route image src extraction and bypass Cloudflare with Puppeteer</title><description>&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/nhentai/search/language:chinese+blue+archive/detail
+/nhentai/index/parody/blue archive/detail
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[ ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[x] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[x] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;This PR focuses on fixing the detail mode for existing /nhentai routes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed image parsing in detail mode: Updated getDetail() to correctly extract gallery images by supporting both data-src and src attributes, and improved high-quality image URL transformations.&lt;/li&gt;
+&lt;li&gt;Enabled Puppeteer: Set requirePuppeteer: true for nhentai routes to bypass Cloudflare anti-bot protection.&lt;/li&gt;
+&lt;li&gt;Refactored login flow: Replaced got-based login with Puppeteer to handle Cloudflare challenges.&lt;/li&gt;
+&lt;li&gt;Extended cookie cache: Increased login cookie cache duration from 3 days to 30 days.&lt;/li&gt;
+&lt;li&gt;Added maintainer: Added FlanChanXwO to the maintainer list.&lt;/li&gt;
+&lt;/ul&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21835</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21835</guid><pubDate>Sun, 26 Apr 2026 08:06:22 GMT</pubDate><author>FlanChanXwO</author></item><item><title>feat: add xtu routes</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/xtu/jwc/tzgg
+/xtu/jwc/xkjs
+/xtu/www/tzgg
+/xtu/www/xdw
+/xtu/tw/tzgg
+/xtu/tw/xnxw
+/xtu/nic/dt
+/xtu/nic/tzgg
+/xtu/cyxy/dxscxcyxljhxm
+/xtu/cyxy/scjs
+/xtu/jwxy/tzgg
+/xtu/jwxy/xwdt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随路由规范&lt;/li&gt;
+&lt;li&gt;[x] Documentation / 文档说明 (通过 description 字段)&lt;/li&gt;
+&lt;li&gt;[x] Full text / 全文获取&lt;/li&gt;
+&lt;li&gt;[x] Use cache / 使用缓存&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / 日期和时间
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;添加湘潭大学 (Xiangtan University) 相关 RSS 路由，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;教务处通知公告（首页通知、学科竞赛）&lt;/li&gt;
+&lt;li&gt;学校官网（通知公告、湘大新闻）&lt;/li&gt;
+&lt;li&gt;团委（通知公告、校内新闻）&lt;/li&gt;
+&lt;li&gt;网络与信息中心（新闻动态、通知公告）&lt;/li&gt;
+&lt;li&gt;创新创业学院（大创项目、双创竞赛）&lt;/li&gt;
+&lt;li&gt;计算机学院（通知公告、新闻动态）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所有路由均使用 Cheerio 解析 HTML，使用缓存避免重复请求，正确解析日期和时区。&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21826</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21826</guid><pubDate>Sat, 25 Apr 2026 05:06:44 GMT</pubDate><author>zzy00747</author></item><item><title>feat(route): add hypergryph/endfield</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/hypergryph/endfield/news                                                                                             
+/hypergryph/endfield/news/notices                         
+/hypergryph/endfield/news/events
+/hypergryph/endfield/news/news
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;Adds a new RSS route for Arknights: Endfield (明日方舟：终末地) game announcements and news at &lt;a href=&quot;http://endfield.hypergryph.com/news&quot;&gt;endfield.hypergryph.com/news&lt;/a&gt;.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21808</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21808</guid><pubDate>Thu, 23 Apr 2026 06:46:50 GMT</pubDate><author>E-larex</author></item><item><title>fix(route/thepaper)(route/jiemian): remove useless image and audio</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #21681&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/some/route
+/some/other/route
+/dont/use/this/or/modify/it
+/use/the/fenced/code/block/below
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/thepaper/featured
+/thepaper/sidebar/editorHandpicked
+/jiemian/lists/72
+/jiemian/lists/280
+/jiemian/lists/426
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[ ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;删除澎湃路由中不应该在正文出现的文章列表预览图
+删除澎湃路由中意义不大的 AI 读全文，避免被某些阅读器识别为 podcast
+删除界面路由中不应该在正文中出现，且与文章头图重复的图片&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21800</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21800</guid><pubDate>Tue, 21 Apr 2026 23:50:05 GMT</pubDate><author>HamadaMasatoshi</author></item><item><title>fix(abc,afr): fix broken routes for abc.net.au and afr.com</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Fixes broken routes for &lt;code&gt;www.abc.net.au&lt;/code&gt; and &lt;code&gt;www.afr.com&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/abc/wa
+/abc/news/justin
+/afr/latest
+/afr/navigation/markets
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] New Route / 新的路由&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[x] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;h3&gt;&lt;code&gt;abc&lt;/code&gt; — &lt;code&gt;lib/routes/abc/index.ts&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Number.isNaN(category)&lt;/code&gt; always returns &lt;code&gt;false&lt;/code&gt; for any string value, so string-based route slugs like &lt;code&gt;wa&lt;/code&gt;, &lt;code&gt;news/justin&lt;/code&gt;, &lt;code&gt;news/topic/computer-science&lt;/code&gt; were incorrectly entering the numeric &lt;code&gt;documentId&lt;/code&gt; branch and requesting non-existent URLs like &lt;code&gt;news/feed/wa/rss.xml&lt;/code&gt; (404).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fix:&lt;/strong&gt; &lt;code&gt;Number.isNaN(category)&lt;/code&gt; → &lt;code&gt;Number.isNaN(Number(category))&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;afr/latest&lt;/code&gt; — &lt;code&gt;lib/routes/afr/latest.ts&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;assetsConnectionByCriteria&lt;/code&gt; GraphQL endpoint now requires the &lt;code&gt;render&lt;/code&gt; variable to be the enum value &lt;code&gt;&quot;WEB&quot;&lt;/code&gt; (uppercase). The previous value &lt;code&gt;&quot;web&quot;&lt;/code&gt; caused a 400 Bad Request.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fix:&lt;/strong&gt; &lt;code&gt;render: &#39;web&#39;&lt;/code&gt; → &lt;code&gt;render: &#39;WEB&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;afr/utils&lt;/code&gt; — &lt;code&gt;lib/routes/afr/utils.ts&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;The AFR article page&#39;s &lt;code&gt;__REDUX_STATE__&lt;/code&gt; now contains JavaScript-only literals (&lt;code&gt;new Map(...)&lt;/code&gt;, &lt;code&gt;new Set(...)&lt;/code&gt;) which are not valid JSON. &lt;code&gt;JSON.parse()&lt;/code&gt; was throwing &lt;code&gt;SyntaxError: Unexpected token&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fix:&lt;/strong&gt; Added two regex replacement passes before &lt;code&gt;JSON.parse()&lt;/code&gt; to replace &lt;code&gt;new Set([...])&lt;/code&gt; and &lt;code&gt;new Map([...])&lt;/code&gt; with &lt;code&gt;null&lt;/code&gt;.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21797</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21797</guid><pubDate>Tue, 21 Apr 2026 14:50:56 GMT</pubDate><author>inkOrCloud</author></item><item><title>fix(twitter): send X-Client-Transaction-Id for UserTweetsAndReplies</title><description>&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;UserTweetsAndReplies&lt;/code&gt; now sends &lt;code&gt;X-Client-Transaction-Id&lt;/code&gt; on web API requests.&lt;/p&gt;
+&lt;p&gt;Without this header, X returns &lt;code&gt;404&lt;/code&gt; for the &lt;code&gt;UserTweetsAndReplies&lt;/code&gt; GraphQL endpoint, which breaks &lt;code&gt;/twitter/user/:id&lt;/code&gt; when replies are included.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;generate a client transaction id for the &lt;code&gt;UserTweetsAndReplies&lt;/code&gt; request path&lt;/li&gt;
+&lt;li&gt;pass &lt;code&gt;X-Client-Transaction-Id&lt;/code&gt; through the existing web API request helper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Fixes #18894.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21787</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21787</guid><pubDate>Tue, 21 Apr 2026 01:49:34 GMT</pubDate><author>15cm</author></item><item><title>feat(gigazine): add English news full-text feed</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/gigazine/en
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[x] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;Adds a full-text English RSS feed for &lt;a href=&quot;https://gigazine.net/gsc_news/en/&quot;&gt;GIGAZINE&lt;/a&gt;, a popular Japanese tech/culture publication. GIGAZINE has an existing Japanese RSS feed but no English equivalent in RSSHub.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Anti-crawl handling:&lt;/strong&gt; The site is protected by Cloudflare. The route uses full Chrome &lt;code&gt;sec-*&lt;/code&gt; headers and sequential article fetching with a 5-second delay between cache-miss requests to stay within the rate limit. Cached articles are served instantly on subsequent polls.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21757</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21757</guid><pubDate>Fri, 17 Apr 2026 06:22:28 GMT</pubDate><author>chansantheman</author></item><item><title>feat(route): add rule34video latest route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/rule34video/latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;Re-submit of #21621 under a different account.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clean commit history&lt;/li&gt;
+&lt;li&gt;Addressed previous review comments&lt;/li&gt;
+&lt;li&gt;Follows RSSHub route conventions&lt;/li&gt;
+&lt;/ul&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21696</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21696</guid><pubDate>Fri, 10 Apr 2026 13:54:35 GMT</pubDate><author>ashi-koki</author></item><item><title>feat(route): add 国际能源网 (in-en.com) news route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;N/A&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/in-en/news/solar
+/in-en/news/wind
+/in-en/news/chuneng
+/in-en/news/h2
+/in-en/news/chd
+/in-en/news/newenergy
+/in-en/news/power
+/in-en/news/huanbao
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;Add RSS route for &lt;strong&gt;国际能源网&lt;/strong&gt; (&lt;a href=&quot;http://in-en.com/&quot;&gt;in-en.com&lt;/a&gt;), a major Chinese energy news portal covering solar, wind, energy storage, hydrogen, EV charging, and more.&lt;/p&gt;
+&lt;p&gt;Supported channels via &lt;code&gt;/in-en/news/:type&lt;/code&gt;:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;type&lt;/th&gt;
+&lt;th&gt;Channel&lt;/th&gt;
+&lt;th&gt;Subdomain&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;solar&lt;/td&gt;
+&lt;td&gt;光伏太阳能&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://solar.in-en.com/&quot;&gt;solar.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;wind&lt;/td&gt;
+&lt;td&gt;风电&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://wind.in-en.com/&quot;&gt;wind.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;chuneng&lt;/td&gt;
+&lt;td&gt;储能&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://chuneng.in-en.com/&quot;&gt;chuneng.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;h2&lt;/td&gt;
+&lt;td&gt;氢能&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://h2.in-en.com/&quot;&gt;h2.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;chd&lt;/td&gt;
+&lt;td&gt;充换电&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://chd.in-en.com/&quot;&gt;chd.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;newenergy&lt;/td&gt;
+&lt;td&gt;新能源综合&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://newenergy.in-en.com/&quot;&gt;newenergy.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;power&lt;/td&gt;
+&lt;td&gt;电力&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://power.in-en.com/&quot;&gt;power.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;huanbao&lt;/td&gt;
+&lt;td&gt;环保&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;http://huanbao.in-en.com/&quot;&gt;huanbao.in-en.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Implementation notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Parses article list from &lt;code&gt;ul.infoList &amp;gt; li&lt;/code&gt; on each subdomain&#39;s news page&lt;/li&gt;
+&lt;li&gt;Fetches full article body from detail page (&lt;code&gt;.article-body&lt;/code&gt;) via &lt;code&gt;cache.tryGet&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Handles Chinese relative timestamps (&lt;code&gt;X分钟前&lt;/code&gt; / &lt;code&gt;X小时前&lt;/code&gt; / &lt;code&gt;X天前&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Wind subdomain uses &lt;code&gt;/windnews/&lt;/code&gt; path instead of &lt;code&gt;/news/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21669</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21669</guid><pubDate>Thu, 09 Apr 2026 06:15:44 GMT</pubDate><author>Harviewang</author></item><item><title>feat(route/baidu): add BAIDU_COOKIE support and extract shared …</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #19642&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/baidu/tieba/forum/good/孙笑川
+/baidu/tieba/post/10620724314
+/baidu/tieba/user/斗鱼游戏君
+/baidu/tieba/search/反原神
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[ ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[x] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[x] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;h3&gt;概述&lt;/h3&gt;
+&lt;p&gt;本次 PR 为百度贴吧的 4 个路由（&lt;code&gt;/baidu/tieba/forum&lt;/code&gt;、&lt;code&gt;/baidu/tieba/post&lt;/code&gt;、&lt;code&gt;/baidu/tieba/search&lt;/code&gt;、&lt;code&gt;/baidu/tieba/user&lt;/code&gt;）添加了 &lt;strong&gt;BAIDU_COOKIE&lt;/strong&gt; 支持，以应对百度反爬机制的升级。&lt;/p&gt;
+&lt;h3&gt;主要改动&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;从 HTTP 请求迁移到 Puppeteer&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原有的路由使用 &lt;code&gt;got&lt;/code&gt;/&lt;code&gt;ofetch&lt;/code&gt; 直接发送 HTTP 请求获取页面内容&lt;/li&gt;
+&lt;li&gt;由于百度贴吧启用 JavaScript 渲染和反爬验证，原有方式已无法获取有效数据&lt;/li&gt;
+&lt;li&gt;现改为使用 Puppeteer 操控无头浏览器访问页面，可绕过反爬机制并正确获取 Vue 渲染的内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;新增 &lt;code&gt;common.ts&lt;/code&gt; 共享模块&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;parseBaiduCookies()&lt;/code&gt;: 正确解析包含 &lt;code&gt;=&lt;/code&gt; 字符的 Cookie 值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;getTiebaPageContent()&lt;/code&gt;: 统一的页面获取逻辑，包含 Cookie 注入和安全验证检查&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;normalizeUrl()&lt;/code&gt;: 将相对链接转换为绝对地址&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;checkSecurityVerification()&lt;/code&gt;: 检测百度安全验证页面并抛出友好错误提示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;各路由适配&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;forum&lt;/strong&gt;: 支持并发获取多页内容，自动去重，优化等待策略&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;post&lt;/strong&gt;: 保留富文本内容（链接、表情等），添加楼层信息，生成直达回复链接&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;search&lt;/strong&gt;: 规范搜索结果链接为绝对地址&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;user&lt;/strong&gt;: 适配新版用户主页结构，使用 &lt;code&gt;.thread-card&lt;/code&gt; 选择器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;改进时间解析&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;parseRelativeTime()&lt;/code&gt; 支持更多格式（刚刚、昨天、X天前等）&lt;/li&gt;
+&lt;li&gt;添加日期有效性检查，避免输出 Invalid Date&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;必需配置&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;以下 4 个路由现在必须配置 &lt;code&gt;BAIDU_COOKIE&lt;/code&gt; 才能使用：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;路由&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/forum/:kw&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/forum/女图&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/post/:id&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/post/686961453&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/search/:qw&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/search/neuro&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/user/:uid&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;/baidu/tieba/user/斗鱼游戏君&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;配置方法&lt;/h3&gt;
+&lt;p&gt;在环境变量或 &lt;code&gt;.env&lt;/code&gt; 文件中设置：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;BAIDU_COOKIE=BDUSS=your_bduss_value;other_cookie=value
+&lt;/code&gt;&lt;/pre&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21663</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21663</guid><pubDate>Wed, 08 Apr 2026 11:10:47 GMT</pubDate><author>FlanChanXwO</author></item><item><title>feat(router/nwpu): add computer science school announcements route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
 &lt;p&gt;Close #&lt;/p&gt;
 &lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
 &lt;!--
@@ -104,13 +700,210 @@ Fail to comply will result in your pull request being closed automatically.
 If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
 如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
 --&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;RSSHub\lib\routes\jbpress\issue.ts
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/nwpu/jsj
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;[x] New Route / 新的路由
 &lt;ul&gt;
-&lt;li&gt;[x ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21616</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21616</guid><pubDate>Fri, 03 Apr 2026 13:42:24 GMT</pubDate><author>StudyingLover</author></item><item><title>feat(route/kimi): add blog route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/some/route
+/some/other/route
+/dont/use/this/or/modify/it
+/use/the/fenced/code/block/below
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/kimi/blog
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;Kimi Blog (&lt;a href=&quot;https://www.kimi.com/blog/&quot;&gt;https://www.kimi.com/blog/&lt;/a&gt;) 是 VitePress 静态站点，博客列表数据以 base64 编码 JSON 嵌入在编译后的 lean.js 文件中。通过提取 lean.js 中的编码数据获取文章列表，并获取内部博客详情页的 meta description 作为摘要&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21601</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21601</guid><pubDate>Thu, 02 Apr 2026 09:26:10 GMT</pubDate><author>27Aaron</author></item><item><title>feat(route/zhipuai): add research route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/some/route
+/some/other/route
+/dont/use/this/or/modify/it
+/use/the/fenced/code/block/below
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/zhipuai/research
+/zhipuai/research/en
+/zhipuai/research/zh/agent
+/zhipuai/research/zh/multimodal
+/zhipuai/research/zh/basemodel
+/zhipuai/research/zh/codemodel
+/zhipuai/research/zh/reasoning
+/zhipuai/research/en/agent
+/zhipuai/research/en/multimodal
+/zhipuai/research/en/basemodel
+/zhipuai/research/en/codemodel
+/zhipuai/research/en/reasoning
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;新增智谱 AI (Zhipu AI) Research 路由。
+数据从 &lt;code&gt;zhipuai.cn&lt;/code&gt; 的 Next.js SSR HTML RSC payload 中提取，无需 Puppeteer。支持中英文（&lt;code&gt;zh&lt;/code&gt;/&lt;code&gt;en&lt;/code&gt;）和按标签过滤（&lt;code&gt;basemodel&lt;/code&gt;/&lt;code&gt;multimodal&lt;/code&gt;/&lt;code&gt;reasoning&lt;/code&gt;/&lt;code&gt;agent&lt;/code&gt;/&lt;code&gt;codemodel&lt;/code&gt;）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;备注&lt;/strong&gt;：&lt;code&gt;reasoning&lt;/code&gt;（推理模型）和 &lt;code&gt;codemodel&lt;/code&gt;（代码模型）目前暂无对应文章，等智谱发布相关内容后自动生效。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21596</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21596</guid><pubDate>Thu, 02 Apr 2026 07:46:19 GMT</pubDate><author>27Aaron</author></item><item><title>feat(route/qwen): add research route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/some/route
+/some/other/route
+/dont/use/this/or/modify/it
+/use/the/fenced/code/block/below
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/qwen/research
+/qwen/research/zh-cn
+/qwen/research/en/Research
+/qwen/research/en/Open-Source
+/qwen/research/en/Release
+/qwen/research/zh-cn/Research
+/qwen/research/zh-cn/Open-Source
+/qwen/research/zh-cn/Release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;新增 Qwen Research 路由，通过 &lt;code&gt;qwen.ai&lt;/code&gt; 官方 JSON API 获取研究文章列表。
+支持中英文（&lt;code&gt;en&lt;/code&gt; / &lt;code&gt;zh-cn&lt;/code&gt;）和按标签过滤（&lt;code&gt;Research&lt;/code&gt;、&lt;code&gt;Open-Source&lt;/code&gt;、&lt;code&gt;Release&lt;/code&gt;）。
+每篇文章包含标题、封面图、introduction 渲染为 HTML、以及从 tokenLinks 提取的 Paper/GitHub 等外部链接。
+数据源：&lt;code&gt;https://qwen.ai/api/page_config?code=research.research-list&lt;/code&gt;&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21595</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21595</guid><pubDate>Thu, 02 Apr 2026 06:37:44 GMT</pubDate><author>27Aaron</author></item><item><title>fix(spotify/artist): include all music</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/spotify/artist
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/spotify/artist
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[ ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
@@ -120,16 +913,238 @@ If your changes are not related to route, please fill in `routes` section with `
 &lt;/li&gt;
 &lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;[ x] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[x ] Correct time zone / 时区正确&lt;/li&gt;
+&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
 &lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Note / 说明&lt;/h2&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19232</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19232</guid><pubDate>Thu, 29 May 2025 08:30:31 GMT</pubDate><author>Hrushikesh9807</author></item><item><title>add huya live</title><description>&lt;p&gt;add huya live&lt;/p&gt;
-&lt;!-- 
+&lt;p&gt;By default the artist endpoint only returns albums and omits other types. It would be better to include them.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21593</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21593</guid><pubDate>Thu, 02 Apr 2026 00:41:05 GMT</pubDate><author>jameschubbuck</author></item><item><title>feat(route): add /humanlayer/blog route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/some/route
+/some/other/route
+/dont/use/this/or/modify/it
+/use/the/fenced/code/block/below
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/humanlayer/blog
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;New route&lt;/strong&gt;: &lt;code&gt;/humanlayer/blog&lt;/code&gt; — Scrapes &lt;a href=&quot;https://www.humanlayer.dev/blog&quot;&gt;humanlayer.dev/blog&lt;/a&gt; for blog posts on AI agents, context engineering, and coding best practices&lt;/li&gt;
+&lt;li&gt;Full article content fetched and cached via cheerio + ofetch&lt;/li&gt;
+&lt;li&gt;Supports &lt;code&gt;?limit=&lt;/code&gt; query parameter&lt;/li&gt;
+&lt;li&gt;Radar rules included for browser extension detection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;via &lt;a href=&quot;https://hapi.run/&quot;&gt;HAPI&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Co-Authored-By: HAPI &lt;a href=&quot;mailto:noreply@hapi.run&quot;&gt;noreply@hapi.run&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;🤖 Generated with &lt;a href=&quot;https://claude.com/claude-code&quot;&gt;Claude Code&lt;/a&gt;&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21565</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21565</guid><pubDate>Tue, 31 Mar 2026 06:48:12 GMT</pubDate><author>zj1123581321</author></item><item><title>feat(route/rumble): add channel feed</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;No issue involved. This was just something I wanted and thought others might like too.&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/rumble/c/MikhailaPeterson
+/rumble/c/MikhailaPeterson/noembed
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[x] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;This adds a Rumble route that keeps the channel listing on server-rendered markup while using structured detail-page data for fallback descriptions and thumbnails. It also adds standard &lt;code&gt;image&lt;/code&gt; output and limits detail-page fetch concurrency to reduce anti-bot risk.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21545</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21545</guid><pubDate>Sun, 29 Mar 2026 04:39:07 GMT</pubDate><author>luckycold</author></item><item><title>feat(route): Add Archdaily Search Support</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;!--
+Please include route starts with /, with all required and optional parameters.
+Fail to comply will result in your pull request being closed automatically.
+请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
+如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
+
+```routes
+/some/route
+/some/other/route
+/dont/use/this/or/modify/it
+/use/the/fenced/code/block/below
+```
+
+If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
+如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
+--&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/archdaily/search/all/Urban Design
+/archdaily/search/projects/Urban Design
+/archdaily/search/products/Urban Design
+/archdaily/search/folders/Urban Design
+/archdaily/search/articles/Urban Design
+/archdaily/search/competitions/Urban Design
+/archdaily/search/events/Urban Design
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;ArchDaily 虽提供 RSS，但受会员订阅限制，且不支持 tag 关键词筛选。
+ArchDaily provides RSS, but it is constrained by subscription membership and does not support tag-based keyword filtering.&lt;/p&gt;
+&lt;p&gt;无特殊需求建议使用&lt;a href=&quot;https://feeds.feedburner.com/Archdaily&quot;&gt;官方 Feed&lt;/a&gt;。
+English: If no special customization is required, use the &lt;a href=&quot;https://feeds.feedburner.com/Archdaily&quot;&gt;official feed&lt;/a&gt;.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21511</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21511</guid><pubDate>Thu, 26 Mar 2026 03:41:50 GMT</pubDate><author>FridayAnubis</author></item><item><title>fix(route/zsxq): fix topic link precision loss and missing group_id in URL</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;N/A - bug discovered during self-hosted usage&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/zsxq/group/88855458825252
+/zsxq/group/88855458825252/digests
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;The zsxq (知识星球) route generates &lt;strong&gt;broken topic links&lt;/strong&gt; due to two issues:&lt;/p&gt;
+&lt;h3&gt;1. JavaScript Number precision loss on topic_id&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;topic_id&lt;/code&gt; values from the zsxq API are 17+ digit integers, which exceed &lt;code&gt;Number.MAX_SAFE_INTEGER&lt;/code&gt; (2^53 - 1). When &lt;code&gt;JSON.parse()&lt;/code&gt; processes these values, precision is silently lost (e.g., last digits get corrupted), resulting in links pointing to non-existent topics.&lt;/p&gt;
+&lt;h3&gt;2. Missing group_id in topic URL&lt;/h3&gt;
+&lt;p&gt;The current URL template is &lt;code&gt;https://wx.zsxq.com/topic/{topic_id}&lt;/code&gt;, but the correct format is &lt;code&gt;https://wx.zsxq.com/group/{group_id}/topic/{topic_id}&lt;/code&gt;. Without the &lt;code&gt;group_id&lt;/code&gt; path segment, the link redirects to an error page.&lt;/p&gt;
+&lt;h2&gt;Fix&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Precision fix&lt;/strong&gt;: Changed &lt;code&gt;responseType&lt;/code&gt; to &lt;code&gt;&#39;text&#39;&lt;/code&gt; and pre-process raw JSON to convert large integer ID fields to strings before &lt;code&gt;JSON.parse()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;URL fix&lt;/strong&gt;: Updated URL template to include &lt;code&gt;group_id&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Type fix&lt;/strong&gt;: Updated &lt;code&gt;topic_id&lt;/code&gt;, &lt;code&gt;group_id&lt;/code&gt;, &lt;code&gt;user_id&lt;/code&gt; types from &lt;code&gt;number&lt;/code&gt; to &lt;code&gt;number | string&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Bug fix for existing route / 现有路由的 Bug 修复&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; - Parsed (no change)&lt;/li&gt;
+&lt;/ul&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21475</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21475</guid><pubDate>Sun, 22 Mar 2026 07:33:42 GMT</pubDate><author>pku-zhb</author></item><item><title>feat(route): add 福建日报电子报 route</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/fjdaily
+/fjdaily/20260321
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+&lt;p&gt;新增福建日报电子报路由，URL：&lt;a href=&quot;https://fjrb.fjdaily.com/&quot;&gt;https://fjrb.fjdaily.com&lt;/a&gt;
+支持：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;留空日期参数时抓取最新一期全部版面：&lt;code&gt;/fjdaily&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;传入指定日期抓取对应日期的全部版面：&lt;code&gt;/fjdaily/20260321&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21472</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21472</guid><pubDate>Sat, 21 Mar 2026 14:56:27 GMT</pubDate><author>DakoWang</author></item><item><title>feat(route): Add routes for ebay</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #&lt;/p&gt;
+&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/ebay/user/m.trotters
+/ebay/search/sodimm+ddr4+16gb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] New Route / 新的路由
+&lt;ul&gt;
+&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[N/A] Anti-bot or rate limit / 反爬/频率限制
+&lt;ul&gt;
+&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[N/A] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
+&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;[N/A] New package added / 添加了新的包&lt;/li&gt;
+&lt;li&gt;[N/A] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Note / 说明&lt;/h2&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21323</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21323</guid><pubDate>Sat, 07 Mar 2026 18:07:12 GMT</pubDate><author>phoeagon</author></item><item><title>feat(route): add opengithub-weekly-rank route, display the journal of opengithub on github trending</title><description>&lt;p&gt;discription / pr描述
+I add a new route, about github trending weekly.
+tracking the journals update of &lt;a href=&quot;https://github.com/OpenGithubs/github-weekly-rank/tree/main&quot;&gt;opengithub-weekly-rank&lt;/a&gt;&lt;/p&gt;
+&lt;!--
 If you have any difficulties in filling out this form, please refer to https://docs.rsshub.app/joinus/new-rss/submit-route
 如果你在填写此表单时遇到任何困难，请参考 https://docs.rsshub.app/zh/joinus/new-rss/submit-route
 --&gt;
@@ -152,13 +1167,13 @@ Fail to comply will result in your pull request being closed automatically.
 If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
 如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
 --&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/huya/live/10188
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/opengithub-trending/weekly
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;[X] New Route / 新的路由
+&lt;li&gt;[ x ] New Route / 新的路由
 &lt;ul&gt;
-&lt;li&gt;[X] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[ x ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
@@ -166,7 +1181,7 @@ If your changes are not related to route, please fill in `routes` section with `
 &lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;[X] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
+&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
 &lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
@@ -176,26 +1191,7 @@ If your changes are not related to route, please fill in `routes` section with `
 &lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;p&gt;本路由用于获取虎牙直播间的开播状态，支持通过房间号获取直播信息，并生成符合 RSS 标准的订阅源。&lt;/p&gt;
-&lt;h3&gt;路由路径&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;/huya/live/:id
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;参数说明&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;参数&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;id&lt;/td&gt;
-&lt;td&gt;必选，虎牙直播间房间号，可在主播直播间页 URL 中找到&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19195</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19195</guid><pubDate>Sun, 25 May 2025 22:55:26 GMT</pubDate><author>x0rz4</author></item><item><title>feat(route/gmu): Add GMU routes</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/21084</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/21084</guid><pubDate>Sat, 07 Feb 2026 05:25:23 GMT</pubDate><author>Nemocccc</author></item><item><title>feat(route/sjtu): Add route for Public OA</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
 &lt;p&gt;Close #&lt;/p&gt;
 &lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
 &lt;!--
@@ -214,276 +1210,7 @@ Fail to comply will result in your pull request being closed automatically.
 If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
 如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
 --&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/gmu/news
-/gmu/news/gyyw
-/gmu/news/ybdt
-/gmu/news/mtgy
-/gmu/news/xsjz
-/gmu/yjs/zsgz/tzgg
-/gmu/yjs/zsgz/xwsd
-/gmu/yjs/pygz/tzgg
-/gmu/yjs/pygz/gzzd
-/gmu/yjs/xwgz/tzgg
-/gmu/yjs/xwgz/dsgl
-/gmu/yjs/xwgz/xwgl
-/gmu/yjs/xwgz/pggz
-/gmu/yjs/xsgz/tzgg
-/gmu/yjs/xsgz/xwsd
-/gmu/yjs/xsgz/xshd
-/gmu/yjs/xsgz/jzgz
-/gmu/yjs/xzzx/zsxz
-/gmu/yjs/xzzx/pyxz
-/gmu/yjs/xzzx/xwxz
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19182</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19182</guid><pubDate>Fri, 23 May 2025 12:15:27 GMT</pubDate><author>FrankFahey</author></item><item><title>feat(route): add route aibase/daily</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #
-&lt;a href=&quot;https://github.com/DIYgod/RSSHub/issues/18455&quot;&gt;https://github.com/DIYgod/RSSHub/issues/18455&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/aibase/daily
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19152</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19152</guid><pubDate>Wed, 21 May 2025 07:14:19 GMT</pubDate><author>3tuuu</author></item><item><title>chore(deps): bump puppeteer from 22.6.2 to 24.9.0</title><description>&lt;p&gt;Bumps &lt;a href=&quot;https://github.com/puppeteer/puppeteer&quot;&gt;puppeteer&lt;/a&gt; from 22.6.2 to 24.9.0.&lt;/p&gt;
-&lt;details&gt;
-&lt;summary&gt;Release notes&lt;/summary&gt;
-&lt;p&gt;&lt;em&gt;Sourced from &lt;a href=&quot;https://github.com/puppeteer/puppeteer/releases&quot;&gt;puppeteer&#39;s releases&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h2&gt;puppeteer-core: v24.9.0&lt;/h2&gt;
-&lt;h2&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/compare/puppeteer-core-v24.8.2...puppeteer-core-v24.9.0&quot;&gt;24.9.0&lt;/a&gt; (2025-05-20)&lt;/h2&gt;
-&lt;h3&gt;Features&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;add &lt;code&gt;screencast&lt;/code&gt; override options (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13708&quot;&gt;#13708&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/e3586e81521e0d91d4d69990cc44a73504dea3c4&quot;&gt;e3586e8&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;roll to Chrome 136.0.7103.94 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13870&quot;&gt;#13870&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/9c6ef1345633b3576b3ef433dafdc6dcb9c1424f&quot;&gt;9c6ef13&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;roll to Firefox 138.0.3 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13868&quot;&gt;#13868&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/863a3e07dcce874035d851778ae4187e12ef421b&quot;&gt;863a3e0&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;roll to Firefox 138.0.4 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13881&quot;&gt;#13881&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/29ff2b59815c543c95e7458b7f8ba7ad72afd71c&quot;&gt;29ff2b5&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Dependencies&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The following workspace dependencies were updated
-&lt;ul&gt;
-&lt;li&gt;dependencies
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;@puppeteer/browsers&lt;/code&gt; bumped from 2.10.4 to 2.10.5&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;puppeteer: v24.9.0&lt;/h2&gt;
-&lt;h2&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/compare/puppeteer-v24.8.2...puppeteer-v24.9.0&quot;&gt;24.9.0&lt;/a&gt; (2025-05-20)&lt;/h2&gt;
-&lt;h3&gt;Miscellaneous Chores&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;puppeteer:&lt;/strong&gt; Synchronize puppeteer versions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Dependencies&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The following workspace dependencies were updated
-&lt;ul&gt;
-&lt;li&gt;dependencies
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;@puppeteer/browsers&lt;/code&gt; bumped from 2.10.4 to 2.10.5&lt;/li&gt;
-&lt;li&gt;puppeteer-core bumped from 24.8.2 to 24.9.0&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;puppeteer-core: v24.8.2&lt;/h2&gt;
-&lt;h2&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/compare/puppeteer-core-v24.8.1...puppeteer-core-v24.8.2&quot;&gt;24.8.2&lt;/a&gt; (2025-05-07)&lt;/h2&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;roll to Chrome 136.0.7103.92 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13854&quot;&gt;#13854&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/a83e6ce79729a99a4d7c8eb834aa645869185664&quot;&gt;a83e6ce&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Dependencies&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The following workspace dependencies were updated&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;... (truncated)&lt;/p&gt;
-&lt;/details&gt;
-&lt;details&gt;
-&lt;summary&gt;Changelog&lt;/summary&gt;
-&lt;p&gt;&lt;em&gt;Sourced from &lt;a href=&quot;https://github.com/puppeteer/puppeteer/blob/main/CHANGELOG.md&quot;&gt;puppeteer&#39;s changelog&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;h2&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/compare/puppeteer-v24.8.2...puppeteer-v24.9.0&quot;&gt;24.9.0&lt;/a&gt; (2025-05-20)&lt;/h2&gt;
-&lt;h3&gt;Miscellaneous Chores&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;puppeteer:&lt;/strong&gt; Synchronize puppeteer versions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Dependencies&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The following workspace dependencies were updated
-&lt;ul&gt;
-&lt;li&gt;dependencies
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;@puppeteer/browsers&lt;/code&gt; bumped from 2.10.4 to 2.10.5&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Features&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;add &lt;code&gt;screencast&lt;/code&gt; override options (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13708&quot;&gt;#13708&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/e3586e81521e0d91d4d69990cc44a73504dea3c4&quot;&gt;e3586e8&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;roll to Chrome 136.0.7103.94 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13870&quot;&gt;#13870&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/9c6ef1345633b3576b3ef433dafdc6dcb9c1424f&quot;&gt;9c6ef13&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;roll to Firefox 138.0.3 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13868&quot;&gt;#13868&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/863a3e07dcce874035d851778ae4187e12ef421b&quot;&gt;863a3e0&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;roll to Firefox 138.0.4 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13881&quot;&gt;#13881&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/29ff2b59815c543c95e7458b7f8ba7ad72afd71c&quot;&gt;29ff2b5&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/compare/puppeteer-v24.8.1...puppeteer-v24.8.2&quot;&gt;24.8.2&lt;/a&gt; (2025-05-07)&lt;/h2&gt;
-&lt;h3&gt;Miscellaneous Chores&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;puppeteer:&lt;/strong&gt; Synchronize puppeteer versions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Dependencies&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;The following workspace dependencies were updated
-&lt;ul&gt;
-&lt;li&gt;dependencies
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;@puppeteer/browsers&lt;/code&gt; bumped from 2.10.3 to 2.10.4&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Bug Fixes&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;roll to Chrome 136.0.7103.92 (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13854&quot;&gt;#13854&lt;/a&gt;) (&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/a83e6ce79729a99a4d7c8eb834aa645869185664&quot;&gt;a83e6ce&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/compare/puppeteer-v24.8.0...puppeteer-v24.8.1&quot;&gt;24.8.1&lt;/a&gt; (2025-05-06)&lt;/h2&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;... (truncated)&lt;/p&gt;
-&lt;/details&gt;
-&lt;details&gt;
-&lt;summary&gt;Commits&lt;/summary&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/efc1343e24247225428e0602471c57396ac31857&quot;&gt;&lt;code&gt;efc1343&lt;/code&gt;&lt;/a&gt; chore: release main (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13893&quot;&gt;#13893&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/ffd7412b284497b08d94146c28e31bab29beaf90&quot;&gt;&lt;code&gt;ffd7412&lt;/code&gt;&lt;/a&gt; test: treat the server work similar to dedicated workers (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13891&quot;&gt;#13891&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/4f99f91ca2d2824e7cc3955db8039ee1d67fb2a5&quot;&gt;&lt;code&gt;4f99f91&lt;/code&gt;&lt;/a&gt; chore(deps): Bump the dependencies group with 3 updates (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13876&quot;&gt;#13876&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/e17cddbd0a6b6e68b015bafb1ebc3a86ad661600&quot;&gt;&lt;code&gt;e17cddb&lt;/code&gt;&lt;/a&gt; test: try improve worker test stability (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13889&quot;&gt;#13889&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/8a9f8810b734e0ce07a028506f150ab0004e1afb&quot;&gt;&lt;code&gt;8a9f881&lt;/code&gt;&lt;/a&gt; chore(deps): Bump semver from 7.7.1 to 7.7.2 in /website in the all group (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/1&quot;&gt;#1&lt;/a&gt;...&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/fc910f1f7c85dd01750964e07ed0c87b85ea225e&quot;&gt;&lt;code&gt;fc910f1&lt;/code&gt;&lt;/a&gt; chore(deps-dev): Bump the dev-dependencies group with 7 updates (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13877&quot;&gt;#13877&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/1766c710691052e1d7b449558fc8c8b8ee159580&quot;&gt;&lt;code&gt;1766c71&lt;/code&gt;&lt;/a&gt; chore(deps): Bump the all group with 2 updates (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13879&quot;&gt;#13879&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/97b7dd9e48c71eea54585595c6ab101577af9f34&quot;&gt;&lt;code&gt;97b7dd9&lt;/code&gt;&lt;/a&gt; test: make worker test more robust (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13888&quot;&gt;#13888&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/4f066d563467bf520020c5b58c6417040160a243&quot;&gt;&lt;code&gt;4f066d5&lt;/code&gt;&lt;/a&gt; ci: disable TabstripComboButton (&lt;a href=&quot;https://redirect.github.com/puppeteer/puppeteer/issues/13887&quot;&gt;#13887&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/puppeteer/puppeteer/commit/062fa30d6abe12210d6b1b302d85d4b24ced0fe5&quot;&gt;&lt;code&gt;062fa30&lt;/code&gt;&lt;/a&gt; chore(deps): Bump node from &lt;code&gt;a1f1274&lt;/code&gt; to &lt;code&gt;e558507&lt;/code&gt; in /docker in the all grou...&lt;/li&gt;
-&lt;li&gt;Additional commits viewable in &lt;a href=&quot;https://github.com/puppeteer/puppeteer/compare/puppeteer-v22.6.2...puppeteer-v24.9.0&quot;&gt;compare view&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/details&gt;
-&lt;details&gt;
-&lt;summary&gt;Maintainer changes&lt;/summary&gt;
-&lt;p&gt;This version was pushed to npm by &lt;a href=&quot;https://www.npmjs.com/~google-wombot&quot;&gt;google-wombot&lt;/a&gt;, a new releaser for puppeteer since your current version.&lt;/p&gt;
-&lt;/details&gt;
-&lt;br&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores&quot;&gt;&lt;img src=&quot;https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=puppeteer&amp;amp;package-manager=npm_and_yarn&amp;amp;previous-version=22.6.2&amp;amp;new-version=24.9.0&quot; alt=&quot;Dependabot compatibility score&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Dependabot will resolve any conflicts with this PR as long as you don&#39;t alter it yourself. You can also trigger a rebase manually by commenting &lt;code&gt;@dependabot rebase&lt;/code&gt;.&lt;/p&gt;
-&lt;hr&gt;
-&lt;details&gt;
-&lt;summary&gt;Dependabot commands and options&lt;/summary&gt;
-&lt;br&gt;
-&lt;p&gt;You can trigger Dependabot actions by commenting on this PR:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;@dependabot rebase&lt;/code&gt; will rebase this PR&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot recreate&lt;/code&gt; will recreate this PR, overwriting any edits that have been made to it&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot merge&lt;/code&gt; will merge this PR after your CI passes on it&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot squash and merge&lt;/code&gt; will squash and merge this PR after your CI passes on it&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot cancel merge&lt;/code&gt; will cancel a previously requested merge and block automerging&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot reopen&lt;/code&gt; will reopen this PR if it is closed&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot close&lt;/code&gt; will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot show &amp;lt;dependency name&amp;gt; ignore conditions&lt;/code&gt; will show all of the ignore conditions of the specified dependency&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot ignore this major version&lt;/code&gt; will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot ignore this minor version&lt;/code&gt; will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@dependabot ignore this dependency&lt;/code&gt; will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/details&gt;</description><link>https://github.com/DIYgod/RSSHub/pull/19142</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19142</guid><pubDate>Tue, 20 May 2025 08:07:12 GMT</pubDate><author>dependabot[bot]</author></item><item><title>refactor(route/dockerhub): request using ofetch and typed model</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/dockerhub/tag/library/mariadb
-/dockerhub/build/diygod/rsshub/latest
-/dockerhub/build/diygod/rsshub
-/dockerhub/repositories/diygod
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/sjtu/publicoa
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
@@ -507,11 +1234,8 @@ If your changes are not related to route, please fill in `routes` section with `
 &lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Should we change &lt;code&gt;limits&lt;/code&gt; in &lt;code&gt;/dockerhub/tag&lt;/code&gt; to &lt;code&gt;limit&lt;/code&gt;?&lt;/li&gt;
-&lt;/ol&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19057</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19057</guid><pubDate>Thu, 08 May 2025 15:20:45 GMT</pubDate><author>nuomi1</author></item><item><title>feat(twitter): add option to number the medias</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/20967</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/20967</guid><pubDate>Sun, 25 Jan 2026 08:47:40 GMT</pubDate><author>dzx-dzx</author></item><item><title>fix: make the atom format spec-compliant</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;fix #20866&lt;/p&gt;
 &lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
 &lt;!--
 Please include route starts with /, with all required and optional parameters.
@@ -529,7 +1253,8 @@ Fail to comply will result in your pull request being closed automatically.
 If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
 如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
 --&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/twitter/user/ayatoyofuji
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/v2ex/topics/latest?format=atom
+/chinanews?format=atom
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
@@ -553,417 +1278,24 @@ If your changes are not related to route, please fill in `routes` section with `
 &lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;p&gt;添加选项&lt;code&gt;mediaNumber&lt;/code&gt;, 当推文中含有图片等媒体类型时，该选项会为这些媒体添加编号&lt;/p&gt;
-&lt;p&gt;add option &lt;code&gt;mediaNumber&lt;/code&gt;, the option would number the medias in the tweets&lt;/p&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19050</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19050</guid><pubDate>Thu, 08 May 2025 07:52:17 GMT</pubDate><author>wakou</author></item><item><title>fix(route/twitter/user): support specify option `onlyMedia`</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/twitter/user/ayatoyofuji/onlyMedia=1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[ ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;p&gt;/twitter/user路由下，没有添加可选参数&lt;code&gt;onlyMedia&lt;/code&gt;的相关处理逻辑&lt;/p&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19049</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19049</guid><pubDate>Thu, 08 May 2025 07:46:42 GMT</pubDate><author>wakou</author></item><item><title>feat(route): add eventbrite</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;N/A&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/eventbrite/all-events/canada--toronto
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[X] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[X] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[X] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;p&gt;I don&#39;t know how to scope the radar to work on &lt;a href=&quot;http://eventbrite.ca/&quot;&gt;eventbrite.ca&lt;/a&gt; as well.&lt;/p&gt;
-&lt;h2&gt;Future Improvements&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Scrape max 5 or so pages (figure out how many new pages are added per day in NYC for example)&lt;/li&gt;
-&lt;li&gt;Use destination/search API from the get-go instead of web scraping (requires the place ID which requires smart/regex webscraping)&lt;/li&gt;
-&lt;/ul&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/19007</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/19007</guid><pubDate>Sun, 04 May 2025 21:28:21 GMT</pubDate><author>elibroftw</author></item><item><title>feat: Add thread page BT for 1lou.me</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;None&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/1lou/thread
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;p&gt;在通用的 &lt;code&gt;/1lou/:params{.+}?&lt;/code&gt; 路由基础上增加到具体帖子页的路由，用于监控获取指定帖子里的所有 bt 链接&lt;/p&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18971</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18971</guid><pubDate>Tue, 29 Apr 2025 14:45:14 GMT</pubDate><author>liunian</author></item><item><title>Add new routes</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/cdirt/all
-/cdirt/news
-/cdirt/notice
-/cdirt/notification
-/cdirt/job
-/cdirt/calender
-/cdirt/party
-/cdirt/talent
-/cdirt/campus
-/njupco/news
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] New Route / 新的路由&lt;/li&gt;
-&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制&lt;/li&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18936</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18936</guid><pubDate>Thu, 24 Apr 2025 08:47:02 GMT</pubDate><author>ArtificialPigment</author></item><item><title>feat(route/nmc): add temperature observation charts</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #18549&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/nmc/observation/temperature
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18871</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18871</guid><pubDate>Thu, 17 Apr 2025 06:19:22 GMT</pubDate><author>dousha</author></item><item><title>feat(route): add uscardforum top-category (with puppeteer)</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/uscardforum/top-category/33
-/uscardforum/top-category/33/daily
-/uscardforum/top-category/33/weekly
-/uscardforum/top-category/33/monthly
-/uscardforum/top-category/33/yearly
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;p&gt;New Route / 新的路由&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随路由规范&lt;/li&gt;
-&lt;li&gt;[x] Documentation / 文档说明（已添加 uscardforum.ts 和 namespace.ts）&lt;/li&gt;
-&lt;li&gt;[x] Full text / 全文获取&lt;/li&gt;
-&lt;li&gt;[x] Use cache / 使用缓存&lt;/li&gt;
-&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制&lt;/li&gt;
-&lt;li&gt;[x] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?（是，已使用 Puppeteer）&lt;/li&gt;
-&lt;li&gt;[x] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / [日期和时间处理]&lt;/li&gt;
-&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[x] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18862</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18862</guid><pubDate>Tue, 15 Apr 2025 23:18:51 GMT</pubDate><author>xiaojiou176</author></item><item><title>feat(route): add 荣鼎咨询</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;rhg/blog
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[ ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18618</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18618</guid><pubDate>Mon, 17 Mar 2025 01:14:38 GMT</pubDate><author>Deja-vuuu</author></item><item><title>fix(routes/gov/zhengce): Fetch the retrieval results for the given keyword from gov.cn</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #18548&lt;/p&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;!--
-Please include route starts with /, with all required and optional parameters.
-Fail to comply will result in your pull request being closed automatically.
-请在 `routes` 区域填写以 / 开头的完整路由地址，否则你的 PR 将会被无条件关闭。
-如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
-
-```routes
-/some/route
-/some/other/route
-/dont/use/this/or/modify/it
-/use/the/fenced/code/block/below
-```
-
-If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
-如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
---&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/gov/zhengce/searchWord=医保
-/gov/zhengce/searchWord=体育
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[ ] Follows &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt; / 跟随 &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] &lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt; / &lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;[ ] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[x] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;p&gt;路由中searchWord可替换为所需关键词。
-目前可用的选项仅searchWord，因为不同搜索组合对应不同AppKey，增加复杂性，出于稳定和实用考虑暂未实现。目前的实现搜索区域为标题，时间范围不限，搜索结果按时间排序。&lt;/p&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18593</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18593</guid><pubDate>Thu, 13 Mar 2025 09:35:28 GMT</pubDate><author>zll17</author></item><item><title>feat(route/mangadex): add three new routes and modify one old route for mangadex.org</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/mangadex/manga/f98660a1-d2e2-461c-960d-7bd13df8b76d/en
-/mangadex/mdlist/10cca803-8dc9-4f0e-86a8-6659a3ce5188
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;[x] New Route / 新的路由
-&lt;ul&gt;
-&lt;li&gt;[x] Follows [&lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;Script Standard&lt;/a&gt;](&lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/script-standard&quot;&gt;https://docs.rsshub.app/joinus/advanced/script-standard&lt;/a&gt;) / 跟随 [&lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;路由规范&lt;/a&gt;](&lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/script-standard&quot;&gt;https://docs.rsshub.app/zh/joinus/advanced/script-standard&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[x] Anti-bot or rate limit / 反爬/频率限制
-&lt;ul&gt;
-&lt;li&gt;[ ] If yes, do your code reflect this sign? / 如果有, 是否有对应的措施?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[x] [&lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;Date and time&lt;/a&gt;](&lt;a href=&quot;https://docs.rsshub.app/joinus/advanced/pub-date&quot;&gt;https://docs.rsshub.app/joinus/advanced/pub-date&lt;/a&gt;) / [&lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;日期和时间&lt;/a&gt;](&lt;a href=&quot;https://docs.rsshub.app/zh/joinus/advanced/pub-date&quot;&gt;https://docs.rsshub.app/zh/joinus/advanced/pub-date&lt;/a&gt;)
-&lt;ul&gt;
-&lt;li&gt;[x] Parsed / 可以解析&lt;/li&gt;
-&lt;li&gt;[ ] Correct time zone / 时区正确&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;[ ] New package added / 添加了新的包&lt;/li&gt;
-&lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;p&gt;I&#39;ve added three new routes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;/user/feed/follow/:lang?&lt;/code&gt;: User&#39;s all followed mangas feed&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;/user/follow/:type?&lt;/code&gt;: User&#39;s sepecific type of followed mangas feed&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;type&lt;/code&gt; can be &lt;code&gt;reading&lt;/code&gt;, &lt;code&gt;plan-to-read&lt;/code&gt;, &lt;code&gt;completed&lt;/code&gt;, &lt;code&gt;on-hold&lt;/code&gt;, &lt;code&gt;re-reading&lt;/code&gt; or &lt;code&gt;dropped&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;The src attribute is to replace the inner content, not to mark its source.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc4287#section-4.1.3.2&quot;&gt;RFC4287&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;I didn&#39;t list them in the part [&lt;a href=&quot;https://github.com/DIYgod/RSSHub/compare/master...chrisis58:RSSHub:master?expand=1#%20Example%20for%20the%20Proposed%20Route(s)%20/%20%E8%B7%AF%E7%94%B1%E5%9C%B0%E5%9D%80%E7%A4%BA%E4%BE%8B&quot;&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/a&gt;](# Example for the Proposed Route(s) / 路由地址示例) since they need configuration.&lt;/p&gt;
+&lt;p&gt;4.1.3.2.  The &quot;src&quot; Attribute&lt;/p&gt;
+&lt;p&gt;atom:content MAY have a &quot;src&quot; attribute, whose value MUST be an IRI
+reference [RFC3987].  If the &quot;src&quot; attribute is present, atom:content
+MUST be empty.  Atom Processors MAY use the IRI to retrieve the
+content and MAY choose to ignore remote content or to present it in a
+different manner than local content.&lt;/p&gt;
+&lt;p&gt;If the &quot;src&quot; attribute is present, the &quot;type&quot; attribute SHOULD be
+provided and MUST be a MIME media type [MIMEREG], rather than &quot;text&quot;,
+&quot;html&quot;, or &quot;xhtml&quot;.  The value is advisory; that is to say, when the
+corresponding URI (mapped from an IRI, if necessary) is dereferenced,
+if the server providing that content also provides a media type, the
+server-provided media type is authoritative.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;/mdlist/:id/:lang?&lt;/code&gt;: Sepecific MDList feed, once private, it need credentinals configured&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;, and modify one old route:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;/:id/:lang?&lt;/code&gt; -&amp;gt; &lt;code&gt;/manga/:id/:lang?&lt;/code&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I may have to add a prefix for it otherwise RSSHub cannot resolve other routes. I also refactored this route with new code.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Configuration needed for some of the routes. RSSHub can load the configuration from environment variables:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;MANGADEX_USERNAME&lt;/code&gt;: your MangaDex account&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;MANGADEX_PASSWORD&lt;/code&gt;: your MangaDex password&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;MANGADEX_CLIENT_ID&lt;/code&gt;: your registered personal Client Id&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;MANGADEX_CLIENT_SECRET&lt;/code&gt;: your registerd personal Client Secret&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;MANGADEX_REFRESH_TOKEN&lt;/code&gt;: token to retrieve an access token&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;MANGADEX_FILTERED_LANGUAGES&lt;/code&gt; (Optional): custom language filter, values separated by commas (e.g., &lt;code&gt;zh,zh-hk,en&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here’s a flowchart showing how the credentials and tokens relate to each other to get an &lt;code&gt;access_token&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;flowchart TD
-subgraph user_credentials
-username
-password
-end
-subgraph client_credentials
-client_secret
-client_id
-end
-user_credentials -.-&amp;gt; refresh_token
-client_credentials -.-&amp;gt; refresh_token
-client_credentials --&amp;gt; access_token
-refresh_token --&amp;gt; access_token
-&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Actually if the request&#39;s grant type is &lt;code&gt;password&lt;/code&gt; (by user credentials) , server will return both &lt;code&gt;refresh_token&lt;/code&gt; and &lt;code&gt;access_token&lt;/code&gt; in the same time.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Referring to [&lt;a href=&quot;https://api.mangadex.org/docs/02-authentication/personal-clients/&quot;&gt;(API docs) Personal clients&lt;/a&gt;](&lt;a href=&quot;https://api.mangadex.org/docs/02-authentication/personal-clients/&quot;&gt;https://api.mangadex.org/docs/02-authentication/personal-clients/&lt;/a&gt;) to register a personal Client.&lt;/p&gt;
-&lt;p&gt;Note that &lt;code&gt;access_token&lt;/code&gt; has an expire time for 15 minutes, &lt;code&gt;refresh_token&lt;/code&gt; also has its expire time.&lt;/p&gt;
-&lt;p&gt;To obtain the &lt;code&gt;access_token&lt;/code&gt;, you&#39;ll need to either configure &lt;code&gt;user_credentials&lt;/code&gt; for long-term use or configure &lt;code&gt;refresh_token&lt;/code&gt; for privacy.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18269</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18269</guid><pubDate>Mon, 03 Feb 2025 13:37:34 GMT</pubDate><author>chrisis58</author></item><item><title>feat(route/telegram): Fix tglib</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
-&lt;p&gt;Close #18260&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/20723</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/20723</guid><pubDate>Thu, 18 Dec 2025 06:54:17 GMT</pubDate><author>ouuan</author></item><item><title>fix(cache): call JSON.stringify when storing value in cache.tryGet</title><description>&lt;h2&gt;Involved Issue / 该 PR 相关 Issue&lt;/h2&gt;
+&lt;p&gt;Close #20667&lt;/p&gt;
 &lt;h2&gt;Example for the Proposed Route(s) / 路由地址示例&lt;/h2&gt;
 &lt;!--
 Please include route starts with /, with all required and optional parameters.
@@ -972,13 +1304,16 @@ Fail to comply will result in your pull request being closed automatically.
 如果路由包含在文档中列出可以完全穷举的参数（例如分类），请依次全部列出。
 
 ```routes
+/some/route
+/some/other/route
+/dont/use/this/or/modify/it
+/use/the/fenced/code/block/below
 ```
 
 If your changes are not related to route, please fill in `routes` section with `NOROUTE`. Fail to comply will result in your PR being closed.
 如果你的 PR 与路由无关, 请在 `routes` 区域 填写 `NOROUTE`，而不是直接删除 `routes` 区域。否则你的 PR 将会被无条件关闭。
 --&gt;
-&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/telegram/channel/telegram
-/telegram/stories/telegram
+&lt;pre&gt;&lt;code class=&quot;language-routes&quot;&gt;/mastodon/acct/linuxmagazine@fosstodon.org/statuses
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;New RSS Route Checklist / 新 RSS 路由检查表&lt;/h2&gt;
 &lt;ul&gt;
@@ -1002,20 +1337,7 @@ If your changes are not related to route, please fill in `routes` section with `
 &lt;li&gt;[ ] &lt;code&gt;Puppeteer&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Note / 说明&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Fix media routes (currently broken)&lt;/li&gt;
-&lt;li&gt;Prefer tglib when &lt;code&gt;TELEGRAM_SESSION&lt;/code&gt; is configured&lt;/li&gt;
-&lt;li&gt;Video and file streaming support via HTTP Range requests&lt;/li&gt;
-&lt;li&gt;Add Stories support&lt;/li&gt;
-&lt;li&gt;Improve text representation of:
-&lt;ul&gt;
-&lt;li&gt;Reply and Forward actions&lt;/li&gt;
-&lt;li&gt;Audio author/duration&lt;/li&gt;
-&lt;li&gt;Geo coordinates&lt;/li&gt;
-&lt;li&gt;Poll / Quiz&lt;/li&gt;
-&lt;li&gt;Contacts shared&lt;/li&gt;
-&lt;li&gt;Invoice attachments&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</description><link>https://github.com/DIYgod/RSSHub/pull/18268</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/18268</guid><pubDate>Mon, 03 Feb 2025 10:21:15 GMT</pubDate><author>synchrone</author></item></channel></rss>
+&lt;p&gt;This replaces #20668.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/DIYgod/RSSHub/blob/e5ae378fe955c82780d84a6d4699bdf13e5834df/lib/utils/cache/index.ts#L79-L97&quot;&gt;https://github.com/DIYgod/RSSHub/blob/e5ae378fe955c82780d84a6d4699bdf13e5834df/lib/utils/cache/index.ts#L79-L97&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The value from &lt;code&gt;getValueFunc&lt;/code&gt; is returned as-is without &lt;code&gt;JSON.parse&lt;/code&gt;, so we may assume that it&#39;s not JSON-stringified inside &lt;code&gt;getValueFunc&lt;/code&gt;. Otherwise, the caller already needs to distinguish between values that are either JSON-parsed or not.&lt;/p&gt;
+</description><link>https://github.com/DIYgod/RSSHub/pull/20671</link><guid isPermaLink="false">https://github.com/DIYgod/RSSHub/pull/20671</guid><pubDate>Wed, 10 Dec 2025 06:59:00 GMT</pubDate><author>ouuan</author></item></channel></rss>

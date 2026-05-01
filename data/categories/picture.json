@@ -1,67 +1,51 @@
 [
   {
-    "provider_id": "500px",
-    "provider_name": "500px 摄影社区",
-    "route_key": "/tribe/set/:id",
+    "provider_id": "4kup",
+    "provider_name": "4KUP",
+    "route_key": "/tag/:tag",
     "route": {
-      "path": "/tribe/set/:id",
+      "path": "/tag/:tag",
+      "example": "/4kup/tag/asian",
+      "parameters": {
+        "tag": "Tag"
+      },
+      "name": "Tag",
+      "url": "4kup.net/",
+      "provider_id": "4kup",
+      "provider_name": "4KUP",
+      "route_key": "/tag/:tag"
+    }
+  },
+  {
+    "provider_id": "bjp",
+    "provider_name": "北京天文馆",
+    "route_key": "/apod",
+    "route": {
+      "path": "/apod",
       "view": 2,
-      "example": "/500px/tribe/set/f5de0b8aa6d54ec486f5e79616418001",
-      "parameters": {
-        "id": "部落 ID"
-      },
-      "name": "部落影集",
-      "provider_id": "500px",
-      "provider_name": "500px 摄影社区",
-      "route_key": "/tribe/set/:id"
-    }
-  },
-  {
-    "provider_id": "cosplaytele",
-    "provider_name": "CosplayTele",
-    "route_key": "/",
-    "route": {
-      "path": "/",
-      "example": "/cosplaytele",
+      "example": "/bjp/apod",
       "parameters": {},
-      "name": "Latest",
-      "url": "cosplaytele.com/",
-      "provider_id": "cosplaytele",
-      "provider_name": "CosplayTele",
-      "route_key": "/"
+      "name": "每日一图",
+      "url": "bjp.org.cn/APOD/today.shtml",
+      "provider_id": "bjp",
+      "provider_name": "北京天文馆",
+      "route_key": "/apod"
     }
   },
   {
-    "provider_id": "ehentai",
-    "provider_name": "E-Hentai",
-    "route_key": "/search/:params?/:page?/:routeParams?",
+    "provider_id": "misskon",
+    "provider_name": "MissKON",
+    "route_key": "/posts/:routeParams?",
     "route": {
-      "path": "/search/:params?/:page?/:routeParams?",
-      "example": "/ehentai/search/f_cats=1021/0/bittorrent=true&embed_thumb=false",
+      "path": "/posts/:routeParams?",
+      "example": "/misskon/posts/search=video&tags_exclude=353,3100&per_page=5",
       "parameters": {
-        "params": "Search parameters. You can copy the content after `https://e-hentai.org/?`",
-        "page": "Page number, set 0 to get latest",
-        "routeParams": "Additional parameters, see the table above"
+        "routeParams": "Additional parameters for filtering posts, refer to [WordPress API Reference](https://developer.wordpress.org/rest-api/reference/posts/#arguments) for details."
       },
-      "name": "Search",
-      "provider_id": "ehentai",
-      "provider_name": "E-Hentai",
-      "route_key": "/search/:params?/:page?/:routeParams?"
-    }
-  },
-  {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod-ncku",
-    "route": {
-      "path": "/apod-ncku",
-      "example": "/nasa/apod-ncku",
-      "parameters": {},
-      "name": "Cheng Kung University Mirror",
-      "url": "apod.nasa.govundefined",
-      "provider_id": "nasa",
-      "provider_name": "NASA",
-      "route_key": "/apod-ncku"
+      "name": "Posts",
+      "provider_id": "misskon",
+      "provider_name": "MissKON",
+      "route_key": "/posts/:routeParams?"
     }
   },
   {
@@ -78,75 +62,6 @@
       "provider_id": "natgeo",
       "provider_name": "National Geographic",
       "route_key": "/dailyphoto"
-    }
-  },
-  {
-    "provider_id": "pinterest",
-    "provider_name": "Pinterest",
-    "route_key": "/user/:username/:type?",
-    "route": {
-      "path": "/user/:username/:type?",
-      "example": "/pinterest/user/howieserious",
-      "parameters": {
-        "username": "Username",
-        "type": {
-          "description": "Type, default to `_created`",
-          "default": "_created",
-          "options": [
-            {
-              "value": "_created",
-              "label": "Created"
-            },
-            {
-              "value": "_saved",
-              "label": "Saved"
-            }
-          ]
-        }
-      },
-      "name": "User",
-      "provider_id": "pinterest",
-      "provider_name": "Pinterest",
-      "route_key": "/user/:username/:type?"
-    }
-  },
-  {
-    "provider_id": "yande",
-    "provider_name": "yande.re",
-    "route_key": "/post/popular_recent/:period?",
-    "route": {
-      "path": "/post/popular_recent/:period?",
-      "view": 2,
-      "example": "/yande/post/popular_recent/1d",
-      "parameters": {
-        "period": {
-          "description": "展示时间",
-          "options": [
-            {
-              "value": "1d",
-              "label": "最近 24 小时"
-            },
-            {
-              "value": "1w",
-              "label": "最近一周"
-            },
-            {
-              "value": "1m",
-              "label": "最近一月"
-            },
-            {
-              "value": "1y",
-              "label": "最近一年"
-            }
-          ],
-          "default": "1d"
-        }
-      },
-      "name": "Popular Recent Posts",
-      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |",
-      "provider_id": "yande",
-      "provider_name": "yande.re",
-      "route_key": "/post/popular_recent/:period?"
     }
   }
 ]

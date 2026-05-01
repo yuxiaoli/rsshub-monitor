@@ -1,85 +1,53 @@
 [
   {
-    "provider_id": "apple",
-    "provider_name": "Apple",
-    "route_key": "/exchange_repair/:country?",
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/dynamic/:uid?",
     "route": {
-      "path": "/exchange_repair/:country?",
-      "example": "/apple/exchange_repair",
+      "path": "/dynamic/:uid?",
+      "example": "/afdian/dynamic/@afdian",
       "parameters": {
-        "country": "country code in apple.com URL (exception: for `United States` please use `us`), default to China `cn`"
+        "uid": "用户id，用户动态页面url里可找到"
       },
-      "name": "Exchange and Repair Extension Programs",
-      "provider_id": "apple",
-      "provider_name": "Apple",
-      "route_key": "/exchange_repair/:country?"
+      "name": "用户动态",
+      "provider_id": "afdian",
+      "provider_name": "爱发电",
+      "route_key": "/dynamic/:uid?"
     }
   },
   {
-    "provider_id": "bing",
-    "provider_name": "Bing",
-    "route_key": "/search/:keyword",
+    "provider_id": "afdian",
+    "provider_name": "爱发电",
+    "route_key": "/explore/:type/:category?",
     "route": {
-      "path": "/search/:keyword",
-      "example": "/bing/search/rss",
+      "path": "/explore/:type/:category?",
+      "example": "/afdian/explore/hot/所有",
       "parameters": {
-        "keyword": "搜索关键词"
+        "type": "分类",
+        "category": "目录类型，默认为 `所有`"
       },
-      "name": "搜索",
-      "url": "cn.bing.com/",
-      "provider_id": "bing",
-      "provider_name": "Bing",
-      "route_key": "/search/:keyword"
+      "name": "发现用户",
+      "description": "分类\n\n| 推荐 | 最热 |\n| ---- | ---- |\n| rec  | hot  |\n\n  目录类型\n\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |",
+      "provider_id": "afdian",
+      "provider_name": "爱发电",
+      "route_key": "/explore/:type/:category?"
     }
   },
   {
-    "provider_id": "cfachina",
-    "provider_name": "中国期货业协会",
-    "route_key": "/servicesupport/analygarden/:program?",
+    "provider_id": "hostmonit",
+    "provider_name": "全球主机监控",
+    "route_key": "/cloudflareyes/:type?",
     "route": {
-      "path": "/servicesupport/analygarden/:program?",
-      "example": "/cfachina/servicesupport/analygarden",
+      "path": "/cloudflareyes/:type?",
+      "example": "/hostmonit/cloudflareyes",
       "parameters": {
-        "program": "分类，见下表，留空为全部"
+        "type": "类型，见下表，默认为 v4"
       },
-      "name": "分析师园地",
-      "description": "| 有色金属类 | 黑色金属类 | 能源化工类 | 贵金属类 | 农产品类 | 金融类 | 指数类 |\n| ---------- | ---------- | ---------- | -------- | -------- | ------ | ------ |\n| ysjsl      | hsjsl      | nyhgl      | gjsl     | ncpl     | jrl    | zsl    |",
-      "provider_id": "cfachina",
-      "provider_name": "中国期货业协会",
-      "route_key": "/servicesupport/analygarden/:program?"
-    }
-  },
-  {
-    "provider_id": "cib",
-    "provider_name": "中国兴业银行",
-    "route_key": "/whpj/:format?",
-    "route": {
-      "path": "/whpj/:format?",
-      "example": "/cib/whpj/xh?filter_title=USD",
-      "parameters": {
-        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
-      },
-      "name": "外汇牌价",
-      "url": "cib.com.cn/",
-      "description": "| 短格式 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |",
-      "provider_id": "cib",
-      "provider_name": "中国兴业银行",
-      "route_key": "/whpj/:format?"
-    }
-  },
-  {
-    "provider_id": "fisher-spb",
-    "provider_name": "Fisher Spb",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/fisher-spb/news",
-      "parameters": {},
-      "name": "News",
-      "url": "fisher.spb.ru/news",
-      "provider_id": "fisher-spb",
-      "provider_name": "Fisher Spb",
-      "route_key": "/news"
+      "name": "CloudFlareYes",
+      "description": "| v4 | v6 |\n| -- | -- |\n|    | v6 |",
+      "provider_id": "hostmonit",
+      "provider_name": "全球主机监控",
+      "route_key": "/cloudflareyes/:type?"
     }
   },
   {
@@ -101,31 +69,18 @@
     }
   },
   {
-    "provider_id": "sogou",
-    "provider_name": "搜狗",
-    "route_key": "/doodles",
+    "provider_id": "qq",
+    "provider_name": "腾讯网",
+    "route_key": "/fact",
     "route": {
-      "path": "/doodles",
-      "example": "/sogou/doodles",
+      "path": "/fact",
+      "example": "/qq/fact",
       "parameters": {},
-      "name": "特色 LOGO",
-      "provider_id": "sogou",
-      "provider_name": "搜狗",
-      "route_key": "/doodles"
-    }
-  },
-  {
-    "provider_id": "taiwanmobile",
-    "provider_name": "台灣大哥大",
-    "route_key": "/rate-plans",
-    "route": {
-      "path": "/rate-plans",
-      "example": "/taiwanmobile/rate-plans",
-      "name": "資費公告",
-      "url": "www.taiwanmobile.com/cs/public/servAnn/queryList.htm?type=1",
-      "provider_id": "taiwanmobile",
-      "provider_name": "台灣大哥大",
-      "route_key": "/rate-plans"
+      "name": "最新辟谣",
+      "url": "vp.fact.qq.com/home",
+      "provider_id": "qq",
+      "provider_name": "腾讯网",
+      "route_key": "/fact"
     }
   },
   {
@@ -141,6 +96,20 @@
       "provider_id": "urbandictionary",
       "provider_name": "Urban Dictionary",
       "route_key": "/random"
+    }
+  },
+  {
+    "provider_id": "wchscu",
+    "provider_name": "华西医院",
+    "route_key": "/recruit",
+    "route": {
+      "name": "招聘公告",
+      "path": "/recruit",
+      "example": "/wchscu/recruit",
+      "url": "www.wchscu.cn",
+      "provider_id": "wchscu",
+      "provider_name": "华西医院",
+      "route_key": "/recruit"
     }
   }
 ]

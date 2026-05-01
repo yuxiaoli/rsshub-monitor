@@ -1,55 +1,41 @@
 [
   {
-    "provider_id": "500px",
-    "provider_name": "500px 摄影社区",
-    "route_key": "/tribe/set/:id",
+    "provider_id": "4kup",
+    "provider_name": "4KUP",
+    "route_key": "/tag/:tag",
     "route": {
-      "name": "部落影集",
-      "path": "/tribe/set/:id",
-      "example": "/500px/tribe/set/f5de0b8aa6d54ec486f5e79616418001",
+      "name": "Tag",
+      "path": "/tag/:tag",
+      "example": "/4kup/tag/asian",
       "parameters": {
-        "id": "部落 ID"
+        "tag": "Tag"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "cosplaytele",
-    "provider_name": "CosplayTele",
-    "route_key": "/",
+    "provider_id": "bjp",
+    "provider_name": "北京天文馆",
+    "route_key": "/apod",
     "route": {
-      "name": "Latest",
-      "path": "/",
-      "example": "/cosplaytele",
+      "name": "每日一图",
+      "path": "/apod",
+      "example": "/bjp/apod",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "ehentai",
-    "provider_name": "E-Hentai",
-    "route_key": "/search/:params?/:page?/:routeParams?",
+    "provider_id": "misskon",
+    "provider_name": "MissKON",
+    "route_key": "/posts/:routeParams?",
     "route": {
-      "name": "Search",
-      "path": "/search/:params?/:page?/:routeParams?",
-      "example": "/ehentai/search/f_cats=1021/0/bittorrent=true&embed_thumb=false",
+      "name": "Posts",
+      "path": "/posts/:routeParams?",
+      "example": "/misskon/posts/search=video&tags_exclude=353,3100&per_page=5",
       "parameters": {
-        "params": "Search parameters. You can copy the content after `https://e-hentai.org/?`",
-        "page": "Page number, set 0 to get latest",
-        "routeParams": "Additional parameters, see the table above"
+        "routeParams": "Additional parameters for filtering posts, refer to [WordPress API Reference](https://developer.wordpress.org/rest-api/reference/posts/#arguments) for details."
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "nasa",
-    "provider_name": "NASA",
-    "route_key": "/apod-ncku",
-    "route": {
-      "name": "Cheng Kung University Mirror",
-      "path": "/apod-ncku",
-      "example": "/nasa/apod-ncku",
-      "parameters": {},
       "description": ""
     }
   },
@@ -63,69 +49,6 @@
       "example": "/natgeo/dailyphoto",
       "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "pinterest",
-    "provider_name": "Pinterest",
-    "route_key": "/user/:username/:type?",
-    "route": {
-      "name": "User",
-      "path": "/user/:username/:type?",
-      "example": "/pinterest/user/howieserious",
-      "parameters": {
-        "username": "Username",
-        "type": {
-          "description": "Type, default to `_created`",
-          "default": "_created",
-          "options": [
-            {
-              "value": "_created",
-              "label": "Created"
-            },
-            {
-              "value": "_saved",
-              "label": "Saved"
-            }
-          ]
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "yande",
-    "provider_name": "yande.re",
-    "route_key": "/post/popular_recent/:period?",
-    "route": {
-      "name": "Popular Recent Posts",
-      "path": "/post/popular_recent/:period?",
-      "example": "/yande/post/popular_recent/1d",
-      "parameters": {
-        "period": {
-          "description": "展示时间",
-          "options": [
-            {
-              "value": "1d",
-              "label": "最近 24 小时"
-            },
-            {
-              "value": "1w",
-              "label": "最近一周"
-            },
-            {
-              "value": "1m",
-              "label": "最近一月"
-            },
-            {
-              "value": "1y",
-              "label": "最近一年"
-            }
-          ],
-          "default": "1d"
-        }
-      },
-      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |"
     }
   }
 ]

@@ -1,72 +1,106 @@
 [
   {
-    "provider_id": "aliyun",
-    "provider_name": "阿里云",
-    "route_key": "/developer/group/:type",
+    "provider_id": "atcoder",
+    "provider_name": "AtCoder",
+    "route_key": "/contest/:language?/:rated?/:category?/:keyword?",
     "route": {
-      "path": "/developer/group/:type",
-      "example": "/aliyun/developer/group/alitech",
+      "path": "/contest/:language?/:rated?/:category?/:keyword?",
+      "example": "/atcoder/contest",
       "parameters": {
-        "type": "对应技术领域分类"
+        "language": "Language, `jp` as Japanese or `en` as English, English by default",
+        "rated": "Rated Range, see below, all by default",
+        "category": "Category, see below, all by default",
+        "keyword": "Keyword"
       },
-      "name": "开发者社区 - 主题",
-      "provider_id": "aliyun",
-      "provider_name": "阿里云",
-      "route_key": "/developer/group/:type"
+      "name": "Contests Archive",
+      "description": "Rated Range\n\n| ABC Class (Rated for ~1999) | ARC Class (Rated for ~2799) | AGC Class (Rated for ~9999) |\n| ---------------------------- | ---------------------------- | ---------------------------- |\n| 1                            | 2                            | 3                            |\n\n  Category\n\n| All | AtCoder Typical Contest | PAST Archive | Unofficial(unrated) |\n| --- | ----------------------- | ------------ | ------------------- |\n| 0   | 6                       | 50           | 101                 |\n\n| JOI Archive | Sponsored Tournament | Sponsored Parallel(rated) |\n| ----------- | -------------------- | ------------------------- |\n| 200         | 1000                 | 1001                      |\n\n| Sponsored Parallel(unrated) | Optimization Contest |\n| --------------------------- | -------------------- |\n| 1002                        | 1200                 |",
+      "provider_id": "atcoder",
+      "provider_name": "AtCoder",
+      "route_key": "/contest/:language?/:rated?/:category?/:keyword?"
     }
   },
   {
-    "provider_id": "bugzilla",
-    "provider_name": "Bugzilla",
-    "route_key": "/bug/:site/:bugId",
+    "provider_id": "bitbucket",
+    "provider_name": "Bitbucket",
+    "route_key": "/tags/:workspace/:repo_slug",
     "route": {
-      "path": "/bug/:site/:bugId",
-      "name": "bugs",
-      "example": "/bugzilla/bug/webkit/251528",
+      "path": "/tags/:workspace/:repo_slug",
+      "example": "/bitbucket/tags/blaze-lib/blaze",
       "parameters": {
-        "site": "site identifier",
-        "bugId": "numeric identifier of the bug in the site"
+        "workspace": "Workspace",
+        "repo_slug": "Repository"
       },
-      "description": "Supported site identifiers: [`apache`](https://bz.apache.org/bugzilla), [`apache.ooo`](https://bz.apache.org/ooo), [`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin), [`kernel`](https://bugzilla.kernel.org), [`mozilla`](https://bugzilla.mozilla.org), [`webkit`](https://bugs.webkit.org).",
-      "zh": {
-        "name": "bugs",
-        "description": "支持的站点标识符：[`apache`](https://bz.apache.org/bugzilla)、[`apache.ooo`](https://bz.apache.org/ooo)、[`apache.SpamAssassin`](https://bz.apache.org/SpamAssassin)、[`kernel`](https://bugzilla.kernel.org)、[`mozilla`](https://bugzilla.mozilla.org)、[`webkit`](https://bugs.webkit.org)。"
-      },
-      "provider_id": "bugzilla",
-      "provider_name": "Bugzilla",
-      "route_key": "/bug/:site/:bugId"
+      "name": "Tags",
+      "provider_id": "bitbucket",
+      "provider_name": "Bitbucket",
+      "route_key": "/tags/:workspace/:repo_slug"
     }
   },
   {
     "provider_id": "codeforces",
     "provider_name": "Codeforces",
-    "route_key": "/contests",
+    "route_key": "/recent-actions/:minrating?",
     "route": {
-      "path": "/contests",
-      "example": "/codeforces/contests",
-      "parameters": {},
-      "name": "Latest contests",
-      "url": "www.codeforces.com/contests",
+      "path": "/recent-actions/:minrating?",
+      "example": "/codeforces/recent-actions",
+      "parameters": {
+        "minrating": "The minimum blog/comment rating required. Default: 1"
+      },
+      "name": "Recent actions",
+      "url": "codeforces.com/recent-actions",
       "provider_id": "codeforces",
       "provider_name": "Codeforces",
-      "route_key": "/contests"
+      "route_key": "/recent-actions/:minrating?"
     }
   },
   {
-    "provider_id": "dangdang",
-    "provider_name": "当当开放平台",
-    "route_key": "/notice/:type?",
+    "provider_id": "cybersecurityventures",
+    "provider_name": "Cybercrime Magazine",
+    "route_key": "/news/:category?",
     "route": {
-      "path": "/notice/:type?",
-      "example": "/dangdang/notice/1",
+      "name": "News",
+      "path": "/news/:category?",
+      "example": "/cybersecurityventures/news",
       "parameters": {
-        "type": "公告分类，默认为全部"
+        "category": {
+          "description": "news category",
+          "default": "today",
+          "options": [
+            {
+              "value": "today",
+              "label": "Today's News"
+            },
+            {
+              "value": "intrusion-daily-cyber-threat-alert",
+              "label": "Cyberattacks"
+            },
+            {
+              "value": "ransomware-minute",
+              "label": "Ransomware"
+            },
+            {
+              "value": "cryptocrime",
+              "label": "Cryptocrime"
+            },
+            {
+              "value": "hack-blotter",
+              "label": "Hack Blotter"
+            },
+            {
+              "value": "cybersecurity-venture-capital-vc-deals",
+              "label": "VC Deal Flow"
+            },
+            {
+              "value": "mergers-and-acquisitions-report",
+              "label": "M&A Tracker"
+            }
+          ]
+        }
       },
-      "name": "公告",
-      "description": "| 类型     | type |\n| -------- | ---- |\n| 全部      | 0    |\n| 其他      | 1    |\n| 规则变更   | 2    |",
-      "provider_id": "dangdang",
-      "provider_name": "当当开放平台",
-      "route_key": "/notice/:type?"
+      "view": 0,
+      "provider_id": "cybersecurityventures",
+      "provider_name": "Cybercrime Magazine",
+      "route_key": "/news/:category?"
     }
   },
   {
@@ -81,72 +115,6 @@
       "provider_id": "dbaplus",
       "provider_name": "dbaplus社群",
       "route_key": "/"
-    }
-  },
-  {
-    "provider_id": "deepseek",
-    "provider_name": "Deepseek",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/deepseek/news",
-      "name": "新闻",
-      "provider_id": "deepseek",
-      "provider_name": "Deepseek",
-      "route_key": "/news"
-    }
-  },
-  {
-    "provider_id": "gitee",
-    "provider_name": "Gitee",
-    "route_key": "/releases/:owner/:repo",
-    "route": {
-      "path": "/releases/:owner/:repo",
-      "example": "/gitee/releases/y_project/RuoYi",
-      "parameters": {
-        "owner": "用户名",
-        "repo": "仓库名"
-      },
-      "name": "仓库 Releases",
-      "provider_id": "gitee",
-      "provider_name": "Gitee",
-      "route_key": "/releases/:owner/:repo"
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/activity/:user",
-    "route": {
-      "path": "/activity/:user",
-      "name": "User Activities",
-      "example": "/github/activity/DIYgod",
-      "view": 5,
-      "parameters": {
-        "user": "GitHub username"
-      },
-      "description": "Get the activities of a user on GitHub, based on the GitHub official RSS feed",
-      "provider_id": "github",
-      "provider_name": "GitHub",
-      "route_key": "/activity/:user"
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/comments/:user/:repo/:number?",
-    "route": {
-      "path": "/comments/:user/:repo/:number?",
-      "example": "/github/comments/DIYgod/RSSHub/8116",
-      "parameters": {
-        "user": "User / Org name",
-        "repo": "Repo name",
-        "number": "Issue or pull number (if omitted: all)"
-      },
-      "name": "Issue / Pull Request comments",
-      "provider_id": "github",
-      "provider_name": "GitHub",
-      "route_key": "/comments/:user/:repo/:number?"
     }
   },
   {
@@ -189,153 +157,69 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/search/:query/:sort?/:order?",
+    "route_key": "/pull/:user/:repo/:state?/:labels?",
     "route": {
-      "path": "/search/:query/:sort?/:order?",
-      "example": "/github/search/RSSHub/bestmatch/desc",
+      "path": "/pull/:user/:repo/:state?/:labels?",
+      "example": "/github/pull/DIYgod/RSSHub",
       "parameters": {
-        "query": "search keyword",
-        "sort": "Sort options (default to bestmatch)",
-        "order": "Sort order, desc and asc (desc descending by default)"
+        "user": "User name",
+        "repo": "Repo name",
+        "state": "the state of pull requests. Can be either `open`, `closed`, or `all`. Default: `open`.",
+        "labels": "a list of comma separated label names"
       },
-      "name": "Search Result",
-      "description": "| Sort options     | sort      |\n| ---------------- | --------- |\n| Best match       | bestmatch |\n| Most stars       | stars     |\n| Most forks       | forks     |\n| Recently updated | updated   |",
+      "name": "Repo Pull Requests",
       "provider_id": "github",
       "provider_name": "GitHub",
-      "route_key": "/search/:query/:sort?/:order?"
+      "route_key": "/pull/:user/:repo/:state?/:labels?"
     }
   },
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/wiki/:user/:repo/:page?",
+    "route_key": "/starred_repos/:user",
     "route": {
-      "path": "/wiki/:user/:repo/:page?",
-      "example": "/github/wiki/flutter/flutter/Roadmap",
+      "path": "/starred_repos/:user",
+      "example": "/github/starred_repos/DIYgod",
       "parameters": {
-        "user": "User / Org name",
-        "repo": "Repo name",
-        "page": "Page slug, can be found in URL, empty means Home"
+        "user": "User name"
       },
-      "name": "Wiki History",
+      "name": "User Starred Repositories",
       "provider_id": "github",
       "provider_name": "GitHub",
-      "route_key": "/wiki/:user/:repo/:page?"
+      "route_key": "/starred_repos/:user"
     }
   },
   {
     "provider_id": "huggingface",
     "provider_name": "Huggingface",
-    "route_key": "/blog-zh",
+    "route_key": "/blog",
     "route": {
-      "path": "/blog-zh",
-      "example": "/huggingface/blog-zh",
+      "path": "/blog",
+      "example": "/huggingface/blog",
       "parameters": {},
-      "name": "中文博客",
-      "url": "huggingface.co/blog/zh",
+      "name": "英文博客",
+      "url": "huggingface.co/blog",
       "provider_id": "huggingface",
       "provider_name": "Huggingface",
-      "route_key": "/blog-zh"
+      "route_key": "/blog"
     }
   },
   {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/trending/:category/:type",
+    "provider_id": "smashingmagazine",
+    "provider_name": "Smashing Magazine",
+    "route_key": "/:category?",
     "route": {
-      "path": "/trending/:category/:type",
-      "example": "/juejin/trending/ios/monthly",
+      "path": "/:category?",
+      "example": "/smashingmagazine/react",
       "parameters": {
-        "category": "分类名",
-        "type": "类型"
+        "category": "Find in URL or Table below"
       },
-      "name": "热门",
-      "description": "| category | 标签     |\n| -------- | -------- |\n| android  | Android  |\n| frontend | 前端     |\n| ios      | iOS      |\n| backend  | 后端     |\n| design   | 设计     |\n| product  | 产品     |\n| freebie  | 工具资源 |\n| article  | 阅读     |\n| ai       | 人工智能 |\n| devops   | 运维     |\n| all      | 全部     |\n\n| type       | 类型     |\n| ---------- | -------- |\n| weekly     | 本周最热 |\n| monthly    | 本月最热 |\n| historical | 历史最热 |",
-      "provider_id": "juejin",
-      "provider_name": "掘金",
-      "route_key": "/trending/:category/:type"
-    }
-  },
-  {
-    "provider_id": "lanqiao",
-    "provider_name": "蓝桥云课",
-    "route_key": "/questions/:id",
-    "route": {
-      "path": "/questions/:id",
-      "example": "/lanqiao/questions/2",
-      "parameters": {
-        "id": "topic_id 主题 `id` 可在社区板块 URL 中找到"
-      },
-      "name": "技术社区",
-      "url": "lanqiao.cn/questions/",
-      "provider_id": "lanqiao",
-      "provider_name": "蓝桥云课",
-      "route_key": "/questions/:id"
-    }
-  },
-  {
-    "provider_id": "oschina",
-    "provider_name": "开源中国",
-    "route_key": "/event/:category?",
-    "route": {
-      "path": "/event/:category?",
-      "name": "活动",
-      "url": "www.oschina.net",
-      "example": "/oschina/event",
-      "parameters": {
-        "category": "分类，默认为 `latest`，即最新活动，可在对应分类页 URL 中找到"
-      },
-      "description": ":::tip\n若订阅 [强力推荐](https://www.oschina.net/event?tab=recommend)，网址为 `https://www.oschina.net/event?tab=recommend`，请截取 `https://www.oschina.net/event?tab=` 到末尾的部分 `recommend` 作为 `category` 参数填入，此时目标路由为 [`/oschina/event/recommend`](https://rsshub.app/oschina/event/recommend)。\n:::\n\n| 强力推荐  | 最新活动 |\n| --------- | -------- |\n| recommend | latest   |\n",
-      "view": 0,
-      "provider_id": "oschina",
-      "provider_name": "开源中国",
-      "route_key": "/event/:category?"
-    }
-  },
-  {
-    "provider_id": "oschina",
-    "provider_name": "开源中国",
-    "route_key": "/news/:category?",
-    "route": {
-      "path": "/news/:category?",
-      "example": "/oschina/news/project",
-      "parameters": {
-        "category": "板块名"
-      },
-      "name": "资讯",
-      "description": "| [综合资讯][osc_gen] | [软件更新资讯][osc_proj] | [行业资讯][osc_ind] | [编程语言资讯][osc_pl] |\n| ------------------- | ------------------------ | ------------------- | ---------------------- |\n| industry            | project                  | industry-news       | programming            |\n\n  订阅 [全部板块资讯][osc_all] 可以使用 [https://rsshub.app/oschina/news](https://rsshub.app/oschina/news)\n\n  [osc_all]: https://www.oschina.net/news \"开源中国 - 全部资讯\"\n\n  [osc_gen]: https://www.oschina.net/news/industry \"开源中国 - 综合资讯\"\n\n  [osc_proj]: https://www.oschina.net/news/project \"开源中国 - 软件更新资讯\"\n\n  [osc_ind]: https://www.oschina.net/news/industry-news \"开源中国 - 行业资讯\"\n\n  [osc_pl]: https://www.oschina.net/news/programming \"开源中国 - 编程语言资讯\"",
-      "provider_id": "oschina",
-      "provider_name": "开源中国",
-      "route_key": "/news/:category?"
-    }
-  },
-  {
-    "provider_id": "oschina",
-    "provider_name": "开源中国",
-    "route_key": "/topic/:topic",
-    "route": {
-      "path": "/topic/:topic",
-      "example": "/oschina/topic/weekly-news",
-      "parameters": {
-        "topic": "主题名，可从 [全部主题](https://www.oschina.net/question/topics) 进入主题页，在 URL 中找到"
-      },
-      "name": "问答主题",
-      "provider_id": "oschina",
-      "provider_name": "开源中国",
-      "route_key": "/topic/:topic"
-    }
-  },
-  {
-    "provider_id": "web",
-    "provider_name": "web.dev",
-    "route_key": "/articles",
-    "route": {
-      "path": "/articles",
-      "example": "/web/articles",
-      "name": "Articles",
-      "provider_id": "web",
-      "provider_name": "web.dev",
-      "route_key": "/articles"
+      "name": "Category",
+      "url": "smashingmagazine.com/articles/",
+      "description": "| **Category**       |                    |\n| ------------------ | ------------------ |\n| Accessibility      | accessibility      |\n| Best practices     | best-practices     |\n| Business           | business           |\n| Career             | career             |\n| Checklists         | checklists         |\n| CSS                | css                |\n| Data Visualization | data-visualization |\n| Design             | design             |\n| Design Patterns    | design-patterns    |\n| Design Systems     | design-systems     |\n| E-Commerce         | e-commerce         |\n| Figma              | figma              |\n| Freebies           | freebies           |\n| HTML               | html               |\n| Illustrator        | illustrator        |\n| Inspiration        | inspiration        |\n| JavaScript         | javascript         |\n| Mobile             | mobile             |\n| Performance        | performance        |\n| Privacy            | privacy            |\n| React              | react              |\n| Responsive Design  | responsive-design  |\n| Round-Ups          | round-ups          |\n| SEO                | seo                |\n| Typography         | typography         |\n| Tools              | tools              |\n| UI                 | ui                 |\n| Usability          | usability          |\n| UX                 | ux                 |\n| Vue                | vue                |\n| Wallpapers         | wallpapers         |\n| Web Design         | web-design         |\n| Workflow           | workflow           |",
+      "provider_id": "smashingmagazine",
+      "provider_name": "Smashing Magazine",
+      "route_key": "/:category?"
     }
   }
 ]
