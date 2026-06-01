@@ -1,198 +1,84 @@
 [
   {
-    "provider_id": "atcoder",
-    "provider_name": "AtCoder",
-    "route_key": "/contest/:language?/:rated?/:category?/:keyword?",
+    "provider_id": "gihyo",
+    "provider_name": "gihyo.jp",
+    "route_key": "/list/group/:id",
     "route": {
-      "name": "Contests Archive",
-      "path": "/contest/:language?/:rated?/:category?/:keyword?",
-      "example": "/atcoder/contest",
+      "name": "Series",
+      "path": "/list/group/:id",
+      "example": "/gihyo/list/group/Ubuntu-Weekly-Recipe",
       "parameters": {
-        "language": "Language, `jp` as Japanese or `en` as English, English by default",
-        "rated": "Rated Range, see below, all by default",
-        "category": "Category, see below, all by default",
-        "keyword": "Keyword"
-      },
-      "description": "Rated Range\n\n| ABC Class (Rated for ~1999) | ARC Class (Rated for ~2799) | AGC Class (Rated for ~9999) |\n| ---------------------------- | ---------------------------- | ---------------------------- |\n| 1                            | 2                            | 3                            |\n\n  Category\n\n| All | AtCoder Typical Contest | PAST Archive | Unofficial(unrated) |\n| --- | ----------------------- | ------------ | ------------------- |\n| 0   | 6                       | 50           | 101                 |\n\n| JOI Archive | Sponsored Tournament | Sponsored Parallel(rated) |\n| ----------- | -------------------- | ------------------------- |\n| 200         | 1000                 | 1001                      |\n\n| Sponsored Parallel(unrated) | Optimization Contest |\n| --------------------------- | -------------------- |\n| 1002                        | 1200                 |"
-    }
-  },
-  {
-    "provider_id": "bitbucket",
-    "provider_name": "Bitbucket",
-    "route_key": "/tags/:workspace/:repo_slug",
-    "route": {
-      "name": "Tags",
-      "path": "/tags/:workspace/:repo_slug",
-      "example": "/bitbucket/tags/blaze-lib/blaze",
-      "parameters": {
-        "workspace": "Workspace",
-        "repo_slug": "Repository"
+        "id": "Series"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "codeforces",
-    "provider_name": "Codeforces",
-    "route_key": "/recent-actions/:minrating?",
+    "provider_id": "gitee",
+    "provider_name": "Gitee",
+    "route_key": "/events/:owner/:repo",
     "route": {
-      "name": "Recent actions",
-      "path": "/recent-actions/:minrating?",
-      "example": "/codeforces/recent-actions",
+      "name": "仓库动态",
+      "path": "/events/:owner/:repo",
+      "example": "/gitee/events/y_project/RuoYi",
       "parameters": {
-        "minrating": "The minimum blog/comment rating required. Default: 1"
+        "owner": "用户名",
+        "repo": "仓库名"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "cybersecurityventures",
-    "provider_name": "Cybercrime Magazine",
-    "route_key": "/news/:category?",
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/wiki/:user/:repo/:page?",
     "route": {
-      "name": "News",
-      "path": "/news/:category?",
-      "example": "/cybersecurityventures/news",
+      "name": "Wiki History",
+      "path": "/wiki/:user/:repo/:page?",
+      "example": "/github/wiki/flutter/flutter/Roadmap",
       "parameters": {
-        "category": {
-          "description": "news category",
-          "default": "today",
-          "options": [
-            {
-              "value": "today",
-              "label": "Today's News"
-            },
-            {
-              "value": "intrusion-daily-cyber-threat-alert",
-              "label": "Cyberattacks"
-            },
-            {
-              "value": "ransomware-minute",
-              "label": "Ransomware"
-            },
-            {
-              "value": "cryptocrime",
-              "label": "Cryptocrime"
-            },
-            {
-              "value": "hack-blotter",
-              "label": "Hack Blotter"
-            },
-            {
-              "value": "cybersecurity-venture-capital-vc-deals",
-              "label": "VC Deal Flow"
-            },
-            {
-              "value": "mergers-and-acquisitions-report",
-              "label": "M&A Tracker"
-            }
-          ]
+        "user": "User / Org name",
+        "repo": "Repo name",
+        "page": "Page slug, can be found in URL, empty means Home"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hackernews",
+    "provider_name": "Hacker News",
+    "route_key": "/:section?/:type?/:user?",
+    "route": {
+      "name": "User",
+      "path": "/:section?/:type?/:user?",
+      "example": "/hackernews/threads/comments_list/dang",
+      "parameters": {
+        "section": {
+          "description": "Content section, default to `index`"
+        },
+        "type": {
+          "description": "Link type, default to `sources`"
+        },
+        "user": {
+          "description": "Set user, only valid in `threads` and `submitted` sections"
         }
       },
-      "description": ""
+      "description": "Subscribe to the content of a specific user"
     }
   },
   {
-    "provider_id": "dbaplus",
-    "provider_name": "dbaplus社群",
-    "route_key": "/",
+    "provider_id": "issuehunt",
+    "provider_name": "Issue Hunt",
+    "route_key": "/funded/:username/:repo",
     "route": {
-      "name": "最新文章",
-      "path": "/",
-      "example": "/dbaplus",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/issue/:user/:repo/:state?/:labels?",
-    "route": {
-      "name": "Repo Issues",
-      "path": "/issue/:user/:repo/:state?/:labels?",
-      "example": "/github/issue/DIYgod/RSSHub/open",
+      "name": "Project Funded",
+      "path": "/funded/:username/:repo",
+      "example": "/issuehunt/funded/DIYgod/RSSHub",
       "parameters": {
-        "user": "GitHub username",
-        "repo": "GitHub repo name",
-        "state": {
-          "description": "the state of the issues.",
-          "default": "open",
-          "options": [
-            {
-              "label": "Open",
-              "value": "open"
-            },
-            {
-              "label": "Closed",
-              "value": "closed"
-            },
-            {
-              "label": "All",
-              "value": "all"
-            }
-          ]
-        },
-        "labels": "a list of comma separated label names"
+        "username": "Github user/org",
+        "repo": "Repository name"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/pull/:user/:repo/:state?/:labels?",
-    "route": {
-      "name": "Repo Pull Requests",
-      "path": "/pull/:user/:repo/:state?/:labels?",
-      "example": "/github/pull/DIYgod/RSSHub",
-      "parameters": {
-        "user": "User name",
-        "repo": "Repo name",
-        "state": "the state of pull requests. Can be either `open`, `closed`, or `all`. Default: `open`.",
-        "labels": "a list of comma separated label names"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/starred_repos/:user",
-    "route": {
-      "name": "User Starred Repositories",
-      "path": "/starred_repos/:user",
-      "example": "/github/starred_repos/DIYgod",
-      "parameters": {
-        "user": "User name"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "huggingface",
-    "provider_name": "Huggingface",
-    "route_key": "/blog",
-    "route": {
-      "name": "英文博客",
-      "path": "/blog",
-      "example": "/huggingface/blog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "smashingmagazine",
-    "provider_name": "Smashing Magazine",
-    "route_key": "/:category?",
-    "route": {
-      "name": "Category",
-      "path": "/:category?",
-      "example": "/smashingmagazine/react",
-      "parameters": {
-        "category": "Find in URL or Table below"
-      },
-      "description": "| **Category**       |                    |\n| ------------------ | ------------------ |\n| Accessibility      | accessibility      |\n| Best practices     | best-practices     |\n| Business           | business           |\n| Career             | career             |\n| Checklists         | checklists         |\n| CSS                | css                |\n| Data Visualization | data-visualization |\n| Design             | design             |\n| Design Patterns    | design-patterns    |\n| Design Systems     | design-systems     |\n| E-Commerce         | e-commerce         |\n| Figma              | figma              |\n| Freebies           | freebies           |\n| HTML               | html               |\n| Illustrator        | illustrator        |\n| Inspiration        | inspiration        |\n| JavaScript         | javascript         |\n| Mobile             | mobile             |\n| Performance        | performance        |\n| Privacy            | privacy            |\n| React              | react              |\n| Responsive Design  | responsive-design  |\n| Round-Ups          | round-ups          |\n| SEO                | seo                |\n| Typography         | typography         |\n| Tools              | tools              |\n| UI                 | ui                 |\n| Usability          | usability          |\n| UX                 | ux                 |\n| Vue                | vue                |\n| Wallpapers         | wallpapers         |\n| Web Design         | web-design         |\n| Workflow           | workflow           |"
     }
   }
 ]

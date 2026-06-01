@@ -1,81 +1,91 @@
 [
   {
-    "provider_id": "bbc",
-    "provider_name": "BBC",
-    "route_key": "/:site?/:channel?",
-    "route": {
-      "name": "News",
-      "path": "/:site?/:channel?",
-      "example": "/bbc/world-asia",
-      "parameters": {
-        "site": "语言，简体或繁体中文",
-        "channel": "channel, default to `top stories`"
-      },
-      "description": "Provides a better reading experience (full text articles) over the official ones.\n\n    Support major channels, refer to [BBC RSS feeds](https://www.bbc.co.uk/news/10628494). Eg, `business` for `https://feeds.bbci.co.uk/news/business/rss.xml`.\n\n    -   Channel contains sub-directories, such as `https://feeds.bbci.co.uk/news/world/asia/rss.xml`, replace `/` with `-`, `/bbc/world-asia`."
-    }
-  },
-  {
     "provider_id": "caixin",
     "provider_name": "财新博客",
-    "route_key": "/database",
+    "route_key": "/weekly",
     "route": {
-      "name": "财新数据通",
-      "path": "/database",
-      "example": "/caixin/database",
+      "name": "财新周刊",
+      "path": "/weekly",
+      "example": "/caixin/weekly",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "cctv",
-    "provider_name": "央视新闻",
-    "route_key": "/lm/:id?",
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/book/:category?",
     "route": {
-      "name": "栏目",
-      "path": "/lm/:id?",
-      "example": "/cctv/lm/xwzk",
+      "name": "Best Seller Books",
+      "path": "/book/:category?",
+      "example": "/nytimes/book/combined-print-and-e-book-nonfiction",
       "parameters": {
-        "id": "栏目 id，可在对应栏目页 URL 中找到，默认为 `xwzk` 即 新闻周刊"
+        "category": {
+          "description": "Category, can be found on the [official page](https://www.nytimes.com/books/best-sellers/)",
+          "options": [
+            {
+              "value": "combined-print-and-e-book-nonfiction",
+              "label": "Combined Print & E-Book Nonfiction"
+            },
+            {
+              "value": "hardcover-nonfiction",
+              "label": "Hardcover Nonfiction"
+            },
+            {
+              "value": "paperback-nonfiction",
+              "label": "Paperback Nonfiction"
+            },
+            {
+              "value": "advice-how-to-and-miscellaneous",
+              "label": "Advice, How-To & Miscellaneous"
+            },
+            {
+              "value": "combined-print-and-e-book-fiction",
+              "label": "Combined Print & E-Book Fiction"
+            },
+            {
+              "value": "hardcover-fiction",
+              "label": "Hardcover Fiction"
+            },
+            {
+              "value": "trade-fiction-paperback",
+              "label": "Paperback Trade Fiction"
+            },
+            {
+              "value": "childrens-middle-grade-hardcover",
+              "label": "Children's Middle Grade Hardcover"
+            },
+            {
+              "value": "picture-books",
+              "label": "Picture Books"
+            },
+            {
+              "value": "series-books",
+              "label": "Series Books"
+            },
+            {
+              "value": "young-adult-hardcover",
+              "label": "Young Adult Hardcover"
+            }
+          ],
+          "default": "combined-print-and-e-book-nonfiction"
+        }
       },
-      "description": "| 焦点访谈 | 等着我 | 今日说法 | 开讲啦 |\n| -------- | ------ | -------- | ------ |\n| jdft     | dzw    | jrsf     | kjl    |\n\n| 正大综艺 | 经济半小时 | 第一动画乐园 |\n| -------- | ---------- | ------------ |\n| zdzy     | jjbxs      | dydhly       |\n\n::: tip\n  更多栏目请看 [这里](https://tv.cctv.com/lm)\n:::"
+      "description": ""
     }
   },
   {
-    "provider_id": "cna",
-    "provider_name": "中央通讯社",
-    "route_key": "/web/:id?",
+    "provider_id": "setn",
+    "provider_name": "三立新聞網",
+    "route_key": "/:category?",
     "route": {
-      "name": "分类 (网页爬虫方法)",
-      "path": "/web/:id?",
-      "example": "/cna/web/aall",
+      "name": "新聞",
+      "path": "/:category?",
+      "example": "/setn",
       "parameters": {
-        "id": "分类 id，见上表。此參數默认为 aall"
+        "category": "分类，见下表，默认为即時"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "dealstreetasia",
-    "provider_name": "DealStreetAsia",
-    "route_key": "/home",
-    "route": {
-      "name": "Home",
-      "path": "/home",
-      "example": "/dealstreetasia/home",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pts",
-    "provider_name": "公視新聞網",
-    "route_key": "/curations",
-    "route": {
-      "name": "專題策展",
-      "path": "/curations",
-      "example": "/pts/curations",
-      "parameters": {},
-      "description": ""
+      "description": "| 即時 | 熱門 | 娛樂 | 政治 | 社會 |\n| ---- | ---- | ---- | ---- | ---- |\n\n| 國際 | 兩岸 | 生活 | 健康 | 旅遊 |\n| ---- | ---- | ---- | ---- | ---- |\n\n| 運動 | 地方 | 財經 | 富房網 | 名家 |\n| ---- | ---- | ---- | ------ | ---- |\n\n| 新奇 | 科技 | 汽車 | 寵物 | 女孩 | HOT 焦點 |\n| ---- | ---- | ---- | ---- | ---- | -------- |"
     }
   }
 ]

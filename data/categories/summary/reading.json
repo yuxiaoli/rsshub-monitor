@@ -1,40 +1,53 @@
 [
   {
-    "provider_id": "aisixiang",
-    "provider_name": "爱思想",
-    "route_key": "/column/:id",
+    "provider_id": "bookfere",
+    "provider_name": "书伴",
+    "route_key": "/:category",
     "route": {
-      "name": "栏目",
-      "path": "/column/:id",
-      "example": "/aisixiang/column/722",
+      "name": "分类",
+      "path": "/:category",
+      "example": "/bookfere/skills",
       "parameters": {
-        "id": "栏目 ID, 可在对应栏目 URL 中找到"
+        "category": {
+          "description": "分类名",
+          "options": [
+            {
+              "value": "weekly",
+              "label": "每周一书"
+            },
+            {
+              "value": "skills",
+              "label": "使用技巧"
+            },
+            {
+              "value": "books",
+              "label": "图书推荐"
+            },
+            {
+              "value": "news",
+              "label": "新闻速递"
+            },
+            {
+              "value": "essay",
+              "label": "精选短文"
+            }
+          ]
+        }
       },
-      "description": ""
+      "description": "| 每周一书 | 使用技巧 | 图书推荐 | 新闻速递 | 精选短文 |\n| -------- | -------- | -------- | -------- | -------- |\n| weekly   | skills   | books    | news     | essay    |"
     }
   },
   {
-    "provider_id": "gmcmonline",
-    "provider_name": "国门传媒在线",
-    "route_key": "/chinacustoms",
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/rss/:user/:tag",
     "route": {
-      "name": "中国海关",
-      "path": "/chinacustoms",
-      "example": "/gmcmonline/chinacustoms",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "kakuyomu",
-    "provider_name": "カクヨム",
-    "route_key": "/works/:id",
-    "route": {
-      "name": "投稿",
-      "path": "/works/:id",
-      "example": "/kakuyomu/works/1177354054894027232",
+      "name": "RSS",
+      "path": "/rss/:user/:tag",
+      "example": "/inoreader/rss/1005137674/user-favorites",
       "parameters": {
-        "id": "投稿 ID"
+        "user": "user id, the interger after user/ in the example URL",
+        "tag": "tag, the string after tag/ in the example URL"
       },
       "description": ""
     }

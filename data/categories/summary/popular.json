@@ -1,259 +1,103 @@
 [
   {
-    "provider_id": "36kr",
-    "provider_name": "36kr",
-    "route_key": "/:category/:subCategory?/:keyword?",
-    "route": {
-      "name": "资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯",
-      "path": "/:category/:subCategory?/:keyword?",
-      "example": "/36kr/newsflashes",
-      "parameters": {
-        "category": "分类，必填项",
-        "subCategory": "子分类，选填项，目的是为了兼容老逻辑",
-        "keyword": "关键词，选填项，仅搜索文章/快讯时有效"
-      },
-      "description": "| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |\n| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |\n| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |"
-    }
-  },
-  {
-    "provider_id": "acfun",
-    "provider_name": "AcFun",
-    "route_key": "/user/video/:uid",
-    "route": {
-      "name": "用户投稿",
-      "path": "/user/video/:uid",
-      "example": "/acfun/user/video/6102",
-      "parameters": {
-        "uid": "用户 UID"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/topic/:topic",
-    "route": {
-      "name": "精选主题",
-      "path": "/topic/:topic",
-      "example": "/agirls/topic/AppleWatch",
-      "parameters": {
-        "topic": "精选主题，可通过下方精选主题列表获得"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/:category?",
+    "provider_id": "bookfere",
+    "provider_name": "书伴",
+    "route_key": "/:category",
     "route": {
       "name": "分类",
-      "path": "/:category?",
-      "example": "/agirls/app",
+      "path": "/:category",
+      "example": "/bookfere/skills",
       "parameters": {
-        "category": "分类，默认为最新文章，可在对应主题页的 URL 中找到，下表仅列出部分"
+        "category": {
+          "description": "分类名",
+          "options": [
+            {
+              "value": "weekly",
+              "label": "每周一书"
+            },
+            {
+              "value": "skills",
+              "label": "使用技巧"
+            },
+            {
+              "value": "books",
+              "label": "图书推荐"
+            },
+            {
+              "value": "news",
+              "label": "新闻速递"
+            },
+            {
+              "value": "essay",
+              "label": "精选短文"
+            }
+          ]
+        }
       },
-      "description": "| App 评测 | 手机开箱 | 笔电开箱 | 3C 周边     | 教学小技巧 | 科技情报 |\n| -------- | -------- | -------- | ----------- | ---------- | -------- |\n| app      | phone    | computer | accessories | tutorial   | techlife |"
-    }
-  },
-  {
-    "provider_id": "aibase",
-    "provider_name": "AIbase",
-    "route_key": "/news",
-    "route": {
-      "name": "资讯",
-      "path": "/news",
-      "example": "/aibase/news",
-      "parameters": {},
-      "description": "获取 AI 资讯列表"
-    }
-  },
-  {
-    "provider_id": "baidu",
-    "provider_name": "百度",
-    "route_key": "/gushitong/index",
-    "route": {
-      "name": "首页指数",
-      "path": "/gushitong/index",
-      "example": "/baidu/gushitong/index",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bjp",
-    "provider_name": "北京天文馆",
-    "route_key": "/apod",
-    "route": {
-      "name": "每日一图",
-      "path": "/apod",
-      "example": "/bjp/apod",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "bsky",
-    "provider_name": "Bluesky (bsky)",
-    "route_key": "/profile/:handle/:routeParams?",
-    "route": {
-      "name": "Post",
-      "path": "/profile/:handle/:routeParams?",
-      "example": "/bsky/profile/bsky.app",
-      "parameters": {
-        "handle": "User handle, can be found in URL",
-        "routeParams": "Filter parameter, Use filter to customize content types"
-      },
-      "description": "\n| Filter Value | Description |\n|--------------|-------------|\n| posts_with_replies | Includes Posts, Replies, and Reposts |\n| posts_no_replies | Includes Posts and Reposts, without Replies |\n| posts_with_media | Shows only Posts containing media |\n| posts_and_author_threads | Shows Posts and Threads, without Replies and Reposts |\n\nDefault value for filter is `posts_and_author_threads` if not specified.\n\nExample:\n- `/bsky/profile/bsky.app/filter=posts_with_replies`"
-    }
-  },
-  {
-    "provider_id": "changba",
-    "provider_name": "唱吧",
-    "route_key": "/:userid",
-    "route": {
-      "name": "用户",
-      "path": "/:userid",
-      "example": "/changba/skp6hhF59n48R-UpqO3izw",
-      "parameters": {
-        "userid": "用户ID, 可在对应分享页面的 URL 中找到"
-      },
-      "description": ""
+      "description": "| 每周一书 | 使用技巧 | 图书推荐 | 新闻速递 | 精选短文 |\n| -------- | -------- | -------- | -------- | -------- |\n| weekly   | skills   | books    | news     | essay    |"
     }
   },
   {
     "provider_id": "dedao",
     "provider_name": "得到",
-    "route_key": "/list/:category?",
+    "route_key": "/:category?",
     "route": {
-      "name": "首页",
-      "path": "/list/:category?",
-      "example": "/dedao/list/年度日更",
+      "name": "文章",
+      "path": "/:category?",
+      "example": "/dedao",
       "parameters": {
-        "category": "分类名，默认为年度日更"
+        "category": "分类，见下表，默认为`news`"
       },
-      "description": ""
+      "description": "| 新闻 | 人物故事 | 视频 |\n| ---- | ---- | ---- |\n| news | figure | video |"
     }
   },
   {
-    "provider_id": "dockerhub",
-    "provider_name": "Docker Hub",
-    "route_key": "/build/:owner/:image/:tag?",
+    "provider_id": "hackernews",
+    "provider_name": "Hacker News",
+    "route_key": "/:section?/:type?/:user?",
     "route": {
-      "name": "Image New Build",
-      "path": "/build/:owner/:image/:tag?",
-      "example": "/dockerhub/build/diygod/rsshub/latest",
+      "name": "User",
+      "path": "/:section?/:type?/:user?",
+      "example": "/hackernews/threads/comments_list/dang",
       "parameters": {
-        "owner": "Image owner, the owner of the official image fills in the library, for example: /dockerhub/build/library/mysql",
-        "image": "Image name",
-        "tag": {
-          "description": "Image tag",
-          "default": "latest"
+        "section": {
+          "description": "Content section, default to `index`"
+        },
+        "type": {
+          "description": "Link type, default to `sources`"
+        },
+        "user": {
+          "description": "Set user, only valid in `threads` and `submitted` sections"
         }
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "dongqiudi",
-    "provider_name": "懂球帝",
-    "route_key": "/top_news/:id?",
-    "route": {
-      "name": "新闻",
-      "path": "/top_news/:id?",
-      "example": "/dongqiudi/top_news/1",
-      "parameters": {
-        "id": "类别 id，不填默认头条新闻"
-      },
-      "description": "| 头条 | 深度 | 闲情 | D 站 | 中超 | 国际 | 英超 | 西甲 | 意甲 | 德甲 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 1    | 55   | 37   | 219  | 56   | 120  | 3    | 5    | 4    | 6    |"
-    }
-  },
-  {
-    "provider_id": "gelonghui",
-    "provider_name": "格隆汇",
-    "route_key": "/live",
-    "route": {
-      "name": "实时快讯",
-      "path": "/live",
-      "example": "/gelonghui/live",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/issue/:user/:repo/:state?/:labels?",
-    "route": {
-      "name": "Repo Issues",
-      "path": "/issue/:user/:repo/:state?/:labels?",
-      "example": "/github/issue/DIYgod/RSSHub/open",
-      "parameters": {
-        "user": "GitHub username",
-        "repo": "GitHub repo name",
-        "state": {
-          "description": "the state of the issues.",
-          "default": "open",
-          "options": [
-            {
-              "label": "Open",
-              "value": "open"
-            },
-            {
-              "label": "Closed",
-              "value": "closed"
-            },
-            {
-              "label": "All",
-              "value": "all"
-            }
-          ]
-        },
-        "labels": "a list of comma separated label names"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/news/:category/:locale",
-    "route": {
-      "name": "News",
-      "path": "/news/:category/:locale",
-      "example": "/google/news/Top stories/hl=en-US&gl=US&ceid=US:en",
-      "parameters": {
-        "category": "Category Title",
-        "locale": "locales, could be found behind `?`, including `hl`, `gl`, and `ceid` as parameters"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "hellobtc",
-    "provider_name": "白话区块链",
-    "route_key": "/information/:channel?",
-    "route": {
-      "name": "首页",
-      "path": "/information/:channel?",
-      "example": "/hellobtc/information/latest",
-      "parameters": {
-        "channel": "类型，可填 `latest` 和 `application` 及最新和应用，默认为最新"
-      },
-      "description": ""
+      "description": "Subscribe to the content of a specific user"
     }
   },
   {
     "provider_id": "huxiu",
     "provider_name": "虎嗅",
-    "route_key": "/search/:keyword",
+    "route_key": "/tag/:id",
     "route": {
-      "name": "搜索",
-      "path": "/search/:keyword",
-      "example": "/huxiu/search/生活",
+      "name": "标签",
+      "path": "/tag/:id",
+      "example": "/huxiu/tag/291",
       "parameters": {
-        "keyword": "关键字"
+        "id": "标签 id，可在对应标签页 URL 中找到"
+      },
+      "description": "更多标签请参见 [标签](https://www.huxiu.com/tags)"
+    }
+  },
+  {
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/rss/:user/:tag",
+    "route": {
+      "name": "RSS",
+      "path": "/rss/:user/:tag",
+      "example": "/inoreader/rss/1005137674/user-favorites",
+      "parameters": {
+        "user": "user id, the interger after user/ in the example URL",
+        "tag": "tag, the string after tag/ in the example URL"
       },
       "description": ""
     }
@@ -273,74 +117,248 @@
     }
   },
   {
-    "provider_id": "mygopen",
-    "provider_name": "MyGoPen",
-    "route_key": "/:label?",
+    "provider_id": "notefolio",
+    "provider_name": "Notefolio",
+    "route_key": "/search/:category?/:order?/:time?/:query?",
     "route": {
-      "name": "分類",
-      "path": "/:label?",
-      "example": "/mygopen",
-      "parameters": {
-        "label": "分類，见下表，默认为首页"
-      },
-      "description": "| 謠言 | 詐騙 | 真實資訊 | 教學 |\n| ---- | ---- | -------- | ---- |"
-    }
-  },
-  {
-    "provider_id": "pconline",
-    "provider_name": "太平洋科技",
-    "route_key": "/focus/:category?",
-    "route": {
-      "name": "科技新闻",
-      "path": "/focus/:category?",
-      "example": "/pconline/focus",
+      "name": "Works",
+      "path": "/search/:category?/:order?/:time?/:query?",
+      "example": "/notefolio/search/1/pick/all/life",
       "parameters": {
         "category": {
-          "description": "科技新闻的类别，获取最新的一页，分别：all, tech, finance, life, company, character",
+          "description": "Category, see below",
+          "options": [
+            {
+              "value": "all",
+              "label": "All (전체)"
+            },
+            {
+              "value": "1",
+              "label": "Video / Motion Graphics (영상/모션그래픽)"
+            },
+            {
+              "value": "2",
+              "label": "Graphic Design (그래픽 디자인)"
+            },
+            {
+              "value": "3",
+              "label": "Branding / Editing (브랜딩/편집)"
+            },
+            {
+              "value": "4",
+              "label": "UI/UX (UI/UX)"
+            },
+            {
+              "value": "5",
+              "label": "Illustration (일러스트레이션)"
+            },
+            {
+              "value": "6",
+              "label": "Digital Art (디지털 아트)"
+            },
+            {
+              "value": "7",
+              "label": "Character Design (캐릭터 디자인)"
+            },
+            {
+              "value": "8",
+              "label": "Product Package Design (제품/패키지 디자인)"
+            },
+            {
+              "value": "9",
+              "label": "Photography (포토그래피)"
+            },
+            {
+              "value": "10",
+              "label": "Typography (타이포그래피)"
+            },
+            {
+              "value": "11",
+              "label": "Crafts (공예)"
+            },
+            {
+              "value": "12",
+              "label": "Fine Art (파인아트)"
+            }
+          ],
           "default": "all"
-        }
+        },
+        "order": {
+          "description": "Order, `pick` as Notefolio Pick, `published` as Newest, `like` as like, `pick` by default",
+          "options": [
+            {
+              "value": "pick",
+              "label": "Notefolio Pick"
+            },
+            {
+              "value": "published",
+              "label": "Newest"
+            },
+            {
+              "value": "like",
+              "label": "Like"
+            }
+          ],
+          "default": "pick"
+        },
+        "time": {
+          "description": "Time",
+          "options": [
+            {
+              "value": "all",
+              "label": "All the time"
+            },
+            {
+              "value": "one-day",
+              "label": "Latest 24 hours"
+            },
+            {
+              "value": "week",
+              "label": "Latest week"
+            },
+            {
+              "value": "month",
+              "label": "Latest month"
+            },
+            {
+              "value": "three-month",
+              "label": "Latest 3 months"
+            }
+          ],
+          "default": "all"
+        },
+        "query": "Keyword, empty by default"
       },
-      "description": "::: tip\n| 全部 | 科技 | 财经 | 生活 | 公司 | 人物 |\n| --- | --- | --- | --- | --- | --- |\n| all | tech | finance | life | company | character |\n:::"
+      "description": "| Category | Name in Korean     | Name in English         |\n| -------- | ------------------ | ----------------------- |\n| all      | 전체               | All                     |\n| 1        | 영상/모션그래픽    | Video / Motion Graphics |\n| 2        | 그래픽 디자인      | Graphic Design          |\n| 3        | 브랜딩/편집        | Branding / Editing      |\n| 4        | UI/UX              | UI/UX                   |\n| 5        | 일러스트레이션     | Illustration            |\n| 6        | 디지털 아트        | Digital Art             |\n| 7        | 캐릭터 디자인      | Character Design        |\n| 8        | 제품/패키지 디자인 | Product Package Design  |\n| 9        | 포토그래피         | Photography             |\n| 10       | 타이포그래피       | Typography              |\n| 11       | 공예               | Crafts                  |\n| 12       | 파인아트           | Fine Art                |"
     }
   },
   {
-    "provider_id": "qbitai",
-    "provider_name": "量子位",
-    "route_key": "/tag/:tag",
+    "provider_id": "nytimes",
+    "provider_name": "The New York Times",
+    "route_key": "/book/:category?",
     "route": {
-      "name": "标签",
-      "path": "/tag/:tag",
-      "example": "/qbitai/tag/大语言模型",
+      "name": "Best Seller Books",
+      "path": "/book/:category?",
+      "example": "/nytimes/book/combined-print-and-e-book-nonfiction",
       "parameters": {
-        "tag": "标签名"
+        "category": {
+          "description": "Category, can be found on the [official page](https://www.nytimes.com/books/best-sellers/)",
+          "options": [
+            {
+              "value": "combined-print-and-e-book-nonfiction",
+              "label": "Combined Print & E-Book Nonfiction"
+            },
+            {
+              "value": "hardcover-nonfiction",
+              "label": "Hardcover Nonfiction"
+            },
+            {
+              "value": "paperback-nonfiction",
+              "label": "Paperback Nonfiction"
+            },
+            {
+              "value": "advice-how-to-and-miscellaneous",
+              "label": "Advice, How-To & Miscellaneous"
+            },
+            {
+              "value": "combined-print-and-e-book-fiction",
+              "label": "Combined Print & E-Book Fiction"
+            },
+            {
+              "value": "hardcover-fiction",
+              "label": "Hardcover Fiction"
+            },
+            {
+              "value": "trade-fiction-paperback",
+              "label": "Paperback Trade Fiction"
+            },
+            {
+              "value": "childrens-middle-grade-hardcover",
+              "label": "Children's Middle Grade Hardcover"
+            },
+            {
+              "value": "picture-books",
+              "label": "Picture Books"
+            },
+            {
+              "value": "series-books",
+              "label": "Series Books"
+            },
+            {
+              "value": "young-adult-hardcover",
+              "label": "Young Adult Hardcover"
+            }
+          ],
+          "default": "combined-print-and-e-book-nonfiction"
+        }
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/user/:user",
+    "route": {
+      "name": "User",
+      "path": "/user/:user",
+      "example": "/plurk/user/plurkoffice",
+      "parameters": {
+        "user": "User ID, can be found in URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/tag/:keyword",
+    "route": {
+      "name": "标签订阅",
+      "path": "/tag/:keyword",
+      "example": "/sspai/tag/apple",
+      "parameters": {
+        "keyword": "关键词"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "telegram",
+    "provider_name": "Telegram",
+    "route_key": "/blog",
+    "route": {
+      "name": "Telegram Blog",
+      "path": "/blog",
+      "example": "/telegram/blog",
+      "parameters": {},
       "description": ""
     }
   },
   {
     "provider_id": "thepaper",
     "provider_name": "澎湃新闻",
-    "route_key": "/sidebar/:sec?",
+    "route_key": "/list/:id",
     "route": {
-      "name": "侧边栏",
-      "path": "/sidebar/:sec?",
-      "example": "/thepaper/sidebar",
+      "name": "栏目",
+      "path": "/list/:id",
+      "example": "/thepaper/list/25457",
       "parameters": {
-        "sec": "侧边栏 id，可选 `hotNews` 即 澎湃热榜、`financialInformationNews` 即 澎湃财讯、`morningEveningNews` 即 早晚报，默认为 `hotNews`"
+        "id": "栏目 id，可在栏目页 URL 中找到"
       },
-      "description": ""
+      "description": "| 栏目 ID | 栏目名       |\n| ------- | ------------ |\n| 26912   | 上直播       |\n| 26913   | 七环视频     |\n| 26965   | 温度计       |\n| 26908   | 一级视场     |\n| 27260   | World 湃     |\n| 26907   | 湃客科技     |\n| 33168   | 纪录湃       |\n| 26911   | 围观         |\n| 26918   | @所有人      |\n| 26906   | 大都会       |\n| 26909   | 追光灯       |\n| 26910   | 运动装       |\n| 26914   | 健寻记       |\n| 82188   | AI 播报      |\n| 89035   | 眼界         |\n| 92278   | 关键帧       |\n| 90069   | 战疫         |\n| 25462   | 中国政库     |\n| 25488   | 中南海       |\n| 97924   | 初心之路     |\n| 25489   | 舆论场       |\n| 25490   | 打虎记       |\n| 25423   | 人事风向     |\n| 25426   | 法治中国     |\n| 25424   | 一号专案     |\n| 25463   | 港台来信     |\n| 25491   | 长三角政商   |\n| 25428   | 直击现场     |\n| 68750   | 公益湃       |\n| 27604   | 暖闻         |\n| 25464   | 澎湃质量报告 |\n| 25425   | 绿政公署     |\n| 25429   | 澎湃国际     |\n| 25481   | 外交学人     |\n| 25430   | 澎湃防务     |\n| 25678   | 唐人街       |\n| 25427   | 澎湃人物     |\n| 25422   | 浦江头条     |\n| 25487   | 教育家       |\n| 25634   | 全景现场     |\n| 25635   | 美数课       |\n| 25600   | 快看         |\n| 25434   | 10% 公司     |\n| 25436   | 能见度       |\n| 25433   | 地产界       |\n| 25438   | 财经上下游   |\n| 25435   | 金改实验室   |\n| 25437   | 牛市点线面   |\n| 119963  | IPO 最前线   |\n| 25485   | 澎湃商学院   |\n| 25432   | 自贸区连线   |\n| 37978   | 进博会在线   |\n| 36079   | 湃客         |\n| 27392   | 政务         |\n| 77286   | 媒体         |\n| 27234   | 科学湃       |\n| 119445  | 生命科学     |\n| 119447  | 未来 2%      |\n| 119446  | 元宇宙观察   |\n| 119448  | 科创 101     |\n| 119449  | 科学城邦     |\n| 25444   | 社论         |\n| 27224   | 澎湃评论     |\n| 26525   | 思想湃       |\n| 26878   | 上海书评     |\n| 25483   | 思想市场     |\n| 25457   | 私家历史     |\n| 25574   | 翻书党       |\n| 25455   | 艺术评论     |\n| 26937   | 古代艺术     |\n| 25450   | 文化课       |\n| 25482   | 逝者         |\n| 25536   | 专栏         |\n| 26506   | 异次元       |\n| 97313   | 海平面       |\n| 103076  | 一问三知     |\n| 25445   | 澎湃研究所   |\n| 25446   | 全球智库     |\n| 26915   | 城市漫步     |\n| 25456   | 市政厅       |\n| 104191  | 世界会客厅   |\n| 25448   | 有戏         |\n| 26609   | 文艺范       |\n| 25942   | 身体         |\n| 26015   | 私・奔       |\n| 25599   | 运动家       |\n| 25842   | 私家地理     |\n| 80623   | 非常品       |\n| 26862   | 楼市         |\n| 25769   | 生活方式     |\n| 25990   | 澎湃联播     |\n| 26173   | 视界         |\n| 26202   | 亲子学堂     |\n| 26404   | 赢家         |\n| 26490   | 汽车圈       |\n| 115327  | IP SH        |\n| 117340  | 酒业         |"
     }
   },
   {
-    "provider_id": "tingtingfm",
-    "provider_name": "听听 FM",
-    "route_key": "/program/:programId",
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/tab/:tabid",
     "route": {
-      "name": "节目",
-      "path": "/program/:programId",
-      "example": "/tingtingfm/program/M7VJv6Jj4R",
+      "name": "标签",
+      "path": "/tab/:tabid",
+      "example": "/v2ex/tab/hot",
       "parameters": {
-        "programId": "节目 ID，可以在 URL 中找到"
+        "tabid": "tab标签ID,在 URL 可以找到"
       },
       "description": ""
     }

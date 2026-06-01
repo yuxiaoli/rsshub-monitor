@@ -1,43 +1,43 @@
 [
   {
-    "provider_id": "showstart",
-    "provider_name": "秀动网",
-    "route_key": "/search/:type/:keyword?",
+    "provider_id": "furstar",
+    "provider_name": "Furstar",
+    "route_key": "/artists/:lang?",
     "route": {
-      "name": "演出搜索",
-      "path": "/search/:type/:keyword?",
-      "example": "/showstart/search/live",
+      "name": "画师列表",
+      "path": "/artists/:lang?",
+      "example": "/furstar/artists/cn",
       "parameters": {
-        "keyword": "搜索关键词",
-        "type": {
-          "description": "类别",
-          "options": [
-            {
-              "value": "event",
-              "label": "演出"
-            },
-            {
-              "value": "artist",
-              "label": "音乐人"
-            },
-            {
-              "value": "site",
-              "label": "场地"
-            },
-            {
-              "value": "brand",
-              "label": "厂牌"
-            },
-            {
-              "value": "city",
-              "label": "城市"
-            },
-            {
-              "value": "style",
-              "label": "风格"
-            }
-          ]
-        }
+        "lang": "语言, 留空为jp, 支持cn, en"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "furstar",
+    "provider_name": "Furstar",
+    "route_key": "/characters/:lang?",
+    "route": {
+      "name": "最新售卖角色列表",
+      "path": "/characters/:lang?",
+      "example": "/furstar/characters/cn",
+      "parameters": {
+        "lang": "语言, 留空为jp, 支持cn, en"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "uniqlo",
+    "provider_name": "Uniqlo",
+    "route_key": "/new/:country/:category",
+    "route": {
+      "name": "New Arrivals",
+      "path": "/new/:country/:category",
+      "example": "/uniqlo/new/sg/men",
+      "parameters": {
+        "country": "currently only supports sg, us, jp",
+        "category": "supports `men` `women`, `kids`, `baby`"
       },
       "description": ""
     }

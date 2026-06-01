@@ -2,33 +2,50 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/cmse/fxrw",
+    "route_key": "/chinatax/latest",
     "route": {
-      "path": "/cmse/fxrw",
-      "example": "/gov/cmse/fxrw",
+      "path": "/chinatax/latest",
+      "example": "/gov/chinatax/latest",
       "parameters": {},
-      "name": "飞行任务",
-      "url": "www.cmse.gov.cn/fxrw",
+      "name": "最新文件",
+      "url": "www.chinatax.gov.cn/*",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/cmse/fxrw"
+      "route_key": "/chinatax/latest"
     }
   },
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/moe/:type",
+    "route_key": "/forestry/gjlckjdjt/:category?",
     "route": {
-      "path": "/moe/:type",
-      "example": "/gov/moe/policy_anal",
+      "path": "/forestry/gjlckjdjt/:category?",
+      "example": "/gov/forestry/gjlckjdjt",
       "parameters": {
-        "type": "分类名"
+        "category": "分类，见下表，默认为全部"
       },
-      "name": "新闻",
-      "description": "|   政策解读   |   最新文件   | 公告公示 |      教育部简报     |     教育要闻     |\n| :----------: | :----------: | :------: | :-----------------: | :--------------: |\n| policy_anal | newest_file |  notice  | edu_ministry_news | edu_focus_news |",
+      "name": "国家林草科技大讲堂",
+      "description": "| 分类     | id   |\n| -------- | ---- |\n| 经济林   | jjl  |\n| 林木良种 | lmlz |\n| 林下经济 | lxjj |\n| 生态修复 | stxf |\n| 用材林   | ycl  |\n| 其他     | qt   |",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/moe/:type"
+      "route_key": "/forestry/gjlckjdjt/:category?"
+    }
+  },
+  {
+    "provider_id": "gov",
+    "provider_name": "上海市人民政府",
+    "route_key": "/ndrc/xwdt/:category{.+}?",
+    "route": {
+      "path": "/ndrc/xwdt/:category{.+}?",
+      "name": "新闻动态",
+      "example": "/gov/ndrc/xwdt",
+      "parameters": {
+        "category": "分类，见下表，默认为新闻发布"
+      },
+      "description": "| 新闻发布 | 通知通告 | 委领导动态 | 司局动态 | 地方动态 |\n| -------- | -------- | ---------- | -------- | -------- |\n| xwfb     | tzgg     | wlddt      | sjdt     | dfdt     |",
+      "provider_id": "gov",
+      "provider_name": "上海市人民政府",
+      "route_key": "/ndrc/xwdt/:category{.+}?"
     }
   },
   {
@@ -51,17 +68,18 @@
   {
     "provider_id": "gov",
     "provider_name": "上海市人民政府",
-    "route_key": "/safe/business/:site?",
+    "route_key": "/shenzhen/zjj/xxgk/:caty",
     "route": {
-      "path": "/safe/business/:site?",
-      "example": "/gov/safe/business/beijing",
+      "path": "/shenzhen/zjj/xxgk/:caty",
+      "example": "/gov/shenzhen/zjj/xxgk/tzgg",
       "parameters": {
-        "site": "站点，见上表，默认为 beijing"
+        "caty": "信息类别"
       },
-      "name": "业务咨询",
+      "name": "深圳市住房和建设局",
+      "description": "| 通知公告 |\n| :------: |\n|   tzgg   |",
       "provider_id": "gov",
       "provider_name": "上海市人民政府",
-      "route_key": "/safe/business/:site?"
+      "route_key": "/shenzhen/zjj/xxgk/:caty"
     }
   }
 ]

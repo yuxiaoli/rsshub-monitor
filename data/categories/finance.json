@@ -1,119 +1,49 @@
 [
   {
-    "provider_id": "baidu",
-    "provider_name": "百度",
-    "route_key": "/gushitong/index",
+    "provider_id": "fx-markets",
+    "provider_name": "FX Markets",
+    "route_key": "/:channel",
     "route": {
-      "path": "/gushitong/index",
-      "view": 5,
-      "example": "/baidu/gushitong/index",
-      "parameters": {},
-      "name": "首页指数",
-      "url": "gushitong.baidu.com/",
-      "provider_id": "baidu",
-      "provider_name": "百度",
-      "route_key": "/gushitong/index"
-    }
-  },
-  {
-    "provider_id": "cls",
-    "provider_name": "财联社",
-    "route_key": "/telegraph/:category?",
-    "route": {
-      "path": "/telegraph/:category?",
-      "example": "/cls/telegraph",
+      "path": "/:channel",
+      "example": "/fx-markets/trading",
       "parameters": {
-        "category": "分类，见下表，默认为全部"
+        "channel": "channel, can be found in the navi bar links at the home page"
       },
-      "name": "电报",
-      "url": "cls.cn/telegraph",
-      "description": "| 看盘  | 公司         | 解读    | 加红 | 推送  | 提醒   | 基金 | 港股 |\n| ----- | ------------ | ------- | ---- | ----- | ------ | ---- | ---- |\n| watch | announcement | explain | red  | jpush | remind | fund | hk   |",
-      "provider_id": "cls",
-      "provider_name": "财联社",
-      "route_key": "/telegraph/:category?"
+      "name": "Channel",
+      "description": "| Trading | Infrastructure | Tech and Data | Regulation |\n| ------- | -------------- | ------------- | ---------- |\n| trading | infrastructure | tech-and-data | regulation |",
+      "provider_id": "fx-markets",
+      "provider_name": "FX Markets",
+      "route_key": "/:channel"
     }
   },
   {
-    "provider_id": "gelonghui",
-    "provider_name": "格隆汇",
-    "route_key": "/live",
+    "provider_id": "nbd",
+    "provider_name": "每经网",
+    "route_key": "/daily",
     "route": {
-      "path": "/live",
-      "view": 0,
-      "example": "/gelonghui/live",
+      "path": "/daily",
+      "example": "/nbd/daily",
       "parameters": {},
-      "name": "实时快讯",
-      "url": "gelonghui.com/live",
-      "provider_id": "gelonghui",
-      "provider_name": "格隆汇",
-      "route_key": "/live"
+      "name": "重磅原创",
+      "url": "nbd.com.cn/",
+      "provider_id": "nbd",
+      "provider_name": "每经网",
+      "route_key": "/daily"
     }
   },
   {
-    "provider_id": "jisilu",
-    "provider_name": "集思录",
-    "route_key": "/explore/:filter?",
+    "provider_id": "ulapia",
+    "provider_name": "乌拉邦",
+    "route_key": "/research/latest",
     "route": {
-      "path": "/explore/:filter?",
-      "name": "广场",
-      "url": "www.jisilu.cn",
-      "example": "/jisilu/explore",
-      "parameters": {
-        "category": "过滤器，默认为空，可在对应页 URL 中找到"
-      },
-      "description": "::: tip\n若订阅 [债券/可转债 - 热门 - 30天](https://www.jisilu.cn/home/explore/category-4__sort_type-hot__day-30)，网址为 `https://www.jisilu.cn/home/explore/category-4__sort_type-hot__day-30`，请截取 `https://www.jisilu.cn/home/explore/` 到末尾的部分 `category-4__sort_type-hot__day-30` 作为 `filter` 参数填入，此时目标路由为 [`/jisilu/explore/category-4__sort_type-hot__day-30`](https://rsshub.app/jisilu/explore/category-4__sort_type-hot__day-30)。\n:::\n    ",
-      "view": 0,
-      "provider_id": "jisilu",
-      "provider_name": "集思录",
-      "route_key": "/explore/:filter?"
-    }
-  },
-  {
-    "provider_id": "sse",
-    "provider_name": "上海证券交易所",
-    "route_key": "/renewal",
-    "route": {
-      "path": "/renewal",
-      "example": "/sse/renewal",
+      "path": "/research/latest",
+      "example": "/ulapia/research/latest",
       "parameters": {},
-      "name": "科创板项目动态",
-      "url": "kcb.sse.com.cn/home",
-      "provider_id": "sse",
-      "provider_name": "上海证券交易所",
-      "route_key": "/renewal"
-    }
-  },
-  {
-    "provider_id": "unusualwhales",
-    "provider_name": "Unusual Whales",
-    "route_key": "/news",
-    "route": {
-      "path": "/news",
-      "example": "/unusualwhales/news",
-      "parameters": {},
-      "name": "News Flow",
-      "url": "unusualwhales.com/news",
-      "provider_id": "unusualwhales",
-      "provider_name": "Unusual Whales",
-      "route_key": "/news"
-    }
-  },
-  {
-    "provider_id": "wallstreetcn",
-    "provider_name": "华尔街见闻",
-    "route_key": "/live/:category?/:score?",
-    "route": {
-      "path": "/live/:category?/:score?",
-      "example": "/wallstreetcn/live",
-      "parameters": {
-        "category": "快讯分类，默认`global`，见下表",
-        "score": "快讯重要度，默认`1`全部快讯，可设置为`2`只看重要的"
-      },
-      "name": "实时快讯",
-      "description": "| 要闻   | A 股    | 美股     | 港股     | 外汇  | 商品      | 理财      |\n| ------ | ------- | -------- | -------- | ----- | --------- | --------- |\n| global | a-stock | us-stock | hk-stock | forex | commodity | financing |",
-      "provider_id": "wallstreetcn",
-      "provider_name": "华尔街见闻",
-      "route_key": "/live/:category?/:score?"
+      "name": "最新研报",
+      "url": "www.ulapia.com/",
+      "provider_id": "ulapia",
+      "provider_name": "乌拉邦",
+      "route_key": "/research/latest"
     }
   }
 ]

@@ -1,57 +1,16 @@
 [
   {
-    "provider_id": "asus",
-    "provider_name": "ASUS",
-    "route_key": "/gpu-tweak",
+    "provider_id": "appstore",
+    "provider_name": "App Store/Mac App Store",
+    "route_key": "/price/:country/:type/:id",
     "route": {
-      "name": "GPU Tweak",
-      "path": "/gpu-tweak",
-      "example": "/asus/gpu-tweak",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "cpuid",
-    "provider_name": "CPUID",
-    "route_key": "/news",
-    "route": {
-      "name": "News",
-      "path": "/news",
-      "example": "/cpuid/news",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "dockerhub",
-    "provider_name": "Docker Hub",
-    "route_key": "/build/:owner/:image/:tag?",
-    "route": {
-      "name": "Image New Build",
-      "path": "/build/:owner/:image/:tag?",
-      "example": "/dockerhub/build/diygod/rsshub/latest",
+      "name": "Price Drop",
+      "path": "/price/:country/:type/:id",
+      "example": "/appstore/price/us/mac/id1152443474",
       "parameters": {
-        "owner": "Image owner, the owner of the official image fills in the library, for example: /dockerhub/build/library/mysql",
-        "image": "Image name",
-        "tag": {
-          "description": "Image tag",
-          "default": "latest"
-        }
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "fosshub",
-    "provider_name": "FossHub",
-    "route_key": "/:id",
-    "route": {
-      "name": "Software Update",
-      "path": "/:id",
-      "example": "/fosshub/qBittorrent",
-      "parameters": {
-        "id": "Software id, can be found in URL"
+        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
+        "type": "App type，either `iOS` or `mac`",
+        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
       },
       "description": ""
     }
@@ -69,27 +28,15 @@
     }
   },
   {
-    "provider_id": "raycast",
-    "provider_name": "Raycast",
-    "route_key": "/changelog",
+    "provider_id": "tencent",
+    "provider_name": "腾讯",
+    "route_key": "/qq/sdk/changelog/:platform",
     "route": {
-      "name": "Changelog",
-      "path": "/changelog",
-      "example": "/raycast/changelog",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "winstall",
-    "provider_name": "winstall",
-    "route_key": "/:appId",
-    "route": {
-      "name": "Apps Update",
-      "path": "/:appId",
-      "example": "/winstall/Mozilla.Firefox",
+      "name": "更新日志",
+      "path": "/qq/sdk/changelog/:platform",
+      "example": "/tencent/qq/sdk/changelog/iOS",
       "parameters": {
-        "appId": "Application ID"
+        "platform": "平台，iOS / Android"
       },
       "description": ""
     }
