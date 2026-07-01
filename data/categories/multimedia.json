@@ -1,18 +1,121 @@
 [
   {
-    "provider_id": "163",
-    "provider_name": "网易公开课",
-    "route_key": "/music/artist/songs/:id",
+    "provider_id": "91porn",
+    "provider_name": "91porn",
+    "route_key": "/:lang?",
     "route": {
-      "path": "/music/artist/songs/:id",
-      "example": "/163/music/artist/songs/2116",
+      "path": "/:lang?",
+      "example": "/91porn",
       "parameters": {
-        "id": "歌手 id, 可在歌手详情页 URL 中找到"
+        "lang": "Language, see below, `en_US` by default "
       },
-      "name": "歌手歌曲",
-      "provider_id": "163",
-      "provider_name": "网易公开课",
-      "route_key": "/music/artist/songs/:id"
+      "name": "Hot Video Today",
+      "url": "91porn.com/index.php",
+      "description": "| English | 简体中文 | 繁體中文 |\n| ------- | -------- | -------- |\n| en_US  | cn_CN   | zh_ZH   |",
+      "provider_id": "91porn",
+      "provider_name": "91porn",
+      "route_key": "/:lang?"
+    }
+  },
+  {
+    "provider_id": "storyfm",
+    "provider_name": "故事 FM",
+    "route_key": "/episodes",
+    "route": {
+      "path": "/episodes",
+      "example": "/storyfm/episodes",
+      "parameters": {},
+      "name": "播客",
+      "url": "storyfm.cn/episodes-list",
+      "provider_id": "storyfm",
+      "provider_name": "故事 FM",
+      "route_key": "/episodes"
+    }
+  },
+  {
+    "provider_id": "themoviedb",
+    "provider_name": "The Movie Database",
+    "route_key": "/collection/:id/:lang?",
+    "route": {
+      "path": "/collection/:id/:lang?",
+      "example": "/themoviedb/collection/131292/en-US",
+      "parameters": {
+        "id": "Collection ID",
+        "lang": "Language"
+      },
+      "name": "Collection",
+      "provider_id": "themoviedb",
+      "provider_name": "The Movie Database",
+      "route_key": "/collection/:id/:lang?"
+    }
+  },
+  {
+    "provider_id": "themoviedb",
+    "provider_name": "The Movie Database",
+    "route_key": "/tv/:id/seasons/:lang?",
+    "route": {
+      "path": "/tv/:id/seasons/:lang?",
+      "view": 5,
+      "example": "/themoviedb/tv/70593/seasons/en-US",
+      "parameters": {
+        "id": "TV show ID",
+        "lang": "Language"
+      },
+      "name": "TV Show Seasons",
+      "provider_id": "themoviedb",
+      "provider_name": "The Movie Database",
+      "route_key": "/tv/:id/seasons/:lang?"
+    }
+  },
+  {
+    "provider_id": "yyets",
+    "provider_name": "人人影视",
+    "route_key": "/article/:type?",
+    "route": {
+      "path": "/article/:type?",
+      "view": 0,
+      "example": "/yyets/article",
+      "parameters": {
+        "type": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "news",
+              "label": "影视资讯"
+            },
+            {
+              "value": "report",
+              "label": "收视快报"
+            },
+            {
+              "value": "m_review",
+              "label": "人人影评"
+            },
+            {
+              "value": "t_review",
+              "label": "人人剧评"
+            },
+            {
+              "value": "new_review",
+              "label": "新剧评测"
+            },
+            {
+              "value": "recom",
+              "label": "片单推荐"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "name": "影视资讯",
+      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |",
+      "provider_id": "yyets",
+      "provider_name": "人人影视",
+      "route_key": "/article/:type?"
     }
   }
 ]

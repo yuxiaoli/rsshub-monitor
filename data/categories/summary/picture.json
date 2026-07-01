@@ -1,18 +1,127 @@
 [
   {
-    "provider_id": "ehentai",
-    "provider_name": "E-Hentai",
-    "route_key": "/search/:params?/:page?/:routeParams?",
+    "provider_id": "4kup",
+    "provider_name": "4KUP",
+    "route_key": "/",
     "route": {
-      "name": "Search",
-      "path": "/search/:params?/:page?/:routeParams?",
-      "example": "/ehentai/search/f_cats=1021/0/bittorrent=true&embed_thumb=false",
+      "name": "Latest",
+      "path": "/",
+      "example": "/4kup",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "bjp",
+    "provider_name": "北京天文馆",
+    "route_key": "/apod",
+    "route": {
+      "name": "每日一图",
+      "path": "/apod",
+      "example": "/bjp/apod",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "dapenti",
+    "provider_name": "喷嚏",
+    "route_key": "/subject/:id",
+    "route": {
+      "name": "主题",
+      "path": "/subject/:id",
+      "example": "/dapenti/subject/184",
       "parameters": {
-        "params": "Search parameters. You can copy the content after `https://e-hentai.org/?`",
-        "page": "Page number, set 0 to get latest",
-        "routeParams": "Additional parameters, see the table above"
+        "id": "主题 id"
       },
       "description": ""
+    }
+  },
+  {
+    "provider_id": "dapenti",
+    "provider_name": "喷嚏",
+    "route_key": "/tugua",
+    "route": {
+      "name": "图卦",
+      "path": "/tugua",
+      "example": "/dapenti/tugua",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "fantia",
+    "provider_name": "Fantia",
+    "route_key": "/user/:id",
+    "route": {
+      "name": "User Posts",
+      "path": "/user/:id",
+      "example": "/fantia/user/3498",
+      "parameters": {
+        "id": "User id, can be found in user profile URL"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "misskon",
+    "provider_name": "MissKON",
+    "route_key": "/tag/:tag",
+    "route": {
+      "name": "Tag",
+      "path": "/tag/:tag",
+      "example": "/misskon/tag/cosplay",
+      "parameters": {
+        "tag": "Any tag that exists in MissKon"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "nasa",
+    "provider_name": "NASA",
+    "route_key": "/apod-ncku",
+    "route": {
+      "name": "Cheng Kung University Mirror",
+      "path": "/apod-ncku",
+      "example": "/nasa/apod-ncku",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "yande",
+    "provider_name": "yande.re",
+    "route_key": "/post/popular_recent/:period?",
+    "route": {
+      "name": "Popular Recent Posts",
+      "path": "/post/popular_recent/:period?",
+      "example": "/yande/post/popular_recent/1d",
+      "parameters": {
+        "period": {
+          "description": "展示时间",
+          "options": [
+            {
+              "value": "1d",
+              "label": "最近 24 小时"
+            },
+            {
+              "value": "1w",
+              "label": "最近一周"
+            },
+            {
+              "value": "1m",
+              "label": "最近一月"
+            },
+            {
+              "value": "1y",
+              "label": "最近一年"
+            }
+          ],
+          "default": "1d"
+        }
+      },
+      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |"
     }
   }
 ]

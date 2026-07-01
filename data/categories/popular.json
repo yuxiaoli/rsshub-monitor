@@ -1,409 +1,447 @@
 [
   {
-    "provider_id": "bookfere",
-    "provider_name": "书伴",
-    "route_key": "/:category",
+    "provider_id": "36kr",
+    "provider_name": "36kr",
+    "route_key": "/:category/:subCategory?/:keyword?",
     "route": {
-      "path": "/:category",
-      "view": 0,
-      "example": "/bookfere/skills",
+      "path": "/:category/:subCategory?/:keyword?",
+      "example": "/36kr/newsflashes",
       "parameters": {
-        "category": {
-          "description": "分类名",
+        "category": "分类，必填项",
+        "subCategory": "子分类，选填项，目的是为了兼容老逻辑",
+        "keyword": "关键词，选填项，仅搜索文章/快讯时有效"
+      },
+      "name": "资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯",
+      "description": "| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |\n| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |\n| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |",
+      "provider_id": "36kr",
+      "provider_name": "36kr",
+      "route_key": "/:category/:subCategory?/:keyword?"
+    }
+  },
+  {
+    "provider_id": "acfun",
+    "provider_name": "AcFun",
+    "route_key": "/user/video/:uid",
+    "route": {
+      "path": "/user/video/:uid",
+      "name": "用户投稿",
+      "parameters": {
+        "uid": "用户 UID"
+      },
+      "example": "/acfun/user/video/6102",
+      "view": 3,
+      "provider_id": "acfun",
+      "provider_name": "AcFun",
+      "route_key": "/user/video/:uid"
+    }
+  },
+  {
+    "provider_id": "agirls",
+    "provider_name": "电獭少女",
+    "route_key": "/topic_list",
+    "route": {
+      "path": "/topic_list",
+      "example": "/agirls/topic_list",
+      "parameters": {},
+      "name": "当前精选主题列表",
+      "url": "agirls.aotter.net/",
+      "provider_id": "agirls",
+      "provider_name": "电獭少女",
+      "route_key": "/topic_list"
+    }
+  },
+  {
+    "provider_id": "bilibili",
+    "provider_name": "哔哩哔哩 bilibili",
+    "route_key": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
+    "route": {
+      "path": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
+      "name": "排行榜",
+      "view": 3,
+      "example": "/bilibili/ranking/0",
+      "parameters": {
+        "rid_index": {
+          "description": "排行榜分区 id 序号",
+          "default": "0",
           "options": [
             {
-              "value": "weekly",
-              "label": "每周一书"
+              "value": "0",
+              "label": "全站"
             },
             {
-              "value": "skills",
-              "label": "使用技巧"
+              "value": "3",
+              "label": "国创相关"
             },
             {
-              "value": "books",
-              "label": "图书推荐"
+              "value": "5",
+              "label": "动画"
             },
             {
-              "value": "news",
-              "label": "新闻速递"
+              "value": "6",
+              "label": "音乐"
             },
             {
-              "value": "essay",
-              "label": "精选短文"
+              "value": "7",
+              "label": "舞蹈"
+            },
+            {
+              "value": "8",
+              "label": "游戏"
+            },
+            {
+              "value": "9",
+              "label": "知识"
+            },
+            {
+              "value": "10",
+              "label": "科技"
+            },
+            {
+              "value": "11",
+              "label": "运动"
+            },
+            {
+              "value": "12",
+              "label": "汽车"
+            },
+            {
+              "value": "13",
+              "label": "生活"
+            },
+            {
+              "value": "14",
+              "label": "美食"
+            },
+            {
+              "value": "15",
+              "label": "动物圈"
+            },
+            {
+              "value": "16",
+              "label": "鬼畜"
+            },
+            {
+              "value": "17",
+              "label": "时尚"
+            },
+            {
+              "value": "18",
+              "label": "娱乐"
+            },
+            {
+              "value": "19",
+              "label": "影视"
+            },
+            {
+              "value": "23",
+              "label": "原创"
+            },
+            {
+              "value": "24",
+              "label": "新人"
             }
           ]
-        }
-      },
-      "name": "分类",
-      "description": "| 每周一书 | 使用技巧 | 图书推荐 | 新闻速递 | 精选短文 |\n| -------- | -------- | -------- | -------- | -------- |\n| weekly   | skills   | books    | news     | essay    |",
-      "provider_id": "bookfere",
-      "provider_name": "书伴",
-      "route_key": "/:category"
-    }
-  },
-  {
-    "provider_id": "dedao",
-    "provider_name": "得到",
-    "route_key": "/:category?",
-    "route": {
-      "path": "/:category?",
-      "name": "文章",
-      "example": "/dedao",
-      "parameters": {
-        "category": "分类，见下表，默认为`news`"
-      },
-      "description": "| 新闻 | 人物故事 | 视频 |\n| ---- | ---- | ---- |\n| news | figure | video |",
-      "provider_id": "dedao",
-      "provider_name": "得到",
-      "route_key": "/:category?"
-    }
-  },
-  {
-    "provider_id": "hackernews",
-    "provider_name": "Hacker News",
-    "route_key": "/:section?/:type?/:user?",
-    "route": {
-      "path": "/:section?/:type?/:user?",
-      "view": 0,
-      "example": "/hackernews/threads/comments_list/dang",
-      "parameters": {
-        "section": {
-          "description": "Content section, default to `index`"
         },
-        "type": {
-          "description": "Link type, default to `sources`"
-        },
-        "user": {
-          "description": "Set user, only valid in `threads` and `submitted` sections"
-        }
+        "embed": "默认为开启内嵌视频, 任意值为关闭",
+        "redirect1": "留空，用于兼容之前的路由",
+        "redirect2": "留空，用于兼容之前的路由"
       },
-      "name": "User",
-      "description": "Subscribe to the content of a specific user",
-      "provider_id": "hackernews",
-      "provider_name": "Hacker News",
-      "route_key": "/:section?/:type?/:user?"
+      "provider_id": "bilibili",
+      "provider_name": "哔哩哔哩 bilibili",
+      "route_key": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?"
     }
   },
   {
-    "provider_id": "huxiu",
-    "provider_name": "虎嗅",
-    "route_key": "/tag/:id",
+    "provider_id": "bjp",
+    "provider_name": "北京天文馆",
+    "route_key": "/apod",
     "route": {
-      "path": "/tag/:id",
-      "example": "/huxiu/tag/291",
-      "parameters": {
-        "id": "标签 id，可在对应标签页 URL 中找到"
-      },
-      "name": "标签",
-      "description": "更多标签请参见 [标签](https://www.huxiu.com/tags)",
-      "provider_id": "huxiu",
-      "provider_name": "虎嗅",
-      "route_key": "/tag/:id"
+      "path": "/apod",
+      "view": 2,
+      "example": "/bjp/apod",
+      "parameters": {},
+      "name": "每日一图",
+      "url": "bjp.org.cn/APOD/today.shtml",
+      "provider_id": "bjp",
+      "provider_name": "北京天文馆",
+      "route_key": "/apod"
     }
   },
   {
-    "provider_id": "inoreader",
-    "provider_name": "Inoreader",
-    "route_key": "/rss/:user/:tag",
+    "provider_id": "caixin",
+    "provider_name": "财新博客",
+    "route_key": "/latest",
     "route": {
-      "path": "/rss/:user/:tag",
+      "path": "/latest",
       "view": 0,
-      "example": "/inoreader/rss/1005137674/user-favorites",
-      "parameters": {
-        "user": "user id, the interger after user/ in the example URL",
-        "tag": "tag, the string after tag/ in the example URL"
-      },
-      "name": "RSS",
-      "provider_id": "inoreader",
-      "provider_name": "Inoreader",
-      "route_key": "/rss/:user/:tag"
+      "example": "/caixin/latest",
+      "parameters": {},
+      "name": "最新文章",
+      "url": "caixin.com/",
+      "description": "说明：此 RSS feed 会自动抓取财新网的最新文章，但不包含 FM 及视频内容。订阅用户可根据文档设置环境变量后，在url传入`fulltext=`以解锁全文。",
+      "provider_id": "caixin",
+      "provider_name": "财新博客",
+      "route_key": "/latest"
     }
   },
   {
-    "provider_id": "keep",
-    "provider_name": "Keep",
+    "provider_id": "fantia",
+    "provider_name": "Fantia",
     "route_key": "/user/:id",
     "route": {
       "path": "/user/:id",
-      "example": "/keep/user/556b02c1ab59390afea671ea",
+      "view": 2,
+      "example": "/fantia/user/3498",
       "parameters": {
-        "id": "Keep 用户 id"
+        "id": "User id, can be found in user profile URL"
       },
-      "name": "运动日记",
-      "provider_id": "keep",
-      "provider_name": "Keep",
+      "name": "User Posts",
+      "provider_id": "fantia",
+      "provider_name": "Fantia",
       "route_key": "/user/:id"
     }
   },
   {
-    "provider_id": "notefolio",
-    "provider_name": "Notefolio",
-    "route_key": "/search/:category?/:order?/:time?/:query?",
+    "provider_id": "guokr",
+    "provider_name": "果壳网",
+    "route_key": "/column/:channel",
     "route": {
-      "path": "/search/:category?/:order?/:time?/:query?",
-      "view": 2,
-      "example": "/notefolio/search/1/pick/all/life",
+      "path": "/column/:channel",
+      "example": "/guokr/column/calendar",
       "parameters": {
-        "category": {
-          "description": "Category, see below",
-          "options": [
-            {
-              "value": "all",
-              "label": "All (전체)"
-            },
-            {
-              "value": "1",
-              "label": "Video / Motion Graphics (영상/모션그래픽)"
-            },
-            {
-              "value": "2",
-              "label": "Graphic Design (그래픽 디자인)"
-            },
-            {
-              "value": "3",
-              "label": "Branding / Editing (브랜딩/편집)"
-            },
-            {
-              "value": "4",
-              "label": "UI/UX (UI/UX)"
-            },
-            {
-              "value": "5",
-              "label": "Illustration (일러스트레이션)"
-            },
-            {
-              "value": "6",
-              "label": "Digital Art (디지털 아트)"
-            },
-            {
-              "value": "7",
-              "label": "Character Design (캐릭터 디자인)"
-            },
-            {
-              "value": "8",
-              "label": "Product Package Design (제품/패키지 디자인)"
-            },
-            {
-              "value": "9",
-              "label": "Photography (포토그래피)"
-            },
-            {
-              "value": "10",
-              "label": "Typography (타이포그래피)"
-            },
-            {
-              "value": "11",
-              "label": "Crafts (공예)"
-            },
-            {
-              "value": "12",
-              "label": "Fine Art (파인아트)"
-            }
-          ],
-          "default": "all"
-        },
-        "order": {
-          "description": "Order, `pick` as Notefolio Pick, `published` as Newest, `like` as like, `pick` by default",
-          "options": [
-            {
-              "value": "pick",
-              "label": "Notefolio Pick"
-            },
-            {
-              "value": "published",
-              "label": "Newest"
-            },
-            {
-              "value": "like",
-              "label": "Like"
-            }
-          ],
-          "default": "pick"
-        },
-        "time": {
-          "description": "Time",
-          "options": [
-            {
-              "value": "all",
-              "label": "All the time"
-            },
-            {
-              "value": "one-day",
-              "label": "Latest 24 hours"
-            },
-            {
-              "value": "week",
-              "label": "Latest week"
-            },
-            {
-              "value": "month",
-              "label": "Latest month"
-            },
-            {
-              "value": "three-month",
-              "label": "Latest 3 months"
-            }
-          ],
-          "default": "all"
-        },
-        "query": "Keyword, empty by default"
+        "channel": "专栏类别"
       },
-      "name": "Works",
-      "url": "notefolio.net/search",
-      "description": "| Category | Name in Korean     | Name in English         |\n| -------- | ------------------ | ----------------------- |\n| all      | 전체               | All                     |\n| 1        | 영상/모션그래픽    | Video / Motion Graphics |\n| 2        | 그래픽 디자인      | Graphic Design          |\n| 3        | 브랜딩/편집        | Branding / Editing      |\n| 4        | UI/UX              | UI/UX                   |\n| 5        | 일러스트레이션     | Illustration            |\n| 6        | 디지털 아트        | Digital Art             |\n| 7        | 캐릭터 디자인      | Character Design        |\n| 8        | 제품/패키지 디자인 | Product Package Design  |\n| 9        | 포토그래피         | Photography             |\n| 10       | 타이포그래피       | Typography              |\n| 11       | 공예               | Crafts                  |\n| 12       | 파인아트           | Fine Art                |",
-      "provider_id": "notefolio",
-      "provider_name": "Notefolio",
-      "route_key": "/search/:category?/:order?/:time?/:query?"
+      "name": "果壳网专栏",
+      "url": "guokr.com/",
+      "description": "| 物种日历 | 吃货研究所 | 美丽也是技术活 |\n| -------- | ---------- | -------------- |\n| calendar | institute  | beauty         |",
+      "provider_id": "guokr",
+      "provider_name": "果壳网",
+      "route_key": "/column/:channel"
     }
   },
   {
-    "provider_id": "nytimes",
-    "provider_name": "The New York Times",
-    "route_key": "/book/:category?",
+    "provider_id": "jin10",
+    "provider_name": "金十数据",
+    "route_key": "/:important?",
     "route": {
-      "path": "/book/:category?",
+      "path": "/:important?",
       "view": 5,
-      "example": "/nytimes/book/combined-print-and-e-book-nonfiction",
+      "example": "/jin10",
       "parameters": {
-        "category": {
-          "description": "Category, can be found on the [official page](https://www.nytimes.com/books/best-sellers/)",
+        "important": "只看重要，任意值开启，留空关闭"
+      },
+      "name": "市场快讯",
+      "url": "jin10.com/",
+      "provider_id": "jin10",
+      "provider_name": "金十数据",
+      "route_key": "/:important?"
+    }
+  },
+  {
+    "provider_id": "mastodon",
+    "provider_name": "Mastodon",
+    "route_key": "/acct/:acct/statuses/:only_media?",
+    "route": {
+      "path": "/acct/:acct/statuses/:only_media?",
+      "view": 1,
+      "example": "/mastodon/acct/Mastodon@mastodon.social/statuses",
+      "parameters": {
+        "acct": "Webfinger account URI, like `user@host`",
+        "only_media": {
+          "description": "whether only display media content, default to false, any value to true",
           "options": [
             {
-              "value": "combined-print-and-e-book-nonfiction",
-              "label": "Combined Print & E-Book Nonfiction"
+              "value": "true",
+              "label": "true"
             },
             {
-              "value": "hardcover-nonfiction",
-              "label": "Hardcover Nonfiction"
-            },
-            {
-              "value": "paperback-nonfiction",
-              "label": "Paperback Nonfiction"
-            },
-            {
-              "value": "advice-how-to-and-miscellaneous",
-              "label": "Advice, How-To & Miscellaneous"
-            },
-            {
-              "value": "combined-print-and-e-book-fiction",
-              "label": "Combined Print & E-Book Fiction"
-            },
-            {
-              "value": "hardcover-fiction",
-              "label": "Hardcover Fiction"
-            },
-            {
-              "value": "trade-fiction-paperback",
-              "label": "Paperback Trade Fiction"
-            },
-            {
-              "value": "childrens-middle-grade-hardcover",
-              "label": "Children's Middle Grade Hardcover"
-            },
-            {
-              "value": "picture-books",
-              "label": "Picture Books"
-            },
-            {
-              "value": "series-books",
-              "label": "Series Books"
-            },
-            {
-              "value": "young-adult-hardcover",
-              "label": "Young Adult Hardcover"
+              "value": "false",
+              "label": "false"
             }
           ],
-          "default": "combined-print-and-e-book-nonfiction"
+          "default": "false"
         }
       },
-      "name": "Best Seller Books",
-      "url": "nytimes.com/",
-      "provider_id": "nytimes",
-      "provider_name": "The New York Times",
-      "route_key": "/book/:category?"
+      "name": "User timeline",
+      "description": "Started from Mastodon v4.0.0, the use of the `search` API in the route no longer requires a user token.\nIf the domain of your Webfinger account URI is the same as the API host of the instance (i.e., no delegation called in some other protocols), then no configuration is required and the route is available out of the box.\nHowever, you can still specify these route-specific configurations if you need to override them.",
+      "provider_id": "mastodon",
+      "provider_name": "Mastodon",
+      "route_key": "/acct/:acct/statuses/:only_media?"
     }
   },
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
-    "route_key": "/user/:user",
+    "route_key": "/top/:category?/:lang?",
     "route": {
-      "path": "/user/:user",
+      "path": "/top/:category?/:lang?",
       "view": 1,
-      "example": "/plurk/user/plurkoffice",
+      "example": "/plurk/top/topReplurks",
       "parameters": {
-        "user": "User ID, can be found in URL"
+        "category": "Category, see the table below, `topReplurks` by default",
+        "lang": "Language, see the table below, `en` by default"
       },
-      "name": "User",
+      "name": "Top",
+      "description": "| Top Replurks | Top Favorites | Top Responded |\n| ------------ | ------------- | ------------- |\n| topReplurks  | topFavorites  | topResponded  |\n\n| English | 中文（繁體） |\n| ------- | ------------ |\n| en      | zh           |",
       "provider_id": "plurk",
       "provider_name": "Plurk",
-      "route_key": "/user/:user"
+      "route_key": "/top/:category?/:lang?"
     }
   },
   {
     "provider_id": "sspai",
     "provider_name": "少数派 sspai",
-    "route_key": "/tag/:keyword",
+    "route_key": "/activity/:slug",
     "route": {
-      "path": "/tag/:keyword",
-      "example": "/sspai/tag/apple",
+      "path": "/activity/:slug",
+      "example": "/sspai/activity/urfp0d9i",
       "parameters": {
-        "keyword": "关键词"
+        "slug": "作者 slug，可在作者主页URL中找到"
       },
-      "name": "标签订阅",
+      "name": "作者动态",
       "provider_id": "sspai",
       "provider_name": "少数派 sspai",
-      "route_key": "/tag/:keyword"
+      "route_key": "/activity/:slug"
     }
   },
   {
-    "provider_id": "telegram",
-    "provider_name": "Telegram",
-    "route_key": "/blog",
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/topic/:id",
     "route": {
-      "path": "/blog",
-      "view": 0,
-      "example": "/telegram/blog",
-      "parameters": {},
-      "name": "Telegram Blog",
-      "url": "telegram.org/blog",
-      "provider_id": "telegram",
-      "provider_name": "Telegram",
-      "route_key": "/blog"
-    }
-  },
-  {
-    "provider_id": "thepaper",
-    "provider_name": "澎湃新闻",
-    "route_key": "/list/:id",
-    "route": {
-      "path": "/list/:id",
-      "example": "/thepaper/list/25457",
+      "path": "/topic/:id",
+      "example": "/sspai/topic/250",
       "parameters": {
-        "id": "栏目 id，可在栏目页 URL 中找到"
+        "id": "专题 id，可在专题主页URL中找到"
       },
-      "name": "栏目",
-      "description": "| 栏目 ID | 栏目名       |\n| ------- | ------------ |\n| 26912   | 上直播       |\n| 26913   | 七环视频     |\n| 26965   | 温度计       |\n| 26908   | 一级视场     |\n| 27260   | World 湃     |\n| 26907   | 湃客科技     |\n| 33168   | 纪录湃       |\n| 26911   | 围观         |\n| 26918   | @所有人      |\n| 26906   | 大都会       |\n| 26909   | 追光灯       |\n| 26910   | 运动装       |\n| 26914   | 健寻记       |\n| 82188   | AI 播报      |\n| 89035   | 眼界         |\n| 92278   | 关键帧       |\n| 90069   | 战疫         |\n| 25462   | 中国政库     |\n| 25488   | 中南海       |\n| 97924   | 初心之路     |\n| 25489   | 舆论场       |\n| 25490   | 打虎记       |\n| 25423   | 人事风向     |\n| 25426   | 法治中国     |\n| 25424   | 一号专案     |\n| 25463   | 港台来信     |\n| 25491   | 长三角政商   |\n| 25428   | 直击现场     |\n| 68750   | 公益湃       |\n| 27604   | 暖闻         |\n| 25464   | 澎湃质量报告 |\n| 25425   | 绿政公署     |\n| 25429   | 澎湃国际     |\n| 25481   | 外交学人     |\n| 25430   | 澎湃防务     |\n| 25678   | 唐人街       |\n| 25427   | 澎湃人物     |\n| 25422   | 浦江头条     |\n| 25487   | 教育家       |\n| 25634   | 全景现场     |\n| 25635   | 美数课       |\n| 25600   | 快看         |\n| 25434   | 10% 公司     |\n| 25436   | 能见度       |\n| 25433   | 地产界       |\n| 25438   | 财经上下游   |\n| 25435   | 金改实验室   |\n| 25437   | 牛市点线面   |\n| 119963  | IPO 最前线   |\n| 25485   | 澎湃商学院   |\n| 25432   | 自贸区连线   |\n| 37978   | 进博会在线   |\n| 36079   | 湃客         |\n| 27392   | 政务         |\n| 77286   | 媒体         |\n| 27234   | 科学湃       |\n| 119445  | 生命科学     |\n| 119447  | 未来 2%      |\n| 119446  | 元宇宙观察   |\n| 119448  | 科创 101     |\n| 119449  | 科学城邦     |\n| 25444   | 社论         |\n| 27224   | 澎湃评论     |\n| 26525   | 思想湃       |\n| 26878   | 上海书评     |\n| 25483   | 思想市场     |\n| 25457   | 私家历史     |\n| 25574   | 翻书党       |\n| 25455   | 艺术评论     |\n| 26937   | 古代艺术     |\n| 25450   | 文化课       |\n| 25482   | 逝者         |\n| 25536   | 专栏         |\n| 26506   | 异次元       |\n| 97313   | 海平面       |\n| 103076  | 一问三知     |\n| 25445   | 澎湃研究所   |\n| 25446   | 全球智库     |\n| 26915   | 城市漫步     |\n| 25456   | 市政厅       |\n| 104191  | 世界会客厅   |\n| 25448   | 有戏         |\n| 26609   | 文艺范       |\n| 25942   | 身体         |\n| 26015   | 私・奔       |\n| 25599   | 运动家       |\n| 25842   | 私家地理     |\n| 80623   | 非常品       |\n| 26862   | 楼市         |\n| 25769   | 生活方式     |\n| 25990   | 澎湃联播     |\n| 26173   | 视界         |\n| 26202   | 亲子学堂     |\n| 26404   | 赢家         |\n| 26490   | 汽车圈       |\n| 115327  | IP SH        |\n| 117340  | 酒业         |",
-      "provider_id": "thepaper",
-      "provider_name": "澎湃新闻",
-      "route_key": "/list/:id"
+      "name": "专题内文章更新",
+      "provider_id": "sspai",
+      "provider_name": "少数派 sspai",
+      "route_key": "/topic/:id"
     }
   },
   {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/tab/:tabid",
+    "provider_id": "themoviedb",
+    "provider_name": "The Movie Database",
+    "route_key": "/tv/:id/seasons/:lang?",
     "route": {
-      "path": "/tab/:tabid",
-      "view": 0,
-      "example": "/v2ex/tab/hot",
+      "path": "/tv/:id/seasons/:lang?",
+      "view": 5,
+      "example": "/themoviedb/tv/70593/seasons/en-US",
       "parameters": {
-        "tabid": "tab标签ID,在 URL 可以找到"
+        "id": "TV show ID",
+        "lang": "Language"
       },
-      "name": "标签",
-      "provider_id": "v2ex",
-      "provider_name": "V2EX",
-      "route_key": "/tab/:tabid"
+      "name": "TV Show Seasons",
+      "provider_id": "themoviedb",
+      "provider_name": "The Movie Database",
+      "route_key": "/tv/:id/seasons/:lang?"
+    }
+  },
+  {
+    "provider_id": "tophub",
+    "provider_name": "今日热榜",
+    "route_key": "/:id",
+    "route": {
+      "path": "/:id",
+      "example": "/tophub/Om4ejxvxEN",
+      "parameters": {
+        "id": "榜单id，可在 URL 中找到"
+      },
+      "name": "榜单",
+      "provider_id": "tophub",
+      "provider_name": "今日热榜",
+      "route_key": "/:id"
+    }
+  },
+  {
+    "provider_id": "yande",
+    "provider_name": "yande.re",
+    "route_key": "/post/popular_recent/:period?",
+    "route": {
+      "path": "/post/popular_recent/:period?",
+      "view": 2,
+      "example": "/yande/post/popular_recent/1d",
+      "parameters": {
+        "period": {
+          "description": "展示时间",
+          "options": [
+            {
+              "value": "1d",
+              "label": "最近 24 小时"
+            },
+            {
+              "value": "1w",
+              "label": "最近一周"
+            },
+            {
+              "value": "1m",
+              "label": "最近一月"
+            },
+            {
+              "value": "1y",
+              "label": "最近一年"
+            }
+          ],
+          "default": "1d"
+        }
+      },
+      "name": "Popular Recent Posts",
+      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |",
+      "provider_id": "yande",
+      "provider_name": "yande.re",
+      "route_key": "/post/popular_recent/:period?"
+    }
+  },
+  {
+    "provider_id": "yyets",
+    "provider_name": "人人影视",
+    "route_key": "/article/:type?",
+    "route": {
+      "path": "/article/:type?",
+      "view": 0,
+      "example": "/yyets/article",
+      "parameters": {
+        "type": {
+          "description": "类型",
+          "options": [
+            {
+              "value": "all",
+              "label": "全部"
+            },
+            {
+              "value": "news",
+              "label": "影视资讯"
+            },
+            {
+              "value": "report",
+              "label": "收视快报"
+            },
+            {
+              "value": "m_review",
+              "label": "人人影评"
+            },
+            {
+              "value": "t_review",
+              "label": "人人剧评"
+            },
+            {
+              "value": "new_review",
+              "label": "新剧评测"
+            },
+            {
+              "value": "recom",
+              "label": "片单推荐"
+            }
+          ],
+          "default": "all"
+        }
+      },
+      "name": "影视资讯",
+      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |",
+      "provider_id": "yyets",
+      "provider_name": "人人影视",
+      "route_key": "/article/:type?"
     }
   }
 ]

@@ -1,47 +1,123 @@
 [
   {
+    "provider_id": "diershoubing",
+    "provider_name": "二柄 APP",
+    "route_key": "/news",
+    "route": {
+      "path": "/news",
+      "example": "/diershoubing/news",
+      "parameters": {},
+      "name": "新闻",
+      "url": "diershoubing.com/",
+      "provider_id": "diershoubing",
+      "provider_name": "二柄 APP",
+      "route_key": "/news"
+    }
+  },
+  {
     "provider_id": "indienova",
     "provider_name": "indienova 独立游戏",
-    "route_key": "/usergames",
+    "route_key": "/column/:columnId",
     "route": {
-      "path": "/usergames",
-      "example": "/indienova/usergames",
-      "parameters": {},
-      "name": "会员开发游戏库",
-      "url": "indienova.com/usergames",
+      "path": "/column/:columnId",
+      "example": "/indienova/column/52",
+      "parameters": {
+        "columnId": "专题 ID，可在 URL中找到"
+      },
+      "name": "专题",
+      "description": "<details>\n<summary>专题 ID</summary>\n\n    游戏推荐\n\n| itch 一周游戏汇 | 一周值得关注的发售作品 | 诺娃速递 | 周末游戏视频集锦 | 每月媒体评分 | 年度最佳游戏 | Indie Focus 近期新游 | indienova Picks 精选 |\n| --------------- | ---------------------- | -------- | ---------------- | ------------ | ------------ | -------------------- | -------------------- |\n| 52              | 29                     | 41       | 43               | 45           | 39           | 1                    | 8                    |\n\n    游戏评论\n\n| 游必有方 Podcast | 独立游戏潮（RED） |\n| ---------------- | ----------------- |\n| 6                | 3                 |\n\n    游戏开发\n\n| 游戏设计模式 | Roguelike 开发 | GMS 中文教程 |\n| ------------ | -------------- | ------------ |\n| 15           | 14             | 7            |\n\n    游戏设计\n\n| 游戏与所有 | 让人眼前一亮的游戏设计 | 游戏音乐分析 | 游戏情感设计 | 游戏相关书籍 | 游戏设计课程笔记 | 游戏设计工具 | 游戏设计灵感 | 设计师谈设计 | 游戏研究方法 | 功能游戏 | 游戏设计专业院校 | 像素课堂 |\n| ---------- | ---------------------- | ------------ | ------------ | ------------ | ---------------- | ------------ | ------------ | ------------ | ------------ | -------- | ---------------- | -------- |\n| 10         | 33                     | 17           | 4            | 22           | 11               | 24           | 26           | 27           | 28           | 38       | 9                | 19       |\n\n    游戏文化\n\n| NOVA 海外独立游戏见闻 | 工作室访谈 | indie Figure 游戏人 | 游戏艺术家 | 独立游戏音乐欣赏 | 游戏瑰宝 | 电脑 RPG 游戏史 | ALT. CTRL. GAMING |\n| --------------------- | ---------- | ------------------- | ---------- | ---------------- | -------- | --------------- | ----------------- |\n| 53                    | 23         | 5                   | 44         | 18               | 21       | 16              | 2                 |\n\n    Game Jam\n\n| Ludum Dare | Global Game Jam |\n| ---------- | --------------- |\n| 31         | 13              |\n</details>",
       "provider_id": "indienova",
       "provider_name": "indienova 独立游戏",
-      "route_key": "/usergames"
+      "route_key": "/column/:columnId"
+    }
+  },
+  {
+    "provider_id": "lfsyd",
+    "provider_name": "旅法师营地",
+    "route_key": "/home",
+    "route": {
+      "path": "/home",
+      "example": "/lfsyd/home",
+      "parameters": {},
+      "name": "首页",
+      "url": "www.iyingdi.com/",
+      "provider_id": "lfsyd",
+      "provider_name": "旅法师营地",
+      "route_key": "/home"
     }
   },
   {
     "provider_id": "mihoyo",
     "provider_name": "米哈游",
-    "route_key": "/bbs/follow-list/:uid",
+    "route_key": "/sr/:location?/:category?",
     "route": {
-      "path": "/bbs/follow-list/:uid",
-      "example": "/mihoyo/bbs/follow-list/77005350",
+      "path": "/sr/:location?/:category?",
+      "example": "/mihoyo/sr",
       "parameters": {
-        "uid": "用户uid"
+        "location": "区域，可选 `zh-cn`（国服，简中）或 `zh-tw`（国际服，繁中）",
+        "category": "分类，见下表，默认为最新"
       },
-      "name": "米游社 - 用户关注",
+      "name": "崩坏：星穹铁道",
+      "url": "sr.mihoyo.com/news",
+      "description": "#### 新闻 {#mi-ha-you-beng-huai-xing-qiong-tie-dao-xin-wen}\n\n| 最新     | 新闻 | 公告   | 活动     |\n| -------- | ---- | ------ | -------- |\n| news-all | news | notice | activity |",
       "provider_id": "mihoyo",
       "provider_name": "米哈游",
-      "route_key": "/bbs/follow-list/:uid"
+      "route_key": "/sr/:location?/:category?"
     }
   },
   {
-    "provider_id": "sega",
-    "provider_name": "SEGA",
-    "route_key": "/maimaidx/news",
+    "provider_id": "steam",
+    "provider_name": "Steam",
+    "route_key": "/appcommunityfeed/:appid/:routeParams?",
     "route": {
-      "path": "/maimaidx/news",
-      "example": "/sega/maimaidx/news",
-      "name": "maimai DX Japanese Ver. News",
-      "url": "info-maimai.sega.jp/",
-      "provider_id": "sega",
-      "provider_name": "SEGA",
-      "route_key": "/maimaidx/news"
+      "path": "/appcommunityfeed/:appid/:routeParams?",
+      "example": "/steam/appcommunityfeed/730",
+      "parameters": {
+        "appid": "Steam appid, can be found on the community hub page or store page URL.",
+        "routeParams": "Query parameters."
+      },
+      "description": "Query Parameters:\n\n| Name                   | Type   | Description             |\n| ---------------------- | ------ | ----------------------- |\n| p                      | string | p                       |\n| rgSections[]           | string | rgSections              |\n| filterLanguage         | string | Filter Language         |\n| languageTag            | string | Language Tag            |\n| nMaxInappropriateScore | string | Max Inappropriate Score |\n\nExample:\n- `/appcommunityfeed/730/p=1&rgSections[]=2&rgSections[]=4&filterLanguage=english&languageTag=english&nMaxInappropriateScore=1` for CS2 Screenshot and Artwork contents.\n- `/appcommunityfeed/730/rgSections[]=6` for CS2 Workshop contents only.\n- `/appcommunityfeed/570/rgSections[]=3&rgSections[]=9` for Dota2 Video and Guides contents.\n\n::: tip\nIt can also access community hub contents that require a logged-in account.\n:::\n",
+      "name": "Steam Community Hub Feeds",
+      "provider_id": "steam",
+      "provider_name": "Steam",
+      "route_key": "/appcommunityfeed/:appid/:routeParams?"
+    }
+  },
+  {
+    "provider_id": "taptap",
+    "provider_name": "TapTap",
+    "route_key": "/topic/:id/:type?/:sort?/:lang?",
+    "route": {
+      "path": "/topic/:id/:type?/:sort?/:lang?",
+      "example": "/taptap/topic/142793/official",
+      "parameters": {
+        "id": "游戏 ID，游戏主页 URL 中获取",
+        "type": "论坛版块，默认显示所有帖子，论坛版块 URL 中 `type` 参数，见下表，默认为 `feed`",
+        "sort": "排序，见下表，默认为 `created`",
+        "lang": "语言，`zh-CN`或`zh-TW`，默认为`zh-CN`"
+      },
+      "name": "游戏论坛",
+      "description": "| 全部 | 精华  | 官方     | 影片  |\n| ---- | ----- | -------- | ----- |\n| feed | elite | official | video |\n\n| 发布时间 | 回复时间  | 默认排序 |\n| -------- | --------- | ------- |\n| created  | commented | default |",
+      "provider_id": "taptap",
+      "provider_name": "TapTap",
+      "route_key": "/topic/:id/:type?/:sort?/:lang?"
+    }
+  },
+  {
+    "provider_id": "tgbus",
+    "provider_name": "电玩巴士 TGBUS",
+    "route_key": "/list/:category",
+    "route": {
+      "path": "/list/:category",
+      "parameters": {
+        "category": "列表分类，见下表"
+      },
+      "example": "/tgbus/list/news",
+      "name": "文章列表",
+      "description": "| 最新资讯 | 游戏评测 | 游戏视频 | 巴士首页特稿 | 硬件资讯 |\n| -------- | -------- | -------- | ------------ | -------- |\n| news     | review   | video    | special      | hardware |",
+      "provider_id": "tgbus",
+      "provider_name": "电玩巴士 TGBUS",
+      "route_key": "/list/:category"
     }
   }
 ]

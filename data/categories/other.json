@@ -1,115 +1,47 @@
 [
   {
-    "provider_id": "afdian",
-    "provider_name": "爱发电",
-    "route_key": "/dynamic/:uid?",
+    "provider_id": "genossenschaften",
+    "provider_name": "Genossenschaften.immo",
+    "route_key": "*",
     "route": {
-      "path": "/dynamic/:uid?",
-      "example": "/afdian/dynamic/@afdian",
+      "name": "Immobiliensuche",
+      "path": "*",
+      "description": "\nNote that all parameters are optional and many can be specified multiple times\n(e.g. `district=wien-1-innere-stadt&district=wien-2-leopoldstadt`).\n\nOnly returns the first page of search results, allowing you to keep track of\nnewly added apartments. If you're looking for an apartment, make sure to also\nlook through the other pages on the website.\n\n:::tip\nTo get your query URL, go to https://genossenschaften.immo and apply all\ndesired filters. If you want to filter by (all districts of a) federal state\n(e.g. `/immobilien/regionen/wien/`), please open the district selector and\nde- and re-select any district, so that the region in the URL gets replaced\nwith a number of `district` parameters. Once you've set up all desired\nfilters, copy the part of the URL after the `?`.\n:::\n",
+      "example": "/genossenschaften/district=wien-1-innere-stadt&district=wien-2-leopoldstadt&district=wien-3-landstrasse&district=wien-4-wieden&district=wien-5-margareten&district=wien-6-mariahilf&district=wien-7-neubau&district=wien-8-josefstadt&district=wien-9-alsergrund&district=wien-10-favoriten&district=wien-11-simmering&district=wien-12-meidling&district=wien-13-hietzing&district=wien-14-penzing&district=wien-15-rudolfsheim-fuenfhaus&district=wien-16-ottakring&district=wien-17-hernals&district=wien-18-waehring&district=wien-19-doebling&district=wien-20-brigittenau&district=wien-21-floridsdorf&district=wien-22-donaustadt&district=wien-23-liesing&has_rent=on&has_rent_option=on&status=available&status=construction&cost=1000&room=2&size=50&has_property=off&has_rent=on&has_rent_option=on&status=available&status=construction&status=planned&type=residence&type=project",
       "parameters": {
-        "uid": "用户id，用户动态页面url里可找到"
+        "cost": "Miete bis (in €, number)",
+        "district": "Bezirk (string, multiple)",
+        "size": "Größe ab (in m², number)",
+        "room": "Zimmer ab (number)",
+        "genossenschaft": "Bauvereinigung (string, multiple)",
+        "own_funds": "Eigenkapital bis",
+        "has_property": "Eigentum (`on` | `off`)",
+        "has_rent": "Miete (`on` | `off`)",
+        "has_rent_option": "Miete mit Kaufoption (`on` | `off`)",
+        "status": "multiple, `available` | `construction` | `planned`",
+        "type": "multiple, `residence` | `project`",
+        "keywords": "Keyword search"
       },
-      "name": "用户动态",
-      "provider_id": "afdian",
-      "provider_name": "爱发电",
-      "route_key": "/dynamic/:uid?"
+      "provider_id": "genossenschaften",
+      "provider_name": "Genossenschaften.immo",
+      "route_key": "*"
     }
   },
   {
-    "provider_id": "afdian",
-    "provider_name": "爱发电",
-    "route_key": "/explore/:type/:category?",
+    "provider_id": "usepanda",
+    "provider_name": "Panda",
+    "route_key": "/feeds/:id",
     "route": {
-      "path": "/explore/:type/:category?",
-      "example": "/afdian/explore/hot/所有",
+      "path": "/feeds/:id",
+      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
       "parameters": {
-        "type": "分类",
-        "category": "目录类型，默认为 `所有`"
+        "id": "Feed ID"
       },
-      "name": "发现用户",
-      "description": "分类\n\n| 推荐 | 最热 |\n| ---- | ---- |\n| rec  | hot  |\n\n  目录类型\n\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| 所有 | 绘画 | 视频 | 写作 | 游戏 | 音乐 | 播客 | 摄影 | 技术 | Vtuber | 舞蹈 | 体育 | 旅游 | 美食 | 时尚 | 数码 | 动画 | 其他 |",
-      "provider_id": "afdian",
-      "provider_name": "爱发电",
-      "route_key": "/explore/:type/:category?"
-    }
-  },
-  {
-    "provider_id": "hostmonit",
-    "provider_name": "全球主机监控",
-    "route_key": "/cloudflareyes/:type?",
-    "route": {
-      "path": "/cloudflareyes/:type?",
-      "example": "/hostmonit/cloudflareyes",
-      "parameters": {
-        "type": "类型，见下表，默认为 v4"
-      },
-      "name": "CloudFlareYes",
-      "description": "| v4 | v6 |\n| -- | -- |\n|    | v6 |",
-      "provider_id": "hostmonit",
-      "provider_name": "全球主机监控",
-      "route_key": "/cloudflareyes/:type?"
-    }
-  },
-  {
-    "provider_id": "instructables",
-    "provider_name": "Instructables",
-    "route_key": "/projects/:category?",
-    "route": {
-      "path": "/projects/:category?",
-      "example": "/instructables/projects/circuits",
-      "parameters": {
-        "category": "Category, empty by default, can be found in URL or see the table below"
-      },
-      "name": "Projects",
-      "url": "instructables.com/projects",
-      "description": "| All | Circuits | Workshop | Craft | Cooking | Living | Outside | Teachers |\n| --- | -------- | -------- | ----- | ------- | ------ | ------- | -------- |\n|     | circuits | workshop | craft | cooking | living | outside | teachers |",
-      "provider_id": "instructables",
-      "provider_name": "Instructables",
-      "route_key": "/projects/:category?"
-    }
-  },
-  {
-    "provider_id": "qq",
-    "provider_name": "腾讯网",
-    "route_key": "/fact",
-    "route": {
-      "path": "/fact",
-      "example": "/qq/fact",
-      "parameters": {},
-      "name": "最新辟谣",
-      "url": "vp.fact.qq.com/home",
-      "provider_id": "qq",
-      "provider_name": "腾讯网",
-      "route_key": "/fact"
-    }
-  },
-  {
-    "provider_id": "urbandictionary",
-    "provider_name": "Urban Dictionary",
-    "route_key": "/random",
-    "route": {
-      "path": "/random",
-      "example": "/urbandictionary/random",
-      "parameters": {},
-      "name": "Random words",
-      "url": "urbandictionary.com/random.php",
-      "provider_id": "urbandictionary",
-      "provider_name": "Urban Dictionary",
-      "route_key": "/random"
-    }
-  },
-  {
-    "provider_id": "wchscu",
-    "provider_name": "华西医院",
-    "route_key": "/recruit",
-    "route": {
-      "name": "招聘公告",
-      "path": "/recruit",
-      "example": "/wchscu/recruit",
-      "url": "www.wchscu.cn",
-      "provider_id": "wchscu",
-      "provider_name": "华西医院",
-      "route_key": "/recruit"
+      "name": "Feeds",
+      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |",
+      "provider_id": "usepanda",
+      "provider_name": "Panda",
+      "route_key": "/feeds/:id"
     }
   }
 ]

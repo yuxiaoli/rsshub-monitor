@@ -1,36 +1,21 @@
 [
   {
-    "provider_id": "appstore",
-    "provider_name": "App Store/Mac App Store",
-    "route_key": "/price/:country/:type/:id",
+    "provider_id": "dockerhub",
+    "provider_name": "Docker Hub",
+    "route_key": "/tag/:owner/:image/:limits?",
     "route": {
-      "path": "/price/:country/:type/:id",
-      "example": "/appstore/price/us/mac/id1152443474",
+      "path": "/tag/:owner/:image/:limits?",
+      "example": "/dockerhub/tag/library/mariadb",
       "parameters": {
-        "country": "App Store Country, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `us`",
-        "type": "App type，either `iOS` or `mac`",
-        "id": "App Store app id, obtain from the app URL https://apps.apple.com/us/app/id1152443474, in this case, `id1152443474`"
+        "owner": "Image owner",
+        "image": "Image name",
+        "limits": "Tag count, 10 by default"
       },
-      "name": "Price Drop",
-      "url": "apps.apple.com/",
-      "provider_id": "appstore",
-      "provider_name": "App Store/Mac App Store",
-      "route_key": "/price/:country/:type/:id"
-    }
-  },
-  {
-    "provider_id": "imagemagick",
-    "provider_name": "ImageMagick",
-    "route_key": "/changelog",
-    "route": {
-      "path": "/changelog",
-      "example": "/imagemagick/changelog",
-      "parameters": {},
-      "name": "Changelog",
-      "url": "imagemagick.org/script/download.php",
-      "provider_id": "imagemagick",
-      "provider_name": "ImageMagick",
-      "route_key": "/changelog"
+      "name": "Image New Tag",
+      "description": "::: warning\n  Use `library` as the `owner` for official images, such as [https://rsshub.app/dockerhub/tag/library/mysql](https://rsshub.app/dockerhub/tag/library/mysql)\n:::",
+      "provider_id": "dockerhub",
+      "provider_name": "Docker Hub",
+      "route_key": "/tag/:owner/:image/:limits?"
     }
   },
   {

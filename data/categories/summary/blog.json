@@ -1,13 +1,39 @@
 [
   {
-    "provider_id": "playpcesor",
-    "provider_name": "电脑玩物",
+    "provider_id": "apache",
+    "provider_name": "Apache",
+    "route_key": "/apisix/blog",
+    "route": {
+      "name": "APISIX 博客",
+      "path": "/apisix/blog",
+      "example": "/apache/apisix/blog",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hicairo",
+    "provider_name": "HiFeng'Blog",
     "route_key": "/",
     "route": {
-      "name": "每日精选文章",
+      "name": "最近发表",
       "path": "/",
-      "example": "/playpcesor",
+      "example": "/hicairo",
       "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "mashiro",
+    "provider_name": "Mashiro's Baumkuchen",
+    "route_key": "/:lang",
+    "route": {
+      "name": "Blog",
+      "path": "/:lang",
+      "example": "/mashiro/en",
+      "parameters": {
+        "lang": "the language of the site. Can be either `en` or `zh-cn`. Default: `en`"
+      },
       "description": ""
     }
   }

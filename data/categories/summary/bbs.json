@@ -1,71 +1,29 @@
 [
   {
-    "provider_id": "19lou",
-    "provider_name": "19 楼",
-    "route_key": "/:city?",
+    "provider_id": "feng",
+    "provider_name": "威锋",
+    "route_key": "/forum/:id/:type?",
     "route": {
-      "name": "头条",
-      "path": "/:city?",
-      "example": "/19lou/jiaxing",
+      "name": "社区",
+      "path": "/forum/:id/:type?",
+      "example": "/feng/forum/1",
       "parameters": {
-        "city": "分类，见下表，默认为 www，即杭州"
+        "id": "版块 ID，可在版块 URL 找到",
+        "type": "排序，见下表，默认为 `all`"
       },
-      "description": "| 杭州 | 台州    | 嘉兴    | 宁波   | 湖州   |\n| ---- | ------- | ------- | ------ | ------ |\n| www  | taizhou | jiaxing | ningbo | huzhou |\n\n| 绍兴     | 湖州   | 温州    | 金华   | 舟山     |\n| -------- | ------ | ------- | ------ | -------- |\n| shaoxing | huzhou | wenzhou | jinhua | zhoushan |\n\n| 衢州   | 丽水   | 义乌 | 萧山     | 余杭   |\n| ------ | ------ | ---- | -------- | ------ |\n| quzhou | lishui | yiwu | xiaoshan | yuhang |\n\n| 临安  | 富阳   | 桐庐   | 建德   | 淳安   |\n| ----- | ------ | ------ | ------ | ------ |\n| linan | fuyang | tonglu | jiande | chunan |"
+      "description": "| 最新回复 | 最新发布 | 热门 | 精华    |\n| -------- | -------- | ---- | ------- |\n| newest   | all      | hot  | essence |"
     }
   },
   {
-    "provider_id": "douyu",
-    "provider_name": "斗鱼直播",
-    "route_key": "/group/:id/:sort?",
+    "provider_id": "right",
+    "provider_name": "恩山无线论坛",
+    "route_key": "/forum/:id?",
     "route": {
-      "name": "鱼吧帖子",
-      "path": "/group/:id/:sort?",
-      "example": "/douyu/group/1011",
+      "name": "板块",
+      "path": "/forum/:id?",
+      "example": "/right/forum/31",
       "parameters": {
-        "id": "鱼吧 id，可在鱼吧页 URL 中找到",
-        "sort": "排序方式，见下表，默认为发布时间排序"
-      },
-      "description": "| 回复时间排序 | 发布时间排序 |\n| ------------ | ------------ |\n| 1            | 2            |"
-    }
-  },
-  {
-    "provider_id": "flyert",
-    "provider_name": "飞客茶馆",
-    "route_key": "/forum/:params{.+}?",
-    "route": {
-      "name": "会员说",
-      "path": "/forum/:params{.+}?",
-      "example": "/flyert/forum",
-      "parameters": {
-        "params": "参数，默认为空，可在对应分类页 URL 中找到"
-      },
-      "description": "::: tip\n  若订阅 [酒店集团优惠](https://www.flyert.com.cn/forum.php?mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19)，网址为 `https://www.flyert.com.cn/forum.php?mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19`。截取 `https://www.flyert.com.cn/forum.php?` 到末尾的部分 `mod=forumdisplay&sum=all&fid=all&catid=322&filter=sortid&sortid=144&searchsort=1&youhui_type=19` **进行 UrlEncode 编码** 后作为参数填入，此时路由为 [`/flyert/forum/mod%3Dforumdisplay%26sum%3Dall%26fid%3Dall%26catid%3D322%26filter%3Dsortid%26sortid%3D144%26searchsort%3D1%26youhui_type%3D226`](https://rsshub.app/flyert/forum/mod%3Dforumdisplay%26sum%3Dall%26fid%3Dall%26catid%3D322%26filter%3Dsortid%26sortid%3D144%26searchsort%3D1%26youhui_type%3D226)。\n:::\n    "
-    }
-  },
-  {
-    "provider_id": "hupu",
-    "provider_name": "虎扑",
-    "route_key": "/all/:id?",
-    "route": {
-      "name": "热帖",
-      "path": "/all/:id?",
-      "example": "/hupu/all/topic-daily",
-      "parameters": {
-        "id": "编号，可在对应热帖版面 URL 中找到，默认为步行街每日话题"
-      },
-      "description": "::: tip\n  更多热帖版面参见 [论坛](https://bbs.hupu.com)\n:::"
-    }
-  },
-  {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/tab/:tabid",
-    "route": {
-      "name": "标签",
-      "path": "/tab/:tabid",
-      "example": "/v2ex/tab/hot",
-      "parameters": {
-        "tabid": "tab标签ID,在 URL 可以找到"
+        "id": "板块 id，可在板块页 URL 中找到，默认为新手入门及其它(硬件)"
       },
       "description": ""
     }

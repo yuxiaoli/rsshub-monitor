@@ -1,29 +1,17 @@
 [
   {
-    "provider_id": "gihyo",
-    "provider_name": "gihyo.jp",
-    "route_key": "/list/group/:id",
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/contributors/:user/:repo/:order?/:anon?",
     "route": {
-      "name": "Series",
-      "path": "/list/group/:id",
-      "example": "/gihyo/list/group/Ubuntu-Weekly-Recipe",
+      "name": "Repo Contributors",
+      "path": "/contributors/:user/:repo/:order?/:anon?",
+      "example": "/github/contributors/DIYgod/RSSHub",
       "parameters": {
-        "id": "Series"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "gitee",
-    "provider_name": "Gitee",
-    "route_key": "/events/:owner/:repo",
-    "route": {
-      "name": "仓库动态",
-      "path": "/events/:owner/:repo",
-      "example": "/gitee/events/y_project/RuoYi",
-      "parameters": {
-        "owner": "用户名",
-        "repo": "仓库名"
+        "user": "User name",
+        "repo": "Repo name",
+        "order": "Sort order by commit numbers, desc and asc (descending by default)",
+        "anon": "Show anonymous users. Defaults to no, use any values for yes."
       },
       "description": ""
     }
@@ -31,53 +19,82 @@
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/wiki/:user/:repo/:page?",
+    "route_key": "/starred_repos/:user",
     "route": {
-      "name": "Wiki History",
-      "path": "/wiki/:user/:repo/:page?",
-      "example": "/github/wiki/flutter/flutter/Roadmap",
+      "name": "User Starred Repositories",
+      "path": "/starred_repos/:user",
+      "example": "/github/starred_repos/DIYgod",
       "parameters": {
-        "user": "User / Org name",
-        "repo": "Repo name",
-        "page": "Page slug, can be found in URL, empty means Home"
+        "user": "User name"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "hackernews",
-    "provider_name": "Hacker News",
-    "route_key": "/:section?/:type?/:user?",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/collection/:collectionId",
     "route": {
-      "name": "User",
-      "path": "/:section?/:type?/:user?",
-      "example": "/hackernews/threads/comments_list/dang",
+      "name": "单个收藏夹",
+      "path": "/collection/:collectionId",
+      "example": "/juejin/collection/6845243180586123271",
       "parameters": {
-        "section": {
-          "description": "Content section, default to `index`"
-        },
-        "type": {
-          "description": "Link type, default to `sources`"
-        },
-        "user": {
-          "description": "Set user, only valid in `threads` and `submitted` sections"
-        }
+        "collectionId": "收藏夹唯一标志符, 在浏览器地址栏URL中能够找到"
       },
-      "description": "Subscribe to the content of a specific user"
+      "description": ""
     }
   },
   {
-    "provider_id": "issuehunt",
-    "provider_name": "Issue Hunt",
-    "route_key": "/funded/:username/:repo",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/tag/:tag",
     "route": {
-      "name": "Project Funded",
-      "path": "/funded/:username/:repo",
-      "example": "/issuehunt/funded/DIYgod/RSSHub",
+      "name": "标签",
+      "path": "/tag/:tag",
+      "example": "/juejin/tag/JavaScript",
       "parameters": {
-        "username": "Github user/org",
-        "repo": "Repository name"
+        "tag": "标签名，可在标签 URL 中找到"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "lanqiao",
+    "provider_name": "蓝桥云课",
+    "route_key": "/questions/:id",
+    "route": {
+      "name": "技术社区",
+      "path": "/questions/:id",
+      "example": "/lanqiao/questions/2",
+      "parameters": {
+        "id": "topic_id 主题 `id` 可在社区板块 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "secrss",
+    "provider_name": "安全内参",
+    "route_key": "/author/:author",
+    "route": {
+      "name": "作者",
+      "path": "/author/:author",
+      "example": "/secrss/author/网络安全威胁和漏洞信息共享平台",
+      "parameters": {
+        "author": "N"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "web",
+    "provider_name": "web.dev",
+    "route_key": "/articles",
+    "route": {
+      "name": "Articles",
+      "path": "/articles",
+      "example": "/web/articles",
+      "parameters": {},
       "description": ""
     }
   }

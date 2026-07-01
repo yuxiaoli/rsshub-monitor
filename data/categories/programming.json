@@ -1,96 +1,115 @@
 [
   {
-    "provider_id": "gihyo",
-    "provider_name": "gihyo.jp",
-    "route_key": "/list/group/:id",
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/contributors/:user/:repo/:order?/:anon?",
     "route": {
-      "path": "/list/group/:id",
-      "example": "/gihyo/list/group/Ubuntu-Weekly-Recipe",
+      "path": "/contributors/:user/:repo/:order?/:anon?",
+      "example": "/github/contributors/DIYgod/RSSHub",
       "parameters": {
-        "id": "Series"
+        "user": "User name",
+        "repo": "Repo name",
+        "order": "Sort order by commit numbers, desc and asc (descending by default)",
+        "anon": "Show anonymous users. Defaults to no, use any values for yes."
       },
-      "name": "Series",
-      "provider_id": "gihyo",
-      "provider_name": "gihyo.jp",
-      "route_key": "/list/group/:id"
-    }
-  },
-  {
-    "provider_id": "gitee",
-    "provider_name": "Gitee",
-    "route_key": "/events/:owner/:repo",
-    "route": {
-      "path": "/events/:owner/:repo",
-      "example": "/gitee/events/y_project/RuoYi",
-      "parameters": {
-        "owner": "用户名",
-        "repo": "仓库名"
-      },
-      "name": "仓库动态",
-      "provider_id": "gitee",
-      "provider_name": "Gitee",
-      "route_key": "/events/:owner/:repo"
+      "name": "Repo Contributors",
+      "provider_id": "github",
+      "provider_name": "GitHub",
+      "route_key": "/contributors/:user/:repo/:order?/:anon?"
     }
   },
   {
     "provider_id": "github",
     "provider_name": "GitHub",
-    "route_key": "/wiki/:user/:repo/:page?",
+    "route_key": "/starred_repos/:user",
     "route": {
-      "path": "/wiki/:user/:repo/:page?",
-      "example": "/github/wiki/flutter/flutter/Roadmap",
+      "path": "/starred_repos/:user",
+      "example": "/github/starred_repos/DIYgod",
       "parameters": {
-        "user": "User / Org name",
-        "repo": "Repo name",
-        "page": "Page slug, can be found in URL, empty means Home"
+        "user": "User name"
       },
-      "name": "Wiki History",
+      "name": "User Starred Repositories",
       "provider_id": "github",
       "provider_name": "GitHub",
-      "route_key": "/wiki/:user/:repo/:page?"
+      "route_key": "/starred_repos/:user"
     }
   },
   {
-    "provider_id": "hackernews",
-    "provider_name": "Hacker News",
-    "route_key": "/:section?/:type?/:user?",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/collection/:collectionId",
     "route": {
-      "path": "/:section?/:type?/:user?",
-      "view": 0,
-      "example": "/hackernews/threads/comments_list/dang",
+      "path": "/collection/:collectionId",
+      "example": "/juejin/collection/6845243180586123271",
       "parameters": {
-        "section": {
-          "description": "Content section, default to `index`"
-        },
-        "type": {
-          "description": "Link type, default to `sources`"
-        },
-        "user": {
-          "description": "Set user, only valid in `threads` and `submitted` sections"
-        }
+        "collectionId": "收藏夹唯一标志符, 在浏览器地址栏URL中能够找到"
       },
-      "name": "User",
-      "description": "Subscribe to the content of a specific user",
-      "provider_id": "hackernews",
-      "provider_name": "Hacker News",
-      "route_key": "/:section?/:type?/:user?"
+      "name": "单个收藏夹",
+      "provider_id": "juejin",
+      "provider_name": "掘金",
+      "route_key": "/collection/:collectionId"
     }
   },
   {
-    "provider_id": "issuehunt",
-    "provider_name": "Issue Hunt",
-    "route_key": "/funded/:username/:repo",
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/tag/:tag",
     "route": {
-      "path": "/funded/:username/:repo",
-      "example": "/issuehunt/funded/DIYgod/RSSHub",
+      "path": "/tag/:tag",
+      "example": "/juejin/tag/JavaScript",
       "parameters": {
-        "username": "Github user/org",
-        "repo": "Repository name"
+        "tag": "标签名，可在标签 URL 中找到"
       },
-      "name": "Project Funded",
-      "provider_id": "issuehunt",
-      "provider_name": "Issue Hunt",
-      "route_key": "/funded/:username/:repo"
+      "name": "标签",
+      "provider_id": "juejin",
+      "provider_name": "掘金",
+      "route_key": "/tag/:tag"
+    }
+  },
+  {
+    "provider_id": "lanqiao",
+    "provider_name": "蓝桥云课",
+    "route_key": "/questions/:id",
+    "route": {
+      "path": "/questions/:id",
+      "example": "/lanqiao/questions/2",
+      "parameters": {
+        "id": "topic_id 主题 `id` 可在社区板块 URL 中找到"
+      },
+      "name": "技术社区",
+      "url": "lanqiao.cn/questions/",
+      "provider_id": "lanqiao",
+      "provider_name": "蓝桥云课",
+      "route_key": "/questions/:id"
+    }
+  },
+  {
+    "provider_id": "secrss",
+    "provider_name": "安全内参",
+    "route_key": "/author/:author",
+    "route": {
+      "path": "/author/:author",
+      "example": "/secrss/author/网络安全威胁和漏洞信息共享平台",
+      "parameters": {
+        "author": "N"
+      },
+      "name": "作者",
+      "provider_id": "secrss",
+      "provider_name": "安全内参",
+      "route_key": "/author/:author"
+    }
+  },
+  {
+    "provider_id": "web",
+    "provider_name": "web.dev",
+    "route_key": "/articles",
+    "route": {
+      "path": "/articles",
+      "example": "/web/articles",
+      "name": "Articles",
+      "provider_id": "web",
+      "provider_name": "web.dev",
+      "route_key": "/articles"
     }
   }
 ]
