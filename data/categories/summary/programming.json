@@ -1,99 +1,79 @@
 [
   {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/contributors/:user/:repo/:order?/:anon?",
+    "provider_id": "bitbucket",
+    "provider_name": "Bitbucket",
+    "route_key": "/commits/:workspace/:repo_slug",
     "route": {
-      "name": "Repo Contributors",
-      "path": "/contributors/:user/:repo/:order?/:anon?",
-      "example": "/github/contributors/DIYgod/RSSHub",
+      "name": "Commits",
+      "path": "/commits/:workspace/:repo_slug",
+      "example": "/bitbucket/commits/blaze-lib/blaze",
       "parameters": {
-        "user": "User name",
-        "repo": "Repo name",
-        "order": "Sort order by commit numbers, desc and asc (descending by default)",
-        "anon": "Show anonymous users. Defaults to no, use any values for yes."
+        "workspace": "Workspace",
+        "repo_slug": "Repository"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "github",
-    "provider_name": "GitHub",
-    "route_key": "/starred_repos/:user",
+    "provider_id": "codeforces",
+    "provider_name": "Codeforces",
+    "route_key": "/contests",
     "route": {
-      "name": "User Starred Repositories",
-      "path": "/starred_repos/:user",
-      "example": "/github/starred_repos/DIYgod",
-      "parameters": {
-        "user": "User name"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "juejin",
-    "provider_name": "掘金",
-    "route_key": "/collection/:collectionId",
-    "route": {
-      "name": "单个收藏夹",
-      "path": "/collection/:collectionId",
-      "example": "/juejin/collection/6845243180586123271",
-      "parameters": {
-        "collectionId": "收藏夹唯一标志符, 在浏览器地址栏URL中能够找到"
-      },
+      "name": "Latest contests",
+      "path": "/contests",
+      "example": "/codeforces/contests",
+      "parameters": {},
       "description": ""
     }
   },
   {
     "provider_id": "juejin",
     "provider_name": "掘金",
-    "route_key": "/tag/:tag",
+    "route_key": "/pins/:type?",
     "route": {
-      "name": "标签",
-      "path": "/tag/:tag",
-      "example": "/juejin/tag/JavaScript",
+      "name": "沸点",
+      "path": "/pins/:type?",
+      "example": "/juejin/pins/6824710202487472141",
       "parameters": {
-        "tag": "标签名，可在标签 URL 中找到"
+        "type": "默认为 recommend，见下表"
+      },
+      "description": "| 推荐      | 热门 | 上班摸鱼            | 内推招聘            | 一图胜千言          | 今天学到了          | 每天一道算法题      | 开发工具推荐        | 树洞一下            |\n| --------- | ---- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |\n| recommend | hot  | 6824710203301167112 | 6819970850532360206 | 6824710202487472141 | 6824710202562969614 | 6824710202378436621 | 6824710202000932877 | 6824710203112423437 |"
+    }
+  },
+  {
+    "provider_id": "ollama",
+    "provider_name": "Ollama",
+    "route_key": "/library",
+    "route": {
+      "name": "Models",
+      "path": "/library",
+      "example": "/ollama/library",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "studygolang",
+    "provider_name": "Go 语言中文网",
+    "route_key": "/go/:id?",
+    "route": {
+      "name": "板块",
+      "path": "/go/:id?",
+      "example": "/studygolang/go/daily",
+      "parameters": {
+        "id": "板块 id，默认为周刊"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "lanqiao",
-    "provider_name": "蓝桥云课",
-    "route_key": "/questions/:id",
+    "provider_id": "wechat",
+    "provider_name": "微信小程序",
+    "route_key": "/announce",
     "route": {
-      "name": "技术社区",
-      "path": "/questions/:id",
-      "example": "/lanqiao/questions/2",
-      "parameters": {
-        "id": "topic_id 主题 `id` 可在社区板块 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "secrss",
-    "provider_name": "安全内参",
-    "route_key": "/author/:author",
-    "route": {
-      "name": "作者",
-      "path": "/author/:author",
-      "example": "/secrss/author/网络安全威胁和漏洞信息共享平台",
-      "parameters": {
-        "author": "N"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "web",
-    "provider_name": "web.dev",
-    "route_key": "/articles",
-    "route": {
-      "name": "Articles",
-      "path": "/articles",
-      "example": "/web/articles",
+      "name": "公众平台系统公告栏目",
+      "path": "/announce",
+      "example": "/wechat/announce",
       "parameters": {},
       "description": ""
     }

@@ -1,101 +1,173 @@
 [
   {
-    "provider_id": "diershoubing",
-    "provider_name": "二柄 APP",
-    "route_key": "/news",
+    "provider_id": "gamebase",
+    "provider_name": "遊戲基地 Gamebase",
+    "route_key": "/news/:type?/:category?",
     "route": {
-      "name": "新闻",
-      "path": "/news",
-      "example": "/diershoubing/news",
+      "name": "新聞",
+      "path": "/news/:type?/:category?",
+      "example": "/gamebase/news",
+      "parameters": {
+        "type": "類型，見下表，預設為 newslist",
+        "category": "分類，預設為 `all`，即全部，可在對應分類頁 URL 中找到"
+      },
+      "description": ":::tip\n若訂閱 [手機遊戲新聞](https://news.gamebase.com.tw/news/newslist?type=mobile)，網址為 `https://news.gamebase.com.tw/news/newslist?type=mobile`，請截取 `https://news.gamebase.com.tw/news/` 到末尾的部分 `newslist` 作為 `type` 參數填入，`mobile` 作為 `category` 參數填入，此時目標路由為 [`/gamebase/news/newslist/mobile`](https://rsshub.app/gamebase/news/newslist/mobile)。\n:::\n\n| newslist | r18list |\n| -------- | ------- |\n"
+    }
+  },
+  {
+    "provider_id": "gcores",
+    "provider_name": "机核网",
+    "route_key": "/tags/:id/:tab?",
+    "route": {
+      "name": "标签",
+      "path": "/tags/:id/:tab?",
+      "example": "/gcores/tags/1/articles",
+      "parameters": {
+        "id": {
+          "description": "标签 ID，可在对应标签页 URL 中找到"
+        },
+        "tab": {
+          "description": "类型，默认为空，即全部，可在对应标签页 URL 中找到",
+          "options": [
+            {
+              "label": "全部",
+              "value": ""
+            },
+            {
+              "label": "播客",
+              "value": "radios"
+            },
+            {
+              "label": "文章",
+              "value": "articles"
+            },
+            {
+              "label": "资讯",
+              "value": "news"
+            },
+            {
+              "label": "视频",
+              "value": "videos"
+            }
+          ]
+        }
+      },
+      "description": ":::tip\n若订阅 [美国 - 文章](https://www.gcores.com/tags/1/originals?tab=articles)，网址为 `https://www.gcores.com/tags/1/originals?tab=articles`，请截取 `https://www.gcores.com/tags/` 到末尾 `/originals` 的部分 `1` 作为 `id` 参数填入，截取 `articles` 作为 `tab` 参数填入，此时目标路由为 [`/gcores/tags/1/articles`](https://rsshub.app/gcores/tags/1/articles)。\n:::\n\n| 全部 | 播客   | 文章     | 资讯 | 视频   |\n| ---- | ------ | -------- | ---- | ------ |\n|      | radios | articles | news | videos |\n"
+    }
+  },
+  {
+    "provider_id": "gf-cn",
+    "provider_name": "少女前线",
+    "route_key": "/news/:category?",
+    "route": {
+      "name": "情报局",
+      "path": "/news/:category?",
+      "example": "/gf-cn/news",
+      "parameters": {
+        "category": "分类，见下表，默认为新闻"
+      },
+      "description": "| 新闻 | 公告 |\n| ---- | ---- |\n| 1    | 3    |"
+    }
+  },
+  {
+    "provider_id": "itch",
+    "provider_name": "itch.io",
+    "route_key": "/devlog/:user/:id",
+    "route": {
+      "name": "Developer Logs",
+      "path": "/devlog/:user/:id",
+      "example": "/itch/devlog/teamterrible/the-baby-in-yellow",
+      "parameters": {
+        "user": "User id, can be found in URL",
+        "id": "Item id, can be found in URL"
+      },
+      "description": "`User id` is the field before `.itch.io` in the URL of the corresponding page, e.g. the URL of [The Baby In Yellow Devlog](https://teamterrible.itch.io/the-baby-in-yellow/devlog) is `https://teamterrible.itch.io/the-baby-in-yellow/devlog`, where the field before `.itch.io` is `teamterrible`.\n\n  `Item id` is the field between `itch.io` and `/devlog` in the URL of the corresponding page, e.g. the URL for [The Baby In Yellow Devlog](https://teamterrible.itch.io/the-baby-in-yellow/devlog) is `https://teamterrible.itch.io/the-baby-in-yellow/devlog`, where the field between `itch.io` and `/devlog` is `the-baby-in-yellow`.\n\n  So the route is [`/itch/devlogs/teamterrible/the-baby-in-yellow`](https://rsshub.app/itch/devlogs/teamterrible/the-baby-in-yellow)."
+    }
+  },
+  {
+    "provider_id": "keylol",
+    "provider_name": "其乐",
+    "route_key": "/:path",
+    "route": {
+      "name": "论坛",
+      "path": "/:path",
+      "example": "/keylol/f161-1",
+      "parameters": {
+        "path": "路径，默认为热点聚焦"
+      },
+      "description": "::: tip\n  若订阅 [热点聚焦](https://keylol.com/f161-1)，网址为 `https://keylol.com/f161-1`。截取 `https://keylol.com/` 到末尾的部分 `f161-1` 作为参数，此时路由为 [`/keylol/f161-1`](https://rsshub.app/keylol/f161-1)。\n  若订阅子分类 [试玩免费 - 热点聚焦](https://keylol.com/forum.php?mod=forumdisplay&fid=161&filter=typeid&typeid=459)，网址为 `https://keylol.com/forum.php?mod=forumdisplay&fid=161&filter=typeid&typeid=459`。提取`fid`及`typeid` 作为参数，此时路由为 [`/keylol/fid=161&typeid=459`](https://rsshub.app/keylol/fid=161&typeid=459)。注意不要包括`filter`，会调用[全局的内容过滤](https://docs.rsshub.app/guide/parameters#filtering)。\n:::"
+    }
+  },
+  {
+    "provider_id": "leagueoflegends",
+    "provider_name": "League of Legends",
+    "route_key": "/patch-notes",
+    "route": {
+      "name": "Patch Notes",
+      "path": "/patch-notes",
+      "example": "/leagueoflegends/patch-notes",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "indienova",
-    "provider_name": "indienova 独立游戏",
-    "route_key": "/column/:columnId",
+    "provider_id": "minecraft",
+    "provider_name": "Minecraft",
+    "route_key": "/version/:versionType?/:linkType?",
     "route": {
-      "name": "专题",
-      "path": "/column/:columnId",
-      "example": "/indienova/column/52",
+      "name": "Java Game Update",
+      "path": "/version/:versionType?/:linkType?",
+      "example": "/minecraft/version",
       "parameters": {
-        "columnId": "专题 ID，可在 URL中找到"
+        "versionType": "Game version type, `all` by default",
+        "linkType": "Link added to feed, `official` by default"
       },
-      "description": "<details>\n<summary>专题 ID</summary>\n\n    游戏推荐\n\n| itch 一周游戏汇 | 一周值得关注的发售作品 | 诺娃速递 | 周末游戏视频集锦 | 每月媒体评分 | 年度最佳游戏 | Indie Focus 近期新游 | indienova Picks 精选 |\n| --------------- | ---------------------- | -------- | ---------------- | ------------ | ------------ | -------------------- | -------------------- |\n| 52              | 29                     | 41       | 43               | 45           | 39           | 1                    | 8                    |\n\n    游戏评论\n\n| 游必有方 Podcast | 独立游戏潮（RED） |\n| ---------------- | ----------------- |\n| 6                | 3                 |\n\n    游戏开发\n\n| 游戏设计模式 | Roguelike 开发 | GMS 中文教程 |\n| ------------ | -------------- | ------------ |\n| 15           | 14             | 7            |\n\n    游戏设计\n\n| 游戏与所有 | 让人眼前一亮的游戏设计 | 游戏音乐分析 | 游戏情感设计 | 游戏相关书籍 | 游戏设计课程笔记 | 游戏设计工具 | 游戏设计灵感 | 设计师谈设计 | 游戏研究方法 | 功能游戏 | 游戏设计专业院校 | 像素课堂 |\n| ---------- | ---------------------- | ------------ | ------------ | ------------ | ---------------- | ------------ | ------------ | ------------ | ------------ | -------- | ---------------- | -------- |\n| 10         | 33                     | 17           | 4            | 22           | 11               | 24           | 26           | 27           | 28           | 38       | 9                | 19       |\n\n    游戏文化\n\n| NOVA 海外独立游戏见闻 | 工作室访谈 | indie Figure 游戏人 | 游戏艺术家 | 独立游戏音乐欣赏 | 游戏瑰宝 | 电脑 RPG 游戏史 | ALT. CTRL. GAMING |\n| --------------------- | ---------- | ------------------- | ---------- | ---------------- | -------- | --------------- | ----------------- |\n| 53                    | 23         | 5                   | 44         | 18               | 21       | 16              | 2                 |\n\n    Game Jam\n\n| Ludum Dare | Global Game Jam |\n| ---------- | --------------- |\n| 31         | 13              |\n</details>"
-    }
-  },
-  {
-    "provider_id": "lfsyd",
-    "provider_name": "旅法师营地",
-    "route_key": "/home",
-    "route": {
-      "name": "首页",
-      "path": "/home",
-      "example": "/lfsyd/home",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "mihoyo",
-    "provider_name": "米哈游",
-    "route_key": "/sr/:location?/:category?",
-    "route": {
-      "name": "崩坏：星穹铁道",
-      "path": "/sr/:location?/:category?",
-      "example": "/mihoyo/sr",
-      "parameters": {
-        "location": "区域，可选 `zh-cn`（国服，简中）或 `zh-tw`（国际服，繁中）",
-        "category": "分类，见下表，默认为最新"
-      },
-      "description": "#### 新闻 {#mi-ha-you-beng-huai-xing-qiong-tie-dao-xin-wen}\n\n| 最新     | 新闻 | 公告   | 活动     |\n| -------- | ---- | ------ | -------- |\n| news-all | news | notice | activity |"
+      "description": "\n| Version                    | versionType |\n| -------------------------- | ----------- |\n| 正式版                     | release     |\n| 快照                       | snapshot    |\n| Alpha 及更早的版本         | old_alpha  |\n| Beta 版                    | old_beta   |\n| Target                     | linkType    |\n| -------------------------- | --------    |\n| minecraft.net              | official    |\n| 英文 Minecraft Wiki 版本页 | enwiki      |\n| 中文 Minecraft Wiki 版本页 | zhwiki      |\n"
     }
   },
   {
     "provider_id": "steam",
     "provider_name": "Steam",
-    "route_key": "/appcommunityfeed/:appid/:routeParams?",
+    "route_key": "/curator/:id/:routeParams?",
     "route": {
-      "name": "Steam Community Hub Feeds",
-      "path": "/appcommunityfeed/:appid/:routeParams?",
-      "example": "/steam/appcommunityfeed/730",
+      "name": "Latest Curator Reviews",
+      "path": "/curator/:id/:routeParams?",
+      "example": "/steam/curator/34646096-80-Days",
       "parameters": {
-        "appid": "Steam appid, can be found on the community hub page or store page URL.",
-        "routeParams": "Query parameters."
+        "id": "Steam curator id. It usually consists of a series of numbers and the curator's name.",
+        "routeParams": {
+          "description": "Extra parameters to filter the reviews. The following parameters are supported:\n| Key             | Description                                                                                   | Accepts                                    | Defaults to |\n| --------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |\n| `curations`   | Review type to filter by. `0`: Recommended, `1`: Not Recommended, `2`: Informational    | `0`/`1`/`2`/`0,1`/`0,2`/`1,2`  |             |\n| `tagids`      | Tag to filter by. Details are provided below.                                                 | use comma to separate multiple tagid       |             |\n\nNote: There is a [‘Popular Tags’](https://store.steampowered.com/tag/browse) page where you can find many but not all of the tags. The tag’s ID is in the `data-tagid` attribute of the element.Steam does not currently provide a page that comprehensively lists all tags, and you may need to explore alternative ways to find them.\n\nExamples:\n* `/steam/curator/34646096-80-Days/curations=&tagids=`\n* `/steam/curator/34646096-80-Days/curations=0&tagids=19`\n* `/steam/curator/34646096-80-Days/curations=0,2&tagids=19,21`\n"
+        }
       },
-      "description": "Query Parameters:\n\n| Name                   | Type   | Description             |\n| ---------------------- | ------ | ----------------------- |\n| p                      | string | p                       |\n| rgSections[]           | string | rgSections              |\n| filterLanguage         | string | Filter Language         |\n| languageTag            | string | Language Tag            |\n| nMaxInappropriateScore | string | Max Inappropriate Score |\n\nExample:\n- `/appcommunityfeed/730/p=1&rgSections[]=2&rgSections[]=4&filterLanguage=english&languageTag=english&nMaxInappropriateScore=1` for CS2 Screenshot and Artwork contents.\n- `/appcommunityfeed/730/rgSections[]=6` for CS2 Workshop contents only.\n- `/appcommunityfeed/570/rgSections[]=3&rgSections[]=9` for Dota2 Video and Guides contents.\n\n::: tip\nIt can also access community hub contents that require a logged-in account.\n:::\n"
+      "description": "The Latest reviews from a Steam Curator."
     }
   },
   {
-    "provider_id": "taptap",
-    "provider_name": "TapTap",
-    "route_key": "/topic/:id/:type?/:sort?/:lang?",
+    "provider_id": "steam",
+    "provider_name": "Steam",
+    "route_key": "/search/:params",
     "route": {
-      "name": "游戏论坛",
-      "path": "/topic/:id/:type?/:sort?/:lang?",
-      "example": "/taptap/topic/142793/official",
+      "name": "Store Search",
+      "path": "/search/:params",
+      "example": "/steam/search/sort_by=Released_DESC&tags=492&category1=10&os=linux",
       "parameters": {
-        "id": "游戏 ID，游戏主页 URL 中获取",
-        "type": "论坛版块，默认显示所有帖子，论坛版块 URL 中 `type` 参数，见下表，默认为 `feed`",
-        "sort": "排序，见下表，默认为 `created`",
-        "lang": "语言，`zh-CN`或`zh-TW`，默认为`zh-CN`"
+        "params": "Query parameters for a Steam Store search."
       },
-      "description": "| 全部 | 精华  | 官方     | 影片  |\n| ---- | ----- | -------- | ----- |\n| feed | elite | official | video |\n\n| 发布时间 | 回复时间  | 默认排序 |\n| -------- | --------- | ------- |\n| created  | commented | default |"
+      "description": ""
     }
   },
   {
-    "provider_id": "tgbus",
-    "provider_name": "电玩巴士 TGBUS",
-    "route_key": "/list/:category",
+    "provider_id": "yxdzqb",
+    "provider_name": "游戏打折情报",
+    "route_key": "/:type",
     "route": {
-      "name": "文章列表",
-      "path": "/list/:category",
-      "example": "/tgbus/list/news",
+      "name": "游戏折扣",
+      "path": "/:type",
+      "example": "/yxdzqb/popular_cn",
       "parameters": {
-        "category": "列表分类，见下表"
+        "type": "折扣类型"
       },
-      "description": "| 最新资讯 | 游戏评测 | 游戏视频 | 巴士首页特稿 | 硬件资讯 |\n| -------- | -------- | -------- | ------------ | -------- |\n| news     | review   | video    | special      | hardware |"
+      "description": "| Steam 最新折扣 | Steam 热门游戏折扣 | Steam 热门中文游戏折扣 | Steam 历史低价 | Steam 中文游戏历史低价 |\n| -------------- | ------------------ | ---------------------- | -------------- | ---------------------- |\n| discount       | popular            | popular_cn            | low            | low_cn                |"
     }
   }
 ]

@@ -1,5 +1,57 @@
 [
   {
+    "provider_id": "aisixiang",
+    "provider_name": "爱思想",
+    "route_key": "/column/:id",
+    "route": {
+      "name": "栏目",
+      "path": "/column/:id",
+      "example": "/aisixiang/column/722",
+      "parameters": {
+        "id": "栏目 ID, 可在对应栏目 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "ciweimao",
+    "provider_name": "刺猬猫",
+    "route_key": "/chapter/:id",
+    "route": {
+      "name": "章节",
+      "path": "/chapter/:id",
+      "example": "/ciweimao/chapter/100043404",
+      "parameters": {
+        "id": "小说 id, 可在对应小说页 URL 中找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/html_clip/:user/:tag",
+    "route": {
+      "name": "HTML Clip",
+      "path": "/html_clip/:user/:tag",
+      "example": "/inoreader/html_clip/1005137674/user-favorites",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "penguin-random-house",
+    "provider_name": "Penguin Random House",
+    "route_key": "/articles",
+    "route": {
+      "name": "Articles",
+      "path": "/articles",
+      "example": "/penguin-random-house/articles",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
     "provider_id": "sfacg",
     "provider_name": "SF 轻小说",
     "route_key": "/novel/chapter/:id",
@@ -9,139 +61,6 @@
       "example": "/sfacg/novel/chapter/672431",
       "parameters": {
         "id": "小说 id, 可在对应小说页 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "syosetu",
-    "provider_name": "Syosetu",
-    "route_key": "/rankingr18/:sub/:type",
-    "route": {
-      "name": "R18 Rankings",
-      "path": "/rankingr18/:sub/:type",
-      "example": "/syosetu/rankingr18/noc/daily_total?limit=50",
-      "parameters": {
-        "sub": {
-          "description": "Target site for R18 rankings",
-          "options": [
-            {
-              "value": "noc",
-              "label": "ノクターン"
-            },
-            {
-              "value": "mnlt",
-              "label": "ムーンライト"
-            },
-            {
-              "value": "mid",
-              "label": "ミッドナイト"
-            },
-            {
-              "value": "mnlt-bl",
-              "label": "ムーンライト BL"
-            }
-          ]
-        },
-        "type": {
-          "description": "Detailed ranking type (format: period_noveltype)",
-          "options": [
-            {
-              "value": "daily_total",
-              "label": "日間 (DAILY) 総合 (TOTAL)"
-            },
-            {
-              "value": "daily_t",
-              "label": "日間 (DAILY) 短編 (SHORT)"
-            },
-            {
-              "value": "daily_r",
-              "label": "日間 (DAILY) 連載中 (ONGOING)"
-            },
-            {
-              "value": "daily_er",
-              "label": "日間 (DAILY) 完結済 (COMPLETE)"
-            },
-            {
-              "value": "weekly_total",
-              "label": "週間 (WEEKLY) 総合 (TOTAL)"
-            },
-            {
-              "value": "weekly_t",
-              "label": "週間 (WEEKLY) 短編 (SHORT)"
-            },
-            {
-              "value": "weekly_r",
-              "label": "週間 (WEEKLY) 連載中 (ONGOING)"
-            },
-            {
-              "value": "weekly_er",
-              "label": "週間 (WEEKLY) 完結済 (COMPLETE)"
-            },
-            {
-              "value": "monthly_total",
-              "label": "月間 (MONTHLY) 総合 (TOTAL)"
-            },
-            {
-              "value": "monthly_t",
-              "label": "月間 (MONTHLY) 短編 (SHORT)"
-            },
-            {
-              "value": "monthly_r",
-              "label": "月間 (MONTHLY) 連載中 (ONGOING)"
-            },
-            {
-              "value": "monthly_er",
-              "label": "月間 (MONTHLY) 完結済 (COMPLETE)"
-            },
-            {
-              "value": "quarter_total",
-              "label": "四半期 (QUARTER) 総合 (TOTAL)"
-            },
-            {
-              "value": "quarter_t",
-              "label": "四半期 (QUARTER) 短編 (SHORT)"
-            },
-            {
-              "value": "quarter_r",
-              "label": "四半期 (QUARTER) 連載中 (ONGOING)"
-            },
-            {
-              "value": "quarter_er",
-              "label": "四半期 (QUARTER) 完結済 (COMPLETE)"
-            },
-            {
-              "value": "yearly_total",
-              "label": "年間 (YEARLY) 総合 (TOTAL)"
-            },
-            {
-              "value": "yearly_t",
-              "label": "年間 (YEARLY) 短編 (SHORT)"
-            },
-            {
-              "value": "yearly_r",
-              "label": "年間 (YEARLY) 連載中 (ONGOING)"
-            },
-            {
-              "value": "yearly_er",
-              "label": "年間 (YEARLY) 完結済 (COMPLETE)"
-            }
-          ]
-        }
-      },
-      "description": "\n| Period | Description | 説明 |\n| --- | --- | --- |\n| daily | Daily Ranking | 日間ランキング |\n| weekly | Weekly Ranking | 週間ランキング |\n| monthly | Monthly Ranking | 月間ランキング |\n| quarter | Quarterly Ranking | 四半期ランキング |\n| yearly | Yearly Ranking | 年間ランキング |\n\n| Novel Type | Description | 説明 |\n| --- | --- | --- |\n| total | All Works | 総合 |\n| t | Short Stories | 短編 |\n| r | Ongoing Series | 連載中 |\n| er | Completed Series | 完結済 |\n\n::: tip\nCombine Period and Novel Type with `_`.\nFor example: `daily_total`, `weekly_r`, `monthly_er`\n:::"
-    }
-  },
-  {
-    "provider_id": "xbookcn",
-    "provider_name": "中文成人文學網",
-    "route_key": "/:label?",
-    "route": {
-      "name": "短篇",
-      "path": "/:label?",
-      "example": "/xbookcn/精选作品",
-      "parameters": {
-        "label": "按名称分类，详见https://blog.xbookcn.net/p/all.html"
       },
       "description": ""
     }

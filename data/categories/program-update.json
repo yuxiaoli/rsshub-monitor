@@ -1,37 +1,92 @@
 [
   {
-    "provider_id": "dockerhub",
-    "provider_name": "Docker Hub",
-    "route_key": "/tag/:owner/:image/:limits?",
+    "provider_id": "cursor",
+    "provider_name": "Cursor",
+    "route_key": "/changelog",
     "route": {
-      "path": "/tag/:owner/:image/:limits?",
-      "example": "/dockerhub/tag/library/mariadb",
-      "parameters": {
-        "owner": "Image owner",
-        "image": "Image name",
-        "limits": "Tag count, 10 by default"
-      },
-      "name": "Image New Tag",
-      "description": "::: warning\n  Use `library` as the `owner` for official images, such as [https://rsshub.app/dockerhub/tag/library/mysql](https://rsshub.app/dockerhub/tag/library/mysql)\n:::",
-      "provider_id": "dockerhub",
-      "provider_name": "Docker Hub",
-      "route_key": "/tag/:owner/:image/:limits?"
+      "path": "/changelog",
+      "name": "Changelog",
+      "url": "www.cursor.com",
+      "example": "/cursor/changelog",
+      "view": 0,
+      "provider_id": "cursor",
+      "provider_name": "Cursor",
+      "route_key": "/changelog"
     }
   },
   {
-    "provider_id": "tencent",
-    "provider_name": "腾讯",
-    "route_key": "/qq/sdk/changelog/:platform",
+    "provider_id": "diskanalyzer",
+    "provider_name": "WizTree",
+    "route_key": "/whats-new",
     "route": {
-      "path": "/qq/sdk/changelog/:platform",
-      "example": "/tencent/qq/sdk/changelog/iOS",
+      "path": "/whats-new",
+      "example": "/diskanalyzer/whats-new",
+      "parameters": {},
+      "name": "What's New",
+      "url": "diskanalyzer.com/whats-new",
+      "provider_id": "diskanalyzer",
+      "provider_name": "WizTree",
+      "route_key": "/whats-new"
+    }
+  },
+  {
+    "provider_id": "ipsw.dev",
+    "provider_name": "IPSW.dev",
+    "route_key": "/index/:productID",
+    "route": {
+      "path": "/index/:productID",
+      "example": "/ipsw.dev/index/iPhone16,1",
       "parameters": {
-        "platform": "平台，iOS / Android"
+        "productID": "Product ID"
       },
-      "name": "更新日志",
-      "provider_id": "tencent",
-      "provider_name": "腾讯",
-      "route_key": "/qq/sdk/changelog/:platform"
+      "name": "Apple latest beta firmware",
+      "provider_id": "ipsw.dev",
+      "provider_name": "IPSW.dev",
+      "route_key": "/index/:productID"
+    }
+  },
+  {
+    "provider_id": "notateslaapp",
+    "provider_name": "Not a Tesla App",
+    "route_key": "/ota",
+    "route": {
+      "path": "/ota",
+      "example": "/notateslaapp/ota",
+      "parameters": {},
+      "name": "Tesla Software Updates",
+      "url": "notateslaapp.com/software-updates/history",
+      "provider_id": "notateslaapp",
+      "provider_name": "Not a Tesla App",
+      "route_key": "/ota"
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/dev",
+    "route": {
+      "path": "/dev",
+      "example": "/syosetu/dev",
+      "name": "なろう小説 API の更新履歴",
+      "url": "dev.syosetu.com",
+      "provider_id": "syosetu",
+      "provider_name": "Syosetu",
+      "route_key": "/dev"
+    }
+  },
+  {
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
+    "route": {
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
+      "parameters": {},
+      "name": "Desktop releases and release notes",
+      "url": "tradingview.com/support/solutions/43000673888-tradingview-desktop-releases-and-release-notes/",
+      "provider_id": "tradingview",
+      "provider_name": "TradingView",
+      "route_key": "/desktop"
     }
   }
 ]

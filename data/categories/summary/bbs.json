@@ -1,30 +1,69 @@
 [
   {
-    "provider_id": "feng",
-    "provider_name": "威锋",
-    "route_key": "/forum/:id/:type?",
+    "provider_id": "elasticsearch-cn",
+    "provider_name": "Elastic 中文社区",
+    "route_key": "/:params?",
     "route": {
-      "name": "社区",
-      "path": "/forum/:id/:type?",
-      "example": "/feng/forum/1",
+      "name": "发现",
+      "path": "/:params?",
+      "example": "/elasticsearch-cn",
       "parameters": {
-        "id": "版块 ID，可在版块 URL 找到",
-        "type": "排序，见下表，默认为 `all`"
+        "params": "分类，可在对应分类页 URL 中找到"
       },
-      "description": "| 最新回复 | 最新发布 | 热门 | 精华    |\n| -------- | -------- | ---- | ------- |\n| newest   | all      | hot  | essence |"
+      "description": "如 [Elasticsearch 最新](https://elasticsearch.cn/category-2) 的 URL 为 `https://elasticsearch.cn/category-2`，则分类参数处填写 `category-2`，最后得到路由地址 [`/elasticsearch-cn/category-2`](https://rsshub.app/elasticsearch-cn/category-2)。\n\n  又如 [求职招聘 30 天热门](https://elasticsearch.cn/sort_type-hot____category-12__day-30) 的 URL 为 `https://elasticsearch.cn/sort_type-hot____category-12__day-30`，则分类参数处填写 `sort_type-hot____category-12__day-30`，最后得到路由地址 [`/elasticsearch-cn/sort_type-hot____category-12__day-30`](https://rsshub.app/elasticsearch-cn/sort_type-hot____category-12__day-30)。"
     }
   },
   {
-    "provider_id": "right",
-    "provider_name": "恩山无线论坛",
-    "route_key": "/forum/:id?",
+    "provider_id": "playno1",
+    "provider_name": "PLAYNO.1 玩樂達人",
+    "route_key": "/av/:catid?",
     "route": {
-      "name": "板块",
-      "path": "/forum/:id?",
-      "example": "/right/forum/31",
+      "name": "AV",
+      "path": "/av/:catid?",
+      "example": "/playno1/av",
       "parameters": {
-        "id": "板块 id，可在板块页 URL 中找到，默认为新手入门及其它(硬件)"
+        "catid": "分类，见下表，默认为全部文章"
       },
+      "description": "::: warning\n目前观测到该博客可能禁止日本 IP 访问。建议部署在日本区以外的服务器上。\n:::\n\n| 全部文章 | AV 新聞 | AV 導覽 |\n| -------- | ------- | ------- |\n| 78       | 3       | 5       |"
+    }
+  },
+  {
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/post/:postid",
+    "route": {
+      "name": "帖子",
+      "path": "/post/:postid",
+      "example": "/v2ex/post/584403",
+      "parameters": {
+        "postid": "帖子ID，在 URL 可以找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/tab/:tabid",
+    "route": {
+      "name": "标签",
+      "path": "/tab/:tabid",
+      "example": "/v2ex/tab/hot",
+      "parameters": {
+        "tabid": "tab标签ID,在 URL 可以找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "xiaote",
+    "provider_name": "小特社区",
+    "route_key": "/news",
+    "route": {
+      "name": "首页帖子",
+      "path": "/news",
+      "example": "/xiaote/news",
+      "parameters": {},
       "description": ""
     }
   }

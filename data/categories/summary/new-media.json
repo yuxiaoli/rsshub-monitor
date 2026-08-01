@@ -1,54 +1,95 @@
 [
   {
-    "provider_id": "163",
-    "provider_name": "网易公开课",
-    "route_key": "/news/special/:type?",
-    "route": {
-      "name": "专栏",
-      "path": "/news/special/:type?",
-      "example": "/163/news/special/1",
-      "parameters": {
-        "type": "栏目"
-      },
-      "description": "| 轻松一刻 | 槽值 | 人间 | 大国小民 | 三三有梗 | 数读 | 看客 | 下划线 | 谈心社 | 哒哒 | 胖编怪聊 | 曲一刀 | 今日之声 | 浪潮 | 沸点 |\n| -------- | ---- | ---- | -------- | -------- | ---- | ---- | ------ | ------ | ---- | -------- | ------ | -------- | ---- | ---- |\n| 1        | 2    | 3    | 4        | 5        | 6    | 7    | 8      | 9      | 10   | 11       | 12     | 13       | 14   | 15   |"
-    }
-  },
-  {
-    "provider_id": "36kr",
-    "provider_name": "36kr",
-    "route_key": "/:category/:subCategory?/:keyword?",
-    "route": {
-      "name": "资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯",
-      "path": "/:category/:subCategory?/:keyword?",
-      "example": "/36kr/newsflashes",
-      "parameters": {
-        "category": "分类，必填项",
-        "subCategory": "子分类，选填项，目的是为了兼容老逻辑",
-        "keyword": "关键词，选填项，仅搜索文章/快讯时有效"
-      },
-      "description": "| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |\n| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |\n| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |"
-    }
-  },
-  {
     "provider_id": "agirls",
     "provider_name": "电獭少女",
-    "route_key": "/topic_list",
+    "route_key": "/topic/:topic",
     "route": {
-      "name": "当前精选主题列表",
-      "path": "/topic_list",
-      "example": "/agirls/topic_list",
+      "name": "精选主题",
+      "path": "/topic/:topic",
+      "example": "/agirls/topic/AppleWatch",
+      "parameters": {
+        "topic": "精选主题，可通过下方精选主题列表获得"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "aliresearch",
+    "provider_name": "阿里研究院",
+    "route_key": "/information/:type?",
+    "route": {
+      "name": "资讯",
+      "path": "/information/:type?",
+      "example": "/aliresearch/information",
+      "parameters": {
+        "type": "类型，见下表，默认为新闻"
+      },
+      "description": "| 新闻 | 观点 | 案例 |\n| ---- | ---- | ---- |"
+    }
+  },
+  {
+    "provider_id": "autocentre",
+    "provider_name": "Автоцентр.ua",
+    "route_key": "/",
+    "route": {
+      "name": "Автомобільний сайт N1 в Україні",
+      "path": "/",
+      "example": "/autocentre",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "agora0",
-    "provider_name": "AG⓪RA",
-    "route_key": "/pen0",
+    "provider_id": "cahkms",
+    "provider_name": "全国港澳研究会",
+    "route_key": "/:category?",
     "route": {
-      "name": "共和報",
-      "path": "/pen0",
-      "example": "/agora0/pen0",
+      "name": "分类",
+      "path": "/:category?",
+      "example": "/cahkms",
+      "parameters": {
+        "category": "分类，见下表，默认为重要新闻"
+      },
+      "description": "| 关于我们 | 港澳新闻 | 重要新闻 | 顾问点评、会员观点 | 专题汇总 |\n| -------- | -------- | -------- | ------------------ | -------- |\n| 01       | 02       | 03       | 04                 | 05       |\n\n| 港澳时评 | 图片新闻 | 视频中心 | 港澳研究 | 最新书讯 | 研究资讯 |\n| -------- | -------- | -------- | -------- | -------- | -------- |\n| 06       | 07       | 08       | 09       | 10       | 11       |"
+    }
+  },
+  {
+    "provider_id": "dahecube",
+    "provider_name": "大河财立方",
+    "route_key": "/:type?",
+    "route": {
+      "name": "新闻",
+      "path": "/:type?",
+      "example": "/dahecube",
+      "parameters": {
+        "type": "板块，见下表，默认为推荐"
+      },
+      "description": "| 推荐      | 党史    | 豫股  | 财经     | 投教      | 金融    | 科创    | 投融   | 专栏   |\n| --------- | ------- | ----- | -------- | --------- | ------- | ------- | ------ | ------ |\n| recommend | history | stock | business | education | finance | science | invest | column |"
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/news/:category/:locale",
+    "route": {
+      "name": "News",
+      "path": "/news/:category/:locale",
+      "example": "/google/news/Top stories/hl=en-US&gl=US&ceid=US:en",
+      "parameters": {
+        "category": "Category Title",
+        "locale": "locales, could be found behind `?`, including `hl`, `gl`, and `ceid` as parameters"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "grist",
+    "provider_name": "Grist",
+    "route_key": "/",
+    "route": {
+      "name": "Latest Articles",
+      "path": "/",
+      "example": "/grist",
       "parameters": {},
       "description": ""
     }
@@ -56,15 +97,41 @@
   {
     "provider_id": "guancha",
     "provider_name": "观察者网",
-    "route_key": "/:category?",
+    "route_key": "/headline",
     "route": {
-      "name": "首页",
-      "path": "/:category?",
-      "example": "/guancha",
+      "name": "头条",
+      "path": "/headline",
+      "example": "/guancha/headline",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "guancha",
+    "provider_name": "观察者网",
+    "route_key": "/member/:category?",
+    "route": {
+      "name": "观学院",
+      "path": "/member/:category?",
+      "example": "/guancha/member/recommend",
       "parameters": {
-        "category": "分类，见下表，默认为全部"
+        "category": "分类，见下表"
       },
-      "description": "| 全部 | 评论 & 研究 | 要闻  | 风闻    | 热点新闻 | 滚动新闻 |\n| ---- | ----------- | ----- | ------- | -------- | -------- |\n| all  | review      | story | fengwen | redian   | gundong  |\n\n  home = 评论 & 研究 + 要闻 + 风闻\n\n  others = 热点新闻 + 滚动新闻\n\n::: tip\n  观察者网首页左中右的三个 column 分别对应 **评论 & 研究**、**要闻**、**风闻** 三个部分。\n:::"
+      "description": "| 精选      | 观书堂 | 在线课  | 观学院   |\n| --------- | ------ | ------- | -------- |\n| recommend | books  | courses | huodongs |"
+    }
+  },
+  {
+    "provider_id": "guancha",
+    "provider_name": "观察者网",
+    "route_key": "/personalpage/:uid",
+    "route": {
+      "name": "个人主页文章",
+      "path": "/personalpage/:uid",
+      "example": "/guancha/personalpage/243983",
+      "parameters": {
+        "uid": "用户id， 可在URL中找到"
+      },
+      "description": ""
     }
   },
   {
@@ -84,92 +151,158 @@
   {
     "provider_id": "hk01",
     "provider_name": "香港 01",
-    "route_key": "/hot",
+    "route_key": "/latest",
     "route": {
-      "name": "热门",
-      "path": "/hot",
-      "example": "/hk01/hot",
+      "name": "即時",
+      "path": "/latest",
+      "example": "/hk01/latest",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "junhe",
-    "provider_name": "君合律师事务所",
-    "route_key": "/legal-updates",
+    "provider_id": "huxiu",
+    "provider_name": "虎嗅",
+    "route_key": "/moment",
     "route": {
-      "name": "君合法评",
-      "path": "/legal-updates",
-      "example": "/junhe/legal-updates",
+      "name": "24 小时",
+      "path": "/moment",
+      "example": "/huxiu/moment",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "kbs",
-    "provider_name": "KBS",
-    "route_key": "/today/:language?",
+    "provider_id": "ifanr",
+    "provider_name": "爱范儿",
+    "route_key": "/index",
     "route": {
-      "name": "Today",
-      "path": "/today/:language?",
-      "example": "/kbs/today",
+      "name": "首页",
+      "path": "/index",
+      "example": "/ifanr/index",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "ithome",
+    "provider_name": "iThome 台灣",
+    "route_key": "/tw/feeds/:category",
+    "route": {
+      "name": "Feeds",
+      "path": "/tw/feeds/:category",
+      "example": "/ithome/tw/feeds/news",
       "parameters": {
-        "language": "Language, see below, e as English by default"
+        "category": "類別"
       },
-      "description": "| 한국어 | عربي | 中国语 | English | Français | Deutsch | Bahasa Indonesia | 日本語 | Русский | Español | Tiếng Việt |\n| ------ | ---- | ------ | ------- | -------- | ------- | ---------------- | ------ | ------- | ------- | ---------- |\n| k      | a    | c      | e       | f        | g       | i                | j      | r       | s       | v          |"
+      "description": "| 新聞 | AI       | Cloud | DevOps | 資安     |\n| ---- | -------- | ----- | ------ | -------- |\n| news | big-data | cloud | devops | security |"
     }
   },
   {
-    "provider_id": "landiannews",
-    "provider_name": "蓝点网",
-    "route_key": "/tag/:slug",
+    "provider_id": "kamen-rider-official",
+    "provider_name": "仮面ライダ",
+    "route_key": "/news/:category?",
     "route": {
-      "name": "标签",
-      "path": "/tag/:slug",
-      "example": "/landiannews/tag/linux-kernel",
+      "name": "最新情報",
+      "path": "/news/:category?",
+      "example": "/kamen-rider-official/news",
       "parameters": {
-        "slug": "标签名称"
+        "category": "Category, see below, すべて by default"
+      },
+      "description": "| Category                               |\n| -------------------------------------- |\n| すべて                                 |\n| テレビ                                 |\n| 映画・V シネマ等                       |\n| Blu-ray・DVD、配信等                   |\n| 20 作記念グッズ・東映 EC 商品          |\n| 石ノ森章太郎生誕 80 周年記念商品       |\n| 玩具・カード                           |\n| 食品・飲料・菓子                       |\n| 子供生活雑貨                           |\n| アパレル・大人向け雑貨                 |\n| フィギュア・ホビー・一番くじ・プライズ |\n| ゲーム・デジタル                       |\n| 雑誌・書籍・漫画                       |\n| 音楽                                   |\n| 映像                                   |\n| イベント                               |\n| ホテル・レストラン等                   |\n| キャンペーン・タイアップ等             |\n| その他                                 |\n| KAMEN RIDER STORE                      |\n| THE 鎧武祭り                           |\n| 鎧武外伝                               |\n| 仮面ライダーリバイス                   |\n| ファイナルステージ                     |\n| THE50 周年展                           |\n| 風都探偵                               |\n| 仮面ライダーギーツ                     |\n| 仮面ライダーアウトサイダーズ           |\n| 仮面ライダーガッチャード               |\n| 仮面ライダー BLACK SUN                 |"
+    }
+  },
+  {
+    "provider_id": "ltaaa",
+    "provider_name": "龙腾网",
+    "route_key": "/article",
+    "route": {
+      "name": "网站翻译",
+      "path": "/article",
+      "example": "/ltaaa/article",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "pingwest",
+    "provider_name": "品玩",
+    "route_key": "/user/:uid/:type?/:option?",
+    "route": {
+      "name": "用户",
+      "path": "/user/:uid/:type?/:option?",
+      "example": "/pingwest/user/7781550877/article",
+      "parameters": {
+        "uid": "用户id, 可从用户主页中得到",
+        "type": "内容类型, 默认为`article`",
+        "option": "参数"
+      },
+      "description": "内容类型\n\n| 文章    | 动态  |\n| ------- | ----- |\n| article | state |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/user/7781550877/article/fulltext`"
+    }
+  },
+  {
+    "provider_id": "qbitai",
+    "provider_name": "量子位",
+    "route_key": "/category/:category",
+    "route": {
+      "name": "分类",
+      "path": "/category/:category",
+      "example": "/qbitai/category/资讯",
+      "parameters": {
+        "category": "分类名，见下表"
+      },
+      "description": "| 资讯 | 数码     | 智能车 | 智库  | 活动    |\n| ---- | -------- | ------ | ----- | ------- |\n| 资讯 | ebandeng | auto   | zhiku | huodong |"
+    }
+  },
+  {
+    "provider_id": "ruancan",
+    "provider_name": "软餐",
+    "route_key": "/search/:keyword?",
+    "route": {
+      "name": "搜索",
+      "path": "/search/:keyword?",
+      "example": "/ruancan/search/Windows",
+      "parameters": {
+        "keyword": "关键字，默认为空"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "onet",
-    "provider_name": "Onet",
-    "route_key": "/news",
+    "provider_id": "samsung",
+    "provider_name": "Samsung",
+    "route_key": "/research/blog",
     "route": {
-      "name": "News",
-      "path": "/news",
-      "example": "/onet/news",
+      "name": "Research Blog",
+      "path": "/research/blog",
+      "example": "/samsung/research/blog",
       "parameters": {},
-      "description": "This route provides a better reading experience (full text articles) over the official one for `https://wiadomosci.onet.pl`."
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "sina",
+    "provider_name": "新浪",
+    "route_key": "/discovery/:type",
+    "route": {
+      "name": "科技 - 科学探索",
+      "path": "/discovery/:type",
+      "example": "/sina/discovery/zx",
+      "parameters": {
+        "type": "订阅分区类型，见下表"
+      },
+      "description": "| 最新 | 天文航空 | 动物植物 | 自然地理 | 历史考古 | 生命医学 | 生活百科 | 科技前沿 |\n| ---- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |\n| zx   | twhk     | dwzw     | zrdl     | lskg     | smyx     | shbk     | kjqy     |"
     }
   },
   {
     "provider_id": "sspai",
     "provider_name": "少数派 sspai",
-    "route_key": "/activity/:slug",
+    "route_key": "/index",
     "route": {
-      "name": "作者动态",
-      "path": "/activity/:slug",
-      "example": "/sspai/activity/urfp0d9i",
-      "parameters": {
-        "slug": "作者 slug，可在作者主页URL中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "sspai",
-    "provider_name": "少数派 sspai",
-    "route_key": "/topic/:id",
-    "route": {
-      "name": "专题内文章更新",
-      "path": "/topic/:id",
-      "example": "/sspai/topic/250",
-      "parameters": {
-        "id": "专题 id，可在专题主页URL中找到"
-      },
+      "name": "首页",
+      "path": "/index",
+      "example": "/sspai/index",
+      "parameters": {},
       "description": ""
     }
   },
@@ -186,33 +319,41 @@
     }
   },
   {
-    "provider_id": "tophub",
-    "provider_name": "今日热榜",
-    "route_key": "/:id",
+    "provider_id": "wanqu",
+    "provider_name": "湾区日报",
+    "route_key": "/news",
     "route": {
-      "name": "榜单",
-      "path": "/:id",
-      "example": "/tophub/Om4ejxvxEN",
-      "parameters": {
-        "id": "榜单id，可在 URL 中找到"
-      },
+      "name": "最新推荐",
+      "path": "/news",
+      "example": "/wanqu/news",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "wechat",
-    "provider_name": "微信小程序",
-    "route_key": "/mp/homepage/:biz/:hid/:cid?",
+    "provider_id": "wufazhuce",
+    "provider_name": "「ONE · 一个」",
+    "route_key": "/one",
     "route": {
-      "name": "公众号栏目 (非推送 & 历史消息)",
-      "path": "/mp/homepage/:biz/:hid/:cid?",
-      "example": "/wechat/mp/homepage/MzA3MDM3NjE5NQ==/16",
+      "name": "「ONE · 一个」",
+      "path": "/one",
+      "example": "/wufazhuce/one",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "zhiy",
+    "provider_name": "知园",
+    "route_key": "/letters/:author",
+    "route": {
+      "name": "Newsletter",
+      "path": "/letters/:author",
+      "example": "/zhiy/letters/messy",
       "parameters": {
-        "biz": "公众号id",
-        "hid": "分页id",
-        "cid": "页内栏目"
+        "author": "作者 ID，可在URL中找到"
       },
-      "description": "只适用拥有首页模板 (分享链接带有 homepage) 的公众号。例如从公众号分享出来的链接为 `https://mp.weixin.qq.com/mp/homepage?__biz=MzA3MDM3NjE5NQ==&hid=4`，`biz` 为 `MzA3MDM3NjE5NQ==`，`hid` 为 `4`。\n\n  有些页面里会有分栏， `cid` 可以通过元素选择器选中栏目查看`data-index`。如[链接](https://mp.weixin.qq.com/mp/homepage?__biz=MzA3MDM3NjE5NQ==&hid=4)里的 `京都职人` 栏目的 `cid` 为 `0`，`文艺时光` 栏目的 `cid` 为 `2`。如果不清楚的话最左边的栏目为`0`，其右方栏目依次递增 `1`。"
+      "description": ""
     }
   }
 ]

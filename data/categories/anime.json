@@ -1,53 +1,35 @@
 [
   {
-    "provider_id": "acfun",
-    "provider_name": "AcFun",
-    "route_key": "/user/video/:uid",
+    "provider_id": "cngal",
+    "provider_name": "CnGal",
+    "route_key": "/entry/:id",
     "route": {
-      "path": "/user/video/:uid",
-      "name": "用户投稿",
+      "path": "/entry/:id",
+      "example": "/cngal/entry/2693",
       "parameters": {
-        "uid": "用户 UID"
+        "id": "词条ID，游戏或制作者页面URL的最后一串数字"
       },
-      "example": "/acfun/user/video/6102",
+      "name": "制作者 / 游戏新闻",
+      "provider_id": "cngal",
+      "provider_name": "CnGal",
+      "route_key": "/entry/:id"
+    }
+  },
+  {
+    "provider_id": "gamer",
+    "provider_name": "巴哈姆特電玩資訊站",
+    "route_key": "/ani/anime/:sn",
+    "route": {
+      "path": "/ani/anime/:sn",
       "view": 3,
-      "provider_id": "acfun",
-      "provider_name": "AcFun",
-      "route_key": "/user/video/:uid"
-    }
-  },
-  {
-    "provider_id": "qoo-app",
-    "provider_name": "QooApp",
-    "route_key": "/news/:lang?",
-    "route": {
-      "path": "/news/:lang?",
-      "example": "/qoo-app/news/en",
+      "example": "/gamer/ani/anime/36868",
       "parameters": {
-        "lang": "Language, see the table below, empty means `中文`"
+        "sn": "動畫 sn，在 URL 可以找到"
       },
-      "name": "News",
-      "description": "| 中文 | English |\n| ---- | ------- |\n|      | en      |",
-      "provider_id": "qoo-app",
-      "provider_name": "QooApp",
-      "route_key": "/news/:lang?"
-    }
-  },
-  {
-    "provider_id": "qoo-app",
-    "provider_name": "QooApp",
-    "route_key": "/apps/:lang?/note/:id",
-    "route": {
-      "path": "/apps/:lang?/note/:id",
-      "example": "/qoo-app/apps/en/note/7675",
-      "parameters": {
-        "lang": "Language, see the table above, empty means `中文`",
-        "id": "Game ID, can be found in URL"
-      },
-      "name": "Game Store - Notes",
-      "provider_id": "qoo-app",
-      "provider_name": "QooApp",
-      "route_key": "/apps/:lang?/note/:id"
+      "name": "動畫瘋 - 動畫",
+      "provider_id": "gamer",
+      "provider_name": "巴哈姆特電玩資訊站",
+      "route_key": "/ani/anime/:sn"
     }
   }
 ]

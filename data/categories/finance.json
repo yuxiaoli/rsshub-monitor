@@ -1,51 +1,141 @@
 [
   {
-    "provider_id": "jin10",
-    "provider_name": "金十数据",
-    "route_key": "/:important?",
+    "provider_id": "bigquant",
+    "provider_name": "BigQuant",
+    "route_key": "/collections",
     "route": {
-      "path": "/:important?",
-      "view": 5,
-      "example": "/jin10",
-      "parameters": {
-        "important": "只看重要，任意值开启，留空关闭"
-      },
-      "name": "市场快讯",
-      "url": "jin10.com/",
-      "provider_id": "jin10",
-      "provider_name": "金十数据",
-      "route_key": "/:important?"
+      "path": "/collections",
+      "view": 0,
+      "example": "/bigquant/collections",
+      "parameters": {},
+      "name": "专题报告",
+      "url": "bigquant.com/",
+      "provider_id": "bigquant",
+      "provider_name": "BigQuant",
+      "route_key": "/collections"
     }
   },
   {
-    "provider_id": "mrm",
-    "provider_name": "华储网",
-    "route_key": "/:category?",
+    "provider_id": "binance",
+    "provider_name": "Binance",
+    "route_key": "/announcement/:type",
     "route": {
-      "path": "/:category?",
-      "example": "/mrm",
+      "path": "/announcement/:type",
+      "view": 0,
+      "example": "/binance/announcement/new-cryptocurrency-listing",
       "parameters": {
-        "category": "N"
+        "type": {
+          "description": "Binance Announcement type",
+          "default": "new-cryptocurrency-listing",
+          "options": [
+            {
+              "value": "new-cryptocurrency-listing",
+              "label": "New Cryptocurrency Listing"
+            },
+            {
+              "value": "latest-binance-news",
+              "label": "Latest Binance News"
+            },
+            {
+              "value": "latest-activities",
+              "label": "Latest Activities"
+            },
+            {
+              "value": "new-fiat-listings",
+              "label": "New Fiat Listings"
+            },
+            {
+              "value": "api-updates",
+              "label": "API Updates"
+            },
+            {
+              "value": "crypto-airdrop",
+              "label": "Crypto Airdrop"
+            },
+            {
+              "value": "wallet-maintenance-updates",
+              "label": "Wallet Maintenance Updates"
+            },
+            {
+              "value": "delisting",
+              "label": "Delisting"
+            }
+          ]
+        }
       },
-      "name": "通知",
-      "description": "| 交易通知     | 政策规定             | 业务通知          |\n| ------------ | -------------------- | ----------------- |\n| zonghezixun3 | zhengceguiding_list | yewutongzhi_list |",
-      "provider_id": "mrm",
-      "provider_name": "华储网",
-      "route_key": "/:category?"
+      "name": "Announcement",
+      "description": "\nType category\n\n - new-cryptocurrency-listing => New Cryptocurrency Listing\n - latest-binance-news        => Latest Binance News\n - latest-activities          => Latest Activities\n - new-fiat-listings          => New Fiat Listings\n - api-updates                => API Updates\n - crypto-airdrop             => Crypto Airdrop\n - wallet-maintenance-updates => Wallet Maintenance Updates\n - delisting                  => Delisting\n",
+      "provider_id": "binance",
+      "provider_name": "Binance",
+      "route_key": "/announcement/:type"
+    }
+  },
+  {
+    "provider_id": "chinamoney",
+    "provider_name": "中国货币网",
+    "route_key": "/:channelId?",
+    "route": {
+      "path": "/:channelId?",
+      "example": "/chinamoney",
+      "parameters": {
+        "channelId": "分类，见下表，默认为 `2834`"
+      },
+      "name": "公告",
+      "description": "<details>\n<summary>市场公告</summary>\n\n    外汇市场公告\n\n| 最新 | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| ---- | ------------ | ------------ | ------------ |\n| 2834 | 2835         | 2836         | 2837         |\n\n    本币市场公告\n\n| 最新           | 市场公告通知 | 中心会员公告 | 会员信息公告 |\n| -------------- | ------------ | ------------ | ------------ |\n| 2839,2840,2841 | 2839         | 2840         | 2841         |\n\n    央行业务公告\n\n| 最新      | 公开市场操作 | 中央国库现金管理 |\n| --------- | ------------ | ---------------- |\n| 2845,2846 | 2845         | 2846             |\n</details>\n\n<details>\n<summary>本币市场</summary>\n\n    贷款市场报价利率\n\n| LPR 市场公告 |\n| ------------ |\n| 3686         |\n</details>",
+      "provider_id": "chinamoney",
+      "provider_name": "中国货币网",
+      "route_key": "/:channelId?"
+    }
+  },
+  {
+    "provider_id": "cls",
+    "provider_name": "财联社",
+    "route_key": "/depth/:category?",
+    "route": {
+      "path": "/depth/:category?",
+      "example": "/cls/depth/1000",
+      "parameters": {
+        "category": "分类代码，可在首页导航栏的目标网址 URL 中找到"
+      },
+      "name": "深度",
+      "description": "| 头条 | 股市 | 港股 | 环球 | 公司 | 券商 | 基金 | 地产 | 金融 | 汽车 | 科创 | 创业版 | 品见 | 期货 | 投教 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- |\n| 1000 | 1003 | 1135 | 1007 | 1005 | 1118 | 1110 | 1006 | 1032 | 1119 | 1111 | 1127   | 1160 | 1124 | 1176 |",
+      "provider_id": "cls",
+      "provider_name": "财联社",
+      "route_key": "/depth/:category?"
+    }
+  },
+  {
+    "provider_id": "theblock",
+    "provider_name": "TheBlock",
+    "route_key": "/category/:category",
+    "route": {
+      "path": "/category/:category",
+      "example": "/theblock/category/crypto-ecosystems",
+      "parameters": {
+        "category": "News category"
+      },
+      "name": "Category",
+      "description": "Get latest news from TheBlock by category. Note that due to website limitations, only article summaries may be available.",
+      "provider_id": "theblock",
+      "provider_name": "TheBlock",
+      "route_key": "/category/:category"
     }
   },
   {
     "provider_id": "wallstreetcn",
     "provider_name": "华尔街见闻",
-    "route_key": "/news/:category?",
+    "route_key": "/hot/:period?",
     "route": {
-      "path": "/news/:category?",
-      "example": "/wallstreetcn/news",
-      "name": "资讯",
-      "description": "| id           | 分类 |\n| ------------ | ---- |\n| global       | 最新 |\n| shares       | 股市 |\n| bonds        | 债市 |\n| commodities  | 商品 |\n| forex        | 外汇 |\n| enterprise   | 公司 |\n| asset-manage | 资管 |\n| tmt          | 科技 |\n| estate       | 地产 |\n| car          | 汽车 |\n| medicine     | 医药 |",
+      "path": "/hot/:period?",
+      "example": "/wallstreetcn/hot",
+      "parameters": {
+        "period": "时期，可选 `day` 即 当日 或 `week` 即 当周，默认为当日"
+      },
+      "name": "最热文章",
+      "url": "wallstreetcn.com/",
       "provider_id": "wallstreetcn",
       "provider_name": "华尔街见闻",
-      "route_key": "/news/:category?"
+      "route_key": "/hot/:period?"
     }
   }
 ]

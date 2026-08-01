@@ -1,179 +1,133 @@
 [
   {
-    "provider_id": "36kr",
-    "provider_name": "36kr",
-    "route_key": "/:category/:subCategory?/:keyword?",
-    "route": {
-      "name": "资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯",
-      "path": "/:category/:subCategory?/:keyword?",
-      "example": "/36kr/newsflashes",
-      "parameters": {
-        "category": "分类，必填项",
-        "subCategory": "子分类，选填项，目的是为了兼容老逻辑",
-        "keyword": "关键词，选填项，仅搜索文章/快讯时有效"
-      },
-      "description": "| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |\n| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |\n| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |"
-    }
-  },
-  {
-    "provider_id": "acfun",
-    "provider_name": "AcFun",
-    "route_key": "/user/video/:uid",
-    "route": {
-      "name": "用户投稿",
-      "path": "/user/video/:uid",
-      "example": "/acfun/user/video/6102",
-      "parameters": {
-        "uid": "用户 UID"
-      },
-      "description": ""
-    }
-  },
-  {
     "provider_id": "agirls",
     "provider_name": "电獭少女",
-    "route_key": "/topic_list",
+    "route_key": "/topic/:topic",
     "route": {
-      "name": "当前精选主题列表",
-      "path": "/topic_list",
-      "example": "/agirls/topic_list",
+      "name": "精选主题",
+      "path": "/topic/:topic",
+      "example": "/agirls/topic/AppleWatch",
+      "parameters": {
+        "topic": "精选主题，可通过下方精选主题列表获得"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "aliresearch",
+    "provider_name": "阿里研究院",
+    "route_key": "/information/:type?",
+    "route": {
+      "name": "资讯",
+      "path": "/information/:type?",
+      "example": "/aliresearch/information",
+      "parameters": {
+        "type": "类型，见下表，默认为新闻"
+      },
+      "description": "| 新闻 | 观点 | 案例 |\n| ---- | ---- | ---- |"
+    }
+  },
+  {
+    "provider_id": "bigquant",
+    "provider_name": "BigQuant",
+    "route_key": "/collections",
+    "route": {
+      "name": "专题报告",
+      "path": "/collections",
+      "example": "/bigquant/collections",
       "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "bilibili",
-    "provider_name": "哔哩哔哩 bilibili",
-    "route_key": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
+    "provider_id": "binance",
+    "provider_name": "Binance",
+    "route_key": "/announcement/:type",
     "route": {
-      "name": "排行榜",
-      "path": "/ranking/:rid_index?/:embed?/:redirect1?/:redirect2?",
-      "example": "/bilibili/ranking/0",
+      "name": "Announcement",
+      "path": "/announcement/:type",
+      "example": "/binance/announcement/new-cryptocurrency-listing",
       "parameters": {
-        "rid_index": {
-          "description": "排行榜分区 id 序号",
-          "default": "0",
+        "type": {
+          "description": "Binance Announcement type",
+          "default": "new-cryptocurrency-listing",
           "options": [
             {
-              "value": "0",
-              "label": "全站"
+              "value": "new-cryptocurrency-listing",
+              "label": "New Cryptocurrency Listing"
             },
             {
-              "value": "3",
-              "label": "国创相关"
+              "value": "latest-binance-news",
+              "label": "Latest Binance News"
             },
             {
-              "value": "5",
-              "label": "动画"
+              "value": "latest-activities",
+              "label": "Latest Activities"
             },
             {
-              "value": "6",
-              "label": "音乐"
+              "value": "new-fiat-listings",
+              "label": "New Fiat Listings"
             },
             {
-              "value": "7",
-              "label": "舞蹈"
+              "value": "api-updates",
+              "label": "API Updates"
             },
             {
-              "value": "8",
-              "label": "游戏"
+              "value": "crypto-airdrop",
+              "label": "Crypto Airdrop"
             },
             {
-              "value": "9",
-              "label": "知识"
+              "value": "wallet-maintenance-updates",
+              "label": "Wallet Maintenance Updates"
             },
             {
-              "value": "10",
-              "label": "科技"
-            },
-            {
-              "value": "11",
-              "label": "运动"
-            },
-            {
-              "value": "12",
-              "label": "汽车"
-            },
-            {
-              "value": "13",
-              "label": "生活"
-            },
-            {
-              "value": "14",
-              "label": "美食"
-            },
-            {
-              "value": "15",
-              "label": "动物圈"
-            },
-            {
-              "value": "16",
-              "label": "鬼畜"
-            },
-            {
-              "value": "17",
-              "label": "时尚"
-            },
-            {
-              "value": "18",
-              "label": "娱乐"
-            },
-            {
-              "value": "19",
-              "label": "影视"
-            },
-            {
-              "value": "23",
-              "label": "原创"
-            },
-            {
-              "value": "24",
-              "label": "新人"
+              "value": "delisting",
+              "label": "Delisting"
             }
           ]
-        },
-        "embed": "默认为开启内嵌视频, 任意值为关闭",
-        "redirect1": "留空，用于兼容之前的路由",
-        "redirect2": "留空，用于兼容之前的路由"
+        }
       },
-      "description": ""
+      "description": "\nType category\n\n - new-cryptocurrency-listing => New Cryptocurrency Listing\n - latest-binance-news        => Latest Binance News\n - latest-activities          => Latest Activities\n - new-fiat-listings          => New Fiat Listings\n - api-updates                => API Updates\n - crypto-airdrop             => Crypto Airdrop\n - wallet-maintenance-updates => Wallet Maintenance Updates\n - delisting                  => Delisting\n"
     }
   },
   {
-    "provider_id": "bjp",
-    "provider_name": "北京天文馆",
-    "route_key": "/apod",
+    "provider_id": "gamer",
+    "provider_name": "巴哈姆特電玩資訊站",
+    "route_key": "/ani/anime/:sn",
     "route": {
-      "name": "每日一图",
-      "path": "/apod",
-      "example": "/bjp/apod",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "caixin",
-    "provider_name": "财新博客",
-    "route_key": "/latest",
-    "route": {
-      "name": "最新文章",
-      "path": "/latest",
-      "example": "/caixin/latest",
-      "parameters": {},
-      "description": "说明：此 RSS feed 会自动抓取财新网的最新文章，但不包含 FM 及视频内容。订阅用户可根据文档设置环境变量后，在url传入`fulltext=`以解锁全文。"
-    }
-  },
-  {
-    "provider_id": "fantia",
-    "provider_name": "Fantia",
-    "route_key": "/user/:id",
-    "route": {
-      "name": "User Posts",
-      "path": "/user/:id",
-      "example": "/fantia/user/3498",
+      "name": "動畫瘋 - 動畫",
+      "path": "/ani/anime/:sn",
+      "example": "/gamer/ani/anime/36868",
       "parameters": {
-        "id": "User id, can be found in user profile URL"
+        "sn": "動畫 sn，在 URL 可以找到"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "google",
+    "provider_name": "Google",
+    "route_key": "/news/:category/:locale",
+    "route": {
+      "name": "News",
+      "path": "/news/:category/:locale",
+      "example": "/google/news/Top stories/hl=en-US&gl=US&ceid=US:en",
+      "parameters": {
+        "category": "Category Title",
+        "locale": "locales, could be found behind `?`, including `hl`, `gl`, and `ceid` as parameters"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "grist",
+    "provider_name": "Grist",
+    "route_key": "/",
+    "route": {
+      "name": "Latest Articles",
+      "path": "/",
+      "example": "/grist",
+      "parameters": {},
       "description": ""
     }
   },
@@ -192,152 +146,151 @@
     }
   },
   {
-    "provider_id": "jin10",
-    "provider_name": "金十数据",
-    "route_key": "/:important?",
+    "provider_id": "huxiu",
+    "provider_name": "虎嗅",
+    "route_key": "/moment",
     "route": {
-      "name": "市场快讯",
-      "path": "/:important?",
-      "example": "/jin10",
+      "name": "24 小时",
+      "path": "/moment",
+      "example": "/huxiu/moment",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "ifanr",
+    "provider_name": "爱范儿",
+    "route_key": "/index",
+    "route": {
+      "name": "首页",
+      "path": "/index",
+      "example": "/ifanr/index",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "inoreader",
+    "provider_name": "Inoreader",
+    "route_key": "/html_clip/:user/:tag",
+    "route": {
+      "name": "HTML Clip",
+      "path": "/html_clip/:user/:tag",
+      "example": "/inoreader/html_clip/1005137674/user-favorites",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "lofter",
+    "provider_name": "Lofter",
+    "route_key": "/user/:name?",
+    "route": {
+      "name": "User",
+      "path": "/user/:name?",
+      "example": "/lofter/user/i",
       "parameters": {
-        "important": "只看重要，任意值开启，留空关闭"
+        "name": "Lofter user name, can be found in the URL"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "mastodon",
-    "provider_name": "Mastodon",
-    "route_key": "/acct/:acct/statuses/:only_media?",
+    "provider_id": "pingwest",
+    "provider_name": "品玩",
+    "route_key": "/user/:uid/:type?/:option?",
     "route": {
-      "name": "User timeline",
-      "path": "/acct/:acct/statuses/:only_media?",
-      "example": "/mastodon/acct/Mastodon@mastodon.social/statuses",
+      "name": "用户",
+      "path": "/user/:uid/:type?/:option?",
+      "example": "/pingwest/user/7781550877/article",
       "parameters": {
-        "acct": "Webfinger account URI, like `user@host`",
-        "only_media": {
-          "description": "whether only display media content, default to false, any value to true",
+        "uid": "用户id, 可从用户主页中得到",
+        "type": "内容类型, 默认为`article`",
+        "option": "参数"
+      },
+      "description": "内容类型\n\n| 文章    | 动态  |\n| ------- | ----- |\n| article | state |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/user/7781550877/article/fulltext`"
+    }
+  },
+  {
+    "provider_id": "pixabay",
+    "provider_name": "Pixabay",
+    "route_key": "/search/:q/:order?",
+    "route": {
+      "name": "Search",
+      "path": "/search/:q/:order?",
+      "example": "/pixabay/search/cat",
+      "parameters": {
+        "q": "Search term",
+        "order": {
+          "description": "Order",
           "options": [
             {
-              "value": "true",
-              "label": "true"
+              "value": "popular",
+              "label": "popular"
             },
             {
-              "value": "false",
-              "label": "false"
+              "value": "latest",
+              "label": "latest"
             }
           ],
-          "default": "false"
+          "default": "latest"
         }
       },
-      "description": "Started from Mastodon v4.0.0, the use of the `search` API in the route no longer requires a user token.\nIf the domain of your Webfinger account URI is the same as the API host of the instance (i.e., no delegation called in some other protocols), then no configuration is required and the route is available out of the box.\nHowever, you can still specify these route-specific configurations if you need to override them."
+      "description": ""
     }
   },
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
-    "route_key": "/top/:category?/:lang?",
+    "route_key": "/search/:keyword",
     "route": {
-      "name": "Top",
-      "path": "/top/:category?/:lang?",
-      "example": "/plurk/top/topReplurks",
+      "name": "Search",
+      "path": "/search/:keyword",
+      "example": "/plurk/search/FGO",
       "parameters": {
-        "category": "Category, see the table below, `topReplurks` by default",
-        "lang": "Language, see the table below, `en` by default"
+        "keyword": "Search keyword"
       },
-      "description": "| Top Replurks | Top Favorites | Top Responded |\n| ------------ | ------------- | ------------- |\n| topReplurks  | topFavorites  | topResponded  |\n\n| English | 中文（繁體） |\n| ------- | ------------ |\n| en      | zh           |"
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "qbitai",
+    "provider_name": "量子位",
+    "route_key": "/category/:category",
+    "route": {
+      "name": "分类",
+      "path": "/category/:category",
+      "example": "/qbitai/category/资讯",
+      "parameters": {
+        "category": "分类名，见下表"
+      },
+      "description": "| 资讯 | 数码     | 智能车 | 智库  | 活动    |\n| ---- | -------- | ------ | ----- | ------- |\n| 资讯 | ebandeng | auto   | zhiku | huodong |"
     }
   },
   {
     "provider_id": "sspai",
     "provider_name": "少数派 sspai",
-    "route_key": "/activity/:slug",
+    "route_key": "/index",
     "route": {
-      "name": "作者动态",
-      "path": "/activity/:slug",
-      "example": "/sspai/activity/urfp0d9i",
-      "parameters": {
-        "slug": "作者 slug，可在作者主页URL中找到"
-      },
+      "name": "首页",
+      "path": "/index",
+      "example": "/sspai/index",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "sspai",
-    "provider_name": "少数派 sspai",
-    "route_key": "/topic/:id",
+    "provider_id": "v2ex",
+    "provider_name": "V2EX",
+    "route_key": "/tab/:tabid",
     "route": {
-      "name": "专题内文章更新",
-      "path": "/topic/:id",
-      "example": "/sspai/topic/250",
+      "name": "标签",
+      "path": "/tab/:tabid",
+      "example": "/v2ex/tab/hot",
       "parameters": {
-        "id": "专题 id，可在专题主页URL中找到"
+        "tabid": "tab标签ID,在 URL 可以找到"
       },
       "description": ""
-    }
-  },
-  {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/tv/:id/seasons/:lang?",
-    "route": {
-      "name": "TV Show Seasons",
-      "path": "/tv/:id/seasons/:lang?",
-      "example": "/themoviedb/tv/70593/seasons/en-US",
-      "parameters": {
-        "id": "TV show ID",
-        "lang": "Language"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "tophub",
-    "provider_name": "今日热榜",
-    "route_key": "/:id",
-    "route": {
-      "name": "榜单",
-      "path": "/:id",
-      "example": "/tophub/Om4ejxvxEN",
-      "parameters": {
-        "id": "榜单id，可在 URL 中找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "yande",
-    "provider_name": "yande.re",
-    "route_key": "/post/popular_recent/:period?",
-    "route": {
-      "name": "Popular Recent Posts",
-      "path": "/post/popular_recent/:period?",
-      "example": "/yande/post/popular_recent/1d",
-      "parameters": {
-        "period": {
-          "description": "展示时间",
-          "options": [
-            {
-              "value": "1d",
-              "label": "最近 24 小时"
-            },
-            {
-              "value": "1w",
-              "label": "最近一周"
-            },
-            {
-              "value": "1m",
-              "label": "最近一月"
-            },
-            {
-              "value": "1y",
-              "label": "最近一年"
-            }
-          ],
-          "default": "1d"
-        }
-      },
-      "description": "| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |\n| ------- | -------- | ------- | -------- |\n| 1d | 1w | 1m | 1y |"
     }
   },
   {

@@ -1,31 +1,75 @@
 [
   {
-    "provider_id": "dockerhub",
-    "provider_name": "Docker Hub",
-    "route_key": "/tag/:owner/:image/:limits?",
+    "provider_id": "cursor",
+    "provider_name": "Cursor",
+    "route_key": "/changelog",
     "route": {
-      "name": "Image New Tag",
-      "path": "/tag/:owner/:image/:limits?",
-      "example": "/dockerhub/tag/library/mariadb",
-      "parameters": {
-        "owner": "Image owner",
-        "image": "Image name",
-        "limits": "Tag count, 10 by default"
-      },
-      "description": "::: warning\n  Use `library` as the `owner` for official images, such as [https://rsshub.app/dockerhub/tag/library/mysql](https://rsshub.app/dockerhub/tag/library/mysql)\n:::"
+      "name": "Changelog",
+      "path": "/changelog",
+      "example": "/cursor/changelog",
+      "parameters": {},
+      "description": ""
     }
   },
   {
-    "provider_id": "tencent",
-    "provider_name": "腾讯",
-    "route_key": "/qq/sdk/changelog/:platform",
+    "provider_id": "diskanalyzer",
+    "provider_name": "WizTree",
+    "route_key": "/whats-new",
     "route": {
-      "name": "更新日志",
-      "path": "/qq/sdk/changelog/:platform",
-      "example": "/tencent/qq/sdk/changelog/iOS",
+      "name": "What's New",
+      "path": "/whats-new",
+      "example": "/diskanalyzer/whats-new",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "ipsw.dev",
+    "provider_name": "IPSW.dev",
+    "route_key": "/index/:productID",
+    "route": {
+      "name": "Apple latest beta firmware",
+      "path": "/index/:productID",
+      "example": "/ipsw.dev/index/iPhone16,1",
       "parameters": {
-        "platform": "平台，iOS / Android"
+        "productID": "Product ID"
       },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "notateslaapp",
+    "provider_name": "Not a Tesla App",
+    "route_key": "/ota",
+    "route": {
+      "name": "Tesla Software Updates",
+      "path": "/ota",
+      "example": "/notateslaapp/ota",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/dev",
+    "route": {
+      "name": "なろう小説 API の更新履歴",
+      "path": "/dev",
+      "example": "/syosetu/dev",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "tradingview",
+    "provider_name": "TradingView",
+    "route_key": "/desktop",
+    "route": {
+      "name": "Desktop releases and release notes",
+      "path": "/desktop",
+      "example": "/tradingview/desktop",
+      "parameters": {},
       "description": ""
     }
   }
