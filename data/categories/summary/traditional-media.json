@@ -1,83 +1,30 @@
 [
   {
-    "provider_id": "bjx",
-    "provider_name": "北极星电力网",
-    "route_key": "/fd/:type",
+    "provider_id": "sctv",
+    "provider_name": "四川广播电视台",
+    "route_key": "/programme/:id?/:limit?/:isFull?",
     "route": {
-      "name": "风电",
-      "path": "/fd/:type",
-      "example": "/bjx/fd/yw",
+      "name": "电视回放",
+      "path": "/programme/:id?/:limit?/:isFull?",
+      "example": "/sctv/programme/1",
       "parameters": {
-        "type": "文章分类，详见下表"
+        "id": "节目 id，可在对应节目页中找到，默认为 `1`，即四川新闻联播",
+        "limit": "期数，默认为 15，即单次获取最新 15 期",
+        "isFull": "是否仅获取完整视频，填写 true/yes 表示是、false/no 表示否，默认是"
       },
-      "description": "`:type` 类型可选如下\n\n| 要闻 | 政策 | 数据 | 市场 | 企业 | 招标 | 技术 | 报道 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n| yw   | zc   | sj   | sc   | mq   | zb   | js   | bd   |"
+      "description": "::: tip\n  参数 **是否仅获取完整视频** 设置为 `true` `yes` `t` `y` 等值后，路由仅返回当期节目的完整视频，而不会返回节目所提供的节选视频。\n\n  查看更多电视节目请前往 [电视回放](https://www.sctv.com/column/list)\n:::\n\n| 节目                   | id      |\n| ---------------------- | ------- |\n| 四川新闻联播           | 1       |\n| 早安四川               | 2       |\n| 今日视点               | 3       |\n| 龙门阵摆四川           | 10523   |\n| 非常话题               | 1014756 |\n| 新闻现场               | 8385    |\n| 黄金三十分             | 8386    |\n| 全媒直播间             | 8434    |\n| 晚报十点半             | 8435    |\n| 现场快报               | 8436    |\n| 四川乡村新闻           | 3673    |\n| 四川文旅报道           | 8174    |\n| 乡村会客厅             | 3674    |\n| 金字招牌               | 3675    |\n| 问您所 “？”            | 3677    |\n| 蜀你最能               | 3679    |\n| 美丽乡村印象           | 3678    |\n| 美丽乡村               | 3676    |\n| 乡村大篷车             | 3680    |\n| 华西论健               | 3681    |\n| 乡村聚乐部             | 3682    |\n| 医保近距离             | 6403    |\n| 音你而来               | 7263    |\n| 吃八方                 | 7343    |\n| 世界那么大             | 7344    |\n| 风云川商               | 7345    |\n| 麻辣烫                 | 7346    |\n| 财经快报               | 7473    |\n| 医生来了               | 7873    |\n| 安逸的旅途             | 8383    |\n| 运动 +                 | 8433    |\n| 好戏连台               | 9733    |\n| 防癌大讲堂             | 1018673 |\n| 消费新观察             | 1017153 |\n| 天天耍大牌             | 1014753 |\n| 廉洁四川               | 1014754 |\n| 看世界                 | 1014755 |\n| 金熊猫说教育（资讯版） | 1014757 |\n| 她说                   | 1014759 |\n| 嗨宝贝                 | 1014762 |\n| 萌眼看世界             | 1014764 |\n| 乡村大讲堂             | 1014765 |\n| 四川党建               | 1014766 |\n| 健康四川               | 1014767 |\n| 技能四川               | 12023   |"
     }
   },
   {
-    "provider_id": "caixin",
-    "provider_name": "财新博客",
-    "route_key": "/weekly",
+    "provider_id": "yicai",
+    "provider_name": "第一财经",
+    "route_key": "/headline",
     "route": {
-      "name": "财新周刊",
-      "path": "/weekly",
-      "example": "/caixin/weekly",
+      "name": "头条",
+      "path": "/headline",
+      "example": "/yicai/headline",
       "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "mirrormedia",
-    "provider_name": "鏡週刊 Mirror Media",
-    "route_key": "/",
-    "route": {
-      "name": "首页",
-      "path": "/",
-      "example": "/mirrormedia",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "now",
-    "provider_name": "Now 新聞",
-    "route_key": "/news/:category?/:id?",
-    "route": {
-      "name": "新聞",
-      "path": "/news/:category?/:id?",
-      "example": "/now/news",
-      "parameters": {
-        "category": "分类，见下表，默认为首页",
-        "id": "编号，可在对应专题/节目页 URL 中找到 topicId"
-      },
-      "description": "::: tip\n  **编号** 仅对事件追蹤、評論節目、新聞專題三个分类起作用，例子如下：\n\n  对于 [事件追蹤](https://news.now.com/home/tracker) 中的 [塔利班奪權](https://news.now.com/home/tracker/detail?catCode=123&topicId=1056) 话题，其网址为 `https://news.now.com/home/tracker/detail?catCode=123&topicId=1056`，其中 `topicId` 为 1056，则对应路由为 [`/now/news/tracker/1056`](https://rsshub.app/now/news/tracker/1056)\n:::\n\n| 首頁 | 港聞  | 兩岸國際      | 娛樂          |\n| ---- | ----- | ------------- | ------------- |\n|      | local | international | entertainment |\n\n| 生活 | 科技       | 財經    | 體育   |\n| ---- | ---------- | ------- | ------ |\n| life | technology | finance | sports |\n\n| 事件追蹤 | 評論節目 | 新聞專題 |\n| -------- | -------- | -------- |\n| tracker  | feature  | opinion  |"
-    }
-  },
-  {
-    "provider_id": "xkb",
-    "provider_name": "新快报",
-    "route_key": "/:channel",
-    "route": {
-      "name": "新闻",
-      "path": "/:channel",
-      "example": "/xkb/350",
-      "parameters": {
-        "channel": "栏目 ID，点击对应栏目后在地址栏找到"
-      },
-      "description": "常用栏目 ID：\n\n| 栏目名 | ID  |\n| ------ | --- |\n| 首页   | 350 |\n| 重点   | 359 |\n| 广州   | 353 |\n| 湾区   | 360 |\n| 天下   | 355 |"
-    }
-  },
-  {
-    "provider_id": "ycwb",
-    "provider_name": "羊城晚报金羊网",
-    "route_key": "/:node",
-    "route": {
-      "name": "新闻",
-      "path": "/:node",
-      "example": "/ycwb/1",
-      "parameters": {
-        "node": "栏目 id"
-      },
-      "description": "注：小部分栏目的 URL 会给出 nodeid。如未给出，可打开某条新闻链接后，查看网页源代码，搜索 nodeid 的值。\n\n  常用栏目节点：\n\n| 首页 | 中国 | 国际 | 体育 | 要闻 | 珠江评论 | 民生观察 | 房产 | 金羊教育 | 金羊财富 | 金羊文化 | 金羊健康 | 金羊汽车 |\n| ---- | ---- | ---- | ---- | ---- | -------- | -------- | ---- | -------- | -------- | -------- | -------- | -------- |\n| 1    | 14   | 15   | 16   | 22   | 1875     | 21773    | 222  | 5725     | 633      | 5281     | 21692    | 223      |\n\n| 广州 | 广州 - 广州要闻 | 广州 - 社会百态 | 广州 - 深读广州 | 广州 - 生活服务 | 今日大湾区 | 广东 - 政经热闻 | 广东 - 民生视点 | 广东 - 滚动新闻 |\n| ---- | --------------- | --------------- | --------------- | --------------- | ---------- | --------------- | --------------- | --------------- |\n| 18   | 5261            | 6030            | 13352           | 83422           | 100418     | 13074           | 12252           | 12212           |"
     }
   }
 ]

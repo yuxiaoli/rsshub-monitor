@@ -1,33 +1,52 @@
 [
   {
-    "provider_id": "pixabay",
-    "provider_name": "Pixabay",
-    "route_key": "/search/:q/:order?",
+    "provider_id": "dapenti",
+    "provider_name": "喷嚏",
+    "route_key": "/subject/:id",
     "route": {
-      "path": "/search/:q/:order?",
-      "view": 2,
-      "example": "/pixabay/search/cat",
+      "path": "/subject/:id",
+      "example": "/dapenti/subject/184",
       "parameters": {
-        "q": "Search term",
-        "order": {
-          "description": "Order",
-          "options": [
-            {
-              "value": "popular",
-              "label": "popular"
-            },
-            {
-              "value": "latest",
-              "label": "latest"
-            }
-          ],
-          "default": "latest"
-        }
+        "id": "主题 id"
       },
-      "name": "Search",
-      "provider_id": "pixabay",
-      "provider_name": "Pixabay",
-      "route_key": "/search/:q/:order?"
+      "name": "主题",
+      "provider_id": "dapenti",
+      "provider_name": "喷嚏",
+      "route_key": "/subject/:id"
+    }
+  },
+  {
+    "provider_id": "ehentai",
+    "provider_name": "E-Hentai",
+    "route_key": "/tag/:tag/:page?/:routeParams?",
+    "route": {
+      "path": "/tag/:tag/:page?/:routeParams?",
+      "example": "/ehentai/tag/language:chinese/0/bittorrent=true&embed_thumb=false",
+      "parameters": {
+        "tag": "Tag",
+        "page": "Page number, set 0 to get latest",
+        "routeParams": "Additional parameters, see the table above"
+      },
+      "name": "Tag",
+      "provider_id": "ehentai",
+      "provider_name": "E-Hentai",
+      "route_key": "/tag/:tag/:page?/:routeParams?"
+    }
+  },
+  {
+    "provider_id": "natgeo",
+    "provider_name": "National Geographic",
+    "route_key": "/dailyphoto",
+    "route": {
+      "path": "/dailyphoto",
+      "view": 2,
+      "example": "/natgeo/dailyphoto",
+      "parameters": {},
+      "name": "Daily Photo",
+      "url": "nationalgeographic.com/photo-of-the-day/*",
+      "provider_id": "natgeo",
+      "provider_name": "National Geographic",
+      "route_key": "/dailyphoto"
     }
   }
 ]

@@ -1,120 +1,55 @@
 [
   {
-    "provider_id": "agirls",
-    "provider_name": "电獭少女",
-    "route_key": "/topic/:topic",
+    "provider_id": "dedao",
+    "provider_name": "得到",
+    "route_key": "/user/:id/:type?",
     "route": {
-      "name": "精选主题",
-      "path": "/topic/:topic",
-      "example": "/agirls/topic/AppleWatch",
+      "name": "用户主页",
+      "path": "/user/:id/:type?",
+      "example": "/dedao/user/VkA5OqLX4RyGxmZRNBMlwBrDaJQ9og",
       "parameters": {
-        "topic": "精选主题，可通过下方精选主题列表获得"
+        "id": "用户 id，可在对应用户主页 URL 中找到",
+        "type": "类型，见下表，默认为`0`，即动态"
       },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "aliresearch",
-    "provider_name": "阿里研究院",
-    "route_key": "/information/:type?",
-    "route": {
-      "name": "资讯",
-      "path": "/information/:type?",
-      "example": "/aliresearch/information",
-      "parameters": {
-        "type": "类型，见下表，默认为新闻"
-      },
-      "description": "| 新闻 | 观点 | 案例 |\n| ---- | ---- | ---- |"
-    }
-  },
-  {
-    "provider_id": "bigquant",
-    "provider_name": "BigQuant",
-    "route_key": "/collections",
-    "route": {
-      "name": "专题报告",
-      "path": "/collections",
-      "example": "/bigquant/collections",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "binance",
-    "provider_name": "Binance",
-    "route_key": "/announcement/:type",
-    "route": {
-      "name": "Announcement",
-      "path": "/announcement/:type",
-      "example": "/binance/announcement/new-cryptocurrency-listing",
-      "parameters": {
-        "type": {
-          "description": "Binance Announcement type",
-          "default": "new-cryptocurrency-listing",
-          "options": [
-            {
-              "value": "new-cryptocurrency-listing",
-              "label": "New Cryptocurrency Listing"
-            },
-            {
-              "value": "latest-binance-news",
-              "label": "Latest Binance News"
-            },
-            {
-              "value": "latest-activities",
-              "label": "Latest Activities"
-            },
-            {
-              "value": "new-fiat-listings",
-              "label": "New Fiat Listings"
-            },
-            {
-              "value": "api-updates",
-              "label": "API Updates"
-            },
-            {
-              "value": "crypto-airdrop",
-              "label": "Crypto Airdrop"
-            },
-            {
-              "value": "wallet-maintenance-updates",
-              "label": "Wallet Maintenance Updates"
-            },
-            {
-              "value": "delisting",
-              "label": "Delisting"
-            }
-          ]
-        }
-      },
-      "description": "\nType category\n\n - new-cryptocurrency-listing => New Cryptocurrency Listing\n - latest-binance-news        => Latest Binance News\n - latest-activities          => Latest Activities\n - new-fiat-listings          => New Fiat Listings\n - api-updates                => API Updates\n - crypto-airdrop             => Crypto Airdrop\n - wallet-maintenance-updates => Wallet Maintenance Updates\n - delisting                  => Delisting\n"
+      "description": "| 动态 | 书评 | 视频 |\n| ---- | ---- | ---- |\n| 0    | 7    | 12   |"
     }
   },
   {
     "provider_id": "gamer",
     "provider_name": "巴哈姆特電玩資訊站",
-    "route_key": "/ani/anime/:sn",
+    "route_key": "/hot/:bsn",
     "route": {
-      "name": "動畫瘋 - 動畫",
-      "path": "/ani/anime/:sn",
-      "example": "/gamer/ani/anime/36868",
+      "name": "熱門推薦",
+      "path": "/hot/:bsn",
+      "example": "/gamer/hot/47157",
       "parameters": {
-        "sn": "動畫 sn，在 URL 可以找到"
+        "bsn": "板塊 id，在 URL 可以找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "google",
-    "provider_name": "Google",
-    "route_key": "/news/:category/:locale",
+    "provider_id": "gamer",
+    "provider_name": "巴哈姆特電玩資訊站",
+    "route_key": "/ani/new_anime",
     "route": {
-      "name": "News",
-      "path": "/news/:category/:locale",
-      "example": "/google/news/Top stories/hl=en-US&gl=US&ceid=US:en",
+      "name": "動畫瘋 - 最後更新",
+      "path": "/ani/new_anime",
+      "example": "/gamer/ani/new_anime",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gelonghui",
+    "provider_name": "格隆汇",
+    "route_key": "/keyword/:keyword",
+    "route": {
+      "name": "搜索关键字",
+      "path": "/keyword/:keyword",
+      "example": "/gelonghui/keyword/早报",
       "parameters": {
-        "category": "Category Title",
-        "locale": "locales, could be found behind `?`, including `hl`, `gl`, and `ceid` as parameters"
+        "keyword": "搜索关键字"
       },
       "description": ""
     }
@@ -132,17 +67,61 @@
     }
   },
   {
-    "provider_id": "guokr",
-    "provider_name": "果壳网",
-    "route_key": "/column/:channel",
+    "provider_id": "hellobtc",
+    "provider_name": "白话区块链",
+    "route_key": "/information/:channel?",
     "route": {
-      "name": "果壳网专栏",
-      "path": "/column/:channel",
-      "example": "/guokr/column/calendar",
+      "name": "首页",
+      "path": "/information/:channel?",
+      "example": "/hellobtc/information/latest",
       "parameters": {
-        "channel": "专栏类别"
+        "channel": "类型，可填 `latest` 和 `application` 及最新和应用，默认为最新"
       },
-      "description": "| 物种日历 | 吃货研究所 | 美丽也是技术活 |\n| -------- | ---------- | -------------- |\n| calendar | institute  | beauty         |"
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/work/:id/:order?",
+    "route": {
+      "name": "作品周边",
+      "path": "/items/work/:id/:order?",
+      "example": "/hpoi/items/work/4117491",
+      "parameters": {
+        "id": "作品 ID",
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
+      },
+      "description": ""
     }
   },
   {
@@ -158,83 +137,92 @@
     }
   },
   {
-    "provider_id": "ifanr",
-    "provider_name": "爱范儿",
-    "route_key": "/index",
+    "provider_id": "jike",
+    "provider_name": "即刻",
+    "route_key": "/topic/:id/:showUid?",
     "route": {
-      "name": "首页",
-      "path": "/index",
-      "example": "/ifanr/index",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "inoreader",
-    "provider_name": "Inoreader",
-    "route_key": "/html_clip/:user/:tag",
-    "route": {
-      "name": "HTML Clip",
-      "path": "/html_clip/:user/:tag",
-      "example": "/inoreader/html_clip/1005137674/user-favorites",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "lofter",
-    "provider_name": "Lofter",
-    "route_key": "/user/:name?",
-    "route": {
-      "name": "User",
-      "path": "/user/:name?",
-      "example": "/lofter/user/i",
+      "name": "圈子",
+      "path": "/topic/:id/:showUid?",
+      "example": "/jike/topic/556688fae4b00c57d9dd46ee",
       "parameters": {
-        "name": "Lofter user name, can be found in the URL"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "pingwest",
-    "provider_name": "品玩",
-    "route_key": "/user/:uid/:type?/:option?",
-    "route": {
-      "name": "用户",
-      "path": "/user/:uid/:type?/:option?",
-      "example": "/pingwest/user/7781550877/article",
-      "parameters": {
-        "uid": "用户id, 可从用户主页中得到",
-        "type": "内容类型, 默认为`article`",
-        "option": "参数"
-      },
-      "description": "内容类型\n\n| 文章    | 动态  |\n| ------- | ----- |\n| article | state |\n\n  参数\n\n  -   `fulltext`，全文输出，例如：`/pingwest/user/7781550877/article/fulltext`"
-    }
-  },
-  {
-    "provider_id": "pixabay",
-    "provider_name": "Pixabay",
-    "route_key": "/search/:q/:order?",
-    "route": {
-      "name": "Search",
-      "path": "/search/:q/:order?",
-      "example": "/pixabay/search/cat",
-      "parameters": {
-        "q": "Search term",
-        "order": {
-          "description": "Order",
+        "id": "圈子 id, 可在即刻 web 端圈子页或 APP 分享出来的圈子页 URL 中找到",
+        "showUid": {
+          "description": "是否在内容中显示用户信息，设置为 1 则开启",
           "options": [
             {
-              "value": "popular",
-              "label": "popular"
+              "value": "1",
+              "label": "显示"
+            }
+          ]
+        }
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "jin10",
+    "provider_name": "金十数据",
+    "route_key": "/:important?",
+    "route": {
+      "name": "市场快讯",
+      "path": "/:important?",
+      "example": "/jin10",
+      "parameters": {
+        "important": "只看重要，任意值开启，留空关闭"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "mastodon",
+    "provider_name": "Mastodon",
+    "route_key": "/remote/:site/:only_media?",
+    "route": {
+      "name": "Instance timeline (federated)",
+      "path": "/remote/:site/:only_media?",
+      "example": "/mastodon/remote/pawoo.net/true",
+      "parameters": {
+        "site": "instance address, only domain, no `http://` or `https://` protocol header",
+        "only_media": {
+          "description": "whether only display media content, default to false, any value to true",
+          "options": [
+            {
+              "value": "true",
+              "label": "true"
             },
             {
-              "value": "latest",
-              "label": "latest"
+              "value": "false",
+              "label": "false"
             }
           ],
-          "default": "latest"
+          "default": "false"
         }
+      },
+      "description": "If the instance address is not `mastodon.social` or `pawoo.net`, then the route requires `ALLOW_USER_SUPPLY_UNSAFE_DOMAIN` to be `true`."
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/anonymous",
+    "route": {
+      "name": "Anonymous",
+      "path": "/anonymous",
+      "example": "/plurk/anonymous",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "plurk",
+    "provider_name": "Plurk",
+    "route_key": "/news/:lang?",
+    "route": {
+      "name": "Plurk News",
+      "path": "/news/:lang?",
+      "example": "/plurk/news/:lang?",
+      "parameters": {
+        "lang": "Language, see the table above, `en` by default"
       },
       "description": ""
     }
@@ -242,29 +230,29 @@
   {
     "provider_id": "plurk",
     "provider_name": "Plurk",
-    "route_key": "/search/:keyword",
+    "route_key": "/topic/:topic",
     "route": {
-      "name": "Search",
-      "path": "/search/:keyword",
-      "example": "/plurk/search/FGO",
+      "name": "Topic",
+      "path": "/topic/:topic",
+      "example": "/plurk/topic/standwithukraine",
       "parameters": {
-        "keyword": "Search keyword"
+        "topic": "Topic ID, can be found in URL"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "qbitai",
-    "provider_name": "量子位",
-    "route_key": "/category/:category",
+    "provider_id": "sspai",
+    "provider_name": "少数派 sspai",
+    "route_key": "/author/:id",
     "route": {
-      "name": "分类",
-      "path": "/category/:category",
-      "example": "/qbitai/category/资讯",
+      "name": "作者",
+      "path": "/author/:id",
+      "example": "/sspai/author/796518",
       "parameters": {
-        "category": "分类名，见下表"
+        "id": "作者 slug 或 id，slug 可在作者主页URL中找到，id 不易查找，仅作兼容"
       },
-      "description": "| 资讯 | 数码     | 智能车 | 智库  | 活动    |\n| ---- | -------- | ------ | ----- | ------- |\n| 资讯 | ebandeng | auto   | zhiku | huodong |"
+      "description": ""
     }
   },
   {
@@ -280,64 +268,15 @@
     }
   },
   {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/tab/:tabid",
+    "provider_id": "twreporter",
+    "provider_name": "報導者",
+    "route_key": "/newest",
     "route": {
-      "name": "标签",
-      "path": "/tab/:tabid",
-      "example": "/v2ex/tab/hot",
-      "parameters": {
-        "tabid": "tab标签ID,在 URL 可以找到"
-      },
+      "name": "最新",
+      "path": "/newest",
+      "example": "/twreporter/newest",
+      "parameters": {},
       "description": ""
-    }
-  },
-  {
-    "provider_id": "yyets",
-    "provider_name": "人人影视",
-    "route_key": "/article/:type?",
-    "route": {
-      "name": "影视资讯",
-      "path": "/article/:type?",
-      "example": "/yyets/article",
-      "parameters": {
-        "type": {
-          "description": "类型",
-          "options": [
-            {
-              "value": "all",
-              "label": "全部"
-            },
-            {
-              "value": "news",
-              "label": "影视资讯"
-            },
-            {
-              "value": "report",
-              "label": "收视快报"
-            },
-            {
-              "value": "m_review",
-              "label": "人人影评"
-            },
-            {
-              "value": "t_review",
-              "label": "人人剧评"
-            },
-            {
-              "value": "new_review",
-              "label": "新剧评测"
-            },
-            {
-              "value": "recom",
-              "label": "片单推荐"
-            }
-          ],
-          "default": "all"
-        }
-      },
-      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |"
     }
   }
 ]

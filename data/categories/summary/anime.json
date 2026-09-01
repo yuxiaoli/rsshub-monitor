@@ -1,14 +1,14 @@
 [
   {
-    "provider_id": "cngal",
-    "provider_name": "CnGal",
-    "route_key": "/entry/:id",
+    "provider_id": "collabo-cafe",
+    "provider_name": "コラボカフェ",
+    "route_key": "/category/:category",
     "route": {
-      "name": "制作者 / 游戏新闻",
-      "path": "/entry/:id",
-      "example": "/cngal/entry/2693",
+      "name": "分类",
+      "path": "/category/:category",
+      "example": "/collabo-cafe/category/cafe",
       "parameters": {
-        "id": "词条ID，游戏或制作者页面URL的最后一串数字"
+        "category": "Category, refer to the original website (ジャンル別)"
       },
       "description": ""
     }
@@ -16,13 +16,69 @@
   {
     "provider_id": "gamer",
     "provider_name": "巴哈姆特電玩資訊站",
-    "route_key": "/ani/anime/:sn",
+    "route_key": "/hot/:bsn",
     "route": {
-      "name": "動畫瘋 - 動畫",
-      "path": "/ani/anime/:sn",
-      "example": "/gamer/ani/anime/36868",
+      "name": "熱門推薦",
+      "path": "/hot/:bsn",
+      "example": "/gamer/hot/47157",
       "parameters": {
-        "sn": "動畫 sn，在 URL 可以找到"
+        "bsn": "板塊 id，在 URL 可以找到"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "gamer",
+    "provider_name": "巴哈姆特電玩資訊站",
+    "route_key": "/ani/new_anime",
+    "route": {
+      "name": "動畫瘋 - 最後更新",
+      "path": "/ani/new_anime",
+      "example": "/gamer/ani/new_anime",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hpoi",
+    "provider_name": "Hpoi 手办维基",
+    "route_key": "/items/work/:id/:order?",
+    "route": {
+      "name": "作品周边",
+      "path": "/items/work/:id/:order?",
+      "example": "/hpoi/items/work/4117491",
+      "parameters": {
+        "id": "作品 ID",
+        "order": {
+          "description": "排序",
+          "options": [
+            {
+              "value": "release",
+              "label": "发售"
+            },
+            {
+              "value": "add",
+              "label": "入库"
+            },
+            {
+              "value": "hits",
+              "label": "总热度"
+            },
+            {
+              "value": "hits7Day",
+              "label": "一周热度"
+            },
+            {
+              "value": "hitsDay",
+              "label": "一天热度"
+            },
+            {
+              "value": "rating",
+              "label": "评价"
+            }
+          ],
+          "default": "add"
+        }
       },
       "description": ""
     }

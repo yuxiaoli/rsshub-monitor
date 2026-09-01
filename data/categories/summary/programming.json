@@ -1,17 +1,16 @@
 [
   {
-    "provider_id": "bitbucket",
-    "provider_name": "Bitbucket",
-    "route_key": "/commits/:workspace/:repo_slug",
+    "provider_id": "cncf",
+    "provider_name": "CNCF",
+    "route_key": "/:cate?",
     "route": {
-      "name": "Commits",
-      "path": "/commits/:workspace/:repo_slug",
-      "example": "/bitbucket/commits/blaze-lib/blaze",
+      "name": "Category",
+      "path": "/:cate?",
+      "example": "/cncf",
       "parameters": {
-        "workspace": "Workspace",
-        "repo_slug": "Repository"
+        "cate": "blog by default"
       },
-      "description": ""
+      "description": "| Blog | News | Announcements | Reports |\n| ---- | ---- | ------------- | ------- |\n| blog | news | announcements | reports |"
     }
   },
   {
@@ -23,6 +22,98 @@
       "path": "/contests",
       "example": "/codeforces/contests",
       "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/comments/:user/:repo/:number?",
+    "route": {
+      "name": "Issue / Pull Request comments",
+      "path": "/comments/:user/:repo/:number?",
+      "example": "/github/comments/DIYgod/RSSHub/8116",
+      "parameters": {
+        "user": "User / Org name",
+        "repo": "Repo name",
+        "number": "Issue or pull number (if omitted: all)"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/contributors/:user/:repo/:order?/:anon?",
+    "route": {
+      "name": "Repo Contributors",
+      "path": "/contributors/:user/:repo/:order?/:anon?",
+      "example": "/github/contributors/DIYgod/RSSHub",
+      "parameters": {
+        "user": "User name",
+        "repo": "Repo name",
+        "order": "Sort order by commit numbers, desc and asc (descending by default)",
+        "anon": "Show anonymous users. Defaults to no, use any values for yes."
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "github",
+    "provider_name": "GitHub",
+    "route_key": "/repos/:user/:type?/:sort?",
+    "route": {
+      "name": "User Repo",
+      "path": "/repos/:user/:type?/:sort?",
+      "example": "/github/repos/DIYgod",
+      "parameters": {
+        "user": "GitHub username",
+        "type": "Type of repository, can be `all`, `owner`, `member`, `public`, `private`, `forks`, `sources`",
+        "sort": "Sort by `created`, `updated`, `pushed`, `full_name`"
+      },
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "hellogithub",
+    "provider_name": "HelloGitHub",
+    "route_key": "/article/:sort?",
+    "route": {
+      "name": "文章",
+      "path": "/article/:sort?",
+      "example": "/hellogithub/article",
+      "parameters": {
+        "sort": "排序方式，见下表，默认为 `last`，即最近"
+      },
+      "description": "| 热门 | 最近 |\n| ---- | ---- |\n| hot  | last |"
+    }
+  },
+  {
+    "provider_id": "hellogithub",
+    "provider_name": "HelloGitHub",
+    "route_key": "/home/:sort?/:id?",
+    "route": {
+      "name": "开源项目",
+      "path": "/home/:sort?/:id?",
+      "example": "/hellogithub/home",
+      "parameters": {
+        "sort": "排序方式，见下表，默认为 `featured`，即精选",
+        "id": "标签 id，可在对应标签页 URL 中找到，默认为全部标签"
+      },
+      "description": "| 精选 | 全部 |\n| ---- | ---- |\n| featured  | all |"
+    }
+  },
+  {
+    "provider_id": "juejin",
+    "provider_name": "掘金",
+    "route_key": "/collection/:collectionId",
+    "route": {
+      "name": "单个收藏夹",
+      "path": "/collection/:collectionId",
+      "example": "/juejin/collection/6845243180586123271",
+      "parameters": {
+        "collectionId": "收藏夹唯一标志符, 在浏览器地址栏URL中能够找到"
+      },
       "description": ""
     }
   },
@@ -41,41 +132,31 @@
     }
   },
   {
-    "provider_id": "ollama",
-    "provider_name": "Ollama",
-    "route_key": "/library",
+    "provider_id": "lanqiao",
+    "provider_name": "蓝桥云课",
+    "route_key": "/author/:uid",
     "route": {
-      "name": "Models",
-      "path": "/library",
-      "example": "/ollama/library",
-      "parameters": {},
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "studygolang",
-    "provider_name": "Go 语言中文网",
-    "route_key": "/go/:id?",
-    "route": {
-      "name": "板块",
-      "path": "/go/:id?",
-      "example": "/studygolang/go/daily",
+      "name": "作者发布的课程",
+      "path": "/author/:uid",
+      "example": "/lanqiao/author/1701267",
       "parameters": {
-        "id": "板块 id，默认为周刊"
+        "uid": "作者 `uid` 可在作者主页 URL 中找到"
       },
       "description": ""
     }
   },
   {
-    "provider_id": "wechat",
-    "provider_name": "微信小程序",
-    "route_key": "/announce",
+    "provider_id": "zaozao",
+    "provider_name": "前端早早聊",
+    "route_key": "/article/:type?",
     "route": {
-      "name": "公众平台系统公告栏目",
-      "path": "/announce",
-      "example": "/wechat/announce",
-      "parameters": {},
-      "description": ""
+      "name": "文章",
+      "path": "/article/:type?",
+      "example": "/zaozao/article/quality",
+      "parameters": {
+        "type": "文章分类"
+      },
+      "description": "| 精品推荐  | 技术干货 | 职场成长 | 社区动态  | 组件物料 | 行业动态 |\n| --------- | -------- | -------- | --------- | -------- | -------- |\n| recommend | quality  | growth   | community | material | industry |"
     }
   }
 ]

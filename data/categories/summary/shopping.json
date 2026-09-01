@@ -1,43 +1,55 @@
 [
   {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/artists/:lang?",
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/crowdfunding",
     "route": {
-      "name": "画师列表",
-      "path": "/artists/:lang?",
-      "example": "/furstar/artists/cn",
-      "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "ktown4u",
-    "provider_name": "Ktown4u",
-    "route_key": "/artistBrandlist/:grpNo/:grpNo2?",
-    "route": {
-      "name": "Get the products on sale",
-      "path": "/artistBrandlist/:grpNo/:grpNo2?",
-      "example": "/ktown4u/artistBrandlist/234590/1723449",
-      "parameters": {
-        "grpNo": "artist id (Get in url)",
-        "grpNo2": "product category id (Get in url), empty for all categories"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "tesla",
-    "provider_name": "特斯拉中国",
-    "route_key": "/price",
-    "route": {
-      "name": "价格",
-      "path": "/price",
-      "example": "/tesla/price",
+      "name": "小米众筹",
+      "path": "/crowdfunding",
+      "example": "/mi/crowdfunding",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "shoac",
+    "provider_name": "上海东方艺术中心",
+    "route_key": "/recent-show",
+    "route": {
+      "name": "演出月历",
+      "path": "/recent-show",
+      "example": "/shoac/recent-show",
+      "parameters": {},
+      "description": ""
+    }
+  },
+  {
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/event/:cityCode/:showStyle?",
+    "route": {
+      "name": "按城市 - 演出更新",
+      "path": "/event/:cityCode/:showStyle?",
+      "example": "/showstart/event/571/3",
+      "parameters": {
+        "cityCode": "演出城市 (编号)",
+        "showStyle": "演出风格 (编号)"
+      },
+      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::"
+    }
+  },
+  {
+    "provider_id": "taobao",
+    "provider_name": "淘宝众筹",
+    "route_key": "/zhongchou/:type?",
+    "route": {
+      "name": "众筹项目",
+      "path": "/zhongchou/:type?",
+      "example": "/taobao/zhongchou/all",
+      "parameters": {
+        "type": "类型, 默认为 `all` 全部"
+      },
+      "description": "| 全部 | 科技 | 食品        | 动漫 | 设计   | 公益 | 娱乐 | 影音  | 书籍 | 游戏 | 其他  |\n| ---- | ---- | ----------- | ---- | ------ | ---- | ---- | ----- | ---- | ---- | ----- |\n| all  | tech | agriculture | acg  | design | love | tele | music | book | game | other |"
     }
   }
 ]

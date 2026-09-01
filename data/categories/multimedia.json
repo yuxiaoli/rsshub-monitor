@@ -1,103 +1,37 @@
 [
   {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/nipple-video-category/:keyword",
+    "provider_id": "coomer",
+    "provider_name": "Coomer",
+    "route_key": "/:source?/:id?",
     "route": {
-      "path": "/nipple-video-category/:keyword",
-      "example": "/chikubi/nipple-video-category/cat-nipple-video-god",
+      "path": "/:source?/:id?",
+      "example": "/coomer",
       "parameters": {
-        "keyword": "Keyword"
+        "source": "Source, see below, Posts by default",
+        "id": "User id, can be found in URL"
       },
-      "name": "動画カテゴリー",
-      "provider_id": "chikubi",
-      "provider_name": "乳首ふぇち",
-      "route_key": "/nipple-video-category/:keyword"
+      "name": "Posts",
+      "description": "Sources\n\n| Posts | OnlyFans | Fansly | CandFans |\n| ----- | -------- | ------- | -------- |\n| posts | onlyfans | fansly   | candfans |\n\n::: tip\n  When `posts` is selected as the value of the parameter **source**, the parameter **id** does not take effect.\n  There is an optinal parameter **limit** which controls the number of posts to fetch, default value is 25.\n:::",
+      "provider_id": "coomer",
+      "provider_name": "Coomer",
+      "route_key": "/:source?/:id?"
     }
   },
   {
-    "provider_id": "chikubi",
-    "provider_name": "乳首ふぇち",
-    "route_key": "/search/:keyword",
+    "provider_id": "youku",
+    "provider_name": "优酷",
+    "route_key": "/channel/:channelId/:embed?",
     "route": {
-      "path": "/search/:keyword",
-      "example": "/chikubi/search/ギャップ",
+      "path": "/channel/:channelId/:embed?",
+      "example": "/youku/channel/UNTg3MTM3OTcy",
       "parameters": {
-        "keyword": "Keyword"
+        "channelId": "频道 id",
+        "embed": "默认为开启内嵌视频, 任意值为关闭"
       },
-      "name": "Search",
-      "provider_id": "chikubi",
-      "provider_name": "乳首ふぇち",
-      "route_key": "/search/:keyword"
-    }
-  },
-  {
-    "provider_id": "themoviedb",
-    "provider_name": "The Movie Database",
-    "route_key": "/tv/:id/seasons/:seasonNumber/episodes/:lang?",
-    "route": {
-      "path": "/tv/:id/seasons/:seasonNumber/episodes/:lang?",
-      "example": "/themoviedb/tv/70593/seasons/1/episodes/en-US",
-      "parameters": {
-        "id": "TV show ID",
-        "seasonNumber": "Season number",
-        "lang": "Language"
-      },
-      "name": "TV Show Episodes",
-      "provider_id": "themoviedb",
-      "provider_name": "The Movie Database",
-      "route_key": "/tv/:id/seasons/:seasonNumber/episodes/:lang?"
-    }
-  },
-  {
-    "provider_id": "yyets",
-    "provider_name": "人人影视",
-    "route_key": "/article/:type?",
-    "route": {
-      "path": "/article/:type?",
-      "view": 0,
-      "example": "/yyets/article",
-      "parameters": {
-        "type": {
-          "description": "类型",
-          "options": [
-            {
-              "value": "all",
-              "label": "全部"
-            },
-            {
-              "value": "news",
-              "label": "影视资讯"
-            },
-            {
-              "value": "report",
-              "label": "收视快报"
-            },
-            {
-              "value": "m_review",
-              "label": "人人影评"
-            },
-            {
-              "value": "t_review",
-              "label": "人人剧评"
-            },
-            {
-              "value": "new_review",
-              "label": "新剧评测"
-            },
-            {
-              "value": "recom",
-              "label": "片单推荐"
-            }
-          ],
-          "default": "all"
-        }
-      },
-      "name": "影视资讯",
-      "description": "| 全部 | 影视资讯 | 收视快报 | 人人影评  | 人人剧评  | 新剧评测    | 片单推荐 |\n| ---- | -------- | -------- | --------- | --------- | ----------- | -------- |\n|      | news     | report   | m_review | t_review | new_review | recom    |",
-      "provider_id": "yyets",
-      "provider_name": "人人影视",
-      "route_key": "/article/:type?"
+      "name": "频道",
+      "provider_id": "youku",
+      "provider_name": "优酷",
+      "route_key": "/channel/:channelId/:embed?"
     }
   }
 ]

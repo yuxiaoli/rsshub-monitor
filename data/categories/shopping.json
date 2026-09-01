@@ -1,51 +1,66 @@
 [
   {
-    "provider_id": "furstar",
-    "provider_name": "Furstar",
-    "route_key": "/artists/:lang?",
+    "provider_id": "mi",
+    "provider_name": "小米",
+    "route_key": "/crowdfunding",
     "route": {
-      "path": "/artists/:lang?",
-      "example": "/furstar/artists/cn",
-      "parameters": {
-        "lang": "语言, 留空为jp, 支持cn, en"
-      },
-      "name": "画师列表",
-      "url": "furstar.jp/",
-      "provider_id": "furstar",
-      "provider_name": "Furstar",
-      "route_key": "/artists/:lang?"
+      "path": "/crowdfunding",
+      "example": "/mi/crowdfunding",
+      "name": "小米众筹",
+      "view": 5,
+      "provider_id": "mi",
+      "provider_name": "小米",
+      "route_key": "/crowdfunding"
     }
   },
   {
-    "provider_id": "ktown4u",
-    "provider_name": "Ktown4u",
-    "route_key": "/artistBrandlist/:grpNo/:grpNo2?",
+    "provider_id": "shoac",
+    "provider_name": "上海东方艺术中心",
+    "route_key": "/recent-show",
     "route": {
-      "path": "/artistBrandlist/:grpNo/:grpNo2?",
-      "example": "/ktown4u/artistBrandlist/234590/1723449",
-      "parameters": {
-        "grpNo": "artist id (Get in url)",
-        "grpNo2": "product category id (Get in url), empty for all categories"
-      },
-      "name": "Get the products on sale",
-      "provider_id": "ktown4u",
-      "provider_name": "Ktown4u",
-      "route_key": "/artistBrandlist/:grpNo/:grpNo2?"
-    }
-  },
-  {
-    "provider_id": "tesla",
-    "provider_name": "特斯拉中国",
-    "route_key": "/price",
-    "route": {
-      "path": "/price",
-      "example": "/tesla/price",
+      "path": "/recent-show",
+      "example": "/shoac/recent-show",
       "parameters": {},
-      "name": "价格",
-      "url": "tesla.cn/model3/design",
-      "provider_id": "tesla",
-      "provider_name": "特斯拉中国",
-      "route_key": "/price"
+      "name": "演出月历",
+      "url": "shoac.com.cn/",
+      "provider_id": "shoac",
+      "provider_name": "上海东方艺术中心",
+      "route_key": "/recent-show"
+    }
+  },
+  {
+    "provider_id": "showstart",
+    "provider_name": "秀动网",
+    "route_key": "/event/:cityCode/:showStyle?",
+    "route": {
+      "path": "/event/:cityCode/:showStyle?",
+      "example": "/showstart/event/571/3",
+      "parameters": {
+        "cityCode": "演出城市 (编号)",
+        "showStyle": "演出风格 (编号)"
+      },
+      "name": "按城市 - 演出更新",
+      "description": "::: tip\n-   演出城市 `cityCode` 查询: `/showstart/search/city/:keyword`, 如: [https://rsshub.app/showstart/search/city/杭州](https://rsshub.app/showstart/search/city/杭州)\n\n-   演出风格 `showStyle` 查询: `/showstart/search/style/:keyword`，如: [https://rsshub.app/showstart/search/style/摇滚](https://rsshub.app/showstart/search/style/摇滚)\n:::",
+      "provider_id": "showstart",
+      "provider_name": "秀动网",
+      "route_key": "/event/:cityCode/:showStyle?"
+    }
+  },
+  {
+    "provider_id": "taobao",
+    "provider_name": "淘宝众筹",
+    "route_key": "/zhongchou/:type?",
+    "route": {
+      "path": "/zhongchou/:type?",
+      "example": "/taobao/zhongchou/all",
+      "parameters": {
+        "type": "类型, 默认为 `all` 全部"
+      },
+      "name": "众筹项目",
+      "description": "| 全部 | 科技 | 食品        | 动漫 | 设计   | 公益 | 娱乐 | 影音  | 书籍 | 游戏 | 其他  |\n| ---- | ---- | ----------- | ---- | ------ | ---- | ---- | ----- | ---- | ---- | ----- |\n| all  | tech | agriculture | acg  | design | love | tele | music | book | game | other |",
+      "provider_id": "taobao",
+      "provider_name": "淘宝众筹",
+      "route_key": "/zhongchou/:type?"
     }
   }
 ]

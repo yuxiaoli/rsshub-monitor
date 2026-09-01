@@ -2,78 +2,72 @@
   {
     "provider_id": "aisixiang",
     "provider_name": "爱思想",
-    "route_key": "/column/:id",
+    "route_key": "/thinktank/:id/:type?",
     "route": {
-      "path": "/column/:id",
-      "example": "/aisixiang/column/722",
+      "path": "/thinktank/:id/:type?",
+      "example": "/aisixiang/thinktank/WuQine/论文",
       "parameters": {
-        "id": "栏目 ID, 可在对应栏目 URL 中找到"
+        "id": "专栏 ID，一般为作者拼音，可在URL中找到",
+        "type": "栏目类型，参考下表，默认为全部"
       },
-      "name": "栏目",
+      "name": "思想库（专栏）",
+      "description": "| 论文 | 时评 | 随笔 | 演讲 | 访谈 | 著作 | 读书 | 史论 | 译作 | 诗歌 | 书信 | 科学 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |",
       "provider_id": "aisixiang",
       "provider_name": "爱思想",
-      "route_key": "/column/:id"
+      "route_key": "/thinktank/:id/:type?"
     }
   },
   {
-    "provider_id": "ciweimao",
-    "provider_name": "刺猬猫",
-    "route_key": "/chapter/:id",
+    "provider_id": "p-articles",
+    "provider_name": "虚词",
+    "route_key": "/contributors/:author",
     "route": {
-      "path": "/chapter/:id",
-      "example": "/ciweimao/chapter/100043404",
+      "path": "/contributors/:author",
+      "example": "/p-articles/contributors/黃衍仁",
       "parameters": {
-        "id": "小说 id, 可在对应小说页 URL 中找到"
+        "author": "虛詞作者, 可在作者页面 URL 找到"
       },
-      "name": "章节",
-      "provider_id": "ciweimao",
-      "provider_name": "刺猬猫",
-      "route_key": "/chapter/:id"
+      "name": "虛詞作者",
+      "provider_id": "p-articles",
+      "provider_name": "虚词",
+      "route_key": "/contributors/:author"
     }
   },
   {
-    "provider_id": "inoreader",
-    "provider_name": "Inoreader",
-    "route_key": "/html_clip/:user/:tag",
+    "provider_id": "syosetu",
+    "provider_name": "Syosetu",
+    "route_key": "/search/:sub/:query",
     "route": {
-      "path": "/html_clip/:user/:tag",
-      "example": "/inoreader/html_clip/1005137674/user-favorites",
-      "view": 0,
-      "name": "HTML Clip",
-      "provider_id": "inoreader",
-      "provider_name": "Inoreader",
-      "route_key": "/html_clip/:user/:tag"
-    }
-  },
-  {
-    "provider_id": "penguin-random-house",
-    "provider_name": "Penguin Random House",
-    "route_key": "/articles",
-    "route": {
-      "path": "/articles",
-      "example": "/penguin-random-house/articles",
-      "parameters": {},
-      "name": "Articles",
-      "url": "penguinrandomhouse.com/articles",
-      "provider_id": "penguin-random-house",
-      "provider_name": "Penguin Random House",
-      "route_key": "/articles"
-    }
-  },
-  {
-    "provider_id": "sfacg",
-    "provider_name": "SF 轻小说",
-    "route_key": "/novel/chapter/:id",
-    "route": {
-      "path": "/novel/chapter/:id",
-      "example": "/sfacg/novel/chapter/672431",
+      "path": "/search/:sub/:query",
+      "example": "/syosetu/search/noc/word=ハーレム&notword=&type=r&mintime=&maxtime=&minlen=30000&maxlen=&min_globalpoint=&max_globalpoint=&minlastup=&maxlastup=&minfirstup=&maxfirstup=&isgl=1&notbl=1&order=new?limit=5",
       "parameters": {
-        "id": "小说 id, 可在对应小说页 URL 中找到"
+        "sub": {
+          "description": "The target Syosetu subsite.",
+          "options": [
+            {
+              "value": "yomou",
+              "label": "小説を読もう"
+            },
+            {
+              "value": "noc",
+              "label": "ノクターン"
+            },
+            {
+              "value": "mnlt",
+              "label": "ムーンライト"
+            },
+            {
+              "value": "mid",
+              "label": "ミッドナイト"
+            }
+          ]
+        },
+        "query": "Search parameters in Syosetu format."
       },
-      "name": "章节",
-      "provider_id": "sfacg",
-      "provider_name": "SF 轻小说",
-      "route_key": "/novel/chapter/:id"
+      "name": "Search",
+      "provider_id": "syosetu",
+      "provider_name": "Syosetu",
+      "route_key": "/search/:sub/:query"
     }
   }
 ]

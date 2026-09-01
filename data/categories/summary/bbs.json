@@ -1,70 +1,73 @@
 [
   {
-    "provider_id": "elasticsearch-cn",
-    "provider_name": "Elastic 中文社区",
-    "route_key": "/:params?",
+    "provider_id": "19lou",
+    "provider_name": "19 楼",
+    "route_key": "/:city?",
     "route": {
-      "name": "发现",
-      "path": "/:params?",
-      "example": "/elasticsearch-cn",
+      "name": "头条",
+      "path": "/:city?",
+      "example": "/19lou/jiaxing",
       "parameters": {
-        "params": "分类，可在对应分类页 URL 中找到"
+        "city": "分类，见下表，默认为 www，即杭州"
       },
-      "description": "如 [Elasticsearch 最新](https://elasticsearch.cn/category-2) 的 URL 为 `https://elasticsearch.cn/category-2`，则分类参数处填写 `category-2`，最后得到路由地址 [`/elasticsearch-cn/category-2`](https://rsshub.app/elasticsearch-cn/category-2)。\n\n  又如 [求职招聘 30 天热门](https://elasticsearch.cn/sort_type-hot____category-12__day-30) 的 URL 为 `https://elasticsearch.cn/sort_type-hot____category-12__day-30`，则分类参数处填写 `sort_type-hot____category-12__day-30`，最后得到路由地址 [`/elasticsearch-cn/sort_type-hot____category-12__day-30`](https://rsshub.app/elasticsearch-cn/sort_type-hot____category-12__day-30)。"
+      "description": "| 杭州 | 台州    | 嘉兴    | 宁波   | 湖州   |\n| ---- | ------- | ------- | ------ | ------ |\n| www  | taizhou | jiaxing | ningbo | huzhou |\n\n| 绍兴     | 湖州   | 温州    | 金华   | 舟山     |\n| -------- | ------ | ------- | ------ | -------- |\n| shaoxing | huzhou | wenzhou | jinhua | zhoushan |\n\n| 衢州   | 丽水   | 义乌 | 萧山     | 余杭   |\n| ------ | ------ | ---- | -------- | ------ |\n| quzhou | lishui | yiwu | xiaoshan | yuhang |\n\n| 临安  | 富阳   | 桐庐   | 建德   | 淳安   |\n| ----- | ------ | ------ | ------ | ------ |\n| linan | fuyang | tonglu | jiande | chunan |"
     }
   },
   {
-    "provider_id": "playno1",
-    "provider_name": "PLAYNO.1 玩樂達人",
-    "route_key": "/av/:catid?",
+    "provider_id": "1point3acres",
+    "provider_name": "一亩三分地",
+    "route_key": "/offer/:year?/:major?/:school?",
     "route": {
-      "name": "AV",
-      "path": "/av/:catid?",
-      "example": "/playno1/av",
+      "name": "录取结果",
+      "path": "/offer/:year?/:major?/:school?",
+      "example": "/1point3acres/offer/12/null/CMU",
       "parameters": {
-        "catid": "分类，见下表，默认为全部文章"
+        "year": "录取年份  id，空为null",
+        "major": "录取专业 id，空为null",
+        "school": "录取学校 id，空为null"
       },
-      "description": "::: warning\n目前观测到该博客可能禁止日本 IP 访问。建议部署在日本区以外的服务器上。\n:::\n\n| 全部文章 | AV 新聞 | AV 導覽 |\n| -------- | ------- | ------- |\n| 78       | 3       | 5       |"
+      "description": "::: tip 三个 id 获取方式\n  1.  打开 [https://offer.1point3acres.com](https://offer.1point3acres.com)\n  2.  打开控制台\n  3.  切换到 Network 面板\n  4.  点击 搜索 按钮\n  5.  点击 results?ps=15&pg=1 POST 请求\n  6.  找到 Request Payload 请求参数，例如 `filters: {planyr: \"13\", planmajor: \"1\", outname_w: \"ACADIAU\"}` ，则三个 id 分别为: 13,1,ACADIAU\n:::"
     }
   },
   {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/post/:postid",
+    "provider_id": "douyu",
+    "provider_name": "斗鱼直播",
+    "route_key": "/group/:id/:sort?",
     "route": {
-      "name": "帖子",
-      "path": "/post/:postid",
-      "example": "/v2ex/post/584403",
+      "name": "鱼吧帖子",
+      "path": "/group/:id/:sort?",
+      "example": "/douyu/group/1011",
       "parameters": {
-        "postid": "帖子ID，在 URL 可以找到"
+        "id": "鱼吧 id，可在鱼吧页 URL 中找到",
+        "sort": "排序方式，见下表，默认为发布时间排序"
       },
-      "description": ""
+      "description": "| 回复时间排序 | 发布时间排序 |\n| ------------ | ------------ |\n| 1            | 2            |"
     }
   },
   {
-    "provider_id": "v2ex",
-    "provider_name": "V2EX",
-    "route_key": "/tab/:tabid",
+    "provider_id": "pkmer",
+    "provider_name": "PKMer",
+    "route_key": "/recent",
     "route": {
-      "name": "标签",
-      "path": "/tab/:tabid",
-      "example": "/v2ex/tab/hot",
-      "parameters": {
-        "tabid": "tab标签ID,在 URL 可以找到"
-      },
-      "description": ""
-    }
-  },
-  {
-    "provider_id": "xiaote",
-    "provider_name": "小特社区",
-    "route_key": "/news",
-    "route": {
-      "name": "首页帖子",
-      "path": "/news",
-      "example": "/xiaote/news",
+      "name": "最近更新",
+      "path": "/recent",
+      "example": "/pkmer/recent",
       "parameters": {},
       "description": ""
+    }
+  },
+  {
+    "provider_id": "txrjy",
+    "provider_name": "通信人家园",
+    "route_key": "/fornumtopic/:channel?",
+    "route": {
+      "name": "论坛 频道",
+      "path": "/fornumtopic/:channel?",
+      "example": "/txrjy/fornumtopic",
+      "parameters": {
+        "channel": "频道的 id，见下表，默认为最新500个主题帖"
+      },
+      "description": "| 最新 500 个主题帖 | 最新 500 个回复帖 | 最新精华帖 | 最新精华帖 | 一周热帖 | 本月热帖 |\n| :---------------: | :---------------: | :--------: | :--------: | :------: | :------: |\n|         1         |         2         |      3     |      4     |     5    |     6    |"
     }
   }
 ]

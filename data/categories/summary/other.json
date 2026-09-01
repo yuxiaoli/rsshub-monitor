@@ -1,44 +1,69 @@
 [
   {
-    "provider_id": "bing",
-    "provider_name": "Bing",
-    "route_key": "/search/:keyword",
+    "provider_id": "cib",
+    "provider_name": "中国兴业银行",
+    "route_key": "/whpj/:format?",
     "route": {
-      "name": "搜索",
-      "path": "/search/:keyword",
-      "example": "/bing/search/rss",
+      "name": "外汇牌价",
+      "path": "/whpj/:format?",
+      "example": "/cib/whpj/xh?filter_title=USD",
       "parameters": {
-        "keyword": "搜索关键词"
+        "format": "输出的标题格式，默认为标题 + 所有价格。短格式仅包含货币名称。"
       },
+      "description": "| 短格式 | 现汇买卖 | 现钞买卖 | 现汇买入 | 现汇卖出 | 现钞买入 | 现钞卖出 |\n| ------ | -------- | -------- | -------- | -------- | -------- | -------- |\n| short  | xh       | xc       | xhmr     | xhmc     | xcmr     | xcmc     |"
+    }
+  },
+  {
+    "provider_id": "piyao",
+    "provider_name": "中国互联网联合辟谣平台",
+    "route_key": "/jrpy",
+    "route": {
+      "name": "今日辟谣",
+      "path": "/jrpy",
+      "example": "/piyao/jrpy",
+      "parameters": {},
       "description": ""
     }
   },
   {
-    "provider_id": "hostmonit",
-    "provider_name": "全球主机监控",
-    "route_key": "/cloudflareyes/:type?",
+    "provider_id": "scmp",
+    "provider_name": "Corona Virus Disease 2019",
+    "route_key": "/coronavirus",
     "route": {
-      "name": "CloudFlareYes",
-      "path": "/cloudflareyes/:type?",
-      "example": "/hostmonit/cloudflareyes",
-      "parameters": {
-        "type": "类型，见下表，默认为 v4"
-      },
-      "description": "| v4 | v6 |\n| -- | -- |\n|    | v6 |"
+      "name": "South China Morning Post - China coronavirus outbreak",
+      "path": "/coronavirus",
+      "example": "/scmp/coronavirus",
+      "parameters": {},
+      "description": ""
     }
   },
   {
-    "provider_id": "instructables",
-    "provider_name": "Instructables",
-    "route_key": "/projects/:category?",
+    "provider_id": "trending",
+    "provider_name": "热搜聚合",
+    "route_key": "/:keywords/:numberOfDays?",
     "route": {
-      "name": "Projects",
-      "path": "/projects/:category?",
-      "example": "/instructables/projects/circuits",
+      "name": "关键词聚合追踪",
+      "path": "/:keywords/:numberOfDays?",
+      "example": "/trending/唐山,打人/3",
       "parameters": {
-        "category": "Category, empty by default, can be found in URL or see the table below"
+        "keywords": "通过逗号区隔的关键词列表",
+        "numberOfDays": "向前追溯的天数，默认为3天"
       },
-      "description": "| All | Circuits | Workshop | Craft | Cooking | Living | Outside | Teachers |\n| --- | -------- | -------- | ----- | ------- | ------ | ------- | -------- |\n|     | circuits | workshop | craft | cooking | living | outside | teachers |"
+      "description": "追踪各大热搜榜上包含特定关键词的条目。\n\n当前收录榜单：*微博热搜*、*今日头条热搜*、*知乎热搜*、*知乎热门视频*、*知乎热门话题*。\n\n数据源: [trending-in-one](https://github.com/huqi-pr/trending-in-one)"
+    }
+  },
+  {
+    "provider_id": "usepanda",
+    "provider_name": "Panda",
+    "route_key": "/feeds/:id",
+    "route": {
+      "name": "Feeds",
+      "path": "/feeds/:id",
+      "example": "/usepanda/feeds/5718e53e7a84fb1901e059cc",
+      "parameters": {
+        "id": "Feed ID"
+      },
+      "description": "| Channel | feedId                   |\n| ------- | ------------------------ |\n| Github  | 5718e53e7a84fb1901e059cc |"
     }
   }
 ]
